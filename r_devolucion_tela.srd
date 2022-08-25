@@ -1,0 +1,104 @@
+HA$PBExportHeader$r_devolucion_tela.srd
+release 9;
+datawindow(units=0 timer_interval=60000 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=364 color="536870912" )
+summary(height=748 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912"  height.autosize=yes)
+table(column=(type=long updatewhereclause=yes name=cs_orden_corte dbname="s_devtel_ordencr.cs_orden_corte" )
+ column=(type=long updatewhereclause=yes name=co_modelo dbname="s_devtel_ordencr.co_modelo" )
+ column=(type=long updatewhereclause=yes name=co_fabrica dbname="s_devtel_ordencr.co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_reftel dbname="s_devtel_ordencr.co_reftel" )
+ column=(type=long updatewhereclause=yes name=co_caract dbname="s_devtel_ordencr.co_caract" )
+ column=(type=char(42) updatewhereclause=yes name=h_telas_de_reftel dbname="h_telas.de_reftel" )
+ column=(type=long updatewhereclause=yes name=diametro dbname="s_devtel_ordencr.diametro" )
+ column=(type=long updatewhereclause=yes name=co_color_te dbname="s_devtel_ordencr.co_color_te" )
+ column=(type=decimal(4) updatewhereclause=yes name=ca_kg_dev dbname="s_devtel_ordencr.ca_kg_dev" )
+ column=(type=long updatewhereclause=yes name=h_orden_corte_co_linea dbname="h_orden_corte.co_linea" )
+ column=(type=long updatewhereclause=yes name=dt_ordcr_modelos_raya dbname="dt_ordcr_modelos.raya" )
+ column=(type=long updatewhereclause=yes name=dt_ordcr_modelos_sw_automatico dbname="dt_ordcr_modelos.sw_automatico" )
+ column=(type=long updatewhereclause=yes name=s_devtel_ordencr_co_fab_propietario dbname="s_devtel_ordencr.co_fab_propietario" )
+ retrieve="  SELECT s_devtel_ordencr.cs_orden_corte,   
+         s_devtel_ordencr.co_modelo,   
+         s_devtel_ordencr.co_fabrica,   
+         s_devtel_ordencr.co_reftel,   
+         s_devtel_ordencr.co_caract,   
+         h_telas.de_reftel,   
+         s_devtel_ordencr.diametro,   
+         s_devtel_ordencr.co_color_te,   
+         s_devtel_ordencr.ca_kg_dev,   
+         h_orden_corte.co_linea,   
+         dt_ordcr_modelos.raya,   
+         dt_ordcr_modelos.sw_automatico,
+         s_devtel_ordencr.co_fab_propietario
+    FROM s_devtel_ordencr,   
+         h_telas,   
+         h_orden_corte,   
+         dt_ordcr_modelos  
+   WHERE ( s_devtel_ordencr.co_reftel = h_telas.co_reftel ) and  
+         ( s_devtel_ordencr.co_caract = h_telas.co_caract ) and  
+         ( s_devtel_ordencr.cs_orden_corte = h_orden_corte.cs_orden_corte ) and  
+         ( s_devtel_ordencr.cs_orden_corte = dt_ordcr_modelos.cs_orden_corte ) and  
+         ( dt_ordcr_modelos.co_modelo = s_devtel_ordencr.co_modelo ) and  
+         ( ( s_devtel_ordencr.ano_mes = :adt_annomes ) )    
+UNION
+  SELECT s_devtel_ordencr.cs_orden_corte,   
+         s_devtel_ordencr.co_modelo,   
+         s_devtel_ordencr.co_fabrica,   
+         s_devtel_ordencr.co_reftel,   
+         s_devtel_ordencr.co_caract,   
+         h_telas.de_reftel,   
+         s_devtel_ordencr.diametro,   
+         s_devtel_ordencr.co_color_te,   
+         s_devtel_ordencr.ca_kg_dev,   
+         0,   
+         0,   
+         0,
+			s_devtel_ordencr.co_fab_propietario
+    FROM s_devtel_ordencr,   
+         h_telas,
+         h_ordenes_corte  
+   WHERE ( s_devtel_ordencr.co_reftel = h_telas.co_reftel ) and  
+         ( s_devtel_ordencr.co_caract = h_telas.co_caract ) and  
+         ( s_devtel_ordencr.cs_orden_corte = h_ordenes_corte.cs_orden_corte ) and  
+         ( ( s_devtel_ordencr.ano_mes = :adt_annomes ) )    
+
+" arguments=(("adt_annomes", datetime))  sort="s_devtel_ordencr_co_fab_propietario A co_fabrica A h_orden_corte_co_linea A cs_orden_corte A " )
+group(level=1 header.height=80 trailer.height=84 by=("s_devtel_ordencr_co_fab_propietario" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=152 trailer.height=76 by=("s_devtel_ordencr_co_fab_propietario" , "co_fabrica" , "h_orden_corte_co_linea" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="DEVOLUCION DE TELA AL CIERRE DEL MES" border="0" color="0" x="494" y="48" height="80" width="1902" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="today()"border="0" color="0" x="41" y="52" height="72" width="329" format="DD/MM/YYYY" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="'P$$HEX1$$e100$$ENDHEX$$gina ' + page() + ' de ' + pageCount()"border="0" color="0" x="2537" y="48" height="72" width="512" format="[general]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Mes Contable:" border="0" color="0" x="18" y="180" height="56" width="311" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression=" adt_annomes "border="0" color="0" x="347" y="180" height="56" width="219" format="mm/yyyy" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+button(band=header text="Filtrar" filename="" enabled=yes action="9" border="0" color="0" x="855" y="172" height="120" width="320" vtextalign="0" htextalign="0"  name=b_1 visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=header.1 id=13 alignment="0" tabsequence=32766 border="6" color="0" x="782" y="12" height="56" width="1614" format="[general]" html.valueishtml="0"  name=s_devtel_ordencr_co_fab_propietario_1 visible="1" dddw.name=dddw_fabricas dddw.displaycolumn=de_fabrica dddw.datacolumn=co_fabrica dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="268435456" )
+column(band=header.1 id=13 alignment="0" tabsequence=32766 border="6" color="0" x="613" y="12" height="56" width="146" format="[general]" html.valueishtml="0"  name=s_devtel_ordencr_co_fab_propietario visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="268435456" )
+text(band=header.1 alignment="2" text="FABRICA PROPIETARIA:" border="6" color="0" x="23" y="12" height="56" width="571" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="268435456" )
+text(band=header.2 alignment="2" text="Orden Corte" border="0" color="0" x="18" y="88" height="56" width="306" html.valueishtml="0"  name=cs_orden_corte_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.2 alignment="2" text="Modelo" border="0" color="0" x="347" y="88" height="56" width="270" html.valueishtml="0"  name=co_modelo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.2 alignment="2" text="Tela" border="0" color="0" x="635" y="88" height="56" width="1102" html.valueishtml="0"  name=co_reftel_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.2 alignment="2" text="F$$HEX1$$e100$$ENDHEX$$brica" border="6" color="0" x="14" y="12" height="56" width="411" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=3 alignment="1" tabsequence=32766 border="6" color="0" x="485" y="8" height="60" width="1038" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" dddw.name=dddw_fabricas dddw.displaycolumn=razon_social dddw.datacolumn=co_fabrica dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.2 alignment="2" text="Linea" border="6" color="0" x="1819" y="8" height="56" width="165" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=10 alignment="2" tabsequence=32766 border="6" color="0" x="2002" y="4" height="60" width="667" format="[general]" html.valueishtml="0"  name=h_orden_corte_co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="14" y="4" height="64" width="306" format="[general]" html.valueishtml="0"  name=cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="343" y="4" height="64" width="270" format="[general]" html.valueishtml="0"  name=co_modelo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="String( co_reftel ) + '-' + String( co_caract )"border="0" color="0" x="631" y="4" height="64" width="315" format="[general]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="969" y="4" height="64" width="763" format="[general]" html.valueishtml="0"  name=h_telas_de_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+report(band=summary dataobject="dtb_totales_rollos_corte" x="155" y="4" height="712" width="1317" border="0"  height.autosize=yes criteria="" nest_arguments=((" adt_annomes ")) trail_footer = yes  name=dw_1 visible="1"  slideup=directlyabove )
+text(band=header.2 alignment="2" text="Diametro" border="0" color="0" x="1742" y="88" height="56" width="201" html.valueishtml="0"  name=diametro_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="0" x="1737" y="4" height="64" width="201" format="[general]" html.valueishtml="0"  name=diametro visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.2 alignment="2" text="Color Tela" border="0" color="0" x="1952" y="88" height="56" width="293" html.valueishtml="0"  name=co_color_te_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="0" x="1947" y="4" height="64" width="293" format="[general]" html.valueishtml="0"  name=co_color_te visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.2 alignment="2" text="Kilos" border="0" color="0" x="2254" y="88" height="56" width="389" html.valueishtml="0"  name=ca_kg_dev_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="0" x="2245" y="4" height="64" width="389" format="#,##0.00" html.valueishtml="0"  name=ca_kg_dev visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="0" expression="sum(  ca_kg_dev  for group 2 )"border="0" color="0" x="2222" y="0" height="68" width="407" format="#,##0.00" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(ca_kg_dev for group 1)"border="0" color="0" x="2217" y="8" height="64" width="407" format="#,##0.00" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_kg_dev for all)"border="6" color="0" x="2217" y="4" height="64" width="407" format="#,##0.00" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="268435456" )
+text(band=summary alignment="0" text="TOTAL DEVOLUCION:" border="0" color="0" x="1646" y="12" height="60" width="558" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
