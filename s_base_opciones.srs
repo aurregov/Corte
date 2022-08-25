@@ -1,0 +1,11 @@
+HA$PBExportHeader$s_base_opciones.srs
+$PBExportComments$OBJETO BASE - Estructura utilizada para almacenar las opciones de menu a deshabilitar del perfil de usuario que ingreso al sistema.
+global type s_base_opciones from structure
+	string		nombre_ventana[]
+	integer		nivel[]
+	integer		nivel_1[]
+	integer		nivel_2[]
+	integer		nivel_3[]
+	integer		nivel_4[]
+end type
+
