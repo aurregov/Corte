@@ -1,0 +1,53 @@
+HA$PBExportHeader$d_buscar_raya_telaxbase.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=raya dbname="raya" )
+ column=(type=long updatewhereclause=yes name=co_modelo dbname="co_modelo" )
+ column=(type=char(30) updatewhereclause=yes name=rde_modelo dbname="de_modelo" )
+ column=(type=long updatewhereclause=yes name=co_reftel dbname="co_reftel" )
+ column=(type=long updatewhereclause=yes name=co_color_te dbname="co_color_te" )
+ column=(type=long updatewhereclause=yes name=co_caract dbname="co_caract" )
+ column=(type=long updatewhereclause=yes name=diametro dbname="diametro" )
+ retrieve="  SELECT Distinct dt_modelos.raya,   
+         dt_color_modelo.co_modelo,   
+         dt_modelos.de_modelo,   
+         dt_color_modelo.co_reftel,   
+         dt_color_modelo.co_color_te,
+			dt_color_modelo.co_caract,
+			dt_color_modelo.diametro  
+    FROM dt_color_modelo,   
+         dt_modelos, 
+			dt_agrupa_pdn,
+			dt_agrupaescalapdn  
+   WHERE ( dt_modelos.co_fabrica = dt_color_modelo.co_fabrica ) and  
+         ( dt_modelos.co_linea = dt_color_modelo.co_linea ) and  
+         ( dt_modelos.co_referencia = dt_color_modelo.co_referencia ) and  
+         ( dt_modelos.co_talla = dt_color_modelo.co_talla ) and  
+         ( dt_modelos.co_calidad = dt_color_modelo.co_calidad ) and  
+         ( dt_modelos.co_color_pt = dt_color_modelo.co_color_pt ) and  
+         ( dt_modelos.co_modelo = dt_color_modelo.co_modelo )  and
+			( dt_color_modelo.co_fabrica = dt_agrupa_pdn.co_fabrica_pt ) and
+			( dt_color_modelo.co_linea = dt_agrupa_pdn.co_linea ) and
+			( dt_color_modelo.co_referencia = dt_agrupa_pdn.co_referencia ) and  
+			( dt_color_modelo.co_color_pt = dt_agrupa_pdn.co_color_pt ) and
+			( dt_color_modelo.co_caract = 99 ) and
+			( dt_color_modelo.diametro = 0) and
+			( dt_agrupaescalapdn.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion ) and
+			( dt_agrupaescalapdn.cs_pdn = dt_agrupa_pdn.cs_pdn ) and
+			( dt_color_modelo.co_talla = dt_agrupaescalapdn.co_talla ) and
+			( dt_agrupa_pdn.cs_agrupacion = :an_agrupa)" arguments=(("an_agrupa", number)) )
+text(band=header alignment="2" text="Raya" border="6" color="0" x="5" y="4" height="56" width="219"  name=dt_modelos_raya_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Modelo" border="6" color="0" x="242" y="4" height="56" width="1056"  name=dt_color_modelo_co_modelo_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tela" border="6" color="0" x="1317" y="4" height="56" width="338"  name=dt_color_modelo_co_reftel_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Color" border="6" color="0" x="1678" y="4" height="56" width="329"  name=dt_color_modelo_co_color_te_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="0" x="9" y="4" height="56" width="210" format="[general]"  name=raya edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="0" x="242" y="4" height="56" width="183" format="[general]"  name=co_modelo edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="0" x="448" y="4" height="56" width="850" format="[general]"  name=rde_modelo edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="5" color="0" x="1326" y="4" height="56" width="325" format="[general]"  name=co_reftel edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="5" color="0" x="1678" y="4" height="56" width="329" format="[general]"  name=co_color_te edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
