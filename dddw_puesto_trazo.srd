@@ -1,0 +1,14 @@
+HA$PBExportHeader$dddw_puesto_trazo.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=co_puesto dbname="m_puesto_trazo.co_puesto" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=de_puesto dbname="m_puesto_trazo.de_puesto" )
+ retrieve="select co_puesto, de_puesto
+from m_puesto_trazo
+" update="m_puesto_trazo" updatewhere=1 updatekeyinplace=no )
+column(band=detail id=1 alignment="2" tabsequence=10 border="2" color="0" x="14" y="4" height="60" width="87" format="[general]"  name=co_puesto edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="2" color="0" x="114" y="4" height="60" width="645" format="[general]"  name=de_puesto edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")
