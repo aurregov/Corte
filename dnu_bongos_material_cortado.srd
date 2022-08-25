@@ -1,0 +1,44 @@
+HA$PBExportHeader$dnu_bongos_material_cortado.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no rows_per_detail = 12 )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=h_canasta_corte_pallet_id dbname="pallet_id" )
+ column=(type=char(15) updatewhereclause=yes name=m_tallas_x_grupo_de_talla dbname="de_talla" )
+ column=(type=long updatewhereclause=yes name=m_tallas_x_grupo_orden_talla dbname="orden_talla" )
+ retrieve="SELECT DISTINCT  h_canasta_corte.pallet_id ,
+	  m_tallas_x_grupo.de_talla ,
+	  m_tallas_x_grupo.orden_talla     
+  FROM h_canasta_corte ,
+	  dt_canasta_corte ,
+	  h_preref_pv ,
+	  m_tallas_x_grupo     
+  WHERE ( h_canasta_corte.cs_canasta = dt_canasta_corte.cs_canasta ) and 
+        ( h_preref_pv.co_tipo_ref = 'P') and  
+		  ( dt_canasta_corte.co_linea = h_preref_pv.co_linea ) and  
+		  ( dt_canasta_corte.co_fabrica_ref = h_preref_pv.co_fabrica ) and   
+		  ( cast(dt_canasta_corte.co_referencia as char(15)) = h_preref_pv.co_referencia ) and 
+		  ( m_tallas_x_grupo.co_grupo_tlla = h_preref_pv.co_grupo_tlla ) and 
+		  ( m_tallas_x_grupo.co_talla = dt_canasta_corte.co_talla ) and      
+	     ( ( h_canasta_corte.co_estado = 40 ) And      
+		  ( h_canasta_corte.pallet_id = :bongo ) and     
+		  ( dt_canasta_corte.cs_secuencia = 1 ) ) 
+		  ORDER BY m_tallas_x_grupo.orden_talla          ASC  " arguments=(("bongo", string)) )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="5" y="4" height="64" width="114" format="[general]" html.valueishtml="0" row_in_detail=1  name=m_tallas_x_grupo_de_talla_1 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="123" y="4" height="64" width="114" format="[general]" html.valueishtml="0" row_in_detail=2  name=m_tallas_x_grupo_de_talla_2 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="242" y="4" height="64" width="114" format="[general]" html.valueishtml="0" row_in_detail=3  name=m_tallas_x_grupo_de_talla_3 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="361" y="4" height="64" width="110" format="[general]" html.valueishtml="0" row_in_detail=4  name=m_tallas_x_grupo_de_talla_4 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="475" y="4" height="64" width="114" format="[general]" html.valueishtml="0" row_in_detail=5  name=m_tallas_x_grupo_de_talla_5 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="594" y="4" height="64" width="114" format="[general]" html.valueishtml="0" row_in_detail=6  name=m_tallas_x_grupo_de_talla_6 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="713" y="4" height="64" width="114" format="[general]" html.valueishtml="0" row_in_detail=7  name=m_tallas_x_grupo_de_talla_7 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="832" y="4" height="64" width="114" format="[general]" html.valueishtml="0" row_in_detail=8  name=m_tallas_x_grupo_de_talla_8 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="951" y="4" height="64" width="114" format="[general]" html.valueishtml="0" row_in_detail=9  name=m_tallas_x_grupo_de_talla_9 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="1070" y="4" height="64" width="114" format="[general]" html.valueishtml="0" row_in_detail=10  name=m_tallas_x_grupo_de_talla_10 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="1189" y="4" height="64" width="114" format="[general]" html.valueishtml="0" row_in_detail=11  name=m_tallas_x_grupo_de_talla_11 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="1307" y="4" height="64" width="114" format="[general]" html.valueishtml="0" row_in_detail=12  name=m_tallas_x_grupo_de_talla_12 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
