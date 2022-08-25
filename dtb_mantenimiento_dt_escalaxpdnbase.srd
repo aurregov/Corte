@@ -1,0 +1,44 @@
+HA$PBExportHeader$dtb_mantenimiento_dt_escalaxpdnbase.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=cs_agrupacion dbname="cs_agrupacion" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_base_trazos dbname="cs_base_trazos" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_pdn dbname="cs_pdn" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_talla dbname="co_talla" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_talla dbname="cs_talla" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_unidades dbname="ca_unidades" )
+ column=(type=long update=yes updatewhereclause=yes name=co_estado dbname="co_estado" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="instancia" )
+ retrieve="  SELECT dt_escalaxpdnbase.cs_agrupacion,   
+         dt_escalaxpdnbase.cs_base_trazos,   
+         dt_escalaxpdnbase.cs_pdn,   
+         dt_escalaxpdnbase.co_talla,   
+         dt_escalaxpdnbase.cs_talla,   
+         dt_escalaxpdnbase.ca_unidades,   
+         dt_escalaxpdnbase.co_estado,   
+         dt_escalaxpdnbase.fe_creacion,   
+         dt_escalaxpdnbase.fe_actualizacion,   
+         dt_escalaxpdnbase.usuario,   
+         dt_escalaxpdnbase.instancia  
+    FROM dt_escalaxpdnbase  
+	WHERE dt_escalaxpdnbase.cs_agrupacion = :an_agrupacion and   
+         dt_escalaxpdnbase.cs_base_trazos = :an_trazos and   
+         dt_escalaxpdnbase.cs_pdn = :an_pdn
+" update="dt_escalaxpdnbase" updatewhere=0 updatekeyinplace=no arguments=(("an_agrupacion", number),("an_trazos", number),("an_pdn", number)) )
+text(band=header alignment="2" text="" border="6" color="0" x="18" y="4" height="56" width="101"  name=t_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Talla" border="6" color="0" x="137" y="4" height="56" width="242"  name=co_talla_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cant." border="6" color="0" x="398" y="4" height="56" width="238"  name=ca_unidades_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Estado" border="6" color="0" x="654" y="4" height="56" width="238"  name=co_estado_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="5" color="0" x="137" y="4" height="56" width="238" format="[general]"  name=co_talla edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="5" color="0" x="398" y="4" height="56" width="238" format="[general]"  name=ca_unidades edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="5" color="0" x="654" y="4" height="56" width="233" format="[general]"  name=co_estado edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+compute(band=detail alignment="2" expression="getrow()"border="6" color="32768" x="18" y="4" height="56" width="96" format="[GENERAL]"  name=compute_1  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
