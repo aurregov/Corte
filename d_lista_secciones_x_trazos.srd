@@ -1,0 +1,46 @@
+HA$PBExportHeader$d_lista_secciones_x_trazos.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=1090519039 processing=4 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no  crosstab.dynamic = yes grid.lines=0 grid.columnmove=no selected.mouse=no )
+header[1](height=0 color="536870912" )
+header[2](height=60 color="536870912" )
+header[3](height=60 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=number updatewhereclause=yes name=cs_trazo dbname="cs_trazo" )
+ column=(type=number updatewhereclause=yes name=cs_seccion dbname="cs_seccion" )
+ column=(type=number updatewhereclause=yes name=cs_pdn dbname="cs_pdn" )
+ column=(type=number updatewhereclause=yes name=ca_paquetes dbname="ca_paquetes" )
+ column=(type=number updatewhereclause=yes name=ca_programadas dbname="ca_programadas" )
+ retrieve="SELECT dt_trazosxbase.cs_trazo,   
+         dt_trazosxbase.cs_seccion,   
+         dt_trazosxbase.cs_pdn,   
+         dt_trazosxbase.co_talla,   
+         dt_trazosxbase.ca_paquetes,   
+         dt_trazosxbase.ca_programadas  
+    FROM dt_trazosxbase  
+   WHERE ( dt_trazosxbase.cs_agrupacion = :an_agrupa ) AND  
+         ( dt_trazosxbase.cs_base_trazos = :an_trazo ) AND  
+         ( dt_trazosxbase.co_modelo = :an_modelo ) AND  
+         ( dt_trazosxbase.co_fabrica_te = :an_fabrica ) AND  
+         ( dt_trazosxbase.co_reftel = :an_ref ) AND  
+         ( dt_trazosxbase.co_caract = :an_carac ) AND  
+         ( dt_trazosxbase.diametro = :an_diametro ) AND  
+         ( dt_trazosxbase.co_color_te = :an_color )    " arguments=(("an_agrupa", number),("an_trazo", number),("an_modelo", number),("an_fabrica", number),("an_ref", number),("an_carac", number),("an_diametro", number),("an_color", number))  sort="cs_trazo A cs_seccion A cs_pdn A " )
+group(level=1 header.height=0 trailer.height=0 by=("cs_trazo" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=0 trailer.height=0 by=("cs_seccion" ) header.color="536870912" trailer.color="536870912" )
+text(band=header[2] alignment="2" text="@co_talla" border="0" color="33554432" x="416" y="4" height="52" width="293"  name=t_2  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Espac" border="0" color="33554432" x="9" y="4" height="56" width="151"  name=cs_trazo_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Subt" border="0" color="33554432" x="169" y="4" height="56" width="123"  name=cs_seccion_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Pdn" border="0" color="33554432" x="302" y="4" height="52" width="105"  name=cs_pdn_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Paq" border="0" color="33554432" x="416" y="4" height="52" width="114"  name=ca_paquetes_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Cnt" border="0" color="33554432" x="539" y="4" height="52" width="165"  name=ca_programadas_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="4" height="64" width="151" format="[general]"  name=cs_trazo edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="169" y="4" height="64" width="123" format="[general]"  name=cs_seccion edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="302" y="4" height="64" width="105" format="[general]"  name=cs_pdn edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="416" y="4" height="64" width="114" format="[general]"  name=ca_paquetes edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes crosstab.repeat=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="539" y="4" height="64" width="165" format="[general]"  name=ca_programadas edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes crosstab.repeat=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+ crosstab(band = foreground  crosstabonly = yes 
+ columns = "co_talla" rows = "cs_trazo, cs_seccion, cs_pdn" values = "sum(ca_paquetes for crosstab), sum(ca_programadas for crosstab)" sourcenames = "cs_trazo, cs_seccion, cs_pdn, co_talla, ca_paquetes, ca_programadas")
+sparse(names="cs_trazo	cs_seccion")htmltable(border="0" cellpadding="1" cellspacing="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
