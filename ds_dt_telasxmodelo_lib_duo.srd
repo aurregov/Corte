@@ -1,0 +1,59 @@
+HA$PBExportHeader$ds_dt_telasxmodelo_lib_duo.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes name=ca_unidades dbname="dt_telaxmodelo_lib.ca_unidades" )
+ column=(type=decimal(5) updatewhereclause=yes name=yield dbname="dt_telaxmodelo_lib.yield" )
+ column=(type=decimal(5) update=yes updatewhereclause=yes name=ca_tela dbname="dt_telaxmodelo_lib.ca_tela" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="dt_telaxmodelo_lib.fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="dt_telaxmodelo_lib.usuario" )
+ column=(type=long updatewhereclause=yes key=yes name=cs_liberacion dbname="dt_telaxmodelo_lib.cs_liberacion" )
+ column=(type=long updatewhereclause=yes key=yes name=co_fabrica_pt dbname="dt_telaxmodelo_lib.co_fabrica_pt" )
+ column=(type=long updatewhereclause=yes key=yes name=co_linea dbname="dt_telaxmodelo_lib.co_linea" )
+ column=(type=long updatewhereclause=yes key=yes name=co_referencia dbname="dt_telaxmodelo_lib.co_referencia" )
+ column=(type=long updatewhereclause=yes key=yes name=co_color_pt dbname="dt_telaxmodelo_lib.co_color_pt" )
+ retrieve="SELECT dt_telaxmodelo_lib.ca_unidades,   
+		 dt_telaxmodelo_lib.yield,   
+		 dt_telaxmodelo_lib.ca_tela,   
+		 dt_telaxmodelo_lib.fe_actualizacion,   
+		 dt_telaxmodelo_lib.usuario,
+		 dt_telaxmodelo_lib.cs_liberacion,
+		 dt_telaxmodelo_lib.co_fabrica_pt, 
+		 dt_telaxmodelo_lib.co_linea,
+		 dt_telaxmodelo_lib.co_referencia,
+		 dt_telaxmodelo_lib.co_color_pt 
+  FROM dt_telaxmodelo_lib  
+ WHERE ( dt_telaxmodelo_lib.cs_liberacion = :an_liberacion ) AND  
+		 ( dt_telaxmodelo_lib.co_fabrica_pt = :an_fab ) AND  
+		 ( dt_telaxmodelo_lib.co_linea 		= :an_linea ) AND  
+		 ( dt_telaxmodelo_lib.co_referencia = :an_ref ) AND  
+		 ( dt_telaxmodelo_lib.co_color_pt 	= :an_color )   ;
+" update="dt_telaxmodelo_lib" updatewhere=2 updatekeyinplace=yes arguments=(("an_liberacion", number),("an_fab", number),("an_linea", number),("an_ref", number),("an_color", number)) )
+text(band=header alignment="2" text="Ca Unidades" border="0" color="33554432" x="9" y="8" height="56" width="279" html.valueishtml="0"  name=ca_unidades_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Yield" border="0" color="33554432" x="297" y="8" height="56" width="174" html.valueishtml="0"  name=yield_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Tela" border="0" color="33554432" x="480" y="8" height="56" width="229" html.valueishtml="0"  name=ca_tela_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fe Actualizacion" border="0" color="33554432" x="718" y="8" height="56" width="448" html.valueishtml="0"  name=fe_actualizacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Usuario" border="0" color="33554432" x="1175" y="8" height="56" width="206" html.valueishtml="0"  name=usuario_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Cs Liberacion" border="0" color="0" x="1390" y="8" height="56" width="306" html.valueishtml="0"  name=cs_liberacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Fabrica Pt" border="0" color="0" x="1705" y="8" height="56" width="325" html.valueishtml="0"  name=co_fabrica_pt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Linea" border="0" color="0" x="2039" y="8" height="56" width="197" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Referencia" border="0" color="0" x="2245" y="8" height="56" width="343" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Color Pt" border="0" color="0" x="2597" y="8" height="56" width="302" html.valueishtml="0"  name=co_color_pt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="279" format="[general]" html.valueishtml="0"  name=ca_unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="297" y="8" height="64" width="174" format="[general]" html.valueishtml="0"  name=yield visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="480" y="8" height="64" width="229" format="[general]" html.valueishtml="0"  name=ca_tela visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="718" y="8" height="64" width="448" format="[shortdate] [time]" html.valueishtml="0"  name=fe_actualizacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1175" y="8" height="64" width="206" format="[general]" html.valueishtml="0"  name=usuario visible="1" edit.limit=8 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=0 border="0" color="33554432" x="1394" y="8" height="64" width="302" html.valueishtml="0"  name=cs_liberacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=0 border="0" color="33554432" x="1710" y="8" height="64" width="320" html.valueishtml="0"  name=co_fabrica_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=0 border="0" color="33554432" x="2043" y="8" height="64" width="192" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=0 border="0" color="33554432" x="2249" y="8" height="64" width="338" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=0 border="0" color="33554432" x="2601" y="8" height="64" width="297" html.valueishtml="0"  name=co_color_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
