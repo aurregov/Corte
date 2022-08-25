@@ -1,0 +1,61 @@
+HA$PBExportHeader$dtb_unidades_pendxasignar_de_escalas.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=124 color="536870912" )
+summary(height=84 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_talla dbname="dt_escalasxtela.co_talla" )
+ column=(type=long updatewhereclause=yes name=ca_unidades dbname="dt_escalasxtela.ca_unidades" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_asignada dbname="ca_asignada" )
+ column=(type=long updatewhereclause=yes name=ca_a_asignar dbname="dt_escalasxtela.ca_a_asignar" )
+ retrieve="  SELECT dt_escalasxtela.co_talla,   
+         dt_escalasxtela.ca_unidades, 
+			(
+				 SELECT    
+						sum(dt_talla_pdnmodulo.ca_programada)  
+				 FROM dt_talla_pdnmodulo  
+				WHERE ( dt_talla_pdnmodulo.simulacion 				= :an_simulacion ) AND  
+						( dt_talla_pdnmodulo.co_fabrica_exp 		= :an_co_fabrica_exp ) AND  
+						( dt_talla_pdnmodulo.pedido 					= :an_pedido ) AND  
+						( dt_talla_pdnmodulo.cs_liberacion 			= :an_cs_liberacion ) AND  
+						( dt_talla_pdnmodulo.po 						= :as_nu_orden ) AND  
+						( dt_talla_pdnmodulo.co_fabrica_pt 			= :an_co_fabrica_pt ) AND  
+						( dt_talla_pdnmodulo.co_linea 				= :an_co_linea ) AND  
+						( dt_talla_pdnmodulo.co_referencia 			= :an_co_referencia ) AND  
+						( dt_talla_pdnmodulo.co_color_pt 			= :an_co_color_pt ) AND  
+						( dt_talla_pdnmodulo.tono 						= :as_tono ) AND  
+						( dt_talla_pdnmodulo.cs_estilocolortono 	= :an_cs_estilocolortono )   AND
+						( dt_talla_pdnmodulo.co_talla 				= dt_escalasxtela.co_talla ) 
+	
+			  ) as ca_asignada, 
+			0 as ca_a_asignar
+    FROM dt_escalasxtela  
+   WHERE ( dt_escalasxtela.co_fabrica_exp 		= :an_co_fabrica_exp ) AND  
+         ( dt_escalasxtela.pedido 					= :an_pedido ) AND  
+         ( dt_escalasxtela.cs_liberacion 			= :an_cs_liberacion ) AND  
+         ( dt_escalasxtela.nu_orden 				= :as_nu_orden ) AND  
+         ( dt_escalasxtela.co_fabrica_pt 			= :an_co_fabrica_pt ) AND  
+         ( dt_escalasxtela.co_linea 				= :an_co_linea ) AND  
+         ( dt_escalasxtela.co_referencia 			= :an_co_referencia ) AND  
+         ( dt_escalasxtela.co_color_pt 			= :an_co_color_pt ) AND  
+         ( dt_escalasxtela.tono 						= :as_tono ) AND  
+         ( dt_escalasxtela.cs_estilocolortono 	= :an_cs_estilocolortono )  
+ORDER BY 1
+
+" arguments=(("an_simulacion", number),("an_co_fabrica_modulo", number),("an_co_planta_modulo", number),("an_co_modulo", number),("an_co_fabrica_exp", number),("an_pedido", number),("an_cs_liberacion", number),("as_nu_orden", string),("an_co_fabrica_pt", number),("an_co_linea", number),("an_co_referencia", number),("an_co_color_pt", number),("as_tono", string),("an_cs_estilocolortono", number)) )
+text(band=header alignment="2" text="Talla"border="6" color="0" x="23" y="12" height="104" width="146"  name=co_talla_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unidad.Liberadas"border="6" color="0" x="192" y="12" height="104" width="274"  name=ca_unidades_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unidad.Asignadas"border="6" color="0" x="485" y="12" height="104" width="274"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unidad.a Asignar"border="6" color="0" x="1070" y="12" height="104" width="279"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unidad.Pendientes"border="6" color="0" x="777" y="12" height="104" width="274"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="0" x="23" y="4" height="64" width="146" format="[general]"  name=co_talla edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="0" x="192" y="4" height="64" width="274" format="######,###0"  name=ca_unidades edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="0" x="480" y="4" height="64" width="274" format="######,###0"  name=ca_asignada edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression=" ca_unidades - ca_asignada "border="5" color="0" x="777" y="4" height="64" width="274" format="######,###0"  name=ca_faltan  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=10 border="5" color="0" x="1074" y="4" height="64" width="274" format="######,###0"  name=ca_a_asignar edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+compute(band=summary alignment="1" expression="sum(ca_unidades for all)"border="5" color="0" x="192" y="4" height="64" width="274" format="######,###0"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_asignada for all)"border="5" color="0" x="480" y="4" height="64" width="274" format="######,###0"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum( ca_unidades - ca_asignada  for all)"border="5" color="0" x="777" y="4" height="64" width="274" format="######,###0"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_a_asignar for all)"border="5" color="0" x="1074" y="4" height="64" width="274" format="######,###0"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")
