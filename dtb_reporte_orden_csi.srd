@@ -1,0 +1,59 @@
+HA$PBExportHeader$dtb_reporte_orden_csi.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 80 print.margin.right = 80 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=420 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica_pt dbname="co_fabrica_pt" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=char(30) updatewhereclause=yes name=de_linea dbname="de_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=char(40) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=long updatewhereclause=yes name=cs_orden_corte dbname="cs_orden_corte" )
+ column=(type=char(60) updatewhereclause=yes name=observacion dbname="observacion" )
+ column=(type=datetime updatewhereclause=yes name=fe_actualizacion dbname="fe_actualizacion" )
+ column=(type=char(8) updatewhereclause=yes name=usuario dbname="usuario" )
+ retrieve="  SELECT dt_pdnxmodulo.co_fabrica_pt,   
+         dt_pdnxmodulo.co_linea,   
+         m_lineas.de_linea,   
+         dt_pdnxmodulo.co_referencia,   
+         h_preref_pv.de_referencia,   
+         h_ordenes_corte.cs_orden_corte,   
+         h_ordenes_corte.observacion,   
+         dt_pdnxmodulo.fe_actualizacion,   
+         dt_pdnxmodulo.usuario  
+    FROM dt_pdnxmodulo,   
+         h_ordenes_corte,   
+         h_preref_pv,   
+         m_lineas  
+   WHERE ( dt_pdnxmodulo.cs_asignacion = h_ordenes_corte.cs_orden_corte ) and  
+         ( dt_pdnxmodulo.co_fabrica_pt = h_preref_pv.co_fabrica ) and  
+         ( dt_pdnxmodulo.co_linea = h_preref_pv.co_linea ) and  
+         (Cast(dt_pdnxmodulo.co_referencia as char(15) ) = h_preref_pv.co_referencia ) and
+         ( h_preref_pv.co_tipo_ref = 'P'  ) and
+         ( dt_pdnxmodulo.co_fabrica_pt = m_lineas.co_fabrica ) and  
+         ( dt_pdnxmodulo.co_linea = m_lineas.co_linea ) and  
+         ( ( dt_pdnxmodulo.co_estado_asigna = 99 ) )    
+"  sort="co_fabrica_pt A co_linea A co_referencia A cs_orden_corte A " )
+text(band=header alignment="2" text="REPORTE ORDENES CORTE C.S.I." border="0" color="33554432" x="14" y="212" height="92" width="3360" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="27" y="12" height="64" width="471" format="dd/mmm/yyyy hh:mm" html.valueishtml="0"  name=date_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="1" expression="'Pag ' + page() + ' de ' + pageCount()"border="0" color="33554432" x="2793" y="12" height="64" width="562" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="L$$HEX1$$ed00$$ENDHEX$$nea" border="6" color="33554432" x="14" y="352" height="56" width="430" html.valueishtml="0"  name=dt_pdnxmodulo_co_linea_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Estilo" border="6" color="33554432" x="462" y="352" height="56" width="539" html.valueishtml="0"  name=h_preref_de_referencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Orden Corte" border="6" color="33554432" x="1019" y="352" height="56" width="279" html.valueishtml="0"  name=h_ordenes_corte_cs_orden_corte_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Observaci$$HEX1$$f300$$ENDHEX$$n" border="6" color="33554432" x="1317" y="352" height="56" width="1394" html.valueishtml="0"  name=h_ordenes_corte_observacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Fecha" border="6" color="33554432" x="2725" y="352" height="56" width="370" html.valueishtml="0"  name=dt_pdnxmodulo_fe_actualizacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Usuario" border="6" color="33554432" x="3113" y="352" height="56" width="261" html.valueishtml="0"  name=dt_pdnxmodulo_usuario_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=header alignment="0" expression="bitmap (~"fabrica2.jpg~")"border="0" color="33554432" x="55" y="80" height="132" width="718" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="String( co_linea )+' - '+trim( de_linea )"border="5" color="33554432" x="14" y="4" height="56" width="430" format="[GENERAL]" html.valueishtml="0"  name=linea visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="String( co_referencia )+' - '+trim( de_referencia )"border="5" color="33554432" x="462" y="4" height="56" width="539" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="5" color="33554432" x="1019" y="4" height="56" width="279" format="[general]" html.valueishtml="0"  name=cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="5" color="33554432" x="1317" y="4" height="56" width="1394" format="[general]" html.valueishtml="0"  name=observacion visible="1" edit.limit=60 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="2" tabsequence=32766 border="5" color="33554432" x="2725" y="4" height="56" width="370" format="dd/mmm hh:mm" html.valueishtml="0"  name=fe_actualizacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="5" color="33554432" x="3113" y="4" height="56" width="261" format="[general]" html.valueishtml="0"  name=usuario visible="1" edit.limit=8 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
