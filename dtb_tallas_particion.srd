@@ -1,0 +1,40 @@
+HA$PBExportHeader$dtb_tallas_particion.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_color_pt dbname="dt_talla_pdnmodulo.co_color_pt" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="dt_talla_pdnmodulo.co_talla" )
+ column=(type=long updatewhereclause=yes name=ca_programada dbname="dt_talla_pdnmodulo.ca_programada" )
+ column=(type=char(2) updatewhereclause=yes name=tono dbname="dt_talla_pdnmodulo.tono" )
+ column=(type=long updatewhereclause=yes name=cs_liberacion dbname="dt_talla_pdnmodulo.cs_liberacion" )
+ retrieve="  SELECT dt_talla_pdnmodulo.co_color_pt,   
+         dt_talla_pdnmodulo.co_talla,   
+         dt_talla_pdnmodulo.ca_programada,
+			dt_talla_pdnmodulo.tono,
+			dt_talla_pdnmodulo.cs_liberacion 
+    FROM dt_talla_pdnmodulo  
+   WHERE ( dt_talla_pdnmodulo.simulacion = :an_simulacion ) AND  
+         ( dt_talla_pdnmodulo.co_fabrica = :an_fab ) AND  
+         ( dt_talla_pdnmodulo.co_planta = :an_planta ) AND  
+         ( dt_talla_pdnmodulo.co_modulo = :an_modulo ) AND  
+         ( dt_talla_pdnmodulo.co_fabrica_exp = :an_fabexp ) AND  
+         ( dt_talla_pdnmodulo.cs_liberacion in (:an_liberacion, :an_liberacion2) ) AND  
+         ( dt_talla_pdnmodulo.po = :as_po ) AND  
+         ( dt_talla_pdnmodulo.nu_cut = :as_cut ) AND  
+         ( dt_talla_pdnmodulo.co_fabrica_pt = :an_fabpt ) AND  
+         ( dt_talla_pdnmodulo.co_linea = :an_linea ) AND  
+         ( dt_talla_pdnmodulo.co_referencia = :an_ref ) AND  
+         ( dt_talla_pdnmodulo.co_color_pt = :an_color_pt ) AND  
+         ( dt_talla_pdnmodulo.tono = :as_tono ) AND  
+         (dt_talla_pdnmodulo.cs_particion in (:an_particion, :an_particion2))      ;" arguments=(("an_simulacion", number),("an_fab", number),("an_planta", number),("an_modulo", number),("an_fabexp", number),("an_liberacion", number),("as_po", string),("as_cut", string),("an_fabpt", number),("an_linea", number),("an_ref", number),("an_color_pt", number),("as_tono", string),("an_particion", number),("an_particion2", number),("an_liberacion2", number)) )
+group(level=1 header.height=140 trailer.height=0 by=("cs_liberacion" ) header.color="536870912" trailer.color="536870912" )
+text(band=header.1 alignment="2" text="Talla" border="6" color="33554432" x="14" y="76" height="56" width="219" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Unidades" border="6" color="33554432" x="251" y="76" height="56" width="338" html.valueishtml="0"  name=ca_programada_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Lote" border="6" color="33554432" x="14" y="8" height="56" width="219" html.valueishtml="0"  name=cs_particion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="0" expression=" co_color_pt + ' - ' + tono + ' - '+ cs_liberacion "border="0" color="33554432" x="251" y="8" height="56" width="439" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="33554432" x="14" y="4" height="56" width="219" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="33554432" x="251" y="4" height="56" width="338" format="[general]" html.valueishtml="0"  name=ca_programada visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
