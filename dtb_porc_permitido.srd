@@ -1,0 +1,69 @@
+HA$PBExportHeader$dtb_porc_permitido.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=char(30) updatewhereclause=yes name=de_fabrica dbname="de_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_linea dbname="co_linea" )
+ column=(type=char(30) updatewhereclause=yes name=de_linea dbname="de_linea" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_referencia dbname="co_referencia" )
+ column=(type=char(40) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_color dbname="co_color" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=porc_liberar dbname="porc_liberar" )
+ column=(type=long update=yes updatewhereclause=yes name=m_porc_permitido_unid_adicionar dbname="unid_adicionar" )
+ column=(type=long update=yes updatewhereclause=yes name=m_porc_permitido_tope_min_unid dbname="tope_min_unid" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=porc_maximo dbname="porc_maximo" )
+ retrieve="  SELECT m_porc_permitido.co_fabrica,   
+         (select m_fabricas.de_fabrica
+				from m_fabricas
+				where m_fabricas.co_fabrica = m_porc_permitido.co_fabrica)  as de_fabrica,
+         m_porc_permitido.co_linea,   
+         (select m_lineas.de_linea
+				from m_lineas
+				where m_lineas.co_fabrica 	= m_porc_permitido.co_fabrica and
+						m_lineas.co_linea 	= m_porc_permitido.co_linea ) as de_linea,
+         m_porc_permitido.co_referencia,   
+         (select h_preref_pv.de_referencia
+				from h_preref_pv
+				where h_preref_pv.co_fabrica 		= m_porc_permitido.co_fabrica and
+						h_preref_pv.co_linea 		= m_porc_permitido.co_linea and
+                  (Cast(m_porc_permitido.co_referencia as char(15) ) = h_preref_pv.co_referencia ) and
+                  h_preref_pv.co_tipo_ref = 'P'  ) as de_referencia,
+         m_porc_permitido.co_color,   
+         m_porc_permitido.porc_liberar,   
+         m_porc_permitido.unid_adicionar,
+         m_porc_permitido.tope_min_unid,
+         m_porc_permitido.porc_maximo
+    FROM m_porc_permitido
+   WHERE m_porc_permitido.co_referencia = :REFERENCIA
+
+
+
+" update="m_porc_permitido" updatewhere=1 updatekeyinplace=yes arguments=(("REFERENCIA", number)) )
+text(band=header alignment="2" text="Fabrica" border="6" color="33554432" x="9" y="8" height="104" width="594" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="linea" border="6" color="33554432" x="617" y="8" height="104" width="594" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Estilo" border="6" color="33554432" x="1225" y="8" height="104" width="837" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="5" color="33554432" x="9" y="8" height="52" width="101" format="[General]" html.valueishtml="0"  name=co_fabrica  tag="" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="33554432" x="133" y="8" height="52" width="443" format="[general]" html.valueishtml="0"  name=de_fabrica visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="1" tabsequence=30 border="5" color="33554432" x="1221" y="8" height="52" width="224" format="[General]" html.valueishtml="0"  name=co_referencia  tag="" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="5" color="33554432" x="1472" y="8" height="52" width="594" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="1" tabsequence=20 border="5" color="33554432" x="599" y="8" height="52" width="105" format="[General]" html.valueishtml="0"  name=co_linea  tag="" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="5" color="33554432" x="722" y="8" height="52" width="480" format="[general]" html.valueishtml="0"  name=de_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Color" border="6" color="33554432" x="2080" y="8" height="104" width="274" html.valueishtml="0"  name=co_color_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=40 border="5" color="33554432" x="2085" y="8" height="52" width="270" format="[General]" html.valueishtml="0"  name=co_color  tag="" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Tope MinUnid Adicion" border="6" color="33554432" x="2789" y="8" height="104" width="334" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="2" tabsequence=70 border="5" color="33554432" x="2789" y="8" height="52" width="329" format="[general]" html.valueishtml="0"  name=m_porc_permitido_tope_min_unid visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Unid. Adicionar" border="6" color="33554432" x="3136" y="8" height="104" width="233" html.valueishtml="0"  name=unidades_liberar_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="2" tabsequence=80 border="5" color="33554432" x="3141" y="8" height="52" width="233" format="[general]" html.valueishtml="0"  name=m_porc_permitido_unid_adicionar visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=8 alignment="2" tabsequence=50 border="5" color="33554432" x="2377" y="8" height="52" width="174" format="[General]" html.valueishtml="0"  name=porc_liberar  tag="" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="% Adicion" border="6" color="33554432" x="2377" y="8" height="104" width="174" html.valueishtml="0"  name=porc_liberar_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="% MaxColor" border="6" color="33554432" x="2574" y="8" height="104" width="201" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=60 border="5" color="33554432" x="2574" y="8" height="52" width="201" format="[general]" html.valueishtml="0"  name=porc_maximo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
