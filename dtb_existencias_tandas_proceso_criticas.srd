@@ -1,0 +1,93 @@
+HA$PBExportHeader$dtb_existencias_tandas_proceso_criticas.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=216 color="536870912" )
+summary(height=84 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long updatewhereclause=yes name=co_reftel dbname="co_reftel" )
+ column=(type=long updatewhereclause=yes name=cs_ordenpd_pt dbname="cs_ordenpd_pt" )
+ column=(type=long updatewhereclause=yes name=cs_tanda dbname="cs_tanda" )
+ column=(type=long updatewhereclause=yes name=cs_secundario dbname="cs_secundario" )
+ column=(type=date updatewhereclause=yes name=fe_creacion dbname="fe_creacion" )
+ column=(type=long updatewhereclause=yes name=lote dbname="lote" )
+ column=(type=long updatewhereclause=yes name=diametro dbname="diametro" )
+ column=(type=char(12) updatewhereclause=yes name=de_centro_pdn dbname="de_centro_pdn" )
+ column=(type=char(20) updatewhereclause=yes name=de_subcentro_pdn dbname="de_subcentro_pdn" )
+ column=(type=datetime updatewhereclause=yes name=fe_ingreso dbname="fe_ingreso" )
+ column=(type=decimal(2) updatewhereclause=yes name=kilos dbname="kilos" )
+ column=(type=long updatewhereclause=yes name=maq_tint dbname="maq_tint" )
+ column=(type=date updatewhereclause=yes name=fe_pdn_fin dbname="fe_pdn_fin" )
+ column=(type=long updatewhereclause=yes name=color_te dbname="color_te" )
+ column=(type=char(30) updatewhereclause=yes name=proceso dbname="proceso" )
+ retrieve="select t.co_referencia,
+			t.co_reftel,
+			t.cs_ordenpd_pt,
+			t.cs_tanda,
+			t.cs_secundario,
+			t.fe_creacion,
+			t.lote,
+			t.diametro,
+			t.de_centro_pdn,
+			t.de_subcentro_pdn,
+			t.fe_ingreso,
+			t.kilos,
+			t.maq_tint,
+			t.fe_pdn_fin, 
+			h.co_color as color_te, 
+       (select MAX(de_proces) from dt_procesos_tanda a, m_proces b
+        where a.co_proceso = b.co_proces
+          and a.cs_tanda = t.cs_tanda
+          and a.cs_secundario = t.cs_secundario
+          and a.co_reftel = t.co_reftel
+          and a.fe_ingreso is not null
+          and a.fe_fin is null) as proceso
+from temp_kamban_tinto t, h_tandas h
+where t.cs_tanda = h.cs_tanda
+  and t.cs_secundario = h.cs_secundario
+  and t.co_fabrica = :ai_fab
+  and t.co_linea = :ai_linea
+  and t.co_referencia = :al_ref
+  and t.co_color = :ai_color_te
+  and t.co_reftel = :al_tela
+  and t.co_usuario = 'admtelas'
+" arguments=(("ai_fab", number),("ai_linea", number),("al_ref", number),("ai_color_pt", number),("al_tela", number),("ai_color_te", number)) )
+text(band=header alignment="2" text="Tanda" border="6" color="33554432" x="274" y="156" height="52" width="270" html.valueishtml="0"  name=cs_tanda_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fe Creacion" border="6" color="33554432" x="558" y="156" height="52" width="320" html.valueishtml="0"  name=fe_creacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Lote" border="6" color="33554432" x="891" y="156" height="52" width="261" html.valueishtml="0"  name=lote_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dm" border="6" color="33554432" x="1166" y="156" height="52" width="110" html.valueishtml="0"  name=diametro_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Centro Pdn" border="6" color="33554432" x="1289" y="156" height="52" width="334" html.valueishtml="0"  name=de_centro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Subcentro Pdn" border="6" color="33554432" x="1637" y="156" height="52" width="425" html.valueishtml="0"  name=de_subcentro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Kilos" border="6" color="33554432" x="2811" y="156" height="52" width="215" html.valueishtml="0"  name=kilos_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fe Ingreso" border="6" color="33554432" x="2437" y="156" height="52" width="361" html.valueishtml="0"  name=fe_ingreso_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mq Tint" border="6" color="33554432" x="3040" y="156" height="52" width="197" html.valueishtml="0"  name=maq_tint_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fe Pdn Fin" border="6" color="33554432" x="3255" y="156" height="52" width="325" html.valueishtml="0"  name=fe_pdn_fin_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Proceso" border="6" color="33554432" x="2080" y="156" height="52" width="343" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="OP Estilo" border="6" color="33554432" x="14" y="156" height="52" width="247" html.valueishtml="0"  name=cs_ordenpd_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=1 alignment="1" tabsequence=32766 border="6" color="33554432" x="242" y="20" height="52" width="215" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Color PT:" border="6" color="33554432" x="1202" y="20" height="52" width="265" html.valueishtml="0"  name=co_color_t visible="0"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="Tela:" border="6" color="33554432" x="1682" y="20" height="52" width="169" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=header id=2 alignment="1" tabsequence=32766 border="6" color="33554432" x="1870" y="20" height="52" width="201" format="[general]" html.valueishtml="0"  name=co_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="Color Te:" border="6" color="33554432" x="2089" y="20" height="52" width="256" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=header id=15 alignment="0" tabsequence=32766 border="6" color="33554432" x="2359" y="20" height="52" width="123" format="[general]" html.valueishtml="0"  name=color_te visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="Estilo:" border="6" color="33554432" x="27" y="20" height="52" width="197" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="2" color="33554432" x="507" y="8" height="64" width="46" format="[general]" html.valueishtml="0"  name=cs_secundario visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="2" color="33554432" x="274" y="8" height="64" width="229" format="[general]" html.valueishtml="0"  name=cs_tanda visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="2" color="33554432" x="558" y="8" height="64" width="320" format="dd/mmm/yy" html.valueishtml="0"  name=fe_creacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="2" tabsequence=32766 border="2" color="33554432" x="891" y="8" height="64" width="261" format="[general]" html.valueishtml="0"  name=lote visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="2" tabsequence=32766 border="2" color="33554432" x="1166" y="8" height="64" width="110" format="[general]" html.valueishtml="0"  name=diametro visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="2" color="33554432" x="1289" y="8" height="64" width="334" format="[general]" html.valueishtml="0"  name=de_centro_pdn visible="1" edit.limit=12 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="2" color="33554432" x="2811" y="8" height="64" width="215" format="0.00" html.valueishtml="0"  name=kilos visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="2" color="33554432" x="2437" y="8" height="64" width="361" format="dd/mmm/yy hh:mm" html.valueishtml="0"  name=fe_ingreso visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="2" tabsequence=32766 border="2" color="33554432" x="3040" y="8" height="64" width="197" format="[general]" html.valueishtml="0"  name=maq_tint visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="2" tabsequence=32766 border="2" color="33554432" x="3255" y="8" height="64" width="325" format="dd/mmm/yy" html.valueishtml="0"  name=fe_pdn_fin visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="2" color="33554432" x="1637" y="8" height="64" width="425" format="[general]" html.valueishtml="0"  name=de_subcentro_pdn visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="2" color="33554432" x="2080" y="8" height="64" width="343" format="[general]" html.valueishtml="0"  name=proceso visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="2" color="33554432" x="14" y="8" height="64" width="247" format="[general]" html.valueishtml="0"  name=cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(kilos for all)"border="2" color="33554432" x="2770" y="4" height="64" width="279" format="0.00" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
