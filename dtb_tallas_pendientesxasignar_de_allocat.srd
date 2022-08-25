@@ -1,0 +1,57 @@
+HA$PBExportHeader$dtb_tallas_pendientesxasignar_de_allocat.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=120 color="536870912" )
+summary(height=84 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_talla dbname="pedpend_exp.co_talla" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_pedida dbname="pedpend_exp.ca_pedida" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_asignada dbname="ca_asignada" )
+ column=(type=long updatewhereclause=yes name=ca_a_asignar dbname="pedpend_exp.ca_a_asignar" )
+ retrieve="  SELECT pedpend_exp.co_talla,   
+         pedpend_exp.ca_pedida,
+			(
+				 SELECT    
+						sum(dt_talla_pdnmodulo.ca_programada)  
+				 FROM dt_talla_pdnmodulo  
+				WHERE ( dt_talla_pdnmodulo.simulacion 				= :an_simulacion ) AND  
+						( dt_talla_pdnmodulo.co_fabrica 				= :an_co_fabrica_modulo ) AND  
+						( dt_talla_pdnmodulo.co_planta 				= :an_co_planta_modulo ) AND  
+						( dt_talla_pdnmodulo.co_modulo 				= :an_co_modulo ) AND  
+						( dt_talla_pdnmodulo.co_fabrica_exp 		= :an_co_fabrica_exp ) AND  
+						( dt_talla_pdnmodulo.cs_liberacion 			= 0 ) AND  
+						( dt_talla_pdnmodulo.po 						= :as_nu_orden ) AND  
+						( dt_talla_pdnmodulo.nu_cut					= :as_nu_cut ) AND
+						( dt_talla_pdnmodulo.co_fabrica_pt 			= :an_co_fabrica_pt ) AND  
+						( dt_talla_pdnmodulo.co_linea 				= :an_co_linea ) AND  
+						( dt_talla_pdnmodulo.co_referencia 			= :an_co_referencia ) AND  
+						( dt_talla_pdnmodulo.co_color_pt 			= :an_co_color_pt ) AND  
+						( dt_talla_pdnmodulo.co_talla 				= pedpend_exp.co_talla ) 
+	
+			  ) as ca_asignada,			
+			0 as ca_a_asignar
+    FROM pedpend_exp  
+   WHERE ( pedpend_exp.nu_orden 			= :as_nu_orden ) AND  
+			( pedpend_exp.nu_cut				= :as_nu_cut ) AND
+         ( pedpend_exp.co_fabrica 		= :an_co_fabrica_pt ) AND  
+         ( pedpend_exp.co_linea 			= :an_co_linea ) AND  
+         ( pedpend_exp.co_referencia 	= :an_co_referencia ) AND  
+         ( pedpend_exp.co_color 			= :an_co_color_pt ) 
+" arguments=(("an_simulacion", number),("an_co_fabrica_modulo", number),("an_co_planta_modulo", number),("an_co_modulo", number),("an_co_fabrica_exp", number),("as_nu_orden", string),("as_nu_cut", string),("an_co_fabrica_pt", number),("an_co_linea", number),("an_co_referencia", number),("an_co_color_pt", number)) )
+text(band=header alignment="2" text="Talla" border="6" color="0" x="32" y="8" height="104" width="146" html.valueishtml="0"  name=pedpend_exp_co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="UnidAllocation" border="6" color="0" x="201" y="8" height="104" width="288" html.valueishtml="0"  name=pedpend_exp_ca_pedida_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="UnidAsignadas" border="6" color="0" x="507" y="8" height="104" width="274" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="UnidPendientes" border="6" color="0" x="805" y="8" height="104" width="274" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="5" color="0" x="32" y="8" height="64" width="146" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="0" x="201" y="8" height="64" width="274" format="######,##0" html.valueishtml="0"  name=ca_pedida visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="0" x="507" y="8" height="64" width="274" format="######,##0" html.valueishtml="0"  name=ca_asignada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_pedida for all)"border="5" color="0" x="201" y="4" height="64" width="274" format="######,##0" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_asignada for all)"border="5" color="0" x="507" y="4" height="64" width="274" format="######,##0" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum( ca_pedida -  ca_asignada  for all)"border="5" color="0" x="805" y="4" height="64" width="274" format="######,##0" html.valueishtml="0"  name=compute_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_a_asignar for all)"border="5" color="0" x="1102" y="4" height="64" width="274" format="######,##0" html.valueishtml="0"  name=total_a_asignar visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Unida Asignar" border="6" color="0" x="1102" y="8" height="104" width="274" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression=" ca_pedida -  ca_asignada "border="5" color="0" x="805" y="8" height="64" width="274" format="######,##0" html.valueishtml="0"  name=ca_faltan visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=0 border="5" color="0" x="1102" y="8" height="64" width="274" format="######,##0" html.valueishtml="0"  name=ca_a_asignar visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
