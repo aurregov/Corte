@@ -1,0 +1,54 @@
+HA$PBExportHeader$dgr_grupos.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=peddig_co_fabrica_vta dbname="peddig.co_fabrica_vta" )
+ column=(type=long updatewhereclause=yes name=pedpend_exp_pedido dbname="pedpend_exp.pedido" )
+ column=(type=long updatewhereclause=yes name=pedpend_exp_co_cliente_exp dbname="pedpend_exp.co_cliente_exp" )
+ column=(type=char(15) updatewhereclause=yes name=pedpend_exp_co_ref_exp dbname="pedpend_exp.co_ref_exp" )
+ column=(type=char(15) updatewhereclause=yes name=pedpend_exp_co_talla_exp dbname="pedpend_exp.co_talla_exp" )
+ column=(type=char(10) updatewhereclause=yes name=pedpend_exp_co_color_exp dbname="pedpend_exp.co_color_exp" )
+ column=(type=char(30) updatewhereclause=yes name=peddig_gpa dbname="peddig.gpa" )
+ column=(type=long updatewhereclause=yes name=peddig_marca_edi dbname="peddig.marca_edi" )
+ column=(type=char(50) updatewhereclause=yes name=de_cliente dbname="de_cliente" )
+ retrieve="  SELECT DISTINCT peddig.co_fabrica_vta,   
+         pedpend_exp.pedido,   
+         pedpend_exp.co_cliente_exp,   
+         pedpend_exp.co_ref_exp,   
+         pedpend_exp.co_talla_exp,   
+         pedpend_exp.co_color_exp,   
+         peddig.gpa,   
+         peddig.marca_edi,
+			(select cc_cliente.razon_social  
+				from cc_cliente
+				where  pedpend_exp.co_cliente_exp = cc_cliente.co_cliente ) as de_cliente
+    FROM peddig,   
+         pedpend_exp  
+   WHERE ( peddig.pedido = pedpend_exp.pedido ) and  
+         ( peddig.co_fabrica_vta = :an_fabrica ) AND  
+         ( peddig.orden_compra = :as_po )    
+" arguments=(("an_fabrica", number),("as_po", string))  sort="peddig_co_fabrica_vta A pedpend_exp_pedido A pedpend_exp_co_cliente_exp A pedpend_exp_co_ref_exp A pedpend_exp_co_color_exp A pedpend_exp_co_talla_exp A " )
+text(band=header alignment="2" text="Pedido" border="6" color="33554432" x="997" y="8" height="52" width="293" html.valueishtml="0"  name=pedpend_exp_pedido_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912"  height.autosize=yes)
+text(band=header alignment="2" text="Estilo" border="6" color="33554432" x="1298" y="8" height="52" width="366" html.valueishtml="0"  name=pedpend_exp_co_ref_exp_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912"  height.autosize=yes)
+text(band=header alignment="2" text="Talla" border="6" color="33554432" x="1673" y="8" height="52" width="160" html.valueishtml="0"  name=pedpend_exp_co_talla_exp_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912"  height.autosize=yes)
+text(band=header alignment="2" text="Color" border="6" color="33554432" x="1842" y="8" height="52" width="229" html.valueishtml="0"  name=pedpend_exp_co_color_exp_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912"  height.autosize=yes)
+text(band=header alignment="2" text="Grupo" border="6" color="33554432" x="2080" y="8" height="52" width="370" html.valueishtml="0"  name=peddig_gpa_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912"  height.autosize=yes)
+text(band=header alignment="2" text="Cliente" border="6" color="0" x="9" y="8" height="52" width="763" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Chase" border="6" color="33554432" x="2459" y="8" height="52" width="261" html.valueishtml="0"  name=peddig_marca_edi_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912"  height.autosize=yes)
+text(band=header alignment="2" text="F$$HEX1$$e100$$ENDHEX$$brica" border="6" color="33554432" x="782" y="8" height="52" width="206" html.valueishtml="0"  name=peddig_co_fabrica_vta_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="33554432" x="997" y="4" height="52" width="293" format="[general]" html.valueishtml="0"  name=pedpend_exp_pedido visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="5" color="33554432" x="1298" y="4" height="52" width="366" format="[general]" html.valueishtml="0"  name=pedpend_exp_co_ref_exp visible="1" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="33554432" x="1673" y="4" height="52" width="160" format="[general]" html.valueishtml="0"  name=pedpend_exp_co_talla_exp visible="1" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="5" color="33554432" x="1842" y="4" height="52" width="229" format="[general]" html.valueishtml="0"  name=pedpend_exp_co_color_exp visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="5" color="33554432" x="2080" y="4" height="52" width="370" format="[general]" html.valueishtml="0"  name=peddig_gpa visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="String( pedpend_exp_co_cliente_exp )+ ' - ' +Trim( de_cliente )"border="5" color="33554432" x="9" y="4" height="52" width="763" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="5" color="33554432" x="2459" y="4" height="52" width="261" format="[general]" html.valueishtml="0"  name=peddig_marca_edi visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="33554432" x="782" y="4" height="52" width="206" format="[general]" html.valueishtml="0"  name=peddig_co_fabrica_vta visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
