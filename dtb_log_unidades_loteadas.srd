@@ -1,0 +1,58 @@
+HA$PBExportHeader$dtb_log_unidades_loteadas.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=344 color="536870912" )
+summary(height=92 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=orden_corte dbname="log_unid_lot.cs_orden_corte" )
+ column=(type=char(20) updatewhereclause=yes name=bolsa dbname="log_unid_lot.cs_canasta" )
+ column=(type=long updatewhereclause=yes name=unidades_programadas dbname="log_unid_lot.unid_prog" )
+ column=(type=long updatewhereclause=yes name=unidades_loteadas dbname="log_unid_lot.unid_lot" )
+ column=(type=char(8) updatewhereclause=yes name=quien_autoriza dbname="log_unid_lot.autorizacion" )
+ column=(type=date updatewhereclause=yes name=fecha dbname="fecha" )
+ column=(type=char(8) updatewhereclause=yes name=lider dbname="log_unid_lot.usuario" )
+ column=(type=char(20) updatewhereclause=yes name=instancia dbname="log_unid_lot.instancia" )
+ column=(type=long updatewhereclause=yes name=concepto dbname="log_unid_lot.concepto" )
+ retrieve="  SELECT DISTINCT log_unid_lot.cs_orden_corte,   
+         log_unid_lot.cs_canasta,   
+         log_unid_lot.unid_prog,   
+         log_unid_lot.unid_lot,   
+         log_unid_lot.autorizacion,   
+         Date(log_unid_lot.fe_creacion) fecha,   
+         log_unid_lot.usuario,   
+         log_unid_lot.instancia,   
+         log_unid_lot.concepto  
+    FROM log_unid_lot
+   WHERE log_unid_lot.concepto is not null   
+" )
+text(band=header alignment="2" text="REPORTE DE UNIDADES DISMINUIDAS EN EL LOTEO" border="0" color="33554432" x="0" y="92" height="92" width="2373" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Orden Corte" border="6" color="33554432" x="5" y="220" height="112" width="274" html.valueishtml="0"  name=cs_orden_corte_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Bolsa" border="6" color="33554432" x="302" y="220" height="112" width="288" html.valueishtml="0"  name=cs_canasta_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="CantProg" border="6" color="33554432" x="608" y="220" height="112" width="201" html.valueishtml="0"  name=unid_prog_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Filtrar" enabled=yes action="9" border="0" color="0" x="9" y="8" height="68" width="320" vtextalign="0" htextalign="0"  name=b_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Concepto" border="6" color="33554432" x="2016" y="220" height="112" width="663" html.valueishtml="0"  name=concepto_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="CantLoteada" border="6" color="33554432" x="827" y="220" height="112" width="197" html.valueishtml="0"  name=unid_lot_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="UnidDif." border="6" color="0" x="1042" y="220" height="112" width="146" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="QuienAutoriza" border="6" color="33554432" x="1207" y="220" height="112" width="242" html.valueishtml="0"  name=autorizacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Lider" border="6" color="33554432" x="1755" y="220" height="112" width="242" html.valueishtml="0"  name=usuario_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="33554432" x="5" y="4" height="56" width="274" format="[general]" html.valueishtml="0"  name=orden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="33554432" x="302" y="4" height="56" width="288" format="[general]" html.valueishtml="0"  name=bolsa visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="33554432" x="608" y="4" height="56" width="201" format="[general]" html.valueishtml="0"  name=unidades_programadas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="5" color="33554432" x="827" y="4" height="56" width="197" format="[general]" html.valueishtml="0"  name=unidades_loteadas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="5" color="33554432" x="2149" y="4" height="56" width="539" format="[general]" html.valueishtml="0"  name=concepto visible="1" dddw.name=dddw_conceptos_loteo_corte dddw.displaycolumn=de_cpto_lot_ordcr dddw.datacolumn=co_cpto_lot_ordcr dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression=" unidades_programadas  -  unidades_loteadas "border="5" color="33554432" x="1042" y="4" height="56" width="146" format="[GENERAL]" html.valueishtml="0"  name=unid_dif visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="2" tabsequence=32766 border="5" color="33554432" x="1755" y="4" height="56" width="242" format="[general]" html.valueishtml="0"  name=lider visible="1" edit.limit=8 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="2" tabsequence=32766 border="5" color="33554432" x="2025" y="4" height="56" width="105" format="[general]" html.valueishtml="0"  name=concepto_1 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(unidades_programadas for all)"border="6" color="33554432" x="608" y="4" height="56" width="201" format="[general]" html.valueishtml="0"  name=total_cant_prog visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=summary alignment="1" expression="sum(unidades_loteadas for all)"border="6" color="33554432" x="827" y="4" height="56" width="197" format="[general]" html.valueishtml="0"  name=total_cant_loteada visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=summary alignment="1" expression="sum( unidades_programadas  -  unidades_loteadas  for all)"border="6" color="33554432" x="1042" y="4" height="56" width="146" format="[GENERAL]" html.valueishtml="0"  name=total_unid_dif visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=summary alignment="1" text="Totales:" border="6" color="0" x="352" y="4" height="56" width="201" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header alignment="2" text="Fecha" border="6" color="33554432" x="1467" y="220" height="112" width="270" html.valueishtml="0"  name=fe_creacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="5" color="33554432" x="1207" y="4" height="56" width="238" format="[general]" html.valueishtml="0"  name=quien_autoriza visible="1" edit.limit=8 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=0 border="5" color="33554432" x="1467" y="4" height="56" width="270" html.valueishtml="0"  name=fecha visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
