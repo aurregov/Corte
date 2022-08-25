@@ -1,0 +1,196 @@
+HA$PBExportHeader$dtb_variaciones_espacio_copia.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 1 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=284 color="536870912" )
+summary(height=68 color="536870912" )
+footer(height=4 color="536870912" )
+detail(height=60 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=h_telas_co_reftel dbname="h_telas.co_reftel" )
+ column=(type=long updatewhereclause=yes name=h_telas_co_caract dbname="h_telas.co_caract" )
+ column=(type=char(42) updatewhereclause=yes name=h_telas_de_reftel dbname="h_telas.de_reftel" )
+ column=(type=long updatewhereclause=yes name=dt_agrupa_pdn_co_referencia dbname="dt_agrupa_pdn.co_referencia" )
+ column=(type=char(40) updatewhereclause=yes name=h_preref_de_referencia dbname="h_preref_pv.de_referencia" )
+ column=(type=long updatewhereclause=yes name=dt_liquidaxespacio_cs_orden_corte dbname="dt_liquidaxespacio.cs_orden_corte" )
+ column=(type=decimal(0) updatewhereclause=yes name=unds_cortadas dbname="unds_cortadas" )
+ column=(type=decimal(2) updatewhereclause=yes name=yds_reales dbname="yds_reales" )
+ column=(type=decimal(0) updatewhereclause=yes name=unds_programadas dbname="unds_programadas" )
+ column=(type=decimal(4) updatewhereclause=yes name=yds_programadas dbname="yds_programadas" )
+ column=(type=decimal(2) updatewhereclause=yes name=yds_despachadas dbname="yds_despachadas" )
+ column=(type=decimal(2) updatewhereclause=yes name=porc_util dbname="h_trazos.porc_util" )
+ column=(type=decimal(2) updatewhereclause=yes name=ancho dbname="h_trazos.ancho" )
+ column=(type=decimal(2) updatewhereclause=yes name=largo dbname="h_trazos.largo" )
+ column=(type=long updatewhereclause=yes name=capas_prog dbname="dt_trazosxoc.capas_prog" )
+ column=(type=long updatewhereclause=yes name=capas_liq dbname="dt_liq_unixespacio.capas_liq" )
+ retrieve="  SELECT h_telas.co_reftel,
+			h_telas.co_caract,
+			h_telas.de_reftel,   
+         dt_agrupa_pdn.co_referencia,   
+         h_preref_pv.de_referencia,   
+         dt_liquidaxespacio.cs_orden_corte,   
+			sum( dt_liq_unixespacio.ca_liquidadas) unds_cortadas,
+			(	SELECT Sum(ca_mt)
+				FROM h_mercada, dt_rollosmercada, m_rollo
+				WHERE h_mercada.cs_orden_corte 				= dt_rayas_telaxoc.cs_orden_corte and  
+						h_mercada.cs_mercada 					= dt_rollosmercada.cs_mercada and
+						dt_rollosmercada.raya 					= :an_raya and
+						dt_rollosmercada.co_estado_mercada 	= 6 and
+						dt_rollosmercada.cs_rollo 				= m_rollo.cs_rollo and
+						m_rollo.co_estado_rollo 				= 6 ) yds_reales,
+			sum( dt_trazosxoc.ca_programada) as unds_programadas,   
+
+			sum( dt_trazosxoc.ca_consumo_std)  as yds_programadas,
+		(SELECT sum(dt_rollosmercada.ca_metros_mercar)  
+				 FROM dt_rollosmercada, h_mercada
+        		WHERE h_mercada.cs_orden_corte = dt_rayas_telaxoc.cs_orden_corte and  
+						h_mercada.cs_mercada = dt_rollosmercada.cs_mercada and
+						dt_rollosmercada.raya = :an_raya and
+						dt_rollosmercada.co_estado_mercada = 6 )yds_despachadas,
+			 h_trazos.porc_util,
+			h_trazos.ancho,
+			h_trazos.largo,
+			dt_trazosxoc.capas as capas_prog,	
+			dt_liq_unixespacio.capas as capas_liq			
+	  FROM dt_liquidaxespacio,  
+			dt_liq_unixespacio, 
+         dt_rayas_telaxoc,   
+         dt_agrupa_pdn,   
+         h_preref_pv,   
+         h_telas,
+			dt_trazosxoc,
+			h_trazos  
+   WHERE ( dt_liquidaxespacio.cs_orden_corte = :an_ordencorte ) and
+			( dt_liquidaxespacio.co_estado 		in (5, 6) ) AND
+         ( extend(dt_liquidaxespacio.fe_liquidacion,year to day) between :ad_fecha_inicial and :ad_fecha_final ) and
+			( dt_liquidaxespacio.cs_orden_corte = dt_liq_unixespacio.cs_orden_corte ) and
+			( dt_liquidaxespacio.cs_agrupacion 	= dt_liq_unixespacio.cs_agrupacion ) and
+			( dt_liquidaxespacio.cs_base_trazos = dt_liq_unixespacio.cs_base_trazos ) and
+			( dt_liquidaxespacio.cs_trazo 		= dt_liq_unixespacio.cs_trazo ) and
+			( dt_liquidaxespacio.cs_liquidacion = dt_liq_unixespacio.cs_liquidacion ) and
+			( dt_liq_unixespacio.cs_orden_corte = dt_rayas_telaxoc.cs_orden_corte ) and  
+         ( dt_liq_unixespacio.cs_agrupacion 	= dt_rayas_telaxoc.cs_agrupacion ) and  
+			( dt_liq_unixespacio.cs_pdn 			= dt_rayas_telaxoc.cs_pdn ) and
+         ( dt_liq_unixespacio.cs_base_trazos = dt_rayas_telaxoc.cs_base_trazos ) and  
+         ( dt_rayas_telaxoc.raya 				= :an_raya ) and
+         ( dt_rayas_telaxoc.cs_agrupacion 	= dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_rayas_telaxoc.cs_pdn 				= dt_agrupa_pdn.cs_pdn ) and  
+         ( dt_agrupa_pdn.co_linea 				= h_preref_pv.co_linea ) and  
+         ( dt_agrupa_pdn.co_fabrica_pt 		= h_preref_pv.co_fabrica ) and  
+         ( Cast(dt_agrupa_pdn.co_referencia as Char(15))	= h_preref_pv.co_referencia ) and  
+         ( dt_rayas_telaxoc.co_reftel 			= h_telas.co_reftel ) and  
+         ( dt_rayas_telaxoc.co_caract 			= h_telas.co_caract ) and
+			( dt_trazosxoc.cs_orden_corte 		= dt_liq_unixespacio.cs_orden_corte ) and  
+			( dt_trazosxoc.cs_agrupacion 			= dt_liq_unixespacio.cs_agrupacion ) and  
+			( dt_trazosxoc.cs_base_trazos 		= dt_liq_unixespacio.cs_base_trazos ) and
+			( dt_rayas_telaxoc.co_modelo 			= dt_trazosxoc.co_modelo ) and  
+			( dt_rayas_telaxoc.co_fabrica_tela 	= dt_trazosxoc.co_fabrica_tela ) and  
+			( dt_rayas_telaxoc.co_reftel 			= dt_trazosxoc.co_reftel ) and  
+			( dt_rayas_telaxoc.co_caract 			= dt_trazosxoc.co_caract ) and  
+			( dt_rayas_telaxoc.diametro 			= dt_trazosxoc.diametro ) and
+			( dt_trazosxoc.co_trazo					= h_trazos.co_trazo) and
+			( h_preref_pv.co_tipo_ref           = 'P')
+			
+GROUP BY h_telas.co_reftel,
+			h_telas.co_caract,
+			h_telas.de_reftel,   
+         dt_agrupa_pdn.co_referencia,   
+         h_preref_pv.de_referencia,   
+         dt_liquidaxespacio.cs_orden_corte, 8, 11,12,13,14,15,16;" arguments=(("an_ordencorte", number),("an_raya", number),("ad_fecha_inicial", date),("ad_fecha_final", date))  sort="dt_liquidaxespacio_cs_orden_corte A " )
+group(level=1 header.height=0 trailer.height=56 by=("dt_agrupa_pdn_co_referencia" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=0 trailer.height=0 by=("dt_liquidaxespacio_cs_orden_corte" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="REPORTE DE VARIACIONES" border="0" color="0" x="18" y="8" height="56" width="4229" html.valueishtml="0"  name=t_27 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="18" y="12" height="64" width="247" format="[general]" html.valueishtml="0"  name=date_1 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="1" expression="'P$$HEX1$$e100$$ENDHEX$$gina' + page() + ' de ' + pageCount()"border="0" color="33554432" x="4987" y="20" height="64" width="599" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="Desde" border="0" color="0" x="448" y="92" height="56" width="160" html.valueishtml="0"  name=t_32 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=header alignment="0" expression=" ad_fecha_inicial "border="0" color="33554432" x="626" y="92" height="56" width="416" format="dd-mmmm-yyyy" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Hasta" border="0" color="0" x="1051" y="92" height="56" width="137" html.valueishtml="0"  name=t_33 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=header alignment="0" expression=" ad_fecha_final "border="0" color="33554432" x="1216" y="92" height="56" width="421" format="dd-mmmm-yyyy" html.valueishtml="0"  name=compute_15 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Estilo" border="6" color="0" x="937" y="164" height="112" width="581" html.valueishtml="0"  name=t_15 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Tela
+" border="6" color="0" x="9" y="164" height="112" width="914" html.valueishtml="0"  name=t_12 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="UNIDADES" border="6" color="0" x="1815" y="96" height="56" width="690" html.valueishtml="0"  name=t_28 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="%
+Var." border="6" color="0" x="2341" y="164" height="112" width="165" html.valueishtml="0"  name=t_23 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Unds
+Real" border="6" color="0" x="2080" y="164" height="112" width="247" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Orden
+Corte" border="6" color="0" x="1531" y="164" height="112" width="270" html.valueishtml="0"  name=t_13 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="CONSUMOS" border="6" color="0" x="2523" y="96" height="56" width="686" html.valueishtml="0"  name=t_29 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Unds
+Std" border="6" color="0" x="1815" y="164" height="112" width="247" html.valueishtml="0"  name=t_11 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="METROS" border="6" color="0" x="3227" y="96" height="56" width="1595" html.valueishtml="0"  name=t_30 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Mt
+std" border="6" color="0" x="2523" y="164" height="112" width="247" html.valueishtml="0"  name=t_10 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Mt
+Real" border="6" color="0" x="2789" y="164" height="112" width="247" html.valueishtml="0"  name=t_22 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="%
+Var." border="6" color="0" x="3054" y="164" height="112" width="155" html.valueishtml="0"  name=t_26 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Metros
+Std" border="6" color="0" x="3227" y="164" height="112" width="270" html.valueishtml="0"  name=t_24 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Metros
+Real
+" border="6" color="0" x="3803" y="164" height="112" width="270" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Metros
+Mercados" border="6" color="0" x="3515" y="164" height="112" width="270" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="%
+Var." border="6" color="0" x="4091" y="164" height="112" width="155" html.valueishtml="0"  name=t_25 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="MetrosProgramados" border="6" color="0" x="4261" y="164" height="112" width="293" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="MetrosExtendidos" border="6" color="0" x="4571" y="164" height="112" width="256" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="%Utilizaci$$HEX1$$f300$$ENDHEX$$n" border="6" color="0" x="4841" y="164" height="112" width="219" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Ancho" border="6" color="0" x="5074" y="164" height="112" width="146" html.valueishtml="0"  name=t_7 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Largo" border="6" color="0" x="5234" y="164" height="112" width="128" html.valueishtml="0"  name=t_8 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="0" color="33554432" x="5234" y="4" height="56" width="128" format="[general]" html.valueishtml="0"  name=largo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=detail alignment="0" expression="String( h_telas_co_reftel ) + '-' + String(  h_telas_co_caract )"border="0" color="33554432" x="9" y="4" height="56" width="265" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="937" y="4" height="56" width="155" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1097" y="4" height="56" width="421" format="[general]" html.valueishtml="0"  name=h_preref_de_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="279" y="4" height="56" width="654" format="[general]" html.valueishtml="0"  name=h_telas_de_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="1522" y="4" height="56" width="293" format="[general]" html.valueishtml="0"  name=dt_liquidaxespacio_cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="1815" y="4" height="56" width="261" format="###,###" html.valueishtml="0"  name=unds_programadas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="2080" y="4" height="56" width="256" format="###,###" html.valueishtml="0"  name=unds_cortadas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=detail alignment="1" expression="((unds_cortadas -  unds_programadas  )/  unds_cortadas )*100"border="0" color="33554432~tif(  variacion_unidades < 0,255,0)" x="2341" y="4" height="56" width="178" format="###,###.#0" html.valueishtml="0"  name=variacion_unidades visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=detail alignment="1" expression=" yds_programadas / unds_programadas "border="0" color="33554432" x="2523" y="4" height="56" width="261" format="###,###.##" html.valueishtml="0"  name=consumo_estandar visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=detail alignment="1" expression="yds_reales /  unds_cortadas"border="0" color="33554432" x="2789" y="4" height="56" width="261" format="###,###.##" html.valueishtml="0"  name=consumo_real visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=detail alignment="1" expression="((  consumo_estandar -   consumo_real )/   consumo_estandar )*100"border="0" color="33554432~tif(  variacion_consumos < 0, 255,0)" x="3054" y="4" height="56" width="169" format="###,###.#0" html.valueishtml="0"  name=variacion_consumos visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="3794" y="4" height="56" width="283" format="###,###.00" html.valueishtml="0"  name=yds_reales visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="0" color="33554432" x="3515" y="4" height="56" width="274" format="###,###.00" html.valueishtml="0"  name=yds_despachadas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="33554432" x="3227" y="4" height="56" width="283" format="###,###.00" html.valueishtml="0"  name=yds_programadas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=detail alignment="1" expression="((   yds_programadas -    yds_reales )/    yds_programadas )*100"border="0" color="33554432~tif(  variacion_tela < 0, 255,0)" x="4082" y="4" height="56" width="160" format="###,###.#0" html.valueishtml="0"  name=variacion_tela visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=detail alignment="1" expression=" largo  *   capas_prog "border="0" color="0" x="4247" y="4" height="56" width="302" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=detail alignment="1" expression=" largo  *  capas_liq "border="0" color="33554432" x="4558" y="4" height="56" width="270" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="0" color="33554432" x="4841" y="4" height="56" width="219" format="[general]" html.valueishtml="0"  name=porc_util visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="0" color="33554432" x="5074" y="4" height="56" width="146" format="[general]" html.valueishtml="0"  name=ancho visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=trailer.2 alignment="0" expression=" dt_liquidaxespacio_cs_orden_corte "border="0" color="33554432" x="165" y="4" height="56" width="183" format="[GENERAL]" html.valueishtml="0"  name=oc_oc visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=trailer.2 alignment="0" expression="/*  yds_solicitadas  */"border="0" color="33554432" x="357" y="4" height="56" width="183" format="[GENERAL]" html.valueishtml="0"  name=solicitadas_oc visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=trailer.2 alignment="0" expression=" yds_despachadas "border="0" color="33554432" x="544" y="4" height="56" width="183" format="[GENERAL]" html.valueishtml="0"  name=despchadas_oc visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=trailer.2 alignment="0" expression="/* If (GetRow() = 1, yds_solicitadas,If(GetRow() >1 and  dt_liquidaxespacio_cs_orden_corte <>  dt_liquidaxespacio_cs_orden_corte[-1] , yds_solicitadas ,0)) */"border="0" color="33554432" x="736" y="4" height="56" width="183" format="[GENERAL]" html.valueishtml="0"  name=yardas_solicitadas_por_oc visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=trailer.2 alignment="0" expression="If (GetRow() = 1,  yds_despachadas ,If(GetRow() >1 and  dt_liquidaxespacio_cs_orden_corte <>  dt_liquidaxespacio_cs_orden_corte[-1] ,  yds_despachadas ,0))"border="0" color="33554432" x="933" y="4" height="56" width="183" format="[GENERAL]" html.valueishtml="0"  name=yardas_despachadas_por_oc visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+text(band=trailer.1 alignment="1" text="TOTAL ESTILO" border="0" color="0" x="1280" y="4" height="52" width="416" html.valueishtml="0"  name=t_9 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=trailer.1 alignment="1" expression="sum(unds_programadas for group 2)"border="0" color="33554432" x="1815" y="4" height="52" width="261" format="###,###" html.valueishtml="0"  name=unds_prog_estilo visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=trailer.1 alignment="1" expression="sum(unds_cortadas for group 2)"border="0" color="33554432" x="2080" y="4" height="52" width="256" format="###,###" html.valueishtml="0"  name=unds_cortadas_estilo visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=trailer.1 alignment="1" expression="((  unds_cortadas_estilo -   unds_prog_estilo )/   unds_cortadas_estilo )*100"border="0" color="33554432~tif(  variacion_unidades_estilo < 0,255,0)" x="2341" y="4" height="52" width="178" format="###,###.#0" html.valueishtml="0"  name=variacion_unidades_estilo visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=trailer.1 alignment="1" expression="  yds_programadas_estilo /  unds_prog_estilo "border="0" color="33554432" x="2523" y="4" height="52" width="261" format="###,###.#0" html.valueishtml="0"  name=consumo_estandar_estilo visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=trailer.1 alignment="1" expression="yds_cortadas_estilo /   unds_cortadas_estilo"border="0" color="33554432" x="2789" y="4" height="52" width="261" format="###,###.##" html.valueishtml="0"  name=consumo_real_estilo visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=trailer.1 alignment="1" expression="((   consumo_estandar_estilo -    consumo_real_estilo )/    consumo_estandar_estilo )*100"border="0" color="33554432~tif(  variacion_consumos_estilo < 0, 255,0)" x="3054" y="4" height="52" width="169" format="###,###.#0" html.valueishtml="0"  name=variacion_consumos_estilo visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=trailer.1 alignment="1" expression="sum(yds_reales for group 2)"border="0" color="33554432" x="3794" y="4" height="52" width="283" format="###,###.00" html.valueishtml="0"  name=yds_cortadas_estilo visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=trailer.1 alignment="1" expression="sum(yds_programadas for group 2)"border="0" color="33554432" x="3227" y="4" height="52" width="283" format="###,###.00" html.valueishtml="0"  name=yds_programadas_estilo visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=trailer.1 alignment="1" expression="sum(yds_despachadas for group 2)"border="0" color="33554432" x="3515" y="4" height="52" width="274" format="###,###.00" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=trailer.1 alignment="1" expression="((  yds_programadas_estilo - yds_cortadas_estilo )/    yds_programadas_estilo )*100"border="0" color="33554432~tif(  variacion_tela_estilo < 0, 255,0)" x="4082" y="4" height="52" width="160" format="###,###.#0" html.valueishtml="0"  name=variacion_tela_estilo visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=trailer.1 alignment="1" expression="sum( largo  *   capas_prog  for group 2)"border="0" color="0" x="4247" y="4" height="56" width="302" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=trailer.1 alignment="1" expression="sum( largo  *  capas_liq  for group 2)"border="0" color="33554432" x="4558" y="4" height="56" width="270" format="[GENERAL]" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+text(band=summary alignment="1" text="TOTAL GENERAL" border="0" color="0" x="1280" y="4" height="56" width="416" html.valueishtml="0"  name=t_16 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=summary alignment="1" expression="sum(unds_programadas for all )"border="0" color="33554432" x="1815" y="4" height="56" width="261" format="###,###" html.valueishtml="0"  name=unds_prog_total visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=summary alignment="1" expression="sum(unds_cortadas for all)"border="0" color="33554432" x="2080" y="4" height="56" width="256" format="###,###" html.valueishtml="0"  name=unds_cortadas_total visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=summary alignment="1" expression="((  unds_cortadas_total -   unds_prog_total )/   unds_cortadas_total )*100"border="0" color="33554432~tif(  variacion_unidades_total < 0,255,0)" x="2341" y="4" height="56" width="178" format="###,###.#0" html.valueishtml="0"  name=variacion_unidades_total visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=summary alignment="1" expression="  yds_programadas_total /  unds_prog_total "border="0" color="33554432" x="2523" y="4" height="56" width="261" format="###,###.#0" html.valueishtml="0"  name=consumo_estandar_total visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=summary alignment="1" expression="yds_cortadas_total /   unds_cortadas_total"border="0" color="33554432" x="2789" y="4" height="56" width="261" format="###,###.##" html.valueishtml="0"  name=consumo_real_total visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=summary alignment="1" expression="((   consumo_estandar_total -    consumo_real_total )/    consumo_estandar_total )*100"border="0" color="33554432~tif(  variacion_consumos_total < 0, 255,0)" x="3054" y="4" height="56" width="169" format="###,###.#0" html.valueishtml="0"  name=variacion_consumos_total visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=summary alignment="1" expression="sum(yds_reales for all)"border="0" color="33554432" x="3794" y="4" height="56" width="283" format="###,###.00" html.valueishtml="0"  name=yds_cortadas_total visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=summary alignment="1" expression="sum(yds_programadas for all)"border="0" color="33554432" x="3227" y="4" height="56" width="283" format="###,###.00" html.valueishtml="0"  name=yds_programadas_total visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=summary alignment="1" expression="sum(yds_despachadas for all)"border="0" color="33554432" x="3515" y="4" height="56" width="274" format="###,###.00" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=summary alignment="1" expression="((  yds_programadas_total - yds_cortadas_total )/    yds_programadas_total )*100"border="0" color="33554432~tif(  variacion_tela_total < 0, 255,0)" x="4082" y="4" height="56" width="160" format="###,###.#0" html.valueishtml="0"  name=variacion_tela_total visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=summary alignment="1" expression="sum( largo  *   capas_prog  for all)"border="0" color="0" x="4247" y="4" height="56" width="302" format="[GENERAL]" html.valueishtml="0"  name=compute_9 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=summary alignment="1" expression="sum( largo  *  capas_liq  for all)"border="0" color="33554432" x="4558" y="4" height="56" width="270" format="[GENERAL]" html.valueishtml="0"  name=compute_10 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
