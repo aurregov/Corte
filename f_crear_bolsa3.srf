@@ -1,0 +1,37 @@
+HA$PBExportHeader$f_crear_bolsa3.srf
+global type f_crear_bolsa3 from function_object
+end type
+
+forward prototypes
+global function long f_crear_bolsa3 ()
+end prototypes
+
+global function long f_crear_bolsa3 (); long w_tipo_orden,wcs_documento
+ long wco_fabrica
+ string ls_sqlerr
+
+ SELECT  nu_enque_esta + 1   
+ INTO :wcs_documento           
+ FROM cf_consc_ordenes                                    
+ WHERE  cf_consc_ordenes.co_fabrica = 91         
+  AND   cf_consc_ordenes.tipo_orden = 4; //tipo canasta
+
+IF wcs_documento > 0 THEN
+    UPDATE cf_consc_ordenes                               
+    SET nu_enque_esta = nu_enque_esta + 1                 
+    WHERE  cf_consc_ordenes.co_fabrica = 91
+    AND   cf_consc_ordenes.tipo_orden = 4;
+	 If Sqlca.SqlCode = -1 Then
+			ls_sqlerr = Sqlca.SqlErrText
+			rollback ;
+			MessageBox("Advertencia!","No se pudo crear bolsa.~n~n~n" + ls_sqlerr)
+			Return 0
+	Else
+		commit ;
+	End If	
+ELSE
+ return 0
+END IF
+ return wcs_documento
+end function
+
