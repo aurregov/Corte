@@ -1,0 +1,105 @@
+HA$PBExportHeader$d_gr_guias_num_x_oc_parte_canasta.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes key=yes name=cs_orden_corte dbname="cs_orden_corte" )
+ column=(type=long updatewhereclause=yes key=yes name=cs_agrupacion dbname="cs_agrupacion" )
+ column=(type=long updatewhereclause=yes key=yes name=cs_base_trazos dbname="cs_base_trazos" )
+ column=(type=long updatewhereclause=yes key=yes name=cs_espacio dbname="cs_espacio" )
+ column=(type=long updatewhereclause=yes key=yes name=cs_sec_ext dbname="cs_sec_ext" )
+ column=(type=long updatewhereclause=yes key=yes name=co_talla dbname="co_talla" )
+ column=(type=long updatewhereclause=yes key=yes name=cs_pdn dbname="cs_pdn" )
+ column=(type=char(2) updatewhereclause=yes key=yes name=letra dbname="letra" )
+ column=(type=long updatewhereclause=yes key=yes name=tipo dbname="tipo" )
+ column=(type=long updatewhereclause=yes name=co_parte dbname="co_parte" )
+ column=(type=long updatewhereclause=yes name=sw_marquilla dbname="sw_marquilla" )
+ column=(type=long update=yes updatewhereclause=yes name=sw_imp_marquilla dbname="sw_imp_marquilla" )
+ column=(type=char(255) updatewhereclause=yes name=ruta_foto dbname="ruta_foto" )
+ column=(type=long updatewhereclause=yes name=co_producto dbname="co_producto" )
+ retrieve="
+ SELECT distinct
+		t_guias_num_prog.cs_orden_corte,
+      	t_guias_num_prog.cs_agrupacion,   
+		t_guias_num_prog.cs_base_trazos,
+         t_guias_num_prog.cs_espacio,
+         t_guias_num_prog.cs_sec_ext,
+         t_guias_num_prog.co_talla,
+		t_guias_num_prog.cs_pdn,
+		t_guias_num_prog.letra,
+		t_guias_num_prog.tipo,
+         dt_color_modelo.co_parte,
+		dt_color_modelo.sw_marquilla,
+		t_guias_num_prog.sw_imp_marquilla,
+		m_empaques_gbi.ruta_foto,
+		catalogo_marquillas.co_producto
+
+    FROM t_guias_num_prog,
+         dt_canasta_corte ,
+        dt_color_modelo,
+		  dt_ficha_empaque,
+		  catalogo_marquillas,
+		  m_empaques_gbi
+ WHERE  
+         dt_canasta_corte.cs_orden_corte           = t_guias_num_prog.cs_orden_corte and
+         dt_canasta_corte.letra                    = t_guias_num_prog.letra and
+         dt_canasta_corte.cs_espacio               = t_guias_num_prog.cs_espacio and
+         dt_canasta_corte.cs_agrupacion            = t_guias_num_prog.cs_agrupacion and
+         dt_canasta_corte.cs_pdn                   = t_guias_num_prog.cs_pdn and
+         dt_canasta_corte.cs_secuencia             = 1 and
+        	( dt_canasta_corte.co_fabrica_ref = dt_color_modelo.co_fabrica ) and
+         ( dt_canasta_corte.co_linea = dt_color_modelo.co_linea ) and
+         ( dt_canasta_corte.co_referencia = dt_color_modelo.co_referencia ) and
+         ( dt_canasta_corte.co_talla = dt_color_modelo.co_talla ) and
+         ( dt_canasta_corte.co_calidad = dt_color_modelo.co_calidad ) and
+         ( dt_canasta_corte.co_color = dt_color_modelo.co_color_pt ) and
+
+		 	( dt_canasta_corte.co_fabrica_ref = dt_ficha_empaque.co_fabrica ) and
+         ( dt_canasta_corte.co_linea = dt_ficha_empaque.co_linea ) and
+         ( dt_canasta_corte.co_referencia = dt_ficha_empaque.co_referencia ) and
+         ( dt_canasta_corte.co_talla = dt_ficha_empaque.co_talla ) and
+         ( dt_canasta_corte.co_calidad = dt_ficha_empaque.co_calidad ) and
+         ( dt_canasta_corte.co_color = dt_ficha_empaque.co_color ) and
+			dt_ficha_empaque.co_producto = catalogo_marquillas.co_producto and
+
+		 ( catalogo_marquillas.co_tipo_inv = m_empaques_gbi.co_tipo_inv ) and
+       ( catalogo_marquillas.co_producto = m_empaques_gbi.co_producto ) and
+
+        t_guias_num_prog.cs_orden_corte  = :an_ordencorte and
+		 dt_color_modelo.co_parte       =  :an_parte and      
+		 dt_canasta_corte.cs_canasta = :as_canasta" update="t_guias_num_prog" updatewhere=0 updatekeyinplace=yes arguments=(("an_ordencorte", number),("an_parte", number),("as_canasta", string)) )
+text(band=header alignment="2" text="Cs Orden Corte" border="0" color="33554432" x="9" y="8" height="52" width="329" html.valueishtml="0"  name=cs_orden_corte_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Agrupacion" border="0" color="33554432" x="347" y="8" height="52" width="315" html.valueishtml="0"  name=cs_agrupacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Base Trazos" border="0" color="33554432" x="672" y="8" height="52" width="338" html.valueishtml="0"  name=cs_base_trazos_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Espacio" border="0" color="33554432" x="1019" y="8" height="52" width="274" html.valueishtml="0"  name=cs_espacio_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Sec Ext" border="0" color="33554432" x="1303" y="8" height="52" width="274" html.valueishtml="0"  name=cs_sec_ext_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Talla" border="0" color="33554432" x="1586" y="8" height="52" width="274" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Pdn" border="0" color="33554432" x="1870" y="8" height="52" width="274" html.valueishtml="0"  name=cs_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Letra" border="0" color="33554432" x="2153" y="8" height="52" width="110" html.valueishtml="0"  name=letra_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tipo" border="0" color="33554432" x="2272" y="8" height="52" width="274" html.valueishtml="0"  name=tipo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Parte" border="0" color="33554432" x="2555" y="8" height="52" width="274" html.valueishtml="0"  name=co_parte_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sw Marquilla" border="0" color="33554432" x="2839" y="8" height="52" width="274" html.valueishtml="0"  name=sw_marquilla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sw Imp Marquilla" border="0" color="33554432" x="3122" y="8" height="52" width="366" html.valueishtml="0"  name=sw_imp_marquilla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="329" format="[general]" html.valueishtml="0"  name=cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="347" y="8" height="64" width="315" format="[general]" html.valueishtml="0"  name=cs_agrupacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="672" y="8" height="64" width="338" format="[general]" html.valueishtml="0"  name=cs_base_trazos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="1019" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_espacio visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1303" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_sec_ext visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1586" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="1870" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="2153" y="8" height="64" width="110" format="[general]" html.valueishtml="0"  name=letra visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="2272" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=tipo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="33554432" x="2555" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_parte visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="0" color="33554432" x="2839" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=sw_marquilla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="0" color="33554432" x="3122" y="8" height="64" width="366" format="[general]" html.valueishtml="0"  name=sw_imp_marquilla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=0 border="0" color="33554432" x="3502" y="0" height="52" width="201" html.valueishtml="0"  name=ruta_foto visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Ruta Foto" border="0" color="0" x="3497" y="4" height="76" width="206" html.valueishtml="0"  name=ruta_foto_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=14 alignment="0" tabsequence=0 border="0" color="33554432" x="3717" y="0" height="52" width="59" html.valueishtml="0"  name=co_producto visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Producto" border="0" color="0" x="3712" y="4" height="76" width="64" html.valueishtml="0"  name=co_producto_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
