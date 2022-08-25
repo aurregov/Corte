@@ -1,0 +1,17 @@
+HA$PBExportHeader$s_parametros_deshacer.srs
+$PBExportComments$Estructura de parametros para el deshacer
+global type s_parametros_deshacer from structure
+	boolean		hay_parametros
+	string		tipo_deshacer
+	long		rowid_item
+	decimal { 0 }		cantidad
+	long		pedido
+	long		sw_curva
+	integer		indice[]
+	long		co_maquina[]
+	long		barraid_seleccionada
+	long		barraid_borradas[]
+	n_ds_planeador		ds_barras
+	string		cadena[]
+end type
+
