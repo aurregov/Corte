@@ -1,0 +1,57 @@
+HA$PBExportHeader$dtb_rutas_etapas.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes name=co_transaccion dbname="m_rutas_etapa.co_transaccion" )
+ column=(type=long update=yes updatewhereclause=yes name=co_ruta_etapa dbname="m_rutas_etapa.co_ruta_etapa" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=de_ruta_etapa dbname="m_rutas_etapa.de_ruta_etapa" )
+ column=(type=long update=yes updatewhereclause=yes name=co_etapa_origen dbname="m_rutas_etapa.co_etapa_origen" )
+ column=(type=long update=yes updatewhereclause=yes name=co_etapa_destino dbname="m_rutas_etapa.co_etapa_destino" )
+ column=(type=long update=yes updatewhereclause=yes name=co_cpto_etapa dbname="m_rutas_etapa.co_cpto_etapa" )
+ column=(type=long update=yes updatewhereclause=yes name=co_flujo dbname="m_rutas_etapa.co_flujo" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="m_rutas_etapa.fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="m_rutas_etapa.fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="m_rutas_etapa.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="m_rutas_etapa.instancia" )
+ column=(type=char(30) updatewhereclause=yes name=origen dbname="origen" )
+ column=(type=char(30) updatewhereclause=yes name=destino dbname="destino" )
+ column=(type=char(30) updatewhereclause=yes name=de_transaccion dbname="m_transacciones.de_transaccion" )
+ retrieve="  SELECT m_rutas_etapa.co_transaccion,   
+         m_rutas_etapa.co_ruta_etapa,   
+         m_rutas_etapa.de_ruta_etapa,   
+         m_rutas_etapa.co_etapa_origen,   
+         m_rutas_etapa.co_etapa_destino,   
+         m_rutas_etapa.co_cpto_etapa,   
+         m_rutas_etapa.co_flujo,   
+         m_rutas_etapa.fe_creacion,   
+         m_rutas_etapa.fe_actualizacion,   
+         m_rutas_etapa.usuario,   
+         m_rutas_etapa.instancia,
+			(select de_etapa
+				from m_etapas
+				where m_etapas.co_etapa = m_rutas_etapa.co_etapa_origen) origen,
+			(select de_etapa
+				from m_etapas
+				where m_etapas.co_etapa = m_rutas_etapa.co_etapa_destino) destino,
+			m_transacciones.de_transaccion  
+    FROM m_rutas_etapa,
+			m_transacciones  
+	 WHERE m_transacciones.co_transaccion>0 and
+m_transacciones.co_transaccion = m_rutas_etapa.co_transaccion	;
+" )
+text(band=header alignment="2" text="Trans." border="6" color="33554432" x="5" y="12" height="52" width="169" html.valueishtml="0"  name=co_transaccion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="5" color="33554432" x="18" y="4" height="60" width="142" format="[general]" html.valueishtml="0"  name=co_transaccion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="5" color="33554432" x="201" y="4" height="60" width="174" format="[general]" html.valueishtml="0"  name=co_ruta_etapa visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ruta" border="6" color="33554432" x="197" y="12" height="52" width="1033" html.valueishtml="0"  name=co_ruta_etapa_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=0 border="5" color="0" x="398" y="8" height="60" width="832" html.valueishtml="0"  name=de_ruta_etapa visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Concepto" border="6" color="33554432" x="2510" y="12" height="52" width="677" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=0 border="5" color="0" x="2510" y="4" height="60" width="686" html.valueishtml="0"  name=co_cpto_etapa visible="1" dddw.name=dddw_cptos_etapas dddw.displaycolumn=de_cpto_etapa dddw.datacolumn=co_cpto_etapa dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Etapa Destino" border="6" color="33554432" x="1842" y="12" height="52" width="640" html.valueishtml="0"  name=co_etapa_destino_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="5" color="33554432" x="1842" y="4" height="60" width="640" format="[general]" html.valueishtml="0"  name=destino visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Etapa Origen" border="6" color="33554432" x="1257" y="12" height="52" width="562" html.valueishtml="0"  name=co_etapa_origen_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="5" color="33554432" x="1257" y="4" height="60" width="562" format="[general]" html.valueishtml="0"  name=origen visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
