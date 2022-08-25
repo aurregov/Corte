@@ -1,0 +1,41 @@
+HA$PBExportHeader$dtb_ordenescorte_por_rollo.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=136 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=dt_liq_rolxespacio_cs_orden_corte dbname="dt_liq_rolxespacio.cs_orden_corte" )
+ column=(type=long updatewhereclause=yes name=h_base_trazos_raya dbname="h_base_trazos.raya" )
+ column=(type=decimal(4) updatewhereclause=yes name=compute_0003 dbname="compute_0003" )
+ retrieve="  SELECT cs_orden_corte,   
+         raya,   
+         sum( dt_liq_rolxespacio.ca_consumido)  
+    FROM dt_liq_rolxespacio,   
+         h_base_trazos  
+   WHERE ( dt_liq_rolxespacio.cs_agrupacion = h_base_trazos.cs_agrupacion ) and  
+         ( dt_liq_rolxespacio.cs_base_trazos = h_base_trazos.cs_base_trazos ) and  
+         ( ( dt_liq_rolxespacio.cs_orden_corte > 0 ) AND  
+         ( dt_liq_rolxespacio.cs_rollo = :Rollo ) ) 
+GROUP BY 1,2 
+union all
+  SELECT dt_liquida_rollos.cs_orden_corte,   
+         raya,   
+         sum(dt_liquida_rollos.ca_kilos_cortados )  
+    FROM dt_liquida_rollos,   
+         dt_ordcr_modelos  
+   WHERE ( dt_liquida_rollos.cs_orden_corte = dt_ordcr_modelos.cs_orden_corte ) and  
+         ( dt_liquida_rollos.co_modelo = dt_ordcr_modelos.co_modelo ) and  
+         ( ( dt_liquida_rollos.cs_orden_corte > 0 ) AND  
+         ( dt_liquida_rollos.cs_rollo = :Rollo ) )   
+GROUP BY 1,2
+  
+" arguments=(("Rollo", number)) )
+text(band=header alignment="2" text="OrdenCorte" border="6" color="33554432" x="18" y="16" height="104" width="219" html.valueishtml="0"  name=dt_liq_rolxespacio_cs_orden_corte_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Raya" border="6" color="33554432" x="261" y="16" height="104" width="114" html.valueishtml="0"  name=h_base_trazos_raya_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Yardas" border="6" color="33554432" x="398" y="16" height="104" width="174" html.valueishtml="0"  name=compute_0003_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="33554432" x="18" y="16" height="64" width="219" format="[general]" html.valueishtml="0"  name=dt_liq_rolxespacio_cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="5" color="33554432" x="261" y="16" height="64" width="114" format="[general]" html.valueishtml="0"  name=h_base_trazos_raya visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="33554432" x="398" y="16" height="64" width="174" format="####0.0#" html.valueishtml="0"  name=compute_0003 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
