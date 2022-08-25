@@ -1,0 +1,25 @@
+HA$PBExportHeader$dgr_mantenimiento_estado_pdn_corte.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=79741120 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=co_estado dbname="co_estado" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=de_estado dbname="de_estado" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="instancia" )
+ retrieve="  SELECT m_estado_pdn_corte.co_estado,   
+         m_estado_pdn_corte.de_estado,   
+         m_estado_pdn_corte.fe_actualizacion,   
+         m_estado_pdn_corte.usuario,   
+         m_estado_pdn_corte.instancia  
+    FROM m_estado_pdn_corte   
+" update="m_estado_pdn_corte" updatewhere=1 updatekeyinplace=no  sort="co_estado A " )
+text(band=header alignment="2" text="C$$HEX1$$f300$$ENDHEX$$digo" border="6" color="0" x="9" y="8" height="56" width="210"  name=co_estado_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Descripci$$HEX1$$f300$$ENDHEX$$n" border="6" color="0" x="229" y="8" height="56" width="896"  name=de_estado_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="5" color="0" x="9" y="8" height="56" width="210" format="[general]"  name=co_estado edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="5" color="0" x="229" y="8" height="56" width="896" format="[general]"  name=de_estado edit.limit=30 edit.case=upper edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
