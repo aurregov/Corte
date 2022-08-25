@@ -1,0 +1,54 @@
+HA$PBExportHeader$dtb_unidades_liquidadas_coordinadores2.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=188 color="536870912" )
+summary(height=124 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(40) updatewhereclause=yes name=h_preref_de_referencia dbname="h_preref.de_referencia" )
+ column=(type=char(20) updatewhereclause=yes name=dt_agrupa_pdn_po dbname="dt_agrupa_pdn.po" )
+ column=(type=char(30) updatewhereclause=yes name=m_colores_de_color dbname="m_colores.de_color" )
+ column=(type=long updatewhereclause=yes name=dt_liq_unixespacio_co_talla dbname="dt_liq_unixespacio.co_talla" )
+ column=(type=decimal(0) updatewhereclause=yes name=compute_0005 dbname="compute_0005" )
+ retrieve="SELECT   pacasash.h_preref.de_referencia,   
+         dt_agrupa_pdn.po,   
+         m_colores.de_color,   
+         dt_liq_unixespacio.co_talla,   
+         SUM(dt_liq_unixespacio.ca_liquidadas)
+    FROM dt_liq_unixespacio,   
+         dt_agrupa_pdn,   
+         pacasash.h_preref,   
+         m_colores,peddig  
+   WHERE ( dt_liq_unixespacio.cs_agrupacion 		= dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_liq_unixespacio.cs_pdn 				= dt_agrupa_pdn.cs_pdn ) and  
+         ( dt_agrupa_pdn.co_linea 				= pacasash.h_preref.co_linea ) and  
+         ( dt_agrupa_pdn.co_fabrica_pt 		= pacasash.h_preref.co_fabrica ) and  
+         ( dt_agrupa_pdn.co_referencia 		= pacasash.h_preref.co_referencia ) and  
+         ( dt_agrupa_pdn.co_fabrica_pt 		= m_colores.co_fabrica ) and  
+         ( dt_agrupa_pdn.co_linea 				= m_colores.co_linea ) and  
+         ( dt_agrupa_pdn.co_color_pt 			= m_colores.co_color ) and  
+         ( ( dt_liq_unixespacio.cs_orden_corte 	> 0 ) AND  
+         ( dt_liq_unixespacio.cs_base_trazos 	= 1 ) AND  
+         ( dt_agrupa_pdn.co_fabrica_exp 		= peddig.co_fabrica_exp ) AND  
+         ( dt_agrupa_pdn.pedido 					= peddig.pedido ) )  and
+			  peddig.gpa								=:GRUPO
+
+GROUP BY 1,2,3,4
+ORDER BY 1,2,3,4;
+" arguments=(("GRUPO", string)) )
+text(band=header alignment="2" text="ESTILO" border="2" color="33554432" x="5" y="132" height="52" width="937" html.valueishtml="0"  name=h_preref_de_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="P.O." border="2" color="33554432" x="946" y="132" height="52" width="480" html.valueishtml="0"  name=dt_agrupa_pdn_po_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="COLOR" border="2" color="33554432" x="1431" y="132" height="52" width="709" html.valueishtml="0"  name=m_colores_de_color_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="UNIDADES" border="2" color="33554432" x="2496" y="132" height="52" width="274" html.valueishtml="0"  name=compute_0005_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="UNIDADES CORTADAS" border="2" color="33554432" x="1129" y="40" height="52" width="539" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="137" y="52" height="60" width="736" format="dd-mmm-yyyy hh:mm" html.valueishtml="0"  name=date_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="33554432" x="2094" y="32" height="60" width="562" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="33554432" x="5" y="4" height="64" width="937" format="[general]" html.valueishtml="0"  name=h_preref_de_referencia visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="946" y="4" height="64" width="480" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_po visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="2" color="33554432" x="2496" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=compute_0005 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(compute_0005 for all)"border="2" color="33554432" x="2496" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="TALLA" border="2" color="33554432" x="2144" y="132" height="52" width="347" html.valueishtml="0"  name=dt_liq_unidades_co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="2" color="33554432" x="1431" y="4" height="64" width="709" format="[general]" html.valueishtml="0"  name=m_colores_de_color visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=0 border="2" color="33554432" x="2144" y="4" height="64" width="347" html.valueishtml="0"  name=dt_liq_unixespacio_co_talla visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
