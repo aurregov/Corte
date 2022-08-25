@@ -1,0 +1,50 @@
+HA$PBExportHeader$r_partes_subcentros_oc.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica dbname="dt_ficha_procesos.co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="dt_ficha_procesos.co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="dt_ficha_procesos.co_referencia" )
+ column=(type=long updatewhereclause=yes name=co_calidad dbname="dt_ficha_procesos.co_calidad" )
+ column=(type=long updatewhereclause=yes name=co_tipoprod dbname="dt_ficha_procesos.co_tipoprod" )
+ column=(type=long updatewhereclause=yes name=co_centro_pdn dbname="dt_ficha_procesos.co_centro_pdn" )
+ column=(type=long updatewhereclause=yes name=co_subcentro_pdn dbname="dt_ficha_procesos.co_subcentro_pdn" )
+ column=(type=long updatewhereclause=yes name=co_parte dbname="dt_ficha_procesos.co_parte" )
+ column=(type=char(30) updatewhereclause=yes name=de_parte dbname="m_partes.de_parte" )
+ column=(type=char(30) updatewhereclause=yes name=de_subcentro_pdn dbname="m_subcentros_pdn.de_subcentro_pdn" )
+ retrieve="SELECT DISTINCT dt_ficha_procesos.co_fabrica,   
+         dt_ficha_procesos.co_linea,   
+         dt_ficha_procesos.co_referencia,   
+         dt_ficha_procesos.co_calidad,   
+         dt_ficha_procesos.co_tipoprod,   
+         dt_ficha_procesos.co_centro_pdn,   
+         dt_ficha_procesos.co_subcentro_pdn,   
+         dt_ficha_procesos.co_parte,
+			m_partes.de_parte,
+			m_subcentros_pdn.de_subcentro_pdn
+    FROM dt_ficha_procesos,   
+         dt_pdnxmodulo,
+         m_partes,
+			m_subcentros_pdn
+   WHERE ( dt_ficha_procesos.co_fabrica = dt_pdnxmodulo.co_fabrica ) and  
+         ( dt_ficha_procesos.co_linea = dt_pdnxmodulo.co_linea ) and  
+         ( dt_ficha_procesos.co_referencia = dt_pdnxmodulo.co_referencia ) and  
+         ( dt_pdnxmodulo.cs_asignacion = :an_ordencorte ) and
+			( m_partes.co_parte = dt_ficha_procesos.co_parte ) and
+			( m_subcentros_pdn.co_tipoprod = dt_ficha_procesos.co_tipoprod ) and
+			( m_subcentros_pdn.co_centro_pdn = dt_ficha_procesos.co_centro_pdn ) and
+			( m_subcentros_pdn.co_subcentro_pdn = dt_ficha_procesos.co_subcentro_pdn) and
+			( m_subcentros_pdn.co_subcentro_pdn in (8,14));
+
+" arguments=(("an_ordencorte", number)) )
+text(band=header alignment="2" text="Subcentro" border="6" color="33554432" x="649" y="4" height="52" width="658" html.valueishtml="0"  name=de_subcentro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Parte" border="6" color="33554432" x="9" y="4" height="52" width="631" html.valueishtml="0"  name=de_parte_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="5" color="33554432" x="9" y="8" height="52" width="631" format="[general]" html.valueishtml="0"  name=de_parte visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="5" color="33554432" x="649" y="8" height="52" width="658" format="[general]" html.valueishtml="0"  name=de_subcentro_pdn visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
