@@ -1,0 +1,30 @@
+HA$PBExportHeader$d_buscar_trazo_definido_para_utilizar.srd
+$PBExportComments$Busca el trazo definido contra una nueva definicion
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=144 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_trazo dbname="h_trazos.co_trazo" )
+ column=(type=long updatewhereclause=yes name=co_fabrica dbname="dt_tallasxtrazo.co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="dt_tallasxtrazo.co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="dt_tallasxtrazo.co_referencia" )
+ column=(type=long updatewhereclause=yes name=contador dbname="contador" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"h_trazos~" )  TABLE(NAME=~"dt_tallasxtrazo~" )  TABLE(NAME=~"mahernan.t_trazos~" ) COLUMN(NAME=~"h_trazos.co_trazo~") COLUMN(NAME=~"dt_tallasxtrazo.co_fabrica~") COLUMN(NAME=~"dt_tallasxtrazo.co_linea~") COLUMN(NAME=~"dt_tallasxtrazo.co_referencia~") COMPUTE(NAME=~"count(*) contador~")    JOIN (LEFT=~"h_trazos.co_trazo~"    OP =~"=~"RIGHT=~"dt_tallasxtrazo.co_trazo~" )    JOIN (LEFT=~"dt_tallasxtrazo.co_fabrica~"    OP =~"=~"RIGHT=~"mahernan.t_trazos.co_fabrica~" )    JOIN (LEFT=~"dt_tallasxtrazo.co_linea~"    OP =~"=~"RIGHT=~"mahernan.t_trazos.co_linea~" )    JOIN (LEFT=~"dt_tallasxtrazo.co_referencia~"    OP =~"=~"RIGHT=~"mahernan.t_trazos.co_referencia~" )    JOIN (LEFT=~"dt_tallasxtrazo.co_talla~"    OP =~"=~"RIGHT=~"mahernan.t_trazos.co_talla~" )    JOIN (LEFT=~"dt_tallasxtrazo.ca_paquetes~"    OP =~"=~"RIGHT=~"mahernan.t_trazos.ca_paquetes~" )WHERE(    EXP1 =~"h_trazos.ancho~"   OP =~"=~"    EXP2 =~":adc_ancho~" )  GROUP(NAME=~"h_trazos.co_trazo~") GROUP(NAME=~"dt_tallasxtrazo.co_fabrica~") GROUP(NAME=~"dt_tallasxtrazo.co_linea~") GROUP(NAME=~"dt_tallasxtrazo.co_referencia~")) ARG(NAME = ~"adc_ancho~" TYPE = number) " arguments=(("adc_ancho", number)) )
+text(band=header alignment="2" text="H Trazos
+Co Trazo" border="0" color="0" x="9" y="8" height="128" width="329"  name=h_trazos_co_trazo_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Tallasxtrazo
+Co Fabrica" border="0" color="0" x="347" y="8" height="128" width="398"  name=dt_tallasxtrazo_co_fabrica_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Tallasxtrazo
+Co Linea" border="0" color="0" x="754" y="8" height="128" width="398"  name=dt_tallasxtrazo_co_linea_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Tallasxtrazo
+Co Referencia" border="0" color="0" x="1161" y="8" height="128" width="398"  name=dt_tallasxtrazo_co_referencia_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Contador" border="0" color="0" x="1568" y="4" height="64" width="73"  name=t_1  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="9" y="8" height="76" width="329" format="[general]"  name=co_trazo edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="347" y="8" height="76" width="398" format="[general]"  name=co_fabrica edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="0" x="754" y="8" height="76" width="398" format="[general]"  name=co_linea edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="0" x="1161" y="8" height="76" width="398" format="[general]"  name=co_referencia edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="1568" y="0" height="64" width="73" format="[general]"  name=contador edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
