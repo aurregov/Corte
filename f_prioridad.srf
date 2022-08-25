@@ -1,0 +1,64 @@
+HA$PBExportHeader$f_prioridad.srf
+global type f_prioridad from function_object
+end type
+
+forward prototypes
+global function long f_prioridad (long ai_simulacion, long ai_fabrica, long ai_planta, long ai_modulo, string as_expresion, long ai_modulo_viejo)
+end prototypes
+
+global function long f_prioridad (long ai_simulacion, long ai_fabrica, long ai_planta, long ai_modulo, string as_expresion, long ai_modulo_viejo);Long ll_found,ll_filas,ll_asignacion,ll_foundxcol
+Long li_prinue,li_priant
+String ls_expresion,DWfilter2
+Date li_xcol
+DataStore lds_pdn,lds_pri
+
+lds_pdn = Create DataStore
+lds_pri = Create DataStore
+
+lds_pdn.DataObject = 'ds_pdnxmodulo'
+lds_pri.DataObject = 'ds_pdnxmodulo_prioridad'
+
+lds_pdn.SetTransObject(sqlca)
+lds_pri.SetTransObject(sqlca)
+
+lds_pdn.Retrieve(ai_simulacion,ai_fabrica,ai_planta,ai_modulo)
+
+IF lds_pdn.RowCount() > 1 THEN
+	
+	li_priant = lds_pdn.GetItemNumber(lds_pdn.RowCount() - 1,'cs_prioridad' ) + 1
+			
+	lds_pdn.SetItem(lds_pdn.RowCount(),'cs_prioridad',li_priant)
+	
+ELSE
+	lds_pdn.SetItem(lds_pdn.RowCount(),'cs_prioridad',1)
+END IF
+
+//reordeno los m$$HEX1$$f300$$ENDHEX$$dulos y evito huecos
+lds_pdn.AcceptText()
+lds_pdn.Update()
+
+lds_pri.Retrieve(ai_simulacion,ai_fabrica,ai_planta,ai_modulo)
+		
+FOR ll_filas = 1 TO lds_pri.RowCount()
+	lds_pri.SetItem(ll_filas,'cs_prioridad',ll_filas)
+NEXT
+
+lds_pri.Update()
+
+lds_pri.Retrieve(ai_simulacion,ai_fabrica,ai_planta,ai_modulo_viejo)
+	
+FOR ll_filas = 1 TO lds_pri.RowCount()
+	lds_pri.SetItem(ll_filas,'cs_prioridad',ll_filas)
+NEXT
+
+lds_pri.Update()
+lds_pdn.Update()
+
+Commit;
+
+Destroy lds_pri
+Destroy lds_pdn
+
+Return 0
+end function
+
