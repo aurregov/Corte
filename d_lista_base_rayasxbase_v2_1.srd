@@ -1,0 +1,109 @@
+HA$PBExportHeader$d_lista_base_rayasxbase_v2_1.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_base_trazos dbname="cs_base_trazos" )
+ column=(type=long updatewhereclause=yes name=co_fabrica_te dbname="co_fabrica_te" )
+ column=(type=long updatewhereclause=yes name=co_reftel dbname="co_reftel" )
+ column=(type=long updatewhereclause=yes name=co_caract dbname="co_caract" )
+ column=(type=long updatewhereclause=yes name=diametro dbname="diametro" )
+ column=(type=long updatewhereclause=yes name=co_color_te dbname="co_color_te" )
+ column=(type=long updatewhereclause=yes name=co_modelo dbname="co_modelo" )
+ column=(type=long updatewhereclause=yes name=raya dbname="raya" )
+ column=(type=char(42) updatewhereclause=yes name=h_telas_de_reftel dbname="de_reftel" )
+ column=(type=long updatewhereclause=yes name=capas dbname="capas" )
+ column=(type=char(30) updatewhereclause=yes name=de_ttejido dbname="de_ttejido" )
+ column=(type=long updatewhereclause=yes name=co_tiptel dbname="co_tiptel" )
+ column=(type=long updatewhereclause=yes name=co_modelo dbname="co_modelo" )
+ column=(type=long updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=char(60) updatewhereclause=yes name=de_modelo dbname="de_modelo" )
+ column=(type=decimal(2) updatewhereclause=yes name=porc_utilizacion dbname="porc_utilizacion" )
+ column=(type=long updatewhereclause=yes name=sw_proceso_corte dbname="sw_proceso_corte" )
+ retrieve="  SELECT DISTINCT dt_rayas_telaxbase.cs_base_trazos,   
+         dt_rayas_telaxbase.co_fabrica_te,   
+         dt_rayas_telaxbase.co_reftel,   
+         dt_rayas_telaxbase.co_caract,   
+         dt_rayas_telaxbase.diametro,   
+         dt_rayas_telaxbase.co_color_te,
+         dt_rayas_telaxbase.co_modelo,
+         h_base_trazos.raya,   
+         h_telas.de_reftel,   
+         Nvl(dt_capas_reftela.max_capas, 0) capas,   
+         m_ttejidos.de_ttejido,   
+         h_telas.co_tiptel,
+			dt_rayas_telaxbase.co_modelo,  
+			dt_rayas_telaxbase.co_fabrica,
+			dt_rayas_telaxbase.co_linea,
+			dt_rayas_telaxbase.co_referencia,
+         pr_descripcion_raya(:an_ordencorte, h_base_trazos.raya) de_modelo,
+			pr_porcent_util(:an_ordencorte, h_base_trazos.raya) porc_utilizacion,
+         m_ttejidos.sw_proceso_corte      
+    FROM dt_rayas_telaxbase,   
+         h_telas,   
+         dt_capas_reftela,   
+         m_ttejidos,   
+         h_base_trazos
+   WHERE ( dt_rayas_telaxbase.co_reftel = h_telas.co_reftel ) and  
+         ( dt_rayas_telaxbase.co_caract = h_telas.co_caract ) and  
+         ( dt_rayas_telaxbase.co_fabrica = dt_capas_reftela.co_fabrica ) and  
+         ( dt_rayas_telaxbase.co_linea = dt_capas_reftela.co_linea ) and  
+         ( h_telas.co_reftel = dt_capas_reftela.co_reftel ) and  
+         ( h_telas.co_caract = dt_capas_reftela.co_caract ) and 
+			(dt_rayas_telaxbase.co_referencia = dt_capas_reftela.co_referencia) and
+         ( h_telas.co_ttejido = m_ttejidos.co_ttejido ) and  
+         ( h_base_trazos.cs_agrupacion = dt_rayas_telaxbase.cs_agrupacion ) and  
+         ( h_base_trazos.cs_base_trazos = dt_rayas_telaxbase.cs_base_trazos ) and  
+         ( h_base_trazos.cs_agrupacion = :an_agrupa ) 
+		
+GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,19	
+ORDER BY dt_rayas_telaxbase.cs_base_trazos ASC,   
+         dt_rayas_telaxbase.co_fabrica_te ASC,   
+         dt_rayas_telaxbase.co_reftel ASC,   
+         dt_rayas_telaxbase.co_caract ASC,   
+         dt_rayas_telaxbase.diametro ASC,   
+         h_base_trazos.raya ASC   
+
+
+" arguments=(("an_agrupa", number),("an_ordencorte", number))  sort="raya A h_telas_de_reftel A " )
+text(band=header alignment="2" text="Tela" border="6" color="0" x="969" y="8" height="56" width="599" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Capas" border="6" color="0" x="1577" y="8" height="56" width="160" html.valueishtml="0"  name=capas_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Raya" border="6" color="0" x="9" y="8" height="56" width="137" html.valueishtml="0"  name=h_base_trazos_raya_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Modelo" border="6" color="0" x="155" y="8" height="56" width="411" html.valueishtml="0"  name=de_modelo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Tipo Tejido" border="6" color="0" x="1746" y="8" height="56" width="498" html.valueishtml="0"  name=m_ttejidos_de_ttejido_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="%" border="6" color="0" x="2254" y="8" height="56" width="174" html.valueishtml="0"  name=porc_utilizacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Fab" border="6" color="0" x="576" y="8" height="56" width="105" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="0" text="Crt" border="6" color="0" x="882" y="4" height="56" width="78" html.valueishtml="0"  name=co_caract_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="0" text="Diametro" border="0" color="0" x="2437" y="4" height="56" width="82" html.valueishtml="0"  name=diametro_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="Co Color Te" border="0" color="0" x="2907" y="4" height="56" width="210" html.valueishtml="0"  name=co_color_te_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="Co Modelo" border="0" color="0" x="2528" y="4" height="56" width="142" html.valueishtml="0"  name=co_modelo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="Co Fabrica" border="0" color="0" x="3127" y="4" height="56" width="119" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Linea" border="0" color="0" x="3255" y="4" height="56" width="119" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Referencia" border="0" color="0" x="3383" y="4" height="56" width="293" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="0" x="969" y="4" height="64" width="599" format="[general]" html.valueishtml="0"  name=h_telas_de_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="0" x="1577" y="4" height="64" width="160" format="[general]" html.valueishtml="0"  name=capas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="576" y="4" height="64" width="105" format="[general]" html.valueishtml="0"  name=co_fabrica_te visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="0" x="9" y="4" height="64" width="137" format="[general]" html.valueishtml="0"  name=raya visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="0" x="155" y="4" height="64" width="411" format="[general]" html.valueishtml="0"  name=de_modelo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0" x="1746" y="4" height="64" width="498" format="[general]" html.valueishtml="0"  name=de_ttejido visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="0" x="690" y="4" height="64" width="183" format="[general]" html.valueishtml="0"  name=co_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="882" y="4" height="64" width="78" format="[general]" html.valueishtml="0"  name=co_caract visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="0" x="2254" y="4" height="64" width="174" format="[general]" html.valueishtml="0"  name=porc_utilizacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="2679" y="8" height="76" width="219" format="[general]" html.valueishtml="0"  name=cs_base_trazos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="2437" y="12" height="56" width="82" format="[general]" html.valueishtml="0"  name=diametro visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="0" x="2528" y="0" height="56" width="142" format="[general]" html.valueishtml="0"  name=co_modelo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="2907" y="12" height="56" width="210" format="[general]" html.valueishtml="0"  name=co_color_te visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="0" x="3127" y="12" height="56" width="119" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="0" x="3255" y="12" height="56" width="119" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="0" x="3383" y="12" height="56" width="293" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=19 alignment="0" tabsequence=0 border="0" color="0" x="3689" y="0" height="56" width="119" html.valueishtml="0"  name=sw_proceso_corte visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="Sw Proceso Corte" border="0" color="0" x="3685" y="4" height="76" width="123" html.valueishtml="0"  name=sw_proceso_corte_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
