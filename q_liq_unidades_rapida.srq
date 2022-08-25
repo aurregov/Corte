@@ -1,0 +1,62 @@
+HA$PBExportHeader$q_liq_unidades_rapida.srq
+  SELECT DISTINCT dt_liq_unixespacio.cs_orden_corte,   
+         dt_liq_unixespacio.cs_agrupacion,   
+         dt_liq_unixespacio.cs_base_trazos,   
+         dt_liq_unixespacio.cs_trazo,   
+         dt_liq_unixespacio.cs_liquidacion,   
+         dt_liq_unixespacio.cs_seccion,   
+         dt_trazosxoc.co_trazo,   
+         dt_liq_unixespacio.cs_pdn,   
+         h_preref_pv.de_referencia,   
+         dt_agrupa_pdn.po,   
+         dt_liq_unixespacio.co_talla,   
+         m_tallas_x_grupo.de_talla,   
+         dt_liq_unixespacio.cs_talla,   
+         dt_liq_unixespacio.ca_prog_liq,   
+         dt_liq_unixespacio.capas,   
+         dt_liq_unixespacio.paquetes,   
+         dt_liq_unixespacio.ca_liquidadas,   
+         dt_liq_unixespacio.ca_loteadas,   
+         dt_liq_unixespacio.fe_creacion,   
+         dt_liq_unixespacio.fe_actualizacion,   
+         dt_liq_unixespacio.usuario,   
+         dt_liq_unixespacio.instancia,   
+         dt_trazosxoc.tipo,   
+         dt_trazosxoc.capas,   
+         dt_trazosxoc.ca_programada,   
+         dt_trazosxoc.ca_stdxunidad ,
+			dt_agrupa_pdn.co_color_pt || dt_agrupa_pdn.tono || dt_agrupa_pdn.cs_liberacion as lote ,
+			( 	SELECT Sum(capas)
+				FROM dt_trazosxoc a
+				WHERE a.cs_orden_corte 	= :cs_orden_corte AND
+						a.cs_agrupacion 	= :cs_agrupacion AND
+						a.cs_base_trazos 	= :cs_base_trazos AND
+						a.cs_trazo 			= :cs_trazo AND
+						a.cs_seccion 		= dt_trazosxoc.cs_seccion ) total_capas,
+			dt_trazosxoc.cs_ordenpdn
+    FROM dt_liq_unixespacio,   
+         dt_trazosxoc,   
+         dt_agrupa_pdn,   
+         h_preref_pv,   
+         m_tallas_x_grupo,dt_trazosxbase  
+   WHERE ( dt_liq_unixespacio.cs_orden_corte 		= dt_trazosxoc.cs_orden_corte ) and  
+         ( dt_liq_unixespacio.cs_agrupacion 			= dt_trazosxoc.cs_agrupacion ) and  
+         ( dt_liq_unixespacio.cs_base_trazos 		= dt_trazosxoc.cs_base_trazos ) and  
+         ( dt_liq_unixespacio.cs_trazo 				= dt_trazosxoc.cs_trazo ) and  
+         ( dt_liq_unixespacio.cs_seccion 				= dt_trazosxoc.cs_seccion ) and  
+         ( dt_liq_unixespacio.cs_pdn 					= dt_trazosxoc.cs_pdn ) and  
+         ( dt_liq_unixespacio.cs_agrupacion 			= dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_liq_unixespacio.cs_pdn 					= dt_agrupa_pdn.cs_pdn ) and  
+         ( dt_agrupa_pdn.co_linea 						= h_preref_pv.co_linea ) and  
+         ( dt_agrupa_pdn.co_fabrica_pt 				= h_preref_pv.co_fabrica ) and  
+         ( Cast(dt_agrupa_pdn.co_referencia as Char(15))	= h_preref_pv.co_referencia ) and  
+			( h_preref_pv.co_tipo_ref                 = 'P' ) and
+         ( dt_agrupa_pdn.co_fabrica_pt 				= m_tallas_x_grupo.co_fabrica ) and  
+         ( h_preref_pv.co_grupo_tlla 			= m_tallas_x_grupo.co_grupo_tlla ) and  
+         ( dt_liq_unixespacio.co_talla 				= m_tallas_x_grupo.co_talla ) and  
+         ( ( dt_liq_unixespacio.cs_orden_corte 		= :cs_orden_corte ) AND  
+         ( dt_liq_unixespacio.cs_agrupacion 			= :cs_agrupacion ) AND  
+         ( dt_liq_unixespacio.cs_base_trazos 		= :cs_base_trazos ) AND  
+         ( dt_liq_unixespacio.cs_trazo 				= :cs_trazo ) AND  
+         ( dt_liq_unixespacio.cs_liquidacion 		= :cs_liquidacion ) )    
+ ARG(NAME = "cs_orden_corte" TYPE = number)  ARG(NAME = "cs_agrupacion" TYPE = number)  ARG(NAME = "cs_base_trazos" TYPE = number)  ARG(NAME = "cs_trazo" TYPE = number)  ARG(NAME = "cs_liquidacion" TYPE = number)
