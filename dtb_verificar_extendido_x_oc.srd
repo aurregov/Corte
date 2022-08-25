@@ -1,0 +1,48 @@
+HA$PBExportHeader$dtb_verificar_extendido_x_oc.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_instruccion dbname="co_instruccion" )
+ column=(type=char(200) updatewhereclause=yes name=de_instruccion dbname="de_instruccion" )
+ retrieve="select distinct m_instruccionxtipo.co_instruccion,de_instruccion
+from  dt_instxestilo_tip,
+      m_instruccionxtipo,
+      h_ordenes_corte,
+      dt_kamban_corte 
+where m_instruccionxtipo.co_tipo_instruccio = 3 
+  and m_instruccionxtipo.de_instruccion     <> '' 
+  and m_instruccionxtipo.co_instruccion     in(:an_tipo_extendido)
+  and 0 = (select count(*)
+           from  dt_instxestilo_tip dt,
+						m_instruccionxtipo m,
+						dt_kamban_corte d
+				where m.co_tipo_instruccio = 3 
+				  and m.de_instruccion     <> '' 
+				  and m.co_instruccion     = 12
+				  and m.co_tipo_instruccio = dt.co_tipo_instruccio   
+				  and m.co_instruccion     = dt.co_instruccion    
+				  and dt.co_fabrica        = d.co_fabrica 
+				  and dt.co_linea          = d.co_linea    
+				  and dt.co_referencia     = d.co_referencia 	 
+				  and d.cs_orden_corte     = h_ordenes_corte.cs_orden_corte
+           )
+  and m_instruccionxtipo.co_tipo_instruccio = dt_instxestilo_tip.co_tipo_instruccio   
+  and m_instruccionxtipo.co_instruccion     = dt_instxestilo_tip.co_instruccion    
+  and dt_instxestilo_tip.co_fabrica         = dt_kamban_corte.co_fabrica 
+  and dt_instxestilo_tip.co_linea           = dt_kamban_corte.co_linea    
+  and dt_instxestilo_tip.co_referencia      = dt_kamban_corte.co_referencia 	 
+  and h_ordenes_corte.cs_orden_corte        = :an_orden_corte
+  and dt_kamban_corte.cs_orden_corte        = h_ordenes_corte.cs_orden_corte
+" arguments=(("an_tipo_extendido", numberlist),("an_orden_corte", number)) )
+text(band=header alignment="2" text="Co Instruccion" border="0" color="33554432" x="5" y="4" height="56" width="315" html.valueishtml="0"  name=co_instruccion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="De Instruccion" border="0" color="33554432" x="325" y="4" height="56" width="4594" html.valueishtml="0"  name=de_instruccion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="68" width="274" format="[general]" html.valueishtml="0"  name=co_instruccion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="325" y="4" height="68" width="4594" format="[general]" html.valueishtml="0"  name=de_instruccion visible="1" edit.limit=200 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
