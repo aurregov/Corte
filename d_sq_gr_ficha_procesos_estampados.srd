@@ -1,0 +1,44 @@
+HA$PBExportHeader$d_sq_gr_ficha_procesos_estampados.srd
+$PBExportComments$/***********************************************************~r~nSA53871 - Ceiba/jjmonsal - 13-11-2015~r~nComentario:Informacion de estampado pieza en Ord Cte~r~n***********************************************************/
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=88 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=char(6) updatewhereclause=yes name=co_disenno dbname="co_disenno" )
+ column=(type=char(100) updatewhereclause=yes name=de_disenno dbname="de_disenno" )
+ column=(type=char(2) updatewhereclause=yes name=ind_interno dbname="ind_interno" )
+ column=(type=long updatewhereclause=yes name=co_parte dbname="co_parte" )
+ retrieve="SELECT DISTINCT dt_ficha_procesos.co_disenno ,
+	m_disennos.de_disenno ,
+	dt_ficha_procesos.ind_interno ,
+	dt_ficha_procesos.co_parte 
+FROM dt_ficha_procesos ,
+	m_disennos ,
+		outer m_subcentros_pdn     
+WHERE ( dt_ficha_procesos.co_proces		= m_disennos.co_proces )					and          
+( dt_ficha_procesos.co_disenno 			= m_disennos.co_disenno ) 					and         
+( dt_ficha_procesos.co_centro_pdn 		= m_subcentros_pdn.co_centro_pdn ) 		and         
+( dt_ficha_procesos.co_subcentro_pdn 	= m_subcentros_pdn.co_subcentro_pdn ) 	and          
+( m_subcentros_pdn.co_tipoprod 			= 1 ) 											and         
+( dt_ficha_procesos.co_fabrica 			= :an_fabrica ) 								and         
+( dt_ficha_procesos.co_linea 				= :an_linea )									and         
+( dt_ficha_procesos.co_referencia 		= :an_referencia ) 							and        
+(( dt_ficha_procesos.co_centro_pdn		in( 1, 2)						and         
+	 dt_ficha_procesos.co_subcentro_pdn	= :an_SubCentro  				and        
+	 dt_ficha_procesos.co_proces				= :an_proceso )  or 
+  ( dt_ficha_procesos.co_centro_pdn		= 1							and         
+	 dt_ficha_procesos.co_subcentro_pdn	= 29 							and        
+	 dt_ficha_procesos.co_proces				= 3						 
+) )and 
+( dt_ficha_procesos.ind_interno 			= 'No' )" arguments=(("an_fabrica", number),("an_linea", number),("an_referencia", number),("an_centro", number),("an_SubCentro", number),("an_proceso", number)) )
+text(band=header alignment="2" text="Estampado en Pieza" border="6" color="33554432" x="247" y="12" height="68" width="827" html.valueishtml="0"  name=de_disenno_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="229" format="[general]" html.valueishtml="0"  name=co_disenno visible="1" edit.limit=6 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="247" y="8" height="64" width="827" format="[general]" html.valueishtml="0"  name=de_disenno visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1083" y="8" height="64" width="379" format="[general]" html.valueishtml="0"  name=co_parte visible="1" dddw.name=dddw_m_partes dddw.displaycolumn=de_parte dddw.datacolumn=co_parte dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
