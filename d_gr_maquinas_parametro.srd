@@ -1,0 +1,81 @@
+HA$PBExportHeader$d_gr_maquinas_parametro.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=76 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes name=co_planta dbname="co_planta" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_maquina dbname="co_maquina" )
+ column=(type=long update=yes updatewhereclause=yes name=co_centro_pdn dbname="co_centro_pdn" )
+ column=(type=long update=yes updatewhereclause=yes name=co_subcentro_pdn dbname="co_subcentro_pdn" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=de_maquina dbname="de_maquina" )
+ column=(type=long update=yes updatewhereclause=yes name=co_calendario dbname="co_calendario" )
+ column=(type=long update=yes updatewhereclause=yes name=co_recurso dbname="co_recurso" )
+ column=(type=long update=yes updatewhereclause=yes name=co_recurso2 dbname="co_recurso2" )
+ column=(type=long update=yes updatewhereclause=yes name=co_recurso3 dbname="co_recurso3" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="instancia" )
+ column=(type=long update=yes updatewhereclause=yes name=co_tipo_maquina dbname="co_tipo_maquina" )
+ retrieve=" SELECT m_maquinas.co_fabrica,   
+         m_maquinas.co_planta,   
+         m_maquinas.co_maquina,   
+         m_maquinas.co_centro_pdn,   
+         m_maquinas.co_subcentro_pdn,   
+         m_maquinas.de_maquina,   
+         m_maquinas.co_calendario,   
+         m_maquinas.co_recurso,   
+         m_maquinas.co_recurso2,   
+         m_maquinas.co_recurso3,   
+         m_maquinas.fe_creacion,   
+         m_maquinas.fe_actualizacion,   
+         m_maquinas.usuario,   
+         m_maquinas.instancia,   
+         m_maquinas.co_tipo_maquina  
+    FROM m_maquinas, m_recursos_pdn  
+   WHERE m_maquinas.co_recurso = m_recursos_pdn.co_recurso and
+			( m_maquinas.co_fabrica = :an_fabrica ) AND  
+         ( m_maquinas.co_planta = :an_planta ) AND  
+         ( m_maquinas.co_centro_pdn = :an_centro ) AND  
+         ( m_maquinas.co_subcentro_pdn = :an_subcentro ) AND  
+         ( m_recursos_pdn.co_tipo_negocio = :an_tipo_negocio ) AND  
+         ( m_maquinas.co_maquina = :an_maquina ) 
+" update="m_maquinas" updatewhere=1 updatekeyinplace=yes arguments=(("an_fabrica", number),("an_planta", number),("an_centro", number),("an_subcentro", number),("an_tipo_negocio", number),("an_maquina", number)) )
+column(band=detail id=1 alignment="1" tabsequence=10 border="0" color="33554432" x="9" y="8" height="60" width="366" format="[General]" html.valueishtml="0"  name=co_fabrica  tag="" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="0" color="33554432" x="384" y="8" height="60" width="329" format="[General]" html.valueishtml="0"  name=co_planta  tag="" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=30 border="0" color="33554432" x="722" y="8" height="60" width="475" format="[General]" html.valueishtml="0"  name=co_centro_pdn  tag="" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=40 border="0" color="33554432" x="1207" y="8" height="60" width="585" format="[General]" html.valueishtml="0"  name=co_subcentro_pdn  tag="" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=50 border="0" color="33554432" x="1801" y="8" height="60" width="475" format="[General]" html.valueishtml="0"  name=co_calendario  tag="" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=60 border="0" color="33554432" x="2286" y="8" height="60" width="768" format="[shortdate] [time]" html.valueishtml="0"  name=fe_creacion  tag="" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=70 border="0" color="33554432" x="3063" y="8" height="60" width="768" format="[shortdate] [time]" html.valueishtml="0"  name=fe_actualizacion  tag="" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=80 border="0" color="33554432" x="3840" y="8" height="60" width="398" format="[general]" html.valueishtml="0"  name=usuario  tag="" visible="1" edit.limit=8 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=90 border="0" color="33554432" x="4247" y="8" height="60" width="837" format="[general]" html.valueishtml="0"  name=instancia  tag="" visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=100 border="0" color="33554432" x="5093" y="8" height="60" width="247" format="[general]" html.valueishtml="0"  name=co_maquina visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=110 border="0" color="33554432" x="5349" y="8" height="60" width="507" format="[general]" html.valueishtml="0"  name=de_maquina visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=120 border="0" color="33554432" x="5865" y="8" height="60" width="366" format="[general]" html.valueishtml="0"  name=co_recurso visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=130 border="0" color="33554432" x="6240" y="8" height="60" width="334" format="[general]" html.valueishtml="0"  name=co_recurso2 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=140 border="0" color="33554432" x="6583" y="8" height="60" width="293" format="[general]" html.valueishtml="0"  name=co_recurso3 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=150 border="0" color="33554432" x="6885" y="8" height="60" width="338" format="[general]" html.valueishtml="0"  name=co_tipo_maquina visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="co_fabrica" border="0" color="33554432" x="9" y="8" height="52" width="366" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="co_planta" border="0" color="33554432" x="384" y="8" height="52" width="329" html.valueishtml="0"  name=co_planta_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="co_centro_pdn" border="0" color="33554432" x="722" y="8" height="52" width="475" html.valueishtml="0"  name=co_centro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="co_subcentro_pdn" border="0" color="33554432" x="1207" y="8" height="52" width="585" html.valueishtml="0"  name=co_subcentro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="co_calendario" border="0" color="33554432" x="1801" y="8" height="52" width="475" html.valueishtml="0"  name=co_calendario_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="fe_creacion" border="0" color="33554432" x="2286" y="8" height="52" width="768" html.valueishtml="0"  name=fe_creacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="fe_actualizacion" border="0" color="33554432" x="3063" y="8" height="52" width="768" html.valueishtml="0"  name=fe_actualizacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="usuario" border="0" color="33554432" x="3840" y="8" height="52" width="398" html.valueishtml="0"  name=usuario_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="instancia" border="0" color="33554432" x="4247" y="8" height="52" width="837" html.valueishtml="0"  name=instancia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Maquina" border="0" color="33554432" x="5093" y="8" height="52" width="247" html.valueishtml="0"  name=co_maquina_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="De Maquina" border="0" color="33554432" x="5349" y="8" height="52" width="507" html.valueishtml="0"  name=de_maquina_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Recurso" border="0" color="33554432" x="5865" y="8" height="52" width="366" html.valueishtml="0"  name=co_recurso_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Recurso2" border="0" color="33554432" x="6240" y="8" height="52" width="334" html.valueishtml="0"  name=co_recurso2_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Recurso3" border="0" color="33554432" x="6583" y="8" height="52" width="293" html.valueishtml="0"  name=co_recurso3_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Tipo Maquina" border="0" color="33554432" x="6885" y="8" height="52" width="338" html.valueishtml="0"  name=co_tipo_maquina_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
