@@ -1,0 +1,40 @@
+HA$PBExportHeader$d_lista_sec_ext.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=60 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_base_trazos dbname="dt_trazosxoc.cs_base_trazos" )
+ column=(type=long updatewhereclause=yes name=cs_orden_espacio dbname="dt_trazosxoc.cs_orden_espacio" )
+ column=(type=long updatewhereclause=yes name=cs_trazo dbname="dt_trazosxoc.cs_trazo" )
+ column=(type=decimal(0) updatewhereclause=yes name=total_capas dbname="total_capas" )
+ column=(type=long updatewhereclause=yes name=cs_seccion dbname="dt_trazosxoc.cs_seccion" )
+ retrieve="  SELECT DISTINCT b.cs_base_trazos,   
+         b.cs_orden_espacio,   
+         b.cs_trazo,  
+			( 	SELECT Sum(capas)
+				FROM dt_trazosxoc a
+				WHERE a.cs_orden_corte = b.cs_orden_corte AND
+						a.cs_agrupacion = b.cs_agrupacion AND
+						a.cs_base_trazos = b.cs_base_trazos AND
+						a.cs_trazo = b.cs_trazo AND
+						a.cs_seccion = b.cs_seccion ) total_capas, 
+         b.cs_seccion
+			
+    FROM dt_trazosxoc  b
+   WHERE ( b.cs_orden_corte = :an_cs_orden_corte ) AND  
+         ( b.cs_base_trazos = :an_cs_base_trazos )   
+order by 1,2,4,5" arguments=(("an_cs_orden_corte", number),("an_cs_base_trazos", number)) )
+text(band=header alignment="2" text="Cs Base Trazos" border="0" color="33554432" x="5" y="4" height="52" width="338" html.valueishtml="0"  name=cs_base_trazos_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Orden Espacio" border="0" color="33554432" x="347" y="4" height="52" width="389" html.valueishtml="0"  name=cs_orden_espacio_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Trazo" border="0" color="33554432" x="741" y="4" height="52" width="274" html.valueishtml="0"  name=cs_trazo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Total Capas" border="0" color="33554432" x="1019" y="4" height="52" width="274" html.valueishtml="0"  name=total_capas_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Seccion" border="0" color="33554432" x="1298" y="4" height="52" width="274" html.valueishtml="0"  name=cs_seccion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_base_trazos visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="347" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_orden_espacio visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="741" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_trazo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="1019" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=total_capas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1298" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_seccion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
