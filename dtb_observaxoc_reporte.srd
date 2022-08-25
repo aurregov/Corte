@@ -1,0 +1,29 @@
+HA$PBExportHeader$dtb_observaxoc_reporte.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=100 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=376 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=cs_orden_corte dbname="dt_observa_oc.cs_orden_corte" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_observa dbname="dt_observa_oc.cs_observa" )
+ column=(type=char(200) updatewhereclause=yes name=observ1 dbname="dt_observa_oc.observ1" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="dt_observa_oc.fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="dt_observa_oc.fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="dt_observa_oc.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="dt_observa_oc.instancia" )
+ retrieve="  SELECT dt_observa_oc.cs_orden_corte,   
+         dt_observa_oc.cs_observa,   
+         dt_observa_oc.de_observa[1,200] observ1, 
+  			
+         dt_observa_oc.fe_creacion,   
+         dt_observa_oc.fe_actualizacion,   
+         dt_observa_oc.usuario,   
+         dt_observa_oc.instancia  
+    FROM dt_observa_oc  
+   WHERE dt_observa_oc.cs_orden_corte = :ai_orden_corte    
+" update="dt_observa_oc" updatewhere=1 updatekeyinplace=no arguments=(("ai_orden_corte", number)) )
+text(band=header alignment="2" text="OBSERVACIONES" border="0" color="0" x="18" y="12" height="80" width="2862" html.valueishtml="0"  name=de_observa_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="18" y="8" height="312" width="2862" format="[general]" html.valueishtml="0"  name=observ1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
