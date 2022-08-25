@@ -1,0 +1,43 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "servicios_comunes_dw.pbl" "";
+@end;
+@begin Objects
+ "d_gr_hcanasta_com.srd" "servicios_comunes_dw.pbl";
+ "d_gr_semana_com.srd" "servicios_comunes_dw.pbl";
+ "d_mae_plantas_com.srd" "servicios_comunes_dw.pbl";
+ "d_gr_h_bongo_corte_com.srd" "servicios_comunes_dw.pbl";
+ "d_gr_constraint_com.srd" "servicios_comunes_dw.pbl";
+ "d_gr_obtener_referencias_cambio_com.srd" "servicios_comunes_dw.pbl";
+ "d_gr_canastas_x_marcas_com.srd" "servicios_comunes_dw.pbl";
+ "d_gr_cambios_referencias_com.srd" "servicios_comunes_dw.pbl";
+ "d_gr_determinar_tipo_pedido_x_pallet_com.srd" "servicios_comunes_dw.pbl";
+ "d_sq_gr_m_turno.srd" "servicios_comunes_dw.pbl";
+ "d_gr_h_canastas_x_camion_com.srd" "servicios_comunes_dw.pbl";
+ "d_gr_hallar_cliente_x_pedido_com.srd" "servicios_comunes_dw.pbl";
+ "d_gr_h_canastas_x_estiba_com.srd" "servicios_comunes_dw.pbl";
+ "d_gr_hallar_cambio_ref_lote_pedid_com.srd" "servicios_comunes_dw.pbl";
+ "d_gr_hallar_grupo_cambio_referencia_com.srd" "servicios_comunes_dw.pbl";
+ "d_tb_mnmto_validar_po_pedido_com.srd" "servicios_comunes_dw.pbl";
+ "d_gr_pedido_po_cut_sku_en_pedido_com.srd" "servicios_comunes_dw.pbl";
+ "d_gr_detalle_canasta_com.srd" "servicios_comunes_dw.pbl";
+ "d_gr_grupo_cambio_referencia.srd" "servicios_comunes_dw.pbl";
+ "d_gr_detalle_canasta_x_ref_com.srd" "servicios_comunes_dw.pbl";
+ "d_gr_dt_bongo_corte_com.srd" "servicios_comunes_dw.pbl";
+ "d_gr_hallar_nro_hijos_com.srd" "servicios_comunes_dw.pbl";
+ "d_gr_hallar_po_master_com.srd" "servicios_comunes_dw.pbl";
+ "d_tb_mlotesconf_cut_com.srd" "servicios_comunes_dw.pbl";
+ "d_gr_hallar_cliente_com.srd" "servicios_comunes_dw.pbl";
+ "d_gr_h_canastas_x_remision_com.srd" "servicios_comunes_dw.pbl";
+ "d_sq_gr_estandares_operaciones.srd" "servicios_comunes_dw.pbl";
+ "d_sq_gr_dt_canasta_corte.srd" "servicios_comunes_dw.pbl";
+ "d_sq_gr_dt_pdnxmodulo_x_h_prererf_pv.srd" "servicios_comunes_dw.pbl";
+ "d_sq_gr_t_oc_imp_bolsas.srd" "servicios_comunes_dw.pbl";
+ "d_gr_po_x_po_master_com.srd" "servicios_comunes_dw.pbl";
+ "d_gr_cf_configuracion_kpo.srd" "servicios_comunes_dw.pbl";
+ "d_gr_bongo_facturado_com.srd" "servicios_comunes_dw.pbl";
+ "d_gr_ruta_corte_despues_preparacion.srd" "servicios_comunes_dw.pbl";
+ "d_gr_hallar_propietario_sourcing_errado.srd" "servicios_comunes_dw.pbl";
+ "d_gr_sq_validar_usuario.srd" "servicios_comunes_dw.pbl";
+ "d_gr_consolida_bongo_consulta_com.srd" "servicios_comunes_dw.pbl";
+@end;
