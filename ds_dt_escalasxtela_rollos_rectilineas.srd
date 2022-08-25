@@ -1,0 +1,126 @@
+HA$PBExportHeader$ds_dt_escalasxtela_rollos_rectilineas.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica_exp dbname="dt_escalasxtela.co_fabrica_exp" )
+ column=(type=long updatewhereclause=yes name=cs_liberacion dbname="dt_escalasxtela.cs_liberacion" )
+ column=(type=char(20) updatewhereclause=yes name=nu_orden dbname="dt_escalasxtela.nu_orden" )
+ column=(type=char(10) updatewhereclause=yes name=nu_cut dbname="dt_escalasxtela.nu_cut" )
+ column=(type=long updatewhereclause=yes name=co_fabrica_pt dbname="dt_escalasxtela.co_fabrica_pt" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="dt_escalasxtela.co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="dt_escalasxtela.co_referencia" )
+ column=(type=long updatewhereclause=yes name=co_color_pt dbname="dt_escalasxtela.co_color_pt" )
+ column=(type=char(2) updatewhereclause=yes name=co_tono dbname="dt_escalasxtela.co_tono" )
+ column=(type=long updatewhereclause=yes name=co_modelo dbname="dt_escalasxtela.co_modelo" )
+ column=(type=long updatewhereclause=yes name=co_fabrica_tela dbname="dt_escalasxtela.co_fabrica_tela" )
+ column=(type=long updatewhereclause=yes name=co_reftel dbname="dt_escalasxtela.co_reftel" )
+ column=(type=long updatewhereclause=yes name=co_caract dbname="dt_escalasxtela.co_caract" )
+ column=(type=long updatewhereclause=yes name=diametro dbname="dt_escalasxtela.diametro" )
+ column=(type=long updatewhereclause=yes name=co_color_tela dbname="dt_escalasxtela.co_color_tela" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="dt_escalasxtela.co_talla" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=ca_unidades dbname="ca_unidades" )
+ column=(type=decimal(5) updatewhereclause=yes name=yield dbname="dt_escalasxtela.yield" )
+ column=(type=datetime updatewhereclause=yes name=dt_escalasxtela_fe_creacion dbname="dt_escalasxtela.fe_creacion" )
+ column=(type=datetime updatewhereclause=yes name=dt_escalasxtela_fe_actualizacion dbname="dt_escalasxtela.fe_actualizacion" )
+ column=(type=char(8) updatewhereclause=yes name=dt_escalasxtela_usuario dbname="dt_escalasxtela.usuario" )
+ column=(type=char(20) updatewhereclause=yes name=dt_escalasxtela_instancia dbname="dt_escalasxtela.instancia" )
+ retrieve="  SELECT co_fabrica_exp,   
+         cs_liberacion,   
+         nu_orden,   
+         nu_cut,   
+         co_fabrica_pt,   
+         co_linea,   
+         co_referencia,   
+         co_color_pt,   
+         co_tono,   
+         co_modelo,   
+         co_fabrica_tela,   
+         dt_escalasxtela.co_reftel,   
+         dt_escalasxtela.co_caract,   
+         diametro,   
+         co_color_tela,
+			co_talla, 
+         sum(ca_unidades) ca_unidades,   
+         yield,   
+         dt_escalasxtela.fe_creacion,   
+         dt_escalasxtela.fe_actualizacion,   
+         dt_escalasxtela.usuario,   
+         dt_escalasxtela.instancia  
+    FROM dt_escalasxtela, h_telas
+   WHERE ( co_fabrica_exp 	= :ai_fabexp ) AND  
+         ( cs_liberacion 	= :al_liberacion ) AND
+			( nu_orden 			= :as_po ) AND
+			( nu_cut 			= :as_cut )  and
+			( dt_escalasxtela.co_reftel = h_telas.co_reftel ) and
+			( dt_escalasxtela.co_caract = h_telas.co_caract ) and
+			( h_telas.co_tiptel in (:ai_rectilineo1, :ai_rectilineo2) )
+GROUP BY co_fabrica_exp,   
+         cs_liberacion,   
+         nu_orden,   
+         nu_cut,   
+         co_fabrica_pt,   
+         co_linea,   
+         co_referencia,   
+         co_color_pt,   
+         co_tono,   
+         co_modelo,   
+         co_fabrica_tela,   
+         dt_escalasxtela.co_reftel,   
+         dt_escalasxtela.co_caract,   
+         diametro,   
+         co_color_tela, 
+			co_talla,
+			yield,      
+			dt_escalasxtela.fe_creacion,   
+         dt_escalasxtela.fe_actualizacion,   
+         dt_escalasxtela.usuario,   
+         dt_escalasxtela.instancia" arguments=(("ai_fabexp", number),("al_liberacion", number),("as_po", string),("as_cut", string),("ai_rectilineo1", number),("ai_rectilineo2", number)) )
+text(band=header alignment="2" text="Ca Unidades" border="0" color="33554432" x="9" y="8" height="52" width="279" html.valueishtml="0"  name=ca_unidades_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Dt Escalasxtela Co Fabrica Exp" border="0" color="0" x="297" y="4" height="76" width="978" html.valueishtml="0"  name=dt_escalasxtela_co_fabrica_exp_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Escalasxtela Cs Liberacion" border="0" color="0" x="1285" y="4" height="76" width="978" html.valueishtml="0"  name=dt_escalasxtela_cs_liberacion_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Escalasxtela Nu Orden" border="0" color="0" x="2272" y="4" height="76" width="453" html.valueishtml="0"  name=dt_escalasxtela_nu_orden_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Escalasxtela Nu Cut" border="0" color="0" x="2734" y="4" height="76" width="219" html.valueishtml="0"  name=dt_escalasxtela_nu_cut_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Escalasxtela Co Fabrica Pt" border="0" color="0" x="2962" y="4" height="76" width="978" html.valueishtml="0"  name=dt_escalasxtela_co_fabrica_pt_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Escalasxtela Co Linea" border="0" color="0" x="3950" y="4" height="76" width="978" html.valueishtml="0"  name=dt_escalasxtela_co_linea_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Escalasxtela Co Referencia" border="0" color="0" x="4937" y="4" height="76" width="978" html.valueishtml="0"  name=dt_escalasxtela_co_referencia_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Escalasxtela Co Color Pt" border="0" color="0" x="5925" y="4" height="76" width="978" html.valueishtml="0"  name=dt_escalasxtela_co_color_pt_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Escalasxtela Co Tono" border="0" color="0" x="6912" y="4" height="76" width="37" html.valueishtml="0"  name=dt_escalasxtela_co_tono_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Escalasxtela Co Modelo" border="0" color="0" x="6958" y="4" height="76" width="978" html.valueishtml="0"  name=dt_escalasxtela_co_modelo_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Escalasxtela Co Fabrica Tela" border="0" color="0" x="7945" y="4" height="76" width="978" html.valueishtml="0"  name=dt_escalasxtela_co_fabrica_tela_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Escalasxtela Co Reftel" border="0" color="0" x="8933" y="4" height="76" width="978" html.valueishtml="0"  name=dt_escalasxtela_co_reftel_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Escalasxtela Co Caract" border="0" color="0" x="9920" y="4" height="76" width="978" html.valueishtml="0"  name=dt_escalasxtela_co_caract_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Escalasxtela Diametro" border="0" color="0" x="10907" y="4" height="76" width="978" html.valueishtml="0"  name=dt_escalasxtela_diametro_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Escalasxtela Co Color Tela" border="0" color="0" x="11895" y="4" height="76" width="978" html.valueishtml="0"  name=dt_escalasxtela_co_color_tela_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Escalasxtela Co Talla" border="0" color="0" x="12882" y="4" height="76" width="978" html.valueishtml="0"  name=dt_escalasxtela_co_talla_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Escalasxtela Yield" border="0" color="0" x="13870" y="4" height="76" width="978" html.valueishtml="0"  name=dt_escalasxtela_yield_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Escalasxtela Fe Creacion" border="0" color="0" x="14857" y="4" height="76" width="658" html.valueishtml="0"  name=dt_escalasxtela_fe_creacion_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Escalasxtela Fe Actualizacion" border="0" color="0" x="15525" y="4" height="76" width="658" html.valueishtml="0"  name=dt_escalasxtela_fe_actualizacion_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Escalasxtela Usuario" border="0" color="0" x="16192" y="4" height="76" width="174" html.valueishtml="0"  name=dt_escalasxtela_usuario_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Escalasxtela Instancia" border="0" color="0" x="16375" y="4" height="76" width="453" html.valueishtml="0"  name=dt_escalasxtela_instancia_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=17 alignment="1" tabsequence=10 border="0" color="33554432" x="9" y="8" height="64" width="279" format="[general]" html.valueishtml="0"  name=ca_unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="297" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=co_fabrica_exp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="1285" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=cs_liberacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="2272" y="0" height="52" width="453" format="[general]" html.valueishtml="0"  name=nu_orden visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="2734" y="0" height="52" width="219" format="[general]" html.valueishtml="0"  name=nu_cut visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="2962" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=co_fabrica_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="3950" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="4937" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="5925" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=co_color_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="6912" y="0" height="52" width="37" format="[general]" html.valueishtml="0"  name=co_tono visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="6958" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=co_modelo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="7945" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=co_fabrica_tela visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="8933" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=co_reftel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="9920" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=co_caract visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="33554432" x="10907" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=diametro visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="33554432" x="11895" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=co_color_tela visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="33554432" x="12882" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="33554432" x="13870" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=yield visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="33554432" x="14857" y="0" height="52" width="658" format="[shortdate] [time]" html.valueishtml="0"  name=dt_escalasxtela_fe_creacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="33554432" x="15525" y="0" height="52" width="658" format="[shortdate] [time]" html.valueishtml="0"  name=dt_escalasxtela_fe_actualizacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="0" color="33554432" x="16192" y="0" height="52" width="174" format="[general]" html.valueishtml="0"  name=dt_escalasxtela_usuario visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="0" tabsequence=32766 border="0" color="33554432" x="16375" y="0" height="52" width="453" format="[general]" html.valueishtml="0"  name=dt_escalasxtela_instancia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
