@@ -1,0 +1,95 @@
+HA$PBExportHeader$d_gr_report_nivel0_kpo_seamless.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=120 color="536870912" )
+summary(height=16 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_centro_pdn dbname="co_centro_pdn" )
+ column=(type=long updatewhereclause=yes name=co_tipoprod dbname="co_tipoprod" )
+ column=(type=decimal(2) updatewhereclause=yes name=unidades dbname="unidades" )
+ column=(type=decimal(0) updatewhereclause=yes name=dia_ant dbname="dia_ant" )
+ column=(type=number updatewhereclause=yes name=semana dbname="semana" )
+ column=(type=number updatewhereclause=yes name=semana_ant dbname="semana_ant" )
+ column=(type=number updatewhereclause=yes name=mes dbname="mes" )
+ column=(type=number updatewhereclause=yes name=mes_ant dbname="mes_ant" )
+ column=(type=long updatewhereclause=yes name=orden dbname="orden" )
+ retrieve="SELECT 22 as co_centro_pdn,
+       1 as co_tipoprod,
+		 SUM(d.ca_actual) as unidades ,
+      
+		 (select sum(tot_unidades)
+		    from mv_totxcpto_diario
+			where mv_totxcpto_diario.co_centro = 22 and
+               mv_totxcpto_diario.co_centro_pdn = 2 and
+               mv_totxcpto_diario.co_tipoprod = 1 and
+					fe_proceso = extend(current, year to day) - 1 units day  ) as dia_ant,
+
+	    (select sum(tot_unidades) / 7
+			 from mv_totxcpto_diario
+			where mv_totxcpto_diario.co_centro = 22 and
+               mv_totxcpto_diario.co_centro_pdn = 2 and
+               mv_totxcpto_diario.co_tipoprod = 1 and
+					fe_proceso >= extend(current,year to day ) - 7 units day and
+					fe_proceso <= extend(current,year to day ) -1 units day ) as semana,
+		 (select sum(tot_unidades) / 7
+			 from mv_totxcpto_diario
+			where mv_totxcpto_diario.co_centro = 22 and
+               mv_totxcpto_diario.co_centro_pdn = 2 and
+               mv_totxcpto_diario.co_tipoprod = 1 and
+					fe_proceso >= extend(current,year to day ) - 14 units day and
+					fe_proceso <= extend(current,year to day ) -8 units day ) as semana_ant,
+		 (select sum(tot_unidades) / 30
+			 from mv_totxcpto_diario
+			where mv_totxcpto_diario.co_centro = 22 and
+               mv_totxcpto_diario.co_centro_pdn = 2 and
+               mv_totxcpto_diario.co_tipoprod = 1 and
+					fe_proceso >= extend(current,year to day ) - 30 units day and
+					fe_proceso <= extend(current,year to day) -1 units day ) as mes,
+		 (select sum(tot_unidades) /30
+			 from mv_totxcpto_diario
+			where mv_totxcpto_diario.co_centro = 22 and
+               mv_totxcpto_diario.co_centro_pdn = 2 and
+               mv_totxcpto_diario.co_tipoprod = 1 and
+					fe_proceso >= extend(current,year to day ) - 60 units day and
+					fe_proceso <= extend(current,year to day) -31 units day ) as mes_ant,
+
+		 4 as orden
+  FROM h_canasta_corte h, dt_canasta_corte d, h_preref_pv
+ WHERE h.cs_canasta = d.cs_canasta
+   AND h.co_tipoprod = 1
+   AND h.co_fabrica_pro = 2
+   AND h.co_fabrica_act  in (91,2)
+   And  not (h.co_fabrica_act = 2 and h.co_planta_act = 1 and h.co_subcentro_act = 50)
+   AND h.co_centro_act = 2
+   AND d.co_fabrica_exp = 2
+   AND d.ca_actual > 0
+   AND h.co_estado <> 51
+   AND d.co_fabrica_ref = h_preref_pv.co_fabrica
+   AND d.co_linea = h_preref_pv.co_linea 
+   AND cast( d.co_referencia as char(15)) = h_preref_pv.co_referencia
+   AND h_preref_pv.co_tipo_ref = 'P'
+   AND h_preref_pv.co_procedencia = 6"  sort="co_centro_pdn A " )
+text(band=header alignment="2" text="Co Centro Pdn" border="0" color="33554432" x="9" y="8" height="52" width="315" html.valueishtml="0"  name=co_centro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Tipoprod" border="0" color="33554432" x="334" y="8" height="52" width="274" html.valueishtml="0"  name=co_tipoprod_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unidades" border="0" color="33554432" x="617" y="8" height="52" width="274" html.valueishtml="0"  name=unidades_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Orden" border="0" color="33554432" x="901" y="8" height="52" width="274" html.valueishtml="0"  name=orden_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Dia Ant" border="0" color="0" x="1184" y="8" height="56" width="329" html.valueishtml="0"  name=dia_ant_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Semana" border="0" color="0" x="1522" y="8" height="56" width="334" html.valueishtml="0"  name=semana_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Semana Ant" border="0" color="0" x="1865" y="8" height="56" width="375" html.valueishtml="0"  name=semana_ant_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Mes" border="0" color="0" x="2249" y="8" height="56" width="242" html.valueishtml="0"  name=mes_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Mes Ant" border="0" color="0" x="2501" y="8" height="56" width="978" html.valueishtml="0"  name=mes_ant_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="315" format="[general]" html.valueishtml="0"  name=co_centro_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="334" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_tipoprod visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="901" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=orden visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="617" y="8" height="64" width="274" format="0" html.valueishtml="0"  name=unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1184" y="0" height="52" width="329" format="0" html.valueishtml="0"  name=dia_ant visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1522" y="0" height="52" width="334" format="0" html.valueishtml="0"  name=semana visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="1865" y="0" height="52" width="375" format="0" html.valueishtml="0"  name=semana_ant visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="2249" y="0" height="52" width="242" format="0" html.valueishtml="0"  name=mes visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="2501" y="0" height="52" width="978" format="0" html.valueishtml="0"  name=mes_ant visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
