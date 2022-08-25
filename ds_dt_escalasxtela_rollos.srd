@@ -1,0 +1,118 @@
+HA$PBExportHeader$ds_dt_escalasxtela_rollos.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes key=yes name=co_fabrica_exp dbname="dt_telaxmodelo_lib.co_fabrica_exp" )
+ column=(type=long updatewhereclause=yes key=yes name=cs_liberacion dbname="dt_telaxmodelo_lib.cs_liberacion" )
+ column=(type=char(20) updatewhereclause=yes key=yes name=nu_orden dbname="dt_telaxmodelo_lib.nu_orden" )
+ column=(type=char(10) updatewhereclause=yes key=yes name=nu_cut dbname="dt_telaxmodelo_lib.nu_cut" )
+ column=(type=long updatewhereclause=yes key=yes name=co_fabrica_pt dbname="dt_telaxmodelo_lib.co_fabrica_pt" )
+ column=(type=long updatewhereclause=yes key=yes name=co_linea dbname="dt_telaxmodelo_lib.co_linea" )
+ column=(type=long updatewhereclause=yes key=yes name=co_referencia dbname="dt_telaxmodelo_lib.co_referencia" )
+ column=(type=long updatewhereclause=yes key=yes name=co_color_pt dbname="dt_telaxmodelo_lib.co_color_pt" )
+ column=(type=char(2) updatewhereclause=yes key=yes name=co_tono dbname="dt_telaxmodelo_lib.co_tono" )
+ column=(type=long updatewhereclause=yes key=yes name=co_modelo dbname="dt_telaxmodelo_lib.co_modelo" )
+ column=(type=long updatewhereclause=yes key=yes name=co_fabrica_tela dbname="dt_telaxmodelo_lib.co_fabrica_tela" )
+ column=(type=long updatewhereclause=yes key=yes name=co_reftel dbname="dt_telaxmodelo_lib.co_reftel" )
+ column=(type=long updatewhereclause=yes key=yes name=co_caract dbname="dt_telaxmodelo_lib.co_caract" )
+ column=(type=long updatewhereclause=yes key=yes name=diametro dbname="dt_telaxmodelo_lib.diametro" )
+ column=(type=long updatewhereclause=yes key=yes name=co_color_tela dbname="dt_telaxmodelo_lib.co_color_tela" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=ca_unidades dbname="ca_unidades" )
+ column=(type=decimal(5) updatewhereclause=yes name=yield dbname="dt_telaxmodelo_lib.yield" )
+ column=(type=datetime updatewhereclause=yes name=fe_creacion dbname="dt_telaxmodelo_lib.fe_creacion" )
+ column=(type=datetime updatewhereclause=yes name=fe_actualizacion dbname="dt_telaxmodelo_lib.fe_actualizacion" )
+ column=(type=char(8) updatewhereclause=yes name=usuario dbname="dt_telaxmodelo_lib.usuario" )
+ column=(type=char(20) updatewhereclause=yes name=instancia dbname="dt_telaxmodelo_lib.instancia" )
+ retrieve="  SELECT co_fabrica_exp,   
+         cs_liberacion,   
+         nu_orden,   
+         nu_cut,   
+         co_fabrica_pt,   
+         co_linea,   
+         co_referencia,   
+         co_color_pt,   
+         co_tono,   
+         co_modelo,   
+         co_fabrica_tela,   
+         dt_telaxmodelo_lib.co_reftel,   
+         dt_telaxmodelo_lib.co_caract,   
+         diametro,   
+         co_color_tela,   
+         sum(ca_unidades) ca_unidades,   
+         yield,   
+         dt_telaxmodelo_lib.fe_creacion,   
+         dt_telaxmodelo_lib.fe_actualizacion,   
+         dt_telaxmodelo_lib.usuario,   
+         dt_telaxmodelo_lib.instancia  
+    FROM dt_telaxmodelo_lib
+   WHERE ( co_fabrica_exp 	= :ai_fabexp ) AND  
+         ( cs_liberacion 	= :al_liberacion ) AND
+			( nu_orden 			= :as_po ) AND
+			( nu_cut 			= :as_cut )
+GROUP BY co_fabrica_exp,   
+         cs_liberacion,   
+         nu_orden,   
+         nu_cut,   
+         co_fabrica_pt,   
+         co_linea,   
+         co_referencia,   
+         co_color_pt,   
+         co_tono,   
+         co_modelo,   
+         co_fabrica_tela,   
+         dt_telaxmodelo_lib.co_reftel,   
+         dt_telaxmodelo_lib.co_caract,   
+         diametro,   
+         co_color_tela, 
+			yield,      
+			dt_telaxmodelo_lib.fe_creacion,   
+         dt_telaxmodelo_lib.fe_actualizacion,   
+         dt_telaxmodelo_lib.usuario,   
+         dt_telaxmodelo_lib.instancia" update="dt_telaxmodelo_lib" updatewhere=0 updatekeyinplace=no arguments=(("ai_fabexp", number),("al_liberacion", number),("as_po", string),("as_cut", string))  sort="co_fabrica_exp A cs_liberacion A nu_orden A nu_cut A co_fabrica_pt A co_linea A co_referencia A co_color_pt A co_tono A co_modelo A co_fabrica_tela A co_reftel A co_caract A diametro A co_color_tela A " )
+text(band=header alignment="2" text="Ca Unidades" border="0" color="33554432" x="9" y="8" height="52" width="279" html.valueishtml="0"  name=ca_unidades_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Fabrica Exp" border="0" color="0" x="297" y="4" height="56" width="978" html.valueishtml="0"  name=co_fabrica_exp_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Cs Liberacion" border="0" color="0" x="1285" y="4" height="56" width="978" html.valueishtml="0"  name=cs_liberacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Nu Orden" border="0" color="0" x="2272" y="4" height="56" width="453" html.valueishtml="0"  name=nu_orden_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Nu Cut" border="0" color="0" x="2734" y="4" height="56" width="219" html.valueishtml="0"  name=nu_cut_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Fabrica Pt" border="0" color="0" x="2962" y="4" height="56" width="978" html.valueishtml="0"  name=co_fabrica_pt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Linea" border="0" color="0" x="3950" y="4" height="56" width="978" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Referencia" border="0" color="0" x="4937" y="4" height="56" width="978" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Color Pt" border="0" color="0" x="5925" y="4" height="56" width="978" html.valueishtml="0"  name=co_color_pt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Tono" border="0" color="0" x="6912" y="4" height="56" width="37" html.valueishtml="0"  name=co_tono_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Modelo" border="0" color="0" x="6958" y="4" height="56" width="978" html.valueishtml="0"  name=co_modelo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Fabrica Tela" border="0" color="0" x="7945" y="4" height="56" width="978" html.valueishtml="0"  name=co_fabrica_tela_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Reftel" border="0" color="0" x="8933" y="4" height="56" width="978" html.valueishtml="0"  name=co_reftel_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Caract" border="0" color="0" x="9920" y="4" height="56" width="978" html.valueishtml="0"  name=co_caract_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Diametro" border="0" color="0" x="10907" y="4" height="56" width="978" html.valueishtml="0"  name=diametro_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Color Tela" border="0" color="0" x="11895" y="4" height="56" width="978" html.valueishtml="0"  name=co_color_tela_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Yield" border="0" color="0" x="12882" y="4" height="56" width="978" html.valueishtml="0"  name=yield_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Fe Creacion" border="0" color="0" x="13870" y="4" height="56" width="658" html.valueishtml="0"  name=fe_creacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Fe Actualizacion" border="0" color="0" x="14537" y="4" height="56" width="658" html.valueishtml="0"  name=fe_actualizacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Usuario" border="0" color="0" x="15205" y="4" height="56" width="174" html.valueishtml="0"  name=usuario_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Instancia" border="0" color="0" x="15387" y="4" height="56" width="453" html.valueishtml="0"  name=instancia_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=16 alignment="1" tabsequence=10 border="0" color="33554432" x="9" y="8" height="64" width="279" format="[general]" html.valueishtml="0"  name=ca_unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="297" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=co_fabrica_exp visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="1285" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=cs_liberacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="2272" y="0" height="52" width="453" format="[general]" html.valueishtml="0"  name=nu_orden visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="2734" y="0" height="52" width="219" format="[general]" html.valueishtml="0"  name=nu_cut visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="2962" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=co_fabrica_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="3950" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="4937" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="5925" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=co_color_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="6912" y="0" height="52" width="37" format="[general]" html.valueishtml="0"  name=co_tono visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="6958" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=co_modelo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="7945" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=co_fabrica_tela visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="8933" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=co_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="9920" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=co_caract visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="33554432" x="10907" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=diametro visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="33554432" x="11895" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=co_color_tela visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="33554432" x="12882" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=yield visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="33554432" x="13870" y="0" height="52" width="658" format="[shortdate] [time]" html.valueishtml="0"  name=fe_creacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="33554432" x="14537" y="0" height="52" width="658" format="[shortdate] [time]" html.valueishtml="0"  name=fe_actualizacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="33554432" x="15205" y="0" height="52" width="174" format="[general]" html.valueishtml="0"  name=usuario visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="0" color="33554432" x="15387" y="0" height="52" width="453" format="[general]" html.valueishtml="0"  name=instancia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
