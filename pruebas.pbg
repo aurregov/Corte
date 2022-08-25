@@ -1,0 +1,20 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "pruebas.pbl" "";
+@end;
+@begin Objects
+ "d_programa_diario.srd" "pruebas.pbl";
+ "n_cts_corte_una_copia.sru" "pruebas.pbl";
+ "n_cts_corte_copia.sru" "pruebas.pbl";
+ "w_pdn_agrupar_copia.srw" "pruebas.pbl";
+ "dtb_kilos_kardex_telas_inactivas.srd" "pruebas.pbl";
+ "d_insercion_dt_escalaxpdnbase.srd" "pruebas.pbl";
+ "d_insercion_dt_agrupaescalapdn.srd" "pruebas.pbl";
+ "d_insercion_dt_agrupacion_copia.srd" "pruebas.pbl";
+ "d_insercion_dt_pdnxbase.srd" "pruebas.pbl";
+ "d_insercion_dt_agrupa_pdn_raya.srd" "pruebas.pbl";
+ "d_insercion_h_base_trazos.srd" "pruebas.pbl";
+ "d_insercion_dt_rayas_telaxbase.srd" "pruebas.pbl";
+ "d_procesos.srd" "pruebas.pbl";
+ "dtb_actualizar_rollos_borrar.srd" "pruebas.pbl";
+@end;
