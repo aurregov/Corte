@@ -1,0 +1,71 @@
+HA$PBExportHeader$ds_area_trazos.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=60 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=60 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=dt_trazosrecalculo_co_trazo dbname="dt_trazosrecalculo.co_trazo" )
+ column=(type=decimal(4) updatewhereclause=yes name=area dbname="area" )
+ column=(type=decimal(2) updatewhereclause=yes name=h_trazos_porc_util dbname="h_trazos.porc_util" )
+ column=(type=long updatewhereclause=yes name=participacion dbname="participacion" )
+ column=(type=decimal(2) updatewhereclause=yes name=h_trazos_ancho dbname="h_trazos.ancho" )
+ column=(type=decimal(2) updatewhereclause=yes name=metros dbname="metros" )
+ column=(type=long updatewhereclause=yes name=dt_trazosrecalculo_raya dbname="dt_trazosrecalculo.raya" )
+ column=(type=long updatewhereclause=yes name=dt_trazosrecalculo_cs_agrupacion dbname="dt_trazosrecalculo.cs_agrupacion" )
+ column=(type=long updatewhereclause=yes name=dt_trazosrecalculo_cs_pdn dbname="dt_trazosrecalculo.cs_pdn" )
+ column=(type=long updatewhereclause=yes name=dt_talla_pdnmodulo_co_talla dbname="dt_talla_pdnmodulo.co_talla" )
+ column=(type=decimal(2) updatewhereclause=yes name=h_trazos_largo dbname="h_trazos.largo" )
+ retrieve="  SELECT dt_trazosrecalculo.co_trazo,   
+         (h_trazos.ancho*h_trazos.largo) as area,
+         h_trazos.porc_util,
+         0 as participacion,
+         h_trazos.ancho,
+         (h_trazos.largo* dt_trazosrecalculo.ca_capas) as metros,
+         dt_trazosrecalculo.raya,
+         dt_trazosrecalculo.cs_agrupacion,
+         dt_trazosrecalculo.cs_pdn,
+	 		dt_talla_pdnmodulo.co_talla,	
+         h_trazos.largo
+    FROM dt_trazosrecalculo,
+			h_trazos, 
+			dt_agrupa_pdn , 
+			dt_talla_pdnmodulo
+   WHERE (h_trazos.co_trazo 						= dt_trazosrecalculo.co_trazo ) and  
+         (dt_trazosrecalculo.cs_pdn 			= :ai_pdn ) and 
+ 			(dt_trazosrecalculo.raya 				= :ai_raya ) AND 
+			(dt_trazosrecalculo.cs_agrupacion 	= :ai_agrupacion ) AND
+	 		(dt_agrupa_pdn.cs_pdn 					= :ai_pdn )	 and	
+			(dt_agrupa_pdn.cs_agrupacion 			= :ai_agrupacion ) and
+			(dt_talla_pdnmodulo.co_fabrica_exp 	= dt_agrupa_pdn.co_fabrica_exp) and
+			(dt_talla_pdnmodulo.cs_liberacion 	= dt_agrupa_pdn.cs_liberacion)
+order by dt_talla_pdnmodulo.co_talla	 
+
+" arguments=(("ai_pdn", number),("ai_raya", number),("ai_agrupacion", number)) )
+text(band=header alignment="2" text=" Trazo" border="0" color="33554432" x="9" y="8" height="52" width="288" html.valueishtml="0"  name=dt_trazosrecalculo_co_trazo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Area" border="0" color="0" x="306" y="4" height="52" width="251" html.valueishtml="0"  name=area_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text=" Porc_Util" border="0" color="33554432" x="567" y="4" height="52" width="302" html.valueishtml="0"  name=h_trazos_porc_util_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Participacion" border="0" color="0" x="878" y="4" height="52" width="398" html.valueishtml="0"  name=participacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text=" Ancho" border="0" color="0" x="1285" y="4" height="52" width="297" html.valueishtml="0"  name=h_trazos_ancho_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Metros" border="0" color="0" x="1591" y="4" height="52" width="247" html.valueishtml="0"  name=metros_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text=" Raya" border="0" color="0" x="1847" y="4" height="52" width="183" html.valueishtml="0"  name=dt_trazosrecalculo_raya_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Agrupacion" border="0" color="0" x="2039" y="4" height="52" width="425" html.valueishtml="0"  name=dt_trazosrecalculo_cs_agrupacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text=" Pdn" border="0" color="0" x="2473" y="4" height="52" width="311" html.valueishtml="0"  name=dt_trazosrecalculo_cs_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text=" Talla" border="0" color="0" x="2793" y="4" height="52" width="274" html.valueishtml="0"  name=dt_talla_pdnmodulo_co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text=" Largo" border="0" color="0" x="3077" y="4" height="52" width="229" html.valueishtml="0"  name=h_trazos_largo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="288" format="[general]" html.valueishtml="0"  name=dt_trazosrecalculo_co_trazo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="306" y="0" height="52" width="251" format="[general]" html.valueishtml="0"  name=area visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="567" y="0" height="52" width="302" format="[general]" html.valueishtml="0"  name=h_trazos_porc_util visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="878" y="0" height="52" width="398" format="[general]" html.valueishtml="0"  name=participacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1285" y="0" height="52" width="297" format="[general]" html.valueishtml="0"  name=h_trazos_ancho visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1591" y="0" height="52" width="247" format="[general]" html.valueishtml="0"  name=metros visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="1847" y="0" height="52" width="183" format="[general]" html.valueishtml="0"  name=dt_trazosrecalculo_raya visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="2039" y="0" height="52" width="425" format="[general]" html.valueishtml="0"  name=dt_trazosrecalculo_cs_agrupacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="2473" y="0" height="52" width="311" format="[general]" html.valueishtml="0"  name=dt_trazosrecalculo_cs_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="33554432" x="2793" y="0" height="52" width="274" format="[general]" html.valueishtml="0"  name=dt_talla_pdnmodulo_co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="0" color="33554432" x="3077" y="0" height="52" width="229" format="[general]" html.valueishtml="0"  name=h_trazos_largo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
