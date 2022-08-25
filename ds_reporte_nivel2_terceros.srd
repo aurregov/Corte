@@ -1,0 +1,63 @@
+HA$PBExportHeader$ds_reporte_nivel2_terceros.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 460 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=256 color="536870912" )
+summary(height=80 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="536870912" )
+table(column=(type=char(2) updatewhereclause=yes name=co_tipo dbname="m_tipo_atributo.co_tipo" )
+ column=(type=char(20) updatewhereclause=yes name=de_atributo dbname="m_tipo_atributo.de_atributo" )
+ column=(type=long updatewhereclause=yes name=sw_tipo dbname="m_tipo_atributo.sw_tipo" )
+ column=(type=long updatewhereclause=yes name=cs_tipo_atributo dbname="m_tipo_atributo.cs_tipo_atributo" )
+ column=(type=long updatewhereclause=yes name=co_subcentro_act dbname="h_canasta_corte.co_subcentro_act" )
+ column=(type=long updatewhereclause=yes name=co_centro_act dbname="h_canasta_corte.co_centro_act" )
+ column=(type=char(2) updatewhereclause=yes name=co_tipo_atributo dbname="h_canasta_corte.co_tipo_atributo" )
+ column=(type=long updatewhereclause=yes name=co_planta_act dbname="h_canasta_corte.co_planta_act" )
+ column=(type=decimal(2) updatewhereclause=yes name=unidades dbname="unidades" )
+ retrieve="select m_tipo_atributo.co_tipo,
+       m_tipo_atributo.de_atributo,
+       m_tipo_atributo.sw_tipo,
+       m_tipo_atributo.cs_tipo_atributo,
+		 h_canasta_corte.co_subcentro_act,
+		 h_canasta_corte.co_centro_act,
+		 h_canasta_corte.co_tipo_atributo,
+		 h_canasta_corte.co_planta_act,
+       sum(dt_canasta_corte.ca_actual) as unidades
+  FROM dt_canasta_corte,   
+       h_canasta_corte,   
+       m_tipo_atributo  
+ WHERE (admtelas.dt_canasta_corte.cs_canasta = h_canasta_corte.cs_canasta ) and  
+       (m_tipo_atributo.co_tipo = h_canasta_corte.co_tipo_atributo ) and  
+       ((h_canasta_corte.co_centro_act = 1 ) AND  
+       ( h_canasta_corte.co_subcentro_act = :an_subcentro ) AND
+	    ( h_canasta_corte.co_planta_act <> 2  )  AND
+       ( h_canasta_corte.co_fabrica_pro = 2 ) AND
+       ( h_canasta_corte.co_estado <> 51)) 
+GROUP BY 1,2,3,4,5,6,7,8
+
+
+" arguments=(("an_subcentro", number),("as_concepto", string))  sort="sw_tipo A cs_tipo_atributo A " )
+group(level=1 header.height=200 trailer.height=72 by=("sw_tipo" ) header.color="536870912" trailer.color="536870912"  sort="sum(cs_tipo_atributo for group 1) A " )
+compute(band=header alignment="1" expression="'Pagina ' + page() + ' de ' + pageCount()"border="0" color="8421504" x="2743" y="24" height="60" width="562" format="[general]" html.valueishtml="0"  name=num_pagina visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="23" y="24" height="60" width="526" format="dd/mmm/yyyy hh:mm" html.valueishtml="0"  name=date_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Concepto:" border="6" color="0" x="59" y="148" height="60" width="325" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=header alignment="2" expression=" an_subcentro "border="1" color="33554432" x="407" y="148" height="60" width="219" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression=" as_concepto "border="1" color="33554432" x="631" y="148" height="60" width="1061" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=header.1 id=3 alignment="2" tabsequence=32766 border="1" color="33554432" x="110" y="8" height="52" width="325" format="[general]" html.valueishtml="0"  name=sw_tipo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header.1 alignment="2" text="Unidades" border="2" color="33554432" x="1554" y="84" height="108" width="379" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="31387102" )
+text(band=header.1 alignment="2" text="Atributo" border="2" color="33554432" x="352" y="84" height="108" width="955" html.valueishtml="0"  name=t_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="31387102" )
+text(band=header.1 alignment="2" text="Cs Tipo Atributo" border="2" color="33554432" x="110" y="84" height="108" width="238" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="31387102" )
+text(band=header.1 alignment="2" text="Co Tipo Atributo" border="2" color="33554432" x="1312" y="84" height="108" width="238" html.valueishtml="0"  name=t_7 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="31387102" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="2" color="33554432" x="1554" y="4" height="56" width="379" format="#,##0" html.valueishtml="0"  name=unidades visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="352" y="4" height="56" width="955" format="[general]" html.valueishtml="0"  name=de_atributo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="2" color="33554432" x="110" y="4" height="56" width="238" format="[general]" html.valueishtml="0"  name=cs_tipo_atributo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=7 alignment="2" tabsequence=32766 border="2" color="0" x="1312" y="4" height="56" width="238" format="[general]" html.valueishtml="0"  name=co_tipo_atributo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=trailer.1 alignment="2" text="Total por Tipo >>" border="1" color="33554432" x="1024" y="8" height="56" width="526" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=trailer.1 alignment="1" expression="sum(unidades for group 1)"border="1" color="33554432" x="1554" y="8" height="56" width="379" format="#,##0" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=summary alignment="2" text="Total por Concepto >>" border="1" color="33554432" x="873" y="8" height="56" width="677" html.valueishtml="0"  name=t_6 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=summary alignment="1" expression="sum(unidades for all)"border="1" color="33554432" x="1554" y="8" height="56" width="379" format="#,##0" html.valueishtml="0"  name=compute_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
