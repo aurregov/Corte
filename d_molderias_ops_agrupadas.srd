@@ -1,0 +1,103 @@
+HA$PBExportHeader$d_molderias_ops_agrupadas.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_liberacion dbname="cs_liberacion" )
+ column=(type=char(50) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="co_talla" )
+ column=(type=char(20) updatewhereclause=yes name=de_talla dbname="de_talla" )
+ column=(type=long updatewhereclause=yes name=max_capas dbname="max_capas" )
+ column=(type=long updatewhereclause=yes name=proporcion dbname="proporcion" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long updatewhereclause=yes name=ca_programada dbname="ca_programada" )
+ column=(type=long updatewhereclause=yes name=cs_asignacion dbname="cs_asignacion" )
+ retrieve="select a.cs_liberacion, d.de_referencia, c.co_talla, trim(e.de_talla) as de_talla,
+
+    
+
+    (select max(max_capas) from dt_capas_reftela a1, h_telas b1, dt_color_modelo c1, dt_modelos d1
+
+      where a1.co_referencia = d1.co_referencia and a1.co_caract = c1.co_caract and a1.co_fabrica = c1.co_fabrica
+
+        and a1.co_linea = d1.co_linea and a1.co_reftel = b1.co_reftel and c1.co_fabrica = d1.co_fabrica and c1.co_linea = d1.co_linea
+
+        and c1.co_referencia = d1.co_referencia and c1.co_talla = d1.co_talla
+
+        and c1.co_color_pt = d1.co_color_pt and c1.co_modelo = d1.co_modelo
+
+        and c1.co_calidad = d1.co_calidad and c1.co_fabrica = a.co_fabrica_pt
+
+        and c1.co_linea = a.co_linea and c1.co_referencia = a.co_referencia
+
+        and c1.co_calidad = 1 and c1.co_color_pt = a.co_color_pt and c1.co_talla = c.co_talla
+
+        and d1.raya = 10 and c1.co_reftel = b1.co_reftel and c1.co_caract = b1.co_Caract) as max_capas,
+
+  c.proporcion, c.co_linea, c.co_referencia,c.ca_programada, cs_asignacion
+
+   
+
+from dt_pdnxmodulo a, dt_talla_pdnmodulo c, h_preref_pv d, m_tallas_x_grupo_pv e
+
+where a.cs_ordenpd_pt = :al_ordenpd_pt
+
+  and a.co_color_pt = :ai_color_pt
+
+  and a.co_estado_asigna < 9
+
+  and a.co_fabrica_exp = c.co_fabrica_exp
+
+  and a.cs_liberacion = c.cs_liberacion
+
+  and a.po = c.po
+
+  and a.nu_cut = c.nu_cut
+
+  and a.co_fabrica_pt = c.co_fabrica_pt
+
+  and a.co_linea = c.co_linea
+
+  and a.co_referencia = c.co_referencia
+
+  and a.co_color_pt = c.co_color_pt
+
+  and a.co_fabrica_pt = d.co_fabrica
+
+  and a.co_linea = d.co_linea
+
+  and ( Cast(a.co_referencia as char(15) ) = d.co_referencia )
+
+  and ( trim(d.co_tipo_ref) = 'P' )     
+
+  and      ( d.co_grupo_tlla = e.co_grupo_tlla )    
+
+  and CAST(c.co_talla as CHAR(10)) = e.co_talla  
+
+ 
+
+order by cs_liberacion,co_talla" arguments=(("al_ordenpd_pt", number),("ai_color_pt", number))  sort="de_referencia A co_talla A " )
+text(band=header alignment="2" text="Ord.Cte" border="6" color="33554432" x="9" y="8" height="100" width="151" html.valueishtml="0"  name=cs_asignacion_t visible="1"  font.face="Arial Narrow" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Des" border="6" color="33554432" x="960" y="8" height="100" width="110" html.valueishtml="0"  name=de_talla_t visible="1"  font.face="Arial" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="MaxCapas" border="6" color="0" x="1083" y="8" height="100" width="133" html.valueishtml="0"  name=max_capas_t visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Paq." border="6" color="0" x="1225" y="8" height="100" width="69" html.valueishtml="0"  name=proporcion_t visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Talla" border="6" color="33554432" x="841" y="8" height="100" width="110" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="Arial" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Estilo" border="6" color="33554432" x="421" y="8" height="100" width="411" html.valueishtml="0"  name=de_referencia_t visible="1"  font.face="Arial Narrow" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="Linea" border="6" color="0" x="338" y="8" height="100" width="73" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="Arial" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Cod.Estilo" border="6" color="0" x="174" y="8" height="100" width="155" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="Arial" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=10 alignment="2" tabsequence=32766 border="2" color="33554432" x="9" y="8" height="52" width="151" format="[general]" html.valueishtml="0"  name=cs_asignacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Narrow" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="421" y="8" height="52" width="411" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Narrow" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="2" color="33554432" x="841" y="8" height="52" width="110" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=50 border="2" color="33554432" x="1083" y="8" height="52" width="133" format="[general]" html.valueishtml="0"  name=max_capas visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0 edit.displayonly=yes  font.face="Arial" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=30 border="2" color="33554432" x="960" y="8" height="52" width="110" format="[general]" html.valueishtml="0"  name=de_talla visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0 edit.displayonly=yes  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=60 border="2" color="33554432" x="1225" y="8" height="52" width="69" format="[general]" html.valueishtml="0"  name=proporcion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial Narrow" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="2" tabsequence=20 border="2" color="33554432" x="338" y="8" height="52" width="73" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial Narrow" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="2" tabsequence=10 border="2" color="33554432" x="174" y="8" height="52" width="155" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial Narrow" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
