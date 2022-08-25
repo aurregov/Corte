@@ -1,0 +1,125 @@
+HA$PBExportHeader$ds_gr_h_tandas.srd
+$PBExportComments$//datawindow que dado el n$$HEX1$$fa00$$ENDHEX$$mero de tanda ,consulta todos los campos de h_tandas.
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=long updatewhereclause=yes key=yes name=cs_tanda dbname="cs_tanda" )
+ column=(type=long updatewhereclause=yes key=yes name=cs_secundario dbname="cs_secundario" )
+ column=(type=long updatewhereclause=yes name=cs_ficho dbname="cs_ficho" )
+ column=(type=long updatewhereclause=yes name=co_color dbname="co_color" )
+ column=(type=long updatewhereclause=yes name=co_tipo_tanda dbname="co_tipo_tanda" )
+ column=(type=long updatewhereclause=yes name=co_ruta dbname="co_ruta" )
+ column=(type=long updatewhereclause=yes name=co_maquina dbname="co_maquina" )
+ column=(type=date updatewhereclause=yes name=fe_programada dbname="fe_programada" )
+ column=(type=long updatewhereclause=yes name=cs_orden_prog dbname="cs_orden_prog" )
+ column=(type=long update=yes updatewhereclause=yes name=co_estado_tanda dbname="co_estado_tanda" )
+ column=(type=long updatewhereclause=yes name=ca_rollos dbname="ca_rollos" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_kilos dbname="ca_kilos" )
+ column=(type=long updatewhereclause=yes name=ca_lotes dbname="ca_lotes" )
+ column=(type=char(1) updatewhereclause=yes name=sw_impresion dbname="sw_impresion" )
+ column=(type=char(18) updatewhereclause=yes name=condiciones dbname="condiciones" )
+ column=(type=date updatewhereclause=yes name=fe_creacion dbname="fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="usuario" )
+ column=(type=char(20) updatewhereclause=yes name=instancia dbname="instancia" )
+ column=(type=long updatewhereclause=yes name=co_recurso dbname="co_recurso" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_pdp dbname="ca_pdp" )
+ column=(type=long updatewhereclause=yes name=tanda_pdp dbname="tanda_pdp" )
+ column=(type=long updatewhereclause=yes name=co_proveedor dbname="co_proveedor" )
+ column=(type=long updatewhereclause=yes name=sw_impre_ficha_tin dbname="sw_impre_ficha_tin" )
+ column=(type=long updatewhereclause=yes name=sw_impre_ficha_aca dbname="sw_impre_ficha_aca" )
+ column=(type=char(1) updatewhereclause=yes name=co_terminado_tela dbname="co_terminado_tela" )
+ retrieve="  SELECT First 1 h_tandas.cs_tanda,   
+         h_tandas.cs_secundario,   
+         h_tandas.cs_ficho,   
+         h_tandas.co_color,   
+         h_tandas.co_tipo_tanda,   
+         h_tandas.co_ruta,   
+         h_tandas.co_maquina,   
+         h_tandas.fe_programada,   
+         h_tandas.cs_orden_prog,   
+         h_tandas.co_estado_tanda,   
+         h_tandas.ca_rollos,   
+         h_tandas.ca_kilos,   
+         h_tandas.ca_lotes,   
+         h_tandas.sw_impresion,   
+         h_tandas.condiciones,   
+         h_tandas.fe_creacion,   
+         h_tandas.fe_actualizacion,   
+         h_tandas.usuario,   
+         h_tandas.instancia,   
+         h_tandas.co_recurso,   
+         h_tandas.ca_pdp,   
+         h_tandas.tanda_pdp,   
+         h_tandas.co_proveedor,   
+         h_tandas.sw_impre_ficha_tin,   
+         h_tandas.sw_impre_ficha_aca,   
+         dt_repro_tandas.co_terminado_tela  
+    FROM h_tandas,   
+        outer  dt_repro_tandas  
+   WHERE ( h_tandas.cs_tanda = dt_repro_tandas.cs_tanda ) and  
+         ( h_tandas.cs_secundario = dt_repro_tandas.cs_secundario ) and  
+         ( h_tandas.cs_tanda = :cs_tanda ) AND  
+         (h_tandas.cs_secundario = :cs_secundario)
+ORDER BY   dt_repro_tandas.fe_actualizacion DESC
+" update="h_tandas" updatewhere=1 updatekeyinplace=yes arguments=(("cs_tanda", number),("cs_secundario", number)) )
+text(band=header alignment="2" text="Cs Tanda" border="0" color="33554432" x="9" y="8" height="56" width="215" html.valueishtml="0"  name=cs_tanda_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Secundario" border="0" color="33554432" x="233" y="8" height="56" width="325" html.valueishtml="0"  name=cs_secundario_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Ficho" border="0" color="33554432" x="567" y="8" height="56" width="274" html.valueishtml="0"  name=cs_ficho_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Color" border="0" color="33554432" x="850" y="8" height="56" width="274" html.valueishtml="0"  name=co_color_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Tipo Tanda" border="0" color="33554432" x="1134" y="8" height="56" width="315" html.valueishtml="0"  name=co_tipo_tanda_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Ruta" border="0" color="33554432" x="1458" y="8" height="56" width="274" html.valueishtml="0"  name=co_ruta_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Maquina" border="0" color="33554432" x="1742" y="8" height="56" width="274" html.valueishtml="0"  name=co_maquina_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fe Programada" border="0" color="33554432" x="2025" y="8" height="56" width="334" html.valueishtml="0"  name=fe_programada_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Orden Prog" border="0" color="33554432" x="2368" y="8" height="56" width="325" html.valueishtml="0"  name=cs_orden_prog_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Estado Tanda" border="0" color="33554432" x="2702" y="8" height="56" width="375" html.valueishtml="0"  name=co_estado_tanda_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Rollos" border="0" color="33554432" x="3086" y="8" height="56" width="274" html.valueishtml="0"  name=ca_rollos_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Kilos" border="0" color="33554432" x="3369" y="8" height="56" width="274" html.valueishtml="0"  name=ca_kilos_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Lotes" border="0" color="33554432" x="3653" y="8" height="56" width="274" html.valueishtml="0"  name=ca_lotes_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sw Impresion" border="0" color="33554432" x="3936" y="8" height="56" width="302" html.valueishtml="0"  name=sw_impresion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Condiciones" border="0" color="33554432" x="4247" y="8" height="56" width="183" html.valueishtml="0"  name=condiciones_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fe Creacion" border="0" color="33554432" x="4439" y="8" height="56" width="274" html.valueishtml="0"  name=fe_creacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fe Actualizacion" border="0" color="33554432" x="4722" y="8" height="56" width="503" html.valueishtml="0"  name=fe_actualizacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Usuario" border="0" color="33554432" x="5234" y="8" height="56" width="206" html.valueishtml="0"  name=usuario_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Instancia" border="0" color="33554432" x="5449" y="8" height="56" width="480" html.valueishtml="0"  name=instancia_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Recurso" border="0" color="33554432" x="5938" y="8" height="56" width="274" html.valueishtml="0"  name=co_recurso_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Pdp" border="0" color="33554432" x="6222" y="8" height="56" width="274" html.valueishtml="0"  name=ca_pdp_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tanda Pdp" border="0" color="33554432" x="6505" y="8" height="56" width="274" html.valueishtml="0"  name=tanda_pdp_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Proveedor" border="0" color="33554432" x="6789" y="8" height="56" width="302" html.valueishtml="0"  name=co_proveedor_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sw Impre Ficha Tin" border="0" color="33554432" x="7099" y="8" height="56" width="421" html.valueishtml="0"  name=sw_impre_ficha_tin_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sw Impre Ficha Aca" border="0" color="33554432" x="7529" y="8" height="56" width="9" html.valueishtml="0"  name=sw_impre_ficha_aca_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Dt Repro Tandas Co Terminado Tela" border="0" color="33554432" x="7547" y="4" height="76" width="411" html.valueishtml="0"  name=dt_repro_tandas_co_terminado_tela_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="0" color="33554432" x="9" y="8" height="68" width="215" format="[general]" html.valueishtml="0"  name=cs_tanda visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="0" color="33554432" x="233" y="8" height="68" width="325" format="[general]" html.valueishtml="0"  name=cs_secundario visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=30 border="0" color="33554432" x="567" y="8" height="68" width="274" format="[general]" html.valueishtml="0"  name=cs_ficho visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=40 border="0" color="33554432" x="850" y="8" height="68" width="274" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=50 border="0" color="33554432" x="1134" y="8" height="68" width="315" format="[general]" html.valueishtml="0"  name=co_tipo_tanda visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=60 border="0" color="33554432" x="1458" y="8" height="68" width="274" format="[general]" html.valueishtml="0"  name=co_ruta visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=70 border="0" color="33554432" x="1742" y="8" height="68" width="274" format="[general]" html.valueishtml="0"  name=co_maquina visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=80 border="0" color="33554432" x="2025" y="8" height="68" width="334" format="[general]" html.valueishtml="0"  name=fe_programada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=90 border="0" color="33554432" x="2368" y="8" height="68" width="325" format="[general]" html.valueishtml="0"  name=cs_orden_prog visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=100 border="0" color="33554432" x="2702" y="8" height="68" width="375" format="[general]" html.valueishtml="0"  name=co_estado_tanda visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=110 border="0" color="33554432" x="3086" y="8" height="68" width="274" format="[general]" html.valueishtml="0"  name=ca_rollos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=120 border="0" color="33554432" x="3369" y="8" height="68" width="274" format="[general]" html.valueishtml="0"  name=ca_kilos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=130 border="0" color="33554432" x="3653" y="8" height="68" width="274" format="[general]" html.valueishtml="0"  name=ca_lotes visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=140 border="0" color="33554432" x="3936" y="8" height="68" width="302" format="[general]" html.valueishtml="0"  name=sw_impresion visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=150 border="0" color="33554432" x="4247" y="8" height="68" width="183" format="[general]" html.valueishtml="0"  name=condiciones visible="1" edit.limit=18 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=160 border="0" color="33554432" x="4439" y="8" height="68" width="274" format="[general]" html.valueishtml="0"  name=fe_creacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=170 border="0" color="33554432" x="4722" y="8" height="68" width="503" format="[shortdate] [time]" html.valueishtml="0"  name=fe_actualizacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=180 border="0" color="33554432" x="5234" y="8" height="68" width="206" format="[general]" html.valueishtml="0"  name=usuario visible="1" edit.limit=8 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=190 border="0" color="33554432" x="5449" y="8" height="68" width="480" format="[general]" html.valueishtml="0"  name=instancia visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="1" tabsequence=200 border="0" color="33554432" x="5938" y="8" height="68" width="274" format="[general]" html.valueishtml="0"  name=co_recurso visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="1" tabsequence=210 border="0" color="33554432" x="6222" y="8" height="68" width="274" format="[general]" html.valueishtml="0"  name=ca_pdp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="1" tabsequence=220 border="0" color="33554432" x="6505" y="8" height="68" width="274" format="[general]" html.valueishtml="0"  name=tanda_pdp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="1" tabsequence=230 border="0" color="33554432" x="6789" y="8" height="68" width="302" format="[general]" html.valueishtml="0"  name=co_proveedor visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=24 alignment="1" tabsequence=240 border="0" color="33554432" x="7099" y="8" height="68" width="421" format="[general]" html.valueishtml="0"  name=sw_impre_ficha_tin visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=25 alignment="1" tabsequence=250 border="0" color="33554432" x="7529" y="8" height="68" width="9" format="[general]" html.valueishtml="0"  name=sw_impre_ficha_aca visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=26 alignment="0" tabsequence=260 border="0" color="33554432" x="7547" y="0" height="56" width="411" format="[general]" html.valueishtml="0"  name=co_terminado_tela visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
