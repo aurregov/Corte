@@ -1,0 +1,43 @@
+HA$PBExportHeader$dtb_mantenimiento_mesas_lineas.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=co_fabrica dbname="m_mesas_lineas.co_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_linea dbname="m_mesas_lineas.co_linea" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_mesa dbname="m_mesas_lineas.co_mesa" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_estado_tela dbname="m_mesas_lineas.co_estado_tela" values="Tubular	1/Abierta	2/Rayas	3/" )
+ column=(type=long update=yes updatewhereclause=yes name=co_largo dbname="m_mesas_lineas.co_largo" )
+ column=(type=long update=yes updatewhereclause=yes name=co_ancho dbname="m_mesas_lineas.co_ancho" )
+ column=(type=date update=yes updatewhereclause=yes name=fe_creacion dbname="m_mesas_lineas.fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="m_mesas_lineas.fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="m_mesas_lineas.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="m_mesas_lineas.instancia" )
+ retrieve="  SELECT m_mesas_lineas.co_fabrica,   
+         m_mesas_lineas.co_linea,   
+         m_mesas_lineas.co_mesa,   
+         m_mesas_lineas.co_estado_tela,   
+         m_mesas_lineas.co_largo,   
+         m_mesas_lineas.co_ancho,   
+         m_mesas_lineas.fe_creacion,   
+         m_mesas_lineas.fe_actualizacion,   
+         m_mesas_lineas.usuario,   
+         m_mesas_lineas.instancia  
+    FROM m_mesas_lineas   
+" update="m_mesas_lineas" updatewhere=0 updatekeyinplace=yes  sort="co_fabrica A co_linea A co_mesa A " )
+text(band=header alignment="2" text="F$$HEX1$$e100$$ENDHEX$$brica" border="6" color="33554432" x="9" y="8" height="52" width="727" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="L$$HEX1$$ed00$$ENDHEX$$nea" border="6" color="33554432" x="745" y="8" height="52" width="169" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mesa" border="6" color="33554432" x="923" y="8" height="52" width="384" html.valueishtml="0"  name=co_mesa_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Estado Tela" border="6" color="33554432" x="1317" y="8" height="52" width="293" html.valueishtml="0"  name=co_estado_tela_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Largo" border="6" color="33554432" x="1618" y="8" height="52" width="192" html.valueishtml="0"  name=co_largo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ancho" border="6" color="33554432" x="1819" y="8" height="52" width="183" html.valueishtml="0"  name=co_ancho_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="5" color="33554432" x="9" y="4" height="64" width="727" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" dddw.name=dddw_fabricas dddw.displaycolumn=compute_1 dddw.datacolumn=co_fabrica dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.imemode=0 dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="2" tabsequence=20 border="5" color="33554432" x="745" y="4" height="64" width="169" format="[general]" html.valueishtml="0"  name=co_linea visible="1" editmask.mask="###" editmask.imemode=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="2" tabsequence=30 border="5" color="33554432" x="923" y="4" height="64" width="384" format="[general]" html.valueishtml="0"  name=co_mesa visible="1" dddw.name=dddw_mesas dddw.displaycolumn=display dddw.datacolumn=co_mesa dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.imemode=0 dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="1" tabsequence=40 border="5" color="33554432" x="1317" y="4" height="64" width="293" format="[general]" html.valueishtml="0"  name=co_estado_tela visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.vscrollbar=yes ddlb.useasborder=yes ddlb.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="1" tabsequence=50 border="5" color="33554432" x="1618" y="4" height="64" width="192" format="[general]" html.valueishtml="0"  name=co_largo visible="1" editmask.mask="###,###" editmask.imemode=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="1" tabsequence=60 border="5" color="33554432" x="1819" y="4" height="64" width="183" format="[general]" html.valueishtml="0"  name=co_ancho visible="1" editmask.mask="###,###" editmask.imemode=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
