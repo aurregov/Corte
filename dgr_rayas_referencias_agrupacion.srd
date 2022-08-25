@@ -1,0 +1,101 @@
+HA$PBExportHeader$dgr_rayas_referencias_agrupacion.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=116 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica_pt dbname="co_fabrica_pt" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=char(30) updatewhereclause=yes name=m_lineas_de_linea dbname="de_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=char(40) updatewhereclause=yes name=h_preref_de_referencia dbname="de_referencia" )
+ column=(type=long updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_modelo dbname="co_modelo" )
+ column=(type=long updatewhereclause=yes name=co_reftel dbname="co_reftel" )
+ column=(type=long updatewhereclause=yes name=co_caract dbname="co_caract" )
+ column=(type=char(42) updatewhereclause=yes name=h_telas_de_reftel dbname="de_reftel" )
+ column=(type=long updatewhereclause=yes name=diametro dbname="diametro" )
+ column=(type=long updatewhereclause=yes name=co_color_te dbname="co_color_te" )
+ column=(type=long updatewhereclause=yes name=raya dbname="raya" )
+ column=(type=char(50) updatewhereclause=yes name=de_modelo dbname="de_modelo" )
+ retrieve="SELECT DISTINCT  dt_pdnxmodulo.co_fabrica_pt ,
+		dt_pdnxmodulo.co_linea ,
+		m_lineas.de_linea ,
+		dt_pdnxmodulo.co_referencia ,
+		h_preref_pv.de_referencia ,
+		dt_color_modelo.co_fabrica,
+		dt_color_modelo.co_modelo ,
+		dt_color_modelo.co_reftel ,
+		dt_color_modelo.co_caract ,
+		h_telas.de_reftel ,
+		dt_color_modelo.diametro ,
+		dt_color_modelo.co_color_te,
+		dt_modelos.raya,
+		dt_modelos.de_modelo
+FROM	dt_agrupaescalapdn ,
+		dt_color_modelo ,
+		dt_pdnxmodulo ,
+		h_preref_pv ,
+		m_lineas ,
+		h_telas ,
+		dt_agrupa_pdn,
+		dt_modelos    
+WHERE ( dt_pdnxmodulo.co_fabrica_pt = m_lineas.co_fabrica ) and          
+		( dt_pdnxmodulo.co_linea = m_lineas.co_linea ) and          
+		( dt_pdnxmodulo.co_fabrica_pt = h_preref_pv.co_fabrica ) and          
+		( dt_pdnxmodulo.co_linea = h_preref_pv.co_linea ) and          
+      (Cast(dt_pdnxmodulo.co_referencia as char(15) ) = h_preref_pv.co_referencia ) AND
+      ( h_preref_pv.co_tipo_ref = 'P' ) AND      
+		( dt_color_modelo.co_reftel = h_telas.co_reftel ) and          
+		( dt_color_modelo.co_caract = h_telas.co_caract ) and          
+		( dt_pdnxmodulo.co_fabrica_pt = dt_color_modelo.co_fabrica ) and          
+		( dt_pdnxmodulo.co_linea = dt_color_modelo.co_linea ) and          
+		( dt_pdnxmodulo.co_referencia = dt_color_modelo.co_referencia ) and          
+		( dt_pdnxmodulo.co_color_pt = dt_color_modelo.co_color_pt ) and          
+		( dt_agrupaescalapdn.co_talla = dt_color_modelo.co_talla ) and          
+		( dt_agrupa_pdn.cs_agrupacion = dt_agrupaescalapdn.cs_agrupacion ) and          
+		( dt_agrupa_pdn.cs_pdn = dt_agrupaescalapdn.cs_pdn ) and          
+		( dt_agrupa_pdn.co_fabrica_exp = dt_pdnxmodulo.co_fabrica_exp ) and          
+		( dt_agrupa_pdn.cs_liberacion = dt_pdnxmodulo.cs_liberacion ) and          
+		( dt_agrupa_pdn.po = dt_pdnxmodulo.po ) and          
+		( dt_agrupa_pdn.nu_cut = dt_pdnxmodulo.nu_cut ) and          
+		( dt_agrupa_pdn.co_fabrica_pt = dt_pdnxmodulo.co_fabrica_pt ) and          
+		( dt_agrupa_pdn.co_linea = dt_pdnxmodulo.co_linea ) and          
+		( dt_agrupa_pdn.co_referencia = dt_pdnxmodulo.co_referencia ) and          
+		( dt_agrupa_pdn.co_color_pt = dt_pdnxmodulo.co_color_pt ) and          
+		( dt_agrupa_pdn.tono = dt_pdnxmodulo.tono ) and          
+		( ( dt_agrupa_pdn.cs_agrupacion = :al_agrupacion ) )  and
+		( dt_color_modelo.co_fabrica = dt_modelos.co_fabrica ) and
+		( dt_color_modelo.co_linea = dt_modelos.co_linea ) and
+		( dt_color_modelo.co_referencia = dt_modelos.co_referencia ) and
+		( dt_color_modelo.co_talla = dt_modelos.co_talla ) and
+		( dt_color_modelo.co_calidad = dt_modelos.co_calidad ) and
+		( dt_color_modelo.co_color_pt = dt_modelos.co_color_pt ) and
+		( dt_color_modelo.co_modelo = dt_modelos.co_modelo ) " arguments=(("al_agrupacion", number))  sort="co_fabrica_pt A co_linea A co_referencia A raya A " )
+text(band=header alignment="2" text="Color Tela" border="6" color="0" x="3163" y="4" height="104" width="279" html.valueishtml="0"  name=dt_color_modelo_co_color_te_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Di" border="6" color="0" x="3077" y="4" height="104" width="78" html.valueishtml="0"  name=dt_color_modelo_diametro_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Tela" border="6" color="0" x="2496" y="4" height="104" width="571" html.valueishtml="0"  name=h_telas_de_reftel_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="L$$HEX1$$ed00$$ENDHEX$$nea" border="6" color="0" x="425" y="4" height="104" width="288" html.valueishtml="0"  name=m_lineas_de_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="F$$HEX1$$e100$$ENDHEX$$brica" border="6" color="0" x="9" y="8" height="104" width="334" html.valueishtml="0"  name=dt_pdnxmodulo_co_fabrica_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Raya" border="6" color="0" x="2139" y="4" height="104" width="128" html.valueishtml="0"  name=raya_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Referencia" border="6" color="0" x="901" y="4" height="104" width="553" html.valueishtml="0"  name=h_preref_de_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Modelo" border="6" color="0" x="1705" y="4" height="104" width="425" html.valueishtml="0"  name=de_modelo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="9" y="4" height="56" width="334" format="[general]" html.valueishtml="0"  name=co_fabrica_pt visible="1" dddw.name=dddw_m_fabricas dddw.displaycolumn=de_fabrica dddw.datacolumn=co_fabrica dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="0" x="352" y="4" height="56" width="64" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="0" x="425" y="4" height="56" width="288" format="[general]" html.valueishtml="0"  name=m_lineas_de_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="5" color="0" x="722" y="4" height="56" width="169" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="0" x="901" y="4" height="56" width="553" format="[general]" html.valueishtml="0"  name=h_preref_de_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="5" color="0" x="2496" y="4" height="56" width="571" format="[general]" html.valueishtml="0"  name=h_telas_de_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=detail alignment="1" expression="String( co_reftel ) + '-' + String( co_caract )"border="5" color="0" x="2277" y="4" height="56" width="210" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="5" color="0" x="3077" y="4" height="56" width="78" format="[general]" html.valueishtml="0"  name=diametro visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="5" color="0" x="3163" y="4" height="56" width="279" format="[general]" html.valueishtml="0"  name=co_color_te visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="5" color="0" x="1463" y="4" height="56" width="233" format="[general]" html.valueishtml="0"  name=co_modelo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="5" color="0" x="2139" y="4" height="56" width="128" format="[general]" html.valueishtml="0"  name=raya visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="5" color="0" x="1705" y="4" height="56" width="425" format="[general]" html.valueishtml="0"  name=de_modelo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+
+sparse(names="co_fabrica_pt	co_linea	m_lineas_de_linea	co_referencia	h_preref_de_referencia")htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
