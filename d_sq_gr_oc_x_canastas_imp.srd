@@ -1,0 +1,50 @@
+HA$PBExportHeader$d_sq_gr_oc_x_canastas_imp.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=132 color="536870912" )
+summary(height=8 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=60 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_orden_corte dbname="cs_orden_corte" )
+ column=(type=char(20) updatewhereclause=yes name=cs_canasta dbname="cs_canasta" )
+ column=(type=long updatewhereclause=yes name=sw_imp_marquilla dbname="sw_imp_marquilla" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=cs_agrupacion dbname="cs_agrupacion" )
+ column=(type=long updatewhereclause=yes name=cs_base_trazos dbname="cs_base_trazos" )
+ column=(type=long updatewhereclause=yes name=cs_espacio dbname="cs_espacio" )
+ column=(type=long updatewhereclause=yes name=cs_sec_ext dbname="cs_sec_ext" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="co_talla" )
+ column=(type=long updatewhereclause=yes name=cs_pdn dbname="cs_pdn" )
+ column=(type=char(2) updatewhereclause=yes name=letra dbname="letra" )
+ column=(type=long updatewhereclause=yes name=tipo dbname="tipo" )
+ column=(type=long updatewhereclause=yes name=sw_impresion dbname="sw_impresion" )
+ retrieve="SELECT DISTINCT t_guias_num_prog.cs_orden_corte,
+	dt_canasta_corte.cs_canasta, 
+	t_guias_num_prog.sw_imp_marquilla,
+	t_guias_num_prog.cs_agrupacion,   
+	t_guias_num_prog.cs_base_trazos,
+	t_guias_num_prog.cs_espacio,
+	t_guias_num_prog.cs_sec_ext,
+	t_guias_num_prog.co_talla,
+	t_guias_num_prog.cs_pdn,
+	t_guias_num_prog.letra,
+	t_guias_num_prog.tipo,
+	t_guias_num_prog.sw_impresion
+FROM t_guias_num_prog,
+	dt_canasta_corte 
+WHERE dt_canasta_corte.cs_orden_corte		= t_guias_num_prog.cs_orden_corte and
+	dt_canasta_corte.letra						= t_guias_num_prog.letra and
+	dt_canasta_corte.cs_espacio				= t_guias_num_prog.cs_espacio and
+	dt_canasta_corte.cs_agrupacion			= t_guias_num_prog.cs_agrupacion and
+	dt_canasta_corte.cs_pdn						= t_guias_num_prog.cs_pdn and
+	dt_canasta_corte.cs_secuencia				= 1 and
+	t_guias_num_prog.cs_orden_corte			= :an_ordencorte" arguments=(("an_ordencorte", number)) )
+compute(band=header alignment="0" expression="sum(  sw_imp_marquilla  for all ) + ' de ' + count(cs_canasta for all)"border="0" color="33554432" x="23" y="4" height="48" width="558" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Num. Bolsa" border="6" color="0" x="9" y="68" height="56" width="315" html.valueishtml="0"  name=cs_canasta_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424"  height.autosize=yes)
+compute(band=detail alignment="2" expression="trim(cs_canasta)"border="2" color="33554432" x="9" y="4" height="48" width="315" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Impresa" border="6" color="0" x="343" y="68" height="56" width="233" html.valueishtml="0"  name=sw_imp_marquilla_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424"  height.autosize=yes)
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="338" y="4" height="48" width="233" format="[general]" html.valueishtml="0"  name=sw_imp_marquilla visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
