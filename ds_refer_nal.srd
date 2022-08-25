@@ -1,0 +1,65 @@
+HA$PBExportHeader$ds_refer_nal.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=112 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica dbname="temp_tela_n.co_fabrica" )
+ column=(type=long updatewhereclause=yes name=h_ordenpd_pt_co_linea dbname="h_ordenpd_pt.co_linea" )
+ column=(type=long updatewhereclause=yes name=h_ordenpd_pt_co_referencia dbname="h_ordenpd_pt.co_referencia" )
+ column=(type=long updatewhereclause=yes name=h_ordenpd_pt_cs_ordenpd_pt dbname="h_ordenpd_pt.cs_ordenpd_pt" )
+ column=(type=long updatewhereclause=yes name=dt_orden_tllaclor_cs_ordenpd_pt dbname="dt_orden_tllaclor.cs_ordenpd_pt" )
+ column=(type=long updatewhereclause=yes name=dt_orden_tllaclor_co_color dbname="dt_orden_tllaclor.co_color" )
+ column=(type=long updatewhereclause=yes name=dt_orden_tllaclor_co_talla dbname="dt_orden_tllaclor.co_talla" )
+ column=(type=long updatewhereclause=yes name=dt_orden_tllaclor_ca_programada dbname="dt_orden_tllaclor.ca_programada" )
+ column=(type=long updatewhereclause=yes name=dt_orden_tllaclor_ca_liberada dbname="dt_orden_tllaclor.ca_liberada" )
+ column=(type=long updatewhereclause=yes name=sw_marca dbname="temp_tela_n.sw_marca" )
+ column=(type=decimal(0) updatewhereclause=yes name=total_color dbname="total_color" )
+ retrieve="select unique h_ordenpd_pt.co_fabrica,
+              h_ordenpd_pt.co_linea,
+	           h_ordenpd_pt.co_referencia,
+              h_ordenpd_pt.cs_ordenpd_pt,
+				  dt_orden_tllaclor.cs_ordenpd_pt,    
+              dt_orden_tllaclor.co_color,
+              dt_orden_tllaclor.co_talla,
+	           dt_orden_tllaclor.ca_programada,
+	           dt_orden_tllaclor.ca_liberada,
+				  temp_tela_n.sw_marca,
+				( select sum(a.ca_programada)
+					from dt_orden_tllaclor a
+					where a.cs_ordenpd_pt = h_ordenpd_pt.cs_ordenpd_pt and
+							a.co_color = dt_orden_tllaclor.co_color)	total_color
+from temp_tela_n, h_ordenpd_pt, dt_orden_tllaclor
+where temp_tela_n.usuario = :co_usuario
+  and temp_tela_n.cs_ordenpd_pt = h_ordenpd_pt.cs_ordenpd_pt
+  and h_ordenpd_pt.cs_ordenpd_pt = dt_orden_tllaclor.cs_ordenpd_pt
+" arguments=(("co_usuario", string)) )
+text(band=header alignment="2" text="Co Fabrica" border="0" color="33554432" x="5" y="4" height="52" width="274" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="H Ordenpd Pt
+Co Linea" border="0" color="33554432" x="283" y="4" height="104" width="297" html.valueishtml="0"  name=h_ordenpd_pt_co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="H Ordenpd Pt
+Co Referencia" border="0" color="33554432" x="585" y="4" height="104" width="311" html.valueishtml="0"  name=h_ordenpd_pt_co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="H Ordenpd Pt
+Cs Ordenpd Pt" border="0" color="33554432" x="901" y="4" height="104" width="315" html.valueishtml="0"  name=h_ordenpd_pt_cs_ordenpd_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Orden Tllaclor
+Co Color" border="0" color="33554432" x="1221" y="4" height="104" width="366" html.valueishtml="0"  name=dt_orden_tllaclor_co_color_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Orden Tllaclor
+Co Talla" border="0" color="33554432" x="1591" y="4" height="104" width="370" html.valueishtml="0"  name=dt_orden_tllaclor_co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Orden Tllaclor
+Ca Programada" border="0" color="33554432" x="1966" y="4" height="104" width="366" html.valueishtml="0"  name=dt_orden_tllaclor_ca_programada_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Orden Tllaclor
+Ca Liberada" border="0" color="33554432" x="2336" y="4" height="104" width="366" html.valueishtml="0"  name=dt_orden_tllaclor_ca_liberada_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="283" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=h_ordenpd_pt_co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="585" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=h_ordenpd_pt_co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="901" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=h_ordenpd_pt_cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1221" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_orden_tllaclor_co_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="1591" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_orden_tllaclor_co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="1966" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_orden_tllaclor_ca_programada visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="2336" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_orden_tllaclor_ca_liberada visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="2702" y="0" height="52" width="69" format="[general]" html.valueishtml="0"  name=dt_orden_tllaclor_cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="2770" y="4" height="52" width="23" format="[general]" html.valueishtml="0"  name=sw_marca visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=0 border="0" color="33554432" x="2839" y="4" height="52" width="992" html.valueishtml="0"  name=total_color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
