@@ -1,0 +1,43 @@
+HA$PBExportHeader$dtb_ins_refptxtrazo_esc.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=co_trazo dbname="dt_refptxtrazo_esc.co_trazo" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_fabrica dbname="dt_refptxtrazo_esc.co_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_linea dbname="dt_refptxtrazo_esc.co_linea" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_referencia dbname="dt_refptxtrazo_esc.co_referencia" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_escala dbname="dt_refptxtrazo_esc.cs_escala" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=largo dbname="dt_refptxtrazo_esc.largo" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="dt_refptxtrazo_esc.fe_actualizacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="dt_refptxtrazo_esc.fe_creacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="dt_refptxtrazo_esc.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="dt_refptxtrazo_esc.instancia" )
+ retrieve="  SELECT dt_refptxtrazo_esc.co_trazo,   
+         dt_refptxtrazo_esc.co_fabrica,   
+         dt_refptxtrazo_esc.co_linea,   
+         dt_refptxtrazo_esc.co_referencia,   
+         dt_refptxtrazo_esc.cs_escala,   
+         dt_refptxtrazo_esc.largo,   
+         dt_refptxtrazo_esc.fe_actualizacion,   
+         dt_refptxtrazo_esc.fe_creacion,   
+         dt_refptxtrazo_esc.usuario,   
+         dt_refptxtrazo_esc.instancia  
+    FROM dt_refptxtrazo_esc  
+   WHERE ( dt_refptxtrazo_esc.co_trazo = :an_trazo ) AND  
+         ( dt_refptxtrazo_esc.co_fabrica = :an_fabrica OR :an_fabrica = 0 ) AND  
+         ( dt_refptxtrazo_esc.co_linea = :an_linea OR :an_linea = 0) AND  
+         ( dt_refptxtrazo_esc.co_referencia = :an_referencia OR :an_referencia = 0 )   
+            
+" update="dt_refptxtrazo_esc" updatewhere=1 updatekeyinplace=no arguments=(("an_trazo", number),("an_fabrica", number),("an_linea", number),("an_referencia", number)) )
+button(band=detail text="Borrar" filename="" enabled=yes action="10" border="0" color="0" x="791" y="8" height="68" width="187" vtextalign="0" htextalign="0"  name=b_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=detail alignment="2" text="Escala:" border="6" color="33554432" x="9" y="8" height="64" width="160" html.valueishtml="0"  name=cs_escala_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Largo:" border="6" color="33554432" x="370" y="8" height="64" width="146" html.valueishtml="0"  name=largo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=10 border="2" color="33554432" x="183" y="8" height="64" width="142" format="[general]" html.valueishtml="0"  name=cs_escala visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=6 alignment="1" tabsequence=20 border="2" color="33554432" x="530" y="8" height="64" width="242" format="[general]" html.valueishtml="0"  name=largo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
