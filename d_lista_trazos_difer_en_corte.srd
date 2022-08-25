@@ -1,0 +1,14 @@
+HA$PBExportHeader$d_lista_trazos_difer_en_corte.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=136 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=dt_liquida_trazo_cs_trazo dbname="dt_liquida_trazo.cs_trazo" )
+ retrieve="PBSELECT( VERSION(400) DISTINCT ()TABLE(NAME=~"dt_liquida_trazo~" )  TABLE(NAME=~"dt_rayas_telaxoc~" ) COLUMN(NAME=~"dt_liquida_trazo.cs_trazo~")    JOIN (LEFT=~"dt_liquida_trazo.cs_orden_corte~"    OP =~"=~"RIGHT=~"dt_rayas_telaxoc.cs_orden_corte~" )    JOIN (LEFT=~"dt_liquida_trazo.cs_agrupacion~"    OP =~"=~"RIGHT=~"dt_rayas_telaxoc.cs_agrupacion~" )    JOIN (LEFT=~"dt_liquida_trazo.cs_base_trazos~"    OP =~"=~"RIGHT=~"dt_rayas_telaxoc.cs_base_trazos~" )    JOIN (LEFT=~"dt_liquida_trazo.cs_pdn~"    OP =~"=~"RIGHT=~"dt_rayas_telaxoc.cs_pdn~" )    JOIN (LEFT=~"dt_liquida_trazo.co_modelo~"    OP =~"=~"RIGHT=~"dt_rayas_telaxoc.co_modelo~" )    JOIN (LEFT=~"dt_liquida_trazo.co_fabrica_tela~"    OP =~"=~"RIGHT=~"dt_rayas_telaxoc.co_fabrica_tela~" )    JOIN (LEFT=~"dt_liquida_trazo.co_reftel~"    OP =~"=~"RIGHT=~"dt_rayas_telaxoc.co_reftel~" )    JOIN (LEFT=~"dt_liquida_trazo.co_caract~"    OP =~"=~"RIGHT=~"dt_rayas_telaxoc.co_caract~" )    JOIN (LEFT=~"dt_liquida_trazo.diametro~"    OP =~"=~"RIGHT=~"dt_rayas_telaxoc.diametro~" )    JOIN (LEFT=~"dt_liquida_trazo.co_color_te~"    OP =~"=~"RIGHT=~"dt_rayas_telaxoc.co_color_te~" )WHERE(    EXP1 =~"dt_liquida_trazo.cs_orden_corte~"   OP =~"=~"    EXP2 =~":an_corte~"    LOGIC =~"and~" ) WHERE(    EXP1 =~"dt_rayas_telaxoc.raya~"   OP =~"=~"    EXP2 =~"10~" ) ) ORDER(NAME=~"dt_liquida_trazo.cs_trazo~" ASC=yes ) ARG(NAME = ~"an_corte~" TYPE = number) " arguments=(("an_corte", number)) )
+text(band=header alignment="2" text="Dt Liquida Trazo
+Cs Trazo" border="0" color="0" x="5" y="4" height="128" width="430"  name=dt_liquida_trazo_cs_trazo_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="5" y="4" height="76" width="329" format="[general]"  name=dt_liquida_trazo_cs_trazo edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
