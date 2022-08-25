@@ -1,0 +1,96 @@
+HA$PBExportHeader$dtb_rep_bodega_material_cortado.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 1 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=528 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=date updatewhereclause=yes name=compute_0001 dbname="compute_0001" )
+ column=(type=long updatewhereclause=yes name=h_canasta_corte_remision dbname="h_canasta_corte.remision" )
+ column=(type=char(20) updatewhereclause=yes name=h_canasta_corte_pallet_id dbname="h_canasta_corte.pallet_id" )
+ column=(type=long updatewhereclause=yes name=h_canasta_corte_co_fabrica dbname="h_canasta_corte.co_fabrica" )
+ column=(type=long updatewhereclause=yes name=h_canasta_corte_co_planta dbname="h_canasta_corte.co_planta" )
+ column=(type=long updatewhereclause=yes name=h_canasta_corte_co_centro_pdn dbname="h_canasta_corte.co_centro_pdn" )
+ column=(type=long updatewhereclause=yes name=h_canasta_corte_co_subcentro_pdn dbname="h_canasta_corte.co_subcentro_pdn" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_actual dbname="ca_actual" )
+ column=(type=char(30) updatewhereclause=yes name=de_fabrica dbname="m_fabricas.de_fabrica" )
+ column=(type=char(30) updatewhereclause=yes name=de_planta dbname="m_plantas.de_planta" )
+ column=(type=char(30) updatewhereclause=yes name=de_centro_pdn dbname="m_centros_pdn.de_centro_pdn" )
+ column=(type=char(30) updatewhereclause=yes name=de_subcentro_pdn dbname="m_subcentros_pdn.de_subcentro_pdn" )
+ retrieve="  SELECT Date(h_canasta_corte.fe_envio),   
+         h_canasta_corte.remision,   
+         h_canasta_corte.pallet_id,   
+         h_canasta_corte.co_fabrica,   
+         h_canasta_corte.co_planta,   
+         h_canasta_corte.co_centro_pdn,   
+         h_canasta_corte.co_subcentro_pdn,   
+         sum((select sum(dt_canasta_corte.ca_actual)
+			from dt_canasta_corte
+				where dt_canasta_corte.cs_secuencia = 1 and
+						dt_canasta_corte.cs_canasta = h_canasta_corte.cs_canasta )) ca_actual,
+			m_fabricas.de_fabrica,
+			m_plantas.de_planta,
+			m_centros_pdn.de_centro_pdn,
+			m_subcentros_pdn.de_subcentro_pdn 
+    FROM h_canasta_corte,   
+         dt_canasta_corte,
+			m_fabricas,
+			m_plantas,
+			m_centros_pdn,
+			m_subcentros_pdn
+   WHERE ( dt_canasta_corte.cs_canasta = h_canasta_corte.cs_canasta ) and  
+         ( ( h_canasta_corte.cs_canasta > '0' ) AND  
+         ( dt_canasta_corte.cs_secuencia = 1 ) AND  
+         ( date(h_canasta_corte.fe_envio) >=  :ad_fechaini ) AND 
+			( date(h_canasta_corte.fe_envio) <=  :ad_fechafin ) AND  
+         ( h_canasta_corte.remision > 0 ) ) and
+			( m_fabricas.co_fabrica = h_canasta_corte.co_fabrica ) and
+			( m_plantas.co_fabrica = h_canasta_corte.co_fabrica ) and
+			( m_plantas.co_planta = h_canasta_corte.co_planta ) and
+			( m_centros_pdn.co_centro_pdn 		= h_canasta_corte.co_centro_pdn ) and
+			( m_subcentros_pdn.co_centro_pdn 	= h_canasta_corte.co_centro_pdn )	and
+			( m_subcentros_pdn.co_subcentro_pdn = h_canasta_corte.co_subcentro_pdn )
+GROUP BY h_canasta_corte.fe_envio,   
+         h_canasta_corte.remision,   
+         h_canasta_corte.pallet_id,   
+         h_canasta_corte.co_fabrica,   
+         h_canasta_corte.co_planta,   
+         h_canasta_corte.co_centro_pdn,   
+         h_canasta_corte.co_subcentro_pdn,
+			m_fabricas.de_fabrica,
+			m_plantas.de_planta,
+			m_centros_pdn.de_centro_pdn,
+			m_subcentros_pdn.de_subcentro_pdn     
+
+" arguments=(("ad_fechaini", date),("ad_fechafin", date))  sort="compute_0001 A h_canasta_corte_remision A h_canasta_corte_pallet_id A " )
+group(level=1 header.height=64 trailer.height=84 by=("compute_0001" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=68 trailer.height=64 by=("h_canasta_corte_remision" ) header.color="536870912" trailer.color="536870912" )
+compute(band=header alignment="2" expression="'P$$HEX1$$e100$$ENDHEX$$gina ' + page() + ' de ' + pageCount()"border="0" color="0" x="2533" y="12" height="60" width="818" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Bongo" border="6" color="33554432" x="759" y="468" height="52" width="215" html.valueishtml="0"  name=h_canasta_corte_pallet_id_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=header alignment="0" expression="today()"border="0" color="0" x="14" y="12" height="60" width="622" format="dd/mmm/yyyy [time]" html.valueishtml="0"  name=date_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="REPORTE REMISIONES DESPACHO DE CORTE" border="0" color="0" x="14" y="148" height="92" width="3342" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Rango de Fechas:" border="0" color="0" x="14" y="276" height="60" width="457" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Fabrica" border="6" color="33554432" x="1001" y="468" height="52" width="498" html.valueishtml="0"  name=h_canasta_corte_co_fabrica_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Cantidad" border="6" color="33554432" x="3090" y="468" height="52" width="265" html.valueishtml="0"  name=t_6 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=header alignment="2" expression=" ad_fechaini "border="0" color="0" x="14" y="352" height="68" width="402" format="dd/mmm/yyyy" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="al" border="0" color="33554432" x="430" y="352" height="68" width="101" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="2" expression=" ad_fechafin "border="0" color="0" x="553" y="352" height="68" width="402" format="dd/mmm/yyyy" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Planta" border="6" color="33554432" x="1522" y="468" height="52" width="443" html.valueishtml="0"  name=h_canasta_corte_co_planta_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Centro" border="6" color="33554432" x="1993" y="468" height="52" width="425" html.valueishtml="0"  name=h_canasta_corte_co_centro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Subcentro" border="6" color="33554432" x="2441" y="468" height="52" width="626" html.valueishtml="0"  name=h_canasta_corte_co_subcentro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="0" text="Fecha:" border="0" color="33554432" x="32" y="4" height="52" width="206" html.valueishtml="0"  name=h_canasta_corte_fe_envio_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="251" y="4" height="52" width="480" format="dd/mmm/yyyy" html.valueishtml="0"  name=compute_0001 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.2 alignment="0" text="Remisi$$HEX1$$f300$$ENDHEX$$n:" border="0" color="33554432" x="32" y="8" height="52" width="293" html.valueishtml="0"  name=h_canasta_corte_remision_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="338" y="8" height="52" width="274" format="[general]" html.valueishtml="0"  name=h_canasta_corte_remision visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="750" y="4" height="56" width="215" format="[general]" html.valueishtml="0"  name=h_canasta_corte_pallet_id visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="1001" y="4" height="56" width="498" format="[general]" html.valueishtml="0"  name=de_fabrica visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="1522" y="4" height="56" width="443" format="[general]" html.valueishtml="0"  name=de_planta visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="1993" y="4" height="56" width="425" format="[general]" html.valueishtml="0"  name=de_centro_pdn visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="2441" y="4" height="56" width="626" format="[general]" html.valueishtml="0"  name=de_subcentro_pdn visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="3090" y="4" height="52" width="265" format="###,###.00" html.valueishtml="0"  name=ca_actual visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.2 alignment="0" text="total remision:" border="0" color="16711680" x="2688" y="8" height="52" width="384" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=trailer.2 alignment="1" expression="sum(   ca_actual   for group 2 ) "border="0" color="16711680" x="3090" y="4" height="52" width="265" format="###,###.00" html.valueishtml="0"  name=compute_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.1 alignment="0" text="total fecha:" border="0" color="16711680" x="2688" y="16" height="52" width="379" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=trailer.1 alignment="1" expression="sum(   ca_actual   for group 1 )"border="0" color="16711680" x="3090" y="16" height="52" width="265" format="###,###.00" html.valueishtml="0"  name=compute_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
