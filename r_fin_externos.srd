@@ -1,0 +1,10 @@
+HA$PBExportHeader$r_fin_externos.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=datetime updatewhereclause=yes name=compute_0001 dbname="compute_0001" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"dt_ruta_orden_pt~" )  TABLE(NAME=~"m_subcentros_pdn~" ) COMPUTE(NAME=~"Min(dt_ruta_orden_pt.fe_prog_fin)~")    JOIN (LEFT=~"dt_ruta_orden_pt.co_tipoprod~"    OP =~"=~"RIGHT=~"m_subcentros_pdn.co_tipoprod~" )    JOIN (LEFT=~"dt_ruta_orden_pt.co_centro_pdn~"    OP =~"=~"RIGHT=~"m_subcentros_pdn.co_centro_pdn~" )    JOIN (LEFT=~"dt_ruta_orden_pt.co_subcentro_pdn~"    OP =~"=~"RIGHT=~"m_subcentros_pdn.co_subcentro_pdn~" )WHERE(    EXP1 =~"dt_ruta_orden_pt.cs_ordenpd_pt~"   OP =~"=~"    EXP2 =~":al_orden~"    LOGIC =~"and~" ) WHERE(    EXP1 =~"m_subcentros_pdn.tipo~"   OP =~"=~"    EXP2 =~"2~" ) ) ARG(NAME = ~"al_orden~" TYPE = number) " arguments=(("al_orden", number)) )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="9" y="4" height="64" width="366" format="yyyy/mm/dd"  name=compute_0001 edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")
