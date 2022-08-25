@@ -1,0 +1,139 @@
+HA$PBExportHeader$dtb_cabecera_adhesivos_bongo_1_de_x.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 20 print.margin.right = 110 print.margin.top = 20 print.margin.bottom = 20 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=412 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=216 color="536870912"  height.autosize=yes)
+table(column=(type=char(20) updatewhereclause=yes name=h_preref_de_referencia_crta dbname="de_referencia_crta" )
+ column=(type=long updatewhereclause=yes name=dt_canasta_corte_co_color dbname="co_color" )
+ column=(type=char(30) updatewhereclause=yes name=m_color_de_color dbname="de_color" )
+ column=(type=char(20) updatewhereclause=yes name=h_canasta_corte_pallet_id dbname="pallet_id" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_actual dbname="ca_actual" )
+ column=(type=char(3) updatewhereclause=yes name=dt_agrupa_pdn_tono dbname="tono" )
+ column=(type=char(20) updatewhereclause=yes name=dt_agrupa_pdn_po dbname="po" )
+ column=(type=long updatewhereclause=yes name=cs_orden_corte dbname="cs_orden_corte" )
+ column=(type=long updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=datetime updatewhereclause=yes name=fe_requerida_desp dbname="fe_requerida_desp" )
+ column=(type=long updatewhereclause=yes name=co_planta dbname="co_planta" )
+ column=(type=char(30) updatewhereclause=yes name=de_marca dbname="de_marca" )
+ column=(type=char(50) updatewhereclause=yes name=de_tipo_grupo dbname="de_tipo_grupo" )
+ column=(type=long updatewhereclause=yes name=co_modulo_fis dbname="co_modulo_fis" )
+ column=(type=long updatewhereclause=yes name=turno dbname="turno" )
+ column=(type=char(60) updatewhereclause=yes name=lider dbname="lider" )
+ column=(type=char(60) updatewhereclause=yes name=auditor dbname="auditor" )
+ retrieve=" SELECT  h_preref_pv.de_referencia_crta,   
+         dt_canasta_corte.co_color,   
+         m_color.de_color,   
+         h_canasta_corte.pallet_id,   
+         sum(dt_canasta_corte.ca_actual)ca_actual,   
+         dt_agrupa_pdn.tono,   
+         dt_agrupa_pdn.po,   
+         dt_canasta_corte.cs_orden_corte,
+			h_preref_pv.co_fabrica,
+  			h_preref_pv.co_linea,
+			dt_canasta_corte.co_referencia,
+	      dt_pdnxmodulo.fe_requerida_desp,
+			h_canasta_corte.co_planta, 
+			(select m_marcas_prnda.de_marca
+				from m_marcas_prnda
+				where m_marcas_prnda.co_marca		= h_preref_pv.co_marca) de_marca,
+			( select m_tipo_subgrupo.de_tipo_subgrupo
+				from m_tipo_subgrupo
+            where m_tipo_subgrupo.co_tipo_subgrupo  = h_preref_pv.co_tipo_subgrupo ) de_tipo_grupo,
+			Max(h_canasta_corte.co_modulo_fis) co_modulo_fis,
+			pr_turno(:turno) turno,
+			pr_nombre_lider(:an_orden_corte,:ai_fabrica,:ai_linea,:al_referencia) lider,
+			pr_nombre_auditor(:an_orden_corte,:ai_fabrica,:ai_linea,:al_referencia)auditor
+    FROM dt_canasta_corte,   
+         h_canasta_corte,   
+         h_preref_pv,   
+         m_color,   
+         dt_agrupa_pdn, 
+			dt_pdnxmodulo
+   WHERE ( h_canasta_corte.cs_canasta 			= dt_canasta_corte.cs_canasta ) and  
+         ( dt_canasta_corte.co_fabrica_ref 	= h_preref_pv.co_fabrica ) and  
+         ( dt_canasta_corte.co_linea 			= h_preref_pv.co_linea ) and  
+         ( Cast(dt_canasta_corte.co_referencia as char(15) ) = h_preref_pv.co_referencia ) AND  
+         ( h_preref_pv.co_tipo_ref				= 'P' ) AND
+         ( dt_canasta_corte.co_color 			= m_color.co_color ) and  
+         ( dt_canasta_corte.cs_agrupacion 	= dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_canasta_corte.cs_pdn 				= dt_agrupa_pdn.cs_pdn ) and  
+      	( dt_canasta_corte.cs_orden_corte 	= :an_orden_corte ) and
+			( dt_canasta_corte.po 					= :as_po ) and
+			( dt_agrupa_pdn.co_fabrica_pt 		= dt_pdnxmodulo.co_fabrica_pt ) and  
+         ( dt_agrupa_pdn.co_linea 				= dt_pdnxmodulo.co_linea ) and  
+         ( dt_agrupa_pdn.co_referencia 		= dt_pdnxmodulo.co_referencia ) and  
+         ( dt_agrupa_pdn.co_color_pt 			= dt_pdnxmodulo.co_color_pt ) and  
+         ( dt_agrupa_pdn.tono 					= dt_pdnxmodulo.tono ) and  
+         ( dt_agrupa_pdn.cs_particion 			= dt_pdnxmodulo.cs_particion ) and  
+         ( dt_agrupa_pdn.po 						= dt_pdnxmodulo.po ) and  
+         ( dt_agrupa_pdn.nu_cut 					= dt_pdnxmodulo.nu_cut ) and  
+         ( dt_agrupa_pdn.cs_liberacion 		= dt_pdnxmodulo.cs_liberacion ) and  
+         ( dt_agrupa_pdn.co_fabrica_exp 		= dt_pdnxmodulo.co_fabrica_exp ) and
+			( dt_pdnxmodulo.cs_asignacion			= :an_orden_corte ) and
+         ( (dt_canasta_corte.cs_secuencia 	= 1  ) AND  
+         ( h_canasta_corte.pallet_id 			= :bongo or :bongo = '')) and
+         ( dt_canasta_corte.co_fabrica_ref 	= :ai_fabrica OR :ai_fabrica = 0 ) and  
+         ( dt_canasta_corte.co_linea 			= :ai_linea OR :ai_linea = 0 ) and  
+         ( dt_canasta_corte.co_referencia 	= :al_referencia OR :al_referencia = 0 ) and
+			( h_canasta_corte.atributo3         = :as_loteo_max OR :as_loteo_max = '')
+GROUP BY  h_preref_pv.de_referencia_crta,   
+         dt_canasta_corte.co_color,   
+         m_color.de_color,   
+         h_canasta_corte.pallet_id,   
+         dt_agrupa_pdn.tono,   
+         dt_agrupa_pdn.po,   
+         dt_canasta_corte.cs_orden_corte,
+			h_preref_pv.co_fabrica,
+  			h_preref_pv.co_linea,
+			dt_canasta_corte.co_referencia,
+	      12,
+			dt_pdnxmodulo.fe_requerida_desp,
+			h_canasta_corte.co_planta,14,15
+			
+
+" arguments=(("bongo", string),("inicio", number),("fin", number),("an_orden_corte", number),("as_po", string),("turno", number),("ai_fabrica", number),("ai_linea", number),("al_referencia", number),("as_loteo_max", string))  sort="h_canasta_corte_pallet_id A " )
+group(level=1 header.height=0 trailer.height=108 by=("h_canasta_corte_pallet_id" ) newpage=yes header.color="536870912" trailer.color="536870912" )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="18" y="8" height="52" width="512" format="[SHORTDATE] [TIME]" html.valueishtml="0"  name=date_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="'*'+ Trim(h_canasta_corte_pallet_id) +'*'"border="0" color="0" x="535" y="92" height="112" width="1047" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="SKANDATArC39W" font.height="-19" font.weight="400"  font.family="0" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=header id=7 alignment="0" tabsequence=32766 border="2" color="33554432" x="23" y="144" height="92" width="498" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_po visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="PO" border="0" color="33554432" x="23" y="68" height="64" width="457" html.valueishtml="0"  name=dt_agrupa_pdn_po_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="de" border="0" color="33554432" x="1143" y="8" height="80" width="82" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="2" expression="If (inicio  = 0, page(),inicio)"border="0" color="0" x="1029" y="8" height="80" width="105" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="1" expression=" fin "border="0" color="0" x="1248" y="8" height="80" width="101" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="RECIPIENTE" border="0" color="33554432" x="553" y="8" height="80" width="448" html.valueishtml="0"  name=h_canasta_corte_pallet_id_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Modulo:" border="0" color="0" x="18" y="240" height="56" width="201" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+report(band=header dataobject="r_modulo_fis" x="224" y="228" height="56" width="325" border="0"  height.autosize=yes criteria="" nest_arguments=((" co_fabrica "),(" co_planta "),(" co_modulo_fis ")) trail_footer = yes  name=dw_2 visible="1"  slideup=directlyabove )
+text(band=header alignment="0" text="Fecha PO" border="0" color="0" x="567" y="212" height="72" width="338" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=header id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="914" y="212" height="72" width="370" format="[SHORTDATE]" html.valueishtml="0"  name=fe_requerida_desp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Turno:" border="0" color="0" x="1312" y="224" height="56" width="165" html.valueishtml="0"  name=t_7 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=header id=17 alignment="2" tabsequence=32766 border="0" color="33554432" x="1495" y="224" height="56" width="91" format="[general]" html.valueishtml="0"  name=turno visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Marca:" border="0" color="0" x="18" y="292" height="56" width="165" html.valueishtml="0"  name=t_9 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Subgrupo:" border="0" color="0" x="718" y="292" height="56" width="261" html.valueishtml="0"  name=t_10 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="O.C." border="2" color="33554432" x="777" y="360" height="48" width="206" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="LINEA" border="2" color="33554432" x="9" y="360" height="48" width="151" html.valueishtml="0"  name=t_8 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=14 alignment="0" tabsequence=32766 border="2" color="33554432" x="197" y="292" height="56" width="498" format="[general]" html.valueishtml="0"  name=de_marca visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="COLOR" border="2" color="33554432" x="997" y="360" height="48" width="594" html.valueishtml="0"  name=m_color_de_color_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=15 alignment="0" tabsequence=32766 border="2" color="33554432" x="997" y="292" height="56" width="594" format="[general]" html.valueishtml="0"  name=de_tipo_grupo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="REFERENCIA" border="2" color="33554432" x="174" y="360" height="48" width="590" html.valueishtml="0"  name=h_preref_de_referencia_crta_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Talla" border="0" color="0" x="14" y="56" height="56" width="101" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="Cant." border="0" color="0" x="14" y="136" height="56" width="101" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="2" color="33554432" x="1207" y="4" height="48" width="384" format="[general]" html.valueishtml="0"  name=m_color_de_color visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="997" y="4" height="48" width="206" format="[general]" html.valueishtml="0"  name=dt_canasta_corte_co_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="2" tabsequence=32766 border="2" color="33554432" x="777" y="4" height="48" width="206" format="[general]" html.valueishtml="0"  name=cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+report(band=detail dataobject="dup_tallas_bongos" x="119" y="56" height="156" width="1477" border="0" criteria="" nest_arguments=((" h_canasta_corte_pallet_id ")) trail_footer = yes  name=dw_1 visible="1"  slideup=directlyabove )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="33554432" x="37" y="112" height="24" width="32" format="[general]" html.valueishtml="0"  name=h_preref_de_referencia_crta visible="0" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="2" tabsequence=32766 border="2" color="33554432" x="9" y="4" height="48" width="151" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="String( co_referencia ) + ' - '+  Trim( h_preref_de_referencia_crta )"border="2" color="33554432" x="174" y="4" height="48" width="590" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.1 alignment="0" text="Preparado por:" border="0" color="0" x="9" y="4" height="44" width="320" html.valueishtml="0"  name=t_11 visible="1"  font.face="Arial" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=trailer.1 alignment="0" text="Auditado por:" border="0" color="0" x="9" y="56" height="44" width="320" html.valueishtml="0"  name=t_12 visible="1"  font.face="Arial" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=trailer.1 id=18 alignment="0" tabsequence=32766 border="0" color="33554432" x="347" y="4" height="44" width="1175" format="[general]" html.valueishtml="0"  name=lider visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=trailer.1 id=19 alignment="0" tabsequence=32766 border="0" color="33554432" x="347" y="56" height="44" width="1175" format="[general]" html.valueishtml="0"  name=auditor visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
