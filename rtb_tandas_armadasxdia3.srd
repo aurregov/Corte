@@ -1,0 +1,103 @@
+HA$PBExportHeader$rtb_tandas_armadasxdia3.srd
+$PBExportComments$tandas armadas   OK
+release 9;
+datawindow(units=0 timer_interval=60000 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=112 color="536870912" )
+summary(height=116 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=h_tandas_cs_tanda dbname="h_tandas.cs_tanda" )
+ column=(type=long updatewhereclause=yes name=h_tandas_cs_secundario dbname="h_tandas.cs_secundario" )
+ column=(type=long updatewhereclause=yes name=cs_ficho dbname="h_tandas.cs_ficho" )
+ column=(type=long updatewhereclause=yes name=dt_lotesxtandas_cs_ordenpd_pt dbname="dt_lotesxtandas.cs_ordenpd_pt" )
+ column=(type=long updatewhereclause=yes name=h_tandas_co_color dbname="h_tandas.co_color" )
+ column=(type=long updatewhereclause=yes name=dt_lotesxtandas_cs_lote dbname="dt_lotesxtandas.cs_lote" )
+ column=(type=long updatewhereclause=yes name=dt_lotesxtanda_co_reftel dbname="dt_lotesxtandas.co_reftel" )
+ column=(type=decimal(2) updatewhereclause=yes name=dt_rollosxlote_ca_confirmada dbname="dt_rollosxlotes.ca_confirmada" )
+ column=(type=date updatewhereclause=yes name=h_tandas_fe_creacion dbname="h_tandas.fe_creacion" )
+ column=(type=char(40) updatewhereclause=yes name=de_referencia dbname="h_preref_pv.de_referencia" )
+ column=(type=long updatewhereclause=yes name=h_ordenpd_pt_co_fabrica dbname="h_ordenpd_pt.co_fabrica" )
+ column=(type=long updatewhereclause=yes name=h_tandas_co_maquina dbname="h_tandas.co_maquina" )
+ column=(type=long updatewhereclause=yes name=h_ordenpd_pt_co_linea dbname="h_ordenpd_pt.co_linea" )
+ retrieve="  SELECT h_tandas.cs_tanda,   
+         h_tandas.cs_secundario,   
+         h_tandas.cs_ficho,   
+         dt_lotesxtandas.cs_ordenpd_pt,   
+         h_tandas.co_color,   
+         dt_lotesxtandas.cs_lote,   
+         dt_lotesxtandas.co_reftel,   
+         dt_rollosxlotes.ca_confirmada,   
+         h_tandas.fe_creacion,   
+         h_preref_pv.de_referencia,   
+         h_ordenpd_pt.co_fabrica,   
+         h_tandas.co_maquina,   
+         h_ordenpd_pt.co_linea
+    FROM dt_lotesxtandas,   
+         dt_rollosxlotes,   
+         h_tandas,   
+         h_ordenpd_pt,   
+         h_preref_pv  
+   WHERE ( h_tandas.cs_tanda = dt_rollosxlotes.cs_tanda ) and  
+         ( h_tandas.cs_secundario = dt_rollosxlotes.cs_secundario ) and  
+         ( h_tandas.cs_tanda = dt_lotesxtandas.cs_tanda ) and  
+         ( h_tandas.cs_secundario = dt_lotesxtandas.cs_secundario ) and  
+         ( dt_rollosxlotes.cs_ordenpd_pt = dt_lotesxtandas.cs_ordenpd_pt ) and  
+         ( dt_lotesxtandas.cs_lote = dt_rollosxlotes.cs_lote ) and  
+         ( dt_rollosxlotes.co_reftel = dt_lotesxtandas.co_reftel ) and  
+         ( dt_lotesxtandas.co_caract = dt_rollosxlotes.co_caract ) and  
+         ( dt_lotesxtandas.cs_parte = dt_rollosxlotes.cs_parte ) and  
+         ( h_ordenpd_pt.cs_ordenpd_pt = dt_rollosxlotes.cs_ordenpd_pt ) and  
+         ( h_ordenpd_pt.cs_ordenpd_pt = dt_lotesxtandas.cs_ordenpd_pt ) and
+         ( h_preref_pv.co_tipo_ref = 'P') and  
+         ( h_ordenpd_pt.co_fabrica = h_preref_pv.co_fabrica ) and  
+         ( h_ordenpd_pt.co_linea = h_preref_pv.co_linea ) and  
+         ( cast(h_ordenpd_pt.co_referencia as char(15)) = h_preref_pv.co_referencia ) and
+			( h_ordenpd_pt.cs_ordenpd_pt = :op_estilo) and
+			( dt_lotesxtandas.co_reftel = :co_reftel)
+
+" arguments=(("op_estilo", number),("co_reftel", number))  sort="h_tandas_fe_creacion A h_ordenpd_pt_co_fabrica A h_ordenpd_pt_co_linea A h_tandas_cs_tanda A h_tandas_cs_secundario A h_tandas_co_color A dt_lotesxtanda_co_reftel A " )
+group(level=1 header.height=152 trailer.height=76 by=("h_tandas_fe_creacion" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=0 trailer.height=92 by=("h_tandas_fe_creacion" , "h_ordenpd_pt_co_fabrica" ) header.color="536870912" trailer.color="536870912" )
+group(level=3 header.height=0 trailer.height=68 by=("h_tandas_fe_creacion" , "h_ordenpd_pt_co_fabrica" , "h_ordenpd_pt_co_linea" ) header.color="536870912" trailer.color="536870912" )
+group(level=4 header.height=72 trailer.height=0 by=("h_tandas_fe_creacion" , "h_tandas_cs_tanda" , "h_tandas_cs_secundario" , "h_ordenpd_pt_co_fabrica" , "h_ordenpd_pt_co_linea" , "de_referencia" , "h_tandas_co_color" , "dt_lotesxtanda_co_reftel" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="TANDAS ARMADAS" border="6" color="0" x="1134" y="16" height="64" width="782" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16776960" )
+compute(band=header alignment="0" expression="today()"border="0" color="0" x="23" y="16" height="60" width="489" format="dd/mmm/yyyy h:mm" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="'Pag ' + page() + ' de ' + pageCount()"border="0" color="0" x="2286" y="24" height="60" width="571" format="[general]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+button(band=header text="Filtrar" filename="" enabled=yes action="9" border="0" color="0" x="581" y="24" height="80" width="320" vtextalign="0" htextalign="0"  name=b_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="FECHA:" border="2" color="0" x="137" y="20" height="52" width="219" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="TANDA" border="2" color="16711680" x="18" y="92" height="52" width="288" html.valueishtml="0"  name=h_tandas_cs_tanda_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="O.P." border="2" color="16711680" x="320" y="92" height="52" width="206" html.valueishtml="0"  name=dt_lotesxtanda_opro_orden_prod_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="FAB" border="2" color="16711680" x="539" y="92" height="52" width="329" html.valueishtml="0"  name=h_ordenpd_pt_co_fabrica_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="LINEA" border="2" color="16711680" x="882" y="92" height="52" width="160" html.valueishtml="0"  name=h_ordenpd_pt_co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=9 alignment="0" tabsequence=32766 border="6" color="255" x="379" y="12" height="56" width="453" format="dd-mmm-yyyy" html.valueishtml="0"  name=h_tandas_fe_creacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="REFERENCIA" border="2" color="16711680" x="1056" y="92" height="52" width="526" html.valueishtml="0"  name=h_preref_de_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.4 id=1 alignment="1" tabsequence=32766 border="2" color="0" x="14" y="4" height="64" width="219" format="[general]" html.valueishtml="0"  name=h_tandas_cs_tanda visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.4 id=2 alignment="1" tabsequence=32766 border="2" color="0" x="242" y="4" height="64" width="64" format="[general]" html.valueishtml="0"  name=h_tandas_cs_secundario visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.4 id=4 alignment="2" tabsequence=32766 border="2" color="0" x="320" y="4" height="64" width="206" format="[general]" html.valueishtml="0"  name=dt_lotesxtandas_cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.4 id=11 alignment="0" tabsequence=32766 border="2" color="0" x="539" y="4" height="64" width="329" format="[general]" html.valueishtml="0"  name=h_ordenpd_pt_co_fabrica visible="1" dddw.name=dwww_fabricas dddw.displaycolumn=razon_social dddw.datacolumn=co_fabrica dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.4 id=13 alignment="2" tabsequence=32766 border="2" color="0" x="882" y="4" height="64" width="160" format="[general]" html.valueishtml="0"  name=h_ordenpd_pt_co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.4 id=10 alignment="0" tabsequence=32766 border="2" color="0" x="1056" y="4" height="64" width="526" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="LOTE" border="2" color="16711680" x="1874" y="92" height="52" width="251" html.valueishtml="0"  name=dt_lotesxtanda_nro_lote_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="TELA" border="2" color="16711680" x="2139" y="92" height="52" width="229" html.valueishtml="0"  name=dt_lotesxtanda_co_reftel_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="FICHO" border="2" color="16711680" x="2382" y="92" height="52" width="197" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="KILOS" border="2" color="16711680" x="2592" y="92" height="52" width="251" html.valueishtml="0"  name=dt_rollosxlote_ca_confirmada_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.4 id=6 alignment="2" tabsequence=32766 border="2" color="0" x="1874" y="4" height="64" width="251" format="[general]" html.valueishtml="0"  name=dt_lotesxtandas_cs_lote visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.4 id=7 alignment="1" tabsequence=32766 border="2" color="0" x="2139" y="4" height="64" width="229" format="[general]" html.valueishtml="0"  name=dt_lotesxtanda_co_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.4 id=3 alignment="2" tabsequence=32766 border="2" color="0" x="2382" y="4" height="64" width="197" format="[general]" html.valueishtml="0"  name=cs_ficho visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.4 alignment="1" expression="sum(dt_rollosxlote_ca_confirmada for group 4)"border="2" color="0" x="2592" y="4" height="64" width="251" format="[general]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression="sum(dt_rollosxlote_ca_confirmada for group 3)"border="2" color="255" x="2592" y="4" height="52" width="251" format="0.0" html.valueishtml="0"  name=compute_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=trailer.2 id=11 alignment="0" tabsequence=32766 border="2" color="255" x="1934" y="8" height="52" width="640" format="[general]" html.valueishtml="0"  name=h_ordenpd_pt_co_fabrica_1 visible="1" dddw.name=dwww_fabricas dddw.displaycolumn=razon_social dddw.datacolumn=co_fabrica dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum(  dt_rollosxlote_ca_confirmada  for group 2 )"border="2" color="0" x="2592" y="8" height="52" width="251" format="0.0" html.valueishtml="0"  name=compute_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.1 alignment="0" text="TOTAL DIA:" border="2" color="0" x="2263" y="8" height="52" width="329" html.valueishtml="0"  name=t_6 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(dt_rollosxlote_ca_confirmada for group 1)"border="2" color="255" x="2606" y="8" height="52" width="251" format="0.0" html.valueishtml="0"  name=compute_6 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="0" text="TOTAL GENERAL:" border="6" color="0" x="2025" y="20" height="52" width="494" html.valueishtml="0"  name=t_7 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16776960" )
+compute(band=summary alignment="1" expression="sum(dt_rollosxlote_ca_confirmada for all)"border="6" color="0" x="2542" y="12" height="64" width="338" format="0.0" html.valueishtml="0"  name=compute_7 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16776960" )
+text(band=trailer.3 alignment="0" text="TOTAL LINEA:" border="2" color="0" x="1486" y="8" height="52" width="407" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.2 alignment="0" text="TOTAL FAB." border="2" color="0" x="1486" y="8" height="52" width="407" html.valueishtml="0"  name=t_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="COLOR" border="2" color="16711680" x="1595" y="92" height="52" width="274" html.valueishtml="0"  name=h_tandas_co_color_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.4 id=5 alignment="2" tabsequence=32766 border="2" color="0" x="1595" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=h_tandas_co_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
