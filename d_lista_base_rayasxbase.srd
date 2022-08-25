@@ -1,0 +1,86 @@
+HA$PBExportHeader$d_lista_base_rayasxbase.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_base_trazos dbname="dt_rayas_telaxbase.cs_base_trazos" )
+ column=(type=long updatewhereclause=yes name=co_modelo dbname="dt_rayas_telaxbase.co_modelo" )
+ column=(type=long updatewhereclause=yes name=co_fabrica_te dbname="dt_rayas_telaxbase.co_fabrica_te" )
+ column=(type=long updatewhereclause=yes name=co_reftel dbname="dt_rayas_telaxbase.co_reftel" )
+ column=(type=long updatewhereclause=yes name=co_caract dbname="dt_rayas_telaxbase.co_caract" )
+ column=(type=long updatewhereclause=yes name=diametro dbname="dt_rayas_telaxbase.diametro" )
+ column=(type=long updatewhereclause=yes name=co_color_te dbname="dt_rayas_telaxbase.co_color_te" )
+ column=(type=long updatewhereclause=yes name=raya dbname="dt_rayas_telaxbase.raya" )
+ column=(type=char(42) updatewhereclause=yes name=h_telas_de_reftel dbname="h_telas.de_reftel" )
+ column=(type=decimal(2) updatewhereclause=yes name=ancho_cortable dbname="dt_telaxmodelo_lib.ancho_cortable" )
+ column=(type=char(30) updatewhereclause=yes name=m_color_de_color dbname="m_color.de_color" )
+ column=(type=char(30) updatewhereclause=yes name=dt_modelos_de_modelo dbname="dt_modelos.de_modelo" )
+ retrieve="  SELECT DISTINCT dt_rayas_telaxbase.cs_base_trazos,   
+						dt_rayas_telaxbase.co_modelo,   
+						dt_rayas_telaxbase.co_fabrica_te,   
+						dt_rayas_telaxbase.co_reftel,   
+						dt_rayas_telaxbase.co_caract,   
+						dt_rayas_telaxbase.diametro,   
+						dt_rayas_telaxbase.co_color_te,   
+						dt_rayas_telaxbase.raya,   
+						h_telas.de_reftel,   
+						dt_telaxmodelo_lib.ancho_cortable,   
+						m_color.de_color,   
+						dt_modelos.de_modelo  
+    FROM dt_rayas_telaxbase,   
+         h_telas,   
+         dt_telaxmodelo_lib,   
+         m_color,   
+         dt_agrupa_pdn,   
+         dt_color_modelo,   
+         dt_modelos  
+   WHERE ( dt_rayas_telaxbase.co_reftel 		= h_telas.co_reftel ) and  
+         ( dt_rayas_telaxbase.co_caract 		= h_telas.co_caract ) and  
+         ( dt_rayas_telaxbase.co_modelo 		= dt_telaxmodelo_lib.co_modelo ) and  
+         ( dt_rayas_telaxbase.co_fabrica_te 	= dt_telaxmodelo_lib.co_fabrica_tela ) and  
+         ( dt_rayas_telaxbase.co_reftel 		= dt_telaxmodelo_lib.co_reftel ) and  
+         ( dt_rayas_telaxbase.co_caract 		= dt_telaxmodelo_lib.co_caract ) and  
+         ( dt_rayas_telaxbase.diametro 		= dt_telaxmodelo_lib.diametro ) and  
+         ( dt_rayas_telaxbase.co_color_te 	= dt_telaxmodelo_lib.co_color_tela ) and  
+         ( dt_rayas_telaxbase.co_color_te 	= m_color.co_color ) and  
+         ( dt_rayas_telaxbase.cs_agrupacion 	= dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_agrupa_pdn.co_fabrica_pt 		= dt_color_modelo.co_fabrica ) and  
+         ( dt_agrupa_pdn.co_linea 				= dt_color_modelo.co_linea ) and  
+         ( dt_agrupa_pdn.co_referencia 		= dt_color_modelo.co_referencia ) and  
+         ( dt_agrupa_pdn.co_color_pt 			= dt_color_modelo.co_color_pt ) and  
+         ( dt_rayas_telaxbase.co_modelo 		= dt_color_modelo.co_modelo ) and  
+         ( dt_rayas_telaxbase.co_reftel 		= dt_color_modelo.co_reftel ) and  
+         ( dt_rayas_telaxbase.co_caract 		= dt_color_modelo.co_caract ) and  
+         ( dt_rayas_telaxbase.diametro 		= dt_color_modelo.diametro ) and  
+         ( dt_rayas_telaxbase.co_color_te 	= dt_color_modelo.co_color_te ) and  
+         ( dt_modelos.co_fabrica 				= dt_color_modelo.co_fabrica ) and  
+         ( dt_modelos.co_linea 					= dt_color_modelo.co_linea ) and  
+         ( dt_modelos.co_referencia 			= dt_color_modelo.co_referencia ) and  
+         ( dt_modelos.co_talla 					= dt_color_modelo.co_talla ) and  
+         ( dt_modelos.co_calidad 				= dt_color_modelo.co_calidad ) and  
+         ( dt_modelos.co_color_pt 				= dt_color_modelo.co_color_pt ) and  
+         ( dt_modelos.co_modelo 					= dt_color_modelo.co_modelo ) and  
+         ( ( dt_rayas_telaxbase.cs_agrupacion= :an_agrupa ) )   
+ORDER BY dt_rayas_telaxbase.cs_base_trazos ASC,   
+         dt_rayas_telaxbase.co_modelo ASC,   
+         dt_rayas_telaxbase.co_fabrica_te ASC,   
+         dt_rayas_telaxbase.co_reftel ASC,   
+         dt_rayas_telaxbase.co_caract ASC,   
+         dt_rayas_telaxbase.diametro ASC,   
+         dt_rayas_telaxbase.co_color_te ASC,   
+         dt_rayas_telaxbase.raya ASC   
+" arguments=(("an_agrupa", number))  sort="raya A dt_modelos_de_modelo A h_telas_de_reftel A ancho_cortable A m_color_de_color A " )
+text(band=header alignment="2" text="Raya" border="6" color="0" x="9" y="8" height="56" width="101"  name=t_2  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Modelo" border="6" color="0" x="119" y="8" height="56" width="375"  name=t_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Tela" border="6" color="0" x="503" y="8" height="56" width="649"  name=t_3  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Color Tela" border="6" color="0" x="1161" y="8" height="56" width="274"  name=t_5  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Ancho" border="6" color="0" x="1445" y="8" height="56" width="146"  name=t_4  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="0" x="503" y="4" height="64" width="649" format="[general]"  name=h_telas_de_reftel edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0" x="1161" y="4" height="64" width="274" format="[general]"  name=m_color_de_color edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="0" x="1445" y="4" height="64" width="146" format="#,##0"  name=ancho_cortable edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="0" x="9" y="4" height="64" width="101" format="[general]"  name=raya edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="0" x="119" y="4" height="64" width="375" format="[general]"  name=dt_modelos_de_modelo edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
