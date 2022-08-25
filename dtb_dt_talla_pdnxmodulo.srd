@@ -1,0 +1,118 @@
+HA$PBExportHeader$dtb_dt_talla_pdnxmodulo.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=72 color="536870912" )
+summary(height=84 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes name=simulacion dbname="dt_talla_pdnmodulo.simulacion" )
+ column=(type=long update=yes updatewhereclause=yes name=co_fabrica dbname="dt_talla_pdnmodulo.co_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes name=co_planta dbname="dt_talla_pdnmodulo.co_planta" )
+ column=(type=long update=yes updatewhereclause=yes name=co_modulo dbname="dt_talla_pdnmodulo.co_modulo" )
+ column=(type=long update=yes updatewhereclause=yes name=co_fabrica_exp dbname="dt_talla_pdnmodulo.co_fabrica_exp" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_liberacion dbname="dt_talla_pdnmodulo.cs_liberacion" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=po dbname="dt_talla_pdnmodulo.po" )
+ column=(type=char(10) updatewhereclause=yes name=dt_talla_pdnmodulo_nu_cut dbname="dt_talla_pdnmodulo.nu_cut" )
+ column=(type=long update=yes updatewhereclause=yes name=co_fabrica_pt dbname="dt_talla_pdnmodulo.co_fabrica_pt" )
+ column=(type=long update=yes updatewhereclause=yes name=co_linea dbname="dt_talla_pdnmodulo.co_linea" )
+ column=(type=long update=yes updatewhereclause=yes name=co_referencia dbname="dt_talla_pdnmodulo.co_referencia" )
+ column=(type=long update=yes updatewhereclause=yes name=co_color_pt dbname="dt_talla_pdnmodulo.co_color_pt" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=tono dbname="dt_talla_pdnmodulo.tono" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_particion dbname="dt_talla_pdnmodulo.cs_particion" )
+ column=(type=long update=yes updatewhereclause=yes name=co_talla dbname="dt_talla_pdnmodulo.co_talla" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_orden_talla dbname="dt_talla_pdnmodulo.cs_orden_talla" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_prioridad dbname="dt_talla_pdnmodulo.cs_prioridad" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_programada dbname="dt_talla_pdnmodulo.ca_programada" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_producida dbname="dt_talla_pdnmodulo.ca_producida" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_pendiente dbname="dt_talla_pdnmodulo.ca_pendiente" )
+ column=(type=long update=yes updatewhereclause=yes name=co_est_prog_talla dbname="dt_talla_pdnmodulo.co_est_prog_talla" )
+ column=(type=long update=yes updatewhereclause=yes name=fuente_dato dbname="dt_talla_pdnmodulo.fuente_dato" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="dt_talla_pdnmodulo.fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="dt_talla_pdnmodulo.fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="dt_talla_pdnmodulo.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="dt_talla_pdnmodulo.instancia" )
+ column=(type=long updatewhereclause=yes name=ca_numerada dbname="dt_talla_pdnmodulo.ca_numerada" )
+ column=(type=long updatewhereclause=yes name=ca_proyectada dbname="dt_talla_pdnmodulo.ca_proyectada" )
+ column=(type=long updatewhereclause=yes name=ca_actual dbname="dt_talla_pdnmodulo.ca_actual" )
+ column=(type=char(1) updatewhereclause=yes name=co_estado_merc dbname="dt_talla_pdnmodulo.co_estado_merc" )
+ column=(type=date updatewhereclause=yes name=pedpend_exp_fe_entrega dbname="pedpend_exp.fe_entrega" )
+ retrieve="SELECT	dt_talla_pdnmodulo.simulacion ,
+			dt_talla_pdnmodulo.co_fabrica ,
+			dt_talla_pdnmodulo.co_planta ,
+			dt_talla_pdnmodulo.co_modulo ,
+			dt_talla_pdnmodulo.co_fabrica_exp ,
+			dt_talla_pdnmodulo.cs_liberacion ,
+			dt_talla_pdnmodulo.po ,
+			dt_talla_pdnmodulo.nu_cut,
+			dt_talla_pdnmodulo.co_fabrica_pt ,
+			dt_talla_pdnmodulo.co_linea ,
+			dt_talla_pdnmodulo.co_referencia ,
+			dt_talla_pdnmodulo.co_color_pt ,
+			dt_talla_pdnmodulo.tono ,
+			dt_talla_pdnmodulo.cs_particion ,
+			dt_talla_pdnmodulo.co_talla ,
+			dt_talla_pdnmodulo.cs_orden_talla ,
+			dt_talla_pdnmodulo.cs_prioridad ,
+			dt_talla_pdnmodulo.ca_programada ,
+			dt_talla_pdnmodulo.ca_producida ,
+			dt_talla_pdnmodulo.ca_pendiente ,
+			dt_talla_pdnmodulo.co_est_prog_talla ,
+			dt_talla_pdnmodulo.fuente_dato ,
+			dt_talla_pdnmodulo.fe_creacion ,
+			dt_talla_pdnmodulo.fe_actualizacion ,
+			dt_talla_pdnmodulo.usuario ,
+			dt_talla_pdnmodulo.instancia ,
+			dt_talla_pdnmodulo.ca_numerada ,
+			dt_talla_pdnmodulo.ca_proyectada ,
+			dt_talla_pdnmodulo.ca_actual ,
+			dt_talla_pdnmodulo.co_estado_merc,
+			pedpend_exp.fe_entrega
+FROM	dt_talla_pdnmodulo, pedpend_exp
+WHERE ( dt_talla_pdnmodulo.simulacion = :an_simulacion ) and          
+		( dt_talla_pdnmodulo.co_fabrica = :an_co_fabrica_modulo ) and          
+		( dt_talla_pdnmodulo.co_planta = :an_co_planta ) and          
+		( dt_talla_pdnmodulo.co_modulo = :an_co_modulo ) and          
+		( dt_talla_pdnmodulo.co_fabrica_exp = :an_co_fabrica_exp ) and          
+		( dt_talla_pdnmodulo.cs_liberacion = :an_cs_liberacion ) and          
+		( dt_talla_pdnmodulo.po = :as_po ) and          
+		( dt_talla_pdnmodulo.nu_cut = :as_cut ) and
+		( dt_talla_pdnmodulo.co_fabrica_pt = :an_co_fabrica_pt ) and          
+		( dt_talla_pdnmodulo.co_linea = :an_co_linea ) and          
+		( dt_talla_pdnmodulo.co_referencia = :an_co_referencia ) and          
+		( dt_talla_pdnmodulo.co_color_pt = :an_co_color_pt ) and          
+		( dt_talla_pdnmodulo.tono = :as_tono ) and          
+		( dt_talla_pdnmodulo.cs_particion = :an_cs_particion ) and
+		( dt_talla_pdnmodulo.po = pedpend_exp.nu_orden ) and
+		( dt_talla_pdnmodulo.nu_cut = pedpend_exp.nu_cut ) and
+		( dt_talla_pdnmodulo.co_fabrica_pt = pedpend_exp.co_fabrica ) and
+		( dt_talla_pdnmodulo.co_linea = pedpend_exp.co_linea ) and
+		( dt_talla_pdnmodulo.co_referencia = pedpend_exp.co_referencia ) and
+		( dt_talla_pdnmodulo.co_talla = pedpend_exp.co_talla ) and
+		( dt_talla_pdnmodulo.co_color_pt = pedpend_exp.co_color )" arguments=(("an_simulacion", number),("an_co_fabrica_modulo", number),("an_co_planta", number),("an_co_modulo", number),("an_co_fabrica_exp", number),("an_cs_liberacion", number),("as_po", string),("as_cut", string),("an_co_fabrica_pt", number),("an_co_linea", number),("an_co_referencia", number),("an_co_color_pt", number),("as_tono", string),("an_cs_particion", number))  sort="cs_orden_talla A " )
+text(band=header alignment="2" text="#" border="6" color="0" x="14" y="12" height="52" width="55" html.valueishtml="0"  name=cs_orden_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Talla" border="6" color="0" x="87" y="12" height="52" width="256" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="2" tabsequence=10 border="5" color="0" x="14" y="4" height="64" width="59" format="[general]" html.valueishtml="0"  name=cs_orden_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=header alignment="2" text="Proyectad." border="6" color="0" x="654" y="12" height="52" width="256" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Actual" border="6" color="0" x="933" y="12" height="52" width="256" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Numeradas" border="6" color="0" x="1211" y="12" height="52" width="256" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Programada" border="6" color="0" x="1486" y="12" height="52" width="270" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pendientes" border="6" color="0" x="1778" y="12" height="52" width="261" html.valueishtml="0"  name=ca_pendiente_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Estado" border="6" color="0" x="2062" y="12" height="52" width="274" html.valueishtml="0"  name=co_est_prog_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Prioridad" border="6" color="0" x="2359" y="12" height="52" width="201" html.valueishtml="0"  name=cs_prioridad_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="2" tabsequence=50 border="5" color="0" x="2062" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_est_prog_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=17 alignment="2" tabsequence=60 border="5" color="0" x="2359" y="4" height="64" width="201" format="[general]" html.valueishtml="0"  name=cs_prioridad visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=27 alignment="1" tabsequence=32766 border="5" color="0" x="1216" y="8" height="64" width="256" format="######,##0" html.valueishtml="0"  name=ca_numerada visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=28 alignment="1" tabsequence=32766 border="5" color="0" x="654" y="4" height="64" width="256" format="######,##0" html.valueishtml="0"  name=ca_proyectada visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=29 alignment="1" tabsequence=32766 border="5" color="0" x="937" y="4" height="64" width="256" format="######,##0" html.valueishtml="0"  name=ca_actual visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=18 alignment="1" tabsequence=30 border="5" color="0" x="1495" y="8" height="64" width="261" format="######,##0" html.valueishtml="0"  name=ca_programada visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=20 alignment="1" tabsequence=40 border="5" color="0" x="1778" y="4" height="64" width="261" format="######,##0" html.valueishtml="0"  name=ca_pendiente visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+compute(band=summary alignment="1" expression="sum(ca_numerada for all)"border="5" color="0" x="1216" y="4" height="64" width="256" format="######,##0" html.valueishtml="0"  name=compute_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+compute(band=summary alignment="1" expression="sum(ca_pendiente for all)"border="5" color="0" x="1778" y="4" height="64" width="261" format="0" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+compute(band=summary alignment="1" expression="sum(ca_programada for all)"border="5" color="0" x="1495" y="4" height="64" width="261" format="######,##0" html.valueishtml="0"  name=compute_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+compute(band=summary alignment="1" expression="sum(ca_actual for all)"border="5" color="0" x="937" y="4" height="64" width="256" format="######,##0" html.valueishtml="0"  name=compute_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+compute(band=summary alignment="1" expression="sum(ca_proyectada for all)"border="5" color="0" x="654" y="4" height="64" width="256" format="######,##0" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Fecha Desp" border="6" color="0" x="361" y="12" height="52" width="274" html.valueishtml="0"  name=t_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="2" tabsequence=20 border="5" color="0" x="87" y="4" height="64" width="256" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=31 alignment="0" tabsequence=0 border="5" color="0" x="361" y="4" height="64" width="274" format="dd/mm/yyyy" html.valueishtml="0"  name=pedpend_exp_fe_entrega visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
