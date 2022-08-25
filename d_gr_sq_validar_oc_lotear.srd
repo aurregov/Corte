@@ -1,0 +1,41 @@
+HA$PBExportHeader$d_gr_sq_validar_oc_lotear.srd
+$PBExportComments$/***********************************************************~r~nSA55269 - Ceiba/jjmonsal - 10-08-2016~r~nComentario:Se evita que cuando est$$HEX1$$e100$$ENDHEX$$n loteando una orden de corte, puede pasar que en otro modulo empiecen a lotear otra orden de corte de la misma orden
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_asignacion dbname="dt_pdnxmodulo.cs_asignacion" )
+ column=(type=long updatewhereclause=yes name=co_modulo dbname="dt_kamban_corte.co_modulo" )
+ retrieve="select b.cs_asignacion, c.co_modulo
+	from dt_pdnxmodulo a, dt_pdnxmodulo b, dt_kamban_corte c
+where a.cs_asignacion	=:an_ordenCorte
+	and a.co_fabrica_pt	= b.co_fabrica_pt
+	and a.co_linea			= b.co_linea
+	and a.co_referencia	= b.co_referencia
+	and a.co_color_pt		= b.co_color_pt
+	and a.cs_ordenpd_pt	= b.cs_ordenpd_pt
+	and a.cs_asignacion <> b.cs_asignacion
+	and b.co_estado_asigna in (9,11,15)
+	and b.cs_asignacion		= c.cs_orden_corte
+	and c.co_tipoprod			= (Select Numerico From m_constant_tela Where Var_Nombre ='TIPO_DE_PRODUCTO')
+	and c.co_centro_pdn		= (Select Numerico From m_constant_tela Where Var_Nombre ='CENTRO_ACTPROD')
+	and c.co_subcentro_pdn	= (Select Numerico From m_constant_tela Where Var_Nombre ='SUBCENTRO_PREPA_FUSI')
+	and (select count(*) from dt_lectura_bolsas d1
+			where d1.cs_orden_corte = b.cs_asignacion
+			and d1.fe_lectura is not null) > 0
+	and (select count(*) from dt_lectura_bolsas d1
+			where d1.cs_orden_corte = b.cs_asignacion
+			and d1.fe_lectura is null) > 0" arguments=(("an_ordenCorte", number)) )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Cs Asignacion" border="0" color="33554432" x="9" y="8" height="104" width="329" html.valueishtml="0"  name=cs_asignacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Kamban Corte
+Co Modulo" border="0" color="33554432" x="347" y="8" height="104" width="370" html.valueishtml="0"  name=co_modulo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="329" format="[general]" html.valueishtml="0"  name=cs_asignacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="347" y="8" height="64" width="370" format="[general]" html.valueishtml="0"  name=co_modulo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
