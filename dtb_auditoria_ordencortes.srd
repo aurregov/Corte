@@ -1,0 +1,72 @@
+HA$PBExportHeader$dtb_auditoria_ordencortes.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=116 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912"  height.autosize=yes)
+table(column=(type=long updatewhereclause=yes name=dt_rayas_telaxoc_cs_orden_corte dbname="dt_rayas_telaxoc.cs_orden_corte" )
+ column=(type=long updatewhereclause=yes name=dt_rayas_telaxoc_co_fabrica_tela dbname="dt_rayas_telaxoc.co_fabrica_tela" )
+ column=(type=long updatewhereclause=yes name=dt_rayas_telaxoc_co_reftel dbname="dt_rayas_telaxoc.co_reftel" )
+ column=(type=char(42) updatewhereclause=yes name=h_telas_de_reftel dbname="h_telas.de_reftel" )
+ column=(type=decimal(4) updatewhereclause=yes name=yds_liquidadas dbname="yds_liquidadas" )
+ column=(type=decimal(3) updatewhereclause=yes name=tela_devolucion dbname="tela_devolucion" )
+ column=(type=decimal(2) updatewhereclause=yes name=yds_despachadas dbname="yds_despachadas" )
+ column=(type=decimal(2) updatewhereclause=yes name=yds_solicitadas dbname="yds_solicitadas" )
+ retrieve="PBSELECT( VERSION(400) DISTINCT ()TABLE(NAME=~"dt_rayas_telaxoc~" )  TABLE(NAME=~"dt_liquidaxespacio~" )  TABLE(NAME=~"h_telas~" ) COLUMN(NAME=~"dt_rayas_telaxoc.cs_orden_corte~") COLUMN(NAME=~"dt_rayas_telaxoc.co_fabrica_tela~") COLUMN(NAME=~"dt_rayas_telaxoc.co_reftel~") COLUMN(NAME=~"h_telas.de_reftel~") COMPUTE(NAME=~"(SELECT sum(dt_liq_rolxespacio.ca_cortados + dt_liq_rolxespacio.ca_remanente + dt_liq_rolxespacio.ca_imperfectos + dt_liq_rolxespacio.ca_empates + dt_liq_rolxespacio.ca_faltantes - dt_liq_rolxespacio.ca_excedentes )  
+    FROM dt_liq_rolxespacio,   
+         dt_rayas_telaxoc  
+   WHERE ( dt_liq_rolxespacio.cs_orden_corte = dt_rayas_telaxoc.cs_orden_corte ) and  
+         ( dt_rayas_telaxoc.cs_agrupacion = dt_liq_rolxespacio.cs_agrupacion ) and  
+         ( dt_rayas_telaxoc.cs_base_trazos = dt_liq_rolxespacio.cs_base_trazos ) and  
+         ( dt_rayas_telaxoc.cs_pdn = dt_liq_rolxespacio.cs_pdn ) and  
+         ( ( dt_liq_rolxespacio.cs_orden_corte = dt_liquidaxespacio.cs_orden_corte) AND  
+         ( dt_rayas_telaxoc.raya = :an_raya )   
+) )yds_liquidadas    
+~") COMPUTE(NAME=~"(  SELECT sum(m_rollosdev.ca_yds)  
+    FROM m_rollosdev  
+   WHERE ( m_rollosdev.cs_ordencr = dt_rayas_telaxoc.cs_orden_corte ) AND  
+         ( m_rollosdev.co_fabrica = dt_rayas_telaxoc.co_fabrica_tela ) AND  
+         ( m_rollosdev.co_reftel = dt_rayas_telaxoc.co_reftel ) )tela_devolucion
+~") COMPUTE(NAME=~"(SELECT sum(dt_telasxoc.ca_entregada) 			 FROM dt_telasxoc  
+        		WHERE ( dt_telasxoc.cs_orden_corte = dt_rayas_telaxoc.cs_orden_corte ) and  
+						( dt_telasxoc.co_fabrica = dt_rayas_telaxoc.co_fabrica_tela ) and  
+						( dt_telasxoc.co_reftel = dt_rayas_telaxoc.co_reftel ) and  
+						( dt_telasxoc.co_caract = dt_rayas_telaxoc.co_caract ) and  
+						( dt_telasxoc.diametro = dt_rayas_telaxoc.diametro ) and  
+						 
+						( ( dt_telasxoc.cs_orden_corte = dt_liquidaxespacio.cs_orden_corte) AND  
+						( dt_rayas_telaxoc.raya = :an_raya )))yds_despachadas~") COMPUTE(NAME=~"(SELECT sum(dt_telasxoc.ca_requerida + dt_telasxoc.ca_adicional) 				 FROM dt_telasxoc  
+				WHERE ( dt_telasxoc.cs_orden_corte = dt_rayas_telaxoc.cs_orden_corte ) and  
+						( dt_telasxoc.co_fabrica = dt_rayas_telaxoc.co_fabrica_tela ) and  
+						( dt_telasxoc.co_reftel = dt_rayas_telaxoc.co_reftel ) and  
+						( dt_telasxoc.co_caract = dt_rayas_telaxoc.co_caract ) and  
+						( dt_telasxoc.diametro = dt_rayas_telaxoc.diametro ) and  
+						( ( dt_telasxoc.cs_orden_corte = dt_liquidaxespacio.cs_orden_corte) AND  
+						( dt_rayas_telaxoc.raya = :an_raya )))yds_solicitadas~")    JOIN (LEFT=~"dt_rayas_telaxoc.co_reftel~"    OP =~"=~"RIGHT=~"h_telas.co_reftel~" )    JOIN (LEFT=~"dt_rayas_telaxoc.co_caract~"    OP =~"=~"RIGHT=~"h_telas.co_caract~" )    JOIN (LEFT=~"dt_liquidaxespacio.cs_orden_corte~"    OP =~"=~"RIGHT=~"dt_rayas_telaxoc.cs_orden_corte~" )    JOIN (LEFT=~"dt_liquidaxespacio.cs_agrupacion~"    OP =~"=~"RIGHT=~"dt_rayas_telaxoc.cs_agrupacion~" )    JOIN (LEFT=~"dt_liquidaxespacio.cs_base_trazos~"    OP =~"=~"RIGHT=~"dt_rayas_telaxoc.cs_base_trazos~" )WHERE(    EXP1 =~"dt_rayas_telaxoc.raya~"   OP =~"=~"    EXP2 =~":an_raya~"    LOGIC =~"and~" ) WHERE(    EXP1 =~"extend(dt_liquidaxespacio.fe_liquidacion,year to day)~"   OP =~"between~"    EXP2 =~":ad_fecha_inicial and :ad_fecha_final~"    LOGIC =~"and~" ) WHERE(    EXP1 =~"dt_rayas_telaxoc.co_estado~"   OP =~"=~"    EXP2 =~"6~" ) ) ARG(NAME = ~"an_raya~" TYPE = number)  ARG(NAME = ~"ad_fecha_inicial~" TYPE = date)  ARG(NAME = ~"ad_fecha_final~" TYPE = date) " arguments=(("an_raya", number),("ad_fecha_inicial", date),("ad_fecha_final", date)) )
+text(band=header alignment="2" text="Tela" border="0" color="0" x="306" y="4" height="112" width="1088" html.valueishtml="0"  name=co_reftel_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+text(band=header alignment="2" text="Orden
+ Corte" border="0" color="0" x="0" y="4" height="112" width="174" html.valueishtml="0"  name=cs_orden_corte_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+text(band=header alignment="2" text="Fab.
+Tela" border="0" color="0" x="178" y="4" height="112" width="123" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+text(band=header alignment="2" text="Yardas
+Requeridas" border="0" color="0" x="1399" y="4" height="112" width="297" html.valueishtml="0"  name=ca_requerida_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+text(band=header alignment="2" text="Yardas
+ Entregada" border="0" color="0" x="1701" y="4" height="112" width="297" html.valueishtml="0"  name=ca_entregada_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+text(band=header alignment="2" text="Yardas
+Liquidadas" border="0" color="0" x="2002" y="4" height="112" width="297" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+text(band=header alignment="2" text="Yardas
+Devolucion" border="0" color="0" x="2304" y="4" height="112" width="297" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+text(band=header alignment="2" text="Saldo" border="0" color="0" x="2606" y="4" height="112" width="297" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="0" y="0" height="64" width="174" format="[general]" html.valueishtml="0"  name=dt_rayas_telaxoc_cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="134217738" x="306" y="0" height="64" width="146" format="[general]" html.valueishtml="0"  name=dt_rayas_telaxoc_co_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="178" y="0" height="64" width="123" format="[general]" html.valueishtml="0"  name=dt_rayas_telaxoc_co_fabrica_tela visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="457" y="0" height="64" width="942" format="[general]" html.valueishtml="0"  name=h_telas_de_reftel visible="1" edit.limit=42 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="1403" y="0" height="64" width="293" format="[general]" html.valueishtml="0"  name=yds_solicitadas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="2679" y="176" height="64" width="297" format="[general]" html.valueishtml="0"  name=tela_devolucion visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="1701" y="0" height="64" width="297" format="[general]" html.valueishtml="0"  name=yds_despachadas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="2002" y="0" height="64" width="297" format="###,###.##" html.valueishtml="0"  name=yds_liquidadas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=detail alignment="1" expression="if(isNull( tela_devolucion ), 0,  tela_devolucion  )"border="0" color="33554432" x="2304" y="0" height="64" width="297" format="###,###.##" html.valueishtml="0"  name=tela_devolucion1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=detail alignment="1" expression=" (yds_despachadas - yds_liquidadas ) - tela_devolucion1 "border="0" color="33554432~tif(   saldo < 0,255,0)" x="2606" y="0" height="64" width="297" format="###,###.##" html.valueishtml="0"  name=saldo visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
