@@ -1,0 +1,30 @@
+HA$PBExportHeader$dtb_adhesivos_partes_ordencorte_bk.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 0 print.margin.right = 0 print.margin.top = 0 print.margin.bottom = 0 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no print.columns=2 print.columns.width=900 )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=704 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=dt_partes_ordencr_cs_orden_corte dbname="cs_orden_corte" )
+ column=(type=char(30) updatewhereclause=yes name=m_partes_de_parte dbname="de_parte" )
+ column=(type=long updatewhereclause=yes name=dt_partes_ordencr_co_parte dbname="co_parte" )
+ column=(type=char(14) updatewhereclause=yes name=parte dbname="parte" )
+ retrieve="  SELECT dt_partes_ordencr.cs_orden_corte,   
+         m_partes.de_parte,   
+         dt_partes_ordencr.co_parte,   
+         '*' || substr((rpad((day(fe_creacion) + month(fe_creacion) + year(fe_creacion)* m_partes.co_parte),4,~"0~")),2,2) || lpad(dt_partes_ordencr.cs_orden_corte, 6, ~"0~") || lpad(dt_partes_ordencr.co_parte, 4, ~"0~") || '*' parte
+    FROM dt_partes_ordencr,   
+         m_partes  
+   WHERE ( dt_partes_ordencr.co_parte = m_partes.co_parte ) and  
+         ( ( dt_partes_ordencr.cs_orden_corte = :al_ordencorte ) )    
+" arguments=(("al_ordencorte", number)) )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="96" y="168" height="68" width="713" format="[general]" html.valueishtml="0"  name=m_partes_de_parte visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Parte:" border="0" color="0" x="96" y="100" height="52" width="155" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="101" y="268" height="76" width="754" format="[general]" html.valueishtml="0"  name=parte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="SKANDATArC39" font.height="-21" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="457" y="28" height="52" width="347" format="[general]" html.valueishtml="0"  name=dt_partes_ordencr_cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Orden Corte:" border="0" color="0" x="96" y="28" height="52" width="338" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="137" y="360" height="76" width="754" format="[general]" html.valueishtml="0"  name=parte_1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="SKANDATArC39" font.height="-21" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
