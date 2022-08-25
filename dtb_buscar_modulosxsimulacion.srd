@@ -1,0 +1,74 @@
+HA$PBExportHeader$dtb_buscar_modulosxsimulacion.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=128 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica dbname="m_modulos.co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_planta dbname="m_modulos.co_planta" )
+ column=(type=char(30) updatewhereclause=yes name=de_planta dbname="m_plantas.de_planta" )
+ column=(type=long updatewhereclause=yes name=co_modulo dbname="m_modulos.co_modulo" )
+ column=(type=char(30) updatewhereclause=yes name=de_modulo dbname="m_modulos.de_modulo" )
+ column=(type=long updatewhereclause=yes name=co_tipoprod dbname="m_modulos.co_tipoprod" )
+ column=(type=long updatewhereclause=yes name=co_centro_pdn dbname="m_modulos.co_centro_pdn" )
+ column=(type=char(30) updatewhereclause=yes name=de_centro_pdn dbname="m_centros_pdn.de_centro_pdn" )
+ column=(type=long updatewhereclause=yes name=co_subcentro_pdn dbname="m_modulos.co_subcentro_pdn" )
+ column=(type=char(30) updatewhereclause=yes name=de_subcentro_pdn dbname="m_subcentros_pdn.de_subcentro_pdn" )
+ column=(type=long updatewhereclause=yes name=simulacion dbname="dt_pdnxmodulo.simulacion" )
+ retrieve="            SELECT UNIQUE m_modulos.co_fabrica,   
+         m_modulos.co_planta,   
+         m_plantas.de_planta,   
+         m_modulos.co_modulo,   
+         m_modulos.de_modulo,   
+         m_modulos.co_tipoprod,   
+         m_modulos.co_centro_pdn,   
+         m_centros_pdn.de_centro_pdn,   
+         m_modulos.co_subcentro_pdn,   
+         m_subcentros_pdn.de_subcentro_pdn,   
+         dt_pdnxmodulo.simulacion  
+    FROM m_modulos, outer  
+         dt_pdnxmodulo,   
+         m_centros_pdn,   
+         m_plantas,   
+         m_subcentros_pdn  
+   WHERE ( m_modulos.co_fabrica = dt_pdnxmodulo.co_fabrica ) and  
+         ( m_modulos.co_planta = dt_pdnxmodulo.co_planta ) and  
+         ( m_modulos.co_modulo = dt_pdnxmodulo.co_modulo ) and  
+         ( m_modulos.co_tipoprod = m_centros_pdn.co_tipoprod ) and  
+         ( m_modulos.co_centro_pdn = m_centros_pdn.co_centro_pdn ) and  
+         ( m_modulos.co_fabrica = m_plantas.co_fabrica ) and  
+         ( m_modulos.co_planta = m_plantas.co_planta ) and  
+         ( m_modulos.co_tipoprod = m_subcentros_pdn.co_tipoprod ) and  
+         ( m_modulos.co_centro_pdn = m_subcentros_pdn.co_centro_pdn ) and  
+         ( m_modulos.co_subcentro_pdn = m_subcentros_pdn.co_subcentro_pdn ) and
+         ( ( m_modulos.co_fabrica > 0 ) AND  
+           ( m_modulos.co_fabrica =:an_co_fabrica ) AND 
+			  ( m_modulos.co_planta =:an_co_planta ) AND 
+			  ( m_modulos.co_modulo =:an_co_modulo )  
+         )    AND
+			( dt_pdnxmodulo.simulacion =:an_simulacion)
+" arguments=(("an_co_fabrica", number),("an_co_planta", number),("an_co_modulo", number),("an_simulacion", number)) )
+text(band=header alignment="2" text="Cia" border="6" color="0" x="14" y="16" height="104" width="251"  name=m_modulos_co_fabrica_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Planta" border="6" color="0" x="283" y="16" height="104" width="489"  name=m_modulos_co_planta_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="TipoProd" border="6" color="0" x="1422" y="16" height="104" width="274"  name=m_modulos_co_tipoprod_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="CentroPdn" border="6" color="0" x="1714" y="16" height="104" width="613"  name=m_modulos_co_centro_pdn_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="SubcentroPdn" border="6" color="0" x="2345" y="16" height="104" width="631"  name=m_modulos_co_subcentro_pdn_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Simulaci$$HEX1$$f300$$ENDHEX$$n" border="6" color="0" x="4663" y="16" height="104" width="329"  name=dt_pdnxmodulo_simulacion_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Modulo" border="6" color="0" x="791" y="16" height="104" width="608"  name=m_modulos_co_modulo_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="# de Simulaci$$HEX1$$f300$$ENDHEX$$n" border="6" color="0" x="2994" y="16" height="104" width="238"  name=t_1  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="5" color="0" x="14" y="4" height="64" width="59" format="[general]"  name=co_fabrica edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="96" y="4" height="64" width="169" format="[general]"  name=co_fabrica_1 dddw.name=dddw_m_fabricas dddw.displaycolumn=de_fabrica dddw.datacolumn=co_fabrica dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="5" color="0" x="288" y="4" height="64" width="73" format="[general]"  name=co_planta edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="0" x="384" y="4" height="64" width="389" format="[general]"  name=de_planta edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="5" color="0" x="795" y="4" height="64" width="110" format="[general]"  name=co_modulo edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="0" x="928" y="4" height="64" width="480" format="[general]"  name=de_modulo edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="5" color="0" x="1431" y="4" height="64" width="55" format="[general]"  name=co_tipoprod edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="5" color="0" x="1509" y="4" height="64" width="178" format="[general]"  name=co_tipoprod_1 dddw.name=dddw_m_tipo_producto dddw.displaycolumn=de_tipoprod dddw.datacolumn=co_tipoprod dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="5" color="0" x="1710" y="4" height="64" width="87" format="[general]"  name=co_centro_pdn edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="5" color="0" x="1819" y="4" height="64" width="498" format="[general]"  name=de_centro_pdn edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="5" color="0" x="2341" y="4" height="64" width="96" format="[general]"  name=co_subcentro_pdn edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="5" color="0" x="2459" y="4" height="64" width="517" format="[general]"  name=de_subcentro_pdn edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="5" color="0" x="2994" y="4" height="64" width="238" format="[general]"  name=simulacion edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
