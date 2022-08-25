@@ -1,0 +1,56 @@
+HA$PBExportHeader$dtb_detalle_lotes_confeccion_resp.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=76 color="536870912" )
+summary(height=20 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=cs_orden_corte dbname="dt_lote_confe.cs_orden_corte" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_loteo_confe dbname="dt_lote_confe.cs_loteo_confe" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_color_pt dbname="dt_lote_confe.co_color_pt" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_talla dbname="dt_lote_confe.co_talla" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_fabrica_refpt dbname="dt_lote_confe.co_fabrica_refpt" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_linea dbname="dt_lote_confe.co_linea" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_referencia dbname="dt_lote_confe.co_referencia" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_calidad dbname="dt_lote_confe.co_calidad" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_loteada dbname="dt_lote_confe.ca_loteada" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_remisionada dbname="dt_lote_confe.ca_remisionada" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="dt_lote_confe.fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="dt_lote_confe.fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="dt_lote_confe.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="dt_lote_confe.instancia" )
+ retrieve="  SELECT  dt_lote_confe.cs_orden_corte , 
+          dt_lote_confe.cs_loteo_confe ,
+          dt_lote_confe.co_color_pt , 
+          dt_lote_confe.co_talla , 
+          dt_lote_confe.co_fabrica_refpt ,
+          dt_lote_confe.co_linea ,
+          dt_lote_confe.co_referencia , 
+          dt_lote_confe.co_calidad ,
+          dt_lote_confe.ca_loteada , 
+          dt_lote_confe.ca_remisionada ,  
+          dt_lote_confe.fe_creacion ,  
+          dt_lote_confe.fe_actualizacion , 
+          dt_lote_confe.usuario , 
+          dt_lote_confe.instancia  
+        FROM        dt_lote_confe      
+        WHERE ( dt_lote_confe.cs_orden_corte = :al_orden_corte ) and          ( dt_lote_confe.cs_loteo_confe = :ai_lote )   " update="dt_lote_confe" updatewhere=1 updatekeyinplace=no arguments=(("al_orden_corte", number),("ai_lote", number)) )
+text(band=header alignment="2" text="L$$HEX1$$ed00$$ENDHEX$$nea" border="6" color="0" x="910" y="12" height="52" width="165" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Referencia" border="6" color="0" x="1093" y="12" height="52" width="256" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unidades" border="6" color="0" x="1367" y="12" height="52" width="215" html.valueishtml="0"  name=ca_loteada_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Remisionada" border="6" color="0" x="1600" y="12" height="52" width="293" html.valueishtml="0"  name=ca_remisionada_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=40 border="5" color="0" x="910" y="4" height="64" width="165" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=7 alignment="1" tabsequence=50 border="5" color="0" x="1093" y="4" height="64" width="256" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=9 alignment="1" tabsequence=60 border="5" color="0" x="1367" y="4" height="64" width="215" format="[general]" html.valueishtml="0"  name=ca_loteada visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="5" color="0" x="1600" y="4" height="64" width="293" format="[general]" html.valueishtml="0"  name=ca_remisionada visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Color Pt" border="6" color="0" x="14" y="12" height="52" width="251" html.valueishtml="0"  name=co_color_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=10 border="5" color="0" x="14" y="4" height="64" width="251" format="[general]" html.valueishtml="0"  name=co_color_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Talla" border="6" color="0" x="283" y="12" height="52" width="146" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=20 border="5" color="0" x="283" y="4" height="64" width="146" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Fabrica Pt" border="6" color="0" x="448" y="12" height="52" width="443" html.valueishtml="0"  name=co_fabrica_refpt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=30 border="5" color="0" x="448" y="4" height="64" width="443" format="[general]" html.valueishtml="0"  name=co_fabrica_refpt visible="1" dddw.name=dddw_fabricas dddw.displaycolumn=de_fabrica dddw.datacolumn=co_fabrica dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.imemode=0 dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
