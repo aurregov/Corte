@@ -1,0 +1,17 @@
+HA$PBExportHeader$s_parametros_barra.srs
+$PBExportComments$Estructura de los parametros para crear una barra
+global type s_parametros_barra from structure
+	string		llave
+	long		entero[]
+	string		cadena[]
+	decimal { 4 }		decimal[]
+	datetime		fechahora[]
+	boolean		hay_parametros
+	decimal { 0 }		rgb
+	integer		co_maquina
+	long		rowid_datos
+	long		barraid
+	datetime		fecha_inicio
+	datetime		fecha_fin
+end type
+
