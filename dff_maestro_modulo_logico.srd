@@ -1,0 +1,40 @@
+HA$PBExportHeader$dff_maestro_modulo_logico.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=648 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=m_modulos_co_fabrica dbname="m_modulos.co_fabrica" )
+ column=(type=long updatewhereclause=yes name=m_modulos_co_planta dbname="m_modulos.co_planta" )
+ column=(type=long updatewhereclause=yes name=m_modulos_co_modulo dbname="m_modulos.co_modulo" )
+ column=(type=char(30) updatewhereclause=yes name=m_modulos_de_modulo dbname="m_modulos.de_modulo" )
+ column=(type=char(50) updatewhereclause=yes name=m_fabricas_razon_social dbname="m_fabricas.razon_social" )
+ column=(type=char(30) updatewhereclause=yes name=m_plantas_de_planta dbname="m_plantas.de_planta" )
+ retrieve="  SELECT  m_modulos.co_fabrica ,           
+m_modulos.co_planta ,           
+m_modulos.co_modulo ,           
+m_modulos.de_modulo ,           
+m_fabricas.razon_social ,           
+m_plantas.de_planta
+     
+        FROM        m_modulos ,  outer                
+m_fabricas ,                  
+m_plantas
+     
+        WHERE ( m_modulos.co_fabrica = m_fabricas.co_fabrica ) 
+and          ( m_modulos.co_fabrica = m_plantas.co_fabrica ) 
+and          ( m_modulos.co_planta = m_plantas.co_planta ) 
+and          ( m_modulos.co_fabrica = :an_fabrica 
+and          ( m_modulos.co_planta = :an_planta ) 
+and          ( m_modulos.co_modulo = :an_modulo ) 
+and          ( m_modulos.co_tipoprod = 1 ) )   " arguments=(("an_fabrica", number),("an_planta", number),("an_modulo", number)) )
+text(band=detail alignment="0" text="F$$HEX1$$e100$$ENDHEX$$brica:"border="0" color="0" x="23" y="20" height="52" width="238"  name=m_modulos_co_fabrica_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="0" x="416" y="20" height="64" width="1166" format="[general]"  name=m_fabricas_razon_social edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Planta:"border="0" color="0" x="23" y="132" height="52" width="206"  name=m_modulos_co_planta_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="5" color="0" x="416" y="120" height="64" width="709" format="[general]"  name=m_plantas_de_planta edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="M$$HEX1$$f300$$ENDHEX$$dulo:"border="0" color="0" x="23" y="236" height="52" width="238"  name=m_modulos_co_modulo_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="5" color="0" x="416" y="220" height="64" width="709" format="[general]"  name=m_modulos_de_modulo edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="283" y="20" height="64" width="101" format="[general]"  name=m_modulos_co_fabrica edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="0" x="283" y="120" height="64" width="101" format="[general]"  name=m_modulos_co_planta edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="0" x="283" y="220" height="64" width="101" format="[general]"  name=m_modulos_co_modulo edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")
