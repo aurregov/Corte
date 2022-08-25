@@ -1,0 +1,29 @@
+HA$PBExportHeader$s_base_info_usuario.srs
+$PBExportComments$OBJETO BASE- Estructura para almacenar la informacion basica del usuario que ingresa al sistema, se llena en la ventana de conexion.
+global type s_base_info_usuario from structure
+	string		codigo_usuario
+	integer		codigo_aplicacion
+	integer		codigo_perfil
+	string		nombre_usuario
+	string		nombre_aplicacion
+	string		nombre_perfil
+	string		ruta_aplicacion
+	string		cargo_usuario
+	string		departamento_usuario
+	integer		numero_opciones
+	string		ruta_ini
+	string		instancia
+	string		password
+	integer		codigo
+	string		ruta_log
+	string		ruta_admon
+	string		ruta_video
+	string		ruta_adhesivo
+	string		log_uso
+	long		sesion_commit
+	long		sesion_dirty
+	string		nombre_computador
+	string		fabrica
+	integer		co_planta_pro
+end type
+
