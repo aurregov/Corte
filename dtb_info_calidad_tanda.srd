@@ -1,0 +1,69 @@
+HA$PBExportHeader$dtb_info_calidad_tanda.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_reftel dbname="co_reftel" )
+ column=(type=long updatewhereclause=yes name=lote dbname="lote" )
+ column=(type=long updatewhereclause=yes name=ficho dbname="ficho" )
+ column=(type=decimal(2) updatewhereclause=yes name=peso_desp_compac dbname="peso_desp_compac" )
+ column=(type=decimal(2) updatewhereclause=yes name=est_larg_des_comp dbname="est_larg_des_comp" )
+ column=(type=decimal(2) updatewhereclause=yes name=est_anch_desp_comp dbname="est_anch_desp_comp" )
+ column=(type=char(200) updatewhereclause=yes name=obs_corte dbname="obs_corte" )
+ column=(type=char(12) updatewhereclause=yes name=prueba_mold_est_larg dbname="prueba_mold_est_larg" )
+ column=(type=char(12) updatewhereclause=yes name=prueba_mold_est_anc dbname="prueba_mold_est_anc" )
+ column=(type=char(12) updatewhereclause=yes name=prueba_mold_viro dbname="prueba_mold_viro" )
+ column=(type=char(84) updatewhereclause=yes name=estab_larg_ancho dbname="estab_larg_ancho" )
+ retrieve="  SELECT m_norma_cal.co_reftel,   
+         m_norma_cal.lote,   
+         m_norma_cal.ficho,   
+         m_norma_cal.peso_desp_compac,   
+         m_norma_cal.est_larg_des_comp,   
+         m_norma_cal.est_anch_desp_comp,
+			m_norma_cal.obs_corte,
+         m_norma_cal.prueba_mold_est_larg,
+         m_norma_cal.prueba_mold_est_anc,
+         m_norma_cal.prueba_mold_viro,
+         (select  estab_largo || ~"  | ~" || estan_ancho from dt_molderia_prendas
+          where co_fabrica = h_ordenpd_pt.co_fabrica and co_linea = h_ordenpd_pt.co_linea
+            and co_referencia = h_ordenpd_pt.co_referencia and co_reftel = m_norma_cal.co_reftel
+            and co_color = m_norma_cal.co_color and sw_num_molderia = m_norma_cal.co_molderia_prenda) as estab_larg_ancho
+    FROM m_norma_cal, h_ordenpd_pt   
+   WHERE ( m_norma_cal.cs_tanda = :al_tanda ) AND  
+         ( m_norma_cal.cs_ordenpd_pt = :al_ordenpd_pt )   AND
+         ( m_norma_cal.cs_ordenpd_pt = h_ordenpd_pt.cs_ordenpd_pt)
+            
+
+  " arguments=(("al_tanda", number),("al_ordenpd_pt", number))  sort="co_reftel A lote A ficho A " )
+text(band=header alignment="2" text="Est. Lrg
+Comp." border="6" color="33554432" x="699" y="8" height="104" width="192" html.valueishtml="0"  name=est_larg_des_comp_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ref.
+Tela" border="6" color="33554432" x="9" y="8" height="104" width="247" html.valueishtml="0"  name=co_reftel_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="
+Lote" border="6" color="33554432" x="265" y="8" height="104" width="238" html.valueishtml="0"  name=lote_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Est. Anch
+Comp." border="6" color="33554432" x="901" y="8" height="104" width="238" html.valueishtml="0"  name=est_anch_desp_comp_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Peso 
+Comp" border="6" color="33554432" x="512" y="8" height="104" width="178" html.valueishtml="0"  name=peso_desp_compac_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Observaciones Corte" border="6" color="0" x="2368" y="8" height="104" width="1015" html.valueishtml="0"  name=obs_corte_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Prueb Mold Est Larg" border="6" color="0" x="1147" y="8" height="104" width="265" html.valueishtml="0"  name=prueba_mold_est_larg_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="5" color="33554432" x="9" y="0" height="56" width="247" format="[general]" html.valueishtml="0"  name=co_reftel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="5" color="33554432" x="512" y="0" height="56" width="178" format="#,##0.00 " html.valueishtml="0"  name=peso_desp_compac visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="5" color="33554432" x="699" y="0" height="56" width="192" format="#,##0.00 " html.valueishtml="0"  name=est_larg_des_comp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="5" color="33554432" x="901" y="0" height="56" width="238" format="#,##0.00 " html.valueishtml="0"  name=est_anch_desp_comp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="33554432" x="265" y="0" height="56" width="238" format="[general]" html.valueishtml="0"  name=lote visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="5" color="33554432" x="2368" y="0" height="56" width="1015" format="[general]" html.valueishtml="0"  name=obs_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="1147" y="0" height="56" width="265" format="[general]" html.valueishtml="0"  name=prueba_mold_est_larg visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="1422" y="0" height="56" width="265" format="[general]" html.valueishtml="0"  name=prueba_mold_est_anc visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="1696" y="0" height="56" width="265" format="[general]" html.valueishtml="0"  name=prueba_mold_viro visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="1970" y="0" height="52" width="389" format="[general]" html.valueishtml="0"  name=estab_larg_ancho visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="65535" )
+text(band=header alignment="2" text="Prueb Mold Est Anc" border="6" color="0" x="1422" y="8" height="104" width="265" html.valueishtml="0"  name=prueba_mold_est_anc_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Prueb Mold Viro" border="6" color="0" x="1696" y="8" height="104" width="265" html.valueishtml="0"  name=prueba_mold_viro_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Molderia Prenda Larg Ancho" border="6" color="0" x="1970" y="8" height="104" width="389" html.valueishtml="0"  name=estab_larg_ancho_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="65535" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
