@@ -1,0 +1,79 @@
+HA$PBExportHeader$d_gr_info_opestilo.srd
+$PBExportComments$datawindow que muestra informaci$$HEX1$$f300$$ENDHEX$$n relacionada con la op estilo que se va a cerrar.
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=76 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica dbname="h_ordenpd_pt.co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="h_ordenpd_pt.co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="h_ordenpd_pt.co_referencia" )
+ column=(type=char(50) updatewhereclause=yes name=de_referencia dbname="h_preref_pv.de_referencia" )
+ column=(type=long updatewhereclause=yes name=co_cliente dbname="h_ordenpd_pt.co_cliente" )
+ column=(type=char(70) updatewhereclause=yes name=razon_social dbname="cc_cliente.razon_social" )
+ column=(type=char(20) updatewhereclause=yes name=nu_orden dbname="dt_pedidosxorden.nu_orden" )
+ column=(type=long updatewhereclause=yes key=yes name=cs_ordenpd_pt dbname="h_ordenpd_pt.cs_ordenpd_pt" )
+ column=(type=long update=yes updatewhereclause=yes name=co_estado_orden dbname="h_ordenpd_pt.co_estado_orden" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=observacion dbname="h_ordenpd_pt.observacion" )
+ column=(type=long updatewhereclause=yes name=tipo_pedido dbname="h_ordenpd_pt.tipo_pedido" )
+ column=(type=long update=yes updatewhereclause=yes name=co_cpto_cierra dbname="h_ordenpd_pt.co_cpto_cierra" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="h_ordenpd_pt.fe_actualizacion" )
+ column=(type=long updatewhereclause=yes name=sw_seleccion dbname="sw_seleccion" values="	1/	0" )
+ retrieve="SELECT     op.co_fabrica ,
+           op.co_linea ,
+           op.co_referencia ,
+           h_preref_pv.de_referencia ,
+           op.co_cliente ,
+           cc_cliente.razon_social ,
+           dt_pedidosxorden.nu_orden ,
+           op.cs_ordenpd_pt ,
+           op.co_estado_orden ,
+           op.observacion  ,op.tipo_pedido, op.co_cpto_cierra,
+           op.fe_actualizacion,
+           0 sw_seleccion   
+        FROM h_ordenpd_pt op ,
+           outer h_preref_pv ,
+           cc_cliente ,
+           dt_pedidosxorden     
+     WHERE ( op.co_fabrica = h_preref_pv.co_fabrica ) and
+           ( op.co_linea = h_preref_pv.co_linea ) and
+           (Cast(op.co_referencia as char(15) ) = h_preref_pv.co_referencia ) and
+           ( op.co_cliente = cc_cliente.co_cliente ) and
+           ( ( op.cs_ordenpd_pt in ( :an_opestilo ) ) and
+           ( op.cs_ordenpd_pt = dt_pedidosxorden.cs_ordenpd_pt ) )  
+				AND op.co_estado_orden NOT IN(5,6)
+          " update="h_ordenpd_pt" updatewhere=0 updatekeyinplace=no arguments=(("an_opestilo", numberlist)) )
+text(band=header alignment="2" text="F$$HEX1$$e100$$ENDHEX$$brica" border="6" color="33554432" x="352" y="8" height="56" width="210" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+text(band=header alignment="2" text="L$$HEX1$$ed00$$ENDHEX$$nea" border="6" color="33554432" x="571" y="8" height="56" width="215" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+text(band=header alignment="2" text="Referencia" border="6" color="33554432" x="795" y="8" height="56" width="315" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+text(band=header alignment="2" text="Des. Referencia" border="6" color="33554432" x="1120" y="8" height="56" width="937" html.valueishtml="0"  name=de_referencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+text(band=header alignment="2" text="Cliente" border="6" color="33554432" x="2066" y="8" height="56" width="274" html.valueishtml="0"  name=co_cliente_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+text(band=header alignment="2" text="Razon Social" border="6" color="33554432" x="2350" y="8" height="56" width="690" html.valueishtml="0"  name=razon_social_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+text(band=header alignment="2" text="P.O" border="6" color="33554432" x="3049" y="8" height="56" width="320" html.valueishtml="0"  name=nu_orden_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+text(band=header alignment="0" text="Op Estilo" border="6" color="33554432" x="110" y="8" height="56" width="233" html.valueishtml="0"  name=h_ordenpd_pt_cs_ordenpd_pt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+text(band=header alignment="0" text="H Ordenpd Pt Co Estado Orden" border="0" color="33554432" x="4338" y="4" height="76" width="270" html.valueishtml="0"  name=h_ordenpd_pt_co_estado_orden_t visible="0"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="H Ordenpd Pt Observacion" border="0" color="33554432" x="4617" y="4" height="76" width="1143" html.valueishtml="0"  name=h_ordenpd_pt_observacion_t visible="0"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Tipo Pedido" border="0" color="33554432" x="3378" y="4" height="76" width="165" html.valueishtml="0"  name=tipo_pedido_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Cpto Cierra" border="0" color="33554432" x="3552" y="4" height="76" width="110" html.valueishtml="0"  name=co_cpto_cierra_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Fe Actualizacion" border="0" color="33554432" x="3671" y="4" height="76" width="658" html.valueishtml="0"  name=fe_actualizacion_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="0" color="33554432" x="571" y="8" height="56" width="215" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tif(getrow() = Currentrow(),13172725,RGB(255,255,255))" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="795" y="8" height="56" width="315" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tif(getrow() = Currentrow(),13172725,RGB(255,255,255))" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1120" y="8" height="56" width="937" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tif(getrow() = Currentrow(),13172725,RGB(255,255,255))" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="33554432" x="2066" y="8" height="56" width="274" format="[general]" html.valueishtml="0"  name=co_cliente visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tif(getrow() = Currentrow(),13172725,RGB(255,255,255))" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="2350" y="8" height="56" width="690" format="[general]" html.valueishtml="0"  name=razon_social visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tif(getrow() = Currentrow(),13172725,RGB(255,255,255))" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="3049" y="8" height="56" width="320" format="[general]" html.valueishtml="0"  name=nu_orden visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tif(getrow() = Currentrow(),13172725,RGB(255,255,255))" )
+column(band=detail id=9 alignment="0" tabsequence=50 border="0" color="33554432" x="4338" y="0" height="56" width="270" format="[general]" html.valueishtml="0"  name=co_estado_orden visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=10 alignment="0" tabsequence=60 border="0" color="33554432" x="4617" y="0" height="56" width="1143" format="[general]" html.valueishtml="0"  name=observacion visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="33554432" x="352" y="8" height="56" width="210" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tif(getrow() = Currentrow(),13172725,RGB(255,255,255))" )
+column(band=detail id=11 alignment="0" tabsequence=20 border="0" color="33554432" x="3378" y="0" height="56" width="165" format="[general]" html.valueishtml="0"  name=tipo_pedido visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=12 alignment="0" tabsequence=30 border="0" color="33554432" x="3552" y="0" height="56" width="110" format="[general]" html.valueishtml="0"  name=co_cpto_cierra visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=13 alignment="0" tabsequence=40 border="0" color="33554432" x="3671" y="0" height="56" width="658" format="[shortdate] [time]" html.valueishtml="0"  name=fe_actualizacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="110" y="8" height="56" width="233" format="[general]" html.valueishtml="0"  name=cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tif(getrow() = Currentrow(),13172725,RGB(255,255,255))" )
+column(band=detail id=14 alignment="2" tabsequence=10 border="0" color="33554432" x="9" y="8" height="56" width="91" format="[general]" html.valueishtml="0"  name=sw_seleccion visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+
+sparse(names="co_fabrica	co_linea	co_referencia	de_referencia	co_cliente	razon_social	cs_ordenpd_pt")htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
