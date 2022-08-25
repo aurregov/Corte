@@ -1,0 +1,101 @@
+HA$PBExportHeader$d_gr_modulos_102_todos.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=76 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=char(60) updatewhereclause=yes name=de_maquina dbname="de_maquina" )
+ column=(type=long updatewhereclause=yes name=co_recurso dbname="co_recurso" )
+ column=(type=long updatewhereclause=yes name=co_recurso2 dbname="co_recurso2" )
+ column=(type=long updatewhereclause=yes name=co_recurso3 dbname="co_recurso3" )
+ column=(type=long updatewhereclause=yes name=co_maquina dbname="co_maquina" )
+ column=(type=long updatewhereclause=yes name=simulacion dbname="simulacion" )
+ column=(type=long updatewhereclause=yes name=ordenar dbname="ordenar" )
+ column=(type=long updatewhereclause=yes name=co_tipo_maquina dbname="co_tipo_maquina" )
+ column=(type=decimal(3) updatewhereclause=yes name=litraje_min dbname="litraje_min" )
+ column=(type=decimal(3) updatewhereclause=yes name=litraje_max dbname="litraje_max" )
+ column=(type=char(8) updatewhereclause=yes name=co_maquina_sap dbname="co_maquina_sap" )
+ column=(type=long updatewhereclause=yes name=sw_nas dbname="sw_nas" )
+ column=(type=long updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_planta dbname="co_planta" )
+ column=(type=long updatewhereclause=yes name=co_centro_pdn dbname="co_centro_pdn" )
+ column=(type=long updatewhereclause=yes name=co_subcentro_pdn dbname="co_subcentro_pdn" )
+ column=(type=long updatewhereclause=yes name=visible dbname="visible" )
+ column=(type=long updatewhereclause=yes name=indice dbname="indice" )
+ retrieve="SELECT m_maquinas.de_maquina,   
+         m_maquinas.co_recurso,   
+         m_maquinas.co_recurso2,   
+         m_maquinas.co_recurso3,   
+         m_maquinas.co_maquina,   
+         m_maquinas.simulacion,   
+         (Case When m_maquinas.sw_nas = 1 Then
+				{ marca que es un modulo nas}
+				9 
+			Else
+				Decode(:an_recurso,m_maquinas.co_recurso,1,m_maquinas.co_recurso2,2,m_maquinas.co_recurso3,3,4) 
+			End) ordenar,
+         m_maquinas.co_tipo_maquina,
+			m_maquinas.litraje_min,
+			m_maquinas.litraje_max,
+			m_maquinas.co_maquina_sap, 
+			m_maquinas.sw_nas,
+			m_maquinas.co_fabrica,
+			m_maquinas.co_planta,
+			m_maquinas.co_centro_pdn,
+			m_maquinas.co_subcentro_pdn,         
+			(1) visible,
+			(0) indice
+    FROM m_maquinas, m_recursos_pdn  
+   WHERE m_maquinas.co_recurso = m_recursos_pdn.co_recurso and
+			( m_maquinas.co_fabrica = :an_fabrica ) AND  
+         ( m_maquinas.co_planta = :an_planta ) AND  
+         ( m_maquinas.co_centro_pdn = :an_centro ) AND  
+         ( m_maquinas.co_subcentro_pdn = :an_subcentro ) AND  
+         ( m_recursos_pdn.co_tipo_negocio = :an_tipo_negocio ) AND  
+         (m_maquinas.simulacion = :simulacion OR  
+         :simulacion = 0) and m_maquinas.sw_estado = 1  
+ORDER BY 7 ASC,   
+         m_maquinas.de_maquina ASC   
+" arguments=(("an_fabrica", number),("an_planta", number),("an_centro", number),("an_subcentro", number),("an_tipo_negocio", number),("an_recurso", number),("simulacion", number)) )
+text(band=header alignment="0" text="De Maquina" border="0" color="33554432" x="9" y="4" height="52" width="681" html.valueishtml="0"  name=de_maquina_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Simulacion" border="0" color="33554432" x="1938" y="4" height="52" width="265" html.valueishtml="0"  name=simulacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Ordenar" border="0" color="33554432" x="2213" y="4" height="52" width="219" html.valueishtml="0"  name=ordenar_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Recurso" border="0" color="33554432" x="699" y="4" height="52" width="283" html.valueishtml="0"  name=co_recurso_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Recurso2" border="0" color="33554432" x="992" y="4" height="52" width="311" html.valueishtml="0"  name=co_recurso2_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Recurso3" border="0" color="33554432" x="1312" y="4" height="52" width="279" html.valueishtml="0"  name=co_recurso3_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Maquina" border="0" color="33554432" x="1600" y="4" height="52" width="329" html.valueishtml="0"  name=co_maquina_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="0" height="60" width="681" format="[general]" html.valueishtml="0"  name=de_maquina visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="1938" y="0" height="60" width="265" format="[General]" html.valueishtml="0"  name=simulacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="699" y="0" height="60" width="283" format="[general]" html.valueishtml="0"  name=co_recurso visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="992" y="0" height="60" width="311" format="[general]" html.valueishtml="0"  name=co_recurso2 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1312" y="0" height="60" width="279" format="[general]" html.valueishtml="0"  name=co_recurso3 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1600" y="0" height="60" width="329" format="[general]" html.valueishtml="0"  name=co_maquina visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="2213" y="0" height="60" width="219" format="[general]" html.valueishtml="0"  name=ordenar visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Tipo Maquina" border="0" color="33554432" x="2441" y="4" height="52" width="439" html.valueishtml="0"  name=co_tipo_maquina_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Litraje Min" border="0" color="33554432" x="2889" y="4" height="52" width="978" html.valueishtml="0"  name=litraje_min_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Litraje Max" border="0" color="33554432" x="3877" y="4" height="52" width="978" html.valueishtml="0"  name=litraje_max_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Maquina Sap" border="0" color="33554432" x="4864" y="4" height="52" width="402" html.valueishtml="0"  name=co_maquina_sap_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Sw Nas" border="0" color="33554432" x="5275" y="4" height="52" width="206" html.valueishtml="0"  name=sw_nas_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Indice" border="0" color="33554432" x="5490" y="4" height="52" width="59" html.valueishtml="0"  name=indice_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Visible" border="0" color="33554432" x="5559" y="4" height="52" width="59" html.valueishtml="0"  name=visible_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Fabrica" border="0" color="33554432" x="5627" y="4" height="52" width="18" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Planta" border="0" color="33554432" x="5655" y="4" height="52" width="18" html.valueishtml="0"  name=co_planta_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Centro Pdn" border="0" color="33554432" x="5682" y="4" height="52" width="18" html.valueishtml="0"  name=co_centro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Subcentro Pdn" border="0" color="33554432" x="5710" y="4" height="52" width="18" html.valueishtml="0"  name=co_subcentro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="2441" y="0" height="60" width="439" format="[general]" html.valueishtml="0"  name=co_tipo_maquina visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="2889" y="0" height="60" width="978" format="[general]" html.valueishtml="0"  name=litraje_min visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="3877" y="0" height="60" width="978" format="[general]" html.valueishtml="0"  name=litraje_max visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="4864" y="0" height="60" width="402" format="[general]" html.valueishtml="0"  name=co_maquina_sap visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="5275" y="0" height="60" width="206" format="[general]" html.valueishtml="0"  name=sw_nas visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="33554432" x="5490" y="0" height="60" width="59" format="[general]" html.valueishtml="0"  name=indice visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="33554432" x="5559" y="0" height="60" width="59" format="[general]" html.valueishtml="0"  name=visible visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=0 border="0" color="33554432" x="5632" y="0" height="60" width="14" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=0 border="0" color="33554432" x="5659" y="0" height="60" width="14" html.valueishtml="0"  name=co_planta visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=0 border="0" color="33554432" x="5687" y="0" height="60" width="14" html.valueishtml="0"  name=co_centro_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=0 border="0" color="33554432" x="5714" y="0" height="60" width="14" html.valueishtml="0"  name=co_subcentro_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
