@@ -1,0 +1,52 @@
+HA$PBExportHeader$ds_busca_proceso_tela_ctro_tinto.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_ficho dbname="temp_kamban_tinto.cs_ficho" )
+ column=(type=long updatewhereclause=yes name=cs_tanda dbname="temp_kamban_tinto.cs_tanda" )
+ column=(type=long updatewhereclause=yes name=lote dbname="temp_kamban_tinto.lote" )
+ column=(type=long updatewhereclause=yes name=co_centro_pdn dbname="temp_kamban_tinto.co_centro_pdn" )
+ column=(type=long updatewhereclause=yes name=co_subcentro_pdn dbname="temp_kamban_tinto.co_subcentro_pdn" )
+ column=(type=datetime updatewhereclause=yes name=fe_ingreso dbname="temp_kamban_tinto.fe_ingreso" )
+ column=(type=decimal(2) updatewhereclause=yes name=kilos dbname="kilos" )
+ retrieve="  SELECT temp_kamban_tinto.cs_ficho,   
+         temp_kamban_tinto.cs_tanda,   
+         temp_kamban_tinto.lote,   
+         temp_kamban_tinto.co_centro_pdn,   
+         temp_kamban_tinto.co_subcentro_pdn,   
+			temp_kamban_tinto.fe_ingreso  ,
+         SUM(temp_kamban_tinto.kilos) as kilos
+        
+    FROM temp_kamban_tinto  
+   WHERE ( temp_kamban_tinto.co_fabrica = :ai_fab ) AND  
+         ( temp_kamban_tinto.co_linea = :ai_linea ) AND  
+         ( temp_kamban_tinto.co_referencia = :al_ref ) AND  
+         ( temp_kamban_tinto.cs_ordenpd_pt = :al_op ) AND  
+         ( temp_kamban_tinto.co_color = :ai_color_te ) AND  
+         ( temp_kamban_tinto.co_reftel = :al_reftel )  AND
+         ( temp_kamban_tinto.lote = :al_lote ) 
+  GROUP BY 1,2,3,4,5,6
+ORDER BY 1,2,3,4,5,6
+" arguments=(("ai_fab", number),("ai_linea", number),("al_ref", number),("al_op", number),("ai_color_te", number),("al_reftel", number),("al_lote", number)) )
+text(band=header alignment="2" text="Cs Ficho" border="0" color="33554432" x="9" y="8" height="52" width="274" html.valueishtml="0"  name=cs_ficho_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Tanda" border="0" color="33554432" x="293" y="8" height="52" width="274" html.valueishtml="0"  name=cs_tanda_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Lote" border="0" color="33554432" x="576" y="8" height="52" width="274" html.valueishtml="0"  name=lote_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Centro Pdn" border="0" color="33554432" x="859" y="8" height="52" width="315" html.valueishtml="0"  name=co_centro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Subcentro Pdn" border="0" color="33554432" x="1184" y="8" height="52" width="398" html.valueishtml="0"  name=co_subcentro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Kilos" border="0" color="33554432" x="1591" y="8" height="52" width="274" html.valueishtml="0"  name=kilos_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fe Ingreso" border="0" color="33554432" x="1874" y="8" height="52" width="503" html.valueishtml="0"  name=fe_ingreso_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_ficho visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="293" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_tanda visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="576" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=lote visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="859" y="8" height="64" width="315" format="[general]" html.valueishtml="0"  name=co_centro_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1184" y="8" height="64" width="398" format="[general]" html.valueishtml="0"  name=co_subcentro_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="1591" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=kilos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="1874" y="8" height="64" width="503" format="[shortdate] [time]" html.valueishtml="0"  name=fe_ingreso visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
