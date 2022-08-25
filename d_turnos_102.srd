@@ -1,0 +1,26 @@
+HA$PBExportHeader$d_turnos_102.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=76 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=nu_pers_maquina dbname="dt_tipo_maquina.nu_pers_maquina" )
+ column=(type=long updatewhereclause=yes name=turnos dbname="dt_tipo_maquina.turnos" )
+ column=(type=long updatewhereclause=yes name=minutos_turno dbname="dt_tipo_maquina.minutos_turno" )
+ retrieve="SELECT  dt_tipo_maquina.nu_pers_maquina ,
+           dt_tipo_maquina.turnos ,
+           dt_tipo_maquina.minutos_turno     
+        FROM dt_tipo_maquina      
+        WHERE ( dt_tipo_maquina.co_tipo_negocio = :an_tipo_negocio ) and          ( dt_tipo_maquina.co_tipo_maquina = :an_tipo_maquina ) and          ( dt_tipo_maquina.co_fabrica = :co_fabrica ) and          ( dt_tipo_maquina.co_planta = :co_planta ) and          ( dt_tipo_maquina.co_centro_pdn = :co_centro ) and          ( dt_tipo_maquina.co_subcentro_pdn = :co_subcentro ) and          ( dt_tipo_maquina.sw_activo = 1 )   " arguments=(("co_fabrica", number),("co_planta", number),("co_centro", number),("co_subcentro", number),("an_tipo_negocio", number),("an_tipo_maquina", number)) )
+text(band=header alignment="0" text="Turnos" border="0" color="33554432" x="9" y="4" height="52" width="471" html.valueishtml="0"  name=turnos_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Minutos Turno" border="0" color="33554432" x="489" y="4" height="52" width="366" html.valueishtml="0"  name=minutos_turno_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Nu Pers Maquina" border="0" color="33554432" x="864" y="4" height="52" width="421" html.valueishtml="0"  name=nu_pers_maquina_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="0" height="76" width="471" format="[general]" html.valueishtml="0"  name=turnos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="489" y="0" height="76" width="366" format="[general]" html.valueishtml="0"  name=minutos_turno visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="864" y="0" height="76" width="421" format="[general]" html.valueishtml="0"  name=nu_pers_maquina visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
