@@ -1,0 +1,12 @@
+HA$PBExportHeader$dcs_totales_x_talla_raya.srd
+$PBExportComments$reporte para control de rectilineas en corte
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=5 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=132 color="536870912"  height.autosize=yes)
+table(column=(type=char(10) updatewhereclause=yes name=a dbname="a" )
+ unbound = "yes"arguments=(("al_ordencorte", number),("as_po", string),("al_fabrica", number),("al_linea", number),("al_referencia", number),("al_color", number)) )
+report(band=detail dataobject="dct_unid_x_raya_talla_en_corte" x="5" y="0" height="120" width="2231" border="0"  height.autosize=yes criteria="" nest_arguments=((" al_ordencorte "),(" as_po "),(" al_fabrica "),(" al_linea "),(" al_referencia "),(" al_color ")) trail_footer = yes  name=dw_tallas_unid visible="1"  slideleft=yes  slideup=directlyabove )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
