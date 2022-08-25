@@ -1,0 +1,33 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "servicios_comunes.pbl" "";
+@end;
+@begin Objects
+ "dff_autorizacion_capas.srd" "servicios_comunes.pbl";
+ "w_autorizacion_capas.srw" "servicios_comunes.pbl";
+ "n_cst_cambio_po_loteo.sru" "servicios_comunes.pbl";
+ "n_cst_mover_kardex.sru" "servicios_comunes.pbl";
+ "n_ds_dt_canasta_corte.sru" "servicios_comunes.pbl";
+ "n_ds_t_oc_imp_bolsas.sru" "servicios_comunes.pbl";
+ "w_tela_terminada.srw" "servicios_comunes.pbl";
+ "n_cts_constantes_corte.sru" "servicios_comunes.pbl";
+ "n_cst_orden_corte.sru" "servicios_comunes.pbl";
+ "s_parametros_pr_graba_pdn.srs" "servicios_comunes.pbl";
+ "w_validar_auditor.srw" "servicios_comunes.pbl";
+ "w_validar_loteo.srw" "servicios_comunes.pbl";
+ "n_cst_importfile.sru" "servicios_comunes.pbl";
+ "n_cst_cambios_po.sru" "servicios_comunes.pbl";
+ "w_password_trazos.srw" "servicios_comunes.pbl";
+ "n_reglas_pdp_confeccion.sru" "servicios_comunes.pbl";
+ "n_cst_canasta.sru" "servicios_comunes.pbl";
+ "d_ext_ff_filtro_tela_btt.srd" "servicios_comunes.pbl";
+ "n_cst_configuracion_kpo.sru" "servicios_comunes.pbl";
+ "n_cst_string.sru" "servicios_comunes.pbl";
+ "n_ds_t_tiempo_perdmaqmar.sru" "servicios_comunes.pbl";
+ "w_complementos.srw" "servicios_comunes.pbl";
+ "dgr_referencias_ordencorte.srd" "servicios_comunes.pbl";
+ "n_cts_orden_segundo_loteo.sru" "servicios_comunes.pbl";
+ "n_cst_funciones_comunes.sru" "servicios_comunes.pbl";
+ "f_digito_de_control_ucc128.srf" "servicios_comunes.pbl";
+ "n_ds_m_turno.sru" "servicios_comunes.pbl";
+@end;
