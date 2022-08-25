@@ -1,0 +1,42 @@
+HA$PBExportHeader$dtb_reporte_nivel1_kpo.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=68 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_centro_pdn dbname="co_centro_pdn" )
+ column=(type=long updatewhereclause=yes name=co_subcentro_pdn dbname="m_subcentros_pdn.co_subcentro_pdn" )
+ column=(type=long updatewhereclause=yes name=co_tipoprod dbname="m_subcentros_pdn.co_tipoprod" )
+ column=(type=char(30) updatewhereclause=yes name=de_subcentro_pdn dbname="m_subcentros_pdn.de_subcentro_pdn" )
+ column=(type=decimal(2) updatewhereclause=yes name=unidades dbname="unidades" )
+ column=(type=long updatewhereclause=yes name=orden dbname="orden" )
+ retrieve=" SELECT 2 as co_centro_pdn,
+		 m.co_subcentro_pdn,
+       m.co_tipoprod,
+       de_subcentro_pdn, 
+		 SUM(d.ca_actual) as unidades ,
+       4 as orden
+  FROM h_canasta_corte h, dt_canasta_corte d, m_subcentros_pdn m
+ WHERE h.cs_canasta = d.cs_canasta
+   AND m.co_tipoprod = 1
+   AND m.co_centro_pdn = h.co_centro_act
+   AND m.co_subcentro_pdn = h.co_subcentro_act
+   AND h.co_fabrica_pro = 2
+   AND h.co_centro_act = 1
+   AND h.co_planta_act <> 2
+   AND co_estado <> 51
+GROUP BY 1,2,3,4;
+
+" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="2" color="33554432" x="0" y="4" height="52" width="608" format="[general]" html.valueishtml="0"  name=de_subcentro_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="2" color="33554432" x="608" y="8" height="52" width="608" format="[general]" html.valueishtml="0"  name=unidades visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="33554432" x="1216" y="8" height="52" width="334" format="[general]" html.valueishtml="0"  name=co_centro_pdn visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="1966" y="4" height="52" width="370" format="[general]" html.valueishtml="0"  name=co_subcentro_pdn visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="2" color="33554432" x="1550" y="8" height="52" width="261" format="[general]" html.valueishtml="0"  name=co_tipoprod visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="2" color="33554432" x="1810" y="8" height="52" width="69" format="[general]" html.valueishtml="0"  name=orden visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=summary alignment="2" expression="sum(unidades for all)"border="2" color="33554432" x="608" y="4" height="52" width="608" format="[general]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
