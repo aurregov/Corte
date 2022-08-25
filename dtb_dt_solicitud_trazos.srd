@@ -1,0 +1,43 @@
+HA$PBExportHeader$dtb_dt_solicitud_trazos.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=72 color="536870912" )
+summary(height=80 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=cs_trazo dbname="cs_trazo" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_talla dbname="co_talla" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_paquetes dbname="ca_paquetes" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_unidades dbname="ca_unidades" initial="0" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="instancia" )
+ column=(type=char(20) updatewhereclause=yes name=de_talla dbname="de_talla" )
+ column=(type=long updatewhereclause=yes name=orden_talla dbname="orden_talla" )
+ retrieve="select dt_trazos_pend.*, m_tallas_x_grupo_pv.de_talla, m_tallas_x_grupo_pv.orden_talla
+from dt_trazos_pend, h_trazos_pend, h_preref_pv, m_tallas_x_grupo_pv
+where h_trazos_pend.cs_trazo = dt_trazos_pend.cs_trazo
+  and h_trazos_pend.co_fabrica = h_preref_pv.co_fabrica
+  and h_trazos_pend.co_linea = h_preref_pv.co_linea
+  and h_preref_pv.co_tipo_ref = 'P'
+  and cast(h_trazos_pend.co_referencia as char(15)) = h_preref_pv.co_referencia
+  and h_preref_pv.co_grupo_tlla = m_tallas_x_grupo_pv.co_grupo_tlla 
+  and CAST(dt_trazos_pend.co_talla as CHAR(10)) = m_tallas_x_grupo_pv.co_talla 
+  
+  and dt_trazos_pend.cs_trazo = :CONSEC_TRAZO
+
+" update="dt_trazos_pend" updatewhere=0 updatekeyinplace=no arguments=(("CONSEC_TRAZO", number))  sort="co_talla A orden_talla A " )
+text(band=header alignment="2" text="TALLA" border="6" color="0" x="27" y="12" height="52" width="160" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="DESCRIPCION" border="6" color="0" x="206" y="12" height="52" width="347" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="PAQUETES" border="6" color="0" x="571" y="12" height="52" width="288" html.valueishtml="0"  name=ca_paquetes_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=10 border="2" color="0" x="27" y="4" height="64" width="160" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15793151" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="2" color="0" x="206" y="4" height="64" width="347" format="[general]" html.valueishtml="0"  name=de_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15793151" )
+column(band=detail id=3 alignment="2" tabsequence=20 border="2" color="0" x="571" y="4" height="64" width="288" format="[general]" html.valueishtml="0"  name=ca_paquetes visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15793151" )
+column(band=detail id=10 alignment="0" tabsequence=30 border="0" color="0" x="869" y="8" height="52" width="59" format="[general]" html.valueishtml="0"  name=orden_talla visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15793151" )
+button(band=summary text="ordenar" enabled=yes action="8" border="0" color="0" x="9" y="4" height="68" width="229" vtextalign="0" htextalign="0"  name=b_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
