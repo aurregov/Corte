@@ -1,0 +1,52 @@
+HA$PBExportHeader$dtb_info_lote.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_tanda dbname="cs_tanda" )
+ column=(type=long updatewhereclause=yes name=cs_orden_pr_act dbname="cs_orden_pr_act" )
+ column=(type=long updatewhereclause=yes name=lote dbname="lote" )
+ column=(type=long updatewhereclause=yes name=co_reftel_act dbname="co_reftel_act" )
+ column=(type=char(42) updatewhereclause=yes name=de_reftel dbname="de_reftel" )
+ column=(type=decimal(2) updatewhereclause=yes name=gr_mt2_terminado dbname="gr_mt2_terminado" )
+ column=(type=decimal(0) updatewhereclause=yes name=peso_calidad dbname="peso_calidad" )
+ retrieve="select unique r.cs_tanda, r.cs_orden_pr_act, r.lote, r.co_reftel_act, tt.de_reftel, tt.gr_mt2_terminado, 0.0 as peso_calidad
+from m_lotes_conf m, dt_rollos_libera d, m_rollo r, dt_telaxmodelo_lib l, h_telas tt
+where m.lote = :al_lote
+and m.cs_liberacion = d.cs_liberacion
+and d.cs_rollo = r.cs_rollo
+and d.co_fabrica_exp = l.co_fabrica_exp
+and d.cs_liberacion = l.cs_liberacion
+and d.nu_orden = l.nu_orden
+and d.nu_cut = l.nu_cut
+and d.co_fabrica_pt = l.co_fabrica_pt
+and d.co_linea = l.co_linea
+and d.co_referencia = l.co_referencia
+and d.co_color_pt = l.co_color_pt
+and d.co_reftel = l.co_reftel
+and d.co_caract = l.co_caract
+and d.diametro = l.diametro
+and d.co_color_tela = l.co_color_tela
+and l.raya = 10
+and l.co_reftel = tt.co_reftel
+and tt.co_caract = 0;" arguments=(("al_lote", number)) )
+text(band=header alignment="2" text="Lote" border="6" color="33554432" x="18" y="20" height="52" width="370" html.valueishtml="0"  name=lote_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Tanda" border="6" color="33554432" x="411" y="20" height="52" width="293" html.valueishtml="0"  name=cs_tanda_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="O.P.Estilo" border="6" color="33554432" x="727" y="20" height="52" width="343" html.valueishtml="0"  name=cs_orden_pr_act_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Tela" border="6" color="33554432" x="1097" y="20" height="52" width="1184" html.valueishtml="0"  name=co_reftel_act_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Peso Std" border="6" color="33554432" x="2304" y="20" height="52" width="288" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Peso Calidad" border="6" color="33554432" x="2624" y="20" height="52" width="393" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="2" color="33554432" x="1097" y="4" height="60" width="256" format="[general]" html.valueishtml="0"  name=co_reftel_act visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="2" color="33554432" x="1385" y="4" height="60" width="887" format="[general]" html.valueishtml="0"  name=de_reftel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="2" color="33554432" x="2304" y="4" height="60" width="288" format="[general]" html.valueishtml="0"  name=gr_mt2_terminado visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="2" color="33554432" x="2624" y="4" height="60" width="393" format="[general]" html.valueishtml="0"  name=peso_calidad visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="2" color="33554432" x="18" y="4" height="60" width="370" format="[general]" html.valueishtml="0"  name=lote visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="2" color="33554432" x="411" y="4" height="60" width="293" format="[general]" html.valueishtml="0"  name=cs_tanda visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="2" color="33554432" x="727" y="4" height="60" width="343" format="[general]" html.valueishtml="0"  name=cs_orden_pr_act visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
