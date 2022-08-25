@@ -1,0 +1,11 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "nicole.pbl" "";
+@end;
+@begin Objects
+ "w_grupos.srw" "nicole.pbl";
+ "w_cargar_telas_nicole.srw" "nicole.pbl";
+ "dtb_act_datos_sap.srd" "nicole.pbl";
+ "dtb_temporal.srd" "nicole.pbl";
+ "dgr_grupos.srd" "nicole.pbl";
+@end;
