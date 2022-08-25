@@ -1,0 +1,20 @@
+HA$PBExportHeader$dtb_and_unidades_po_x_fab_li_ref_col.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=decimal(2) updatewhereclause=yes name=compute_0001 dbname="compute_0001" )
+ retrieve="select sum(ca_pedida)
+from pedpend_exp
+where co_fabrica_exp = :ai_fabrica_exp
+  and nu_orden = :as_nu_orden
+  and nu_cut = :as_nu_cut
+  and co_fabrica = :ai_fabrica
+  and co_linea = :ai_linea
+  and co_referencia = :al_referencia
+ and co_color = :ai_color;" arguments=(("ai_fabrica_exp", number),("as_nu_orden", string),("as_nu_cut", string),("ai_fabrica", number),("ai_linea", number),("al_referencia", number),("ai_color", number)) )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="33554432" x="352" y="4" height="64" width="274" format="#,##0" html.valueishtml="0"  name=compute_0001 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Unid Pedido:" border="0" color="33554432" x="0" y="8" height="56" width="338" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
