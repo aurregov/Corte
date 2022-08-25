@@ -1,0 +1,100 @@
+HA$PBExportHeader$f_crear_bolsa.srf
+global type f_crear_bolsa from function_object
+end type
+
+forward prototypes
+global function long f_crear_bolsa ()
+end prototypes
+
+global function long f_crear_bolsa ();Long li_tipoorden, li_fabrica, li_marca
+Long ll_documento, ll_count, ll_count2
+string ls_sqlerr, ls_documento
+n_cts_constantes luo_constantes
+luo_constantes = Create n_cts_constantes
+
+li_fabrica = luo_constantes.of_consultar_numerico("FABRICA TELA")
+IF li_fabrica = -1 THEN
+	Return -1
+END IF
+
+li_tipoorden = luo_constantes.of_consultar_numerico("TIPO CANASTA")
+IF li_tipoorden = -1 THEN
+	Return -1
+END IF
+
+SELECT  nu_enque_esta + 1   
+INTO :ll_documento           
+FROM cf_consc_ordenes                                    
+WHERE  cf_consc_ordenes.co_fabrica = :li_fabrica         
+AND   cf_consc_ordenes.tipo_orden = :li_tipoorden; 
+
+If Sqlca.SqlCode = -1 Then
+	ls_sqlerr = Sqlca.SqlErrText
+	rollback ;
+	MessageBox("Advertencia!","No se pudo obtener consectivo de bolsa.~n~n~n" + ls_sqlerr)
+	Return -1
+End If	
+
+UPDATE cf_consc_ordenes   
+   SET nu_enque_esta = :ll_documento
+ WHERE cf_consc_ordenes.co_fabrica = :li_fabrica
+   AND cf_consc_ordenes.tipo_orden = :li_tipoorden;
+
+If Sqlca.SqlCode = -1 Then
+	ls_sqlerr = Sqlca.SqlErrText
+	rollback ;
+	MessageBox("Advertencia!","No se pudo actualizar el consecutivo de bolsa.~n~n~n" + ls_sqlerr)
+	Return -1
+End If	
+
+//modificacion hecha a pedido de hector osorno y javier garcia en el sue$$HEX1$$f100$$ENDHEX$$o de recipiente
+//perfecto, para que el consecutivo del adhesivo no pueda tener mas de 7 digitos y cuando 
+//esto suceda reiniciarlo en 1
+//jcrm
+//marzo 26 de 2007
+
+li_marca = 1
+IF ll_documento > 0 THEN
+	IF ll_documento > 9999999 THEN ll_documento = 1
+	do while li_marca = 1
+		ls_documento = String(ll_documento)
+		//verifico que el consecutivo no exista en h_canasta_corte
+		SELECT count(*)
+		  INTO :ll_count
+		  FROM dt_lectura_bolsas
+		 WHERE cs_canasta = :ls_documento ;
+		
+		IF ll_count = 0 THEN
+			SELECT count(*)
+			  INTO :ll_count2
+			  FROM h_canasta_corte
+			 WHERE cs_canasta = :ls_documento;
+			 
+			 If ll_count2 = 0 Then
+				li_marca = 0
+				UPDATE cf_consc_ordenes   
+					SET nu_enque_esta = :ll_documento
+				 //SET nu_enque_esta = nu_enque_esta + 1                 
+				 WHERE  cf_consc_ordenes.co_fabrica = :li_fabrica
+				 AND   cf_consc_ordenes.tipo_orden = :li_tipoorden;
+				 If Sqlca.SqlCode = -1 Then
+						ls_sqlerr = Sqlca.SqlErrText
+						rollback ;
+						MessageBox("Advertencia!","No se pudo crear bolsa.~n~n~n" + ls_sqlerr)
+						Return -1
+				 Else
+					commit ;
+				 End If	
+			 Else
+				ll_documento += 1
+			 End if
+		ELSE
+			ll_documento += 1
+		END IF
+	loop
+ELSE
+ return -1
+END IF
+return ll_documento
+end function
+
