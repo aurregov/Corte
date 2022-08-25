@@ -1,0 +1,56 @@
+HA$PBExportHeader$dgr_colores_liberacion_exportaciones.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica dbname="h_ordenpd_pt.co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="h_ordenpd_pt.co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="h_ordenpd_pt.co_referencia" )
+ column=(type=char(20) updatewhereclause=yes name=nu_orden dbname="dt_caxpedidos.nu_orden" )
+ column=(type=char(10) updatewhereclause=yes name=nu_cut dbname="dt_caxpedidos.nu_cut" )
+ column=(type=long updatewhereclause=yes name=co_color dbname="dt_caxpedidos.co_color" )
+ column=(type=date updatewhereclause=yes name=fe_entrega dbname="pedpend_exp.fe_entrega" )
+ column=(type=decimal(0) updatewhereclause=yes name=unidades dbname="unidades" )
+ retrieve="  SELECT DISTINCT h_ordenpd_pt.co_fabrica,   
+         h_ordenpd_pt.co_linea,   
+         h_ordenpd_pt.co_referencia,   
+         dt_caxpedidos.nu_orden,   
+         dt_caxpedidos.nu_cut,   
+         dt_caxpedidos.co_color,   
+         pedpend_exp.fe_entrega,   
+         Sum(dt_caxpedidos.ca_programada - dt_caxpedidos.ca_liberadas) unidades  
+    FROM dt_caxpedidos,   
+         h_ordenpd_pt,   
+         outer pedpend_exp  
+   WHERE ( h_ordenpd_pt.cs_ordenpd_pt = dt_caxpedidos.cs_ordenpd_pt ) and  
+         ( dt_caxpedidos.nu_orden = pedpend_exp.nu_orden ) and  
+         ( dt_caxpedidos.nu_cut = pedpend_exp.nu_cut ) and  
+         ( h_ordenpd_pt.co_fabrica = pedpend_exp.co_fabrica ) and  
+         ( h_ordenpd_pt.co_linea = pedpend_exp.co_linea ) and  
+         ( h_ordenpd_pt.co_referencia = pedpend_exp.co_referencia ) and  
+         ( dt_caxpedidos.co_talla = pedpend_exp.co_talla ) and  
+         ( dt_caxpedidos.co_color = pedpend_exp.co_color ) and  
+         ( ( h_ordenpd_pt.cs_ordenpd_pt = :an_orden ) )   
+GROUP BY h_ordenpd_pt.co_fabrica,   
+         h_ordenpd_pt.co_linea,   
+         h_ordenpd_pt.co_referencia,   
+         dt_caxpedidos.nu_orden,   
+         dt_caxpedidos.nu_cut,   
+         dt_caxpedidos.co_color,   
+         pedpend_exp.fe_entrega   
+" arguments=(("an_orden", number)) )
+text(band=header alignment="2" text="P.O." border="6" color="33554432" x="9" y="8" height="52" width="366" html.valueishtml="0"  name=nu_orden_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cantidad" border="6" color="0" x="955" y="8" height="52" width="210" html.valueishtml="0"  name=unidades_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="5" color="33554432" x="9" y="8" height="64" width="366" format="[general]" html.valueishtml="0"  name=nu_orden visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="33554432" x="384" y="8" height="64" width="242" format="[general]" html.valueishtml="0"  name=nu_cut visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="5" color="33554432" x="955" y="8" height="64" width="210" format="#,##0" html.valueishtml="0"  name=unidades visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cut" border="6" color="33554432" x="384" y="8" height="52" width="242" html.valueishtml="0"  name=nu_cut_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Color" border="6" color="33554432" x="635" y="8" height="52" width="311" html.valueishtml="0"  name=co_color_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="5" color="33554432" x="635" y="8" height="64" width="311" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
