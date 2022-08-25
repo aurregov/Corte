@@ -1,0 +1,174 @@
+HA$PBExportHeader$m_opc_programacion.srm
+forward
+global type m_opc_programacion from menu
+end type
+type m_programacion from menu within m_opc_programacion
+end type
+type m_clientes from menu within m_programacion
+end type
+type m_tipodetela from menu within m_programacion
+end type
+type m_composic$$HEX1$$f300$$ENDHEX$$ntela from menu within m_programacion
+end type
+type m_grupo from menu within m_programacion
+end type
+type m_po from menu within m_programacion
+end type
+type m_detallado from menu within m_programacion
+end type
+type m_programacion from menu within m_opc_programacion
+m_clientes m_clientes
+m_tipodetela m_tipodetela
+m_composic$$HEX1$$f300$$ENDHEX$$ntela m_composic$$HEX1$$f300$$ENDHEX$$ntela
+m_grupo m_grupo
+m_po m_po
+m_detallado m_detallado
+end type
+global type m_opc_programacion from menu
+m_programacion m_programacion
+end type
+end forward
+
+global type m_opc_programacion from menu
+m_programacion m_programacion
+end type
+global m_opc_programacion m_opc_programacion
+
+on m_opc_programacion.create
+m_opc_programacion=this
+call super::create
+this.m_programacion=create m_programacion
+this.Item[UpperBound(this.Item)+1]=this.m_programacion
+end on
+
+on m_opc_programacion.destroy
+call super::destroy
+destroy(this.m_programacion)
+end on
+
+type m_programacion from menu within m_opc_programacion
+m_clientes m_clientes
+m_tipodetela m_tipodetela
+m_composic$$HEX1$$f300$$ENDHEX$$ntela m_composic$$HEX1$$f300$$ENDHEX$$ntela
+m_grupo m_grupo
+m_po m_po
+m_detallado m_detallado
+end type
+
+on m_programacion.create
+call super::create
+this.text = "programacion"
+this.m_clientes=create m_clientes
+this.m_tipodetela=create m_tipodetela
+this.m_composic$$HEX1$$f300$$ENDHEX$$ntela=create m_composic$$HEX1$$f300$$ENDHEX$$ntela
+this.m_grupo=create m_grupo
+this.m_po=create m_po
+this.m_detallado=create m_detallado
+this.Item[UpperBound(this.Item)+1]=this.m_clientes
+this.Item[UpperBound(this.Item)+1]=this.m_tipodetela
+this.Item[UpperBound(this.Item)+1]=this.m_composic$$HEX1$$f300$$ENDHEX$$ntela
+this.Item[UpperBound(this.Item)+1]=this.m_grupo
+this.Item[UpperBound(this.Item)+1]=this.m_po
+this.Item[UpperBound(this.Item)+1]=this.m_detallado
+end on
+
+on m_programacion.destroy
+call super::destroy
+destroy(this.m_clientes)
+destroy(this.m_tipodetela)
+destroy(this.m_composic$$HEX1$$f300$$ENDHEX$$ntela)
+destroy(this.m_grupo)
+destroy(this.m_po)
+destroy(this.m_detallado)
+end on
+
+type m_clientes from menu within m_programacion
+end type
+
+event clicked;ParentWindow.Dynamic Trigger Event ue_report(1)
+end event
+
+on m_clientes.create
+call super::create
+this.text = "Clientes"
+end on
+
+on m_clientes.destroy
+call super::destroy
+end on
+
+type m_tipodetela from menu within m_programacion
+end type
+
+event clicked;ParentWindow.Dynamic Trigger Event ue_report(2)
+end event
+
+on m_tipodetela.create
+call super::create
+this.text = "Tipo de Tela"
+end on
+
+on m_tipodetela.destroy
+call super::destroy
+end on
+
+type m_composic$$HEX1$$f300$$ENDHEX$$ntela from menu within m_programacion
+end type
+
+event clicked;ParentWindow.Dynamic Trigger Event ue_report(3)
+end event
+
+on m_composic$$HEX1$$f300$$ENDHEX$$ntela.create
+call super::create
+this.text = "Composic$$HEX1$$f300$$ENDHEX$$n Tela"
+end on
+
+on m_composic$$HEX1$$f300$$ENDHEX$$ntela.destroy
+call super::destroy
+end on
+
+type m_grupo from menu within m_programacion
+end type
+
+event clicked;ParentWindow.Dynamic Trigger Event ue_report(4)
+end event
+
+on m_grupo.create
+call super::create
+this.text = "Grupo"
+end on
+
+on m_grupo.destroy
+call super::destroy
+end on
+
+type m_po from menu within m_programacion
+end type
+
+event clicked;ParentWindow.Dynamic Trigger Event ue_report(5)
+end event
+
+on m_po.create
+call super::create
+this.text = "PO"
+end on
+
+on m_po.destroy
+call super::destroy
+end on
+
+type m_detallado from menu within m_programacion
+end type
+
+event clicked;ParentWindow.Dynamic Trigger Event ue_report(7)
+end event
+
+on m_detallado.create
+call super::create
+this.text = "Detallado"
+end on
+
+on m_detallado.destroy
+call super::destroy
+end on
+
