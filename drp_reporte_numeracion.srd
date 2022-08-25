@@ -1,0 +1,16 @@
+HA$PBExportHeader$drp_reporte_numeracion.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=5 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=396 color="536870912"  height.autosize=yes)
+table(column=(type=char(10) updatewhereclause=yes name=a dbname="a" )
+ unbound = "yes"arguments=(("orden", number),("raya", number),("cs_espacio", number),("tipo", number)) )
+report(band=detail dataobject="dtb_guias_numeracion_liquida" x="18" y="184" height="136" width="3479" border="0"  height.autosize=yes criteria="" nest_arguments=((" orden "),(" raya  ")) trail_footer = yes  name=dw_3 visible="1~t if( tipo = 2,1,0)"  slideleft=yes  slideup=directlyabove )
+report(band=detail dataobject="d_reporte_numeracion" x="18" y="12" height="120" width="3456" border="0"  height.autosize=yes criteria="" nest_arguments=((" orden "),(" raya "),(" cs_espacio ")) trail_footer = yes  name=dw_1 visible="1"  slideup=directlyabove )
+report(band=detail dataobject="dtb_guias_numeracion" x="5" y="252" height="136" width="3520" border="0"  height.autosize=yes criteria="" nest_arguments=((" orden "),(" raya ")) trail_footer = yes  name=dw_2 visible="1~t if( tipo = 1,1,0)"  slideleft=yes  slideup=directlyabove )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
