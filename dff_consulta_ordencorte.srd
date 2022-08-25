@@ -1,0 +1,23 @@
+HA$PBExportHeader$dff_consulta_ordencorte.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=112 color="536870912" )
+table(column=(type=long updatewhereclause=yes key=yes name=cs_orden_corte dbname="h_ordenes_corte.cs_orden_corte" )
+ column=(type=long updatewhereclause=yes name=co_estado dbname="h_ordenes_corte.co_estado" )
+ column=(type=datetime updatewhereclause=yes name=fe_prog_orden dbname="h_ordenes_corte.fe_prog_orden" )
+ retrieve="SELECT  h_ordenes_corte.cs_orden_corte ,
+           h_ordenes_corte.co_estado ,
+           h_ordenes_corte.fe_prog_orden     
+FROM        h_ordenes_corte 
+WHERE ( ( h_ordenes_corte.cs_orden_corte = :al_ordencorte ) and          
+		( h_ordenes_corte.co_estado >= 5 ) )  " update="h_ordenes_corte" updatewhere=0 updatekeyinplace=no arguments=(("al_ordencorte", number)) )
+text(band=detail alignment="0" text="Orden Corte:" border="0" color="0" x="37" y="28" height="52" width="279"  name=h_orden_corte_cs_orden_corte_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="334" y="28" height="52" width="306" format="[general]"  name=cs_orden_corte edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=detail alignment="0" text="Fecha Programaci$$HEX1$$f300$$ENDHEX$$n:" border="0" color="0" x="1659" y="28" height="52" width="466"  name=h_orden_corte_fe_prog_orden_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="0" x="2144" y="28" height="52" width="343" format="dd/mm/yyyy"  name=fe_prog_orden edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=detail alignment="0" text="Estado:" border="0" color="0" x="786" y="28" height="52" width="169"  name=h_orden_corte_co_estado_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="0" x="974" y="28" height="52" width="526" format="[general]"  name=co_estado dddw.name=dddw_estados_ordencorte dddw.displaycolumn=de_estado dddw.datacolumn=co_estado dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
