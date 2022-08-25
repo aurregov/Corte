@@ -1,0 +1,29 @@
+HA$PBExportHeader$d_gr_cod_barra_tela_raya_x_liberacion.srd
+release 9;
+datawindow(units=3 timer_interval=0 color=1073741824 processing=2 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 100 print.margin.right = 100 print.margin.top = 100 print.margin.bottom = 100 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no label.name="" label.width=3200 label.height=1540 label.rows=1 label.rows.spacing=0 label.columns=2 label.columns.spacing=0 label.topdown=no label.sheet=yes label.shape=roundrectangle label.ellipse_height=0 label.ellipse_width=0 )
+detail(height=1534 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=liberacion dbname="liberacion" )
+ column=(type=long updatewhereclause=yes name=raya dbname="raya" )
+ retrieve="select distinct a.cs_liberacion as liberacion, a.raya
+
+from dt_telaxmodelo_lib a, dt_simulacion c
+
+where cast( a.co_reftel as varchar(20)) = c.co_referencia
+
+and c.pedido = a.cs_liberacion
+
+and ( c.co_tipo_negocio = (select cast(numerico as integer)
+						from m_constantes
+						where var_nombre = 'REPOSO_TIPONEGOCIO') ) 
+and ( c.co_estado = 'A' ) 
+and a.cs_liberacion = :an_liberacion
+
+" arguments=(("an_liberacion", number)) )
+compute(band=detail alignment="2" expression="string( liberacion ) + String( raya )"border="0" color="0" x="132" y="978" height="476" width="2910" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="2" expression="f_barcode_128(Trim(  String( liberacion ) + String( raya ) ),1,0)"border="0" color="0" x="105" y="132" height="555" width="2989" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Code 128AB" font.height="-20" font.weight="400"  font.family="0" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="2" expression="f_barcode_128(Trim(  String( liberacion ) + String( raya ) ),1,0)"border="0" color="0" x="105" y="370" height="555" width="2989" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Code 128AB" font.height="-20" font.weight="400"  font.family="0" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
