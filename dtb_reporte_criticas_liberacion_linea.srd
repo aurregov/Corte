@@ -1,0 +1,99 @@
+HA$PBExportHeader$dtb_reporte_criticas_liberacion_linea.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=yes print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=456 color="536870912" )
+summary(height=108 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=60 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=co_fabrica dbname="t_criticas_cedi.co_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_linea dbname="t_criticas_cedi.co_linea" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_referencia dbname="t_criticas_cedi.co_referencia" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=talla dbname="t_criticas_cedi.co_talla" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=calidad dbname="t_criticas_cedi.co_calidad" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=color dbname="t_criticas_cedi.co_color" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=ano dbname="t_criticas_cedi.ano" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=semana dbname="t_criticas_cedi.semana" )
+ column=(type=long update=yes updatewhereclause=yes name=cant_terminado dbname="t_criticas_cedi.cant_terminado" )
+ column=(type=long update=yes updatewhereclause=yes name=cant_liberado dbname="t_criticas_cedi.cant_liberado" )
+ column=(type=long update=yes updatewhereclause=yes name=cant_cortado dbname="t_criticas_cedi.cant_cortado" )
+ column=(type=char(40) update=yes updatewhereclause=yes name=de_fabrica dbname="t_criticas_cedi.de_fabrica" )
+ column=(type=char(40) update=yes updatewhereclause=yes name=de_linea dbname="t_criticas_cedi.de_linea" )
+ column=(type=char(40) update=yes updatewhereclause=yes name=de_referencia dbname="t_criticas_cedi.de_referencia" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="t_criticas_cedi.fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="t_criticas_cedi.fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="t_criticas_cedi.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="t_criticas_cedi.instancia" )
+ column=(type=long updatewhereclause=yes name=cant_bmc dbname="t_criticas_cedi.cant_bmc" )
+ column=(type=long updatewhereclause=yes name=cant_prog_corte dbname="t_criticas_cedi.cant_prog_corte" )
+ column=(type=char(1) updatewhereclause=yes name=clasificacion dbname="t_criticas_cedi.clasificacion" )
+ column=(type=long updatewhereclause=yes name=cant_terminado_ant dbname="t_criticas_cedi.cant_terminado_ant" )
+ column=(type=long updatewhereclause=yes name=dias_cedi dbname="t_criticas_cedi.dias_cedi" )
+ retrieve="  SELECT t_criticas_cedi.co_fabrica,   
+         t_criticas_cedi.co_linea,   
+         t_criticas_cedi.co_referencia,   
+         t_criticas_cedi.co_talla,   
+         t_criticas_cedi.co_calidad,   
+         t_criticas_cedi.co_color,   
+         t_criticas_cedi.ano,   
+         t_criticas_cedi.semana,   
+         t_criticas_cedi.cant_terminado,   
+         t_criticas_cedi.cant_liberado,   
+         t_criticas_cedi.cant_cortado,   
+         t_criticas_cedi.de_fabrica,   
+         t_criticas_cedi.de_linea,   
+         t_criticas_cedi.de_referencia,   
+         t_criticas_cedi.fe_creacion,   
+         t_criticas_cedi.fe_actualizacion,   
+         t_criticas_cedi.usuario,   
+         t_criticas_cedi.instancia,   
+         t_criticas_cedi.cant_bmc,   
+         t_criticas_cedi.cant_prog_corte,   
+         t_criticas_cedi.clasificacion,
+			t_criticas_cedi.cant_terminado_ant,
+			t_criticas_cedi.dias_cedi
+    FROM t_criticas_cedi  
+   WHERE ( t_criticas_cedi.ano = :ano ) AND  
+         ( t_criticas_cedi.semana = :semana )    AND
+         ( t_criticas_cedi.Clasificacion = :clasifica OR :clasifica = '')
+" update="t_criticas_cedi" updatewhere=0 updatekeyinplace=no arguments=(("ano", number),("semana", number),("clasifica", string))  sort="dias_cedi A cant_terminado D co_fabrica A co_linea A co_referencia A color A talla A " )
+group(level=1 header.height=0 trailer.height=108 by=("co_fabrica" , "co_linea" , "co_referencia" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=0 trailer.height=96 by=("co_fabrica" , "co_linea" , "co_referencia" , "color" ) header.color="536870912" trailer.color="536870912" )
+button(band=header text="Filtrar" enabled=yes action="9" border="0" color="0" x="14" y="12" height="64" width="251" vtextalign="0" htextalign="0"  name=b_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Ordenar" enabled=yes action="8" border="0" color="0" x="293" y="12" height="64" width="251" vtextalign="0" htextalign="0"  name=b_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="PRODUCCION A LIBERAR (Criticas )" border="0" color="33554432" x="9" y="160" height="92" width="1829" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="1454" y="80" height="64" width="379" format="mmm/dd/yyyy h:mm" html.valueishtml="0"  name=date_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Fecha Reporte:" border="0" color="33554432" x="1106" y="80" height="64" width="338" html.valueishtml="0"  name=t_9 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Ano" border="6" color="33554432" x="453" y="88" height="56" width="123" html.valueishtml="0"  name=ano_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="65535" )
+column(band=header id=7 alignment="2" tabsequence=32766 border="6" color="33554432" x="590" y="88" height="56" width="123" format="[general]" html.valueishtml="0"  name=ano visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="65535" )
+text(band=header alignment="2" text="Semana" border="6" color="33554432" x="731" y="88" height="56" width="201" html.valueishtml="0"  name=semana_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="65535" )
+column(band=header id=8 alignment="2" tabsequence=32766 border="6" color="33554432" x="951" y="88" height="56" width="123" format="[general]" html.valueishtml="0"  name=semana visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="65535" )
+button(band=header text="Guardar" enabled=yes action="14" border="0" color="0" x="571" y="12" height="64" width="251" vtextalign="0" htextalign="0"  name=b_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=header alignment="1" expression="'Pag. ' + page() + ' de ' + pageCount()"border="0" color="33554432" x="1317" y="8" height="64" width="517" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fabrica" border="2" color="33554432" x="5" y="276" height="168" width="169" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=detail alignment="2" expression=" co_fabrica "border="2" color="33554432" x="5" y="0" height="52" width="169" format="[General]" html.valueishtml="0"  name=fabrica visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=trailer.2 alignment="1" text="Total Color:" border="6" color="0" x="1362" y="12" height="56" width="251" html.valueishtml="0"  name=t_11 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=trailer.2 alignment="1" expression="sum(cantidad_por_liberar for group 2)"border="6" color="33554432" x="1618" y="16" height="52" width="219" format="0,###,###" html.valueishtml="0"  name=tot_color visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=trailer.1 alignment="1" text="Total Referencia:" border="6" color="255" x="1175" y="32" height="56" width="421" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=trailer.1 alignment="1" expression="sum(cantidad_por_liberar for group 1)"border="6" color="255" x="1618" y="32" height="56" width="219" format="0,###,###" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=summary alignment="1" text="Total:" border="6" color="16711680" x="1417" y="24" height="56" width="174" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=summary alignment="1" expression="sum(cantidad_por_liberar for all)"border="6" color="16711680" x="1618" y="24" height="56" width="219" format="0,###,###" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="L$$HEX1$$ed00$$ENDHEX$$nea" border="2" color="33554432" x="178" y="276" height="168" width="352" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=detail alignment="0" expression=" co_linea +' - '+trim( de_linea )"border="2" color="33554432" x="178" y="0" height="52" width="352" format="[GENERAL]" html.valueishtml="0"  name=linea visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header alignment="2" text="Referencia" border="2" color="33554432" x="535" y="276" height="168" width="475" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=detail alignment="0" expression=" co_referencia +' - '+trim( de_referencia )"border="2" color="33554432" x="535" y="0" height="52" width="475" format="[GENERAL]" html.valueishtml="0"  name=referencia visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header alignment="2" text="Color" border="2" color="33554432" x="1015" y="276" height="168" width="256" html.valueishtml="0"  name=co_color_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="2" color="33554432" x="1015" y="0" height="52" width="256" format="[general]" html.valueishtml="0"  name=color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header alignment="2" text="Talla" border="2" color="33554432" x="1275" y="276" height="168" width="114" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="2" color="33554432" x="1275" y="0" height="52" width="114" format="[general]" html.valueishtml="0"  name=talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="DiasCEDI" border="2" color="33554432" x="1481" y="276" height="168" width="133" html.valueishtml="0"  name=t_12 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=23 alignment="2" tabsequence=32766 border="2" color="33554432" x="1481" y="0" height="52" width="133" format="[general]" html.valueishtml="0"  name=dias_cedi visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=21 alignment="2" tabsequence=32766 border="2" color="33554432" x="1394" y="0" height="52" width="73" format="[general]" html.valueishtml="0"  name=clasificacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="C" border="2" color="33554432" x="1394" y="276" height="168" width="73" html.valueishtml="0"  name=co_calidad_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Cantidadx Liberar" border="2" color="33554432" x="1618" y="276" height="168" width="210" html.valueishtml="0"  name=cant_terminado_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=detail alignment="1" expression="If((cant_terminado -  cant_liberado -  cant_prog_corte ) > 0,cant_terminado -  cant_liberado -  cant_prog_corte ,0)"border="2" color="33554432" x="1618" y="0" height="52" width="210" format="0,###,###" html.valueishtml="0"  name=cantidad_por_liberar visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+
+sparse(names="fabrica	linea	referencia	color")htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
