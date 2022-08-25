@@ -1,0 +1,30 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "pedidos.pbl" "";
+@end;
+@begin Objects
+ "d_gr_tabla_peddig.srd" "pedidos.pbl";
+ "d_gr_arbol_pedido.srd" "pedidos.pbl";
+ "d_gr_dt_ref_x_col.srd" "pedidos.pbl";
+ "d_gr_hallar_ano_mes.srd" "pedidos.pbl";
+ "d_gr_tabla_pedpend_exp.srd" "pedidos.pbl";
+ "d_gr_evalua_h_preref.srd" "pedidos.pbl";
+ "n_cst_pedpend_exp.sru" "pedidos.pbl";
+ "d_dt_calendario.srd" "pedidos.pbl";
+ "d_gr_arbol_raiz.srd" "pedidos.pbl";
+ "d_gr_dt_cronograma.srd" "pedidos.pbl";
+ "n_cst_cronograma.sru" "pedidos.pbl";
+ "n_cst_dt_pedidos.sru" "pedidos.pbl";
+ "n_arbol_pedido.sru" "pedidos.pbl";
+ "w_seleccionar_equivalencia_prod.srw" "pedidos.pbl";
+ "w_seleccionar_equivalencia_vta.srw" "pedidos.pbl";
+ "d_gr_info_dt_ref_x_col_pv.srd" "pedidos.pbl";
+ "n_cst_mensaje.sru" "pedidos.pbl";
+ "n_cst_peddig.sru" "pedidos.pbl";
+ "d_gr_equivalencia_referencia_nal.srd" "pedidos.pbl";
+ "d_gr_hallar_item_pedido.srd" "pedidos.pbl";
+ "d_calendario_fab_parametro.srd" "pedidos.pbl";
+ "d_gr_verifica_estampado.srd" "pedidos.pbl";
+ "d_gr_arbol_pedido_existe.srd" "pedidos.pbl";
+ "d_gr_equivalencias_x_sku_vta_nuevo.srd" "pedidos.pbl";
+@end;
