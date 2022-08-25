@@ -1,0 +1,75 @@
+HA$PBExportHeader$f_actualizar_oc.srf
+$PBExportComments$Funcion para correguir el problema de ordenes de corte liquidadas y que quedaban con orden = 1, en dt_pdnxmodulo.  Con esta funci$$HEX1$$f300$$ENDHEX$$n se les realiza un update a ,os registros que cumplen dichas condiciones.
+global type f_actualizar_oc from function_object
+end type
+
+forward prototypes
+global function long f_actualizar_oc ()
+end prototypes
+
+global function long f_actualizar_oc ();Long ll_result,ll_fila,ll_oc,ll_pdn,ll_pedido,ll_ref,ll_color,ll_i,ll_agrupa
+Long li_fabexp,li_lib,li_fabpt,li_linea,li_estilo,li_particion
+String ls_po,ls_tono
+DataStore lds_base, lds_agru
+
+lds_base = Create DataStore
+lds_agru = Create DataStore
+
+lds_base.DataObject = 'ds_dt_trazosxbase'
+lds_agru.DataObject = 'ds_dt_agrupa_pdn'
+
+lds_base.SetTransObject(sqlca)
+lds_agru.SetTransObject(sqlca)
+
+ll_result = lds_base.Retrieve()
+
+If ll_result > 0 Then
+	For ll_fila =1 To lds_base.RowCount()
+		ll_oc = lds_base.GetItemNumber(ll_fila,'cs_orden_corte')
+		ll_pdn = lds_base.GetItemNumber(ll_fila,'cs_pdn')
+		ll_agrupa = lds_base.GetItemNumber(ll_fila,'cs_agrupacion')
+		
+		ll_result = lds_agru.Retrieve(ll_agrupa,ll_pdn)
+		
+		If ll_result > 0 Then
+			For ll_i = 1 To lds_agru.RowCount()
+				
+				li_fabexp 		= lds_agru.GetItemNumber(ll_i,'co_fabrica_exp')
+				ll_pedido 		= lds_agru.GetItemNumber(ll_i,'pedido')
+				li_lib 			= lds_agru.GetItemNumber(ll_i,'cs_liberacion')
+				ls_po 			= lds_agru.GetItemString(ll_i,'po')
+				li_fabpt 		= lds_agru.GetItemNumber(ll_i,'co_fabrica_pt')
+				li_linea 		= lds_agru.GetItemNumber(ll_i,'co_linea')
+				ll_ref 			= lds_agru.GetItemNumber(ll_i,'co_referencia')
+				ll_color 		= lds_agru.GetItemNumber(ll_i,'co_color_pt')
+				ls_tono 			= lds_agru.GetItemString(ll_i,'tono')
+				li_estilo 		= lds_agru.GetItemNumber(ll_i,'cs_estilocolortono')
+				li_particion 	= lds_agru.GetItemNumber(ll_i,'cs_particion')
+				
+				//
+				UPDATE dt_pdnxmodulo  
+				  SET cs_asignacion = :ll_oc  
+				WHERE ( dt_pdnxmodulo.simulacion = 1 ) AND  
+						( dt_pdnxmodulo.co_fabrica = 91 ) AND  
+						( dt_pdnxmodulo.co_planta = 1 ) AND  
+						( dt_pdnxmodulo.co_fabrica_exp = :li_fabexp ) AND  
+						( dt_pdnxmodulo.pedido = :ll_pedido ) AND  
+						( dt_pdnxmodulo.cs_liberacion = :li_lib ) AND  
+						( dt_pdnxmodulo.po = :ls_po ) AND  
+						( dt_pdnxmodulo.co_fabrica_pt = :li_fabpt ) AND  
+						( dt_pdnxmodulo.co_linea = :li_linea ) AND  
+						( dt_pdnxmodulo.co_referencia = :ll_ref ) AND  
+						( dt_pdnxmodulo.co_color_pt = :ll_color ) AND  
+						( dt_pdnxmodulo.tono = :ls_tono ) AND  
+						( dt_pdnxmodulo.cs_estilocolortono = :li_estilo ) AND  
+						( dt_pdnxmodulo.cs_particion = :li_particion ) AND
+						( dt_pdnxmodulo.cs_asignacion <= 1);
+			Next
+		End if//ll_result > 0 de lds_agru
+	Next
+End if//ll_result > 0 de lds_base
+
+Commit;
+Return 0
+end function
+
