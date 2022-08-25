@@ -1,0 +1,18 @@
+HA$PBExportHeader$d_lista_calendario.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=date updatewhereclause=yes name=fe_mod_calendario dbname="dt_mod_calendario.fe_mod_calendario" )
+ column=(type=decimal(5) updatewhereclause=yes name=minutos dbname="dt_mod_calendario.minutos" )
+ column=(type=char(1) updatewhereclause=yes name=co_tipo_dia dbname="dt_mod_calendario.co_tipo_dia" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"dt_mod_calendario~" ) COLUMN(NAME=~"dt_mod_calendario.fe_mod_calendario~") COLUMN(NAME=~"dt_mod_calendario.minutos~") COLUMN(NAME=~"dt_mod_calendario.co_tipo_dia~")WHERE(    EXP1 =~"dt_mod_calendario.co_fabrica~"   OP =~"=~"    EXP2 =~":an_fabrica~"    LOGIC =~"And~" ) WHERE(    EXP1 =~"dt_mod_calendario.co_planta~"   OP =~"=~"    EXP2 =~":an_planta~"    LOGIC =~"And~" ) WHERE(    EXP1 =~"dt_mod_calendario.co_modulo~"   OP =~"=~"    EXP2 =~":an_modulo~"    LOGIC =~"and~" ) WHERE(    EXP1 =~"dt_mod_calendario.fe_mod_calendario~"   OP =~">=~"    EXP2 =~":ad_fecha~" ) ) ORDER(NAME=~"dt_mod_calendario.fe_mod_calendario~" ASC=yes ) ARG(NAME = ~"an_fabrica~" TYPE = number)  ARG(NAME = ~"an_planta~" TYPE = number)  ARG(NAME = ~"an_modulo~" TYPE = number)  ARG(NAME = ~"ad_fecha~" TYPE = date) " arguments=(("an_fabrica", number),("an_planta", number),("an_modulo", number),("ad_fecha", date)) )
+text(band=header alignment="2" text="Fe Mod Calendario" border="0" color="0" x="5" y="4" height="64" width="498"  name=fe_mod_calendario_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Minutos" border="0" color="0" x="507" y="4" height="64" width="329"  name=minutos_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="5" y="4" height="76" width="329" format="[general]"  name=fe_mod_calendario edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="507" y="4" height="76" width="329" format="[general]"  name=minutos edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=0 border="0" color="0" x="850" y="8" height="64" width="128"  name=co_tipo_dia  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
