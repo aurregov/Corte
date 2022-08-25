@@ -1,0 +1,85 @@
+HA$PBExportHeader$dtb_porcentajes_liquidacion_nueva.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=decimal(0) updatewhereclause=yes name=unds_liq dbname="unds_liq" )
+ column=(type=decimal(4) updatewhereclause=yes name=dt_liquidaxespacio_ca_remanentes dbname="dt_liquidaxespacio.ca_remanentes" )
+ column=(type=decimal(4) updatewhereclause=yes name=dt_liquidaxespacio_ca_cortados dbname="dt_liquidaxespacio.ca_cortados" )
+ column=(type=decimal(4) updatewhereclause=yes name=dt_liquidaxespacio_ca_imperfectos dbname="dt_liquidaxespacio.ca_imperfectos" )
+ column=(type=decimal(4) updatewhereclause=yes name=dt_liquidaxespacio_ca_empates dbname="dt_liquidaxespacio.ca_empates" )
+ column=(type=decimal(4) updatewhereclause=yes name=dt_liquidaxespacio_ca_faltantes dbname="dt_liquidaxespacio.ca_faltantes" )
+ column=(type=decimal(4) updatewhereclause=yes name=cons_tela dbname="cons_tela" )
+ column=(type=decimal(0) updatewhereclause=yes name=unds_prog dbname="unds_prog" )
+ retrieve="  SELECT sum(dt_liq_unixespacio.ca_liquidadas) unds_liq,   
+         dt_liquidaxespacio.ca_remanentes,   
+         dt_liquidaxespacio.ca_cortados,   
+         dt_liquidaxespacio.ca_imperfectos,   
+         dt_liquidaxespacio.ca_empates,   
+         dt_liquidaxespacio.ca_faltantes,
+			(	SELECT Sum(consumoxescala)
+				FROM dt_rayas_telaxoc
+				WHERE dt_rayas_telaxoc.cs_orden_corte = dt_liquidaxespacio.cs_orden_corte AND
+						dt_rayas_Telaxoc.cs_agrupacion = dt_liquidaxespacio.cs_agrupacion AND
+						dt_rayas_telaxoc.cs_base_trazos = dt_liquidaxespacio.cs_base_trazos) as cons_tela,
+         Sum(dt_unidadesxtrazo.ca_programada) unds_prog
+    FROM dt_liq_unixespacio,   
+         dt_liquidaxespacio,   
+         dt_unidadesxtrazo  
+   WHERE ( dt_liquidaxespacio.cs_orden_corte = dt_liq_unixespacio.cs_orden_corte ) and  
+         ( dt_liquidaxespacio.cs_agrupacion = dt_liq_unixespacio.cs_agrupacion ) and  
+         ( dt_liquidaxespacio.cs_base_trazos = dt_liq_unixespacio.cs_base_trazos ) and  
+         ( dt_liquidaxespacio.cs_liquidacion = dt_liq_unixespacio.cs_liquidacion ) and  
+         ( dt_liq_unixespacio.cs_orden_corte = dt_unidadesxtrazo.cs_orden_corte ) and  
+         ( dt_liq_unixespacio.cs_agrupacion = dt_unidadesxtrazo.cs_agrupacion ) and  
+         ( dt_liq_unixespacio.cs_base_trazos = dt_unidadesxtrazo.cs_base_trazos ) and  
+         ( dt_liq_unixespacio.cs_trazo = dt_unidadesxtrazo.cs_trazo ) and  
+         ( dt_liq_unixespacio.cs_seccion = dt_unidadesxtrazo.cs_seccion ) and  
+         ( dt_liq_unixespacio.cs_pdn = dt_unidadesxtrazo.cs_pdn ) and  
+         ( dt_liq_unixespacio.co_talla = dt_unidadesxtrazo.co_talla ) and  
+         ( dt_liquidaxespacio.cs_orden_corte = :an_ordencorte  ) and
+         ( dt_liquidaxespacio.cs_agrupacion = :an_agrupacion ) and
+         ( dt_liquidaxespacio.cs_base_trazos = :an_base_trazos ) and
+         ( dt_liquidaxespacio.cs_liquidacion = :an_liquidacion )
+GROUP BY dt_liquidaxespacio.ca_cortados,   
+         dt_liquidaxespacio.ca_remanentes,   
+         dt_liquidaxespacio.ca_empates,   
+         dt_liquidaxespacio.ca_imperfectos,   
+         dt_liquidaxespacio.ca_faltantes,
+			7
+" arguments=(("an_ordencorte", number),("an_agrupacion", number),("an_base_trazos", number),("an_liquidacion", number)) )
+text(band=header alignment="2" text="Consumo
+ Estandard" border="2" color="0" x="645" y="4" height="112" width="261" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unidades
+Cortadas" border="2" color="0" x="928" y="4" height="112" width="233" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Total tela 
+Consumida" border="2" color="0" x="1175" y="4" height="112" width="302" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Consumo
+Real" border="2" color="0" x="1490" y="4" height="112" width="261" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Desperdicio" border="2" color="0" x="1765" y="4" height="112" width="261" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Variaci$$HEX1$$f300$$ENDHEX$$n
+en Tela" border="2" color="0" x="2313" y="4" height="112" width="261" html.valueishtml="0"  name=t_7 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unidades
+ programadas" border="2" color="0" x="5" y="4" height="112" width="311" html.valueishtml="0"  name=compute_0001_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Total tela 
+ Programada" border="2" color="0" x="329" y="4" height="112" width="302" html.valueishtml="0"  name=compute_0002_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Variaci$$HEX1$$f300$$ENDHEX$$n
+Unidades" border="2" color="0" x="2039" y="4" height="112" width="261" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="2" color="0" x="928" y="0" height="60" width="233" format="###,###" html.valueishtml="0"  name=unds_liq visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="  dt_liquidaxespacio_ca_cortados +  dt_liquidaxespacio_ca_empates +  dt_liquidaxespacio_ca_imperfectos +  dt_liquidaxespacio_ca_remanentes "border="2" color="0" x="1175" y="0" height="60" width="302" format="###,###.##" html.valueishtml="0"  name=yds_liq visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression=" yds_liq / unds_liq "border="2" color="0" x="1490" y="0" height="60" width="261" format="###,###.##" html.valueishtml="0"  name=consumo_real visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="   dt_liquidaxespacio_ca_remanentes +  dt_liquidaxespacio_ca_imperfectos +  dt_liquidaxespacio_ca_empates "border="2" color="0" x="1765" y="0" height="60" width="261" format="###,###.##" html.valueishtml="0"  name=desperdicio visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="  (cons_tela /  unds_prog  )"border="2" color="0" x="645" y="0" height="60" width="261" format="###,###.##" html.valueishtml="0"  name=consumo_est visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="2" color="0" x="329" y="0" height="60" width="302" format="###,###.##" html.valueishtml="0"  name=cons_tela visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="2" color="0" x="5" y="0" height="60" width="311" format="[general]" html.valueishtml="0"  name=unds_prog visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression=" (    cons_tela -  yds_liq ) /    cons_tela"border="2" color="0" x="2313" y="0" height="60" width="261" format="0.00%" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression=" (  unds_liq - unds_prog  ) /    unds_prog "border="2" color="0" x="2039" y="0" height="60" width="261" format="0.00%" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="1106" y="148" height="60" width="261" format="[general]" html.valueishtml="0"  name=dt_liquidaxespacio_ca_remanentes visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="1381" y="148" height="60" width="261" format="[general]" html.valueishtml="0"  name=dt_liquidaxespacio_ca_cortados visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="1655" y="148" height="60" width="261" format="[general]" html.valueishtml="0"  name=dt_liquidaxespacio_ca_imperfectos visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="1929" y="148" height="60" width="261" format="[general]" html.valueishtml="0"  name=dt_liquidaxespacio_ca_empates visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="2203" y="148" height="60" width="261" format="[general]" html.valueishtml="0"  name=dt_liquidaxespacio_ca_faltantes visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
