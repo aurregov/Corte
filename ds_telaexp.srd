@@ -1,0 +1,124 @@
+HA$PBExportHeader$ds_telaexp.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_rollo dbname="m_rollo.cs_rollo" )
+ column=(type=long updatewhereclause=yes name=cs_ordenpd_pt dbname="h_ordenpd_pt.cs_ordenpd_pt" )
+ column=(type=long updatewhereclause=yes name=co_reftel dbname="m_rollo.co_reftel_act" )
+ column=(type=long updatewhereclause=yes name=co_caract dbname="m_rollo.co_caract_act" )
+ column=(type=long updatewhereclause=yes name=co_color dbname="m_rollo.co_color_act" )
+ column=(type=long updatewhereclause=yes name=diametro dbname="m_rollo.diametro_act" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="m_rollo.co_talla" )
+ column=(type=char(2) updatewhereclause=yes name=co_tono dbname="m_rollo.co_tono" )
+ column=(type=decimal(2) updatewhereclause=yes name=ancho_tub_term dbname="m_rollo.ancho_tub_term" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_mt dbname="m_rollo.ca_mt" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_kg dbname="m_rollo.ca_kg" )
+ column=(type=long updatewhereclause=yes name=ca_unidades dbname="m_rollo.ca_unidades" )
+ column=(type=long updatewhereclause=yes name=co_caract_final dbname="m_rollo.co_caract_final" )
+ column=(type=long updatewhereclause=yes name=sw_bodysize dbname="h_ordenpd_te.sw_bodysize" )
+ column=(type=long updatewhereclause=yes name=cs_tanda dbname="m_rollo.cs_tanda" )
+ column=(type=long updatewhereclause=yes name=lote dbname="m_rollo.lote" )
+ column=(type=long updatewhereclause=yes name=tipo_rollo dbname="tipo_rollo" )
+ retrieve=" SELECT DISTINCT m_rollo.cs_rollo,   
+         h_ordenpd_pt.cs_ordenpd_pt,   
+         m_rollo.co_reftel_act,   
+         m_rollo.co_caract_act,   
+         m_rollo.co_color_act,   
+         m_rollo.diametro_act,   
+         m_rollo.co_talla,   
+         co_tono, 
+         m_rollo.ancho_tub_term,   
+         m_rollo.ca_mt,   
+         m_rollo.ca_kg,   
+         m_rollo.ca_unidades,   
+         m_rollo.co_caract_final,
+			h_ordenpd_te.sw_bodysize,
+			m_rollo.cs_tanda,
+         m_rollo.lote,
+         nvl((select tipo from m_cpto_bodega where co_cpto_bodega = m_rollo.co_planeador),0) as tipo_rollo   
+    FROM dt_caxpedidos,   
+         h_ordenpd_pt,   
+         m_rollo, 
+			h_ordenpd_te,
+         dt_telas_ordxcol 
+   WHERE ( h_ordenpd_pt.cs_ordenpd_pt 		= dt_caxpedidos.cs_ordenpd_pt ) and  
+         ( h_ordenpd_pt.cs_ordenpd_pt 		= m_rollo.cs_orden_pr_act ) and  
+         ( h_ordenpd_pt.co_fabrica 			= :an_fabrica  or :an_fabrica = 0) AND  
+         ( h_ordenpd_pt.co_linea 			= :an_linea 	or :an_linea 	= 0 ) AND  
+         ( h_ordenpd_pt.co_referencia 		= :an_ref 		or :an_ref 		= 0 ) AND  
+         ( h_ordenpd_pt.cs_ordenpd_pt 		= :an_op 		or :an_op 		= 0 ) AND  
+         ( dt_caxpedidos.nu_orden 			= :as_po 		or :as_po 		= '' ) AND  
+         ( dt_caxpedidos.co_color 			= :an_color 	or :an_color 	= 0 ) AND
+			( m_rollo.co_estado_rollo 			= :an_estado_rollo) AND
+			( m_rollo.co_centro 					= :an_centro) AND
+			( h_ordenpd_pt.co_estado_orden 	<> 5) AND
+         ( h_ordenpd_pt.co_linea          > 0 ) AND
+			( m_rollo.cs_orden_pr_act 			= h_ordenpd_te.cs_ordenpd_pt ) AND
+			( m_rollo.co_reftel_act 			= h_ordenpd_te.co_reftel ) AND
+			( m_rollo.co_caract_act 			= h_ordenpd_te.co_caract ) AND
+         ( h_ordenpd_te.cs_ordenpd_te		= dt_telas_ordxcol.cs_ordenpd_te ) AND
+         ( h_ordenpd_te.co_reftel 			= dt_telas_ordxcol.co_reftel ) AND
+         ( dt_telas_ordxcol.co_color_te   = m_rollo.co_color_act  ) AND
+         ( dt_telas_ordxcol.diametro      = m_rollo.diametro_act ) AND
+			( dt_telas_ordxcol.co_color_pt	= dt_caxpedidos.co_color ) AND
+         ( m_rollo.ubicacion             <> '2222' ) AND
+			( h_ordenpd_te.co_estado_orden 	<> 5) AND
+         (( m_rollo.ca_kg 						> 0 ) ) AND
+			( m_rollo.cs_tanda					>=0 ) AND
+         (( m_rollo.ca_mt                  > 0 ) OR (m_rollo.ca_mt = 0  AND m_rollo.ca_unidades > 0))
+		" filter=" tipo_rollo <>1"arguments=(("an_fabrica", number),("an_linea", number),("an_ref", number),("an_op", number),("as_po", string),("an_color", number),("an_estado_rollo", number),("an_centro", number),("an_estadopd", number))  sort="cs_rollo A " )
+text(band=header alignment="2" text="M Rollo
+Cs Rollo" border="0" color="33554432" x="9" y="8" height="112" width="274" html.valueishtml="0"  name=m_rollo_cs_rollo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="H Ordenpd Pt
+Cs Ordenpd Pt" border="0" color="33554432" x="293" y="8" height="112" width="315" html.valueishtml="0"  name=h_ordenpd_pt_cs_ordenpd_pt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Rollo
+Co Reftel Act" border="0" color="33554432" x="617" y="8" height="112" width="288" html.valueishtml="0"  name=m_rollo_co_reftel_act_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Rollo
+Co Caract Act" border="0" color="33554432" x="914" y="8" height="112" width="302" html.valueishtml="0"  name=m_rollo_co_caract_act_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Rollo
+Co Color Act" border="0" color="33554432" x="1225" y="8" height="112" width="274" html.valueishtml="0"  name=m_rollo_co_color_act_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Rollo
+Diametro Act" border="0" color="33554432" x="1509" y="8" height="112" width="279" html.valueishtml="0"  name=m_rollo_diametro_act_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Rollo
+Co Talla" border="0" color="33554432" x="1797" y="8" height="112" width="274" html.valueishtml="0"  name=m_rollo_co_talla_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Rollo
+Co Tono" border="0" color="33554432" x="2080" y="8" height="112" width="187" html.valueishtml="0"  name=m_rollo_co_tono_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Rollo
+Ancho Tub Term" border="0" color="33554432" x="2277" y="8" height="112" width="366" html.valueishtml="0"  name=m_rollo_ancho_tub_term_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Rollo
+Ca Mt" border="0" color="33554432" x="2651" y="8" height="112" width="274" html.valueishtml="0"  name=m_rollo_ca_mt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Rollo
+Ca Kg" border="0" color="33554432" x="2935" y="8" height="112" width="274" html.valueishtml="0"  name=m_rollo_ca_kg_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Rollo
+Ca Unidades" border="0" color="33554432" x="3218" y="8" height="112" width="279" html.valueishtml="0"  name=m_rollo_ca_unidades_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Rollo
+Co Caract Final" border="0" color="33554432" x="3506" y="8" height="112" width="329" html.valueishtml="0"  name=m_rollo_co_caract_final_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="H Ordenpd Te Sw Bodysize" border="0" color="0" x="3845" y="8" height="112" width="306" html.valueishtml="0"  name=h_ordenpd_te_sw_bodysize_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Tipo Rollo" border="0" color="0" x="4329" y="4" height="76" width="59" html.valueishtml="0"  name=tipo_rollo_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="M Rollo Cs Tanda" border="0" color="0" x="4160" y="8" height="56" width="160" html.valueishtml="0"  name=m_rollo_cs_tanda_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Lote" border="0" color="0" x="4398" y="4" height="56" width="114" html.valueishtml="0"  name=m_rollo_lote_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_rollo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="293" y="8" height="64" width="315" format="[general]" html.valueishtml="0"  name=cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="617" y="8" height="64" width="288" format="[general]" html.valueishtml="0"  name=co_reftel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="914" y="8" height="64" width="302" format="[general]" html.valueishtml="0"  name=co_caract visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1225" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1509" y="8" height="64" width="279" format="[general]" html.valueishtml="0"  name=diametro visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="1797" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="2080" y="8" height="64" width="187" format="[general]" html.valueishtml="0"  name=co_tono visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="2277" y="8" height="64" width="366" format="[general]" html.valueishtml="0"  name=ancho_tub_term visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="33554432" x="2651" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=ca_mt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="0" color="33554432" x="2935" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=ca_kg visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="0" color="33554432" x="3218" y="8" height="64" width="279" format="[general]" html.valueishtml="0"  name=ca_unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="0" color="33554432" x="3506" y="8" height="64" width="329" format="[general]" html.valueishtml="0"  name=co_caract_final visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="33554432" x="3845" y="8" height="64" width="306" format="[general]" html.valueishtml="0"  name=sw_bodysize visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="33554432" x="4160" y="8" height="64" width="160" format="[general]" html.valueishtml="0"  name=cs_tanda visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="33554432" x="4329" y="0" height="52" width="59" format="[general]" html.valueishtml="0"  name=tipo_rollo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="33554432" x="4398" y="0" height="52" width="114" format="[general]" html.valueishtml="0"  name=lote visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
