@@ -1,0 +1,1307 @@
+HA$PBExportHeader$m_base_principal.srm
+$PBExportComments$OBJETO BASE - Menu base para cualquier aplicacion, debe heredarse de El para el menu principal de la aplicacion a desarrollar.
+forward
+global type m_base_principal from menu
+end type
+type m_archivo from menu within m_base_principal
+end type
+type m_cerrar from menu within m_archivo
+end type
+type m_grabar from menu within m_archivo
+end type
+type m_- from menu within m_archivo
+end type
+type m_configurarimpresora from menu within m_archivo
+end type
+type m_imprimir from menu within m_archivo
+end type
+type m_-1 from menu within m_archivo
+end type
+type m_salir from menu within m_archivo
+end type
+type m_archivo from menu within m_base_principal
+m_cerrar m_cerrar
+m_grabar m_grabar
+m_- m_-
+m_configurarimpresora m_configurarimpresora
+m_imprimir m_imprimir
+m_-1 m_-1
+m_salir m_salir
+end type
+type m_edicion from menu within m_base_principal
+end type
+type m_buscar from menu within m_edicion
+end type
+type m_-2 from menu within m_edicion
+end type
+type m_insertarmaestro from menu within m_edicion
+end type
+type m_borrarmaestro from menu within m_edicion
+end type
+type m_-3 from menu within m_edicion
+end type
+type m_insertardetalle from menu within m_edicion
+end type
+type m_borrardetalle from menu within m_edicion
+end type
+type m_-5 from menu within m_edicion
+end type
+type m_insertarsubdetalle from menu within m_edicion
+end type
+type m_borrarsubdetalle from menu within m_edicion
+end type
+type m_edicion from menu within m_base_principal
+m_buscar m_buscar
+m_-2 m_-2
+m_insertarmaestro m_insertarmaestro
+m_borrarmaestro m_borrarmaestro
+m_-3 m_-3
+m_insertardetalle m_insertardetalle
+m_borrardetalle m_borrardetalle
+m_-5 m_-5
+m_insertarsubdetalle m_insertarsubdetalle
+m_borrarsubdetalle m_borrarsubdetalle
+end type
+type m_administracin from menu within m_base_principal
+end type
+type m_mantenimientodeerroresbd from menu within m_administracin
+end type
+type m_mantenimientodereportes from menu within m_administracin
+end type
+type m_administracin from menu within m_base_principal
+m_mantenimientodeerroresbd m_mantenimientodeerroresbd
+m_mantenimientodereportes m_mantenimientodereportes
+end type
+type m_opcin2 from menu within m_base_principal
+end type
+type m_opcin3 from menu within m_base_principal
+end type
+type m_opcin4 from menu within m_base_principal
+end type
+type m_opcin5 from menu within m_base_principal
+end type
+type m_vistaprevia from menu within m_base_principal
+end type
+type m_mostrarvistaprevia from menu within m_vistaprevia
+end type
+type m_mostrarregleta from menu within m_vistaprevia
+end type
+type m_zoom from menu within m_vistaprevia
+end type
+type m_-6 from menu within m_vistaprevia
+end type
+type m_anterior from menu within m_vistaprevia
+end type
+type m_siguiente from menu within m_vistaprevia
+end type
+type m_vistaprevia from menu within m_base_principal
+m_mostrarvistaprevia m_mostrarvistaprevia
+m_mostrarregleta m_mostrarregleta
+m_zoom m_zoom
+m_-6 m_-6
+m_anterior m_anterior
+m_siguiente m_siguiente
+end type
+type m_graficas from menu within m_base_principal
+end type
+type m_tipodegrafica from menu within m_graficas
+end type
+type m_titulo from menu within m_graficas
+end type
+type m_color from menu within m_graficas
+end type
+type m_espaciamiento from menu within m_graficas
+end type
+type m_graficas from menu within m_base_principal
+m_tipodegrafica m_tipodegrafica
+m_titulo m_titulo
+m_color m_color
+m_espaciamiento m_espaciamiento
+end type
+type m_ventana from menu within m_base_principal
+end type
+type m_horizontal from menu within m_ventana
+end type
+type m_vertical from menu within m_ventana
+end type
+type m_completa from menu within m_ventana
+end type
+type m_cascada from menu within m_ventana
+end type
+type m_ventana from menu within m_base_principal
+m_horizontal m_horizontal
+m_vertical m_vertical
+m_completa m_completa
+m_cascada m_cascada
+end type
+type m_ayuda from menu within m_base_principal
+end type
+type m_contenido from menu within m_ayuda
+end type
+type m_comousarayuda from menu within m_ayuda
+end type
+type m_-4 from menu within m_ayuda
+end type
+type m_acercade from menu within m_ayuda
+end type
+type m_ayuda from menu within m_base_principal
+m_contenido m_contenido
+m_comousarayuda m_comousarayuda
+m_-4 m_-4
+m_acercade m_acercade
+end type
+global type m_base_principal from menu
+m_archivo m_archivo
+m_edicion m_edicion
+m_administracin m_administracin
+m_opcin2 m_opcin2
+m_opcin3 m_opcin3
+m_opcin4 m_opcin4
+m_opcin5 m_opcin5
+m_vistaprevia m_vistaprevia
+m_graficas m_graficas
+m_ventana m_ventana
+m_ayuda m_ayuda
+end type
+end forward
+
+global type m_base_principal from menu
+m_archivo m_archivo
+m_edicion m_edicion
+m_administracin m_administracin
+m_opcin2 m_opcin2
+m_opcin3 m_opcin3
+m_opcin4 m_opcin4
+m_opcin5 m_opcin5
+m_vistaprevia m_vistaprevia
+m_graficas m_graficas
+m_ventana m_ventana
+m_ayuda m_ayuda
+end type
+global m_base_principal m_base_principal
+
+on m_base_principal.create
+m_base_principal=this
+call super::create
+this.m_archivo=create m_archivo
+this.m_edicion=create m_edicion
+this.m_administracin=create m_administracin
+this.m_opcin2=create m_opcin2
+this.m_opcin3=create m_opcin3
+this.m_opcin4=create m_opcin4
+this.m_opcin5=create m_opcin5
+this.m_vistaprevia=create m_vistaprevia
+this.m_graficas=create m_graficas
+this.m_ventana=create m_ventana
+this.m_ayuda=create m_ayuda
+this.Item[UpperBound(this.Item)+1]=this.m_archivo
+this.Item[UpperBound(this.Item)+1]=this.m_edicion
+this.Item[UpperBound(this.Item)+1]=this.m_administracin
+this.Item[UpperBound(this.Item)+1]=this.m_opcin2
+this.Item[UpperBound(this.Item)+1]=this.m_opcin3
+this.Item[UpperBound(this.Item)+1]=this.m_opcin4
+this.Item[UpperBound(this.Item)+1]=this.m_opcin5
+this.Item[UpperBound(this.Item)+1]=this.m_vistaprevia
+this.Item[UpperBound(this.Item)+1]=this.m_graficas
+this.Item[UpperBound(this.Item)+1]=this.m_ventana
+this.Item[UpperBound(this.Item)+1]=this.m_ayuda
+end on
+
+on m_base_principal.destroy
+call super::destroy
+destroy(this.m_archivo)
+destroy(this.m_edicion)
+destroy(this.m_administracin)
+destroy(this.m_opcin2)
+destroy(this.m_opcin3)
+destroy(this.m_opcin4)
+destroy(this.m_opcin5)
+destroy(this.m_vistaprevia)
+destroy(this.m_graficas)
+destroy(this.m_ventana)
+destroy(this.m_ayuda)
+end on
+
+type m_archivo from menu within m_base_principal
+m_cerrar m_cerrar
+m_grabar m_grabar
+m_- m_-
+m_configurarimpresora m_configurarimpresora
+m_imprimir m_imprimir
+m_-1 m_-1
+m_salir m_salir
+end type
+
+on m_archivo.create
+call super::create
+this.text = "&Archivo"
+this.microhelp = "Opciones de Archivo"
+this.m_cerrar=create m_cerrar
+this.m_grabar=create m_grabar
+this.m_-=create m_-
+this.m_configurarimpresora=create m_configurarimpresora
+this.m_imprimir=create m_imprimir
+this.m_-1=create m_-1
+this.m_salir=create m_salir
+this.Item[UpperBound(this.Item)+1]=this.m_cerrar
+this.Item[UpperBound(this.Item)+1]=this.m_grabar
+this.Item[UpperBound(this.Item)+1]=this.m_-
+this.Item[UpperBound(this.Item)+1]=this.m_configurarimpresora
+this.Item[UpperBound(this.Item)+1]=this.m_imprimir
+this.Item[UpperBound(this.Item)+1]=this.m_-1
+this.Item[UpperBound(this.Item)+1]=this.m_salir
+end on
+
+on m_archivo.destroy
+call super::destroy
+destroy(this.m_cerrar)
+destroy(this.m_grabar)
+destroy(this.m_-)
+destroy(this.m_configurarimpresora)
+destroy(this.m_imprimir)
+destroy(this.m_-1)
+destroy(this.m_salir)
+end on
+
+type m_cerrar from menu within m_archivo
+end type
+
+on m_cerrar.create
+call super::create
+this.visible = false
+this.text = "&Cerrar~tAlt+F4"
+this.enabled = false
+this.shortcut = 627
+this.microhelp = "Cierra la ventana activa"
+this.toolbaritemvisible = false
+this.toolbaritemname = "NotFound!"
+this.toolbaritemtext = "Cerrar"
+this.toolbaritemorder = 197
+this.toolbaritemspace = 1
+end on
+
+event clicked;Close(ParentWindow)
+end event
+
+on m_cerrar.destroy
+call super::destroy
+end on
+
+type m_grabar from menu within m_archivo
+end type
+
+on m_grabar.create
+call super::create
+this.visible = false
+this.text = "&Grabar~tCtrl+G"
+this.enabled = false
+this.shortcut = 327
+this.microhelp = "Graba los cambios realizados en la ventana activa"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Save!"
+this.toolbaritemtext = "Salvar"
+this.toolbaritemorder = 11
+this.toolbaritemspace = 1
+end on
+
+event clicked;ParentWindow.TriggerEvent("ue_grabar")
+end event
+
+on m_grabar.destroy
+call super::destroy
+end on
+
+type m_- from menu within m_archivo
+end type
+
+on m_-.create
+call super::create
+this.visible = false
+this.text = "-"
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_configurarimpresora from menu within m_archivo
+end type
+
+on m_configurarimpresora.create
+call super::create
+this.text = "C&onfigurar impresora~tAlt+P"
+this.shortcut = 592
+this.microhelp = "Configura la impresora a utilizar"
+end on
+
+event clicked;PrintSetup()
+end event
+
+on m_configurarimpresora.destroy
+call super::destroy
+end on
+
+type m_imprimir from menu within m_archivo
+end type
+
+on m_imprimir.create
+call super::create
+this.visible = false
+this.text = "&Imprimir~tCtrl+P"
+this.enabled = false
+this.shortcut = 336
+this.microhelp = "Imprime la informacion de la ventana activa"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Print!"
+this.toolbaritemtext = "Imprimir"
+this.toolbaritemorder = 12
+end on
+
+event clicked;ParentWindow.TriggerEvent("ue_imprimir")
+end event
+
+on m_imprimir.destroy
+call super::destroy
+end on
+
+type m_-1 from menu within m_archivo
+end type
+
+on m_-1.create
+call super::create
+this.text = "-"
+end on
+
+on m_-1.destroy
+call super::destroy
+end on
+
+type m_salir from menu within m_archivo
+end type
+
+on m_salir.create
+call super::create
+this.text = "&Salir"
+this.microhelp = "Salir de La Aplicaci$$HEX1$$f300$$ENDHEX$$n"
+this.toolbaritemname = "Exit!"
+this.toolbaritemtext = "Salir"
+this.toolbaritemorder = 199
+this.toolbaritemspace = 1
+this.menuitemtype = menuitemtypeexit!
+end on
+
+event clicked;IF MessageBox("Salir...","Desea salir de la Aplicaci$$HEX1$$f300$$ENDHEX$$n ?" &
+					,Question!,YesNo!) = 1 THEN
+	Close(ParentWindow)
+END IF
+end event
+
+on m_salir.destroy
+call super::destroy
+end on
+
+type m_edicion from menu within m_base_principal
+m_buscar m_buscar
+m_-2 m_-2
+m_insertarmaestro m_insertarmaestro
+m_borrarmaestro m_borrarmaestro
+m_-3 m_-3
+m_insertardetalle m_insertardetalle
+m_borrardetalle m_borrardetalle
+m_-5 m_-5
+m_insertarsubdetalle m_insertarsubdetalle
+m_borrarsubdetalle m_borrarsubdetalle
+end type
+
+on m_edicion.create
+call super::create
+this.visible = false
+this.text = "&Edicion"
+this.enabled = false
+this.microhelp = "Opciones de Edicion"
+this.m_buscar=create m_buscar
+this.m_-2=create m_-2
+this.m_insertarmaestro=create m_insertarmaestro
+this.m_borrarmaestro=create m_borrarmaestro
+this.m_-3=create m_-3
+this.m_insertardetalle=create m_insertardetalle
+this.m_borrardetalle=create m_borrardetalle
+this.m_-5=create m_-5
+this.m_insertarsubdetalle=create m_insertarsubdetalle
+this.m_borrarsubdetalle=create m_borrarsubdetalle
+this.Item[UpperBound(this.Item)+1]=this.m_buscar
+this.Item[UpperBound(this.Item)+1]=this.m_-2
+this.Item[UpperBound(this.Item)+1]=this.m_insertarmaestro
+this.Item[UpperBound(this.Item)+1]=this.m_borrarmaestro
+this.Item[UpperBound(this.Item)+1]=this.m_-3
+this.Item[UpperBound(this.Item)+1]=this.m_insertardetalle
+this.Item[UpperBound(this.Item)+1]=this.m_borrardetalle
+this.Item[UpperBound(this.Item)+1]=this.m_-5
+this.Item[UpperBound(this.Item)+1]=this.m_insertarsubdetalle
+this.Item[UpperBound(this.Item)+1]=this.m_borrarsubdetalle
+end on
+
+on m_edicion.destroy
+call super::destroy
+destroy(this.m_buscar)
+destroy(this.m_-2)
+destroy(this.m_insertarmaestro)
+destroy(this.m_borrarmaestro)
+destroy(this.m_-3)
+destroy(this.m_insertardetalle)
+destroy(this.m_borrardetalle)
+destroy(this.m_-5)
+destroy(this.m_insertarsubdetalle)
+destroy(this.m_borrarsubdetalle)
+end on
+
+type m_buscar from menu within m_edicion
+end type
+
+on m_buscar.create
+call super::create
+this.visible = false
+this.text = "&Buscar~tCtrl+B"
+this.enabled = false
+this.shortcut = 322
+this.microhelp = "Busca un registro especifico"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Search!"
+this.toolbaritemtext = "Buscar"
+this.toolbaritemorder = 21
+this.toolbaritemspace = 1
+end on
+
+event clicked;w_base_simple lw_hoja
+Long li_opcion, li_valor
+
+lw_hoja = ParentWindow.GetActiveSheet() 
+If IsValid (lw_hoja) Then
+	If lw_hoja.ib_modo_consulta Then
+		If lw_hoja.dw_maestro.AcceptText() = -1 Then Return
+		li_valor = lw_hoja.of_desactivar_cxe() 	
+		Choose Case li_valor
+			Case -1
+				MessageBox("Error de Software", "Imposible desactivar Consulta por Ejemplo."&
+					+ " Fall$$HEX2$$f3002000$$ENDHEX$$alguna operaci$$HEX1$$f300$$ENDHEX$$n 'Modify'." &
+					+ "~nPor favor avise al Administrador de este problema", StopSign!)
+				Return
+			Case -2
+				Return
+		End Choose
+		lw_hoja.dw_maestro.of_retrieve()
+	Else
+		ParentWindow.TriggerEvent("ue_buscar")
+	End If
+Else
+	MessageBox("Operaci$$HEX1$$f300$$ENDHEX$$n No Valida", "No hay una ventana activa")
+End If
+
+
+
+end event
+
+on m_buscar.destroy
+call super::destroy
+end on
+
+type m_-2 from menu within m_edicion
+end type
+
+on m_-2.create
+call super::create
+this.visible = false
+this.text = "-"
+end on
+
+on m_-2.destroy
+call super::destroy
+end on
+
+type m_insertarmaestro from menu within m_edicion
+end type
+
+on m_insertarmaestro.create
+call super::create
+this.visible = false
+this.text = "&Insertar Maestro"
+this.enabled = false
+this.microhelp = "Inserta un registro en el maestro"
+this.toolbaritemvisible = false
+this.toolbaritemname = "SelectScript!"
+this.toolbaritemtext = "Insertar maestro"
+this.toolbaritemorder = 22
+this.toolbaritemspace = 1
+end on
+
+event clicked;ParentWindow.TriggerEvent("ue_insertar_maestro")
+end event
+
+on m_insertarmaestro.destroy
+call super::destroy
+end on
+
+type m_borrarmaestro from menu within m_edicion
+end type
+
+on m_borrarmaestro.create
+call super::create
+this.visible = false
+this.text = "Borrar &Maestro"
+this.enabled = false
+this.microhelp = "Borra el registro seleccionado del maestro"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Clear!"
+this.toolbaritemtext = "Borrar Maestro"
+this.toolbaritemorder = 23
+end on
+
+event clicked;ParentWindow.TriggerEvent("ue_borrar_maestro")
+end event
+
+on m_borrarmaestro.destroy
+call super::destroy
+end on
+
+type m_-3 from menu within m_edicion
+end type
+
+on m_-3.create
+call super::create
+this.visible = false
+this.text = "-"
+end on
+
+on m_-3.destroy
+call super::destroy
+end on
+
+type m_insertardetalle from menu within m_edicion
+end type
+
+on m_insertardetalle.create
+call super::create
+this.visible = false
+this.text = "Insertar &Detalle"
+this.enabled = false
+this.microhelp = "Inserta un registro en el detalle"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Insert5!"
+this.toolbaritemtext = "Insertar Detalle"
+this.toolbaritemorder = 24
+this.toolbaritemspace = 1
+end on
+
+event clicked;ParentWindow.TriggerEvent("ue_insertar_detalle")
+end event
+
+on m_insertardetalle.destroy
+call super::destroy
+end on
+
+type m_borrardetalle from menu within m_edicion
+end type
+
+on m_borrardetalle.create
+call super::create
+this.visible = false
+this.text = "B&orrar Detalle"
+this.enabled = false
+this.microhelp = "Borra el registro seleccionado del detalle"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Custom094!"
+this.toolbaritemtext = "Borrar Detalle"
+this.toolbaritemorder = 25
+end on
+
+event clicked;ParentWindow.TriggerEvent("ue_borrar_detalle")
+end event
+
+on m_borrardetalle.destroy
+call super::destroy
+end on
+
+type m_-5 from menu within m_edicion
+end type
+
+on m_-5.create
+call super::create
+this.text = "-"
+end on
+
+on m_-5.destroy
+call super::destroy
+end on
+
+type m_insertarsubdetalle from menu within m_edicion
+end type
+
+on m_insertarsubdetalle.create
+call super::create
+this.visible = false
+this.text = "Insertar &Subdetalle"
+this.enabled = false
+this.microhelp = "Inserta un registro en el Subdetalle"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Compile!"
+this.toolbaritemtext = "Insertar Subdetalle"
+this.toolbaritemorder = 26
+this.toolbaritemspace = 1
+end on
+
+event clicked;ParentWindow.TriggerEvent("ue_insertar_subdetalle")
+
+
+end event
+
+on m_insertarsubdetalle.destroy
+call super::destroy
+end on
+
+type m_borrarsubdetalle from menu within m_edicion
+end type
+
+on m_borrarsubdetalle.create
+call super::create
+this.visible = false
+this.text = "Borrar S&ubdetalle"
+this.enabled = false
+this.microhelp = "Borra el registro seleccionado del Subdetalle"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Custom014!"
+this.toolbaritemtext = "Borrar Subdetalle"
+this.toolbaritemorder = 27
+end on
+
+event clicked;ParentWindow.TriggerEvent ("ue_borrar_subdetalle")
+end event
+
+on m_borrarsubdetalle.destroy
+call super::destroy
+end on
+
+type m_administracin from menu within m_base_principal
+m_mantenimientodeerroresbd m_mantenimientodeerroresbd
+m_mantenimientodereportes m_mantenimientodereportes
+end type
+
+on m_administracin.create
+call super::create
+this.text = "A&dministraci$$HEX1$$f300$$ENDHEX$$n"
+this.microhelp = "Opciones de Administracion"
+this.m_mantenimientodeerroresbd=create m_mantenimientodeerroresbd
+this.m_mantenimientodereportes=create m_mantenimientodereportes
+this.Item[UpperBound(this.Item)+1]=this.m_mantenimientodeerroresbd
+this.Item[UpperBound(this.Item)+1]=this.m_mantenimientodereportes
+end on
+
+on m_administracin.destroy
+call super::destroy
+destroy(this.m_mantenimientodeerroresbd)
+destroy(this.m_mantenimientodereportes)
+end on
+
+type m_mantenimientodeerroresbd from menu within m_administracin
+end type
+
+event clicked;w_mantenimiento_errores w_instancia
+
+OpenSheet(w_instancia,ParentWindow)
+end event
+
+on m_mantenimientodeerroresbd.create
+call super::create
+this.text = "Mantenimiento de &Errores BD"
+this.microhelp = "Mantenimiento de errores de la base de datos"
+this.toolbaritemname = "EnglishEdit!"
+this.toolbaritemtext = "Errores BD"
+this.toolbaritemorder = 31
+this.toolbaritemspace = 1
+end on
+
+on m_mantenimientodeerroresbd.destroy
+call super::destroy
+end on
+
+type m_mantenimientodereportes from menu within m_administracin
+end type
+
+on m_mantenimientodereportes.create
+call super::create
+this.text = "Mantenimiento de &Reportes"
+this.microhelp = "Mantenimiento de los reportes existentes"
+this.toolbaritemname = "Report5!"
+this.toolbaritemtext = "Mantenimiento Reportes"
+this.toolbaritemorder = 32
+end on
+
+event clicked;w_mantenimiento_reportes w_instancia
+
+OpenSheet(w_instancia,ParentWindow)
+end event
+
+on m_mantenimientodereportes.destroy
+call super::destroy
+end on
+
+type m_opcin2 from menu within m_base_principal
+end type
+
+on m_opcin2.create
+call super::create
+this.text = "Opci$$HEX1$$f300$$ENDHEX$$n&2"
+end on
+
+on m_opcin2.destroy
+call super::destroy
+end on
+
+type m_opcin3 from menu within m_base_principal
+end type
+
+on m_opcin3.create
+call super::create
+this.text = "Opci$$HEX1$$f300$$ENDHEX$$n3"
+end on
+
+on m_opcin3.destroy
+call super::destroy
+end on
+
+type m_opcin4 from menu within m_base_principal
+end type
+
+on m_opcin4.create
+call super::create
+this.text = "Opci$$HEX1$$f300$$ENDHEX$$n&4"
+end on
+
+on m_opcin4.destroy
+call super::destroy
+end on
+
+type m_opcin5 from menu within m_base_principal
+end type
+
+on m_opcin5.create
+call super::create
+this.text = "Opci$$HEX1$$f300$$ENDHEX$$n&5"
+end on
+
+on m_opcin5.destroy
+call super::destroy
+end on
+
+type m_vistaprevia from menu within m_base_principal
+m_mostrarvistaprevia m_mostrarvistaprevia
+m_mostrarregleta m_mostrarregleta
+m_zoom m_zoom
+m_-6 m_-6
+m_anterior m_anterior
+m_siguiente m_siguiente
+end type
+
+on m_vistaprevia.create
+call super::create
+this.text = "Vista &Preliminar"
+this.microhelp = "Opciones de Vista Preliminar"
+this.toolbaritemtext = "Opciones de Vista Preliminar"
+this.m_mostrarvistaprevia=create m_mostrarvistaprevia
+this.m_mostrarregleta=create m_mostrarregleta
+this.m_zoom=create m_zoom
+this.m_-6=create m_-6
+this.m_anterior=create m_anterior
+this.m_siguiente=create m_siguiente
+this.Item[UpperBound(this.Item)+1]=this.m_mostrarvistaprevia
+this.Item[UpperBound(this.Item)+1]=this.m_mostrarregleta
+this.Item[UpperBound(this.Item)+1]=this.m_zoom
+this.Item[UpperBound(this.Item)+1]=this.m_-6
+this.Item[UpperBound(this.Item)+1]=this.m_anterior
+this.Item[UpperBound(this.Item)+1]=this.m_siguiente
+end on
+
+on m_vistaprevia.destroy
+call super::destroy
+destroy(this.m_mostrarvistaprevia)
+destroy(this.m_mostrarregleta)
+destroy(this.m_zoom)
+destroy(this.m_-6)
+destroy(this.m_anterior)
+destroy(this.m_siguiente)
+end on
+
+type m_mostrarvistaprevia from menu within m_vistaprevia
+end type
+
+on m_mostrarvistaprevia.create
+call super::create
+this.text = "&Vista preliminar"
+this.microhelp = "Muestra una vista previa del reporte"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Custom090!"
+this.toolbaritemtext = "Vista Preliminar"
+this.toolbaritemorder = 161
+this.toolbaritemspace = 1
+end on
+
+event clicked;m_base_principal.m_vistaprevia.m_mostrarvistaprevia.checked = not m_base_principal.m_vistaprevia.m_mostrarvistaprevia.checked
+
+IF m_base_principal.m_vistaprevia.m_mostrarvistaprevia.checked then
+	m_base_principal.m_vistaprevia.m_mostrarregleta.Enabled = TRUE
+	m_base_principal.m_vistaprevia.m_zoom.Enabled = TRUE
+ELSE	
+	m_base_principal.m_vistaprevia.m_mostrarregleta.Enabled = FALSE
+	m_base_principal.m_vistaprevia.m_zoom.Enabled = FALSE
+END IF
+
+ParentWindow.TriggerEvent("ue_preliminar")
+
+
+end event
+
+on m_mostrarvistaprevia.destroy
+call super::destroy
+end on
+
+type m_mostrarregleta from menu within m_vistaprevia
+end type
+
+on m_mostrarregleta.create
+call super::create
+this.text = "Mostrar &regleta"
+this.enabled = false
+this.microhelp = "Muestra las regletas de margenes"
+this.toolbaritemvisible = false
+this.toolbaritemname = "DesignMode!"
+this.toolbaritemtext = "Regleta"
+this.toolbaritemorder = 162
+end on
+
+event clicked;m_base_principal.m_vistaprevia.m_mostrarregleta.checked = not m_base_principal.m_vistaprevia.m_mostrarregleta.checked
+
+ParentWindow.TriggerEvent("ue_regleta")
+
+
+
+end event
+
+on m_mostrarregleta.destroy
+call super::destroy
+end on
+
+type m_zoom from menu within m_vistaprevia
+end type
+
+on m_zoom.create
+call super::create
+this.text = "&Zoom"
+this.enabled = false
+this.microhelp = "Aumenta/Disminuye la vista preliminar"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Custom062!"
+this.toolbaritemtext = "Zoom"
+this.toolbaritemorder = 163
+end on
+
+event clicked;ParentWindow.TriggerEvent("ue_zoom")
+
+
+end event
+
+on m_zoom.destroy
+call super::destroy
+end on
+
+type m_-6 from menu within m_vistaprevia
+end type
+
+on m_-6.create
+call super::create
+this.text = "-"
+end on
+
+on m_-6.destroy
+call super::destroy
+end on
+
+type m_anterior from menu within m_vistaprevia
+end type
+
+on m_anterior.create
+call super::create
+this.text = "Pagina &Anterior"
+this.microhelp = "Avanza a la Pagina Anterior"
+this.toolbaritemvisible = false
+this.toolbaritemname = "VCRPrior!"
+this.toolbaritemtext = "Pagina Anterior"
+this.toolbaritemorder = 164
+this.toolbaritemspace = 1
+end on
+
+event clicked;ParentWindow.TriggerEvent("ue_paganterior")
+
+
+end event
+
+on m_anterior.destroy
+call super::destroy
+end on
+
+type m_siguiente from menu within m_vistaprevia
+end type
+
+on m_siguiente.create
+call super::create
+this.text = "Pagina &Siguiente"
+this.microhelp = "Avanza a la Pagina Siguiente"
+this.toolbaritemvisible = false
+this.toolbaritemname = "VCRNext!"
+this.toolbaritemtext = "Pagina Siguiente"
+this.toolbaritemorder = 165
+end on
+
+event clicked;ParentWindow.TriggerEvent("ue_pagsiguiente")
+
+
+end event
+
+on m_siguiente.destroy
+call super::destroy
+end on
+
+type m_graficas from menu within m_base_principal
+m_tipodegrafica m_tipodegrafica
+m_titulo m_titulo
+m_color m_color
+m_espaciamiento m_espaciamiento
+end type
+
+on m_graficas.create
+call super::create
+this.visible = false
+this.text = "&Graficas"
+this.enabled = false
+this.toolbaritemtext = "Opciones de Gr$$HEX1$$e100$$ENDHEX$$ficas"
+this.m_tipodegrafica=create m_tipodegrafica
+this.m_titulo=create m_titulo
+this.m_color=create m_color
+this.m_espaciamiento=create m_espaciamiento
+this.Item[UpperBound(this.Item)+1]=this.m_tipodegrafica
+this.Item[UpperBound(this.Item)+1]=this.m_titulo
+this.Item[UpperBound(this.Item)+1]=this.m_color
+this.Item[UpperBound(this.Item)+1]=this.m_espaciamiento
+end on
+
+on m_graficas.destroy
+call super::destroy
+destroy(this.m_tipodegrafica)
+destroy(this.m_titulo)
+destroy(this.m_color)
+destroy(this.m_espaciamiento)
+end on
+
+type m_tipodegrafica from menu within m_graficas
+end type
+
+event clicked;ParentWindow.GetActiveSheet().TriggerEvent ("ue_tipografica")
+end event
+
+on m_tipodegrafica.create
+call super::create
+this.visible = false
+this.text = "&Tipo de Gr$$HEX1$$e100$$ENDHEX$$fica..."
+this.enabled = false
+this.microhelp = "Cambia el tipo de gr$$HEX1$$e100$$ENDHEX$$fica"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Custom073!"
+this.toolbaritemtext = "Tipo de Gr$$HEX1$$e100$$ENDHEX$$fica"
+this.toolbaritemorder = 171
+this.toolbaritemspace = 1
+end on
+
+on m_tipodegrafica.destroy
+call super::destroy
+end on
+
+type m_titulo from menu within m_graficas
+end type
+
+event clicked;ParentWindow.GetActiveSheet().TriggerEvent ( "ue_titulografica")
+end event
+
+on m_titulo.create
+call super::create
+this.visible = false
+this.text = "T&$$HEX1$$ed00$$ENDHEX$$tulo..."
+this.enabled = false
+this.microhelp = "Cambia el t$$HEX1$$ed00$$ENDHEX$$tulo de la gr$$HEX1$$e100$$ENDHEX$$fica"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Underline!"
+this.toolbaritemtext = "T$$HEX1$$ed00$$ENDHEX$$tulo"
+this.toolbaritemorder = 172
+end on
+
+on m_titulo.destroy
+call super::destroy
+end on
+
+type m_color from menu within m_graficas
+end type
+
+event clicked;ParentWindow.GetActiveSheet().TriggerEvent ( "ue_colorgrafica")
+end event
+
+on m_color.create
+call super::create
+this.visible = false
+this.text = "&Color..."
+this.enabled = false
+this.microhelp = "Cambia los colores de la gr$$HEX1$$e100$$ENDHEX$$fica"
+this.toolbaritemvisible = false
+this.toolbaritemname = "ArrangeIcons!"
+this.toolbaritemtext = "Color"
+this.toolbaritemorder = 173
+end on
+
+on m_color.destroy
+call super::destroy
+end on
+
+type m_espaciamiento from menu within m_graficas
+end type
+
+event clicked;ParentWindow.GetActiveSheet().TriggerEvent ("ue_espaciamientografica", 0, 0)
+end event
+
+on m_espaciamiento.create
+call super::create
+this.visible = false
+this.text = "&Espaciamiento..."
+this.enabled = false
+this.microhelp = "Cambia el espaciamiento entre las barras"
+this.toolbaritemvisible = false
+this.toolbaritemname = "SpaceHorizontal!"
+this.toolbaritemtext = "Espaciamiento"
+this.toolbaritemorder = 174
+end on
+
+on m_espaciamiento.destroy
+call super::destroy
+end on
+
+type m_ventana from menu within m_base_principal
+m_horizontal m_horizontal
+m_vertical m_vertical
+m_completa m_completa
+m_cascada m_cascada
+end type
+
+on m_ventana.create
+call super::create
+this.text = "&Ventana"
+this.microhelp = "Opciones de Ventana"
+this.m_horizontal=create m_horizontal
+this.m_vertical=create m_vertical
+this.m_completa=create m_completa
+this.m_cascada=create m_cascada
+this.Item[UpperBound(this.Item)+1]=this.m_horizontal
+this.Item[UpperBound(this.Item)+1]=this.m_vertical
+this.Item[UpperBound(this.Item)+1]=this.m_completa
+this.Item[UpperBound(this.Item)+1]=this.m_cascada
+end on
+
+on m_ventana.destroy
+call super::destroy
+destroy(this.m_horizontal)
+destroy(this.m_vertical)
+destroy(this.m_completa)
+destroy(this.m_cascada)
+end on
+
+type m_horizontal from menu within m_ventana
+end type
+
+on m_horizontal.create
+call super::create
+this.text = "&Horizontal"
+this.microhelp = "Organiza horizontalmente las ventanas abiertas"
+this.toolbaritemname = "Horizontal!"
+this.toolbaritemtext = "Organizacion Horizontal"
+this.toolbaritemorder = 181
+this.toolbaritemspace = 1
+end on
+
+event clicked;w_principal.ArrangeSheets(TileHorizontal!)
+end event
+
+on m_horizontal.destroy
+call super::destroy
+end on
+
+type m_vertical from menu within m_ventana
+end type
+
+on m_vertical.create
+call super::create
+this.text = "&Vertical"
+this.microhelp = "Organiza verticalmente las ventanas abiertas"
+this.toolbaritemname = "Tile!"
+this.toolbaritemtext = "Organizacion Vertical"
+this.toolbaritemorder = 182
+end on
+
+event clicked;w_principal.ArrangeSheets(Tile!)
+end event
+
+on m_vertical.destroy
+call super::destroy
+end on
+
+type m_completa from menu within m_ventana
+end type
+
+on m_completa.create
+call super::create
+this.text = "&Completa"
+this.microhelp = "Maximiza todas las ventanas abiertas"
+this.toolbaritemname = "Layer!"
+this.toolbaritemtext = "Ventana Completa"
+this.toolbaritemorder = 183
+end on
+
+event clicked;w_principal.ArrangeSheets(Layer!)
+end event
+
+on m_completa.destroy
+call super::destroy
+end on
+
+type m_cascada from menu within m_ventana
+end type
+
+on m_cascada.create
+call super::create
+this.text = "C&ascada"
+this.microhelp = "Organiza en forma de cascada las ventanas abiertas"
+this.toolbaritemname = "Cascade!"
+this.toolbaritemtext = "Organizacion en Cascada"
+this.toolbaritemorder = 184
+end on
+
+event clicked;w_principal.ArrangeSheets(Cascade!)
+end event
+
+on m_cascada.destroy
+call super::destroy
+end on
+
+type m_ayuda from menu within m_base_principal
+m_contenido m_contenido
+m_comousarayuda m_comousarayuda
+m_-4 m_-4
+m_acercade m_acercade
+end type
+
+on m_ayuda.create
+call super::create
+this.text = "&?"
+this.microhelp = "Opciones de Ayuda"
+this.m_contenido=create m_contenido
+this.m_comousarayuda=create m_comousarayuda
+this.m_-4=create m_-4
+this.m_acercade=create m_acercade
+this.Item[UpperBound(this.Item)+1]=this.m_contenido
+this.Item[UpperBound(this.Item)+1]=this.m_comousarayuda
+this.Item[UpperBound(this.Item)+1]=this.m_-4
+this.Item[UpperBound(this.Item)+1]=this.m_acercade
+end on
+
+on m_ayuda.destroy
+call super::destroy
+destroy(this.m_contenido)
+destroy(this.m_comousarayuda)
+destroy(this.m_-4)
+destroy(this.m_acercade)
+end on
+
+type m_contenido from menu within m_ayuda
+end type
+
+on m_contenido.create
+call super::create
+this.text = "&Contenido~tF1"
+this.shortcut = 112
+this.microhelp = "Abre la ayuda de la aplicacion"
+this.toolbaritemname = "Help!"
+this.toolbaritemtext = "Ayuda"
+this.toolbaritemorder = 198
+this.toolbaritemspace = 1
+end on
+
+event clicked;////////////////////////////////////////////////////////////////////
+//
+//	La ayudas que sean invocadas deben tener esta forma
+//
+////////////////////////////////////////////////////////////////////
+//
+//IF ShowHelp("c:\windows\help\windows.hlp",Index!) <> 1 THEN
+//	MessageBox("Error De Ayuda","No se puede localizar el archivo &
+//					correspondiente a la ayuda")
+//ELSE
+//END IF
+end event
+
+on m_contenido.destroy
+call super::destroy
+end on
+
+type m_comousarayuda from menu within m_ayuda
+end type
+
+on m_comousarayuda.create
+call super::create
+this.text = "C&omo usar ayuda~tAlt+F1"
+this.shortcut = 624
+this.microhelp = "Abre la ayuda de Windows"
+end on
+
+event clicked;IF ShowHelp("c:\windows\help\windows.hlp",Index!) <> 1 THEN
+	MessageBox("Error De Ayuda","No se puede localizar el archivo" &
+				+ " correspondiente a la ayuda")
+ELSE
+END IF
+end event
+
+on m_comousarayuda.destroy
+call super::destroy
+end on
+
+type m_-4 from menu within m_ayuda
+end type
+
+on m_-4.create
+call super::create
+this.text = "-"
+end on
+
+on m_-4.destroy
+call super::destroy
+end on
+
+type m_acercade from menu within m_ayuda
+end type
+
+on m_acercade.create
+call super::create
+this.text = "&Acerca de..."
+this.microhelp = "Abre la ventana ~"Acerca de~""
+this.menuitemtype = menuitemtypeabout!
+end on
+
+event clicked;Open(w_base_acerca_de)
+end event
+
+on m_acercade.destroy
+call super::destroy
+end on
+
