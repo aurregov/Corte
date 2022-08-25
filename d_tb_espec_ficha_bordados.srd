@@ -1,0 +1,31 @@
+HA$PBExportHeader$d_tb_espec_ficha_bordados.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=84 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=60 color="536870912" )
+table(column=(type=char(1000) updatewhereclause=yes name=de_instruccion dbname="de_instruccion" )
+ retrieve="SELECT dt_instruc_ruta.de_instruccion 
+
+  FROM dt_instruc_ruta ,
+       m_subcentros_pdn     
+WHERE ( dt_instruc_ruta.co_centro       = m_subcentros_pdn.co_centro_pdn ) 
+and   ( dt_instruc_ruta.co_subcentro    = m_subcentros_pdn.co_subcentro_pdn ) 
+and   ( ( dt_instruc_ruta.co_fabrica    = :ai_fabrica ) 
+And   ( dt_instruc_ruta.co_linea        = :ai_linea ) 
+And   ( dt_instruc_ruta.co_referencia   = :ai_referencia ) 
+And   ( dt_instruc_ruta.co_centro       = 2 ) 
+and   ( dt_instruc_ruta.co_subcentro    = 25 ) 
+and   ( m_subcentros_pdn.co_tipoprod    = 1 ) )
+ ORDER BY dt_instruc_ruta.cs_orden          ASC,
+          dt_instruc_ruta.fe_creacion          ASC  
+;
+" arguments=(("ai_fabrica", number),("ai_linea", number),("ai_referencia", number)) )
+text(band=header alignment="2" text="INFORMACION DE BORDADOS" border="6" color="33554432" x="622" y="16" height="52" width="928" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="2" color="33554432" x="0" y="4" height="56" width="2752" format="[general]" html.valueishtml="0"  name=de_instruccion visible="1" height.autosize=yes edit.limit=1000 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
