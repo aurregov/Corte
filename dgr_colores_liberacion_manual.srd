@@ -1,0 +1,45 @@
+HA$PBExportHeader$dgr_colores_liberacion_manual.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_color dbname="dt_orden_tllaclor.co_color" )
+ column=(type=long updatewhereclause=yes name=ca_color dbname="dt_orden_tllaclor.ca_color" )
+ column=(type=long updatewhereclause=yes name=h_ordenpd_pt_co_tipoprod dbname="h_ordenpd_pt.co_tipoprod" )
+ column=(type=long updatewhereclause=yes name=co_fabrica dbname="h_ordenpd_pt.co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="h_ordenpd_pt.co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="h_ordenpd_pt.co_referencia" )
+ column=(type=char(40) updatewhereclause=yes name=nu_cut dbname="nu_cut" )
+ column=(type=char(40) updatewhereclause=yes name=nu_orden dbname="nu_orden" )
+ column=(type=date updatewhereclause=yes name=fe_entrega dbname="fe_entrega" )
+ retrieve="  SELECT DISTINCT dt_orden_tllaclor.co_color,   
+         dt_orden_tllaclor.ca_color,   
+         h_ordenpd_pt.co_tipoprod,   
+         h_ordenpd_pt.co_fabrica,   
+         h_ordenpd_pt.co_linea,   
+         h_ordenpd_pt.co_referencia,
+			Nvl(h_ordenpd_pt.cs_ordenpd_pt, '0') nu_cut,
+			Nvl(h_ordenpd_pt.cs_ordenpd_pt, '0') nu_orden,
+			Date(Nvl(dt_lanzamientos.fe_entrada_bod, '1900-01-01')) fe_entrega
+    FROM dt_orden_tllaclor,   
+         h_ordenpd_pt,
+			outer m_lanzamientos,
+			outer dt_lanzamientos
+   WHERE h_ordenpd_pt.cs_ordenpd_pt = dt_orden_tllaclor.cs_ordenpd_pt and
+			h_ordenpd_pt.cs_ordenpd_pt = :an_orden and
+			h_ordenpd_pt.co_lanzamiento = m_lanzamientos.co_lanzamiento and
+			h_ordenpd_pt.co_fabrica = dt_lanzamientos.co_fabrica AND
+			h_ordenpd_pt.co_linea = dt_lanzamientos.co_linea AND
+			h_ordenpd_pt.co_referencia = dt_lanzamientos.co_referencia AND
+			h_ordenpd_pt.co_lanzamiento = dt_lanzamientos.co_lanzamiento" arguments=(("an_orden", number))  sort="co_color A " )
+text(band=header alignment="2" text="Color" border="6" color="33554432" x="9" y="8" height="56" width="288" html.valueishtml="0"  name=dt_orden_tllaclor_co_color_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text=" Cantidad" border="6" color="33554432" x="306" y="8" height="56" width="210" html.valueishtml="0"  name=dt_orden_tllaclor_ca_color_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="33554432" x="9" y="4" height="56" width="288" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="33554432" x="306" y="4" height="56" width="210" format="[general]" html.valueishtml="0"  name=ca_color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
