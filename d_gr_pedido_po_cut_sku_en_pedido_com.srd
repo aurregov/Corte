@@ -1,0 +1,70 @@
+HA$PBExportHeader$d_gr_pedido_po_cut_sku_en_pedido_com.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=134217742 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=pedido dbname="pedido" )
+ column=(type=long updatewhereclause=yes name=co_fabrica_exp dbname="co_fabrica_exp" )
+ column=(type=long updatewhereclause=yes name=co_linea_exp dbname="co_linea_exp" )
+ column=(type=char(15) updatewhereclause=yes name=co_ref_exp dbname="co_ref_exp" )
+ column=(type=char(15) updatewhereclause=yes name=co_talla_exp dbname="co_talla_exp" )
+ column=(type=char(8) updatewhereclause=yes name=co_color_exp dbname="co_color_exp" )
+ column=(type=long updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="co_talla" )
+ column=(type=long updatewhereclause=yes name=co_color dbname="co_color" )
+ column=(type=char(20) updatewhereclause=yes name=nu_orden dbname="nu_orden" )
+ column=(type=char(10) updatewhereclause=yes name=nu_cut dbname="nu_cut" )
+ column=(type=long updatewhereclause=yes name=co_calidad dbname="co_calidad" )
+ column=(type=char(20) updatewhereclause=yes name=upc_barcode dbname="upc_barcode" )
+ column=(type=char(30) updatewhereclause=yes name=gpa dbname="gpa" )
+ retrieve="  SELECT pedpend_exp.pedido,   
+         pedpend_exp.co_fabrica_exp,   
+         pedpend_exp.co_linea_exp,   
+         pedpend_exp.co_ref_exp,   
+         pedpend_exp.co_talla_exp,   
+         pedpend_exp.co_color_exp,   
+         pedpend_exp.co_fabrica,   
+         pedpend_exp.co_linea,   
+         pedpend_exp.co_referencia,   
+         pedpend_exp.co_talla,   
+         pedpend_exp.co_color,   
+         pedpend_exp.nu_orden,   
+         pedpend_exp.nu_cut,   
+         pedpend_exp.co_calidad,   
+         pedpend_exp.upc_barcode,
+			peddig.gpa  
+    FROM pedpend_exp,   
+         peddig  
+   WHERE ( pedpend_exp.pedido = peddig.pedido ) and  
+         ( pedpend_exp.nu_orden = peddig.orden_compra ) and  
+         ( ( pedpend_exp.pedido = :an_pedido ) AND  
+         ( pedpend_exp.nu_orden = :as_po ) AND  
+         ( pedpend_exp.nu_cut = :as_cut ) AND  
+         ( pedpend_exp.co_fabrica = :an_fabrica ) AND  
+         ( pedpend_exp.co_linea = :an_linea ) AND  
+         ( pedpend_exp.co_referencia = :an_referencia ) AND  
+         ( pedpend_exp.co_talla = :an_talla ) AND  
+         ( pedpend_exp.co_calidad = :an_calidad ) AND  
+         ( pedpend_exp.co_color = :an_color ) )    
+" arguments=(("an_pedido", number),("as_po", string),("as_cut", string),("an_fabrica", number),("an_linea", number),("an_referencia", number),("an_talla", number),("an_calidad", number),("an_color", number)) )
+text(band=header alignment="2" text="Fabrica Exp" border="6" color="8388608" x="9" y="8" height="52" width="274" html.valueishtml="0"  name=pedpend_exp_co_fabrica_exp_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Linea Exp" border="6" color="8388608" x="293" y="8" height="52" width="251" html.valueishtml="0"  name=pedpend_exp_co_linea_exp_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Ref Exp" border="6" color="8388608" x="553" y="8" height="52" width="480" html.valueishtml="0"  name=pedpend_exp_co_ref_exp_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Talla Exp" border="6" color="8388608" x="1042" y="8" height="52" width="366" html.valueishtml="0"  name=pedpend_exp_co_talla_exp_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Color Exp" border="6" color="8388608" x="1417" y="8" height="52" width="293" html.valueishtml="0"  name=pedpend_exp_co_color_exp_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="Upc Barcode" border="6" color="8388608" x="1719" y="8" height="52" width="453" html.valueishtml="0"  name=pedpend_exp_upc_barcode_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="5" color="33554432" x="553" y="8" height="64" width="480" format="[general]" html.valueishtml="0"  name=co_ref_exp visible="1" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="33554432" x="1042" y="8" height="64" width="366" format="[general]" html.valueishtml="0"  name=co_talla_exp visible="1" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="5" color="33554432" x="1417" y="8" height="64" width="293" format="[general]" html.valueishtml="0"  name=co_color_exp visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="5" color="33554432" x="1719" y="8" height="64" width="453" format="[general]" html.valueishtml="0"  name=upc_barcode visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="5" color="33554432" x="9" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_fabrica_exp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="5" color="33554432" x="293" y="8" height="64" width="251" format="[general]" html.valueishtml="0"  name=co_linea_exp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
