@@ -1,0 +1,60 @@
+HA$PBExportHeader$dtb_rollos_consolida_rectilinea.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=112 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_rollo dbname="dt_rollos_libera.cs_rollo" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_metros dbname="ca_metros" )
+ column=(type=long updatewhereclause=yes name=ca_unidades dbname="ca_unidades" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_metros_usado dbname="ca_metros_usado" )
+ column=(type=long updatewhereclause=yes name=ca_unidades_usado dbname="ca_unidades_usado" )
+ retrieve="  SELECT DISTINCT dt_rollos_libera.cs_rollo,   
+			(	SELECT ca_mt
+				FROM m_rollo
+				WHERE m_rollo.cs_rollo = dt_rollos_libera.cs_rollo ) ca_metros,
+			(	SELECT ca_unidades
+				FROM m_rollo
+				WHERE m_rollo.cs_rollo = dt_rollos_libera.cs_rollo ) ca_unidades,
+			pr_cons_mtsliberado(dt_rollos_libera.cs_rollo) ca_metros_usado,
+			pr_cons_unliberado(dt_rollos_libera.cs_rollo) ca_unidades_usado
+    FROM dt_rollos_libera,   
+         t_libera_consolida,
+			m_rollo
+   WHERE ( t_libera_consolida.usuario = :as_usuario ) and
+			( dt_rollos_libera.co_fabrica_exp = t_libera_consolida.co_fabrica_exp ) and  
+         ( dt_rollos_libera.cs_liberacion = t_libera_consolida.cs_liberacion ) and  
+         ( dt_rollos_libera.nu_orden = t_libera_consolida.nu_orden ) AND  
+         ( dt_rollos_libera.nu_cut = t_libera_consolida.nu_cut ) AND  
+         ( dt_rollos_libera.co_fabrica_pt = t_libera_consolida.co_fabrica_pt ) AND  
+         ( dt_rollos_libera.co_linea = t_libera_consolida.co_linea ) AND  
+         ( dt_rollos_libera.co_referencia = t_libera_consolida.co_referencia ) AND  
+         ( dt_rollos_libera.co_color_pt = t_libera_consolida.co_color_pt ) AND 
+         ( ( dt_rollos_libera.nu_orden = :as_orden ) AND  
+         ( dt_rollos_libera.nu_cut = :as_cut ) AND  
+         ( dt_rollos_libera.co_fabrica_pt = :ai_fabricapt ) AND  
+         ( dt_rollos_libera.co_linea = :ai_linea ) AND  
+         ( dt_rollos_libera.co_referencia = :al_referencia ) AND  
+         ( dt_rollos_libera.co_color_pt = :al_color ) AND  
+         ( dt_rollos_libera.co_tono = :as_tono ) AND  
+         ( dt_rollos_libera.co_fabrica_tela = :ai_fabricate ) AND  
+         ( dt_rollos_libera.co_reftel = :al_reftel ) AND  
+         ( dt_rollos_libera.co_caract = :ai_caract ) AND  
+         ( dt_rollos_libera.diametro = :ai_diametro ) AND  
+         ( dt_rollos_libera.co_color_tela = :ai_colorte ) AND  
+         ( dt_rollos_libera.co_modelo = :al_modelo ) ) AND
+			( dt_rollos_libera.cs_rollo = m_rollo.cs_rollo ) and
+			( m_rollo.co_talla = :ai_talla )
+GROUP BY dt_rollos_libera.cs_rollo" arguments=(("as_orden", string),("as_cut", string),("ai_fabricapt", number),("ai_linea", number),("al_referencia", number),("al_color", number),("as_tono", string),("al_modelo", number),("ai_fabricate", number),("al_reftel", number),("ai_caract", number),("ai_diametro", number),("ai_colorte", number),("ai_fabricaexp", number),("al_liberacion", number),("as_usuario", string),("ai_talla", number)) )
+text(band=header alignment="2" text="Dt Rollos Libera
+Cs Rollo" border="0" color="33554432" x="5" y="4" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_cs_rollo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Metros" border="0" color="33554432" x="352" y="4" height="52" width="274" html.valueishtml="0"  name=ca_metros_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Unidades" border="0" color="33554432" x="631" y="4" height="52" width="279" html.valueishtml="0"  name=ca_unidades_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_rollo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="352" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=ca_metros visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="631" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=ca_unidades visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="910" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=ca_metros_usado visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1189" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=ca_unidades_usado visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
