@@ -1,0 +1,62 @@
+HA$PBExportHeader$dtb_ops_a_cerrar.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=112 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_ordenpd_pt dbname="cs_ordenpd_pt" )
+ retrieve="select distinct dt_caxpedidos.cs_ordenpd_pt 
+from dt_pdnxmodulo,
+     dt_caxpedidos,
+     h_ordenpd_pt,
+     pedpend_exp,
+     peddig,
+     dt_ref_x_col_pv
+where dt_pdnxmodulo.cs_asignacion = :an_orden_corte
+  and dt_pdnxmodulo.co_estado_asigna = 15
+  and dt_caxpedidos.cs_ordenpd_pt = dt_pdnxmodulo.cs_ordenpd_pt
+  and dt_caxpedidos.cs_ordenpd_pt = h_ordenpd_pt.cs_ordenpd_pt
+  and h_ordenpd_pt.co_estado_orden IN(1,3)
+  and h_ordenpd_pt.co_ruta        <> 3
+  and (pedpend_exp.tipo_orden_toc <> 'MTOESP' OR pedpend_exp.tipo_orden_toc is null)
+  and dt_caxpedidos.pedido = pedpend_exp.pedido  
+  and dt_caxpedidos.pedido = peddig.pedido
+  and dt_caxpedidos.co_talla = pedpend_exp.co_talla 
+  and dt_caxpedidos.co_color = pedpend_exp.co_color 
+  and h_ordenpd_pt.co_fabrica = pedpend_exp.co_fabrica 
+  and h_ordenpd_pt.co_linea     = pedpend_exp.co_linea
+  and h_ordenpd_pt.co_referencia = pedpend_exp.co_referencia
+  and dt_ref_x_col_pv.co_tipo_ref = 'V'
+  and pedpend_exp.co_fabrica_exp = dt_ref_x_col_pv.co_fabrica  
+  and pedpend_exp.co_linea_exp = dt_ref_x_col_pv.co_linea
+  and pedpend_exp.co_ref_exp   = dt_ref_x_col_pv.co_referencia
+  and pedpend_exp.co_talla_exp = dt_ref_x_col_pv.co_talla
+  and pedpend_exp.co_color_exp = dt_ref_x_col_pv.co_color
+  and ((peddig.tipo_pedido = 'NA') or (dt_ref_x_col_pv.co_cliente = peddig.co_cliente  and  
+                                       dt_ref_x_col_pv.co_sucursal = peddig.co_sucursal and
+                                       peddig.tipo_pedido in ('EX','SM')))
+  and dt_ref_x_col_pv.co_calidad = 1
+  and pedpend_exp.co_calidad = dt_ref_x_col_pv. co_calidad
+  and dt_ref_x_col_pv.tamano_amortiguador > 0
+  and not EXISTS (select 1
+                    from dt_pdnxmodulo a
+                   where a.cs_ordenpd_pt = dt_pdnxmodulo.cs_ordenpd_pt
+                     and a.co_estado_asigna < 15 )
+group by 1
+having sum(dt_caxpedidos.ca_liberadas) >= (sum(dt_caxpedidos.ca_programada) * (select numerico
+																										from m_constant_tela
+																										where var_nombre = 'PORC_DISP_LOTEO'))
+
+
+
+
+ " arguments=(("an_orden_corte", number)) )
+text(band=header alignment="2" text="Dt Caxpedidos
+Cs Ordenpd Pt" border="0" color="33554432" x="5" y="4" height="104" width="315" html.valueishtml="0"  name=dt_caxpedidos_cs_ordenpd_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="64" width="320" format="[general]" html.valueishtml="0"  name=cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
