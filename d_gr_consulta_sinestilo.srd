@@ -1,0 +1,79 @@
+HA$PBExportHeader$d_gr_consulta_sinestilo.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=156 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=56 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_ordenpd_te_pg dbname="m_rollo.cs_ordenpd_te_pg" )
+ column=(type=long updatewhereclause=yes name=cs_ordenpd_pt dbname="cs_ordenpd_pt" )
+ column=(type=char(4) updatewhereclause=yes name=de_referencia dbname="m_rollo.de_referencia" )
+ column=(type=datetime updatewhereclause=yes name=fe_termin_pg dbname="fe_termin_pg" )
+ column=(type=decimal(2) updatewhereclause=yes name=kg_btc dbname="kg_btc" )
+ column=(type=decimal(0) updatewhereclause=yes name=rollos dbname="rollos" )
+ column=(type=decimal(2) updatewhereclause=yes name=kg_tanda dbname="kg_tanda" )
+ column=(type=decimal(2) updatewhereclause=yes name=kg_sobrantes dbname="kg_sobrantes" )
+ column=(type=long updatewhereclause=yes name=co_reftel_act dbname="m_rollo.co_reftel_act" )
+ column=(type=long updatewhereclause=yes name=co_cliente dbname="co_cliente" )
+ column=(type=long updatewhereclause=yes name=prioridad dbname="prioridad" )
+ retrieve="  SELECT m_rollo.cs_ordenpd_te_pg,   
+         0 as cs_ordenpd_pt,   
+         ~"    ~"  AS de_referencia,
+         ( SELECT min(h_ordenpd_pt.fe_termin_pg)
+        from h_ordenpd_pt,h_op_tejido
+        where  ( m_rollo.cs_ordenpd_te_pg = h_op_tejido.cs_op_tejido ) and  
+        (h_ordenpd_pt.cs_ordenpd_pt= h_op_tejido.cs_ordenpd_pt )  
+        ) 
+         as fe_termin_pg,   
+         sum(m_rollo.ca_kg) as kg_btc,   
+         count(m_rollo.ca_kg) as rollos,   
+         cast (0 as decimal(7,2)) as kg_tanda,   
+         cast (0 as decimal(7,2)) as kg_sobrantes,   
+         m_rollo.co_reftel_act,   
+         0 as co_cliente , 
+         0 as prioridad  
+    FROM m_rollo,m_cpto_bodega  
+   WHERE ( m_rollo.co_planeador = m_cpto_bodega.co_cpto_bodega ) and  
+         ( m_cpto_bodega.tipo <> 1  )and    
+         ( co_centro = 6 ) AND  
+         ( m_rollo.cs_tanda <= 2 ) AND  
+         (m_rollo.co_reftel_act = :a_tela OR  
+         :a_tela = 0) AND  
+         (m_rollo.co_proveedor = :a_proveedor OR  
+         :a_proveedor = 0) AND  
+         (m_rollo.cs_ordenpd_te_pg = :a_optejido OR  
+         :a_optejido = 0) AND  
+         m_rollo.co_estado_rollo = 1   
+GROUP BY m_rollo.cs_ordenpd_te_pg,   
+         m_rollo.co_reftel_act   
+
+
+
+" arguments=(("a_fecha_ini", date),("a_fecha_fin", date),("a_tela", number),("a_proveedor", number),("a_Cliente", number),("a_marca", number),("a_linea", number),("a_estilo", number),("a_optejido", number),("a_opestilo", number),("a_programador", string))  sort="co_reftel_act A cs_ordenpd_te_pg A " )
+text(band=header alignment="2" text="OP Tejido" border="6" color="33554432" x="9" y="4" height="160" width="384" html.valueishtml="0"  name=m_rollo_cs_ordenpd_te_pg_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header alignment="2" text="Kg 
+
+ Sobrantes" border="6" color="33554432" x="1449" y="4" height="160" width="471" html.valueishtml="0"  name=kg_sobrantes_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header alignment="2" text="Kg Btc" border="6" color="33554432" x="1929" y="4" height="160" width="462" html.valueishtml="0"  name=kg_btc_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header alignment="2" text="Kg Tanda" border="6" color="33554432" x="2400" y="4" height="160" width="485" html.valueishtml="0"  name=kg_tanda_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header alignment="2" text="Rollos" border="6" color="33554432" x="2894" y="4" height="160" width="293" html.valueishtml="0"  name=rollos_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header alignment="2" text="OP Estilo" border="6" color="33554432" x="402" y="4" height="160" width="379" html.valueishtml="0"  name=h_ordenpd_pt_cs_ordenpd_pt_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header alignment="0" text="Fecha
+
+ Despacho" border="0" color="33554432" x="791" y="4" height="152" width="649" html.valueishtml="0"  name=fe_termin_pg_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="De Referencia" border="0" color="33554432" x="3195" y="4" height="76" width="82" html.valueishtml="0"  name=de_referencia_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Prioridad" border="0" color="33554432" x="3287" y="4" height="76" width="59" html.valueishtml="0"  name=prioridad_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="33554432" x="9" y="0" height="76" width="384" format="[general]" html.valueishtml="0"  name=cs_ordenpd_te_pg visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="33554432" x="402" y="0" height="76" width="379" format="[general]" html.valueishtml="0"  name=cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="5" color="33554432" x="1449" y="0" height="76" width="471" format="[general]" html.valueishtml="0"  name=kg_sobrantes visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="5" color="33554432" x="1929" y="0" height="76" width="462" format="[general]" html.valueishtml="0"  name=kg_btc visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="5" color="33554432" x="2400" y="0" height="76" width="485" format="[general]" html.valueishtml="0"  name=kg_tanda visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="5" color="33554432" x="2894" y="0" height="76" width="293" format="[general]" html.valueishtml="0"  name=rollos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="791" y="0" height="56" width="649" format="[general]" html.valueishtml="0"  name=fe_termin_pg visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="3195" y="0" height="56" width="82" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="3287" y="0" height="56" width="59" format="[general]" html.valueishtml="0"  name=prioridad visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
