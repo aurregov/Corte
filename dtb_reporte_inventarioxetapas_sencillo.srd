@@ -1,0 +1,60 @@
+HA$PBExportHeader$dtb_reporte_inventarioxetapas_sencillo.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=256 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=datetime updatewhereclause=yes name=r_estadosxetapa_ano_mes dbname="r_estadosxetapa.ano_mes" )
+ column=(type=long updatewhereclause=yes name=r_estadosxetapa_etapa dbname="r_estadosxetapa.etapa" )
+ column=(type=long updatewhereclause=yes name=r_estadosxetapa_cs_orden_corte dbname="r_estadosxetapa.cs_orden_corte" )
+ column=(type=char(20) updatewhereclause=yes name=h_preref_pv_gpa dbname="h_preref_pv.gpa" )
+ column=(type=long updatewhereclause=yes name=r_estadosxetapa_ca_inicial dbname="r_estadosxetapa.ca_inicial" )
+ column=(type=long updatewhereclause=yes name=r_estadosxetapa_ca_entradas dbname="r_estadosxetapa.ca_entradas" )
+ column=(type=long updatewhereclause=yes name=r_estadosxetapa_ca_salidas dbname="r_estadosxetapa.ca_salidas" )
+ column=(type=long updatewhereclause=yes name=m_tipos_etapa_co_tipo_etapa dbname="m_tipos_etapa.co_tipo_etapa" )
+ retrieve="SELECT DISTINCT  r_estadosxetapa.ano_mes ,
+  r_estadosxetapa.etapa ,
+  r_estadosxetapa.cs_orden_corte ,
+  h_preref_pv.gpa ,
+  r_estadosxetapa.ca_inicial ,
+  r_estadosxetapa.ca_entradas ,
+  r_estadosxetapa.ca_salidas ,
+  m_tipos_etapa.co_tipo_etapa     
+FROM r_estadosxetapa ,
+  dt_pdnxmodulo ,
+  h_preref_pv ,
+  m_tipos_etapa     
+WHERE ( r_estadosxetapa.cs_orden_corte = dt_pdnxmodulo.cs_asignacion ) and 
+      ( h_preref_pv.co_tipo_ref = 'P') and  
+	   ( dt_pdnxmodulo.co_fabrica_pt = h_preref_pv.co_fabrica ) and     
+	   ( dt_pdnxmodulo.co_linea = h_preref_pv.co_linea ) and      
+	   ( cast(dt_pdnxmodulo.co_referencia as char(15)) = h_preref_pv.co_referencia ) and     
+	   ( r_estadosxetapa.etapa = m_tipos_etapa.co_tipo_etapa ) and      
+	   ( ( r_estadosxetapa.ano_mes = :Anno_mes ) And    
+      ( dt_pdnxmodulo.simulacion = 1 ) )  " arguments=(("Anno_mes", date))  sort="m_tipos_etapa_co_tipo_etapa A r_estadosxetapa_etapa A r_estadosxetapa_cs_orden_corte A " )
+text(band=header alignment="0" text="Inventario por Etapas" border="6" color="0" x="1083" y="52" height="76" width="672" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217750" )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="96" y="60" height="60" width="649" format="dd-mmm-yyyy hh:mm" html.valueishtml="0"  name=date_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="'Pag ' + page() + ' de ' + pageCount()"border="0" color="33554432" x="2057" y="60" height="60" width="562" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="A$$HEX1$$f100$$ENDHEX$$o Mes" border="6" color="33554432" x="41" y="188" height="52" width="201" html.valueishtml="0"  name=r_estadosxetapa_ano_mes_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Etapa" border="6" color="33554432" x="261" y="188" height="52" width="325" html.valueishtml="0"  name=r_estadosxetapa_etapa_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Orden Corte" border="6" color="33554432" x="603" y="188" height="52" width="265" html.valueishtml="0"  name=r_estadosxetapa_cs_orden_corte_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Grupo" border="6" color="33554432" x="891" y="188" height="52" width="411" html.valueishtml="0"  name=h_preref_gpa_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Inicial" border="6" color="33554432" x="1326" y="188" height="52" width="352" html.valueishtml="0"  name=r_estadosxetapa_ca_inicial_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Entradas" border="6" color="33554432" x="1696" y="188" height="52" width="361" html.valueishtml="0"  name=r_estadosxetapa_ca_entradas_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Salidas" border="6" color="33554432" x="2075" y="188" height="52" width="357" html.valueishtml="0"  name=r_estadosxetapa_ca_salidas_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Saldo" border="6" color="33554432" x="2450" y="188" height="52" width="361" html.valueishtml="0"  name=r_estadosxetapa_ca_saldo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="33554432" x="41" y="4" height="64" width="215" format="yyyy-mm" html.valueishtml="0"  name=r_estadosxetapa_ano_mes visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="33554432" x="261" y="4" height="64" width="320" format="[general]" html.valueishtml="0"  name=r_estadosxetapa_etapa visible="1" dddw.name=dddw_etapas dddw.displaycolumn=de_etapa dddw.datacolumn=co_etapa dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="942" y="8" height="52" width="23" format="[general]" html.valueishtml="0"  name=m_tipos_etapa_co_tipo_etapa visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="33554432" x="599" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=r_estadosxetapa_cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="5" color="33554432" x="1326" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=r_estadosxetapa_ca_inicial visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="5" color="33554432" x="1701" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=r_estadosxetapa_ca_entradas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="5" color="33554432" x="2075" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=r_estadosxetapa_ca_salidas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression=" r_estadosxetapa_ca_inicial + r_estadosxetapa_ca_entradas - r_estadosxetapa_ca_salidas "border="5" color="33554432" x="2464" y="8" height="64" width="274" format="[GENERAL]" html.valueishtml="0"  name=saldo_calculado visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=0 border="0" color="33554432" x="2811" y="0" height="52" width="462" html.valueishtml="0"  name=h_preref_pv_gpa visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
