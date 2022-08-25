@@ -1,0 +1,138 @@
+HA$PBExportHeader$ds_temp_rec_no10_tela_color_ancho.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=char(8) update=yes updatewhereclause=yes key=yes name=usuario dbname="temp_modelos_ref.usuario" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_ordenpd_pt dbname="temp_modelos_ref.cs_ordenpd_pt" )
+ column=(type=char(20) update=yes updatewhereclause=yes key=yes name=po dbname="temp_modelos_ref.po" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_fabrica dbname="temp_modelos_ref.co_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_linea dbname="temp_modelos_ref.co_linea" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_referencia dbname="temp_modelos_ref.co_referencia" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_color dbname="temp_modelos_ref.co_color" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_talla dbname="temp_modelos_ref.co_talla" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_modelo dbname="temp_modelos_ref.co_modelo" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_reftel dbname="temp_modelos_ref.co_reftel" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_caract dbname="temp_modelos_ref.co_caract" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_color_te dbname="temp_modelos_ref.co_color_te" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=diametro dbname="temp_modelos_ref.diametro" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes key=yes name=ancho dbname="temp_modelos_ref.ancho" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=tono dbname="temp_modelos_ref.tono" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=area dbname="temp_modelos_ref.area" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=grm_ficha dbname="temp_modelos_ref.grm_ficha" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=mt_bodega dbname="temp_modelos_ref.mt_bodega" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=kg_bodega dbname="temp_modelos_ref.kg_bodega" )
+ column=(type=long update=yes updatewhereclause=yes name=unid_bodega dbname="temp_modelos_ref.unid_bodega" )
+ column=(type=long update=yes updatewhereclause=yes name=unid_liberar dbname="temp_modelos_ref.unid_liberar" )
+ column=(type=long update=yes updatewhereclause=yes name=sw_marca dbname="temp_modelos_ref.sw_marca" )
+ column=(type=decimal(3) update=yes updatewhereclause=yes name=consumo dbname="temp_modelos_ref.consumo" )
+ column=(type=long update=yes updatewhereclause=yes name=raya dbname="temp_modelos_ref.raya" )
+ column=(type=long updatewhereclause=yes name=unid_prog dbname="temp_modelos_ref.unid_prog" )
+ column=(type=long updatewhereclause=yes name=unid_real_liberar dbname="temp_modelos_ref.unid_real_liberar" )
+ column=(type=char(10) updatewhereclause=yes name=nu_cut dbname="temp_modelos_ref.nu_cut" )
+ column=(type=long updatewhereclause=yes key=yes name=cs_tanda dbname="temp_modelos_ref.cs_tanda" )
+ retrieve="  SELECT usuario,   
+         cs_ordenpd_pt,   
+         po,   
+         co_fabrica,   
+         co_linea,   
+         co_referencia,   
+         co_color,   
+         co_talla,   
+         co_modelo,   
+         co_reftel,   
+         co_caract,   
+         co_color_te,   
+         diametro,   
+         ancho,   
+         tono,   
+         area,   
+         grm_ficha,   
+         mt_bodega,   
+         kg_bodega,   
+         unid_bodega,   
+         unid_liberar,   
+         sw_marca,   
+         consumo,   
+         raya,   
+         unid_prog,   
+         unid_real_liberar,   
+         nu_cut,
+			cs_tanda
+    FROM temp_modelos_ref  
+   WHERE usuario 			= :as_usuario AND
+			cs_ordenpd_pt 	= :an_ordenpd_pt AND
+			po 				= :as_po AND
+			co_color 		= :an_color AND
+        	(cs_tanda       = :an_tanda OR :an_tanda = 0) AND
+			raya				<> 10 AND
+			co_color_te		= :an_color_te AND
+			co_reftel		= :an_reftel AND
+			co_talla			= :an_talla AND
+			ancho          = :an_ancho
+	
+			   
+" update="temp_modelos_ref" updatewhere=0 updatekeyinplace=no arguments=(("as_usuario", string),("an_ordenpd_pt", number),("as_po", string),("an_color", number),("an_tanda", number),("an_color_te", number),("an_reftel", number),("an_talla", number),("an_ancho", number))  sort="cs_ordenpd_pt A po A raya A unid_prog A co_fabrica A co_linea A co_referencia A co_color A co_talla A " )
+text(band=header alignment="2" text="Ordenpd Pt" border="0" color="33554432" x="224" y="8" height="56" width="315" html.valueishtml="0"  name=cs_ordenpd_pt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Po" border="0" color="33554432" x="549" y="8" height="56" width="480" html.valueishtml="0"  name=po_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Fabrica" border="0" color="33554432" x="1490" y="8" height="56" width="274" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Linea" border="0" color="33554432" x="1774" y="8" height="56" width="274" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Referencia" border="0" color="33554432" x="2057" y="8" height="56" width="311" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Color" border="0" color="33554432" x="2377" y="8" height="56" width="274" html.valueishtml="0"  name=co_color_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Talla" border="0" color="33554432" x="2661" y="8" height="56" width="274" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Modelo" border="0" color="33554432" x="2944" y="8" height="56" width="274" html.valueishtml="0"  name=co_modelo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Reftel" border="0" color="33554432" x="3227" y="8" height="56" width="274" html.valueishtml="0"  name=co_reftel_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Caract" border="0" color="33554432" x="3511" y="8" height="56" width="274" html.valueishtml="0"  name=co_caract_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Color Te" border="0" color="33554432" x="3794" y="8" height="56" width="274" html.valueishtml="0"  name=co_color_te_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Diametro" border="0" color="33554432" x="4078" y="8" height="56" width="274" html.valueishtml="0"  name=diametro_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ancho" border="0" color="33554432" x="4361" y="8" height="56" width="274" html.valueishtml="0"  name=ancho_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tono" border="0" color="33554432" x="4645" y="8" height="56" width="114" html.valueishtml="0"  name=tono_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Area" border="0" color="33554432" x="4768" y="8" height="56" width="274" html.valueishtml="0"  name=area_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Grm Ficha" border="0" color="33554432" x="5051" y="8" height="56" width="274" html.valueishtml="0"  name=grm_ficha_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mt Bodega" border="0" color="33554432" x="5335" y="8" height="56" width="274" html.valueishtml="0"  name=mt_bodega_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Kg Bodega" border="0" color="33554432" x="5618" y="8" height="56" width="274" html.valueishtml="0"  name=kg_bodega_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unid Bodega" border="0" color="33554432" x="5902" y="8" height="56" width="283" html.valueishtml="0"  name=unid_bodega_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unid Liberar" border="0" color="33554432" x="6194" y="8" height="56" width="274" html.valueishtml="0"  name=unid_liberar_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sw Marca" border="0" color="33554432" x="6478" y="8" height="56" width="274" html.valueishtml="0"  name=sw_marca_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Consumo" border="0" color="33554432" x="6761" y="8" height="56" width="274" html.valueishtml="0"  name=consumo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Raya" border="0" color="33554432" x="7045" y="8" height="56" width="274" html.valueishtml="0"  name=raya_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unid Prog" border="0" color="0" x="1038" y="8" height="56" width="443" html.valueishtml="0"  name=unid_prog_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Unid Real Liberar" border="0" color="0" x="7328" y="8" height="56" width="626" html.valueishtml="0"  name=unid_real_liberar_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Nu Cut" border="0" color="0" x="7963" y="8" height="56" width="219" html.valueishtml="0"  name=nu_cut_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Usuario" border="0" color="33554432" x="9" y="8" height="56" width="206" html.valueishtml="0"  name=usuario_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Cs Tanda" border="0" color="0" x="8192" y="4" height="76" width="59" html.valueishtml="0"  name=cs_tanda_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="9" y="4" height="56" width="206" format="[general]" html.valueishtml="0"  name=usuario visible="1" edit.limit=8 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="0" color="33554432" x="224" y="4" height="56" width="315" format="[general]" html.valueishtml="0"  name=cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="33554432" x="549" y="4" height="56" width="480" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=40 border="0" color="33554432" x="1490" y="4" height="56" width="274" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=50 border="0" color="33554432" x="1774" y="4" height="56" width="274" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=60 border="0" color="33554432" x="2057" y="4" height="56" width="311" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=70 border="0" color="33554432" x="2377" y="4" height="56" width="274" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=80 border="0" color="33554432" x="2661" y="4" height="56" width="274" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=90 border="0" color="33554432" x="2944" y="4" height="56" width="274" format="[general]" html.valueishtml="0"  name=co_modelo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=100 border="0" color="33554432" x="3227" y="4" height="56" width="274" format="[general]" html.valueishtml="0"  name=co_reftel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=110 border="0" color="33554432" x="3511" y="4" height="56" width="274" format="[general]" html.valueishtml="0"  name=co_caract visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=120 border="0" color="33554432" x="3794" y="4" height="56" width="274" format="[general]" html.valueishtml="0"  name=co_color_te visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=130 border="0" color="33554432" x="4078" y="4" height="56" width="274" format="[general]" html.valueishtml="0"  name=diametro visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=140 border="0" color="33554432" x="4361" y="4" height="56" width="274" format="[general]" html.valueishtml="0"  name=ancho visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=150 border="0" color="33554432" x="4645" y="4" height="56" width="114" format="[general]" html.valueishtml="0"  name=tono visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="1" tabsequence=160 border="0" color="33554432" x="4768" y="4" height="56" width="274" format="[general]" html.valueishtml="0"  name=area visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="1" tabsequence=170 border="0" color="33554432" x="5051" y="4" height="56" width="274" format="[general]" html.valueishtml="0"  name=grm_ficha visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="1" tabsequence=180 border="0" color="33554432" x="5335" y="4" height="56" width="274" format="[general]" html.valueishtml="0"  name=mt_bodega visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="1" tabsequence=190 border="0" color="33554432" x="5618" y="4" height="56" width="274" format="[general]" html.valueishtml="0"  name=kg_bodega visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="1" tabsequence=200 border="0" color="33554432" x="5902" y="4" height="56" width="283" format="[general]" html.valueishtml="0"  name=unid_bodega visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="1" tabsequence=210 border="0" color="33554432" x="6194" y="4" height="56" width="274" format="[general]" html.valueishtml="0"  name=unid_liberar visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="1" tabsequence=220 border="0" color="33554432" x="6478" y="4" height="56" width="274" format="[general]" html.valueishtml="0"  name=sw_marca visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="1" tabsequence=230 border="0" color="33554432" x="6761" y="4" height="56" width="274" format="[general]" html.valueishtml="0"  name=consumo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=24 alignment="1" tabsequence=240 border="0" color="33554432" x="7045" y="4" height="56" width="274" format="[general]" html.valueishtml="0"  name=raya visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=25 alignment="1" tabsequence=32766 border="0" color="33554432" x="1038" y="4" height="56" width="443" format="[general]" html.valueishtml="0"  name=unid_prog visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=26 alignment="0" tabsequence=32766 border="0" color="33554432" x="7328" y="4" height="56" width="626" format="[general]" html.valueishtml="0"  name=unid_real_liberar visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=27 alignment="0" tabsequence=32766 border="0" color="33554432" x="7963" y="4" height="56" width="219" format="[general]" html.valueishtml="0"  name=nu_cut visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=28 alignment="0" tabsequence=250 border="0" color="33554432" x="8192" y="0" height="56" width="59" format="[general]" html.valueishtml="0"  name=cs_tanda visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
