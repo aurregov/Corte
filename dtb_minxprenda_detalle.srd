@@ -1,0 +1,55 @@
+HA$PBExportHeader$dtb_minxprenda_detalle.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=co_tipoprod dbname="co_tipoprod" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_centro_pdn dbname="co_centro_pdn" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_subcentro_pdn dbname="co_subcentro_pdn" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_proceso_pdn dbname="co_proceso_pdn" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_linea dbname="co_linea" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_tipo_tela dbname="co_tipo_tela" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=min_unidad dbname="min_unidad" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="instancia" )
+ column=(type=char(30) updatewhereclause=yes name=de_proceso_pdn dbname="de_proceso_pdn" )
+ retrieve="  SELECT dt_minxprenda_tela.co_tipoprod,   
+         dt_minxprenda_tela.co_centro_pdn,   
+         dt_minxprenda_tela.co_subcentro_pdn,   
+         dt_minxprenda_tela.co_proceso_pdn,   
+         dt_minxprenda_tela.co_fabrica,   
+         dt_minxprenda_tela.co_linea,   
+         dt_minxprenda_tela.co_tipo_tela,   
+         dt_minxprenda_tela.min_unidad,   
+         dt_minxprenda_tela.fe_creacion,   
+         dt_minxprenda_tela.fe_actualizacion,   
+         dt_minxprenda_tela.usuario,   
+         dt_minxprenda_tela.instancia,
+			m_procesos_pdn.de_proceso_pdn	  
+    FROM dt_minxprenda_tela,
+			m_procesos_pdn  
+	WHERE m_procesos_pdn.co_tipoprod = dt_minxprenda_tela.co_tipoprod AND
+			m_procesos_pdn.co_centro_pdn = dt_minxprenda_tela.co_centro_pdn AND
+			m_procesos_pdn.co_subcentro_pdn = dt_minxprenda_tela.co_subcentro_pdn AND 
+			m_procesos_pdn.co_proceso_pdn = dt_minxprenda_tela.co_proceso_pdn AND
+			dt_minxprenda_tela.co_tipoprod = :an_tipoprod AND
+			dt_minxprenda_tela.co_centro_pdn = :an_centro AND
+			dt_minxprenda_tela.co_subcentro_pdn = :an_subcentro AND
+			dt_minxprenda_tela.co_fabrica = :an_fabrica AND
+			dt_minxprenda_tela.co_linea = :an_linea AND
+			dt_minxprenda_tela.co_tipo_tela = :an_tipotela
+			
+
+" update="dt_minxprenda_tela" updatewhere=0 updatekeyinplace=no arguments=(("an_tipoprod", number),("an_centro", number),("an_subcentro", number),("an_fabrica", number),("an_linea", number),("an_tipotela", number))  sort="co_proceso_pdn A " )
+text(band=header alignment="2" text="Proceso" border="6" color="0" x="14" y="4" height="56" width="763" html.valueishtml="0"  name=co_proceso_pdn_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Minutos" border="6" color="0" x="795" y="4" height="56" width="215" html.valueishtml="0"  name=min_unidad_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=40 border="5" color="0" x="14" y="4" height="56" width="160" format="[general]" html.valueishtml="0"  name=co_proceso_pdn visible="1" dddw.name=dddw_m_procesos_pdn_corte dddw.displaycolumn=co_proceso_pdn dddw.datacolumn=co_proceso_pdn dddw.percentwidth=500 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0 dddw.hscrollbar=yes dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="5" color="0" x="197" y="4" height="56" width="581" format="[general]" html.valueishtml="0"  name=de_proceso_pdn visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=8 alignment="1" tabsequence=80 border="5" color="0" x="795" y="4" height="56" width="210" format="[general]" html.valueishtml="0"  name=min_unidad visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
