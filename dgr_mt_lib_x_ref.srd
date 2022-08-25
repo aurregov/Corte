@@ -1,0 +1,66 @@
+HA$PBExportHeader$dgr_mt_lib_x_ref.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica_pt dbname="co_fabrica_pt" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long updatewhereclause=yes name=co_color_pt dbname="co_color_pt" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_metros dbname="ca_metros" )
+ column=(type=decimal(3) updatewhereclause=yes name=ca_kilos dbname="ca_kilos" )
+ retrieve=" SELECT dt_rollos_libera.co_fabrica_pt,   
+         dt_rollos_libera.co_linea,   
+         dt_rollos_libera.co_referencia,   
+         dt_rollos_libera.co_color_pt,   
+         sum(dt_rollos_libera.ca_metros) ca_metros  ,
+         sum(dt_rollos_libera.ca_kg) ca_kilos  
+    FROM dt_pdnxmodulo,   
+         dt_rollos_libera,   
+         dt_telaxmodelo_lib  
+  WHERE ( dt_pdnxmodulo.cs_liberacion 		= dt_rollos_libera.cs_liberacion ) and  
+         ( dt_pdnxmodulo.co_fabrica_exp 		= dt_rollos_libera.co_fabrica_exp ) and  
+         ( dt_pdnxmodulo.co_fabrica_pt 		= dt_rollos_libera.co_fabrica_pt ) and  
+         ( dt_pdnxmodulo.co_linea 				= dt_rollos_libera.co_linea ) and  
+         ( dt_pdnxmodulo.co_referencia 		= dt_rollos_libera.co_referencia ) and 
+         ( dt_pdnxmodulo.po                  = dt_rollos_libera.nu_orden ) and 
+         ( dt_pdnxmodulo.co_color_pt 			= dt_rollos_libera.co_color_pt ) and  
+         ( dt_rollos_libera.co_fabrica_exp 	= dt_telaxmodelo_lib.co_fabrica_exp ) and  
+         ( dt_rollos_libera.cs_liberacion 	= dt_telaxmodelo_lib.cs_liberacion ) and  
+         ( dt_pdnxmodulo.po                  = dt_telaxmodelo_lib.nu_orden ) and
+         ( dt_rollos_libera.co_fabrica_pt 	= dt_telaxmodelo_lib.co_fabrica_pt ) and  
+         ( dt_rollos_libera.co_linea 			= dt_telaxmodelo_lib.co_linea ) and  
+         ( dt_rollos_libera.co_referencia 	= dt_telaxmodelo_lib.co_referencia ) and  
+         ( dt_rollos_libera.co_color_pt 		= dt_telaxmodelo_lib.co_color_pt ) and  
+         ( dt_rollos_libera.co_modelo 			= dt_telaxmodelo_lib.co_modelo ) and  
+         ( dt_rollos_libera.co_reftel 			= dt_telaxmodelo_lib.co_reftel ) and  
+         ( dt_rollos_libera.co_caract 			= dt_telaxmodelo_lib.co_caract ) and  
+         ( dt_rollos_libera.diametro 			= dt_telaxmodelo_lib.diametro ) and  
+         ( dt_rollos_libera.co_color_tela 	= dt_telaxmodelo_lib.co_color_tela ) and  
+         ( dt_telaxmodelo_lib.raya 				= 10 ) AND  
+         ( dt_pdnxmodulo.cs_unir_oc 			= :al_unir_oc  )
+GROUP BY 1,2,3,4   ;
+" arguments=(("al_unir_oc", number)) )
+text(band=header alignment="2" text="Dt Rollos Libera
+Co Fabrica Pt" border="0" color="33554432" x="9" y="8" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_co_fabrica_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Co Linea" border="0" color="33554432" x="361" y="8" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Co Referencia" border="0" color="33554432" x="713" y="8" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Co Color Pt" border="0" color="33554432" x="1065" y="8" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_co_color_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Metros" border="0" color="33554432" x="1417" y="8" height="52" width="274" html.valueishtml="0"  name=ca_metros_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="343" format="[general]" html.valueishtml="0"  name=co_fabrica_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="361" y="8" height="64" width="343" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="713" y="8" height="64" width="343" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="1065" y="8" height="64" width="343" format="[general]" html.valueishtml="0"  name=co_color_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1417" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=ca_metros visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=0 border="0" color="33554432" x="1705" y="0" height="52" width="978" html.valueishtml="0"  name=ca_kilos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Ca Kilos" border="0" color="0" x="1701" y="4" height="76" width="983" html.valueishtml="0"  name=ca_kilos_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
