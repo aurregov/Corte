@@ -1,0 +1,65 @@
+HA$PBExportHeader$ds_reporte_nivel2_matprima.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=224 color="536870912" )
+summary(height=76 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_producto dbname="co_producto" )
+ column=(type=char(200) updatewhereclause=yes name=de_producto dbname="de_producto" )
+ column=(type=long updatewhereclause=yes name=co_caracteristica dbname="co_caracteristica" )
+ column=(type=long updatewhereclause=yes name=co_color dbname="co_color" )
+ column=(type=long updatewhereclause=yes name=co_proveedor dbname="co_proveedor" )
+ column=(type=char(20) updatewhereclause=yes name=cs_canasta dbname="cs_canasta" )
+ column=(type=char(20) updatewhereclause=yes name=lote dbname="lote" )
+ column=(type=long updatewhereclause=yes name=ca_conos_kardex dbname="ca_conos_kardex" )
+ column=(type=decimal(3) updatewhereclause=yes name=ca_kardex dbname="ca_kardex" )
+ column=(type=char(30) updatewhereclause=yes name=de_proveedor dbname="de_proveedor" )
+ retrieve="select dt_canasta_gbi.co_producto, m_empaques_gbi.de_producto, dt_canasta_gbi.co_caracteristica, 
+       dt_canasta_gbi.co_color, h_canasta_gbi.co_proveedor, h_canasta_gbi.cs_canasta, dt_canasta_gbi.lote,
+       dt_canasta_gbi.ca_conos_kardex, dt_canasta_gbi.ca_kardex, 
+       (select nitnom from vw_proveedores where co_proveedor = h_canasta_gbi.co_proveedor) as de_proveedor
+from  h_canasta_gbi, dt_canasta_gbi,  m_empaques_gbi
+where h_canasta_gbi.cs_canasta = dt_canasta_gbi.cs_canasta
+  and dt_canasta_gbi.ca_kardex   > 0
+  and h_canasta_gbi.co_tipo_inv  = 2
+  and h_canasta_gbi.co_centro_act = 1
+  and h_canasta_gbi.pull_list = :ai_tipo
+  and dt_canasta_gbi.co_producto = m_empaques_gbi.co_producto
+  and m_empaques_gbi.co_tipo_inv  = 2
+
+
+" arguments=(("ai_tipo", number),("as_tipo", string))  sort="co_producto A co_caracteristica A co_color A " )
+group(level=1 header.height=88 trailer.height=80 by=("co_producto" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="Caract" border="6" color="33554432" x="370" y="164" height="52" width="224" html.valueishtml="0"  name=co_caracteristica_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Filtrar" enabled=yes action="9" border="0" color="0" x="2469" y="4" height="68" width="265" vtextalign="0" htextalign="0"  name=b_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Ordenar" enabled=yes action="8" border="0" color="0" x="2830" y="4" height="68" width="265" vtextalign="0" htextalign="0"  name=b_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="Tipo Cajas:" border="0" color="0" x="41" y="48" height="80" width="398" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression=" ai_tipo "border="0" color="0" x="448" y="48" height="76" width="256" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression=" as_tipo "border="0" color="0" x="699" y="48" height="76" width="448" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Proveedor" border="6" color="33554432" x="923" y="164" height="52" width="869" html.valueishtml="0"  name=co_proveedor_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Kilos" border="6" color="33554432" x="2793" y="164" height="52" width="242" html.valueishtml="0"  name=ca_kilos_act_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Conos" border="6" color="33554432" x="2537" y="164" height="52" width="229" html.valueishtml="0"  name=ca_conos_act_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Lote" border="6" color="33554432" x="2226" y="164" height="52" width="293" html.valueishtml="0"  name=lote_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Caja" border="6" color="33554432" x="1819" y="164" height="52" width="375" html.valueishtml="0"  name=cs_caja_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Color" border="6" color="33554432" x="613" y="164" height="52" width="297" html.valueishtml="0"  name=co_color_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="2" color="33554432" x="370" y="4" height="64" width="224" format="[general]" html.valueishtml="0"  name=co_caracteristica visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="2" color="33554432" x="1129" y="4" height="64" width="677" format="[general]" html.valueishtml="0"  name=de_proveedor visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="2" color="33554432" x="923" y="4" height="64" width="201" format="[general]" html.valueishtml="0"  name=co_proveedor visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="2" color="33554432" x="2226" y="4" height="64" width="293" format="[general]" html.valueishtml="0"  name=lote visible="1" edit.limit=7 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="2" color="33554432" x="2537" y="12" height="52" width="224" format="0" html.valueishtml="0"  name=ca_conos_kardex visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="2" color="33554432" x="2789" y="16" height="52" width="293" format="#,##0" html.valueishtml="0"  name=ca_kardex visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="2" color="33554432" x="1819" y="8" height="56" width="393" format="[general]" html.valueishtml="0"  name=cs_canasta visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="2" color="33554432" x="613" y="4" height="64" width="297" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="0" expression="sum(ca_conos_kardex for group 1)"border="2" color="33554432" x="2537" y="4" height="52" width="224" format="0" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+compute(band=trailer.1 alignment="0" expression="sum(ca_kardex for group 1)"border="2" color="33554432" x="2789" y="4" height="52" width="293" format="#,##0" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+compute(band=summary alignment="0" expression="sum(ca_conos_kardex for all)"border="2" color="33554432" x="2542" y="8" height="52" width="224" format="0" html.valueishtml="0"  name=compute_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+compute(band=summary alignment="0" expression="sum(ca_kardex for all)"border="2" color="33554432" x="2793" y="8" height="52" width="293" format="#,##0" html.valueishtml="0"  name=compute_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+text(band=header.1 alignment="2" text="PRODUCTO:" border="6" color="33554432" x="0" y="16" height="52" width="375" html.valueishtml="0"  name=co_producto_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header.1 id=1 alignment="2" tabsequence=32766 border="6" color="33554432" x="393" y="16" height="52" width="151" format="[general]" html.valueishtml="0"  name=co_producto visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header.1 id=2 alignment="0" tabsequence=32766 border="6" color="33554432" x="567" y="16" height="52" width="1202" format="[general]" html.valueishtml="0"  name=de_producto visible="1" edit.limit=25 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
