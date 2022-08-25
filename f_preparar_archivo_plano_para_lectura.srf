@@ -1,0 +1,42 @@
+HA$PBExportHeader$f_preparar_archivo_plano_para_lectura.srf
+global type f_preparar_archivo_plano_para_lectura from function_object
+end type
+
+forward prototypes
+global function long f_preparar_archivo_plano_para_lectura (string as_ruta_y_nombre_archivo)
+end prototypes
+
+global function long f_preparar_archivo_plano_para_lectura (string as_ruta_y_nombre_archivo);/////////////////////////////////////////////////////////////////////////////
+//
+//	PARA LLAMAR ESTA FUNCION DEBE CREAR UNA VARIABLE ENTERA QUE RECIBA
+//	EL APUNTADOR AL ARCHIVO
+//
+//
+//	PARAMETROS : 	as_ruta_y_nombre_archivo	:	RUTA Y NOMBRE EXACTOS
+//																DEL ARCHIVO,
+//																C:\VENTAS\PLANO.TXT
+//					
+//	RETORNA : 		-1		:	Hubo problemas, no se abrio el archivo
+//						 0		:	Archivo abierto
+//
+/////////////////////////////////////////////////////////////////////////////
+
+Long 		ll_fila, ll_numero_filas
+String 	NAMED
+Long 	li_numero_archivo, li_resultado
+
+//IF FileExists( as_ruta_y_nombre_archivo ) THEN
+//	FileDelete( as_ruta_y_nombre_archivo )  
+//END IF
+
+li_numero_archivo = FileOpen(as_ruta_y_nombre_archivo, LineMode!, Read!, LockRead!)
+
+IF li_numero_archivo > 0 THEN
+	Return(li_numero_archivo)
+ELSE
+	Return(-1)
+END IF
+
+
+end function
+
