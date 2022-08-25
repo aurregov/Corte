@@ -1,0 +1,81 @@
+HA$PBExportHeader$d_gr_cajas_ordenes.srd
+$PBExportComments$//datawindow que consulta las cajas  de las ordenes de producci$$HEX1$$f300$$ENDHEX$$n de una op estilo para cerrar la op: el campo ca_kilos_act > 0 y si existe una caja con el campo pull_list = 1, se debe indicar al usuario que existen cajas reservadas.
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes key=yes name=cs_canasta dbname="cs_canasta" )
+ column=(type=decimal(3) updatewhereclause=yes name=ca_kilos_act dbname="ca_kilos_act" )
+ column=(type=long updatewhereclause=yes name=pull_list dbname="pull_list" )
+ column=(type=long updatewhereclause=yes name=co_orden_pdcion dbname="co_orden_pdcion" )
+ column=(type=long updatewhereclause=yes name=ca_conos_act dbname="ca_conos_act" )
+ column=(type=decimal(3) update=yes updatewhereclause=yes name=ca_reservada dbname="ca_reservada" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_reservada_conos dbname="ca_reservada_conos" )
+ column=(type=long update=yes updatewhereclause=yes name=co_maquina_prov dbname="co_maquina_prov" )
+ retrieve="  SELECT h_canasta_gbi.cs_canasta ,   
+         dt_canasta_gbi.ca_kardex ca_kilos_act,   
+         h_canasta_gbi.pull_list,   
+         h_canasta_gbi.co_orden_pdcion,   
+         dt_canasta_gbi.ca_conos_kardex ca_conos_act,
+         dt_canasta_gbi.ca_reservada,
+         dt_canasta_gbi.ca_reservada_conos,
+			dt_canasta_gbi.co_maquina_prov  
+    FROM  h_canasta_gbi, dt_canasta_gbi   
+   WHERE h_canasta_gbi.cs_canasta  = dt_canasta_gbi.cs_canasta
+	  AND h_canasta_gbi.co_tipo_inv = dt_canasta_gbi.co_tipo_inv
+	  AND h_canasta_gbi.co_centro_act in (1,4)
+	  AND h_canasta_gbi.co_tipo_inv = 2
+	  AND h_canasta_gbi.pull_list <> 3
+     AND dt_canasta_gbi.ca_kardex > 0   
+     AND h_canasta_gbi.cs_canasta in(select distinct d.caja
+                                     from dt_solic_x_caja_gbi d
+                                     where d.co_tipo_inv  = 2
+                                       and d.estado       = 'P'
+                                       and (d.caja_new    = 0 or trim(d.caja_new) = '')
+                                       and d.cs_solicitud in(select distinct h.cs_solicitud
+                                                           from h_solicitud_csmos_gbi h
+                                                           where h.co_tipo_inv    = d.co_tipo_inv
+                                                             and h.cs_solicitud   = d.cs_solicitud
+                                                             and h.co_estado_merc = 'P'
+                                                             and h.pedido         in(:an_co_orden_pdcion)  
+                                                             )
+                                     )
+
+
+
+/*  SELECT h_canasta_gbi.cs_canasta ,   
+         dt_canasta_gbi.ca_kardex ca_kilos_act,   
+         h_canasta_gbi.pull_list,   
+         h_canasta_gbi.co_orden_pdcion,   
+         dt_canasta_gbi.ca_conos_kardex ca_conos_act,
+         dt_canasta_gbi.ca_reservada,
+         dt_canasta_gbi.ca_reservada_conos  
+    FROM  h_canasta_gbi, dt_canasta_gbi   
+   WHERE h_canasta_gbi.cs_canasta  = dt_canasta_gbi.cs_canasta
+	  AND h_canasta_gbi.co_tipo_inv = dt_canasta_gbi.co_tipo_inv
+	  AND h_canasta_gbi.co_tipo_inv = 2
+     AND dt_canasta_gbi.ca_kardex > 0   
+     AND h_canasta_gbi.co_orden_pdcion in (:an_co_orden_pdcion)*/" update="dt_canasta_gbi" updatewhere=1 updatekeyinplace=yes arguments=(("an_co_orden_pdcion", numberlist)) )
+text(band=header alignment="2" text="Pull List" border="0" color="33554432" x="613" y="8" height="56" width="274" html.valueishtml="0"  name=pull_list_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Orden Pdcion" border="0" color="33554432" x="896" y="8" height="56" width="370" html.valueishtml="0"  name=co_orden_pdcion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Dt Canasta Gbi Ca Kilos Act" border="0" color="33554432" x="9" y="4" height="56" width="594" html.valueishtml="0"  name=dt_canasta_gbi_ca_kilos_act_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Dt Canasta Gbi Ca Conos Act" border="0" color="33554432" x="1275" y="4" height="56" width="430" html.valueishtml="0"  name=dt_canasta_gbi_ca_conos_act_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Cs Canasta" border="0" color="33554432" x="1714" y="4" height="56" width="453" html.valueishtml="0"  name=cs_canasta_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Ca Reservada" border="0" color="33554432" x="2176" y="4" height="76" width="539" html.valueishtml="0"  name=ca_reservada_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Ca Reservada Conos" border="0" color="33554432" x="2725" y="4" height="76" width="448" html.valueishtml="0"  name=ca_reservada_conos_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Dt Canasta Gbi Co Maquina Prov" border="0" color="33554432" x="3182" y="4" height="76" width="421" html.valueishtml="0"  name=dt_canasta_gbi_co_maquina_prov_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="1" tabsequence=20 border="0" color="33554432" x="613" y="8" height="68" width="274" format="[general]" html.valueishtml="0"  name=pull_list visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="896" y="8" height="68" width="370" format="[general]" html.valueishtml="0"  name=co_orden_pdcion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="0" color="33554432" x="9" y="0" height="56" width="594" format="[general]" html.valueishtml="0"  name=ca_kilos_act visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=30 border="0" color="33554432" x="1275" y="0" height="56" width="430" format="[general]" html.valueishtml="0"  name=ca_conos_act visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=40 border="0" color="33554432" x="1714" y="4" height="56" width="453" format="[general]" html.valueishtml="0"  name=cs_canasta visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=50 border="0" color="33554432" x="2176" y="0" height="56" width="539" format="[general]" html.valueishtml="0"  name=ca_reservada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=60 border="0" color="33554432" x="2725" y="0" height="56" width="448" format="[general]" html.valueishtml="0"  name=ca_reservada_conos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=70 border="0" color="33554432" x="3182" y="0" height="56" width="421" format="[general]" html.valueishtml="0"  name=co_maquina_prov visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
