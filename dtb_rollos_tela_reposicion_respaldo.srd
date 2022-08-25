@@ -1,0 +1,114 @@
+HA$PBExportHeader$dtb_rollos_tela_reposicion_respaldo.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_rollo dbname="m_rollo.cs_rollo" )
+ column=(type=long updatewhereclause=yes name=cs_orden_pr_act dbname="m_rollo.cs_orden_pr_act" )
+ column=(type=long updatewhereclause=yes name=co_reftel_act dbname="m_rollo.co_reftel_act" )
+ column=(type=long updatewhereclause=yes name=co_caract_act dbname="m_rollo.co_caract_act" )
+ column=(type=char(42) updatewhereclause=yes name=de_reftel dbname="h_telas.de_reftel" )
+ column=(type=long updatewhereclause=yes name=co_tiptel dbname="h_telas.co_tiptel" )
+ column=(type=long updatewhereclause=yes name=co_color_act dbname="m_rollo.co_color_act" )
+ column=(type=char(30) updatewhereclause=yes name=de_color dbname="m_color.de_color" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_kg dbname="m_rollo.ca_kg" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_mt dbname="m_rollo.ca_mt" )
+ column=(type=long updatewhereclause=yes name=ca_unidades dbname="m_rollo.ca_unidades" )
+ column=(type=decimal(2) updatewhereclause=yes name=metros_liberados dbname="metros_liberados" )
+ column=(type=decimal(0) updatewhereclause=yes name=unidades_liberadas dbname="unidades_liberadas" )
+ column=(type=decimal(2) updatewhereclause=yes name=metros_asignados dbname="metros_asignados" )
+ column=(type=decimal(2) updatewhereclause=yes name=unidades_asignadas dbname="unidades_asignadas" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_metros_reposi dbname="dt_telasreposicion.ca_metros_reposi" )
+ column=(type=long updatewhereclause=yes name=ca_unidades_reposi dbname="dt_telasreposicion.ca_unidades_reposi" )
+ retrieve="  SELECT m_rollo.cs_rollo,   
+			m_rollo.cs_orden_pr_act,
+         m_rollo.co_reftel_act,   
+         m_rollo.co_caract_act,   
+			h_telas.de_reftel,
+			h_telas.co_tiptel,
+         m_rollo.co_color_act,   
+			m_color.de_color,
+         m_rollo.ca_kg,   
+         m_rollo.ca_mt,
+			m_rollo.ca_unidades,
+			(	SELECT	Sum(ca_metros)
+				FROM	dt_rollos_libera, dt_pdnxmodulo
+				WHERE dt_rollos_libera.cs_rollo = m_rollo.cs_rollo AND
+						dt_rollos_libera.co_fabrica_exp = dt_pdnxmodulo.co_fabrica_exp AND
+						dt_rollos_libera.cs_liberacion = dt_pdnxmodulo.cs_liberacion AND
+						dt_rollos_libera.nu_orden = dt_pdnxmodulo.po AND
+						dt_rollos_libera.nu_cut = dt_pdnxmodulo.nu_cut AND
+						dt_rollos_libera.co_fabrica_pt = dt_pdnxmodulo.co_fabrica_pt AND
+						dt_rollos_libera.co_linea = dt_pdnxmodulo.co_linea AND
+						dt_rollos_libera.co_referencia = dt_pdnxmodulo.co_referencia AND
+						dt_rollos_libera.co_color_pt = dt_pdnxmodulo.co_color_pt AND
+						dt_rollos_libera.co_tono = dt_pdnxmodulo.tono AND
+						dt_pdnxmodulo.co_estado_asigna <> :ai_estliberacion ) metros_liberados,
+			(	SELECT	Sum(ca_unidades)
+				FROM	dt_rollos_libera, dt_pdnxmodulo
+				WHERE dt_rollos_libera.cs_rollo = m_rollo.cs_rollo AND
+						dt_rollos_libera.co_fabrica_exp = dt_pdnxmodulo.co_fabrica_exp AND
+						dt_rollos_libera.cs_liberacion = dt_pdnxmodulo.cs_liberacion AND
+						dt_rollos_libera.nu_orden = dt_pdnxmodulo.po AND
+						dt_rollos_libera.nu_cut = dt_pdnxmodulo.nu_cut AND
+						dt_rollos_libera.co_fabrica_pt = dt_pdnxmodulo.co_fabrica_pt AND
+						dt_rollos_libera.co_linea = dt_pdnxmodulo.co_linea AND
+						dt_rollos_libera.co_referencia = dt_pdnxmodulo.co_referencia AND
+						dt_rollos_libera.co_color_pt = dt_pdnxmodulo.co_color_pt AND
+						dt_rollos_libera.co_tono = dt_pdnxmodulo.tono AND
+						dt_pdnxmodulo.co_estado_asigna <> :ai_estliberacion ) unidades_liberadas,
+			Round(0, 2) metros_asignados,
+			Round(0, 2) unidades_asignadas,
+			dt_telasreposicion.ca_metros_reposi,
+			dt_telasreposicion.ca_unidades_reposi
+    FROM dt_telasreposicion,   
+         m_rollo,
+			h_telas,
+			m_color
+   WHERE ( dt_telasreposicion.co_reftel = m_rollo.co_reftel_act ) and  
+         ( dt_telasreposicion.co_caract = m_rollo.co_caract_act ) and  
+         ( dt_telasreposicion.co_color = m_rollo.co_color_act ) and  
+         ( ( dt_telasreposicion.cs_reposicion = :al_reposicion ) AND  
+         ( m_rollo.co_estado_rollo = :ai_estado ) AND  
+         ( m_rollo.co_centro = :ai_centro ) ) AND
+			( m_rollo.co_reftel_act = h_telas.co_reftel ) AND
+			( m_rollo.co_caract_act = h_telas.co_caract ) AND
+			( m_rollo.co_color_act = m_color.co_color )
+ORDER BY m_rollo.co_reftel_act,   
+         m_rollo.co_caract_act,   
+         m_rollo.co_color_act
+										
+" filter="( ( ( co_tiptel = ai_rectilineo1 or co_tiptel = ai_rectilineo2) and ( ca_unidades >  unidades_liberadas ) ) or ( co_tiptel <> ai_rectilineo1 and co_tiptel <> ai_rectilineo2 and  ca_mt >  metros_liberados ) )"arguments=(("al_reposicion", number),("ai_estado", number),("ai_centro", number),("ai_estliberacion", number),("ad_porcadd", number),("ai_rectilineo1", number),("ai_rectilineo2", number))  sort="co_reftel_act A co_caract_act A co_color_act A " )
+group(level=1 header.height=360 trailer.height=68 by=("co_reftel_act" , "co_caract_act" , "co_color_act" ) header.color="536870912" trailer.color="536870912" )
+column(band=header.1 id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="480" y="4" height="52" width="969" format="[general]" html.valueishtml="0"  name=de_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="485" y="72" height="52" width="965" format="[general]" html.valueishtml="0"  name=de_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Tela:" border="0" color="33554432" x="9" y="4" height="52" width="155" html.valueishtml="0"  name=m_rollo_co_reftel_act_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Color:" border="0" color="33554432" x="9" y="72" height="52" width="155" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Rollo" border="6" color="33554432" x="9" y="248" height="104" width="274" html.valueishtml="0"  name=m_rollo_cs_rollo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Orden Produccion" border="6" color="33554432" x="302" y="248" height="104" width="393" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Kilos" border="6" color="33554432" x="713" y="248" height="104" width="265" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Metros" border="6" color="33554432" x="997" y="248" height="104" width="265" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Unidades" border="6" color="33554432" x="1280" y="248" height="104" width="265" html.valueishtml="0"  name=t_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Unidades Asignadas" border="6" color="33554432" x="1847" y="248" height="104" width="265" html.valueishtml="0"  name=t_7 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Metros Asignados" border="6" color="33554432" x="1563" y="248" height="104" width="265" html.valueishtml="0"  name=t_6 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Unidades Solicitadas:" border="0" color="33554432" x="987" y="140" height="52" width="576" html.valueishtml="0"  name=t_9 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Metros Solicitados:" border="0" color="33554432" x="9" y="140" height="52" width="498" html.valueishtml="0"  name=t_8 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=16 alignment="1" tabsequence=32766 border="0" color="33554432" x="526" y="140" height="52" width="320" format="###,##0.00" html.valueishtml="0"  name=ca_metros_reposi visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=17 alignment="1" tabsequence=32766 border="0" color="33554432" x="1582" y="140" height="52" width="320" format="###,##0" html.valueishtml="0"  name=ca_unidades_reposi visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="33554432" x="9" y="4" height="56" width="274" format="[general]" html.valueishtml="0"  name=cs_rollo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="33554432" x="302" y="4" height="56" width="393" format="[general]" html.valueishtml="0"  name=cs_orden_pr_act visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="5" color="33554432" x="713" y="4" height="56" width="265" format="###,##0.00" html.valueishtml="0"  name=ca_kg visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="if ( ( co_tiptel <> ai_rectilineo1 and co_tiptel <> ai_rectilineo2 and  ca_mt >  metros_liberados ), (ca_mt - metros_liberados ) , 0)"border="5" color="33554432" x="997" y="4" height="56" width="265" format="###,##0.00" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="if ( ( ( co_tiptel = ai_rectilineo1 or co_tiptel = ai_rectilineo2) and  ca_mt >  metros_liberados ), ( ca_unidades  -  unidades_liberadas  ) , 0)"border="5" color="33554432" x="1280" y="4" height="56" width="265" format="###,##0" html.valueishtml="0"  name=compute_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=10 border="5" color="33554432" x="1563" y="4" height="56" width="265" format="[general]" html.valueishtml="0"  name=metros_asignados visible="1" editmask.mask="###,###.00" editmask.imemode=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=15 alignment="1" tabsequence=20 border="5" color="33554432" x="1847" y="4" height="56" width="265" format="[general]" html.valueishtml="0"  name=unidades_asignadas visible="1" editmask.mask="###,##0" editmask.imemode=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=trailer.1 alignment="1" expression="sum(metros_asignados for group 1)"border="5" color="33554432" x="1563" y="4" height="56" width="265" format="###,###,00" html.valueishtml="0"  name=compute_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(unidades_asignadas for group 1)"border="5" color="33554432" x="1847" y="4" height="56" width="265" format="###,###,00" html.valueishtml="0"  name=compute_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="0" expression="String( co_reftel_act ) + '-' + String(co_caract_act )"border="0" color="33554432" x="174" y="4" height="52" width="288" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="174" y="72" height="52" width="288" format="[general]" html.valueishtml="0"  name=co_color_act visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
