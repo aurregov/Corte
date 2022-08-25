@@ -1,0 +1,10 @@
+HA$PBExportHeader$r_cantxcentros.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=decimal(2) updatewhereclause=yes name=compute_0001 dbname="compute_0001" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"dt_caxordenxcentro~" ) COMPUTE(NAME=~"Sum(dt_caxordenxcentro.ca_programada)~")WHERE(    EXP1 =~"dt_caxordenxcentro.cs_ordenpd_pt~"   OP =~"=~"    EXP2 =~":al_ordenpt~"    LOGIC =~"and~" ) WHERE(    EXP1 =~"dt_caxordenxcentro.co_tipoprod~"   OP =~"=~"    EXP2 =~":ai_tipoprod~"    LOGIC =~"and~" ) WHERE(    EXP1 =~"dt_caxordenxcentro.co_centro_pdn~"   OP =~"=~"    EXP2 =~":ai_centropdn~" ) ) ARG(NAME = ~"al_ordenpt~" TYPE = number)  ARG(NAME = ~"ai_tipoprod~" TYPE = number)  ARG(NAME = ~"ai_centropdn~" TYPE = number) " arguments=(("al_ordenpt", number),("ai_tipoprod", number),("ai_centropdn", number)) )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="0" x="9" y="4" height="64" width="325" format="###,###"  name=compute_0001 edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")
