@@ -1,0 +1,43 @@
+HA$PBExportHeader$dtb_oc_a_preliquidar.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=112 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=datetime updatewhereclause=yes name=fecha dbname="fecha" )
+ column=(type=long updatewhereclause=yes name=pedido dbname="pedido" )
+ retrieve="SELECT first 1 min(dt_simulacion.fe_inicio_progs)as fecha,dt_simulacion.pedido 
+    FROM dt_simulacion,   
+         dt_pdnxmodulo,h_mercada  
+   WHERE ( dt_simulacion.pedido = dt_pdnxmodulo.cs_asignacion ) and  
+         ( dt_simulacion.co_tipo_negocio   = 7 ) AND  
+         ( dt_simulacion.co_estado         = 'A' ) AND  
+         ( dt_simulacion.co_fabrica_sim    = 2 ) AND  
+         ( dt_simulacion.co_planta         = 2 ) AND  
+         ( dt_simulacion.co_centro_pdn     = 1 ) AND  
+         ( dt_simulacion.co_subcentro_pdn  = 7  ) AND
+			( dt_pdnxmodulo.co_estado_asigna >= 9 AND dt_pdnxmodulo.co_estado_asigna < 15 )and 
+         ( dt_simulacion.pedido            = h_mercada.cs_orden_corte ) and
+         h_mercada.co_estado_mercada       <> 7 and
+         h_mercada.co_tipo_mercada         = 1 and
+         dt_simulacion.co_maquina          = :an_maquina and 
+         (select Max(co_estado)
+				from dt_rayas_telaxoc
+				where dt_rayas_telaxoc.cs_orden_corte = substr(dt_simulacion.co_referencia,1,8)
+					and dt_rayas_telaxoc.raya = substr(dt_simulacion.co_referencia,9,3)) = :an_estado and
+          0 = (select count(*)
+					from dt_liquidaxespacio
+					where dt_liquidaxespacio.cs_orden_corte = dt_simulacion.pedido)
+group by 2
+order by 1
+" arguments=(("an_maquina", number),("an_estado", number)) )
+text(band=header alignment="2" text="Fecha" border="0" color="33554432" x="5" y="4" height="52" width="503" html.valueishtml="0"  name=fecha_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pedido" border="0" color="33554432" x="512" y="4" height="52" width="274" html.valueishtml="0"  name=pedido_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="64" width="503" format="[shortdate] [time]" html.valueishtml="0"  name=fecha visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="512" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=pedido visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
