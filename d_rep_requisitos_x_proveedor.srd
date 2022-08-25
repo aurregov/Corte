@@ -1,0 +1,117 @@
+HA$PBExportHeader$d_rep_requisitos_x_proveedor.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=280 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=m_proveedor_req_co_proveedor_req dbname="m_proveedor_req.co_proveedor_req" )
+ column=(type=char(30) updatewhereclause=yes name=m_proveedor_req_de_proveedor_req dbname="m_proveedor_req.de_proveedor_req" )
+ column=(type=long updatewhereclause=yes name=m_requisitos_co_requisito dbname="m_requisitos.co_requisito" )
+ column=(type=char(30) updatewhereclause=yes name=m_requisitos_de_requisito dbname="m_requisitos.de_requisito" )
+ column=(type=datetime updatewhereclause=yes name=dt_requisitosxpdn_fe_entrega_prog dbname="dt_requisitosxpdn.fe_entrega_prog" )
+ column=(type=datetime updatewhereclause=yes name=dt_requisitosxpdn_fe_entrega_real dbname="dt_requisitosxpdn.fe_entrega_real" )
+ column=(type=long updatewhereclause=yes name=dt_requisitosxpdn_co_estado dbname="dt_requisitosxpdn.co_estado" )
+ column=(type=long updatewhereclause=yes name=dt_requisitosxpdn_co_proceso dbname="dt_requisitosxpdn.co_proceso" )
+ column=(type=char(30) updatewhereclause=yes name=m_procesos_pdn_de_proceso_pdn dbname="m_procesos_pdn.de_proceso_pdn" )
+ column=(type=long updatewhereclause=yes name=dt_requisitosxpdn_co_planta dbname="dt_requisitosxpdn.co_planta" )
+ column=(type=long updatewhereclause=yes name=m_plantas_co_planta dbname="m_plantas.co_planta" )
+ column=(type=long updatewhereclause=yes name=dt_requisitosxpdn_co_modulo dbname="dt_requisitosxpdn.co_modulo" )
+ column=(type=char(30) updatewhereclause=yes name=m_modulos_de_modulo dbname="m_modulos.de_modulo" )
+ column=(type=long updatewhereclause=yes name=dt_requisitosxpdn_co_fabrica_exp dbname="dt_requisitosxpdn.co_fabrica_exp" )
+ column=(type=long updatewhereclause=yes name=dt_requisitosxpdn_pedido dbname="dt_requisitosxpdn.pedido" )
+ column=(type=long updatewhereclause=yes name=dt_requisitosxpdn_cs_liberacion dbname="dt_requisitosxpdn.cs_liberacion" )
+ column=(type=char(20) updatewhereclause=yes name=dt_requisitosxpdn_po dbname="dt_requisitosxpdn.po" )
+ column=(type=long updatewhereclause=yes name=dt_requisitosxpdn_co_fabrica_pt dbname="dt_requisitosxpdn.co_fabrica_pt" )
+ column=(type=long updatewhereclause=yes name=dt_requisitosxpdn_co_linea dbname="dt_requisitosxpdn.co_linea" )
+ column=(type=long updatewhereclause=yes name=dt_requisitosxpdn_co_referencia dbname="dt_requisitosxpdn.co_referencia" )
+ column=(type=long updatewhereclause=yes name=dt_requisitosxpdn_co_color_pt dbname="dt_requisitosxpdn.co_color_pt" )
+ column=(type=char(2) updatewhereclause=yes name=dt_requisitosxpdn_tono dbname="dt_requisitosxpdn.tono" )
+ column=(type=long updatewhereclause=yes name=dt_requisitosxpdn_cs_estilocolortono dbname="dt_requisitosxpdn.cs_estilocolortono" )
+ column=(type=long updatewhereclause=yes name=dt_requisitosxpdn_cs_particion dbname="dt_requisitosxpdn.cs_particion" )
+ column=(type=char(30) updatewhereclause=yes name=m_plantas_de_planta dbname="m_plantas.de_planta" )
+ column=(type=char(30) updatewhereclause=yes name=m_lineas_de_linea dbname="m_lineas.de_linea" )
+ column=(type=char(40) updatewhereclause=yes name=h_preref_de_referencia dbname="h_preref.de_referencia" )
+ retrieve="SELECT  m_proveedor_req.co_proveedor_req ,
+           m_proveedor_req.de_proveedor_req ,
+           m_requisitos.co_requisito ,
+           m_requisitos.de_requisito ,
+           dt_requisitosxpdn.fe_entrega_prog ,
+           dt_requisitosxpdn.fe_entrega_real ,
+           dt_requisitosxpdn.co_estado ,
+           dt_requisitosxpdn.co_proceso ,
+           m_procesos_pdn.de_proceso_pdn ,
+           dt_requisitosxpdn.co_planta ,
+           m_plantas.co_planta ,
+           dt_requisitosxpdn.co_modulo ,
+           m_modulos.de_modulo ,
+           dt_requisitosxpdn.co_fabrica_exp ,
+           dt_requisitosxpdn.pedido ,
+           dt_requisitosxpdn.cs_liberacion ,
+           dt_requisitosxpdn.po ,
+           dt_requisitosxpdn.co_fabrica_pt ,
+           dt_requisitosxpdn.co_linea ,
+           dt_requisitosxpdn.co_referencia ,
+           dt_requisitosxpdn.co_color_pt ,
+           dt_requisitosxpdn.tono ,
+           dt_requisitosxpdn.cs_estilocolortono ,
+           dt_requisitosxpdn.cs_particion ,
+           m_plantas.de_planta ,
+           m_lineas.de_linea ,
+           pacasash.h_preref.de_referencia     
+        FROM dt_requisitosxpdn ,
+           m_requisitos ,
+           m_proveedor_req ,
+           m_modulos ,
+           m_procesos_pdn ,
+           m_plantas ,
+           m_lineas ,
+           pacasash.h_preref     
+        WHERE ( dt_requisitosxpdn.co_requisito = m_requisitos.co_requisito ) and          ( dt_requisitosxpdn.co_proveedor_req = m_proveedor_req.co_proveedor_req ) and          ( dt_requisitosxpdn.co_fabrica = m_modulos.co_fabrica ) and          ( dt_requisitosxpdn.co_planta = m_modulos.co_planta ) and          ( dt_requisitosxpdn.co_modulo = m_modulos.co_modulo ) and          ( m_modulos.co_tipoprod = m_procesos_pdn.co_tipoprod ) and          ( m_modulos.co_centro_pdn = m_procesos_pdn.co_centro_pdn ) and          ( m_modulos.co_subcentro_pdn = m_procesos_pdn.co_subcentro_pdn ) and          ( dt_requisitosxpdn.co_proceso = m_procesos_pdn.co_proceso_pdn ) and          ( dt_requisitosxpdn.co_fabrica = m_plantas.co_fabrica ) and          ( dt_requisitosxpdn.co_planta = m_plantas.co_planta ) and          ( dt_requisitosxpdn.co_fabrica_pt = m_lineas.co_fabrica ) and          ( dt_requisitosxpdn.co_linea = m_lineas.co_linea ) and          ( dt_requisitosxpdn.co_fabrica_pt = pacasash.h_preref.co_fabrica ) and          ( dt_requisitosxpdn.co_linea = pacasash.h_preref.co_linea ) and          ( dt_requisitosxpdn.co_referencia = pacasash.h_preref.co_referencia ) and          ( ( dt_requisitosxpdn.co_proveedor_req = :an_proveedor ) And          ( dt_requisitosxpdn.co_estado = :an_estdo ) And          ( dt_requisitosxpdn.fe_entrega_prog >= :an_fecha ) ) 
+        ORDER BY dt_requisitosxpdn.fe_entrega_prog          ASC  " arguments=(("an_proveedor", number),("an_fecha", date),("an_estdo", number)) )
+text(band=header alignment="2" text="Fecha prog" border="2" color="0" x="18" y="216" height="56" width="334" html.valueishtml="0"  name=m_requisitos_co_requisito_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Fecha Real" border="2" color="0" x="357" y="216" height="56" width="334" html.valueishtml="0"  name=m_requisitos_de_requisito_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Estado" border="2" color="0" x="695" y="216" height="56" width="361" html.valueishtml="0"  name=dt_requisitosxpdn_fe_entrega_prog_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Proceso" border="2" color="0" x="1554" y="216" height="56" width="672" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Planta" border="2" color="0" x="2226" y="216" height="56" width="453" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Tono" border="2" color="0" x="5431" y="216" height="56" width="133" html.valueishtml="0"  name=dt_requisitosxpdn_tono_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Estilo" border="2" color="0" x="5568" y="216" height="56" width="165" html.valueishtml="0"  name=dt_requisitosxpdn_cs_estilocolortono_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Part" border="2" color="0" x="5737" y="216" height="56" width="119" html.valueishtml="0"  name=dt_requisitosxpdn_cs_particion_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="0" text="Proveedor" border="0" color="0" x="55" y="96" height="56" width="274" html.valueishtml="0"  name=m_proveedor_req_co_proveedor_req_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="fill(~"0~", 2 - len(string( m_proveedor_req_co_proveedor_req ))) +  m_proveedor_req_co_proveedor_req  + ~" ~" +  m_proveedor_req_de_proveedor_req "border="0" color="0" x="334" y="96" height="56" width="1038" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+rectangle(band=header x="14" y="8" height="208" width="5847"  name=r_1 visible="1" brush.hatch="7" brush.color="536870912" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="REQUISITOS POR PROVEEDOR" border="0" color="0" x="2583" y="88" height="56" width="709" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="1" expression="'P$$HEX1$$e100$$ENDHEX$$gina ' + page() + ' de ' + pageCount()"border="0" color="0" x="5234" y="144" height="56" width="599" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="1" expression="today()"border="0" color="0" x="5019" y="84" height="64" width="814" format="[general]" html.valueishtml="0"  name=date_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="1" expression="~"Fecha Inicio ~" + String( an_fecha ,~"dd/mm/yyyy~")"border="0" color="0" x="5019" y="24" height="56" width="814" format="[GENERAL]" html.valueishtml="0"  name=compute_10 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="0" x="18" y="4" height="60" width="334" format="dd/mm/yyyy" html.valueishtml="0"  name=dt_requisitosxpdn_fe_entrega_prog visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="0" color="0" x="357" y="4" height="60" width="334" format="dd/mm/yyyy" html.valueishtml="0"  name=dt_requisitosxpdn_fe_entrega_real visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if( dt_requisitosxpdn_co_estado = 1 ,~"PROGRAMADO~",~"CUMPLIDO~" )"border="0" color="0" x="695" y="4" height="60" width="361" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="fill(~"0~", 2 - len(string(   dt_requisitosxpdn_co_proceso ))) +    dt_requisitosxpdn_co_proceso + ~" ~" +    m_procesos_pdn_de_proceso_pdn "border="0" color="0" x="1554" y="4" height="60" width="672" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression="fill(~"0~",2 - len(string( m_plantas_co_planta ))) +  dt_requisitosxpdn_co_planta  + ~" ~"  +  m_plantas_de_planta "border="0" color="0" x="2226" y="4" height="60" width="453" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="2" tabsequence=32766 border="0" color="0" x="5431" y="4" height="60" width="133" format="[general]" html.valueishtml="0"  name=dt_requisitosxpdn_tono visible="1" edit.limit=2 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="2" tabsequence=32766 border="0" color="0" x="5568" y="4" height="60" width="165" format="[general]" html.valueishtml="0"  name=dt_requisitosxpdn_cs_estilocolortono visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=24 alignment="2" tabsequence=32766 border="0" color="0" x="5737" y="4" height="60" width="119" format="[general]" html.valueishtml="0"  name=dt_requisitosxpdn_cs_particion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Requisito" border="2" color="0" x="1061" y="216" height="56" width="489" html.valueishtml="0"  name=dt_requisitosxpdn_fe_entrega_real_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+compute(band=detail alignment="0" expression="fill(~"0~", 2 - len(string(  m_requisitos_co_requisito ))) +   m_requisitos_co_requisito + ~" ~" +   m_requisitos_de_requisito "border="0" color="0" x="1061" y="4" height="60" width="489" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Modulo" border="2" color="0" x="2683" y="216" height="56" width="635" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+compute(band=detail alignment="0" expression="dt_requisitosxpdn_co_modulo + ~" ~" +  m_modulos_de_modulo "border="0" color="0" x="2683" y="4" height="60" width="635" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Grupo" border="2" color="0" x="3323" y="216" height="56" width="320" html.valueishtml="0"  name=dt_requisitosxpdn_co_fabrica_exp_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+compute(band=detail alignment="0" expression="fill(~"0~",2 - len(string(   dt_requisitosxpdn_co_fabrica_exp ))) +    dt_requisitosxpdn_co_fabrica_exp + ~" ~" +   dt_requisitosxpdn_pedido "border="0" color="0" x="3323" y="4" height="60" width="320" format="[GENERAL]" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Lib" border="2" color="0" x="3648" y="216" height="56" width="96" html.valueishtml="0"  name=dt_requisitosxpdn_cs_liberacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="PO" border="2" color="0" x="3749" y="216" height="56" width="352" html.valueishtml="0"  name=dt_requisitosxpdn_po_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Fab" border="2" color="0" x="4105" y="216" height="56" width="114" html.valueishtml="0"  name=dt_requisitosxpdn_co_fabrica_pt_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="L$$HEX1$$ed00$$ENDHEX$$nea" border="2" color="0" x="4224" y="216" height="56" width="398" html.valueishtml="0"  name=dt_requisitosxpdn_co_linea_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Referencia" border="2" color="0" x="4626" y="216" height="56" width="526" html.valueishtml="0"  name=dt_requisitosxpdn_co_referencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=16 alignment="2" tabsequence=32766 border="0" color="0" x="3648" y="4" height="60" width="96" format="[general]" html.valueishtml="0"  name=dt_requisitosxpdn_cs_liberacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="0" x="3749" y="4" height="60" width="352" format="[general]" html.valueishtml="0"  name=dt_requisitosxpdn_po visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="1" tabsequence=32766 border="0" color="0" x="4105" y="4" height="60" width="114" format="[general]" html.valueishtml="0"  name=dt_requisitosxpdn_co_fabrica_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="fill(~"0~",2 - len(string(  dt_requisitosxpdn_co_linea ))) +   dt_requisitosxpdn_co_linea + ~" ~"  +   m_lineas_de_linea "border="0" color="0" x="4224" y="4" height="60" width="398" format="[GENERAL]" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="fill(~"0~",5 - len(string(  dt_requisitosxpdn_co_referencia ))) +   dt_requisitosxpdn_co_referencia + ~" ~"  +   h_preref_de_referencia "border="0" color="0" x="4626" y="4" height="60" width="526" format="[GENERAL]" html.valueishtml="0"  name=compute_9 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Color" border="2" color="0" x="5157" y="216" height="56" width="270" html.valueishtml="0"  name=dt_requisitosxpdn_co_color_pt_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=21 alignment="1" tabsequence=32766 border="0" color="0" x="5157" y="4" height="60" width="270" format="[general]" html.valueishtml="0"  name=dt_requisitosxpdn_co_color_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
