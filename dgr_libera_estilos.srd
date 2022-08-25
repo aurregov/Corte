@@ -1,0 +1,133 @@
+HA$PBExportHeader$dgr_libera_estilos.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes name=co_fabrica_exp dbname="co_fabrica_exp" )
+ column=(type=long update=yes updatewhereclause=yes name=pedido dbname="pedido" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_liberacion dbname="cs_liberacion" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=nu_orden dbname="nu_orden" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=nu_cut dbname="nu_cut" )
+ column=(type=long update=yes updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long update=yes updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long update=yes updatewhereclause=yes name=co_color_pt dbname="co_color_pt" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=tono dbname="tono" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_estilocolortono dbname="cs_estilocolortono" )
+ column=(type=decimal(5) update=yes updatewhereclause=yes name=yield dbname="yield" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_unidades dbname="ca_unidades" )
+ column=(type=decimal(5) update=yes updatewhereclause=yes name=porc_unid_libera dbname="porc_unid_libera" )
+ column=(type=long update=yes updatewhereclause=yes name=color_id dbname="color_id" )
+ column=(type=long update=yes updatewhereclause=yes name=pedido_po dbname="pedido_po" )
+ column=(type=long update=yes updatewhereclause=yes name=co_estado_material dbname="co_estado_material" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_ordenpd_pt dbname="cs_ordenpd_pt" )
+ column=(type=char(80) update=yes updatewhereclause=yes name=comentarios dbname="comentarios" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=tipo_corte dbname="tipo_corte" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="instancia" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_numerada dbname="ca_numerada" )
+ column=(type=long update=yes updatewhereclause=yes name=sw_partida dbname="sw_partida" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_origen dbname="cs_origen" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_estado dbname="cs_estado" )
+ retrieve="  SELECT dt_libera_estilos.co_fabrica_exp,   
+         dt_libera_estilos.pedido,   
+         dt_libera_estilos.cs_liberacion,   
+         dt_libera_estilos.nu_orden,   
+         dt_libera_estilos.nu_cut,   
+         dt_libera_estilos.co_fabrica,   
+         dt_libera_estilos.co_linea,   
+         dt_libera_estilos.co_referencia,   
+         dt_libera_estilos.co_color_pt,   
+         dt_libera_estilos.tono,   
+         dt_libera_estilos.cs_estilocolortono,   
+         dt_libera_estilos.yield,   
+         dt_libera_estilos.ca_unidades,   
+         dt_libera_estilos.porc_unid_libera,   
+         dt_libera_estilos.color_id,   
+         dt_libera_estilos.pedido_po,   
+         dt_libera_estilos.co_estado_material,   
+         dt_libera_estilos.cs_ordenpd_pt,   
+         dt_libera_estilos.comentarios,   
+         dt_libera_estilos.tipo_corte,   
+         dt_libera_estilos.fe_creacion,   
+         dt_libera_estilos.fe_actualizacion,   
+         dt_libera_estilos.usuario,   
+         dt_libera_estilos.instancia,   
+         dt_libera_estilos.ca_numerada,   
+         dt_libera_estilos.sw_partida,   
+         dt_libera_estilos.cs_origen,   
+         dt_libera_estilos.cs_estado  
+    FROM dt_libera_estilos
+	WHERE dt_libera_estilos.co_fabrica_exp = :an_fabexp AND  
+         dt_libera_estilos.pedido = :an_pedido AND  
+         dt_libera_estilos.cs_liberacion = :an_lib AND  
+         dt_libera_estilos.nu_orden = :as_po AND  
+         dt_libera_estilos.co_fabrica = :an_fabpt AND   
+         dt_libera_estilos.co_linea = :an_linea AND   
+         dt_libera_estilos.co_referencia = :an_ref AND  
+         dt_libera_estilos.co_color_pt = :an_color AND  
+         dt_libera_estilos.tono = :as_tono AND  
+         dt_libera_estilos.cs_estilocolortono = :an_estilo  
+" arguments=(("an_fabexp", number),("an_pedido", number),("an_lib", number),("as_po", string),("an_fabpt", number),("an_linea", number),("an_ref", number),("an_color", number),("as_tono", string),("an_estilo", number)) )
+text(band=header alignment="2" text="Co Fabrica Exp" border="0" color="0" x="9" y="8" height="64" width="411"  name=co_fabrica_exp_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pedido" border="0" color="0" x="430" y="8" height="64" width="329"  name=pedido_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Liberacion" border="0" color="0" x="768" y="8" height="64" width="361"  name=cs_liberacion_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Nu Orden" border="0" color="0" x="1138" y="8" height="64" width="576"  name=nu_orden_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Nu Cut" border="0" color="0" x="1723" y="8" height="64" width="302"  name=nu_cut_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Fabrica" border="0" color="0" x="2034" y="8" height="64" width="329"  name=co_fabrica_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Linea" border="0" color="0" x="2373" y="8" height="64" width="329"  name=co_linea_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Referencia" border="0" color="0" x="2711" y="8" height="64" width="370"  name=co_referencia_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Color Pt" border="0" color="0" x="3090" y="8" height="64" width="329"  name=co_color_pt_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tono" border="0" color="0" x="3429" y="8" height="64" width="128"  name=tono_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Estilocolortono" border="0" color="0" x="3566" y="8" height="64" width="485"  name=cs_estilocolortono_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Yield" border="0" color="0" x="4059" y="8" height="64" width="329"  name=yield_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Unidades" border="0" color="0" x="4398" y="8" height="64" width="338"  name=ca_unidades_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Porc Unid Libera" border="0" color="0" x="4745" y="8" height="64" width="439"  name=porc_unid_libera_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Color Id" border="0" color="0" x="5193" y="8" height="64" width="329"  name=color_id_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pedido Po" border="0" color="0" x="5531" y="8" height="64" width="329"  name=pedido_po_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Estado Material" border="0" color="0" x="5870" y="8" height="64" width="507"  name=co_estado_material_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Ordenpd Pt" border="0" color="0" x="6386" y="8" height="64" width="393"  name=cs_ordenpd_pt_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Comentarios" border="0" color="0" x="6789" y="8" height="64" width="2222"  name=comentarios_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tipo Corte" border="0" color="0" x="9019" y="8" height="64" width="576"  name=tipo_corte_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fe Creacion" border="0" color="0" x="9605" y="8" height="64" width="603"  name=fe_creacion_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fe Actualizacion" border="0" color="0" x="10217" y="8" height="64" width="603"  name=fe_actualizacion_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Usuario" border="0" color="0" x="10830" y="8" height="64" width="247"  name=usuario_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Instancia" border="0" color="0" x="11086" y="8" height="64" width="576"  name=instancia_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Numerada" border="0" color="0" x="11671" y="8" height="64" width="361"  name=ca_numerada_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sw Partida" border="0" color="0" x="12041" y="8" height="64" width="329"  name=sw_partida_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Origen" border="0" color="0" x="12379" y="8" height="64" width="329"  name=cs_origen_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Estado" border="0" color="0" x="12718" y="8" height="64" width="329"  name=cs_estado_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="0" color="0" x="9" y="8" height="76" width="411" format="[general]"  name=co_fabrica_exp edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="0" color="0" x="430" y="8" height="76" width="329" format="[general]"  name=pedido edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=30 border="0" color="0" x="768" y="8" height="76" width="361" format="[general]"  name=cs_liberacion edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="0" color="0" x="1138" y="8" height="76" width="576" format="[general]"  name=nu_orden edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="0" color="0" x="1723" y="8" height="76" width="302" format="[general]"  name=nu_cut edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=60 border="0" color="0" x="2034" y="8" height="76" width="329" format="[general]"  name=co_fabrica edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=70 border="0" color="0" x="2373" y="8" height="76" width="329" format="[general]"  name=co_linea edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=80 border="0" color="0" x="2711" y="8" height="76" width="370" format="[general]"  name=co_referencia edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=90 border="0" color="0" x="3090" y="8" height="76" width="329" format="[general]"  name=co_color_pt edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=100 border="0" color="0" x="3429" y="8" height="76" width="128" format="[general]"  name=tono edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=110 border="0" color="0" x="3566" y="8" height="76" width="485" format="[general]"  name=cs_estilocolortono edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=120 border="0" color="0" x="4059" y="8" height="76" width="329" format="[general]"  name=yield edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=130 border="0" color="0" x="4398" y="8" height="76" width="338" format="[general]"  name=ca_unidades edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=140 border="0" color="0" x="4745" y="8" height="76" width="439" format="[general]"  name=porc_unid_libera edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="1" tabsequence=150 border="0" color="0" x="5193" y="8" height="76" width="329" format="[general]"  name=color_id edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="1" tabsequence=160 border="0" color="0" x="5531" y="8" height="76" width="329" format="[general]"  name=pedido_po edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="1" tabsequence=170 border="0" color="0" x="5870" y="8" height="76" width="507" format="[general]"  name=co_estado_material edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="1" tabsequence=180 border="0" color="0" x="6386" y="8" height="76" width="393" format="[general]"  name=cs_ordenpd_pt edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=190 border="0" color="0" x="6789" y="8" height="76" width="2222" format="[general]"  name=comentarios edit.limit=80 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=200 border="0" color="0" x="9019" y="8" height="76" width="576" format="[general]"  name=tipo_corte edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=210 border="0" color="0" x="9605" y="8" height="76" width="603" format="[shortdate] [time]"  name=fe_creacion edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="0" tabsequence=220 border="0" color="0" x="10217" y="8" height="76" width="603" format="[shortdate] [time]"  name=fe_actualizacion edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="0" tabsequence=230 border="0" color="0" x="10830" y="8" height="76" width="247" format="[general]"  name=usuario edit.limit=8 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=24 alignment="0" tabsequence=240 border="0" color="0" x="11086" y="8" height="76" width="576" format="[general]"  name=instancia edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=25 alignment="1" tabsequence=250 border="0" color="0" x="11671" y="8" height="76" width="361" format="[general]"  name=ca_numerada edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=26 alignment="1" tabsequence=260 border="0" color="0" x="12041" y="8" height="76" width="329" format="[general]"  name=sw_partida edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=27 alignment="1" tabsequence=270 border="0" color="0" x="12379" y="8" height="76" width="329" format="[general]"  name=cs_origen edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=28 alignment="1" tabsequence=280 border="0" color="0" x="12718" y="8" height="76" width="329" format="[general]"  name=cs_estado edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
