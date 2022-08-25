@@ -1,0 +1,105 @@
+HA$PBExportHeader$dtb_estilos_consolida.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=nu_orden dbname="nu_orden" )
+ column=(type=char(10) updatewhereclause=yes name=nu_cut dbname="nu_cut" )
+ column=(type=long updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long updatewhereclause=yes name=co_color_pt dbname="co_color_pt" )
+ column=(type=char(2) updatewhereclause=yes name=co_tono dbname="co_tono" )
+ column=(type=long updatewhereclause=yes name=cs_ordenpd_pt dbname="cs_ordenpd_pt" )
+ column=(type=number updatewhereclause=yes name=yield dbname="yield" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_unidades dbname="ca_unidades" )
+ column=(type=datetime updatewhereclause=yes name=fe_requerida_desp dbname="fe_requerida_desp" )
+ column=(type=long updatewhereclause=yes name=cs_unir_oc dbname="cs_unir_oc" )
+ column=(type=long updatewhereclause=yes name=pedido dbname="pedido" )
+ retrieve="SELECT	dt_libera_estilos.nu_orden ,
+			dt_libera_estilos.nu_cut ,
+			dt_libera_estilos.co_fabrica ,
+			dt_libera_estilos.co_linea ,
+			dt_libera_estilos.co_referencia ,
+			dt_libera_estilos.co_color_pt ,
+			dt_libera_estilos.co_tono ,
+			dt_libera_estilos.cs_ordenpd_pt ,
+			Avg(dt_libera_estilos.yield) yield ,
+			Sum(ca_unidades) ca_unidades,
+			dt_pdnxmodulo.fe_requerida_desp,
+			dt_pdnxmodulo.cs_unir_oc ,  
+			dt_pdnxmodulo.pedido  
+FROM	dt_libera_estilos ,
+		t_libera_consolida ,
+		dt_pdnxmodulo     
+WHERE ( t_libera_consolida.usuario = :as_usuario ) and
+		( dt_libera_estilos.co_fabrica_exp = t_libera_consolida.co_fabrica_exp ) and          
+		( dt_libera_estilos.cs_liberacion = t_libera_consolida.cs_liberacion ) and          
+		( dt_libera_estilos.nu_orden = t_libera_consolida.nu_orden ) and          
+		( dt_libera_estilos.nu_cut = t_libera_consolida.nu_cut ) and          
+		( dt_libera_estilos.co_fabrica = t_libera_consolida.co_fabrica_pt ) and          
+		( dt_libera_estilos.co_linea = t_libera_consolida.co_linea ) and          
+		( dt_libera_estilos.co_referencia = t_libera_consolida.co_referencia ) and          
+		( dt_libera_estilos.co_color_pt = t_libera_consolida.co_color_pt ) and
+		( dt_libera_estilos.co_fabrica_exp = dt_pdnxmodulo.co_fabrica_exp ) and          
+		( dt_libera_estilos.cs_liberacion = dt_pdnxmodulo.cs_liberacion ) and         
+		( dt_libera_estilos.nu_orden = dt_pdnxmodulo.po ) and          
+		( dt_libera_estilos.nu_cut = dt_pdnxmodulo.nu_cut ) and          
+		( dt_libera_estilos.co_fabrica = dt_pdnxmodulo.co_fabrica_pt ) and          
+		( dt_libera_estilos.co_linea = dt_pdnxmodulo.co_linea ) and          
+		( dt_libera_estilos.co_referencia = dt_pdnxmodulo.co_referencia ) and          
+		( dt_libera_estilos.co_color_pt = dt_pdnxmodulo.co_color_pt ) and          
+		( dt_libera_estilos.co_tono = dt_pdnxmodulo.tono )
+GROUP BY	dt_libera_estilos.nu_orden,
+			dt_libera_estilos.nu_cut,
+			dt_libera_estilos.co_fabrica,
+			dt_libera_estilos.co_linea,
+			dt_libera_estilos.co_referencia,
+			dt_libera_estilos.co_color_pt,
+			dt_libera_estilos.co_tono,
+			dt_libera_estilos.cs_ordenpd_pt,
+			dt_pdnxmodulo.fe_requerida_desp,
+			dt_pdnxmodulo.cs_unir_oc ,
+         dt_pdnxmodulo.pedido             " arguments=(("as_usuario", string)) )
+text(band=header alignment="2" text="Dt Libera Estilos
+Nu Orden" border="0" color="33554432" x="9" y="8" height="104" width="480" html.valueishtml="0"  name=dt_libera_estilos_nu_orden_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Libera Estilos
+Nu Cut" border="0" color="33554432" x="498" y="8" height="104" width="347" html.valueishtml="0"  name=dt_libera_estilos_nu_cut_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Libera Estilos
+Co Fabrica" border="0" color="33554432" x="855" y="8" height="104" width="347" html.valueishtml="0"  name=dt_libera_estilos_co_fabrica_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Libera Estilos
+Co Linea" border="0" color="33554432" x="1211" y="8" height="104" width="347" html.valueishtml="0"  name=dt_libera_estilos_co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Libera Estilos
+Co Referencia" border="0" color="33554432" x="1568" y="8" height="104" width="347" html.valueishtml="0"  name=dt_libera_estilos_co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Libera Estilos
+Co Color Pt" border="0" color="33554432" x="1925" y="8" height="104" width="347" html.valueishtml="0"  name=dt_libera_estilos_co_color_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Libera Estilos
+Co Tono" border="0" color="33554432" x="2281" y="8" height="104" width="347" html.valueishtml="0"  name=dt_libera_estilos_co_tono_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Libera Estilos
+Cs Ordenpd Pt" border="0" color="33554432" x="2638" y="8" height="104" width="347" html.valueishtml="0"  name=dt_libera_estilos_cs_ordenpd_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Libera Estilos
+Yield" border="0" color="33554432" x="2994" y="8" height="104" width="347" html.valueishtml="0"  name=dt_libera_estilos_yield_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Unidades" border="0" color="33554432" x="3351" y="8" height="52" width="279" html.valueishtml="0"  name=ca_unidades_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Dt Pdnxmodulo Fe Requerida Desp" border="0" color="0" x="3639" y="4" height="76" width="347" html.valueishtml="0"  name=dt_pdnxmodulo_fe_requerida_desp_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Cs Unir Oc" border="0" color="0" x="3995" y="4" height="76" width="59" html.valueishtml="0"  name=cs_unir_oc_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="480" format="[general]" html.valueishtml="0"  name=nu_orden visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="498" y="8" height="64" width="347" format="[general]" html.valueishtml="0"  name=nu_cut visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="855" y="8" height="64" width="347" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="1211" y="8" height="64" width="347" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1568" y="8" height="64" width="347" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1925" y="8" height="64" width="347" format="[general]" html.valueishtml="0"  name=co_color_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="2281" y="8" height="64" width="347" format="[general]" html.valueishtml="0"  name=co_tono visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="2638" y="8" height="64" width="347" format="[general]" html.valueishtml="0"  name=cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="2994" y="8" height="64" width="347" format="[general]" html.valueishtml="0"  name=yield visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="33554432" x="3351" y="8" height="64" width="279" format="[general]" html.valueishtml="0"  name=ca_unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="3639" y="8" height="64" width="347" format="[shortdate] [time]" html.valueishtml="0"  name=fe_requerida_desp visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="3995" y="0" height="52" width="59" format="[general]" html.valueishtml="0"  name=cs_unir_oc visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=0 border="0" color="33554432" x="4069" y="0" height="52" width="59" html.valueishtml="0"  name=pedido visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Pedido" border="0" color="0" x="4064" y="4" height="76" width="64" html.valueishtml="0"  name=pedido_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
