@@ -1,0 +1,22 @@
+HA$PBExportHeader$f_presiono_numero.srf
+global type f_presiono_numero from function_object
+end type
+
+forward prototypes
+global function boolean f_presiono_numero ()
+end prototypes
+
+global function boolean f_presiono_numero ();Long li_codigo_ascii
+
+li_codigo_ascii = 48
+
+DO WHILE li_codigo_ascii <= 57
+	IF KeyDown(li_codigo_ascii) THEN
+		RETURN(TRUE)
+	END IF
+	li_codigo_ascii++
+LOOP
+
+RETURN(FALSE)
+end function
+
