@@ -1,0 +1,66 @@
+HA$PBExportHeader$ds_temp_refer_n_comp.srd
+$PBExportComments$Temporal de referencias con todos los campos
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=64 color="536870912" )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(8) updatewhereclause=yes name=usuario dbname="temp_referen_n.usuario" )
+ column=(type=long updatewhereclause=yes name=cs_ordenpd_pt dbname="temp_referen_n.cs_ordenpd_pt" )
+ column=(type=char(20) updatewhereclause=yes name=po dbname="temp_referen_n.po" )
+ column=(type=long updatewhereclause=yes name=co_fabrica dbname="temp_referen_n.co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="temp_referen_n.co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="temp_referen_n.co_referencia" )
+ column=(type=long updatewhereclause=yes name=co_color dbname="temp_referen_n.co_color" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="temp_referen_n.co_talla" )
+ column=(type=long updatewhereclause=yes name=unid_prog dbname="temp_referen_n.unid_prog" )
+ column=(type=long updatewhereclause=yes name=unid_liberadas dbname="temp_referen_n.unid_liberadas" )
+ column=(type=decimal(4) updatewhereclause=yes name=porc_particip dbname="temp_referen_n.porc_particip" )
+ column=(type=long updatewhereclause=yes name=sw_marca dbname="temp_referen_n.sw_marca" )
+ column=(type=char(10) updatewhereclause=yes name=nu_cut dbname="temp_referen_n.nu_cut" )
+ retrieve="select temp_referen_n.usuario,   
+         temp_referen_n.cs_ordenpd_pt,   
+         temp_referen_n.po,   
+         temp_referen_n.co_fabrica,   
+         temp_referen_n.co_linea,   
+         temp_referen_n.co_referencia,   
+         temp_referen_n.co_color,   
+         temp_referen_n.co_talla,   
+         temp_referen_n.unid_prog,   
+         temp_referen_n.unid_liberadas,   
+         temp_referen_n.porc_particip,   
+         temp_referen_n.sw_marca,   
+         temp_referen_n.nu_cut  
+from temp_referen_n
+where usuario = :ls_usuario" arguments=(("ls_usuario", string))  sort="cs_ordenpd_pt A po A co_fabrica A co_linea A co_referencia A co_color A co_talla A " )
+text(band=header alignment="2" text="Usuario" border="0" color="33554432" x="5" y="4" height="52" width="206" html.valueishtml="0"  name=usuario_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Ordenpd Pt" border="0" color="33554432" x="215" y="4" height="52" width="315" html.valueishtml="0"  name=cs_ordenpd_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Po" border="0" color="33554432" x="535" y="4" height="52" width="480" html.valueishtml="0"  name=po_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Fabrica" border="0" color="33554432" x="1019" y="4" height="52" width="274" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Linea" border="0" color="33554432" x="1298" y="4" height="52" width="274" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Referencia" border="0" color="33554432" x="1577" y="4" height="52" width="311" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Color" border="0" color="33554432" x="1897" y="4" height="52" width="270" html.valueishtml="0"  name=co_color_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Talla" border="0" color="33554432" x="2176" y="4" height="52" width="274" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unid Prog" border="0" color="33554432" x="2455" y="4" height="52" width="274" html.valueishtml="0"  name=unid_prog_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unid Liberadas" border="0" color="33554432" x="2734" y="4" height="52" width="325" html.valueishtml="0"  name=unid_liberadas_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Porc Particip" border="0" color="33554432" x="3063" y="4" height="52" width="274" html.valueishtml="0"  name=porc_particip_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sw Marca" border="0" color="33554432" x="3342" y="4" height="52" width="274" html.valueishtml="0"  name=sw_marca_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="5" y="8" height="56" width="183" format="[general]" html.valueishtml="0"  name=usuario visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="215" y="8" height="56" width="315" format="[general]" html.valueishtml="0"  name=cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="535" y="8" height="56" width="480" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="1019" y="8" height="56" width="274" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="1298" y="8" height="56" width="274" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="1577" y="8" height="56" width="311" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="1897" y="8" height="56" width="270" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="2176" y="8" height="56" width="274" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="0" x="2455" y="8" height="56" width="274" format="[general]" html.valueishtml="0"  name=unid_prog visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="0" x="2734" y="8" height="56" width="325" format="[general]" html.valueishtml="0"  name=unid_liberadas visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="0" x="3625" y="8" height="56" width="320" format="[general]" html.valueishtml="0"  name=nu_cut visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0" x="3063" y="8" height="56" width="274" format="[general]" html.valueishtml="0"  name=porc_particip visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="0" x="3342" y="8" height="56" width="274" format="[general]" html.valueishtml="0"  name=sw_marca visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
