@@ -1,0 +1,41 @@
+HA$PBExportHeader$fn_quitar_tabs.srf
+global type fn_quitar_tabs from function_object
+end type
+
+forward prototypes
+global subroutine fn_quitar_tabs (string a_archivo)
+end prototypes
+
+global subroutine fn_quitar_tabs (string a_archivo);long li_archivo_leer,li_archivo_escribir,li_posicion,li_long_cad
+string ls_cadena,ls_resultado,ls_cad_izq,ls_cad_der
+
+li_archivo_leer = FileOpen(a_archivo,LineMode!,Read!)
+li_archivo_escribir = FileOpen("c:\pos\ftp\vesa.txt",LineMode!,Write!,LockWrite!,Replace!)
+
+DO WHILE FileRead(li_archivo_leer,ls_cadena) > 0
+	//Quito la comilla del final
+//	ls_cadena = Left(ls_cadena,len(ls_cadena) - 1)
+	//Quito la comilla del principio
+//	ls_cadena = Right(ls_cadena,len(ls_cadena) - 1)
+//	li_posicion = pos(ls_cadena,"~",~"")
+//	li_posicion = pos(ls_cadena,",")
+	li_posicion = pos(ls_cadena,"	")
+	//Repito hasta quitar todas las comas y comillas del string
+	DO WHILE li_posicion <> 0
+		li_long_cad = len(ls_cadena)
+		ls_cad_izq = left(ls_cadena,li_posicion - 1)
+//		ls_cad_izq = right(ls_cadena,li_long_cad - li_posicion - 1)
+	//	ls_cad_der = right(ls_cadena,li_long_cad - li_posicion - 2)
+		ls_cad_der = right(ls_cadena,li_long_cad - li_posicion)
+		ls_cadena = ls_cad_izq + "" + ls_cad_der
+//		li_posicion = pos(ls_cadena,"~",~"")
+//		li_posicion = pos(ls_cadena,",")		
+      li_posicion = pos(ls_cadena,"	")
+	LOOP
+	FileWrite(li_archivo_escribir,ls_cadena)
+LOOP
+
+FileClose(li_archivo_leer)
+FileClose(li_archivo_escribir)
+end subroutine
+
