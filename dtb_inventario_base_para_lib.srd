@@ -1,0 +1,100 @@
+HA$PBExportHeader$dtb_inventario_base_para_lib.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=112 color="536870912" )
+summary(height=108 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(30) updatewhereclause=yes name=peddig_gpa dbname="peddig.gpa" )
+ column=(type=char(40) updatewhereclause=yes name=h_preref_de_referencia dbname="h_preref.de_referencia" )
+ column=(type=long updatewhereclause=yes name=r_estadosxetapa_ca_inicial dbname="r_estadosxetapa.ca_inicial" )
+ column=(type=long updatewhereclause=yes name=r_estadosxetapa_ca_entradas dbname="r_estadosxetapa.ca_entradas" )
+ column=(type=long updatewhereclause=yes name=r_estadosxetapa_ca_salidas dbname="r_estadosxetapa.ca_salidas" )
+ column=(type=long updatewhereclause=yes name=dt_unidadesxtrazo_cs_agrupacion dbname="dt_unidadesxtrazo.cs_agrupacion" )
+ column=(type=long updatewhereclause=yes name=dt_unidadesxtrazo_cs_pdn dbname="dt_unidadesxtrazo.cs_pdn" )
+ column=(type=decimal(0) updatewhereclause=yes name=compute_0008 dbname="compute_0008" )
+ retrieve="SELECT peddig.gpa,   
+
+         pacasash.h_preref.de_referencia,   
+
+         r_estadosxetapa.ca_inicial,   
+
+         r_estadosxetapa.ca_entradas,   
+
+         r_estadosxetapa.ca_salidas,   
+			dt_unidadesxtrazo.cs_agrupacion, 
+         dt_unidadesxtrazo.cs_pdn,   
+
+         sum(dt_unidadesxtrazo.ca_programada )  
+
+    FROM r_estadosxetapa,   
+
+         dt_unidadesxtrazo,   
+
+         dt_agrupa_pdn,   
+
+         peddig,   
+
+         pacasash.h_preref  
+
+   WHERE ( r_estadosxetapa.cs_orden_corte = dt_unidadesxtrazo.cs_orden_corte ) and  
+
+         ( dt_unidadesxtrazo.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion ) and  
+
+         ( dt_unidadesxtrazo.cs_pdn = dt_agrupa_pdn.cs_pdn ) and  
+
+         ( dt_agrupa_pdn.co_fabrica_exp = peddig.co_fabrica_exp ) and  
+
+         ( dt_agrupa_pdn.pedido = peddig.pedido ) and  
+
+         ( dt_agrupa_pdn.co_fabrica_pt = pacasash.h_preref.co_fabrica ) and  
+
+         ( dt_agrupa_pdn.co_linea = pacasash.h_preref.co_linea ) and  
+
+         ( dt_agrupa_pdn.co_referencia = pacasash.h_preref.co_referencia ) and  
+
+         ( ( r_estadosxetapa.ano_mes = ~"2003-06~" ) AND  
+
+         ( r_estadosxetapa.etapa = 5 ) AND  
+
+         ( dt_unidadesxtrazo.cs_base_trazos = 1 ) )   
+
+GROUP BY peddig.gpa,   
+
+         pacasash.h_preref.de_referencia,   
+
+         r_estadosxetapa.ca_inicial,   
+
+         r_estadosxetapa.ca_entradas,   
+
+         r_estadosxetapa.ca_salidas,   
+			dt_unidadesxtrazo.cs_agrupacion, 
+         dt_unidadesxtrazo.cs_pdn  
+
+
+  HAVING ( sum( r_estadosxetapa.ca_inicial+r_estadosxetapa.ca_entradas-r_estadosxetapa.ca_salidas) > 0 )  
+" )
+text(band=header alignment="2" text="Peddig
+Gpa" border="2" color="33554432" x="5" y="4" height="104" width="709" html.valueishtml="0"  name=peddig_gpa_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="H Preref
+De Referencia" border="2" color="33554432" x="718" y="4" height="104" width="937" html.valueishtml="0"  name=h_preref_de_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="R Estadosxetapa
+Ca Inicial" border="2" color="33554432" x="1659" y="4" height="104" width="370" html.valueishtml="0"  name=r_estadosxetapa_ca_inicial_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="R Estadosxetapa
+Ca Entradas" border="2" color="33554432" x="2034" y="4" height="104" width="370" html.valueishtml="0"  name=r_estadosxetapa_ca_entradas_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="R Estadosxetapa
+Ca Salidas" border="2" color="33554432" x="2409" y="4" height="104" width="370" html.valueishtml="0"  name=r_estadosxetapa_ca_salidas_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Unidadesxtrazo
+Cs Pdn" border="2" color="33554432" x="2784" y="4" height="104" width="402" html.valueishtml="0"  name=dt_unidadesxtrazo_cs_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="(sum)" border="2" color="33554432" x="3191" y="4" height="52" width="274" html.valueishtml="0"  name=compute_0007_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="33554432" x="5" y="4" height="64" width="709" format="[general]" html.valueishtml="0"  name=peddig_gpa visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="718" y="4" height="64" width="937" format="[general]" html.valueishtml="0"  name=h_preref_de_referencia visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="2" color="33554432" x="1659" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=r_estadosxetapa_ca_inicial visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="2" color="33554432" x="2034" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=r_estadosxetapa_ca_entradas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="2" color="33554432" x="2409" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=r_estadosxetapa_ca_salidas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="2" color="33554432" x="2784" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_unidadesxtrazo_cs_pdn visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=0 border="2" color="33554432" x="3282" y="8" height="52" width="178" html.valueishtml="0"  name=dt_unidadesxtrazo_cs_agrupacion visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=0 border="2" color="33554432" x="3506" y="12" height="52" width="338" html.valueishtml="0"  name=compute_0008 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="0" expression="sum(compute_0008 for all)"border="2" color="33554432" x="3506" y="4" height="52" width="338" format="[general]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
