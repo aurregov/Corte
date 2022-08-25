@@ -1,0 +1,131 @@
+HA$PBExportHeader$dtb_unidades_ordpdn_ordcorte.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=452 color="536870912" )
+summary(height=76 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=t_unidades_ordpdn_cs_ordenpd_pt dbname="t_unidades_ordpdn.cs_ordenpd_pt" )
+ column=(type=long updatewhereclause=yes name=h_ordenpd_pt_co_fabrica dbname="h_ordenpd_pt.co_fabrica" )
+ column=(type=long updatewhereclause=yes name=h_ordenpd_pt_co_linea dbname="h_ordenpd_pt.co_linea" )
+ column=(type=char(30) updatewhereclause=yes name=m_lineas_de_linea dbname="m_lineas.de_linea" )
+ column=(type=long updatewhereclause=yes name=h_ordenpd_pt_co_referencia dbname="h_ordenpd_pt.co_referencia" )
+ column=(type=char(40) updatewhereclause=yes name=h_preref_pv_de_referencia dbname="h_preref_pv.de_referencia" )
+ column=(type=long updatewhereclause=yes name=t_unidades_ordpdn_co_talla dbname="t_unidades_ordpdn.co_talla" )
+ column=(type=long updatewhereclause=yes name=t_unidades_ordpdn_co_color dbname="t_unidades_ordpdn.co_color" )
+ column=(type=long updatewhereclause=yes name=t_unidades_ordpdn_ca_unorden_pdn dbname="t_unidades_ordpdn.ca_unorden_pdn" )
+ column=(type=long updatewhereclause=yes name=t_unidades_ordpdn_ca_unorden_corte dbname="t_unidades_ordpdn.ca_unorden_corte" )
+ column=(type=long updatewhereclause=yes name=t_unidades_ordpdn_ca_uncortadas dbname="t_unidades_ordpdn.ca_uncortadas" )
+ column=(type=long updatewhereclause=yes name=t_unidades_ordpdn_ca_loteadas dbname="t_unidades_ordpdn.ca_loteadas" )
+ column=(type=long updatewhereclause=yes name=t_unidades_ordpdn_ca_unidades_empq dbname="t_unidades_ordpdn.ca_unidades_empq" )
+ column=(type=long updatewhereclause=yes name=t_unidades_ordpdn_ca_unidades_desp dbname="t_unidades_ordpdn.ca_unidades_desp" )
+ retrieve="  SELECT t_unidades_ordpdn.cs_ordenpd_pt,   
+         h_ordenpd_pt.co_fabrica,   
+         h_ordenpd_pt.co_linea,   
+         m_lineas.de_linea,   
+         h_ordenpd_pt.co_referencia,   
+         h_preref_pv.de_referencia,   
+         t_unidades_ordpdn.co_talla,   
+         t_unidades_ordpdn.co_color,   
+         t_unidades_ordpdn.ca_unorden_pdn,   
+         t_unidades_ordpdn.ca_unorden_corte,   
+         t_unidades_ordpdn.ca_uncortadas,   
+         t_unidades_ordpdn.ca_loteadas,
+			t_unidades_ordpdn.ca_unidades_empq,
+         t_unidades_ordpdn.ca_unidades_desp
+    FROM h_ordenpd_pt,   
+         h_preref_pv,   
+         t_unidades_ordpdn,   
+         m_lineas  
+   WHERE ( t_unidades_ordpdn.cs_ordenpd_pt = h_ordenpd_pt.cs_ordenpd_pt ) and  
+         ( h_preref_pv.co_tipo_ref = 'P') and
+         ( cast(h_ordenpd_pt.co_referencia as char(15)) = h_preref_pv.co_referencia ) and  
+         ( h_ordenpd_pt.co_fabrica = h_preref_pv.co_fabrica ) and  
+         ( h_ordenpd_pt.co_linea = h_preref_pv.co_linea ) and  
+         ( h_ordenpd_pt.co_fabrica = m_lineas.co_fabrica ) and  
+         ( h_ordenpd_pt.co_linea = m_lineas.co_linea ) and  
+         ( ( t_unidades_ordpdn.usuario = :as_usuario ) and
+         ( t_unidades_ordpdn.cs_ordenpd_pt = :al_ordenpd ))   
+UNION
+  SELECT t_unidades_ordpdn.cs_ordenpd_pt,   
+         h_ordenpd_pt.co_fabrica,   
+         h_ordenpd_pt.co_linea,   
+         m_lineas_inf.de_linea,   
+         h_ordenpd_pt.co_referencia,   
+         h_preref_inf.de_referencia,   
+         t_unidades_ordpdn.co_talla,   
+         t_unidades_ordpdn.co_color,   
+         t_unidades_ordpdn.ca_unorden_pdn,   
+         t_unidades_ordpdn.ca_unorden_corte,   
+         t_unidades_ordpdn.ca_uncortadas,   
+         t_unidades_ordpdn.ca_loteadas,
+			t_unidades_ordpdn.ca_unidades_empq,
+			t_unidades_ordpdn.ca_unidades_desp
+    FROM h_ordenpd_pt,   
+         h_preref_inf,   
+         t_unidades_ordpdn,   
+         m_lineas_inf  
+   WHERE ( t_unidades_ordpdn.cs_ordenpd_pt = h_ordenpd_pt.cs_ordenpd_pt ) and  
+         ( h_ordenpd_pt.co_referencia = h_preref_inf.co_referencia ) and  
+         ( h_ordenpd_pt.co_fabrica = h_preref_inf.co_fabrica ) and  
+         ( h_ordenpd_pt.co_linea = h_preref_inf.co_linea ) and  
+         ( h_ordenpd_pt.co_fabrica = m_lineas_inf.co_fabrica ) and  
+         ( h_ordenpd_pt.co_linea = m_lineas_inf.co_linea ) and  
+         ( ( t_unidades_ordpdn.usuario = :as_usuario ) and
+         ( t_unidades_ordpdn.cs_ordenpd_pt = :al_ordenpd ))   
+
+ORDER BY 1 ASC,   
+         2 ASC,   
+         3 ASC,   
+         5 ASC,   
+         8 ASC,   
+         7 ASC" arguments=(("as_usuario", string),("al_ordenpd", number))  sort="t_unidades_ordpdn_cs_ordenpd_pt A t_unidades_ordpdn_co_color A t_unidades_ordpdn_co_talla A " )
+group(level=1 header.height=164 trailer.height=80 by=("t_unidades_ordpdn_cs_ordenpd_pt" , "h_ordenpd_pt_co_fabrica" , "h_ordenpd_pt_co_linea" , "m_lineas_de_linea" , "h_ordenpd_pt_co_referencia" , "t_unidades_ordpdn_co_color" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="UNIDADES ORDEN DE PRODUCCI$$HEX1$$d300$$ENDHEX$$N" border="6" color="0" x="928" y="48" height="80" width="1577" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+compute(band=header alignment="0" expression="today()"border="0" color="0" x="87" y="52" height="72" width="329" format="dd/mm/yyyy" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="'P$$HEX1$$e100$$ENDHEX$$gina ' + page() + ' de ' + pageCount()"border="0" color="0" x="2651" y="52" height="72" width="553" format="[general]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="F$$HEX1$$e100$$ENDHEX$$brica:" border="0" color="0" x="18" y="356" height="64" width="238" html.valueishtml="0"  name=h_ordenpd_pt_co_fabrica_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=2 alignment="1" tabsequence=32766 border="0" color="0" x="283" y="356" height="64" width="517" format="[general]" html.valueishtml="0"  name=h_ordenpd_pt_co_fabrica visible="1" dddw.name=dddw_fabricas dddw.displaycolumn=de_fabrica dddw.datacolumn=co_fabrica dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="L$$HEX1$$ed00$$ENDHEX$$nea:" border="0" color="0" x="873" y="356" height="64" width="183" html.valueishtml="0"  name=h_ordenpd_pt_co_linea_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=3 alignment="1" tabsequence=32766 border="0" color="0" x="1079" y="356" height="64" width="105" format="[general]" html.valueishtml="0"  name=h_ordenpd_pt_co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=4 alignment="0" tabsequence=32766 border="0" color="0" x="1202" y="356" height="64" width="535" format="[general]" html.valueishtml="0"  name=m_lineas_de_linea visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Referencia:" border="0" color="0" x="1842" y="356" height="64" width="293" html.valueishtml="0"  name=h_ordenpd_pt_co_referencia_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=5 alignment="1" tabsequence=32766 border="0" color="0" x="2153" y="356" height="64" width="265" format="[general]" html.valueishtml="0"  name=h_ordenpd_pt_co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Orden Producci$$HEX1$$f300$$ENDHEX$$n:" border="0" color="0" x="23" y="260" height="64" width="494" html.valueishtml="0"  name=t_unidades_ordpdn_cs_ordenpd_pt_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=1 alignment="1" tabsequence=32766 border="0" color="0" x="544" y="260" height="64" width="411" format="[general]" html.valueishtml="0"  name=t_unidades_ordpdn_cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Talla" border="2" color="0" x="14" y="96" height="64" width="343" html.valueishtml="0"  name=t_unidades_ordpdn_co_talla_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Prog Corte" border="2" color="0" x="791" y="96" height="64" width="407" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Prog OP" border="2" color="0" x="370" y="96" height="64" width="407" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=8 alignment="0" tabsequence=32766 border="0" color="0" x="210" y="8" height="64" width="1833" format="[general]" html.valueishtml="0"  name=t_unidades_ordpdn_co_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Color:" border="0" color="0" x="14" y="8" height="64" width="174" html.valueishtml="0"  name=t_unidades_ordpdn_co_color_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Cortadas" border="2" color="0" x="1211" y="96" height="64" width="361" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Loteada" border="2" color="0" x="1586" y="96" height="64" width="366" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Despachada" border="2" color="0" x="1966" y="96" height="64" width="384" html.valueishtml="0"  name=t_9 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Empacada" border="2" color="0" x="2363" y="96" height="64" width="407" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="2" color="0" x="14" y="4" height="64" width="334" format="[general]" html.valueishtml="0"  name=t_unidades_ordpdn_co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="2" color="0" x="370" y="4" height="64" width="407" format="###,###,###" html.valueishtml="0"  name=t_unidades_ordpdn_ca_unorden_pdn visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="2" color="0" x="791" y="4" height="64" width="407" format="###,###,###" html.valueishtml="0"  name=t_unidades_ordpdn_ca_unorden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="2" color="0" x="1211" y="4" height="64" width="361" format="###,###,###" html.valueishtml="0"  name=t_unidades_ordpdn_ca_uncortadas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="2" color="0" x="1586" y="4" height="64" width="366" format="###,###,###" html.valueishtml="0"  name=t_unidades_ordpdn_ca_loteadas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="2" color="0" x="1966" y="4" height="64" width="384" format="###,###,###" html.valueishtml="0"  name=t_unidades_ordpdn_ca_unidades_desp visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="2" color="0" x="2363" y="4" height="64" width="407" format="###,###,###" html.valueishtml="0"  name=t_unidades_ordpdn_ca_unidades_empq visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.1 alignment="0" text="Total Color:" border="2" color="0" x="14" y="4" height="64" width="338" html.valueishtml="0"  name=t_7 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(t_unidades_ordpdn_ca_unorden_pdn for group 1)"border="2" color="0" x="370" y="4" height="64" width="407" format="###,###,###" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(t_unidades_ordpdn_ca_unorden_corte for group 1)"border="2" color="0" x="791" y="4" height="64" width="407" format="###,###,###" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(t_unidades_ordpdn_ca_uncortadas for group 1)"border="2" color="0" x="1211" y="4" height="64" width="361" format="###,###,###" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(t_unidades_ordpdn_ca_loteadas for group 1)"border="2" color="0" x="1586" y="4" height="64" width="366" format="###,###,###" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum( t_unidades_ordpdn_ca_unidades_desp  for group 1)"border="2" color="0" x="1966" y="4" height="64" width="384" format="###,###,###" html.valueishtml="0"  name=compute_13 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(t_unidades_ordpdn_ca_unidades_empq for group 1)"border="2" color="0" x="2363" y="4" height="64" width="407" format="###,###,###" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="0" text="Total:" border="0" color="0" x="18" y="4" height="64" width="165" html.valueishtml="0"  name=t_8 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(t_unidades_ordpdn_ca_unorden_pdn for all)"border="2" color="0" x="375" y="4" height="64" width="407" format="###,###,###" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(t_unidades_ordpdn_ca_unorden_corte for all)"border="2" color="0" x="795" y="4" height="64" width="407" format="###,###,###" html.valueishtml="0"  name=compute_9 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(t_unidades_ordpdn_ca_uncortadas for all)"border="2" color="0" x="1216" y="4" height="64" width="361" format="###,###,###" html.valueishtml="0"  name=compute_10 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(t_unidades_ordpdn_ca_loteadas for all)"border="2" color="0" x="1586" y="4" height="64" width="366" format="###,###,###" html.valueishtml="0"  name=compute_11 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum( t_unidades_ordpdn_ca_unidades_desp for all)"border="2" color="0" x="1966" y="4" height="64" width="384" format="###,###,###" html.valueishtml="0"  name=compute_14 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(t_unidades_ordpdn_ca_unidades_empq for all)"border="2" color="0" x="2363" y="4" height="64" width="407" format="###,###,###" html.valueishtml="0"  name=compute_12 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=6 alignment="0" tabsequence=0 border="0" color="0" x="2432" y="356" height="64" width="891" html.valueishtml="0"  name=h_preref_pv_de_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
