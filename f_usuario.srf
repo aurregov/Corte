@@ -1,0 +1,15 @@
+HA$PBExportHeader$f_usuario.srf
+global type f_usuario from function_object
+end type
+
+forward prototypes
+global function string f_usuario ()
+end prototypes
+
+global function string f_usuario ();String ls_usuario
+
+ls_usuario = gstr_info_usuario.codigo_usuario
+
+Return ls_usuario
+end function
+
