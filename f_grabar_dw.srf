@@ -1,0 +1,43 @@
+HA$PBExportHeader$f_grabar_dw.srf
+global type f_grabar_dw from function_object
+end type
+
+forward prototypes
+global function long f_grabar_dw (ref datawindow adw_datawindow)
+end prototypes
+
+global function long f_grabar_dw (ref datawindow adw_datawindow);/////////////////////////////////////////////////////////////////////////
+// Funcion: f_grabar_dw
+// Descripcion: Permite actualizar los datos que fueron ingresados a
+//              un datawindows.
+// Parametros: el control datawindows
+// Retorna : 0 si la transaccion fue exitosa
+/////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////
+// Con el ACCEPTTEXT para llevar los cambios al buffer.
+// El UPDATE para preparar los datos en el servidor.
+// El COMMIT para grabar los cambios en la base de datos
+/////////////////////////////////////////////////////////////////////////
+
+IF adw_datawindow.AcceptText() = -1 THEN
+	MessageBox("Error","No se pudieron realizar los cambios en el detalle",Exclamation!,Ok!)	
+	RETURN(-1)
+ELSE
+	IF adw_datawindow.Update() = -1 THEN
+		ROLLBACK;
+		MessageBox("Error","No se pudo hacer los cambios en el detalle para la base de datos",Exclamation!,Ok!)	
+		RETURN(-1)
+	ELSE
+		COMMIT;
+		IF sqlca.sqlcode = -1 THEN
+			MessageBox("Error","No se pudo hacer los cambios en el detalle para la base de datos" &
+							,Exclamation!,Ok!)	
+		ELSE
+			RETURN(0)
+		END IF
+	END IF
+END IF
+	
+end function
+
