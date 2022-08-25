@@ -1,0 +1,16 @@
+HA$PBExportHeader$d_lista_tallas_x_produccion_trazos.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=1 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_talla dbname="dt_escalaxpdnbase.co_talla" )
+ column=(type=long updatewhereclause=yes name=ca_unidades dbname="dt_escalaxpdnbase.ca_unidades" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"dt_escalaxpdnbase~" ) COLUMN(NAME=~"dt_escalaxpdnbase.co_talla~") COLUMN(NAME=~"dt_escalaxpdnbase.ca_unidades~")WHERE(    EXP1 =~"dt_escalaxpdnbase.cs_agrupacion~"   OP =~"=~"    EXP2 =~":an_agrupa~"    LOGIC =~"And~" ) WHERE(    EXP1 =~"dt_escalaxpdnbase.cs_base_trazos~"   OP =~"=~"    EXP2 =~":an_trazo~"    LOGIC =~"And~" ) WHERE(    EXP1 =~"dt_escalaxpdnbase.cs_pdn~"   OP =~"=~"    EXP2 =~":an_pdn~" ) ) ORDER(NAME=~"dt_escalaxpdnbase.co_talla~" ASC=yes ) ARG(NAME = ~"an_agrupa~" TYPE = number)  ARG(NAME = ~"an_trazo~" TYPE = number)  ARG(NAME = ~"an_pdn~" TYPE = number) " arguments=(("an_agrupa", number),("an_trazo", number),("an_pdn", number)) )
+text(band=header alignment="2" text="Unidades" border="0" color="0" x="151" y="8" height="56" width="229"  name=ca_unidades_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="151" y="4" height="68" width="229" format="[general]"  name=ca_unidades edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Talla" border="0" color="0" x="9" y="8" height="56" width="133"  name=co_talla_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="0" x="9" y="4" height="68" width="133" format="[general]"  name=co_talla edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
