@@ -1,0 +1,33 @@
+HA$PBExportHeader$dtb_buscar_modulo_logico.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=64 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica dbname="m_modulos.co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_planta dbname="m_modulos.co_planta" )
+ column=(type=char(30) updatewhereclause=yes name=de_planta dbname="m_plantas.de_planta" )
+ column=(type=long updatewhereclause=yes name=co_modulo dbname="m_modulos.co_modulo" )
+ column=(type=char(30) updatewhereclause=yes name=de_modulo dbname="m_modulos.de_modulo" )
+ retrieve="SELECT m_modulos.co_fabrica,
+       m_modulos.co_planta,
+       m_plantas.de_planta,
+       m_modulos.co_modulo,
+       m_modulos.de_modulo
+FROM m_modulos,
+     m_plantas
+WHERE m_modulos.co_fabrica = m_plantas.co_fabrica and
+    	m_modulos.co_planta  = m_plantas.co_planta and
+      m_modulos.co_fabrica>0 and
+m_modulos.co_centro_pdn in (1,2) "  sort="co_fabrica A co_planta A co_modulo A " )
+text(band=header alignment="2" text="F$$HEX1$$e100$$ENDHEX$$brica" border="6" color="8388608" x="14" y="4" height="52" width="494"  name=t_1  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="M$$HEX1$$f300$$ENDHEX$$dulo" border="6" color="8388608" x="1179" y="4" height="52" width="983"  name=de_modulo_fis_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Planta" border="6" color="8388608" x="526" y="4" height="52" width="635"  name=t_2  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="14" y="4" height="64" width="494" format="[general]"  name=co_fabrica dddw.name=dddw_fabricas dddw.displaycolumn=de_fabrica dddw.datacolumn=co_fabrica dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="0" x="526" y="4" height="64" width="55" format="[general]"  name=co_planta edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="5" color="0" x="1179" y="4" height="64" width="270" format="[general]"  name=co_modulo edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="0" x="1472" y="4" height="64" width="690" format="[general]"  name=de_modulo edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="0" x="599" y="4" height="64" width="567" format="[general]"  name=de_planta edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
