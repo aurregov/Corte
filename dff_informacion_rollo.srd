@@ -1,0 +1,75 @@
+HA$PBExportHeader$dff_informacion_rollo.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=296 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_rollo dbname="cs_rollo" )
+ column=(type=char(42) updatewhereclause=yes name=h_telas_de_reftel dbname="de_reftel" )
+ column=(type=char(30) updatewhereclause=yes name=m_color_de_color dbname="de_color" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_metros_mercar dbname="ca_metros_mercar" )
+ column=(type=long updatewhereclause=yes name=ca_unidades_mercar dbname="ca_unidades_mercar" )
+ column=(type=decimal(2) updatewhereclause=yes name=m_rollo_ca_mt dbname="ca_mt" )
+ column=(type=decimal(2) updatewhereclause=yes name=m_rollo_ca_kg dbname="ca_kg" )
+ column=(type=long updatewhereclause=yes name=co_reftel_act dbname="co_reftel_act" )
+ column=(type=long updatewhereclause=yes name=co_caract_act dbname="co_caract_act" )
+ column=(type=long updatewhereclause=yes name=co_color_act dbname="co_color_act" )
+ column=(type=long updatewhereclause=yes name=m_rollo_ca_unidades dbname="ca_unidades" )
+ column=(type=long updatewhereclause=yes name=cs_mercada dbname="cs_mercada" )
+ column=(type=decimal(2) updatewhereclause=yes name=metros_cortados dbname="metros_cortados" initial="0" )
+ column=(type=decimal(2) updatewhereclause=yes name=kilos_cortados dbname="kilos_cortados" initial="0" )
+ column=(type=decimal(2) updatewhereclause=yes name=unidades_cortadas dbname="unidades_cortadas" initial="0" )
+ column=(type=long updatewhereclause=yes name=raya dbname="raya" )
+ column=(type=decimal(2) updatewhereclause=yes name=ancho_std dbname="ancho_std" )
+ retrieve="SELECT  dt_rollosmercada.cs_rollo ,
+           h_telas.de_reftel ,
+           m_color.de_color ,
+           dt_rollosmercada.ca_metros_mercar ,
+           dt_rollosmercada.ca_unidades_mercar ,
+           m_rollo.ca_mt ,
+           m_rollo.ca_kg ,
+           m_rollo.co_reftel_act ,
+           m_rollo.co_caract_act ,
+           m_rollo.co_color_act ,
+           m_rollo.ca_unidades ,
+           dt_rollosmercada.cs_mercada ,
+           Round(0,
+ 2) metros_cortados,
+           Round(0,
+ 2) kilos_cortados,
+           Round(0,
+ 2) unidades_cortadas,
+           dt_rollosmercada.raya,
+           dt_rollosmercada.ancho_std
+        FROM dt_rollosmercada ,
+           m_rollo ,
+           h_telas ,
+           m_color     
+        WHERE ( dt_rollosmercada.cs_rollo = m_rollo.cs_rollo ) and          ( m_rollo.co_reftel_act = h_telas.co_reftel ) and          ( m_rollo.co_caract_act = h_telas.co_caract ) and          ( m_rollo.co_color_act = m_color.co_color ) and          ( ( dt_rollosmercada.cs_mercada = :al_mercada ) And          ( dt_rollosmercada.cs_rollo = :al_rollo ) And          ( dt_rollosmercada.co_estado_mercada = :ai_estado ) and          ( dt_rollosmercada.raya = :ai_raya ) )  " arguments=(("al_mercada", number),("al_rollo", number),("ai_estado", number),("ai_raya", number)) )
+text(band=detail alignment="0" text="Kilos Cortados:" border="0" color="33554432" x="32" y="208" height="56" width="338" html.valueishtml="0"  name=kilos_cortados_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Kilos Rollo:" border="0" color="33554432" x="32" y="116" height="56" width="338" html.valueishtml="0"  name=m_rollo_ca_mt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Rollo:" border="0" color="33554432" x="32" y="24" height="56" width="146" html.valueishtml="0"  name=dt_rollosmercada_cs_rollo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Tela:" border="0" color="33554432" x="521" y="24" height="56" width="123" html.valueishtml="0"  name=h_telas_de_reftel_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="33554432" x="896" y="28" height="52" width="745" format="[general]" html.valueishtml="0"  name=h_telas_de_reftel visible="1" edit.limit=42 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Color:" border="0" color="33554432" x="1710" y="24" height="56" width="137" html.valueishtml="0"  name=m_color_de_color_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="5" color="33554432" x="1865" y="28" height="52" width="261" format="[general]" html.valueishtml="0"  name=co_color_act visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="33554432" x="2149" y="28" height="52" width="434" format="[general]" html.valueishtml="0"  name=m_color_de_color visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=10 border="5" color="33554432" x="393" y="212" height="52" width="274" format="###,##0.00" html.valueishtml="0"  name=kilos_cortados visible="1" editmask.mask="###,###.00" editmask.imemode=0 editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="33554432" x="197" y="28" height="52" width="274" format="[general]" html.valueishtml="0"  name=cs_rollo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="String( co_reftel_act ) + ~"-~" + String( co_caract_act )"border="5" color="33554432" x="667" y="28" height="52" width="201" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="5" color="33554432" x="393" y="120" height="52" width="274" format="[general]" html.valueishtml="0"  name=m_rollo_ca_kg visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Metros Rollo:" border="0" color="33554432" x="727" y="116" height="56" width="389" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Metros Cortados:" border="0" color="33554432" x="727" y="208" height="56" width="389" html.valueishtml="0"  name=metros_cortados_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=20 border="5" color="33554432" x="1138" y="212" height="52" width="274" format="###,##0.00" html.valueishtml="0"  name=metros_cortados visible="1" editmask.mask="###,###.00" editmask.imemode=0 editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="5" color="33554432" x="1920" y="116" height="56" width="274" format="[general]" html.valueishtml="0"  name=m_rollo_ca_unidades visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Unidades Rollo:" border="0" color="33554432" x="1458" y="116" height="56" width="434" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="5" color="33554432" x="1138" y="120" height="52" width="274" format="[general]" html.valueishtml="0"  name=m_rollo_ca_mt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Unidades Cortadas:" border="0" color="33554432" x="1458" y="208" height="56" width="434" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Ancho Std:" border="0" color="33554432" x="2226" y="208" height="56" width="270" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="1" tabsequence=30 border="5" color="33554432" x="1920" y="208" height="56" width="274" format="[general]" html.valueishtml="0"  name=unidades_cortadas visible="1" editmask.mask="###,##0" editmask.imemode=0 editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=17 alignment="0" tabsequence=40 border="5" color="33554432" x="2519" y="208" height="56" width="187" format="0" html.valueishtml="0"  name=ancho_std visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
