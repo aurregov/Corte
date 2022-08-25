@@ -1,0 +1,187 @@
+HA$PBExportHeader$d_lista_pdn_a_agrupar_respaldo.srd
+$PBExportComments$Producci$$HEX1$$f300$$ENDHEX$$n factible de ser agrupada. Adem$$HEX1$$e100$$ENDHEX$$s actualiza el campo co_asigna
+release 8;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912~tif( sw_estado = 3 and  Not isnull(cs_agrupacion) ,rgb(192,192,192),if( sw_estado = 1,rgb(255,255,125),if( not isnull(cs_agrupacion),rgb(210,210,210),553648127)))
+
+
+" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=simulacion dbname="dt_pdnxmodulo.simulacion" )
+ column=(type=long updatewhereclause=yes key=yes name=co_fabrica dbname="dt_pdnxmodulo.co_fabrica" )
+ column=(type=long updatewhereclause=yes key=yes name=co_planta dbname="dt_pdnxmodulo.co_planta" )
+ column=(type=long updatewhereclause=yes key=yes name=co_modulo dbname="dt_pdnxmodulo.co_modulo" )
+ column=(type=long updatewhereclause=yes key=yes name=co_fabrica_exp dbname="dt_pdnxmodulo.co_fabrica_exp" )
+ column=(type=long updatewhereclause=yes key=yes name=cs_liberacion dbname="dt_pdnxmodulo.cs_liberacion" )
+ column=(type=char(20) updatewhereclause=yes key=yes name=po dbname="dt_pdnxmodulo.po" )
+ column=(type=char(10) updatewhereclause=yes key=yes name=nu_cut dbname="dt_pdnxmodulo.nu_cut" )
+ column=(type=long updatewhereclause=yes key=yes name=co_fabrica_pt dbname="dt_pdnxmodulo.co_fabrica_pt" )
+ column=(type=long updatewhereclause=yes key=yes name=co_linea dbname="dt_pdnxmodulo.co_linea" )
+ column=(type=long updatewhereclause=yes key=yes name=co_referencia dbname="dt_pdnxmodulo.co_referencia" )
+ column=(type=long updatewhereclause=yes key=yes name=co_color_pt dbname="dt_pdnxmodulo.co_color_pt" )
+ column=(type=char(2) updatewhereclause=yes key=yes name=tono dbname="dt_pdnxmodulo.tono" )
+ column=(type=long updatewhereclause=yes name=cs_particion dbname="dt_pdnxmodulo.cs_particion" )
+ column=(type=long updatewhereclause=yes name=cs_prioridad dbname="dt_pdnxmodulo.cs_prioridad" )
+ column=(type=long updatewhereclause=yes name=ca_pendiente dbname="dt_pdnxmodulo.ca_pendiente" )
+ column=(type=long updatewhereclause=yes name=ca_programada dbname="dt_pdnxmodulo.ca_programada" )
+ column=(type=long update=yes updatewhereclause=yes name=espejo_asignacion dbname="dt_pdnxmodulo.co_estado_asigna" values="	2/	1" )
+ column=(type=long updatewhereclause=yes name=co_tipo_asignacion dbname="dt_pdnxmodulo.co_tipo_asignacion" )
+ column=(type=char(30) updatewhereclause=yes name=de_linea dbname="m_lineas.de_linea" )
+ column=(type=char(40) updatewhereclause=yes name=de_referencia dbname="h_preref.de_referencia" )
+ column=(type=char(30) updatewhereclause=yes name=de_color dbname="m_colores.de_color" )
+ column=(type=char(1) updatewhereclause=yes name=co_estado_merc dbname="dt_pdnxmodulo.co_estado_merc" )
+ column=(type=long updatewhereclause=yes name=ca_proyectada dbname="dt_pdnxmodulo.ca_proyectada" )
+ column=(type=long updatewhereclause=yes name=ca_actual dbname="dt_pdnxmodulo.ca_actual" )
+ column=(type=long updatewhereclause=yes name=ca_numerada dbname="dt_pdnxmodulo.ca_numerada" )
+ column=(type=long updatewhereclause=yes name=sw_estado dbname="dt_pdnxmodulo.sw_estado" )
+ column=(type=long updatewhereclause=yes name=cs_agrupacion dbname="dt_agrupa_pdn.cs_agrupacion" )
+ column=(type=long updatewhereclause=yes name=cs_pdn dbname="dt_agrupa_pdn.cs_pdn" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_asignacion dbname="dt_pdnxmodulo.cs_asignacion" )
+ column=(type=long updatewhereclause=yes key=yes name=co_color_pt dbname="dt_pdnxmodulo.co_color_pt" )
+ column=(type=long updatewhereclause=yes key=yes name=cs_liberacion dbname="dt_pdnxmodulo.cs_liberacion" )
+ column=(type=char(2) updatewhereclause=yes key=yes name=tono dbname="dt_pdnxmodulo.tono" )
+ column=(type=decimal(2) updatewhereclause=yes name=ancho dbname="ancho" )
+ column=(type=decimal(5) updatewhereclause=yes name=yield dbname="yield" )
+ column=(type=datetime updatewhereclause=yes name=fe_inicio_prog dbname="dt_pdnxmodulo.fe_inicio_prog" )
+ column=(type=datetime updatewhereclause=yes name=fe_liberacion dbname="fe_liberacion" )
+ column=(type=datetime updatewhereclause=yes name=x_col1 dbname="dt_pdnxmodulo.x_col1" )
+ retrieve="  SELECT dt_pdnxmodulo.simulacion,   
+         dt_pdnxmodulo.co_fabrica,   
+         dt_pdnxmodulo.co_planta,   
+         dt_pdnxmodulo.co_modulo,   
+         dt_pdnxmodulo.co_fabrica_exp,   
+         dt_pdnxmodulo.cs_liberacion,   
+         dt_pdnxmodulo.po,   
+			dt_pdnxmodulo.nu_cut,
+         dt_pdnxmodulo.co_fabrica_pt,   
+         dt_pdnxmodulo.co_linea,   
+         dt_pdnxmodulo.co_referencia,   
+         dt_pdnxmodulo.co_color_pt,   
+         dt_pdnxmodulo.tono,   
+         dt_pdnxmodulo.cs_particion,   
+         dt_pdnxmodulo.cs_prioridad,   
+         dt_pdnxmodulo.ca_pendiente,
+         dt_pdnxmodulo.ca_programada,   
+         dt_pdnxmodulo.co_estado_asigna,   
+         dt_pdnxmodulo.co_tipo_asignacion,   
+         m_lineas.de_linea,   
+         h_preref.de_referencia,   
+         m_colores.de_color,
+			dt_pdnxmodulo.co_estado_merc, 
+			dt_pdnxmodulo.ca_proyectada,
+			dt_pdnxmodulo.ca_actual,
+			dt_pdnxmodulo.ca_numerada,
+         dt_pdnxmodulo.co_estado_asigna sw_estado,
+         dt_agrupa_pdn.cs_agrupacion,
+         dt_agrupa_pdn.cs_pdn,
+			dt_pdnxmodulo.cs_asignacion,
+			dt_pdnxmodulo.co_color_pt,
+			dt_pdnxmodulo.cs_liberacion,
+			dt_pdnxmodulo.tono,
+			(SELECT  DISTINCT dt_telaxmodelo_lib.ancho_cortable  
+			 FROM dt_telaxmodelo_lib  
+			WHERE ( dt_pdnxmodulo.co_fabrica_exp 		= dt_telaxmodelo_lib.co_fabrica_exp ) and  
+					( dt_pdnxmodulo.cs_liberacion 		= dt_telaxmodelo_lib.cs_liberacion ) and  
+					( dt_pdnxmodulo.po 						= dt_telaxmodelo_lib.nu_orden ) and  
+					( dt_pdnxmodulo.nu_cut					= dt_telaxmodelo_lib.nu_cut ) and
+					( dt_pdnxmodulo.co_fabrica_pt 		= dt_telaxmodelo_lib.co_fabrica_pt ) and  
+					( dt_pdnxmodulo.co_linea 				= dt_telaxmodelo_lib.co_linea ) and  
+					( dt_pdnxmodulo.co_referencia 		= dt_telaxmodelo_lib.co_referencia ) and  
+					( dt_pdnxmodulo.co_color_pt 			= dt_telaxmodelo_lib.co_color_pt ) and  
+					( dt_pdnxmodulo.tono 					= dt_telaxmodelo_lib.co_tono ) and  
+					( dt_pdnxmodulo.simulacion 			= 1 ) AND  
+					( dt_telaxmodelo_lib.raya 				= 10 ) ) ancho,
+		(SELECT  DISTINCT dt_telaxmodelo_lib.yield  
+			 FROM dt_telaxmodelo_lib  
+			WHERE ( dt_pdnxmodulo.co_fabrica_exp 		= dt_telaxmodelo_lib.co_fabrica_exp ) and  
+					( dt_pdnxmodulo.cs_liberacion 		= dt_telaxmodelo_lib.cs_liberacion ) and  
+					( dt_pdnxmodulo.po 						= dt_telaxmodelo_lib.nu_orden ) and  
+					( dt_pdnxmodulo.nu_cut					= dt_telaxmodelo_lib.nu_cut ) and
+					( dt_pdnxmodulo.co_fabrica_pt 		= dt_telaxmodelo_lib.co_fabrica_pt ) and  
+					( dt_pdnxmodulo.co_linea 				= dt_telaxmodelo_lib.co_linea ) and  
+					( dt_pdnxmodulo.co_referencia 		= dt_telaxmodelo_lib.co_referencia ) and  
+					( dt_pdnxmodulo.co_color_pt 			= dt_telaxmodelo_lib.co_color_pt ) and  
+					( dt_pdnxmodulo.tono 					= dt_telaxmodelo_lib.co_tono ) and  
+					( dt_pdnxmodulo.simulacion 			= 1 ) AND  
+					( dt_telaxmodelo_lib.raya 				= 10 ) ) yield,
+			dt_pdnxmodulo.fe_inicio_prog,
+		(select dt_libera_estilos.fe_creacion
+			from dt_libera_estilos
+			where dt_libera_estilos.co_fabrica_exp 		= dt_pdnxmodulo.co_fabrica_exp and
+					dt_libera_estilos.cs_liberacion 			= dt_pdnxmodulo.cs_liberacion and
+					dt_libera_estilos.nu_orden 				= dt_pdnxmodulo.po and
+					dt_libera_estilos.nu_cut					= dt_pdnxmodulo.nu_cut and
+					dt_libera_estilos.co_fabrica 				= dt_pdnxmodulo.co_fabrica and
+					dt_libera_estilos.co_linea 				= dt_pdnxmodulo.co_linea and
+					dt_libera_estilos.co_referencia 			= dt_pdnxmodulo.co_referencia and
+					dt_libera_estilos.co_color_pt 			= dt_pdnxmodulo.co_color_pt and
+					dt_libera_estilos.co_tono 					= dt_pdnxmodulo.tono)	fe_liberacion,
+			dt_pdnxmodulo.fe_requerida_desp as x_col1   
+    FROM h_preref,
+			m_colores,
+			dt_pdnxmodulo,
+         outer dt_agrupa_pdn,   
+         m_lineas
+   WHERE ( dt_pdnxmodulo.co_fabrica_pt 		= m_lineas.co_fabrica ) and  
+         ( dt_pdnxmodulo.co_linea 				= m_lineas.co_linea ) and  
+         ( dt_pdnxmodulo.co_fabrica_pt 		= h_preref.co_fabrica ) and  
+         ( dt_pdnxmodulo.co_linea 				= h_preref.co_linea ) and  
+         ( dt_pdnxmodulo.co_referencia 		= h_preref.co_referencia ) and  
+         ( dt_pdnxmodulo.co_fabrica_pt 		= m_colores.co_fabrica ) and  
+         ( dt_pdnxmodulo.co_linea 				= m_colores.co_linea ) and  
+         ( dt_pdnxmodulo.co_color_pt 			= m_colores.co_color ) and
+			( dt_pdnxmodulo.co_fabrica_exp 		= dt_agrupa_pdn.co_fabrica_exp ) and  
+         ( dt_pdnxmodulo.cs_liberacion 		= dt_agrupa_pdn.cs_liberacion ) and  
+         ( dt_pdnxmodulo.po 						= dt_agrupa_pdn.po ) and  
+			( dt_pdnxmodulo.nu_cut					= dt_agrupa_pdn.nu_cut ) and
+         ( dt_pdnxmodulo.co_fabrica_pt 		= dt_agrupa_pdn.co_fabrica_pt ) and  
+         ( dt_pdnxmodulo.co_linea 				= dt_agrupa_pdn.co_linea ) and  
+         ( dt_pdnxmodulo.co_referencia 		= dt_agrupa_pdn.co_referencia ) and  
+         ( dt_pdnxmodulo.co_color_pt 			= dt_agrupa_pdn.co_color_pt ) and  
+         ( dt_pdnxmodulo.tono 					= dt_agrupa_pdn.tono ) and  
+         ( dt_pdnxmodulo.cs_particion 			= dt_agrupa_pdn.cs_particion ) and
+         ( dt_pdnxmodulo.co_estado_asigna 	< 11 )  AND
+			( dt_pdnxmodulo.co_tipo_asignacion	= 2	)  " update="dt_pdnxmodulo" updatewhere=0 updatekeyinplace=no  sort="cs_agrupacion A cs_pdn A de_referencia A de_color A " )
+text(band=header alignment="2" text="Po" border="6" color="0" x="603" y="4" height="60" width="274" html.valueishtml="0"  name=po_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="O.C." border="6" color="0" x="2400" y="8" height="56" width="155" html.valueishtml="0"  name=t_9 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text=" Agrupa" border="6" color="0" x="2199" y="8" height="56" width="192" html.valueishtml="0"  name=t_8 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+button(band=header text="Prioridad"filename=""action="0" border="0" color="0" x="2565" y="4" height="60" width="224" vtextalign="0" htextalign="0"  name=cb_prioridad visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="1" text="" border="6" color="0" x="9" y="8" height="56" width="87" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Estilo" border="6" color="0" x="270" y="8" height="56" width="325" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Prioridad" border="6" color="0" x="2565" y="8" height="56" width="201" html.valueishtml="0"  name=t_10 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+button(band=header text=""filename=""action="0" border="0" color="0" x="5" y="4" height="68" width="91" vtextalign="0" htextalign="0"  name=cb_original visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Estado" border="6" color="0" x="105" y="4" height="60" width="155" html.valueishtml="0"  name=t_7 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Estilo"filename=""action="0" border="0" color="0" x="270" y="4" height="68" width="334" vtextalign="0" htextalign="0"  name=cb_estilo visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Lote" border="6" color="0" x="1115" y="4" height="60" width="178" html.valueishtml="0"  name=t_14 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="#" border="6" color="0" x="1303" y="4" height="60" width="55" html.valueishtml="0"  name=cs_particion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Color" border="6" color="0" x="1367" y="4" height="60" width="229" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Tono" border="6" color="0" x="1605" y="4" height="60" width="110" html.valueishtml="0"  name=tono_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Prenda" border="6" color="0" x="1723" y="4" height="60" width="251" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Un. Pend" border="6" color="0" x="1984" y="4" height="60" width="206" html.valueishtml="0"  name=ca_pendiente_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Ancho" border="6" color="0" x="2775" y="4" height="60" width="155" html.valueishtml="0"  name=t_11 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Yield" border="6" color="0" x="2939" y="4" height="60" width="110" html.valueishtml="0"  name=yield_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="F. Lib." border="6" color="0" x="3058" y="4" height="60" width="160" html.valueishtml="0"  name=fe_liberacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="X Col1" border="6" color="0" x="3227" y="4" height="60" width="160" html.valueishtml="0"  name=x_col1_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Cut" border="6" color="0" x="887" y="4" height="60" width="219" html.valueishtml="0"  name=dt_pdnxmodulo_nu_cut_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=detail alignment="1" expression="GetRow()"border="6" color="0" x="9" y="8" height="60" width="87" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=18 alignment="2" tabsequence=10 border="0" color="0" x="105" y="4" height="68" width="155" format="[general]" html.valueishtml="0" protect="0~tIf( sw_estado= 1,0,1)"  name=co_estado_asigna visible="1" checkbox.text="" checkbox.on="2" checkbox.off="1" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="553648127~tif( sw_estado = 1,rgb(255,255,125),553648127)" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="603" y="4" height="68" width="274" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="0" color="0" x="270" y="4" height="68" width="325" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="887" y="4" height="68" width="219" format="[general]" html.valueishtml="0"  name=nu_cut visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression=" co_color_pt +  tono + cs_liberacion "border="0" color="0" x="1115" y="4" height="68" width="178" format="[GENERAL]" html.valueishtml="0"  name=lote visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="0" x="1303" y="4" height="68" width="55" format="[general]" html.valueishtml="0"  name=cs_particion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=22 alignment="0" tabsequence=32766 border="0" color="0" x="1367" y="4" height="68" width="229" format="[general]" html.valueishtml="0"  name=de_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="0" x="1605" y="4" height="68" width="110" format="[general]" html.valueishtml="0"  name=tono visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="0" x="1723" y="4" height="68" width="251" format="[general]" html.valueishtml="0"  name=de_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="1" tabsequence=32766 border="0" color="0" x="1984" y="4" height="68" width="206" format="#,##0" html.valueishtml="0"  name=ca_pendiente visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=28 alignment="2" tabsequence=32766 border="0" color="16711680" x="2199" y="4" height="68" width="192" format="[general]" html.valueishtml="0"  name=cs_agrupacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=30 alignment="1" tabsequence=32766 border="0" color="0" x="2400" y="4" height="68" width="155" format="[general]" html.valueishtml="0"  name=cs_asignacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=15 alignment="2" tabsequence=32766 border="0" color="0" x="2565" y="4" height="68" width="201" format="[General]" html.valueishtml="0"  name=cs_prioridad visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=34 alignment="1" tabsequence=32766 border="0" color="0" x="2775" y="4" height="68" width="155" format="#,##0.00" html.valueishtml="0"  name=ancho visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=35 alignment="0" tabsequence=32766 border="0" color="0" x="2939" y="4" height="68" width="110" format="[general]" html.valueishtml="0"  name=yield visible="1" editmask.mask="0##.00" editmask.imemode=0 editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=37 alignment="2" tabsequence=32766 border="0" color="0" x="3058" y="4" height="68" width="160" format="dd/mmm" html.valueishtml="0"  name=fe_liberacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=38 alignment="0" tabsequence=32766 border="0" color="0" x="3227" y="4" height="68" width="160" format="[general]" html.valueishtml="0"  name=x_col1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
