@@ -1,0 +1,43 @@
+HA$PBExportHeader$dgr_reporte_subcentros_oc.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=dt_kamban_corte_co_centro_pdn dbname="dt_kamban_corte.co_centro_pdn" )
+ column=(type=char(30) updatewhereclause=yes name=m_centros_pdn_de_centro_pdn dbname="m_centros_pdn.de_centro_pdn" )
+ column=(type=long updatewhereclause=yes name=dt_kamban_corte_co_subcentro_pdn dbname="dt_kamban_corte.co_subcentro_pdn" )
+ column=(type=char(30) updatewhereclause=yes name=m_subcentros_pdn_de_subcentro_pdn dbname="m_subcentros_pdn.de_subcentro_pdn" )
+ column=(type=long updatewhereclause=yes name=m_subcentros_pdn_cs_secuencia dbname="m_subcentros_pdn.cs_secuencia" )
+ retrieve="SELECT  	dt_kamban_corte.co_centro_pdn ,
+	  	  	m_centros_pdn.de_centro_pdn ,
+		  	dt_kamban_corte.co_subcentro_pdn ,
+		  	m_subcentros_pdn.de_subcentro_pdn ,
+		  	m_subcentros_pdn.cs_secuencia     
+	FROM 	dt_kamban_corte ,
+		  	m_subcentros_pdn ,
+		  	m_centros_pdn 
+  WHERE 	( m_subcentros_pdn.co_tipoprod 			= dt_kamban_corte.co_tipoprod ) and
+		  	( m_subcentros_pdn.co_centro_pdn 		= dt_kamban_corte.co_centro_pdn ) and
+		  	( m_subcentros_pdn.co_subcentro_pdn 	= dt_kamban_corte.co_subcentro_pdn ) and  
+		  	( m_centros_pdn.co_tipoprod 				= m_subcentros_pdn.co_tipoprod ) and 
+		  	( m_centros_pdn.co_centro_pdn 			= m_subcentros_pdn.co_centro_pdn ) and 
+ 			( dt_kamban_corte.cs_orden_corte 		= :al_ordencorte ) 
+  ORDER BY m_subcentros_pdn.cs_secuencia          ASC  
+" arguments=(("al_ordencorte", number)) )
+text(band=header alignment="2" text=" Centro Pdn" border="0" color="33554432" x="421" y="8" height="52" width="87" html.valueishtml="0"  name=dt_kamban_corte_co_centro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Centro Pdn" border="0" color="33554432" x="517" y="8" height="52" width="375" html.valueishtml="0"  name=m_centros_pdn_de_centro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text=" Subcentro Pdn" border="0" color="33554432" x="901" y="8" height="52" width="105" html.valueishtml="0"  name=dt_kamban_corte_co_subcentro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text=" Subcentro Pdn" border="0" color="33554432" x="1609" y="8" height="52" width="5" html.valueishtml="0"  name=m_subcentros_pdn_de_subcentro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Secuencia" border="0" color="33554432" x="9" y="8" height="52" width="402" html.valueishtml="0"  name=m_subcentros_pdn_cs_secuencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="402" format="[general]" html.valueishtml="0"  name=m_subcentros_pdn_cs_secuencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="33554432" x="421" y="8" height="64" width="87" format="[general]" html.valueishtml="0"  name=dt_kamban_corte_co_centro_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="517" y="8" height="64" width="375" format="[general]" html.valueishtml="0"  name=m_centros_pdn_de_centro_pdn visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="901" y="8" height="64" width="105" format="[general]" html.valueishtml="0"  name=dt_kamban_corte_co_subcentro_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1609" y="8" height="64" width="5" format="[general]" html.valueishtml="0"  name=m_subcentros_pdn_de_subcentro_pdn visible="0" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if( dt_kamban_corte_co_subcentro_pdn = 3,'PREPARACION',if( dt_kamban_corte_co_subcentro_pdn = 5 ,'EXTENDIDO',if( dt_kamban_corte_co_subcentro_pdn = 7,'BMC',if( dt_kamban_corte_co_subcentro_pdn = 8,'ESTAMPADO','BORDADO'))))"border="0" color="33554432" x="1015" y="8" height="64" width="585" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
