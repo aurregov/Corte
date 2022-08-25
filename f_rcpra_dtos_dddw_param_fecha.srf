@@ -1,0 +1,44 @@
+HA$PBExportHeader$f_rcpra_dtos_dddw_param_fecha.srf
+global type f_rcpra_dtos_dddw_param_fecha from function_object
+end type
+
+forward prototypes
+global function boolean f_rcpra_dtos_dddw_param_fecha (datawindow dw, string column, transaction tr_object, long as_prmtro, date as_prmtro1)
+end prototypes
+
+global function boolean f_rcpra_dtos_dddw_param_fecha (datawindow dw, string column, transaction tr_object, long as_prmtro, date as_prmtro1);////////////////////////////////////////////////////////////////////////
+//
+//   Function : F_rcprar_dddw
+//
+//   Purpose : Simplifica el proceso de recuperar datos en un dddw para 
+//             ser utilizados en un datawindow
+//
+//   Argumentos : dw : datawindow control; Datawindow que sera afectado
+//				   column : string ; Columna que contiene el dddw
+//	            tr_object : transaction; Transaction object a ser usado
+//					long: con el argumento de recuperacion
+//   Retorna : boolean indicando si la operacion fallo
+//
+//    Log :
+//             DATE        WHO           WHAT
+//            ------      -----     -------------------------------------
+////////////////////////////////////////////////////////////////////////////
+
+
+datawindowchild child_dddw
+int li_rspsta
+// Si no hay una columna dddw retura false
+li_rspsta = dw.GetChild(column,child_dddw)
+if li_rspsta = -1 then return false
+// Si no existe el  transaction object retura false
+li_rspsta = child_dddw.setTransObject(tr_object)
+if li_rspsta = -1 then return false
+// Si no encuentra registro o ocurre un error retura false
+li_rspsta = child_dddw.Retrieve(as_prmtro,as_prmtro1)
+if li_rspsta <=0 then return false
+
+return true // got here ok so return true
+
+
+end function
+
