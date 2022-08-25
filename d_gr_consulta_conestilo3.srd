@@ -1,0 +1,115 @@
+HA$PBExportHeader$d_gr_consulta_conestilo3.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=172 color="536870912" )
+summary(height=156 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_ordenpd_te_pg dbname="m_rollo.cs_ordenpd_te_pg" )
+ column=(type=long updatewhereclause=yes name=cs_ordenpd_pt dbname="h_ordenpd_pt.cs_ordenpd_pt" )
+ column=(type=char(40) updatewhereclause=yes name=h_preref_pv_de_referencia dbname="h_preref_pv.de_referencia" )
+ column=(type=datetime updatewhereclause=yes name=fe_termin_pg dbname="h_ordenpd_pt.fe_termin_pg" )
+ column=(type=decimal(2) updatewhereclause=yes name=kg_btc dbname="kg_btc" )
+ column=(type=decimal(0) updatewhereclause=yes name=rollos dbname="rollos" )
+ column=(type=decimal(2) updatewhereclause=yes name=kg_tanda dbname="kg_tanda" )
+ column=(type=decimal(2) updatewhereclause=yes name=kg_sobrantes dbname="kg_sobrantes" )
+ column=(type=long updatewhereclause=yes name=co_reftel_act dbname="m_rollo.co_reftel_act" )
+ column=(type=long updatewhereclause=yes name=co_cliente dbname="h_ordenpd_pt.co_cliente" )
+ column=(type=long updatewhereclause=yes name=prioridad dbname="h_op_tejido.prioridad" )
+ retrieve="  SELECT m_rollo.cs_ordenpd_te_pg,   
+         h_ordenpd_pt.cs_ordenpd_pt,   
+         h_preref_pv.de_referencia,   
+         h_ordenpd_pt.fe_termin_pg,   
+         sum(m_rollo.ca_kg) as kg_btc,   
+         count(m_rollo.ca_kg) as rollos,   
+         cast (0 as decimal(7,2)) as kg_tanda,   
+         cast (0 as decimal(7,2))  as kg_sobrantes,   
+         m_rollo.co_reftel_act,   
+         h_ordenpd_pt.co_cliente,   
+         h_op_tejido.prioridad  
+    FROM m_rollo,   
+         h_preref_pv,   
+         h_ordenpd_pt,   
+         h_op_tejido  
+   WHERE ( m_rollo.cs_orden_pr_act = h_ordenpd_pt.cs_ordenpd_pt ) and 
+         ( h_preref_pv.co_tipo_ref = 'P') and 
+         ( h_ordenpd_pt.co_fabrica = h_preref_pv.co_fabrica ) and  
+         ( h_ordenpd_pt.co_linea = h_preref_pv.co_linea ) and  
+         ( cast(h_ordenpd_pt.co_referencia as char(15)) = h_preref_pv.co_referencia ) and  
+         ( m_rollo.cs_orden_pr_act = h_op_tejido.cs_ordenpd_pt ) and  
+         ( m_rollo.cs_ordenpd_te_pg = h_op_tejido.cs_op_tejido ) and  
+         ( ( co_centro = 6 ) AND  
+         ( m_rollo.cs_tanda < 3 ) AND  
+         ( h_ordenpd_pt.fe_termin_pg >= :a_fecha_ini ) AND  
+         ( h_ordenpd_pt.fe_termin_pg <= :a_fecha_fin ) AND  
+         (m_rollo.co_reftel_act = :a_tela OR  
+         :a_tela = 0) AND  
+         (m_rollo.co_proveedor = :a_proveedor OR  
+         :a_proveedor = 0) AND  
+         (h_ordenpd_pt.co_cliente = :a_Cliente OR  
+         :a_Cliente = 0) AND  
+         (h_preref_pv.co_marca = cast(:a_marca as char(3)) OR  
+         :a_marca = 0) AND  
+         (h_preref_pv.co_linea_plan = :a_linea OR  
+         :a_linea = 0) AND  
+         (h_preref_pv.de_referencia = :a_estilo OR  
+         :a_estilo = 0) AND  
+         (m_rollo.cs_ordenpd_te_pg = :a_optejido OR  
+         :a_optejido = 0) AND  
+         (m_rollo.cs_orden_pr_act = :a_opestilo OR  
+         :a_opestilo = 0) AND  
+         (h_ordenpd_pt.usuario = :a_programador OR  
+         :a_programador = ~"~") )   
+GROUP BY m_rollo.cs_ordenpd_te_pg,   
+         h_ordenpd_pt.cs_ordenpd_pt,   
+         h_preref_pv.de_referencia,   
+         h_ordenpd_pt.fe_termin_pg,   
+         h_ordenpd_pt.co_cliente,   
+         m_rollo.co_reftel_act,   
+         m_rollo.co_estado_rollo,   
+         m_rollo.cs_tanda,   
+         h_op_tejido.prioridad   
+" arguments=(("a_fecha_ini", datetime),("a_fecha_fin", datetime),("a_tela", number),("a_proveedor", number),("a_Cliente", number),("a_marca", number),("a_linea", number),("a_estilo", number),("a_optejido", number),("a_opestilo", number),("a_programador", string))  sort="telas A cs_ordenpd_te_pg A prioridad A fe_termin_pg A " )
+group(level=1 header.height=0 trailer.height=128 by=("co_reftel_act" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="Referencia 
+ tela" border="6" color="33554432" x="9" y="4" height="160" width="398" html.valueishtml="0"  name=co_reftel_act_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="OP Tejido" border="6" color="33554432" x="416" y="4" height="160" width="411" html.valueishtml="0"  name=m_rollo_cs_ordenpd_te_pg_t visible="1"  moveable=1  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Fecha
+ Despacho" border="6" color="33554432" x="2437" y="4" height="160" width="494" html.valueishtml="0"  name=h_ordenpd_pt_fe_termin_pg_t visible="1"  moveable=1  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Rollos" border="6" color="33554432" x="4247" y="4" height="160" width="297" html.valueishtml="0"  name=rollos_t visible="1"  moveable=1  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Prioridad" border="6" color="33554432" x="2107" y="4" height="160" width="320" html.valueishtml="0"  name=h_op_tejido_prioridad_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Kg 
+ Sobrantes" border="6" color="33554432" x="2939" y="4" height="160" width="402" html.valueishtml="0"  name=kg_sobrantes_t visible="1"  moveable=1  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Kg bodega
+tela cruda" border="6" color="33554432" x="3351" y="4" height="160" width="448" html.valueishtml="0"  name=kg_btc_t visible="1"  moveable=1  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Kg Tanda" border="6" color="33554432" x="3808" y="4" height="160" width="430" html.valueishtml="0"  name=kg_tanda_t visible="1"  moveable=1  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="0" text="Tela :" border="1" color="0" x="416" y="12" height="84" width="411" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header.1 alignment="1" expression=" co_reftel_act "border="1" color="134217856" x="837" y="12" height="84" width="389" format="[General]" html.valueishtml="0"  name=telas visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="0" height="80" width="398" format="[general]" html.valueishtml="0"  name=co_reftel_act visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="416" y="0" height="80" width="411" format="[general]" html.valueishtml="0"  name=cs_ordenpd_te_pg visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432~tif( co_estado_rollo =1,rgb( 255, 255, 255),rgb( 0, 0, 0))" x="837" y="0" height="80" width="389" format="[general]" html.valueishtml="0"  name=cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432~tif( DATE('1900-1-1')=  fe_termin_pg  , RGB(255,255,255), RGB(0,0,0)  )" x="2437" y="0" height="80" width="494" format="[shortdate] " html.valueishtml="0"  name=fe_termin_pg visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="2939" y="0" height="80" width="402" format="[general]" html.valueishtml="0"  name=kg_sobrantes visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="3351" y="0" height="80" width="448" format="[general]" html.valueishtml="0"  name=kg_btc visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="3808" y="0" height="80" width="430" format="[general]" html.valueishtml="0"  name=kg_tanda visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="4247" y="0" height="80" width="297" format="[general]" html.valueishtml="0"  name=rollos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=11 alignment="2" tabsequence=32766 border="0" color="33554432" x="2107" y="0" height="80" width="320" format="[general]" html.valueishtml="0"  name=prioridad visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="1234" y="0" height="64" width="864" format="[general]" html.valueishtml="0"  name=h_preref_pv_de_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=trailer.1 alignment="1" expression=" compute_7+  compute_1"border="6" color="33554432" x="2437" y="20" height="56" width="494" format="#,##0.00" html.valueishtml="0"  name=compute_10 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=trailer.1 alignment="1" expression="sum(kg_tanda for group 1)"border="6" color="33554432" x="3808" y="20" height="56" width="430" format="#,##0.00" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=trailer.1 alignment="1" expression="sum(rollos for group 1)"border="6" color="33554432" x="4247" y="20" height="56" width="297" format="#,##0.00" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=trailer.1 alignment="1" expression="Sum(kg_btc for group 1)"border="6" color="33554432" x="3351" y="20" height="56" width="448" format="#,##0.00" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=trailer.1 alignment="1" expression="sum( kg_sobrantes for group 1  )"border="6" color="33554432" x="2939" y="20" height="56" width="402" format="[GENERAL]" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=summary alignment="1" expression=" compute_5 + compute_8 + compute_4 "border="6" color="33554432" x="2437" y="56" height="56" width="494" format="#,##0" html.valueishtml="0"  name=compute_9 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+compute(band=summary alignment="1" expression="sum(   kg_tanda   for all )"border="6" color="33554432" x="3808" y="56" height="56" width="430" format="#,##0" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+compute(band=summary alignment="1" expression="sum(  rollos  for all )"border="6" color="33554432" x="4247" y="56" height="56" width="297" format="#,##0" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+compute(band=summary alignment="1" expression="sum(  kg_btc  for all )"border="6" color="33554432" x="3351" y="56" height="56" width="448" format="#,##0" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+compute(band=summary alignment="1" expression="sum(  kg_sobrantes for   all )"border="6" color="33554432" x="2939" y="56" height="56" width="402" format="#,##0" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+text(band=header alignment="2" text="OP Estilo" border="6" color="33554432" x="837" y="4" height="160" width="389" html.valueishtml="0"  name=h_ordenpd_pt_cs_ordenpd_pt_t visible="1"  moveable=1  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Estilo" border="6" color="0" x="1234" y="4" height="160" width="864" html.valueishtml="0"  name=h_preref_pv_de_referencia_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+
+sparse(names="co_reftel_act")htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
