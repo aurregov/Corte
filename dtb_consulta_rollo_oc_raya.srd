@@ -1,0 +1,130 @@
+HA$PBExportHeader$dtb_consulta_rollo_oc_raya.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=112 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=dt_rollos_libera_co_fabrica_exp dbname="dt_rollos_libera.co_fabrica_exp" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_rollos_libera_cs_liberacion dbname="dt_rollos_libera.cs_liberacion" )
+ column=(type=char(20) update=yes updatewhereclause=yes key=yes name=dt_rollos_libera_nu_orden dbname="dt_rollos_libera.nu_orden" )
+ column=(type=char(10) update=yes updatewhereclause=yes key=yes name=dt_rollos_libera_nu_cut dbname="dt_rollos_libera.nu_cut" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_rollos_libera_co_fabrica_pt dbname="dt_rollos_libera.co_fabrica_pt" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_rollos_libera_co_linea dbname="dt_rollos_libera.co_linea" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_rollos_libera_co_referencia dbname="dt_rollos_libera.co_referencia" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_rollos_libera_co_color_pt dbname="dt_rollos_libera.co_color_pt" )
+ column=(type=char(2) update=yes updatewhereclause=yes key=yes name=dt_rollos_libera_co_tono dbname="dt_rollos_libera.co_tono" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_rollos_libera_co_modelo dbname="dt_rollos_libera.co_modelo" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_rollos_libera_co_fabrica_tela dbname="dt_rollos_libera.co_fabrica_tela" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_rollos_libera_co_reftel dbname="dt_rollos_libera.co_reftel" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_rollos_libera_co_caract dbname="dt_rollos_libera.co_caract" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_rollos_libera_diametro dbname="dt_rollos_libera.diametro" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_rollos_libera_co_color_tela dbname="dt_rollos_libera.co_color_tela" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_rollo dbname="dt_rollos_libera.cs_rollo" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_metros dbname="dt_rollos_libera.ca_metros" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_unidades dbname="dt_rollos_libera.ca_unidades" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="dt_rollos_libera.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="dt_rollos_libera.instancia" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="dt_rollos_libera.fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="dt_rollos_libera.fe_actualizacion" )
+ column=(type=long updatewhereclause=yes name=raya dbname="dt_telaxmodelo_lib.raya" )
+ retrieve="select dt_rollos_libera.*, dt_telaxmodelo_lib.raya
+from dt_pdnxmodulo, dt_telaxmodelo_lib, dt_rollos_libera
+where dt_pdnxmodulo.cs_asignacion = :al_ordencorte and
+		dt_pdnxmodulo.co_fabrica_exp = dt_telaxmodelo_lib.co_fabrica_exp and
+		dt_pdnxmodulo.cs_liberacion = dt_telaxmodelo_lib.cs_liberacion and
+		dt_pdnxmodulo.po = dt_telaxmodelo_lib.nu_orden and
+		dt_pdnxmodulo.nu_cut = dt_telaxmodelo_lib.nu_cut and
+		dt_pdnxmodulo.co_fabrica_pt = dt_telaxmodelo_lib.co_fabrica_pt and
+		dt_pdnxmodulo.co_linea = dt_telaxmodelo_lib.co_linea and
+		dt_pdnxmodulo.co_referencia = dt_telaxmodelo_lib.co_referencia and
+		dt_pdnxmodulo.co_color_pt = dt_telaxmodelo_lib.co_color_pt and
+		dt_pdnxmodulo.tono = dt_telaxmodelo_lib.co_tono and
+		( dt_telaxmodelo_lib.raya = :ai_raya or 
+		:ai_raya = 0 ) and
+		dt_rollos_libera.co_fabrica_exp = dt_telaxmodelo_lib.co_fabrica_exp and
+		dt_rollos_libera.cs_liberacion = dt_telaxmodelo_lib.cs_liberacion and
+		dt_rollos_libera.nu_orden = dt_telaxmodelo_lib.nu_orden and
+		dt_rollos_libera.nu_cut = dt_telaxmodelo_lib.nu_cut and
+		dt_rollos_libera.co_fabrica_pt = dt_telaxmodelo_lib.co_fabrica_pt and
+		dt_rollos_libera.co_linea = dt_telaxmodelo_lib.co_linea and
+		dt_rollos_libera.co_referencia = dt_telaxmodelo_lib.co_referencia and
+		dt_rollos_libera.co_color_pt = dt_telaxmodelo_lib.co_color_pt and
+		dt_rollos_libera.co_tono = dt_telaxmodelo_lib.co_tono and
+		dt_rollos_libera.co_modelo = dt_telaxmodelo_lib.co_modelo and
+		dt_rollos_libera.co_fabrica_tela = dt_telaxmodelo_lib.co_fabrica_tela and
+		dt_rollos_libera.co_reftel = dt_telaxmodelo_lib.co_reftel and
+		dt_rollos_libera.co_caract = dt_telaxmodelo_lib.co_caract and
+		dt_rollos_libera.diametro = dt_telaxmodelo_lib.diametro and
+		dt_rollos_libera.co_color_tela = dt_telaxmodelo_lib.co_color_tela and
+		( dt_rollos_libera.cs_rollo = :al_rollo or
+		:al_rollo = 0 )" update="dt_rollos_libera" updatewhere=0 updatekeyinplace=no arguments=(("al_ordencorte", number),("ai_raya", number),("al_rollo", number)) )
+text(band=header alignment="2" text="Dt Rollos Libera
+Co Fabrica Exp" border="0" color="33554432" x="5" y="4" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_co_fabrica_exp_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Cs Liberacion" border="0" color="33554432" x="352" y="4" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_cs_liberacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Nu Orden" border="0" color="33554432" x="699" y="4" height="104" width="480" html.valueishtml="0"  name=dt_rollos_libera_nu_orden_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Nu Cut" border="0" color="33554432" x="1184" y="4" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_nu_cut_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Co Fabrica Pt" border="0" color="33554432" x="1536" y="4" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_co_fabrica_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Co Linea" border="0" color="33554432" x="1883" y="4" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Co Referencia" border="0" color="33554432" x="2231" y="4" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Co Color Pt" border="0" color="33554432" x="2578" y="4" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_co_color_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Co Tono" border="0" color="33554432" x="2926" y="4" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_co_tono_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Co Modelo" border="0" color="33554432" x="3273" y="4" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_co_modelo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Co Fabrica Tela" border="0" color="33554432" x="3621" y="4" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_co_fabrica_tela_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Co Reftel" border="0" color="33554432" x="3968" y="4" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_co_reftel_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Co Caract" border="0" color="33554432" x="4320" y="4" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_co_caract_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Diametro" border="0" color="33554432" x="4667" y="4" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_diametro_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Co Color Tela" border="0" color="33554432" x="5015" y="4" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_co_color_tela_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Cs Rollo" border="0" color="33554432" x="5362" y="4" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_cs_rollo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Ca Metros" border="0" color="33554432" x="5710" y="4" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_ca_metros_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Ca Unidades" border="0" color="33554432" x="6057" y="4" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_ca_unidades_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Usuario" border="0" color="33554432" x="6405" y="4" height="104" width="343" html.valueishtml="0"  name=dt_rollos_libera_usuario_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Instancia" border="0" color="33554432" x="6752" y="4" height="104" width="480" html.valueishtml="0"  name=dt_rollos_libera_instancia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Fe Creacion" border="0" color="33554432" x="7241" y="4" height="104" width="503" html.valueishtml="0"  name=dt_rollos_libera_fe_creacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Rollos Libera
+Fe Actualizacion" border="0" color="33554432" x="7749" y="4" height="104" width="503" html.valueishtml="0"  name=dt_rollos_libera_fe_actualizacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_rollos_libera_co_fabrica_exp visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="352" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_rollos_libera_cs_liberacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="699" y="4" height="64" width="480" format="[general]" html.valueishtml="0"  name=dt_rollos_libera_nu_orden visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1184" y="4" height="64" width="251" format="[general]" html.valueishtml="0"  name=dt_rollos_libera_nu_cut visible="1" edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1536" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_rollos_libera_co_fabrica_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1883" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_rollos_libera_co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="2231" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_rollos_libera_co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="2578" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_rollos_libera_co_color_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="2926" y="4" height="64" width="69" format="[general]" html.valueishtml="0"  name=dt_rollos_libera_co_tono visible="1" edit.limit=2 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="33554432" x="3273" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_rollos_libera_co_modelo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="0" color="33554432" x="3621" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_rollos_libera_co_fabrica_tela visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="0" color="33554432" x="3968" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_rollos_libera_co_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="0" color="33554432" x="4320" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_rollos_libera_co_caract visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="0" color="33554432" x="4667" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_rollos_libera_diametro visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="1" tabsequence=32766 border="0" color="33554432" x="5015" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_rollos_libera_co_color_tela visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="1" tabsequence=32766 border="0" color="33554432" x="5362" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_rollo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="1" tabsequence=32766 border="0" color="33554432" x="5710" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=ca_metros visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="1" tabsequence=32766 border="0" color="33554432" x="6057" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=ca_unidades visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="33554432" x="6405" y="4" height="64" width="206" format="[general]" html.valueishtml="0"  name=usuario visible="1" edit.limit=8 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="33554432" x="6752" y="4" height="64" width="480" format="[general]" html.valueishtml="0"  name=instancia visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="0" color="33554432" x="7241" y="4" height="64" width="503" format="[shortdate] [time]" html.valueishtml="0"  name=fe_creacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="0" tabsequence=32766 border="0" color="33554432" x="7749" y="4" height="64" width="503" format="[shortdate] [time]" html.valueishtml="0"  name=fe_actualizacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="0" tabsequence=32766 border="0" color="33554432" x="8251" y="4" height="64" width="366" format="[general]" html.valueishtml="0"  name=raya visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
