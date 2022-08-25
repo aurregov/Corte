@@ -1,0 +1,16 @@
+HA$PBExportHeader$dddw_tipo_producto.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=co_tipoprod dbname="m_tipo_producto.co_tipoprod" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=de_tipoprod dbname="m_tipo_producto.de_tipoprod" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"m_tipo_producto~" ) COLUMN(NAME=~"m_tipo_producto.co_tipoprod~") COLUMN(NAME=~"m_tipo_producto.de_tipoprod~")) ORDER(NAME=~"m_tipo_producto.co_tipoprod~" ASC=yes ) " update="m_tipo_producto" updatewhere=1 updatekeyinplace=no )
+text(band=header alignment="2" text="C$$HEX1$$f300$$ENDHEX$$digo" border="0" color="0" x="9" y="8" height="56" width="197"  name=co_tipoprod_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="0" text="Descripci$$HEX1$$f300$$ENDHEX$$n" border="0" color="0" x="215" y="8" height="56" width="850"  name=de_tipoprod_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=1 alignment="2" tabsequence=10 border="0" color="0" x="9" y="0" height="64" width="197" format="[general]"  name=co_tipoprod edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="215" y="0" height="64" width="850" format="[general]"  name=de_tipoprod edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
