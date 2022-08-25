@@ -1,0 +1,1525 @@
+HA$PBExportHeader$m_cambiar_mesa.srm
+forward
+global type m_cambiar_mesa from m_mantenimiento_simple
+end type
+end forward
+
+global type m_cambiar_mesa from m_mantenimiento_simple
+end type
+global m_cambiar_mesa m_cambiar_mesa
+
+on m_cambiar_mesa.create
+m_cambiar_mesa=this
+call super::create
+this.text = "m_cambiar_mesa"
+end on
+
+on m_cambiar_mesa.destroy
+call super::destroy
+end on
+
+type m_archivo from m_mantenimiento_simple`m_archivo within m_cambiar_mesa
+end type
+
+on m_archivo.create
+call super::create
+end on
+
+on m_archivo.destroy
+call super::destroy
+end on
+
+type m_cerrar from m_mantenimiento_simple`m_cerrar within m_archivo
+end type
+
+on m_cerrar.create
+call super::create
+end on
+
+on m_cerrar.destroy
+call super::destroy
+end on
+
+type m_grabar from m_mantenimiento_simple`m_grabar within m_archivo
+end type
+
+on m_grabar.create
+call super::create
+end on
+
+on m_grabar.destroy
+call super::destroy
+end on
+
+type m_- from m_mantenimiento_simple`m_- within m_archivo
+end type
+
+on m_-.create
+call super::create
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_configurarimpresora from m_mantenimiento_simple`m_configurarimpresora within m_archivo
+end type
+
+on m_configurarimpresora.create
+call super::create
+end on
+
+on m_configurarimpresora.destroy
+call super::destroy
+end on
+
+type m_imprimir from m_mantenimiento_simple`m_imprimir within m_archivo
+end type
+
+on m_imprimir.create
+call super::create
+end on
+
+on m_imprimir.destroy
+call super::destroy
+end on
+
+type m_-1 from m_mantenimiento_simple`m_-1 within m_archivo
+end type
+
+on m_-1.create
+call super::create
+end on
+
+on m_-1.destroy
+call super::destroy
+end on
+
+type m_salir from m_mantenimiento_simple`m_salir within m_archivo
+end type
+
+on m_salir.create
+call super::create
+end on
+
+on m_salir.destroy
+call super::destroy
+end on
+
+type m_edicion from m_mantenimiento_simple`m_edicion within m_cambiar_mesa
+end type
+
+on m_edicion.create
+call super::create
+end on
+
+on m_edicion.destroy
+call super::destroy
+end on
+
+type m_buscar from m_mantenimiento_simple`m_buscar within m_edicion
+end type
+
+on m_buscar.create
+call super::create
+this.visible = false
+this.enabled = false
+this.toolbaritemvisible = false
+end on
+
+on m_buscar.destroy
+call super::destroy
+end on
+
+type m_-2 from m_mantenimiento_simple`m_-2 within m_edicion
+end type
+
+on m_-2.create
+call super::create
+end on
+
+on m_-2.destroy
+call super::destroy
+end on
+
+type m_insertarmaestro from m_mantenimiento_simple`m_insertarmaestro within m_edicion
+end type
+
+on m_insertarmaestro.create
+call super::create
+this.visible = false
+this.enabled = false
+this.toolbaritemvisible = false
+end on
+
+on m_insertarmaestro.destroy
+call super::destroy
+end on
+
+type m_borrarmaestro from m_mantenimiento_simple`m_borrarmaestro within m_edicion
+end type
+
+on m_borrarmaestro.create
+call super::create
+this.visible = false
+this.enabled = false
+this.toolbaritemvisible = false
+end on
+
+on m_borrarmaestro.destroy
+call super::destroy
+end on
+
+type m_-3 from m_mantenimiento_simple`m_-3 within m_edicion
+end type
+
+on m_-3.create
+call super::create
+end on
+
+on m_-3.destroy
+call super::destroy
+end on
+
+type m_insertardetalle from m_mantenimiento_simple`m_insertardetalle within m_edicion
+end type
+
+on m_insertardetalle.create
+call super::create
+end on
+
+on m_insertardetalle.destroy
+call super::destroy
+end on
+
+type m_borrardetalle from m_mantenimiento_simple`m_borrardetalle within m_edicion
+end type
+
+on m_borrardetalle.create
+call super::create
+end on
+
+on m_borrardetalle.destroy
+call super::destroy
+end on
+
+type m_-5 from m_mantenimiento_simple`m_-5 within m_edicion
+end type
+
+on m_-5.create
+call super::create
+end on
+
+on m_-5.destroy
+call super::destroy
+end on
+
+type m_insertarsubdetalle from m_mantenimiento_simple`m_insertarsubdetalle within m_edicion
+end type
+
+on m_insertarsubdetalle.create
+call super::create
+end on
+
+on m_insertarsubdetalle.destroy
+call super::destroy
+end on
+
+type m_borrarsubdetalle from m_mantenimiento_simple`m_borrarsubdetalle within m_edicion
+end type
+
+on m_borrarsubdetalle.create
+call super::create
+end on
+
+on m_borrarsubdetalle.destroy
+call super::destroy
+end on
+
+type m_administracin from m_mantenimiento_simple`m_administracin within m_cambiar_mesa
+end type
+
+on m_administracin.create
+call super::create
+end on
+
+on m_administracin.destroy
+call super::destroy
+end on
+
+type m_mantenimientodeerroresbd from m_mantenimiento_simple`m_mantenimientodeerroresbd within m_administracin
+end type
+
+on m_mantenimientodeerroresbd.create
+call super::create
+end on
+
+on m_mantenimientodeerroresbd.destroy
+call super::destroy
+end on
+
+type m_mantenimientodereportes from m_mantenimiento_simple`m_mantenimientodereportes within m_administracin
+end type
+
+on m_mantenimientodereportes.create
+call super::create
+end on
+
+on m_mantenimientodereportes.destroy
+call super::destroy
+end on
+
+type m_-9 from m_mantenimiento_simple`m_-9 within m_administracin
+end type
+
+on m_-9.create
+call super::create
+end on
+
+on m_-9.destroy
+call super::destroy
+end on
+
+type m_tablasmaestras from m_mantenimiento_simple`m_tablasmaestras within m_administracin
+end type
+
+on m_tablasmaestras.create
+call super::create
+end on
+
+on m_tablasmaestras.destroy
+call super::destroy
+end on
+
+type m_unidades from m_mantenimiento_simple`m_unidades within m_tablasmaestras
+end type
+
+on m_unidades.create
+call super::create
+end on
+
+on m_unidades.destroy
+call super::destroy
+end on
+
+type m_metodosprogramaci$$HEX1$$f300$$ENDHEX$$n from m_mantenimiento_simple`m_metodosprogramaci$$HEX1$$f300$$ENDHEX$$n within m_tablasmaestras
+end type
+
+on m_metodosprogramaci$$HEX1$$f300$$ENDHEX$$n.create
+call super::create
+end on
+
+on m_metodosprogramaci$$HEX1$$f300$$ENDHEX$$n.destroy
+call super::destroy
+end on
+
+type m_consumoproceso from m_mantenimiento_simple`m_consumoproceso within m_tablasmaestras
+end type
+
+on m_consumoproceso.create
+call super::create
+end on
+
+on m_consumoproceso.destroy
+call super::destroy
+end on
+
+type m_estadosproducci$$HEX1$$f300$$ENDHEX$$ncorte from m_mantenimiento_simple`m_estadosproducci$$HEX1$$f300$$ENDHEX$$ncorte within m_tablasmaestras
+end type
+
+on m_estadosproducci$$HEX1$$f300$$ENDHEX$$ncorte.create
+call super::create
+end on
+
+on m_estadosproducci$$HEX1$$f300$$ENDHEX$$ncorte.destroy
+call super::destroy
+end on
+
+type m_3 from m_mantenimiento_simple`m_3 within m_tablasmaestras
+end type
+
+on m_3.create
+call super::create
+end on
+
+on m_3.destroy
+call super::destroy
+end on
+
+type m_requisitos from m_mantenimiento_simple`m_requisitos within m_tablasmaestras
+end type
+
+on m_requisitos.create
+call super::create
+end on
+
+on m_requisitos.destroy
+call super::destroy
+end on
+
+type m_maestrodeproveedoresde from m_mantenimiento_simple`m_maestrodeproveedoresde within m_tablasmaestras
+end type
+
+on m_maestrodeproveedoresde.create
+call super::create
+end on
+
+on m_maestrodeproveedoresde.destroy
+call super::destroy
+end on
+
+type m_areas from m_mantenimiento_simple`m_areas within m_tablasmaestras
+end type
+
+on m_areas.create
+call super::create
+end on
+
+on m_areas.destroy
+call super::destroy
+end on
+
+type m_partesporreferencia from m_mantenimiento_simple`m_partesporreferencia within m_tablasmaestras
+end type
+
+on m_partesporreferencia.create
+call super::create
+end on
+
+on m_partesporreferencia.destroy
+call super::destroy
+end on
+
+type m_1 from m_mantenimiento_simple`m_1 within m_tablasmaestras
+end type
+
+on m_1.create
+call super::create
+end on
+
+on m_1.destroy
+call super::destroy
+end on
+
+type m_maestrosflujos from m_mantenimiento_simple`m_maestrosflujos within m_tablasmaestras
+end type
+
+on m_maestrosflujos.create
+call super::create
+end on
+
+on m_maestrosflujos.destroy
+call super::destroy
+end on
+
+type m_maestroetapas from m_mantenimiento_simple`m_maestroetapas within m_tablasmaestras
+end type
+
+on m_maestroetapas.create
+call super::create
+end on
+
+on m_maestroetapas.destroy
+call super::destroy
+end on
+
+type m_maestroconceptos from m_mantenimiento_simple`m_maestroconceptos within m_tablasmaestras
+end type
+
+on m_maestroconceptos.create
+call super::create
+end on
+
+on m_maestroconceptos.destroy
+call super::destroy
+end on
+
+type m_maestrodetransaciones from m_mantenimiento_simple`m_maestrodetransaciones within m_tablasmaestras
+end type
+
+on m_maestrodetransaciones.create
+call super::create
+end on
+
+on m_maestrodetransaciones.destroy
+call super::destroy
+end on
+
+type m_-10 from m_mantenimiento_simple`m_-10 within m_administracin
+end type
+
+on m_-10.create
+call super::create
+end on
+
+on m_-10.destroy
+call super::destroy
+end on
+
+type m_relacionesb$$HEX1$$e100$$ENDHEX$$sicas from m_mantenimiento_simple`m_relacionesb$$HEX1$$e100$$ENDHEX$$sicas within m_administracin
+end type
+
+on m_relacionesb$$HEX1$$e100$$ENDHEX$$sicas.create
+call super::create
+end on
+
+on m_relacionesb$$HEX1$$e100$$ENDHEX$$sicas.destroy
+call super::destroy
+end on
+
+type m_procesosproducci$$HEX1$$f300$$ENDHEX$$n from m_mantenimiento_simple`m_procesosproducci$$HEX1$$f300$$ENDHEX$$n within m_relacionesb$$HEX1$$e100$$ENDHEX$$sicas
+end type
+
+on m_procesosproducci$$HEX1$$f300$$ENDHEX$$n.create
+call super::create
+end on
+
+on m_procesosproducci$$HEX1$$f300$$ENDHEX$$n.destroy
+call super::destroy
+end on
+
+type m_minutosportela from m_mantenimiento_simple`m_minutosportela within m_relacionesb$$HEX1$$e100$$ENDHEX$$sicas
+end type
+
+on m_minutosportela.create
+call super::create
+end on
+
+on m_minutosportela.destroy
+call super::destroy
+end on
+
+type m_unidadesprendaporm$$HEX1$$f300$$ENDHEX$$dulo from m_mantenimiento_simple`m_unidadesprendaporm$$HEX1$$f300$$ENDHEX$$dulo within m_relacionesb$$HEX1$$e100$$ENDHEX$$sicas
+end type
+
+on m_unidadesprendaporm$$HEX1$$f300$$ENDHEX$$dulo.create
+call super::create
+end on
+
+on m_unidadesprendaporm$$HEX1$$f300$$ENDHEX$$dulo.destroy
+call super::destroy
+end on
+
+type m_calendariogeneral from m_mantenimiento_simple`m_calendariogeneral within m_relacionesb$$HEX1$$e100$$ENDHEX$$sicas
+end type
+
+on m_calendariogeneral.create
+call super::create
+end on
+
+on m_calendariogeneral.destroy
+call super::destroy
+end on
+
+type m_calendarioporm$$HEX1$$f300$$ENDHEX$$dulo from m_mantenimiento_simple`m_calendarioporm$$HEX1$$f300$$ENDHEX$$dulo within m_relacionesb$$HEX1$$e100$$ENDHEX$$sicas
+end type
+
+on m_calendarioporm$$HEX1$$f300$$ENDHEX$$dulo.create
+call super::create
+end on
+
+on m_calendarioporm$$HEX1$$f300$$ENDHEX$$dulo.destroy
+call super::destroy
+end on
+
+type m_2 from m_mantenimiento_simple`m_2 within m_relacionesb$$HEX1$$e100$$ENDHEX$$sicas
+end type
+
+on m_2.create
+call super::create
+end on
+
+on m_2.destroy
+call super::destroy
+end on
+
+type m_partesporreferencia0 from m_mantenimiento_simple`m_partesporreferencia0 within m_relacionesb$$HEX1$$e100$$ENDHEX$$sicas
+end type
+
+on m_partesporreferencia0.create
+call super::create
+end on
+
+on m_partesporreferencia0.destroy
+call super::destroy
+end on
+
+type m_partesporestilo from m_mantenimiento_simple`m_partesporestilo within m_relacionesb$$HEX1$$e100$$ENDHEX$$sicas
+end type
+
+on m_partesporestilo.create
+call super::create
+end on
+
+on m_partesporestilo.destroy
+call super::destroy
+end on
+
+type m_linea8 from m_mantenimiento_simple`m_linea8 within m_administracin
+end type
+
+on m_linea8.create
+call super::create
+end on
+
+on m_linea8.destroy
+call super::destroy
+end on
+
+type m_transacciones from m_mantenimiento_simple`m_transacciones within m_administracin
+end type
+
+on m_transacciones.create
+call super::create
+end on
+
+on m_transacciones.destroy
+call super::destroy
+end on
+
+type m_agrupapdn from m_mantenimiento_simple`m_agrupapdn within m_transacciones
+end type
+
+on m_agrupapdn.create
+call super::create
+end on
+
+on m_agrupapdn.destroy
+call super::destroy
+end on
+
+type m_agrupaciones from m_mantenimiento_simple`m_agrupaciones within m_transacciones
+end type
+
+on m_agrupaciones.create
+call super::create
+end on
+
+on m_agrupaciones.destroy
+call super::destroy
+end on
+
+type m_asignaci$$HEX1$$f300$$ENDHEX$$ncorte from m_mantenimiento_simple`m_asignaci$$HEX1$$f300$$ENDHEX$$ncorte within m_transacciones
+end type
+
+on m_asignaci$$HEX1$$f300$$ENDHEX$$ncorte.create
+call super::create
+end on
+
+on m_asignaci$$HEX1$$f300$$ENDHEX$$ncorte.destroy
+call super::destroy
+end on
+
+type m_planeaci$$HEX1$$f300$$ENDHEX$$nconfecci$$HEX1$$f300$$ENDHEX$$n from m_mantenimiento_simple`m_planeaci$$HEX1$$f300$$ENDHEX$$nconfecci$$HEX1$$f300$$ENDHEX$$n within m_transacciones
+end type
+
+on m_planeaci$$HEX1$$f300$$ENDHEX$$nconfecci$$HEX1$$f300$$ENDHEX$$n.create
+call super::create
+end on
+
+on m_planeaci$$HEX1$$f300$$ENDHEX$$nconfecci$$HEX1$$f300$$ENDHEX$$n.destroy
+call super::destroy
+end on
+
+type m_secciontrazos from m_mantenimiento_simple`m_secciontrazos within m_transacciones
+end type
+
+on m_secciontrazos.create
+call super::create
+end on
+
+on m_secciontrazos.destroy
+call super::destroy
+end on
+
+type m_programaci$$HEX1$$f300$$ENDHEX$$ntrazosversi$$HEX1$$f300$$ENDHEX$$n2 from m_mantenimiento_simple`m_programaci$$HEX1$$f300$$ENDHEX$$ntrazosversi$$HEX1$$f300$$ENDHEX$$n2 within m_transacciones
+end type
+
+on m_programaci$$HEX1$$f300$$ENDHEX$$ntrazosversi$$HEX1$$f300$$ENDHEX$$n2.create
+call super::create
+end on
+
+on m_programaci$$HEX1$$f300$$ENDHEX$$ntrazosversi$$HEX1$$f300$$ENDHEX$$n2.destroy
+call super::destroy
+end on
+
+type m_ordendecorte from m_mantenimiento_simple`m_ordendecorte within m_transacciones
+end type
+
+on m_ordendecorte.create
+call super::create
+end on
+
+on m_ordendecorte.destroy
+call super::destroy
+end on
+
+type m_liquidacionordencorte from m_mantenimiento_simple`m_liquidacionordencorte within m_transacciones
+end type
+
+on m_liquidacionordencorte.create
+call super::create
+end on
+
+on m_liquidacionordencorte.destroy
+call super::destroy
+end on
+
+type m_liquidaci$$HEX1$$f300$$ENDHEX$$nespacio from m_mantenimiento_simple`m_liquidaci$$HEX1$$f300$$ENDHEX$$nespacio within m_transacciones
+end type
+
+on m_liquidaci$$HEX1$$f300$$ENDHEX$$nespacio.create
+call super::create
+end on
+
+on m_liquidaci$$HEX1$$f300$$ENDHEX$$nespacio.destroy
+call super::destroy
+end on
+
+type m_liquidacionporespacio from m_mantenimiento_simple`m_liquidacionporespacio within m_transacciones
+end type
+
+on m_liquidacionporespacio.create
+call super::create
+end on
+
+on m_liquidacionporespacio.destroy
+call super::destroy
+end on
+
+type m_loteo from m_mantenimiento_simple`m_loteo within m_transacciones
+end type
+
+on m_loteo.create
+call super::create
+end on
+
+on m_loteo.destroy
+call super::destroy
+end on
+
+type m_asignarm$$HEX1$$f300$$ENDHEX$$duloacanasta from m_mantenimiento_simple`m_asignarm$$HEX1$$f300$$ENDHEX$$duloacanasta within m_transacciones
+end type
+
+on m_asignarm$$HEX1$$f300$$ENDHEX$$duloacanasta.create
+call super::create
+end on
+
+on m_asignarm$$HEX1$$f300$$ENDHEX$$duloacanasta.destroy
+call super::destroy
+end on
+
+type m_fechasrequisitos from m_mantenimiento_simple`m_fechasrequisitos within m_transacciones
+end type
+
+on m_fechasrequisitos.create
+call super::create
+end on
+
+on m_fechasrequisitos.destroy
+call super::destroy
+end on
+
+type m_planeacion2 from m_mantenimiento_simple`m_planeacion2 within m_transacciones
+end type
+
+on m_planeacion2.create
+call super::create
+end on
+
+on m_planeacion2.destroy
+call super::destroy
+end on
+
+type m_pruebasagrupamiento from m_mantenimiento_simple`m_pruebasagrupamiento within m_transacciones
+end type
+
+on m_pruebasagrupamiento.create
+call super::create
+end on
+
+on m_pruebasagrupamiento.destroy
+call super::destroy
+end on
+
+type m_reportes from m_mantenimiento_simple`m_reportes within m_administracin
+end type
+
+on m_reportes.create
+call super::create
+end on
+
+on m_reportes.destroy
+call super::destroy
+end on
+
+type m_opcin2 from m_mantenimiento_simple`m_opcin2 within m_cambiar_mesa
+end type
+
+on m_opcin2.create
+call super::create
+end on
+
+on m_opcin2.destroy
+call super::destroy
+end on
+
+type m_generarcalendariogeneral from m_mantenimiento_simple`m_generarcalendariogeneral within m_opcin2
+end type
+
+on m_generarcalendariogeneral.create
+call super::create
+end on
+
+on m_generarcalendariogeneral.destroy
+call super::destroy
+end on
+
+type m_generarcalendarioporm$$HEX1$$f300$$ENDHEX$$dulo from m_mantenimiento_simple`m_generarcalendarioporm$$HEX1$$f300$$ENDHEX$$dulo within m_opcin2
+end type
+
+on m_generarcalendarioporm$$HEX1$$f300$$ENDHEX$$dulo.create
+call super::create
+end on
+
+on m_generarcalendarioporm$$HEX1$$f300$$ENDHEX$$dulo.destroy
+call super::destroy
+end on
+
+type m_-8 from m_mantenimiento_simple`m_-8 within m_opcin2
+end type
+
+on m_-8.create
+call super::create
+end on
+
+on m_-8.destroy
+call super::destroy
+end on
+
+type m_copiarcalendarioporm$$HEX1$$f300$$ENDHEX$$dulo from m_mantenimiento_simple`m_copiarcalendarioporm$$HEX1$$f300$$ENDHEX$$dulo within m_opcin2
+end type
+
+on m_copiarcalendarioporm$$HEX1$$f300$$ENDHEX$$dulo.create
+call super::create
+end on
+
+on m_copiarcalendarioporm$$HEX1$$f300$$ENDHEX$$dulo.destroy
+call super::destroy
+end on
+
+type m_copiarsimulaciones from m_mantenimiento_simple`m_copiarsimulaciones within m_opcin2
+end type
+
+on m_copiarsimulaciones.create
+call super::create
+end on
+
+on m_copiarsimulaciones.destroy
+call super::destroy
+end on
+
+type m_cargainicial from m_mantenimiento_simple`m_cargainicial within m_opcin2
+end type
+
+on m_cargainicial.create
+call super::create
+end on
+
+on m_cargainicial.destroy
+call super::destroy
+end on
+
+type m_invf$$HEX1$$ed00$$ENDHEX$$sicodebongos from m_mantenimiento_simple`m_invf$$HEX1$$ed00$$ENDHEX$$sicodebongos within m_opcin2
+end type
+
+on m_invf$$HEX1$$ed00$$ENDHEX$$sicodebongos.create
+call super::create
+end on
+
+on m_invf$$HEX1$$ed00$$ENDHEX$$sicodebongos.destroy
+call super::destroy
+end on
+
+type m_devoluci$$HEX1$$f300$$ENDHEX$$nderollos from m_mantenimiento_simple`m_devoluci$$HEX1$$f300$$ENDHEX$$nderollos within m_opcin2
+end type
+
+on m_devoluci$$HEX1$$f300$$ENDHEX$$nderollos.create
+call super::create
+end on
+
+on m_devoluci$$HEX1$$f300$$ENDHEX$$nderollos.destroy
+call super::destroy
+end on
+
+type m_cambiarcantidadadicional from m_mantenimiento_simple`m_cambiarcantidadadicional within m_opcin2
+end type
+
+on m_cambiarcantidadadicional.create
+call super::create
+end on
+
+on m_cambiarcantidadadicional.destroy
+call super::destroy
+end on
+
+type m_4 from m_mantenimiento_simple`m_4 within m_opcin2
+end type
+
+on m_4.create
+call super::create
+end on
+
+on m_4.destroy
+call super::destroy
+end on
+
+type m_actualizainventario from m_mantenimiento_simple`m_actualizainventario within m_opcin2
+end type
+
+on m_actualizainventario.create
+call super::create
+end on
+
+on m_actualizainventario.destroy
+call super::destroy
+end on
+
+type m_5 from m_mantenimiento_simple`m_5 within m_opcin2
+end type
+
+on m_5.create
+call super::create
+end on
+
+on m_5.destroy
+call super::destroy
+end on
+
+type m_usuariosporaplicaci$$HEX1$$f300$$ENDHEX$$n from m_mantenimiento_simple`m_usuariosporaplicaci$$HEX1$$f300$$ENDHEX$$n within m_opcin2
+end type
+
+on m_usuariosporaplicaci$$HEX1$$f300$$ENDHEX$$n.create
+call super::create
+end on
+
+on m_usuariosporaplicaci$$HEX1$$f300$$ENDHEX$$n.destroy
+call super::destroy
+end on
+
+type m_modificarproducci$$HEX2$$f3002000$$ENDHEX$$from m_mantenimiento_simple`m_modificarproducci$$HEX2$$f3002000$$ENDHEX$$within m_opcin2
+end type
+
+on m_modificarproducci$$HEX1$$f300$$ENDHEX$$.create
+call super::create
+end on
+
+on m_modificarproducci$$HEX1$$f300$$ENDHEX$$.destroy
+call super::destroy
+end on
+
+type m_opcin3 from m_mantenimiento_simple`m_opcin3 within m_cambiar_mesa
+end type
+
+on m_opcin3.create
+call super::create
+end on
+
+on m_opcin3.destroy
+call super::destroy
+end on
+
+type m_ordenplaneaci$$HEX1$$f300$$ENDHEX$$n from m_mantenimiento_simple`m_ordenplaneaci$$HEX1$$f300$$ENDHEX$$n within m_opcin3
+end type
+
+on m_ordenplaneaci$$HEX1$$f300$$ENDHEX$$n.create
+call super::create
+end on
+
+on m_ordenplaneaci$$HEX1$$f300$$ENDHEX$$n.destroy
+call super::destroy
+end on
+
+type m_reporteordendecorte from m_mantenimiento_simple`m_reporteordendecorte within m_opcin3
+end type
+
+on m_reporteordendecorte.create
+call super::create
+end on
+
+on m_reporteordendecorte.destroy
+call super::destroy
+end on
+
+type m_prgm_corte from m_mantenimiento_simple`m_prgm_corte within m_opcin3
+end type
+
+on m_prgm_corte.create
+call super::create
+end on
+
+on m_prgm_corte.destroy
+call super::destroy
+end on
+
+type m_requisitosporunarea from m_mantenimiento_simple`m_requisitosporunarea within m_opcin3
+end type
+
+on m_requisitosporunarea.create
+call super::create
+end on
+
+on m_requisitosporunarea.destroy
+call super::destroy
+end on
+
+type m_requisitosporproveedor from m_mantenimiento_simple`m_requisitosporproveedor within m_opcin3
+end type
+
+on m_requisitosporproveedor.create
+call super::create
+end on
+
+on m_requisitosporproveedor.destroy
+call super::destroy
+end on
+
+type m_0 from m_mantenimiento_simple`m_0 within m_opcin3
+end type
+
+on m_0.create
+call super::create
+end on
+
+on m_0.destroy
+call super::destroy
+end on
+
+type m_reporteguiasdenumeracion from m_mantenimiento_simple`m_reporteguiasdenumeracion within m_opcin3
+end type
+
+on m_reporteguiasdenumeracion.create
+call super::create
+end on
+
+on m_reporteguiasdenumeracion.destroy
+call super::destroy
+end on
+
+type m_programaci$$HEX1$$f300$$ENDHEX$$nporcliente from m_mantenimiento_simple`m_programaci$$HEX1$$f300$$ENDHEX$$nporcliente within m_opcin3
+end type
+
+on m_programaci$$HEX1$$f300$$ENDHEX$$nporcliente.create
+call super::create
+end on
+
+on m_programaci$$HEX1$$f300$$ENDHEX$$nporcliente.destroy
+call super::destroy
+end on
+
+type m_reportenumeraci$$HEX1$$f300$$ENDHEX$$nfusionado from m_mantenimiento_simple`m_reportenumeraci$$HEX1$$f300$$ENDHEX$$nfusionado within m_opcin3
+end type
+
+on m_reportenumeraci$$HEX1$$f300$$ENDHEX$$nfusionado.create
+call super::create
+end on
+
+on m_reportenumeraci$$HEX1$$f300$$ENDHEX$$nfusionado.destroy
+call super::destroy
+end on
+
+type m_adhesivos from m_mantenimiento_simple`m_adhesivos within m_opcin3
+end type
+
+on m_adhesivos.create
+call super::create
+end on
+
+on m_adhesivos.destroy
+call super::destroy
+end on
+
+type m_adhesivosbongos from m_mantenimiento_simple`m_adhesivosbongos within m_opcin3
+end type
+
+on m_adhesivosbongos.create
+call super::create
+end on
+
+on m_adhesivosbongos.destroy
+call super::destroy
+end on
+
+type m_reportegeneraldecortev2 from m_mantenimiento_simple`m_reportegeneraldecortev2 within m_opcin3
+end type
+
+on m_reportegeneraldecortev2.create
+call super::create
+end on
+
+on m_reportegeneraldecortev2.destroy
+call super::destroy
+end on
+
+type m_bolsasquefaltanenbongo from m_mantenimiento_simple`m_bolsasquefaltanenbongo within m_opcin3
+end type
+
+on m_bolsasquefaltanenbongo.create
+call super::create
+end on
+
+on m_bolsasquefaltanenbongo.destroy
+call super::destroy
+end on
+
+type m_reportedebongos from m_mantenimiento_simple`m_reportedebongos within m_opcin3
+end type
+
+on m_reportedebongos.create
+call super::create
+end on
+
+on m_reportedebongos.destroy
+call super::destroy
+end on
+
+type m_variacionesdetallado from m_mantenimiento_simple`m_variacionesdetallado within m_opcin3
+end type
+
+on m_variacionesdetallado.create
+call super::create
+end on
+
+on m_variacionesdetallado.destroy
+call super::destroy
+end on
+
+type m_resumenvariaciones from m_mantenimiento_simple`m_resumenvariaciones within m_opcin3
+end type
+
+on m_resumenvariaciones.create
+call super::create
+end on
+
+on m_resumenvariaciones.destroy
+call super::destroy
+end on
+
+type m_variacionesvalorizadas from m_mantenimiento_simple`m_variacionesvalorizadas within m_opcin3
+end type
+
+on m_variacionesvalorizadas.create
+call super::create
+end on
+
+on m_variacionesvalorizadas.destroy
+call super::destroy
+end on
+
+type m_7 from m_mantenimiento_simple`m_7 within m_opcin3
+end type
+
+on m_7.create
+call super::create
+end on
+
+on m_7.destroy
+call super::destroy
+end on
+
+type m_6 from m_mantenimiento_simple`m_6 within m_opcin3
+end type
+
+on m_6.create
+call super::create
+end on
+
+on m_6.destroy
+call super::destroy
+end on
+
+type m_inventariodebongos from m_mantenimiento_simple`m_inventariodebongos within m_opcin3
+end type
+
+on m_inventariodebongos.create
+call super::create
+end on
+
+on m_inventariodebongos.destroy
+call super::destroy
+end on
+
+type m_reporteremisiones from m_mantenimiento_simple`m_reporteremisiones within m_opcin3
+end type
+
+on m_reporteremisiones.create
+call super::create
+end on
+
+on m_reporteremisiones.destroy
+call super::destroy
+end on
+
+type m_producci$$HEX1$$f300$$ENDHEX$$nporsecci$$HEX1$$f300$$ENDHEX$$ndecorte from m_mantenimiento_simple`m_producci$$HEX1$$f300$$ENDHEX$$nporsecci$$HEX1$$f300$$ENDHEX$$ndecorte within m_opcin3
+end type
+
+on m_producci$$HEX1$$f300$$ENDHEX$$nporsecci$$HEX1$$f300$$ENDHEX$$ndecorte.create
+call super::create
+end on
+
+on m_producci$$HEX1$$f300$$ENDHEX$$nporsecci$$HEX1$$f300$$ENDHEX$$ndecorte.destroy
+call super::destroy
+end on
+
+type m_reporteremisionesdespachodecorte from m_mantenimiento_simple`m_reporteremisionesdespachodecorte within m_opcin3
+end type
+
+on m_reporteremisionesdespachodecorte.create
+call super::create
+end on
+
+on m_reporteremisionesdespachodecorte.destroy
+call super::destroy
+end on
+
+type m_reportesdeinventario from m_mantenimiento_simple`m_reportesdeinventario within m_opcin3
+end type
+
+on m_reportesdeinventario.create
+call super::create
+end on
+
+on m_reportesdeinventario.destroy
+call super::destroy
+end on
+
+type m_inventarioporetapasresumido from m_mantenimiento_simple`m_inventarioporetapasresumido within m_reportesdeinventario
+end type
+
+on m_inventarioporetapasresumido.create
+call super::create
+end on
+
+on m_inventarioporetapasresumido.destroy
+call super::destroy
+end on
+
+type m_resumeninventariosetapa from m_mantenimiento_simple`m_resumeninventariosetapa within m_reportesdeinventario
+end type
+
+on m_resumeninventariosetapa.create
+call super::create
+end on
+
+on m_resumeninventariosetapa.destroy
+call super::destroy
+end on
+
+type m_reportesdemovimiento from m_mantenimiento_simple`m_reportesdemovimiento within m_opcin3
+end type
+
+on m_reportesdemovimiento.create
+call super::create
+end on
+
+on m_reportesdemovimiento.destroy
+call super::destroy
+end on
+
+type m_movimientosporetapasresumido from m_mantenimiento_simple`m_movimientosporetapasresumido within m_reportesdemovimiento
+end type
+
+on m_movimientosporetapasresumido.create
+call super::create
+end on
+
+on m_movimientosporetapasresumido.destroy
+call super::destroy
+end on
+
+type m_movimientosporetapas from m_mantenimiento_simple`m_movimientosporetapas within m_reportesdemovimiento
+end type
+
+on m_movimientosporetapas.create
+call super::create
+end on
+
+on m_movimientosporetapas.destroy
+call super::destroy
+end on
+
+type m_seguimientoordenproducci$$HEX1$$f300$$ENDHEX$$n from m_mantenimiento_simple`m_seguimientoordenproducci$$HEX1$$f300$$ENDHEX$$n within m_opcin3
+end type
+
+on m_seguimientoordenproducci$$HEX1$$f300$$ENDHEX$$n.create
+call super::create
+end on
+
+on m_seguimientoordenproducci$$HEX1$$f300$$ENDHEX$$n.destroy
+call super::destroy
+end on
+
+type m_opcin4 from m_mantenimiento_simple`m_opcin4 within m_cambiar_mesa
+end type
+
+on m_opcin4.create
+call super::create
+end on
+
+on m_opcin4.destroy
+call super::destroy
+end on
+
+type m_opcin5 from m_mantenimiento_simple`m_opcin5 within m_cambiar_mesa
+end type
+
+on m_opcin5.create
+call super::create
+end on
+
+on m_opcin5.destroy
+call super::destroy
+end on
+
+type m_vistaprevia from m_mantenimiento_simple`m_vistaprevia within m_cambiar_mesa
+end type
+
+on m_vistaprevia.create
+call super::create
+end on
+
+on m_vistaprevia.destroy
+call super::destroy
+end on
+
+type m_mostrarvistaprevia from m_mantenimiento_simple`m_mostrarvistaprevia within m_vistaprevia
+end type
+
+on m_mostrarvistaprevia.create
+call super::create
+end on
+
+on m_mostrarvistaprevia.destroy
+call super::destroy
+end on
+
+type m_mostrarregleta from m_mantenimiento_simple`m_mostrarregleta within m_vistaprevia
+end type
+
+on m_mostrarregleta.create
+call super::create
+end on
+
+on m_mostrarregleta.destroy
+call super::destroy
+end on
+
+type m_zoom from m_mantenimiento_simple`m_zoom within m_vistaprevia
+end type
+
+on m_zoom.create
+call super::create
+end on
+
+on m_zoom.destroy
+call super::destroy
+end on
+
+type m_-6 from m_mantenimiento_simple`m_-6 within m_vistaprevia
+end type
+
+on m_-6.create
+call super::create
+end on
+
+on m_-6.destroy
+call super::destroy
+end on
+
+type m_anterior from m_mantenimiento_simple`m_anterior within m_vistaprevia
+end type
+
+on m_anterior.create
+call super::create
+end on
+
+on m_anterior.destroy
+call super::destroy
+end on
+
+type m_siguiente from m_mantenimiento_simple`m_siguiente within m_vistaprevia
+end type
+
+on m_siguiente.create
+call super::create
+end on
+
+on m_siguiente.destroy
+call super::destroy
+end on
+
+type m_graficas from m_mantenimiento_simple`m_graficas within m_cambiar_mesa
+end type
+
+on m_graficas.create
+call super::create
+end on
+
+on m_graficas.destroy
+call super::destroy
+end on
+
+type m_tipodegrafica from m_mantenimiento_simple`m_tipodegrafica within m_graficas
+end type
+
+on m_tipodegrafica.create
+call super::create
+end on
+
+on m_tipodegrafica.destroy
+call super::destroy
+end on
+
+type m_titulo from m_mantenimiento_simple`m_titulo within m_graficas
+end type
+
+on m_titulo.create
+call super::create
+end on
+
+on m_titulo.destroy
+call super::destroy
+end on
+
+type m_color from m_mantenimiento_simple`m_color within m_graficas
+end type
+
+on m_color.create
+call super::create
+end on
+
+on m_color.destroy
+call super::destroy
+end on
+
+type m_espaciamiento from m_mantenimiento_simple`m_espaciamiento within m_graficas
+end type
+
+on m_espaciamiento.create
+call super::create
+end on
+
+on m_espaciamiento.destroy
+call super::destroy
+end on
+
+type m_ventana from m_mantenimiento_simple`m_ventana within m_cambiar_mesa
+end type
+
+on m_ventana.create
+call super::create
+end on
+
+on m_ventana.destroy
+call super::destroy
+end on
+
+type m_horizontal from m_mantenimiento_simple`m_horizontal within m_ventana
+end type
+
+on m_horizontal.create
+call super::create
+end on
+
+on m_horizontal.destroy
+call super::destroy
+end on
+
+type m_vertical from m_mantenimiento_simple`m_vertical within m_ventana
+end type
+
+on m_vertical.create
+call super::create
+end on
+
+on m_vertical.destroy
+call super::destroy
+end on
+
+type m_completa from m_mantenimiento_simple`m_completa within m_ventana
+end type
+
+on m_completa.create
+call super::create
+end on
+
+on m_completa.destroy
+call super::destroy
+end on
+
+type m_cascada from m_mantenimiento_simple`m_cascada within m_ventana
+end type
+
+on m_cascada.create
+call super::create
+end on
+
+on m_cascada.destroy
+call super::destroy
+end on
+
+type m_ayuda from m_mantenimiento_simple`m_ayuda within m_cambiar_mesa
+end type
+
+on m_ayuda.create
+call super::create
+end on
+
+on m_ayuda.destroy
+call super::destroy
+end on
+
+type m_contenido from m_mantenimiento_simple`m_contenido within m_ayuda
+end type
+
+on m_contenido.create
+call super::create
+end on
+
+on m_contenido.destroy
+call super::destroy
+end on
+
+type m_comousarayuda from m_mantenimiento_simple`m_comousarayuda within m_ayuda
+end type
+
+on m_comousarayuda.create
+call super::create
+end on
+
+on m_comousarayuda.destroy
+call super::destroy
+end on
+
+type m_-4 from m_mantenimiento_simple`m_-4 within m_ayuda
+end type
+
+on m_-4.create
+call super::create
+end on
+
+on m_-4.destroy
+call super::destroy
+end on
+
+type m_acercade from m_mantenimiento_simple`m_acercade within m_ayuda
+end type
+
+on m_acercade.create
+call super::create
+end on
+
+on m_acercade.destroy
+call super::destroy
+end on
+
