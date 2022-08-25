@@ -1,0 +1,64 @@
+HA$PBExportHeader$dgr_mantenimiento_bolsas.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=1 )
+header(height=208 color="536870912" )
+summary(height=88 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=cs_canasta dbname="cs_canasta" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="co_talla" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_actual dbname="ca_actual" )
+ column=(type=char(2) updatewhereclause=yes name=letra dbname="letra" )
+ column=(type=long updatewhereclause=yes name=cs_espacio dbname="cs_espacio" )
+ column=(type=char(50) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=long updatewhereclause=yes name=co_estado dbname="co_estado" )
+ column=(type=long updatewhereclause=yes name=ca_actual_new dbname="ca_actual_new" )
+ retrieve="  select distinct dt_canasta_corte.cs_canasta,
+		 dt_canasta_corte.co_talla,
+		 dt_canasta_corte.co_referencia,
+		 dt_canasta_corte.ca_actual,
+		 dt_canasta_corte.letra,
+		 dt_canasta_corte.cs_espacio,	
+		 h_preref_pv.de_referencia,
+		 h_canasta_corte.co_estado,
+		 0 ca_actual_new		
+ from dt_canasta_corte,
+		h_canasta_corte,
+		h_preref_pv
+where dt_canasta_corte.cs_orden_corte = :an_ordencorte  and
+		h_preref_pv.co_fabrica	= dt_canasta_corte.co_fabrica_ref and
+		h_preref_pv.co_linea	= dt_canasta_corte.co_linea and
+		(Cast(dt_canasta_corte.co_referencia as char(15) ) = h_preref_pv.co_referencia ) AND
+      h_preref_pv.co_tipo_ref = 'P' AND
+      dt_canasta_corte.co_calidad = 1 and
+		dt_canasta_corte.letra <> '' and
+  
+		h_canasta_corte.cs_canasta = dt_canasta_corte.cs_canasta and	
+		length(dt_canasta_corte.cs_canasta) < 8 " arguments=(("an_ordencorte", number))  sort="cs_espacio A cs_canasta A " )
+text(band=background alignment="0" text="" border="0" color="0" x="759" y="8" height="56" width="110" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~trgb(225,255,225)" )
+text(band=background alignment="0" text="Crear" border="0" color="0" x="882" y="8" height="56" width="137" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=background alignment="0" text="" border="0" color="67108864" x="1056" y="8" height="56" width="105" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~trgb(255,210,210)" )
+text(band=background alignment="0" text="Eliminar" border="0" color="0" x="1170" y="8" height="56" width="201" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Cant. NuevaBolsa" border="6" color="0" x="1989" y="88" height="112" width="302" html.valueishtml="0"  name=ca_actual_new_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Letra" border="6" color="33554432" x="1824" y="88" height="112" width="155" html.valueishtml="0"  name=letra_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Cantidad" border="6" color="33554432" x="1595" y="88" height="112" width="219" html.valueishtml="0"  name=ca_actual_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Referencias" border="6" color="0" x="686" y="88" height="112" width="901" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Talla" border="6" color="33554432" x="553" y="88" height="112" width="123" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Bolsa" border="6" color="33554432" x="229" y="88" height="112" width="315" html.valueishtml="0"  name=cs_canasta_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Espacio" border="6" color="0" x="9" y="88" height="112" width="210" html.valueishtml="0"  name=cs_espacio_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Filtrar" enabled=yes action="9" border="0" color="0" x="1545" y="0" height="56" width="279" vtextalign="0" htextalign="0"  name=b_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="6" color="0" x="9" y="4" height="56" width="210" format="[general]" html.valueishtml="0"  name=cs_espacio visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="33554432" x="229" y="4" height="56" width="315" format="[general]" html.valueishtml="0"  name=cs_canasta visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif( co_estado > 10, RGB(225,255,225),if( co_estado  = 10 ,RGB(255,210,210),76788149))" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="33554432" x="553" y="4" height="56" width="123" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif( co_estado > 10, RGB(225,255,225),if( co_estado  = 10 ,RGB(255,210,210),76788149))" )
+compute(band=detail alignment="0" expression="' '+ co_referencia +' - '+ String( Trim(de_referencia) )"border="5" color="0" x="686" y="4" height="56" width="901" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="553648127~tif( co_estado > 10, RGB(225,255,225),if( co_estado  = 10 ,RGB(255,210,210),76788149))" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="5" color="33554432" x="1824" y="4" height="56" width="155" format="[general]" html.valueishtml="0"  name=letra visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif( co_estado > 10, RGB(225,255,225),if( co_estado  = 10,RGB(255,210,210),76788149))" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="5" color="33554432" x="1595" y="4" height="56" width="219" format="[general]" html.valueishtml="0"  name=ca_actual visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif( co_estado > 10, RGB(225,255,225),if( co_estado  = 10 ,RGB(255,210,210),76788149))" )
+column(band=detail id=9 alignment="1" tabsequence=10 border="5" color="0" x="1989" y="4" height="56" width="302" format="[general]" html.valueishtml="0"  name=ca_actual_new visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=summary alignment="1" expression="sum(ca_actual for all)"border="5" color="33554432" x="1595" y="4" height="56" width="219" format="[general]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+
+sparse(names="cs_espacio")htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
