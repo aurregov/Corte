@@ -1,0 +1,77 @@
+HA$PBExportHeader$dtb_act_datos_sap.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes key=yes name=cs_ordenpd_pt dbname="cs_ordenpd_pt" )
+ column=(type=long updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long updatewhereclause=yes key=yes name=pedido dbname="pedido" )
+ column=(type=char(15) updatewhereclause=yes name=co_ref_exp dbname="co_ref_exp" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=color_exp dbname="color_exp" )
+ column=(type=char(6) update=yes updatewhereclause=yes name=co_talla_exp dbname="co_talla_exp" )
+ column=(type=long updatewhereclause=yes key=yes name=co_color dbname="co_color" )
+ column=(type=long updatewhereclause=yes key=yes name=co_talla dbname="co_talla" )
+ column=(type=char(8) updatewhereclause=yes name=co_color_exp dbname="co_color_exp" )
+ column=(type=char(15) updatewhereclause=yes name=co_talla_exp_1 dbname="co_talla_exp_1" )
+ retrieve="select h.cs_ordenpd_pt, h.co_fabrica, h.co_linea, h.co_referencia, d.pedido, 
+       d.co_ref_exp, d.color_exp, d.co_talla_exp, d.co_color, d.co_talla,
+       (select max(co_color_exp) from pedpend_exp
+        where pedido = d.pedido and co_fabrica = h.co_fabrica
+          and co_linea = h.co_linea and co_referencia = h.co_referencia
+          and co_color = d.co_color and co_talla = d.co_talla  ) as co_color_exp,
+       (select max(co_talla_exp) from pedpend_exp
+        where pedido = d.pedido and co_fabrica = h.co_fabrica
+          and co_linea = h.co_linea and co_referencia = h.co_referencia
+          and co_color = d.co_color and co_talla = d.co_talla) as co_talla_exp_1
+
+from h_ordenpd_pt h, dt_caxpedidos d
+where h.cs_ordenpd_pt = d.cs_ordenpd_pt
+and h.co_estado_orden in (1,3)
+and h.co_ruta = 1
+and d.ca_programada > 0
+and d.ca_liberadas < d.ca_programada
+and date(h.fe_creacion) > '2010-06-01'
+and (select count(*) from pedpend_exp
+     where pedido =  d.pedido
+       and co_fabrica = h.co_fabrica
+       and co_linea = h.co_linea
+       and co_referencia = h.co_referencia
+       and co_color = d.co_color
+       and co_talla = d.co_talla
+       and co_calidad = 1
+       and co_color_exp = d.color_exp
+       and co_talla_exp = d.co_talla_exp) = 0
+;" update="dt_caxpedidos" updatewhere=0 updatekeyinplace=no  sort="co_talla_exp_1 A " )
+text(band=header alignment="2" text="Cs Ordenpd Pt" border="0" color="33554432" x="9" y="8" height="52" width="315" html.valueishtml="0"  name=cs_ordenpd_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Fabrica" border="0" color="33554432" x="334" y="8" height="52" width="274" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Linea" border="0" color="33554432" x="617" y="8" height="52" width="274" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Referencia" border="0" color="33554432" x="901" y="8" height="52" width="311" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pedido" border="0" color="33554432" x="1221" y="8" height="52" width="274" html.valueishtml="0"  name=pedido_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Ref Exp" border="0" color="33554432" x="1504" y="8" height="52" width="366" html.valueishtml="0"  name=co_ref_exp_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Color Exp" border="0" color="33554432" x="1879" y="8" height="52" width="206" html.valueishtml="0"  name=color_exp_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Talla Exp" border="0" color="33554432" x="2094" y="8" height="52" width="274" html.valueishtml="0"  name=co_talla_exp_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Color" border="0" color="33554432" x="2377" y="8" height="52" width="274" html.valueishtml="0"  name=co_color_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Talla" border="0" color="33554432" x="2661" y="8" height="52" width="274" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Color Exp" border="0" color="33554432" x="2944" y="8" height="52" width="279" html.valueishtml="0"  name=co_color_exp_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Talla Exp 1" border="0" color="33554432" x="3232" y="8" height="52" width="366" html.valueishtml="0"  name=co_talla_exp_1_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="315" format="[general]" html.valueishtml="0"  name=cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="334" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="617" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="901" y="8" height="64" width="311" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1221" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=pedido visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="2377" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="33554432" x="2661" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="2944" y="8" height="64" width="279" format="[general]" html.valueishtml="0"  name=co_color_exp visible="1" edit.limit=8 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="3232" y="8" height="64" width="366" format="[general]" html.valueishtml="0"  name=co_talla_exp_1 visible="1" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="1504" y="8" height="64" width="366" format="[general]" html.valueishtml="0"  name=co_ref_exp visible="1" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="65535" )
+column(band=detail id=7 alignment="0" tabsequence=10 border="0" color="33554432" x="1879" y="8" height="64" width="206" format="[general]" html.valueishtml="0"  name=color_exp visible="1" edit.limit=8 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="65535" )
+column(band=detail id=8 alignment="0" tabsequence=20 border="0" color="33554432" x="2094" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_talla_exp visible="1" edit.limit=6 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="65535" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
