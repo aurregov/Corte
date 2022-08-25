@@ -1,0 +1,72 @@
+HA$PBExportHeader$dtb_reporte_numeracion_para_confeccion.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=132 color="536870912" )
+summary(height=84 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=h_canasta_corte_cs_canasta dbname="h_canasta_corte.cs_canasta" )
+ column=(type=long updatewhereclause=yes name=dt_canasta_corte_cs_orden_corte dbname="dt_canasta_corte.cs_orden_corte" )
+ column=(type=long updatewhereclause=yes name=dt_canasta_corte_cs_espacio dbname="dt_canasta_corte.cs_espacio" )
+ column=(type=long updatewhereclause=yes name=dt_canasta_corte_co_talla dbname="dt_canasta_corte.co_talla" )
+ column=(type=decimal(2) updatewhereclause=yes name=dt_canasta_corte_ca_actual dbname="dt_canasta_corte.ca_actual" )
+ column=(type=char(1) updatewhereclause=yes name=dt_canasta_corte_letra dbname="dt_canasta_corte.letra" )
+ column=(type=char(40) updatewhereclause=yes name=h_preref_de_referencia dbname="h_preref.de_referencia" )
+ column=(type=char(83) updatewhereclause=yes name=lote_concat dbname="lote_concat" )
+ column=(type=long updatewhereclause=yes name=dt_canasta_corte_lote dbname="dt_canasta_corte.lote" )
+ retrieve="  SELECT h_canasta_corte.cs_canasta,   
+         dt_canasta_corte.cs_orden_corte,   
+         dt_canasta_corte.cs_espacio,   
+         dt_canasta_corte.co_talla,   
+         dt_canasta_corte.ca_actual,   
+         dt_canasta_corte.letra,   
+         pacasash.h_preref.de_referencia,   
+         dt_agrupa_pdn.co_color_pt || dt_agrupa_pdn.tono || dt_agrupa_pdn.cs_liberacion as lote_concat,
+         dt_canasta_corte.lote  
+    FROM h_canasta_corte,   
+         dt_canasta_corte,   
+         dt_agrupa_pdn,   
+         peddig,   
+         pacasash.h_preref  
+   WHERE ( dt_canasta_corte.cs_canasta = h_canasta_corte.cs_canasta ) and  
+         ( dt_canasta_corte.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_canasta_corte.lote = dt_agrupa_pdn.cs_pdn ) and  
+         ( dt_agrupa_pdn.co_fabrica_exp = peddig.co_fabrica_exp ) and  
+         ( dt_agrupa_pdn.pedido = peddig.pedido ) and  
+         ( dt_agrupa_pdn.co_fabrica_pt = pacasash.h_preref.co_fabrica ) and  
+         ( dt_agrupa_pdn.co_linea = pacasash.h_preref.co_linea ) and  
+         ( dt_agrupa_pdn.co_referencia = pacasash.h_preref.co_referencia ) and  
+         ( ( h_canasta_corte.cs_canasta > '0' ) AND  
+         ( dt_canasta_corte.cs_orden_corte = :an_cs_orden_corte ) AND  
+         ( dt_canasta_corte.cs_secuencia = 1 ) )    
+" arguments=(("an_cs_orden_corte", number))  sort="dt_canasta_corte_cs_orden_corte A lote_concat A dt_canasta_corte_co_talla D dt_canasta_corte_cs_espacio D dt_canasta_corte_letra A " )
+group(level=1 header.height=88 trailer.height=0 by=("dt_canasta_corte_cs_orden_corte" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=92 trailer.height=84 by=("dt_canasta_corte_cs_orden_corte" , "lote_concat" ) header.color="536870912" trailer.color="536870912" )
+group(level=3 header.height=68 trailer.height=96 by=("dt_canasta_corte_cs_orden_corte" , "lote_concat" , "dt_canasta_corte_co_talla" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="Unidades Numeradas por Orden de Corte" border="6" color="33554432" x="635" y="32" height="52" width="891" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="'Pag ' + page() + ' de ' + pageCount()"border="0" color="33554432" x="1723" y="32" height="60" width="562" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="27" y="32" height="60" width="571" format="dd-mmm-yyyy hh:mm" html.valueishtml="0"  name=date_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="439" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_canasta_corte_cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Orden Corte" border="6" color="33554432" x="37" y="16" height="52" width="370" html.valueishtml="0"  name=dt_canasta_corte_cs_orden_corte_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=8 alignment="0" tabsequence=32766 border="5" color="33554432" x="279" y="8" height="64" width="178" format="[general]" html.valueishtml="0"  name=lote_concat visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.2 alignment="2" text="Lote" border="6" color="33554432" x="46" y="12" height="52" width="210" html.valueishtml="0"  name=dt_agrupa_pdn_co_color_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.3 alignment="2" text="Talla" border="6" color="33554432" x="41" y="8" height="52" width="151" html.valueishtml="0"  name=dt_canasta_corte_co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.3 id=4 alignment="2" tabsequence=32766 border="5" color="33554432" x="219" y="8" height="52" width="151" format="[general]" html.valueishtml="0"  name=dt_canasta_corte_co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.3 alignment="2" text="Espacio" border="6" color="33554432" x="407" y="8" height="52" width="174" html.valueishtml="0"  name=dt_canasta_corte_cs_espacio_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.3 alignment="2" text="Paq." border="6" color="33554432" x="599" y="8" height="52" width="119" html.valueishtml="0"  name=dt_canasta_corte_letra_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.3 alignment="2" text="Cantid." border="6" color="33554432" x="731" y="8" height="52" width="183" html.valueishtml="0"  name=dt_canasta_corte_ca_actual_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.3 alignment="2" text="Estilo" border="6" color="33554432" x="933" y="8" height="52" width="453" html.valueishtml="0"  name=h_preref_de_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.3 alignment="2" text="Bolsa" border="6" color="33554432" x="1403" y="8" height="52" width="174" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="5" color="33554432" x="407" y="4" height="64" width="174" format="[general]" html.valueishtml="0"  name=dt_canasta_corte_cs_espacio visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="5" color="33554432" x="599" y="8" height="64" width="119" format="[general]" html.valueishtml="0"  name=dt_canasta_corte_letra visible="1" edit.limit=1 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="5" color="33554432" x="731" y="4" height="64" width="183" format="####" html.valueishtml="0"  name=dt_canasta_corte_ca_actual visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="5" color="33554432" x="933" y="4" height="64" width="453" format="[general]" html.valueishtml="0"  name=h_preref_de_referencia visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="33554432" x="1403" y="4" height="64" width="174" format="[general]" html.valueishtml="0"  name=h_canasta_corte_cs_canasta visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.3 alignment="2" text="Total Talla:" border="0" color="0" x="421" y="12" height="52" width="311" html.valueishtml="0"  name=t_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=trailer.3 alignment="2" expression="sum(dt_canasta_corte_ca_actual for group 3)"border="5" color="33554432" x="731" y="4" height="64" width="183" format="####" html.valueishtml="0"  name=compute_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.2 alignment="2" text="Total Lote:" border="0" color="0" x="370" y="12" height="52" width="311" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=trailer.2 alignment="2" expression="sum(dt_canasta_corte_ca_actual for group 2)"border="5" color="33554432" x="731" y="4" height="64" width="183" format="####" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="2" text="Total Reporte:" border="0" color="0" x="343" y="12" height="52" width="311" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=summary alignment="2" expression="sum(dt_canasta_corte_ca_actual for all)"border="5" color="33554432" x="731" y="4" height="64" width="183" format="####" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
