@@ -1,0 +1,73 @@
+HA$PBExportHeader$dtb_seleccionar_unidades_trazo.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=81324524 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=76 color="536870912" )
+summary(height=76 color="536870912" )
+footer(height=24 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_talla dbname="dt_unidadesxtrazo.co_talla" )
+ column=(type=long updatewhereclause=yes name=cs_talla dbname="dt_unidadesxtrazo.cs_talla" )
+ column=(type=long updatewhereclause=yes name=capas dbname="dt_unidadesxtrazo.capas" )
+ column=(type=long updatewhereclause=yes name=paquetes dbname="dt_unidadesxtrazo.paquetes" )
+ column=(type=long updatewhereclause=yes name=ca_programada dbname="dt_unidadesxtrazo.ca_programada" )
+ column=(type=long updatewhereclause=yes name=ca_prog_liquida dbname="dt_unidadesxtrazo.ca_prog_liquida" )
+ column=(type=long updatewhereclause=yes name=ca_liquidada dbname="dt_unidadesxtrazo.ca_liquidada" )
+ column=(type=decimal(0) updatewhereclause=yes name=pendiente dbname="pendiente" )
+ retrieve="  SELECT dt_unidadesxtrazo.co_talla,   
+         dt_unidadesxtrazo.cs_talla,   
+         dt_unidadesxtrazo.capas,   
+         dt_unidadesxtrazo.paquetes,   
+         dt_unidadesxtrazo.ca_programada,   
+         dt_unidadesxtrazo.ca_prog_liquida,   
+         dt_unidadesxtrazo.ca_liquidada,   
+         ca_programada - ca_prog_liquida as pendiente  
+    FROM dt_unidadesxtrazo  
+   WHERE ( dt_unidadesxtrazo.cs_orden_corte = :al_ordencorte ) AND  
+         ( dt_unidadesxtrazo.cs_agrupacion = :al_agrupacion ) AND  
+         ( dt_unidadesxtrazo.cs_pdn = :ai_produccion ) AND  
+         ( dt_unidadesxtrazo.co_modelo = :al_modelo ) AND  
+         ( dt_unidadesxtrazo.co_fabrica_tela = :ai_fabtela ) AND  
+         ( dt_unidadesxtrazo.co_reftel = :al_tela ) AND  
+         ( dt_unidadesxtrazo.co_caract = :ai_caract ) AND  
+         ( dt_unidadesxtrazo.diametro = :ai_diametro ) AND  
+         ( dt_unidadesxtrazo.co_color_te = :ai_colorte ) AND  
+         ( dt_unidadesxtrazo.cs_trazo = :al_trazo ) AND  
+         ( dt_unidadesxtrazo.cs_seccion = :ai_seccion ) AND  
+         ( dt_unidadesxtrazo.cs_base_trazos = :ai_base ) AND
+			( 0 = (	SELECT Count(*)
+						FROM	dt_escalas_liq
+						WHERE dt_unidadesxtrazo.cs_orden_corte = dt_escalas_liq.cs_orden_corte AND
+								dt_unidadesxtrazo.cs_agrupacion = dt_escalas_liq.cs_agrupacion AND
+								dt_unidadesxtrazo.cs_pdn = dt_escalas_liq.cs_pdn AND
+								dt_unidadesxtrazo.co_modelo = dt_escalas_liq.co_modelo AND
+								dt_unidadesxtrazo.co_fabrica_tela = dt_escalas_liq.co_fabrica_tela AND
+								dt_unidadesxtrazo.co_reftel = dt_escalas_liq.co_reftel AND
+								dt_unidadesxtrazo.co_caract = dt_escalas_liq.co_caract AND
+								dt_unidadesxtrazo.diametro = dt_escalas_liq.diametro AND
+								dt_unidadesxtrazo.co_color_te = dt_escalas_liq.co_color_te AND
+								dt_unidadesxtrazo.cs_trazo = dt_escalas_liq.cs_trazo AND
+								dt_unidadesxtrazo.cs_seccion = dt_escalas_liq.cs_seccion AND
+								dt_unidadesxtrazo.cs_base_trazos = dt_escalas_liq.cs_base_trazos AND
+								dt_unidadesxtrazo.co_talla = dt_escalas_liq.co_talla AND
+								dt_escalas_liq.cs_liquidacion = :ai_liquidacion ) )
+" arguments=(("al_ordencorte", number),("al_agrupacion", number),("ai_produccion", number),("al_modelo", number),("ai_fabtela", number),("al_tela", number),("ai_caract", number),("ai_diametro", number),("ai_colorte", number),("al_trazo", number),("ai_seccion", number),("ai_base", number),("ai_liquidacion", number))  sort="cs_talla A " )
+text(band=header alignment="2" text="Talla" border="6" color="0" x="9" y="12" height="56" width="146"  name=co_talla_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Capas" border="6" color="0" x="174" y="12" height="56" width="210"  name=capas_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Paquetes" border="6" color="0" x="402" y="12" height="56" width="242"  name=paquetes_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Programada" border="6" color="0" x="663" y="12" height="56" width="297"  name=ca_programada_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Prog Liquida" border="6" color="0" x="978" y="12" height="56" width="297"  name=t_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Liquidada" border="6" color="0" x="1298" y="12" height="56" width="293"  name=ca_liquidada_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="0" x="9" y="4" height="60" width="146" format="[general]"  name=co_talla edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="0" x="174" y="4" height="60" width="210" format="[general]"  name=capas edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="5" color="0" x="402" y="4" height="60" width="242" format="[general]"  name=paquetes edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="5" color="0" x="663" y="4" height="60" width="297" format="###,###,##0"  name=ca_programada edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="5" color="0" x="978" y="4" height="60" width="297" format="###,###,##0"  name=ca_prog_liquida edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="5" color="0" x="1298" y="4" height="60" width="293" format="###,###,##0"  name=ca_liquidada edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="5" color="0" x="1614" y="4" height="60" width="297" format="###,###,##0"  name=pendiente edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pendiente" border="6" color="0" x="1614" y="12" height="56" width="297"  name=pendiente_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(pendiente for all)"border="5" color="0" x="1614" y="4" height="60" width="297" format="###,###,##0"  name=compute_4  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_programada for all)"border="5" color="0" x="663" y="4" height="60" width="297" format="###,###,##0"  name=compute_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_prog_liquida for all)"border="5" color="0" x="978" y="4" height="60" width="297" format="###,###,##0"  name=compute_2  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_liquidada for all)"border="5" color="0" x="1298" y="4" height="60" width="293" format="###,###,##0"  name=compute_3  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
