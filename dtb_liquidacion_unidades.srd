@@ -1,0 +1,99 @@
+HA$PBExportHeader$dtb_liquidacion_unidades.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=72 color="536870912" )
+summary(height=80 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=cs_orden_corte dbname="dt_liq_unidades.cs_orden_corte" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_agrupacion dbname="dt_liq_unidades.cs_agrupacion" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_base_trazos dbname="dt_liq_unidades.cs_base_trazos" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_liquidacion dbname="dt_liq_unidades.cs_liquidacion" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_trazo dbname="dt_liq_unidades.cs_trazo" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_seccion dbname="dt_liq_unidades.cs_seccion" )
+ column=(type=long updatewhereclause=yes name=co_trazo dbname="dt_trazosxoc.co_trazo" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_pdn dbname="dt_liq_unidades.cs_pdn" )
+ column=(type=char(20) updatewhereclause=yes name=po dbname="dt_agrupa_pdn.po" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_talla dbname="dt_liq_unidades.co_talla" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_talla dbname="dt_liq_unidades.cs_talla" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_prog_liq dbname="dt_liq_unidades.ca_prog_liq" )
+ column=(type=long update=yes updatewhereclause=yes name=capas dbname="dt_liq_unidades.capas" )
+ column=(type=long update=yes updatewhereclause=yes name=paquetes dbname="dt_liq_unidades.paquetes" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_liquidadas dbname="dt_liq_unidades.ca_liquidadas" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_loteadas dbname="dt_liq_unidades.ca_loteadas" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="dt_liq_unidades.fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="dt_liq_unidades.fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="dt_liq_unidades.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="dt_liq_unidades.instancia" )
+ column=(type=char(83) updatewhereclause=yes name=lote dbname="lote" )
+ retrieve="  SELECT DISTINCT dt_liq_unidades.cs_orden_corte,   
+         dt_liq_unidades.cs_agrupacion,   
+         dt_liq_unidades.cs_base_trazos,   
+         dt_liq_unidades.cs_liquidacion,   
+         dt_liq_unidades.cs_trazo,   
+         dt_liq_unidades.cs_seccion,   
+         dt_trazosxoc.co_trazo,   
+         dt_liq_unidades.cs_pdn,   
+         dt_agrupa_pdn.po,   
+         dt_liq_unidades.co_talla,   
+         dt_liq_unidades.cs_talla,   
+         dt_liq_unidades.ca_prog_liq,   
+         dt_liq_unidades.capas,   
+         dt_liq_unidades.paquetes,   
+         dt_liq_unidades.ca_liquidadas,   
+         dt_liq_unidades.ca_loteadas,   
+         dt_liq_unidades.fe_creacion,   
+         dt_liq_unidades.fe_actualizacion,   
+         dt_liq_unidades.usuario,   
+         dt_liq_unidades.instancia,
+         dt_agrupa_pdn.co_color_pt || dt_agrupa_pdn.tono || dt_agrupa_pdn.cs_liberacion as lote
+      FROM dt_liq_unidades,   
+         dt_agrupa_pdn,   
+         dt_trazosxoc  
+   WHERE ( dt_liq_unidades.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_liq_unidades.cs_pdn = dt_agrupa_pdn.cs_pdn ) and  
+         ( dt_liq_unidades.cs_orden_corte = dt_trazosxoc.cs_orden_corte ) and  
+         ( dt_liq_unidades.cs_agrupacion = dt_trazosxoc.cs_agrupacion ) and  
+         ( dt_liq_unidades.cs_base_trazos = dt_trazosxoc.cs_base_trazos ) and  
+         ( dt_liq_unidades.cs_trazo = dt_trazosxoc.cs_trazo ) and  
+         ( dt_liq_unidades.cs_seccion = dt_trazosxoc.cs_seccion ) and  
+         ( dt_liq_unidades.cs_pdn = dt_trazosxoc.cs_pdn ) and  
+         ( ( dt_liq_unidades.cs_orden_corte = :al_ordencorte ) AND  
+         ( dt_liq_unidades.cs_agrupacion = :al_agrupacion ) AND  
+         ( dt_liq_unidades.cs_base_trazos = :al_basetrazo ) AND  
+         ( dt_liq_unidades.cs_liquidacion = :ai_liquidacion ) )   
+ORDER BY dt_liq_unidades.cs_trazo ASC,   
+         dt_liq_unidades.cs_seccion ASC,   
+         dt_agrupa_pdn.po ASC,   
+         dt_liq_unidades.cs_talla ASC   
+" update="dt_liq_unidades" updatewhere=0 updatekeyinplace=no arguments=(("al_ordencorte", number),("al_agrupacion", number),("al_basetrazo", number),("ai_liquidacion", number))  sort="cs_trazo A cs_pdn A co_talla A cs_seccion A " )
+text(band=header alignment="2" text="Espacio" border="6" color="0" x="14" y="8" height="52" width="169" html.valueishtml="0"  name=cs_trazo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sec" border="6" color="0" x="201" y="8" height="52" width="87" html.valueishtml="0"  name=cs_seccion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Trazo" border="6" color="0" x="306" y="8" height="52" width="329" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pdn" border="6" color="0" x="654" y="8" height="52" width="87" html.valueishtml="0"  name=cs_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="P.O" border="6" color="0" x="759" y="8" height="52" width="407" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Talla" border="6" color="0" x="1417" y="8" height="52" width="155" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Capas" border="6" color="0" x="1591" y="8" height="52" width="192" html.valueishtml="0"  name=capas_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Paquetes" border="6" color="0" x="1801" y="8" height="52" width="238" html.valueishtml="0"  name=paquetes_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Loteadas" border="6" color="0" x="2674" y="8" height="52" width="242" html.valueishtml="0"  name=ca_loteadas_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Liquidadas" border="6" color="0" x="2363" y="8" height="52" width="288" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Prog Liquid" border="6" color="0" x="2057" y="8" height="52" width="288" html.valueishtml="0"  name=ca_liquidada_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Lote" border="6" color="0" x="1184" y="8" height="52" width="215" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="5" color="0" x="14" y="4" height="64" width="169" format="[general]" html.valueishtml="0"  name=cs_trazo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="5" color="0" x="201" y="4" height="64" width="87" format="[general]" html.valueishtml="0"  name=cs_seccion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="5" color="0" x="306" y="4" height="64" width="329" format="[general]" html.valueishtml="0"  name=co_trazo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="5" color="0" x="654" y="4" height="64" width="87" format="[general]" html.valueishtml="0"  name=cs_pdn visible="1" edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="5" color="0" x="759" y="4" height="64" width="407" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="5" color="0" x="1184" y="4" height="64" width="210" format="[general]" html.valueishtml="0"  name=lote visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="5" color="0" x="1417" y="4" height="64" width="155" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=10 border="5" color="0" x="1591" y="4" height="64" width="192" format="[general]" html.valueishtml="0"  name=capas visible="1" editmask.mask="###,###" editmask.imemode=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=15 alignment="1" tabsequence=32766 border="5" color="0" x="2363" y="4" height="64" width="288" format="[general]" html.valueishtml="0"  name=ca_liquidadas visible="1" editmask.mask="###,###" editmask.imemode=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=14 alignment="1" tabsequence=20 border="5" color="0" x="1801" y="4" height="64" width="238" format="[general]" html.valueishtml="0"  name=paquetes visible="1" editmask.mask="###,###" editmask.imemode=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=12 alignment="1" tabsequence=30 border="5" color="0" x="2057" y="4" height="64" width="288" format="[general]" html.valueishtml="0"  name=ca_prog_liq visible="1" editmask.mask="###,###" editmask.imemode=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=16 alignment="1" tabsequence=32766 border="5" color="0" x="2674" y="4" height="64" width="242" format="[general]" html.valueishtml="0"  name=ca_loteadas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+compute(band=summary alignment="1" expression="sum(paquetes for all)"border="5" color="0" x="1801" y="4" height="64" width="238" format="[general]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+compute(band=summary alignment="1" expression="sum(ca_prog_liq for all)"border="5" color="0" x="2057" y="4" height="64" width="288" format="[general]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+compute(band=summary alignment="1" expression="sum(ca_liquidadas for all)"border="5" color="0" x="2363" y="4" height="64" width="288" format="[general]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+compute(band=summary alignment="1" expression="sum(ca_loteadas for all)"border="5" color="0" x="2674" y="4" height="64" width="242" format="[general]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
