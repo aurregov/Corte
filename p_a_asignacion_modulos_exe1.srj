@@ -1,0 +1,47 @@
+HA$PBExportHeader$p_a_asignacion_modulos_exe1.srj
+$PBExportComments$Generated Application Executable Project
+EXE:D:\SVN\FUENTES\Branches\DEV\Corte\a_asignacion_modulos.exe,,0,1,0
+CMP:0,0,0,2,0,0
+COM:Sybase, Inc.
+DES:Sybase, Inc. Product File
+CPY:
+PRD:PowerBuilder Enterprise Series
+PVN:1,0,0,1
+PVS:1,0,0,1
+FVN:1,0,0,1
+FVS:1,0,0,1
+PBD:d:\svn\fuentes\branches\dev\corte\asignacion_modulos.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\servicios_comunes.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\servicios_comunes_dw.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\reportes_asignacion_modulos.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\pedidos.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\nicole.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\procesos.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\partir liberaciones.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\rieles.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\reportes_indicadores.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\mantenimientos.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\mantenimientos_bolsas.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\ficha_pt.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\liquidacion.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\inventarioxetapas.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\reportes2.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\empaque de bolsas.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\carga.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\pruebas.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\liberacion_manual.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\liquidacion espacio.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\liberacion escalas.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\liberacion_semiautomatica.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\mercada tela.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\desasignar tela.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\asignacion_corte.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\asignacion_corte3.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\asignacion_corte2.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\dropdowns.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\trazos 2.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\principal.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\base.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\calendario_planeacion.pbl,,0
+PBD:d:\svn\fuentes\branches\dev\corte\planeador.pbl,,0
+
