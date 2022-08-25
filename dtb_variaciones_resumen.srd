@@ -1,0 +1,316 @@
+HA$PBExportHeader$dtb_variaciones_resumen.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.documentname="" print.orientation = 1 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 5 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=428 color="536870912" )
+summary(height=64 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=decimal(0) updatewhereclause=yes name=ca_liquidadas dbname="ca_liquidadas" )
+ column=(type=long updatewhereclause=yes name=dt_liq_unixespacio_cs_pdn dbname="dt_liq_unixespacio.cs_pdn" )
+ column=(type=decimal(4) updatewhereclause=yes name=dt_rayas_telaxoc_consxunid_std dbname="dt_rayas_telaxoc.consxunid_std" )
+ column=(type=char(42) updatewhereclause=yes name=h_telas_de_reftel dbname="h_telas.de_reftel" )
+ column=(type=long updatewhereclause=yes name=dt_rayas_telaxoc_cs_orden_corte dbname="dt_rayas_telaxoc.cs_orden_corte" )
+ column=(type=long updatewhereclause=yes name=dt_agrupa_pdn_co_referencia dbname="dt_agrupa_pdn.co_referencia" )
+ column=(type=long updatewhereclause=yes name=dt_agrupa_pdn_co_color_pt dbname="dt_agrupa_pdn.co_color_pt" )
+ column=(type=char(3) updatewhereclause=yes name=dt_agrupa_pdn_tono dbname="dt_agrupa_pdn.tono" )
+ column=(type=long updatewhereclause=yes name=dt_agrupa_pdn_co_linea dbname="dt_agrupa_pdn.co_linea" )
+ column=(type=char(20) updatewhereclause=yes name=dt_agrupa_pdn_po dbname="dt_agrupa_pdn.po" )
+ column=(type=long updatewhereclause=yes name=dt_agrupa_pdn_cs_liberacion dbname="dt_agrupa_pdn.cs_liberacion" )
+ column=(type=char(20) updatewhereclause=yes name=h_preref_de_referencia_crta dbname="h_preref.de_referencia_crta" )
+ column=(type=char(30) updatewhereclause=yes name=peddig_gpa dbname="peddig.gpa" )
+ column=(type=decimal(4) updatewhereclause=yes name=ca_cortados dbname="ca_cortados" )
+ column=(type=decimal(4) updatewhereclause=yes name=ca_devueltos dbname="ca_devueltos" )
+ column=(type=decimal(4) updatewhereclause=yes name=ca_remanente dbname="ca_remanente" )
+ column=(type=decimal(4) updatewhereclause=yes name=ca_imperfectos dbname="ca_imperfectos" )
+ column=(type=decimal(4) updatewhereclause=yes name=ca_faltantes dbname="ca_faltantes" )
+ column=(type=decimal(4) updatewhereclause=yes name=ca_excedentes dbname="ca_excedentes" )
+ column=(type=decimal(4) updatewhereclause=yes name=ca_empates dbname="ca_empates" )
+ column=(type=decimal(4) updatewhereclause=yes name=ca_consumido dbname="ca_consumido" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_programada dbname="ca_programada" )
+ retrieve="  SELECT SUM(dt_liq_unixespacio.ca_liquidadas)ca_liquidadas,   
+         dt_liq_unixespacio.cs_pdn,   
+         dt_rayas_telaxoc.consxunid_std,   
+         h_telas.de_reftel,   
+         dt_rayas_telaxoc.cs_orden_corte,   
+         dt_agrupa_pdn.co_referencia,   
+         dt_agrupa_pdn.co_color_pt,   
+         dt_agrupa_pdn.tono,   
+         dt_agrupa_pdn.co_linea,   
+         dt_agrupa_pdn.po,   
+         dt_agrupa_pdn.cs_liberacion,   
+         pacasash.h_preref.de_referencia_crta,   
+         peddig.gpa,
+				(  SELECT SUM(dt_liq_rolxespacio.ca_cortados)  
+					 FROM dt_liq_rolxespacio,   
+							dt_rayas_telaxoc  
+					WHERE ( dt_liq_rolxespacio.cs_orden_corte = dt_rayas_telaxoc.cs_orden_corte ) and  
+							( dt_liq_rolxespacio.cs_agrupacion = dt_rayas_telaxoc.cs_agrupacion ) and  
+							( dt_liq_rolxespacio.cs_base_trazos = dt_rayas_telaxoc.cs_base_trazos ) and  
+							( dt_liq_rolxespacio.cs_pdn = dt_rayas_telaxoc.cs_pdn ) and 
+							(dt_liq_rolxespacio.cs_pdn = dt_liq_unixespacio.cs_pdn) and
+							( ( dt_liq_rolxespacio.cs_orden_corte = dt_liq_unixespacio.cs_orden_corte ) AND  
+							( dt_rayas_telaxoc.raya = :an_raya ) ))ca_cortados,
+				(SELECT sum(dt_liq_rolxespacio.ca_devueltos)  
+					FROM dt_liq_rolxespacio,   
+							dt_rayas_telaxoc  
+					WHERE ( dt_liq_rolxespacio.cs_orden_corte = dt_rayas_telaxoc.cs_orden_corte ) and  
+							( dt_liq_rolxespacio.cs_agrupacion = dt_rayas_telaxoc.cs_agrupacion ) and  
+							( dt_liq_rolxespacio.cs_base_trazos = dt_rayas_telaxoc.cs_base_trazos ) and  
+							( dt_liq_rolxespacio.cs_pdn = dt_rayas_telaxoc.cs_pdn ) and 
+							(dt_liq_rolxespacio.cs_pdn = dt_liq_unixespacio.cs_pdn) and
+							( ( dt_liq_rolxespacio.cs_orden_corte = dt_liq_unixespacio.cs_orden_corte ) AND  
+							( dt_rayas_telaxoc.raya = :an_raya ) ) )ca_devueltos,
+				(SELECT sum(dt_liq_rolxespacio.ca_remanente)  
+					FROM dt_liq_rolxespacio,   
+							dt_rayas_telaxoc  
+					WHERE ( dt_liq_rolxespacio.cs_orden_corte = dt_rayas_telaxoc.cs_orden_corte ) and  
+							( dt_liq_rolxespacio.cs_agrupacion = dt_rayas_telaxoc.cs_agrupacion ) and  
+							( dt_liq_rolxespacio.cs_base_trazos = dt_rayas_telaxoc.cs_base_trazos ) and  
+							( dt_liq_rolxespacio.cs_pdn = dt_rayas_telaxoc.cs_pdn ) and 
+							(dt_liq_rolxespacio.cs_pdn = dt_liq_unixespacio.cs_pdn) and
+							( ( dt_liq_rolxespacio.cs_orden_corte = dt_liq_unixespacio.cs_orden_corte ) AND  
+							( dt_rayas_telaxoc.raya = :an_raya ) ) )ca_remanente,
+				(SELECT sum(dt_liq_rolxespacio.ca_imperfectos)  
+					FROM dt_liq_rolxespacio,   
+							dt_rayas_telaxoc  
+					WHERE ( dt_liq_rolxespacio.cs_orden_corte = dt_rayas_telaxoc.cs_orden_corte ) and  
+							( dt_liq_rolxespacio.cs_agrupacion = dt_rayas_telaxoc.cs_agrupacion ) and  
+							( dt_liq_rolxespacio.cs_base_trazos = dt_rayas_telaxoc.cs_base_trazos ) and  
+							( dt_liq_rolxespacio.cs_pdn = dt_rayas_telaxoc.cs_pdn ) and 
+							(dt_liq_rolxespacio.cs_pdn = dt_liq_unixespacio.cs_pdn) and
+							( ( dt_liq_rolxespacio.cs_orden_corte = dt_liq_unixespacio.cs_orden_corte ) AND  
+							( dt_rayas_telaxoc.raya = :an_raya ) ) )ca_imperfectos,
+				(SELECT sum(dt_liq_rolxespacio.ca_faltantes)  
+					FROM dt_liq_rolxespacio,   
+							dt_rayas_telaxoc  
+					WHERE ( dt_liq_rolxespacio.cs_orden_corte = dt_rayas_telaxoc.cs_orden_corte ) and  
+							( dt_liq_rolxespacio.cs_agrupacion = dt_rayas_telaxoc.cs_agrupacion ) and  
+							( dt_liq_rolxespacio.cs_base_trazos = dt_rayas_telaxoc.cs_base_trazos ) and  
+							( dt_liq_rolxespacio.cs_pdn = dt_rayas_telaxoc.cs_pdn ) and 
+							(dt_liq_rolxespacio.cs_pdn = dt_liq_unixespacio.cs_pdn) and
+							( ( dt_liq_rolxespacio.cs_orden_corte = dt_liq_unixespacio.cs_orden_corte ) AND  
+							( dt_rayas_telaxoc.raya = :an_raya ) ) )ca_faltantes,
+				(SELECT sum(dt_liq_rolxespacio.ca_excedentes)  
+					FROM dt_liq_rolxespacio,   
+							dt_rayas_telaxoc  
+					WHERE ( dt_liq_rolxespacio.cs_orden_corte = dt_rayas_telaxoc.cs_orden_corte ) and  
+							( dt_liq_rolxespacio.cs_agrupacion = dt_rayas_telaxoc.cs_agrupacion ) and  
+							( dt_liq_rolxespacio.cs_base_trazos = dt_rayas_telaxoc.cs_base_trazos ) and  
+							( dt_liq_rolxespacio.cs_pdn = dt_rayas_telaxoc.cs_pdn ) and 
+							(dt_liq_rolxespacio.cs_pdn = dt_liq_unixespacio.cs_pdn) and
+							( ( dt_liq_rolxespacio.cs_orden_corte = dt_liq_unixespacio.cs_orden_corte ) AND  
+							( dt_rayas_telaxoc.raya = :an_raya ) ) )ca_excedentes,
+				(SELECT sum(dt_liq_rolxespacio.ca_empates)  
+					FROM dt_liq_rolxespacio,   
+							dt_rayas_telaxoc  
+					WHERE ( dt_liq_rolxespacio.cs_orden_corte = dt_rayas_telaxoc.cs_orden_corte ) and  
+							( dt_liq_rolxespacio.cs_agrupacion = dt_rayas_telaxoc.cs_agrupacion ) and  
+							( dt_liq_rolxespacio.cs_base_trazos = dt_rayas_telaxoc.cs_base_trazos ) and  
+							( dt_liq_rolxespacio.cs_pdn = dt_rayas_telaxoc.cs_pdn ) and 
+							(dt_liq_rolxespacio.cs_pdn = dt_liq_unixespacio.cs_pdn) and
+							( ( dt_liq_rolxespacio.cs_orden_corte = dt_liq_unixespacio.cs_orden_corte ) AND  
+							( dt_rayas_telaxoc.raya = :an_raya ) ) )ca_empates,
+				(SELECT sum(dt_liq_rolxespacio.ca_consumido)  
+					FROM dt_liq_rolxespacio,   
+							dt_rayas_telaxoc  
+					WHERE ( dt_liq_rolxespacio.cs_orden_corte = dt_rayas_telaxoc.cs_orden_corte ) and  
+							( dt_liq_rolxespacio.cs_agrupacion = dt_rayas_telaxoc.cs_agrupacion ) and  
+							( dt_liq_rolxespacio.cs_base_trazos = dt_rayas_telaxoc.cs_base_trazos ) and  
+							( dt_liq_rolxespacio.cs_pdn = dt_rayas_telaxoc.cs_pdn ) and 
+							(dt_liq_rolxespacio.cs_pdn = dt_liq_unixespacio.cs_pdn) and
+							( ( dt_liq_rolxespacio.cs_orden_corte = dt_liq_unixespacio.cs_orden_corte ) AND  
+							( dt_rayas_telaxoc.raya = :an_raya ) ))ca_consumido,
+				(SELECT sum(dt_trazosxoc.ca_programada)  
+					FROM dt_trazosxoc
+				  WHERE 	( dt_trazosxoc.cs_orden_corte 	= dt_liq_unixespacio.cs_orden_corte ) and  
+							( dt_trazosxoc.cs_agrupacion 		= dt_rayas_telaxoc.cs_agrupacion ) and  
+							( dt_trazosxoc.cs_base_trazos 	= dt_rayas_telaxoc.cs_base_trazos ) and  
+							( dt_trazosxoc.cs_pdn 				= dt_rayas_telaxoc.cs_pdn ) and  
+							( dt_trazosxoc.co_modelo 			= dt_rayas_telaxoc.co_modelo ) and  
+							( dt_trazosxoc.co_fabrica_tela 	= dt_rayas_telaxoc.co_fabrica_tela ) and  
+							( dt_trazosxoc.co_reftel 			= dt_rayas_telaxoc.co_reftel ) and  
+							( dt_trazosxoc.co_caract 			= dt_rayas_telaxoc.co_caract ) and  
+							( dt_trazosxoc.diametro 			= dt_rayas_telaxoc.diametro ) and  
+							( dt_trazosxoc.co_color_te 		= dt_rayas_telaxoc.co_color_te ))ca_programada
+
+ FROM dt_liq_unixespacio,   
+         dt_rayas_telaxoc,   
+         h_telas,   
+         dt_agrupa_pdn,   
+         pacasash.h_preref,   
+         peddig
+			
+   WHERE ( dt_liq_unixespacio.cs_orden_corte = dt_rayas_telaxoc.cs_orden_corte ) and  
+         ( dt_liq_unixespacio.cs_agrupacion = dt_rayas_telaxoc.cs_agrupacion ) and  
+         ( dt_liq_unixespacio.cs_base_trazos = dt_rayas_telaxoc.cs_base_trazos ) and  
+         ( dt_liq_unixespacio.cs_pdn = dt_rayas_telaxoc.cs_pdn ) and
+  			( dt_rayas_telaxoc.co_reftel = h_telas.co_reftel ) and  
+         ( dt_rayas_telaxoc.co_caract = h_telas.co_caract ) and  
+         ( dt_rayas_telaxoc.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_rayas_telaxoc.cs_pdn = dt_agrupa_pdn.cs_pdn ) and  
+         ( dt_agrupa_pdn.co_fabrica_pt = pacasash.h_preref.co_fabrica ) and  
+         ( dt_agrupa_pdn.co_linea = pacasash.h_preref.co_linea ) and  
+         ( dt_agrupa_pdn.co_referencia = pacasash.h_preref.co_referencia ) and  
+         ( dt_agrupa_pdn.co_fabrica_exp = peddig.co_fabrica_exp ) and  
+         ( dt_agrupa_pdn.pedido = peddig.pedido ) and
+			((peddig.gpa = :as_grupo or :as_grupo = '0') and  
+         	( extend(dt_liq_unixespacio.fe_creacion,year to day) >=:ad_fecha_inicial) AND
+			( extend(dt_liq_unixespacio.fe_creacion,year to day) <=:ad_fecha_final) AND
+			( dt_rayas_telaxoc.raya = :an_raya) )   
+GROUP BY dt_liq_unixespacio.cs_pdn,   
+         dt_rayas_telaxoc.consxunid_std,   
+         h_telas.de_reftel,   
+         dt_rayas_telaxoc.cs_orden_corte,   
+         dt_agrupa_pdn.co_referencia,   
+         peddig.gpa,   
+         dt_agrupa_pdn.co_color_pt,   
+         pacasash.h_preref.de_referencia_crta,   
+         dt_agrupa_pdn.tono,   
+         dt_agrupa_pdn.cs_liberacion,   
+         dt_agrupa_pdn.co_linea,   
+         dt_agrupa_pdn.po,14,15,16,17,18,19,20,21,22
+ORDER BY dt_liq_unixespacio.cs_pdn ASC   
+" arguments=(("as_grupo", string),("an_raya", number),("ad_fecha_inicial", date),("ad_fecha_final", date))  sort="dt_rayas_telaxoc_cs_orden_corte A dt_liq_unixespacio_cs_pdn A dt_agrupa_pdn_co_referencia A " )
+group(level=1 header.height=0 trailer.height=64 by=("peddig_gpa" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=0 trailer.height=0 by=("dt_agrupa_pdn_co_referencia" ) header.color="536870912" trailer.color="536870912" )
+group(level=3 header.height=0 trailer.height=0 by=("dt_rayas_telaxoc_cs_orden_corte" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="REPORTE DE VARIACIONES" border="0" color="0" x="23" y="8" height="72" width="3447" html.valueishtml="0"  name=t_27 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Impreso" border="0" color="0" x="27" y="4" height="52" width="174" html.valueishtml="0"  name=t_31 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="215" y="4" height="52" width="247" format="[general]" html.valueishtml="0"  name=date_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="1" expression="'P$$HEX1$$e100$$ENDHEX$$gina' + page() + ' de ' + pageCount()"border="0" color="33554432" x="2880" y="8" height="64" width="599" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Grupo" border="6" color="0" x="14" y="308" height="112" width="261" html.valueishtml="0"  name=t_18 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Unds
+Std" border="6" color="0" x="288" y="308" height="112" width="197" html.valueishtml="0"  name=t_11 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="YY
+Real" border="6" color="0" x="1061" y="308" height="112" width="146" html.valueishtml="0"  name=t_22 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="YY
+std" border="6" color="0" x="901" y="308" height="112" width="146" html.valueishtml="0"  name=t_10 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="%
+Var." border="6" color="0" x="1221" y="308" height="112" width="178" html.valueishtml="0"  name=t_26 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Unds
+Real" border="6" color="0" x="498" y="308" height="112" width="197" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Yardas
+Std" border="6" color="0" x="1413" y="308" height="112" width="251" html.valueishtml="0"  name=t_24 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="%
+Var." border="6" color="0" x="1943" y="308" height="112" width="178" html.valueishtml="0"  name=t_25 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Yds
+Real
+" border="6" color="0" x="1678" y="308" height="112" width="251" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Imper-
+fectas" border="6" color="0" x="2386" y="308" height="112" width="206" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Rema-
+nentes" border="6" color="0" x="2606" y="308" height="112" width="206" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Empa-
+tes" border="6" color="0" x="2825" y="308" height="112" width="206" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Faltan-
+tes" border="6" color="0" x="3045" y="308" height="112" width="206" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Exce-
+dentes" border="6" color="0" x="3264" y="308" height="112" width="206" html.valueishtml="0"  name=t_8 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Exten-
+didas" border="6" color="0" x="2135" y="308" height="112" width="238" html.valueishtml="0"  name=t_7 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="%
+Var." border="6" color="0" x="709" y="308" height="112" width="178" html.valueishtml="0"  name=t_23 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="UNIDADES" border="6" color="0" x="288" y="240" height="56" width="599" html.valueishtml="0"  name=t_28 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="CONSUMOS" border="6" color="0" x="901" y="240" height="56" width="498" html.valueishtml="0"  name=t_29 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="YARDAS" border="6" color="0" x="1413" y="240" height="56" width="2057" html.valueishtml="0"  name=t_30 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="1" text="Desde" border="0" color="0" x="288" y="168" height="56" width="160" html.valueishtml="0"  name=t_32 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression=" ad_fecha_inicial "border="0" color="0" x="475" y="164" height="60" width="485" format="dd-mmmm-yyyy" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Hasta" border="0" color="0" x="1010" y="168" height="56" width="137" html.valueishtml="0"  name=t_33 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression=" ad_fecha_final"border="0" color="0" x="1189" y="164" height="60" width="485" format="dd-mmmm-yyyy" html.valueishtml="0"  name=compute_15 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="2" color="33554432" x="2510" y="216" height="52" width="178" format="###,###.##" html.valueishtml="0"  name=ca_cortados visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="2" color="33554432" x="2702" y="216" height="52" width="178" format="[general]" html.valueishtml="0"  name=ca_devueltos visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="2" color="33554432" x="2894" y="216" height="52" width="178" format="[general]" html.valueishtml="0"  name=ca_remanente visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="2" color="33554432" x="3086" y="216" height="52" width="178" format="[general]" html.valueishtml="0"  name=ca_imperfectos visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="2" color="33554432" x="3278" y="216" height="52" width="178" format="[general]" html.valueishtml="0"  name=ca_faltantes visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="2" color="33554432" x="3470" y="216" height="52" width="178" format="[general]" html.valueishtml="0"  name=ca_excedentes visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="2" color="33554432" x="3662" y="216" height="52" width="178" format="[general]" html.valueishtml="0"  name=ca_empates visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="2" color="33554432" x="3854" y="216" height="52" width="178" format="[general]" html.valueishtml="0"  name=ca_consumido visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="2" color="33554432" x="2162" y="4" height="52" width="91" format="[general]" html.valueishtml="0"  name=dt_liq_unixespacio_cs_pdn visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression=" dt_agrupa_pdn_co_color_pt +trim( dt_agrupa_pdn_tono) + dt_agrupa_pdn_cs_liberacion "border="2" color="33554432" x="1993" y="4" height="52" width="155" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="2" color="33554432" x="1399" y="4" height="52" width="393" format="[general]" html.valueishtml="0"  name=h_preref_de_referencia_crta visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="2" color="33554432" x="722" y="4" height="52" width="197" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_co_linea visible="1" dddw.name=dddw_m_lineas_fab91 dddw.displaycolumn=de_linea dddw.datacolumn=co_linea dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="2" color="33554432" x="1211" y="4" height="52" width="174" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="2" color="33554432" x="283" y="4" height="52" width="425" format="[general]" html.valueishtml="0"  name=h_telas_de_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="2" color="33554432" x="1801" y="4" height="52" width="174" format="[general]" html.valueishtml="0"  name=dt_rayas_telaxoc_cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="2" color="33554432" x="933" y="4" height="52" width="265" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_po visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="1" tabsequence=32766 border="2" color="33554432" x="2267" y="4" height="52" width="197" format="###,###" html.valueishtml="0"  name=ca_programada visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="( ( ca_liquidadas - ca_programada )/ ca_liquidadas )"border="2" color="33554432" x="2688" y="4" height="52" width="178" format="###,###.##" html.valueishtml="0"  name=variacion_unidades visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression=" if( yield_real  = 0, 0, (  dt_rayas_telaxoc_consxunid_std -  yield_real )/ dt_rayas_telaxoc_consxunid_std ) "border="2" color="33554432" x="3200" y="4" height="52" width="178" format="###,###.##" html.valueishtml="0"  name=compute_32 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression=" (ca_consumido1 / ca_liquidadas )"border="2" color="33554432" x="3040" y="4" height="52" width="146" format="###,###.##" html.valueishtml="0"  name=yield_real visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="2" color="33554432" x="2880" y="4" height="52" width="146" format="###,###.##" html.valueishtml="0"  name=dt_rayas_telaxoc_consxunid_std visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="2" color="33554432" x="2478" y="4" height="52" width="197" format="###,###" html.valueishtml="0"  name=ca_liquidadas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression=" dt_rayas_telaxoc_consxunid_std *  ca_programada "border="2" color="33554432" x="3392" y="4" height="52" width="251" format="###,###.##" html.valueishtml="0"  name=yds_programadas visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression=" if( ca_consumido1 = 0, 0, ( yds_programadas - ca_consumido1 )/yds_programadas) "border="2" color="33554432" x="3922" y="4" height="52" width="178" format="###,###.##" html.valueishtml="0"  name=compute_33 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="if(isNull(         ca_cortados ), 0,         ca_cortados + ca_imperfectos1 + ca_remanente1 + ca_empates1 )"border="2" color="33554432" x="3657" y="4" height="52" width="251" format="###,###.##" html.valueishtml="0"  name=ca_consumido1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="if(isNull(    ca_imperfectos ), 0,    ca_imperfectos )"border="2" color="33554432" x="4366" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=ca_imperfectos1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="if(isNull(   ca_remanente ), 0,   ca_remanente )"border="2" color="33554432" x="4585" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=ca_remanente1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="if(isNull(       ca_empates ), 0,       ca_empates )"border="2" color="33554432" x="4805" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=ca_empates1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="if(isNull(     ca_faltantes ), 0,     ca_faltantes )"border="2" color="33554432" x="5024" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=ca_faltantes1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="if(isNull(      ca_excedentes ), 0,      ca_excedentes )"border="2" color="33554432" x="5243" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=ca_excedentes1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="if(isNull( ca_cortados ), 0, ca_cortados )"border="2" color="0" x="4114" y="4" height="52" width="238" format="###,###.##" html.valueishtml="0"  name=ca_cortados1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=trailer.3 alignment="1" text="TOTAL ORDEN CORTE" border="0" color="0" x="1719" y="4" height="56" width="521" html.valueishtml="0"  name=t_19 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=trailer.3 alignment="1" expression="sum(ca_programada for group 3)"border="2" color="33554432" x="2267" y="4" height="52" width="197" format="###,###" html.valueishtml="0"  name=unds_prog_oc visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression="( (  unds_real_oc -  unds_prog_oc )/  unds_real_oc )"border="2" color="33554432" x="2688" y="4" height="52" width="178" format="###,###.##" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression=" if(  yield_real_oc = 0, 0, (  yield_std_oc  -   yield_real_oc )/  yield_std_oc ) "border="2" color="33554432" x="3200" y="4" height="52" width="178" format="###,###.##" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression="  yds_real_oc /  unds_real_oc "border="2" color="33554432" x="3040" y="4" height="52" width="146" format="###,###.##" html.valueishtml="0"  name=yield_real_oc visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression="avg(dt_rayas_telaxoc_consxunid_std for group 3)"border="2" color="33554432" x="2880" y="4" height="52" width="146" format="###,###.##" html.valueishtml="0"  name=yield_std_oc visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression="sum(ca_liquidadas for group 3)"border="2" color="33554432" x="2478" y="4" height="52" width="197" format="###,###.##" html.valueishtml="0"  name=unds_real_oc visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression="sum( dt_rayas_telaxoc_consxunid_std *  ca_programada  for group 3)"border="2" color="33554432" x="3392" y="4" height="52" width="251" format="###,###.##" html.valueishtml="0"  name=yds_estd_oc visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression="if( yds_real_oc = 0, 0,  (yds_estd_oc - yds_real_oc )/ yds_estd_oc )"border="2" color="33554432" x="3922" y="4" height="52" width="178" format="###,###.##" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression="sum(if(isNull(        ca_consumido ), 0,        ca_consumido ) for group 3)"border="2" color="33554432" x="3657" y="4" height="52" width="251" format="###,###.##" html.valueishtml="0"  name=yds_real_oc visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression="sum(if(isNull(    ca_imperfectos ), 0,    ca_imperfectos ) for group 3)"border="2" color="33554432" x="4366" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=compute_10 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression="sum(if(isNull(   ca_remanente ), 0,   ca_remanente ) for group 3)"border="2" color="33554432" x="4585" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=compute_11 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression="sum(if(isNull(       ca_empates ), 0,       ca_empates ) for group 3)"border="2" color="33554432" x="4805" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=compute_12 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression="sum(if(isNull(     ca_faltantes ), 0,     ca_faltantes ) for group 3)"border="2" color="33554432" x="5024" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=compute_13 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression="sum(if(isNull(      ca_excedentes ), 0,      ca_excedentes ) for group 3)"border="2" color="33554432" x="5243" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=compute_14 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression="sum(if(isNull( ca_cortados ), 0, ca_cortados ) for group 3)"border="2" color="33554432" x="4114" y="4" height="52" width="238" format="###,###.##" html.valueishtml="0"  name=compute_9 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.2 alignment="1" text="TOTAL ESTILO" border="0" color="0" x="1842" y="8" height="56" width="398" html.valueishtml="0"  name=t_20 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=trailer.2 alignment="1" expression="sum(ca_programada for group 2)"border="2" color="33554432" x="2267" y="4" height="52" width="197" format="###,###" html.valueishtml="0"  name=unds_std_ref visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="( (   unds_real_ref -   unds_std_ref )/   unds_real_ref ) "border="2" color="33554432" x="2688" y="4" height="52" width="178" format="###,###.##" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="if(  yield_real_ref = 0, 0, (  yield_std_ref  -   yield_real_ref )/  yield_std_ref )"border="2" color="33554432" x="3200" y="4" height="52" width="178" format="###,###.##" html.valueishtml="0"  name=var_yield_ref visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression=" yds_real_ref  /   unds_real_ref "border="2" color="33554432" x="3040" y="4" height="52" width="146" format="###,###.##" html.valueishtml="0"  name=yield_real_ref visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="avg(dt_rayas_telaxoc_consxunid_std for group 2)"border="2" color="33554432" x="2880" y="4" height="52" width="146" format="###,###.##" html.valueishtml="0"  name=yield_std_ref visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum(ca_liquidadas for group 2)"border="2" color="33554432" x="2478" y="4" height="52" width="197" format="###,###" html.valueishtml="0"  name=unds_real_ref visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum( dt_rayas_telaxoc_consxunid_std *  ca_programada  for group 2)"border="2" color="33554432" x="3392" y="4" height="52" width="251" format="###,###.##" html.valueishtml="0"  name=yds_std_ref visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="if(  yds_real_ref = 0, 0,  ( yds_std_ref  -  yds_real_ref  )/  yds_std_ref ) "border="2" color="33554432" x="3922" y="4" height="52" width="178" format="###,###.##" html.valueishtml="0"  name=var_ref visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum(if(isNull(        ca_consumido ), 0,        ca_consumido ) for group 2)"border="2" color="33554432" x="3657" y="4" height="52" width="251" format="###,###.##" html.valueishtml="0"  name=yds_real_ref visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum(if(isNull(    ca_imperfectos ), 0,    ca_imperfectos ) for group 2)"border="2" color="33554432" x="4366" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=compute_17 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum(if(isNull(   ca_remanente ), 0,   ca_remanente ) for group 2)"border="2" color="33554432" x="4585" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=compute_18 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum(if(isNull(       ca_empates ), 0,       ca_empates ) for group 2)"border="2" color="33554432" x="4805" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=compute_19 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum(if(isNull(     ca_faltantes ), 0,     ca_faltantes ) for group 2)"border="2" color="33554432" x="5024" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=compute_20 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum(if(isNull(      ca_excedentes ), 0,      ca_excedentes ) for group 2)"border="2" color="33554432" x="5243" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=compute_21 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum(if(isNull( ca_cortados ), 0, ca_cortados ) for group 2)"border="2" color="33554432" x="4114" y="4" height="52" width="238" format="###,###.##" html.valueishtml="0"  name=compute_16 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=trailer.1 id=13 alignment="0" tabsequence=32766 border="2" color="33554432" x="0" y="4" height="52" width="256" format="[general]" html.valueishtml="0"  name=peddig_gpa visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(  ca_programada  for group 1 )"border="2" color="33554432" x="270" y="4" height="52" width="197" format="###,###" html.valueishtml="0"  name=unds_std_grupo visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="((  yield_std_grupo   - yield_real_grupo ) /  yield_std_grupo)*100"border="2" color="33554432" x="1202" y="4" height="52" width="178" format="###,###.##" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression=" yds_real_grupo  /  unds_real_grupo "border="2" color="33554432" x="1042" y="4" height="52" width="146" format="###,###.##" html.valueishtml="0"  name=yield_real_grupo visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="(( yds_std_grupo - yds_real_grupo )/ yds_std_grupo )*100"border="2" color="33554432" x="1925" y="4" height="52" width="178" format="###,###.##" html.valueishtml="0"  name=var_grupo visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(  ca_liquidadas  for group 1 )"border="2" color="33554432" x="480" y="4" height="52" width="197" format="###,###" html.valueishtml="0"  name=unds_real_grupo visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="avg(dt_rayas_telaxoc_consxunid_std for group 1)"border="2" color="33554432" x="882" y="4" height="52" width="146" format="###,###.##" html.valueishtml="0"  name=yield_std_grupo visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(   yds_programadas for group 1 )"border="2" color="33554432" x="1394" y="4" height="52" width="251" format="###,###.##" html.valueishtml="0"  name=yds_std_grupo visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum( ca_consumido1  for group 1)"border="2" color="33554432" x="1659" y="4" height="52" width="251" format="###,###.##" html.valueishtml="0"  name=yds_real_grupo visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(if(isNull( ca_cortados ), 0, ca_cortados ) for group 1)"border="2" color="33554432" x="2117" y="4" height="52" width="238" format="###,###.##" html.valueishtml="0"  name=compute_23 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(if(isNull(       ca_empates ), 0,       ca_empates ) for group 1)"border="2" color="33554432" x="2807" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=compute_26 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(if(isNull(    ca_imperfectos ), 0,    ca_imperfectos ) for group 1)"border="2" color="33554432" x="2368" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=compute_24 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(if(isNull(   ca_remanente ), 0,   ca_remanente ) for group 1)"border="2" color="33554432" x="2587" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=compute_25 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(if(isNull(     ca_faltantes ), 0,     ca_faltantes ) for group 1)"border="2" color="33554432" x="3026" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=compute_27 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(if(isNull(      ca_excedentes ), 0,      ca_excedentes ) for group 1)"border="2" color="33554432" x="3246" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=compute_28 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="( (    unds_real_grupo -    unds_std_grupo )/    unds_real_grupo )*100 "border="2" color="33554432" x="690" y="4" height="52" width="178" format="###,###.##" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(  ca_programada  for all )"border="2" color="33554432" x="270" y="4" height="52" width="197" format="###,###" html.valueishtml="0"  name=total_unds_std visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum( dt_rayas_telaxoc_consxunid_std *  ca_programada for all )"border="2" color="33554432" x="1394" y="4" height="52" width="251" format="###,###.##" html.valueishtml="0"  name=yds_std_total visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum( ca_consumido1 for all )"border="2" color="33554432" x="1659" y="4" height="52" width="251" format="###,###.##" html.valueishtml="0"  name=yds_real_total visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum( ca_cortados1 for all )"border="2" color="0" x="2117" y="4" height="52" width="238" format="###,###.##" html.valueishtml="0"  name=compute_34 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=summary alignment="1" expression="sum( ca_imperfectos1 for all )"border="2" color="0" x="2368" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=compute_35 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=summary alignment="1" expression="sum( ca_empates1 for all )"border="2" color="33554432" x="2807" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=compute_37 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum( ca_remanente1 for all )"border="2" color="33554432" x="2587" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=compute_36 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum( ca_faltantes1 for all )"border="2" color="33554432" x="3026" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=compute_38 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum( ca_excedentes1 for all )"border="2" color="33554432" x="3246" y="4" height="52" width="206" format="###,###.##" html.valueishtml="0"  name=compute_39 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(  ca_liquidadas  for all )"border="2" color="33554432" x="480" y="4" height="52" width="197" format="###,###" html.valueishtml="0"  name=total_unds_real visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="( (    total_unds_real -   total_unds_std)/    total_unds_real) *100"border="2" color="33554432" x="690" y="4" height="52" width="178" format="###,###.##" html.valueishtml="0"  name=compute_22 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression=" yds_std_total / total_unds_std  "border="2" color="33554432" x="882" y="4" height="52" width="146" format="###,###.##" html.valueishtml="0"  name=yiel_est_total visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="yds_real_total /  total_unds_real"border="2" color="33554432" x="1042" y="4" height="52" width="146" format="###,###.##" html.valueishtml="0"  name=yield_real_total visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="((  yiel_est_total - yield_real_total) /  yiel_est_total)*100"border="2" color="33554432" x="1202" y="4" height="52" width="178" format="###,###.##" html.valueishtml="0"  name=compute_29 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="(( yds_std_total- yds_real_total)/ yds_std_total)*100"border="2" color="33554432" x="1925" y="4" height="52" width="178" format="###,###.##" html.valueishtml="0"  name=compute_30 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="2" text="TOTAL" border="2" color="0" x="69" y="4" height="56" width="165" html.valueishtml="0"  name=t_9 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
