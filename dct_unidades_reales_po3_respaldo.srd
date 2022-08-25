@@ -1,0 +1,68 @@
+HA$PBExportHeader$dct_unidades_reales_po3_respaldo.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1090519039 processing=4 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no  crosstab.dynamic = yes grid.lines=0 grid.columnmove=no selected.mouse=no )
+header[1](height=0 color="536870912" )
+header[2](height=68 color="536870912" )
+header[3](height=64 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=dt_agrupa_pdn_po dbname="dt_agrupa_pdn_po" )
+ column=(type=number updatewhereclause=yes name=dt_agrupa_pdn_co_color_pt dbname="dt_agrupa_pdn_co_color_pt" )
+ column=(type=char(20) updatewhereclause=yes name=dt_agrupa_pdn_tono dbname="dt_agrupa_pdn_tono" )
+ column=(type=number updatewhereclause=yes name=dt_agrupa_pdn_cs_liberacion dbname="dt_agrupa_pdn_cs_liberacion" )
+ column=(type=number updatewhereclause=yes name=capas dbname="capas" )
+ column=(type=number updatewhereclause=yes name=unidades dbname="unidades" )
+ retrieve="  SELECT dt_agrupa_pdn.po,
+   		dt_agrupa_pdn.co_color_pt,
+   		dt_agrupa_pdn.tono,
+   		dt_agrupa_pdn.cs_liberacion,
+         dt_unidadesxtrazo.co_talla,   
+			' ' texto,
+         0 capas,   
+         0 unidades
+    FROM dt_agrupa_pdn,   
+         dt_trazosxoc,   
+         dt_unidadesxtrazo  
+   WHERE ( dt_unidadesxtrazo.cs_orden_corte = dt_trazosxoc.cs_orden_corte ) and  
+         ( dt_unidadesxtrazo.cs_agrupacion = dt_trazosxoc.cs_agrupacion ) and  
+         ( dt_unidadesxtrazo.cs_base_trazos = dt_trazosxoc.cs_base_trazos ) and  
+         ( dt_unidadesxtrazo.cs_trazo = dt_trazosxoc.cs_trazo ) and  
+         ( dt_unidadesxtrazo.cs_seccion = dt_trazosxoc.cs_seccion ) and  
+         ( dt_unidadesxtrazo.cs_pdn = dt_trazosxoc.cs_pdn ) and  
+         ( dt_unidadesxtrazo.co_modelo = dt_trazosxoc.co_modelo ) and  
+         ( dt_unidadesxtrazo.co_fabrica_tela = dt_trazosxoc.co_fabrica_tela ) and  
+         ( dt_unidadesxtrazo.co_reftel = dt_trazosxoc.co_reftel ) and  
+         ( dt_unidadesxtrazo.co_caract = dt_trazosxoc.co_caract ) and  
+         ( dt_unidadesxtrazo.diametro = dt_trazosxoc.diametro ) and  
+         ( dt_unidadesxtrazo.co_color_te = dt_trazosxoc.co_color_te ) and  
+         ( dt_trazosxoc.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_trazosxoc.cs_pdn = dt_agrupa_pdn.cs_pdn ) and  
+         ( ( dt_trazosxoc.cs_orden_corte = :al_ordencorte ) AND  
+         ( dt_trazosxoc.cs_agrupacion = :al_agrupacion ) AND  
+         ( dt_trazosxoc.cs_base_trazos = :al_basetrazo ) AND  
+         ( dt_trazosxoc.cs_trazo = :al_trazo ) )    
+" arguments=(("al_ordencorte", number),("al_agrupacion", number),("al_basetrazo", number),("al_trazo", number))  sort="dt_agrupa_pdn_po A dt_agrupa_pdn_co_color_pt A dt_agrupa_pdn_tono A dt_agrupa_pdn_cs_liberacion A " )
+group(level=1 header.height=0 trailer.height=0 by=("dt_agrupa_pdn_po" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=0 trailer.height=0 by=("dt_agrupa_pdn_co_color_pt" ) header.color="536870912" trailer.color="536870912" )
+group(level=3 header.height=0 trailer.height=0 by=("dt_agrupa_pdn_tono" ) header.color="536870912" trailer.color="536870912" )
+text(band=header[2] alignment="2" text="@dt_unidadesxtrazo_co_talla" border="0" color="33554432" x="686" y="4" height="56" width="302" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="P.O." border="0" color="33554432" x="9" y="4" height="56" width="311" html.valueishtml="0"  name=dt_agrupa_pdn_po_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Lote" border="0" color="0" x="329" y="4" height="56" width="192" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header[3] alignment="2" text="Capa" border="0" color="33554432" x="686" y="4" height="56" width="128" html.valueishtml="0"  name=capas_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Unidad" border="0" color="33554432" x="823" y="4" height="56" width="160" html.valueishtml="0"  name=unidades_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="4" height="64" width="311" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_po visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="329" y="4" height="64" width="192" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_co_color_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="530" y="4" height="64" width="78" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_tono visible="1" edit.limit=3 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="617" y="4" height="64" width="59" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_cs_liberacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="686" y="4" height="64" width="128" format="[general]" html.valueishtml="0"  name=capas visible="1~tif(  capas=0 ,0, 1 )" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0 crosstab.repeat=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="823" y="4" height="64" width="160" format="###~tif(  unidades =0, 0,1)" html.valueishtml="0"  name=unidades visible="1~tif(  unidades =0, 0,1  )" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0 crosstab.repeat=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="crosstabsum(1)"border="0" color="33554432" x="992" y="4" height="64" width="5" format="[general]" html.valueishtml="0"  name=grand_sum_capas visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="crosstabsum(2)"border="0" color="33554432" x="1006" y="4" height="64" width="5" format="[general]" html.valueishtml="0"  name=grand_sum_unidades visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+ crosstab(band = foreground  crosstabonly = yes 
+ columns = "dt_unidadesxtrazo_co_talla" rows = "dt_agrupa_pdn_po, dt_agrupa_pdn_co_color_pt, dt_agrupa_pdn_tono, dt_agrupa_pdn_cs_liberacion" values = "sum(capas for crosstab), sum(unidades for crosstab)" sourcenames = "dt_agrupa_pdn_po, dt_agrupa_pdn_co_color_pt, dt_agrupa_pdn_tono, dt_agrupa_pdn_cs_liberacion, dt_unidadesxtrazo_co_talla, texto, capas, unidades")
+sparse(names="dt_agrupa_pdn_po	dt_agrupa_pdn_co_color_pt	dt_agrupa_pdn_tono")htmltable(border="0" cellpadding="1" cellspacing="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
