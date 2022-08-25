@@ -1,0 +1,47 @@
+HA$PBExportHeader$dtb_mantenimiento_detalle_curva.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=64 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=co_curva dbname="dt_curva_eficienci.co_curva" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_secuencia dbname="dt_curva_eficienci.cs_secuencia" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=prc_eficiencia dbname="dt_curva_eficienci.prc_eficiencia" )
+ column=(type=long update=yes updatewhereclause=yes name=nu_dias dbname="dt_curva_eficienci.nu_dias" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=observacion dbname="dt_curva_eficienci.observacion" )
+ column=(type=long update=yes updatewhereclause=yes name=dia_inicio dbname="dt_curva_eficienci.dia_inicio" )
+ column=(type=long update=yes updatewhereclause=yes name=dia_fin dbname="dt_curva_eficienci.dia_fin" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="dt_curva_eficienci.fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="dt_curva_eficienci.fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="dt_curva_eficienci.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="dt_curva_eficienci.instancia" )
+ retrieve="  SELECT dt_curva_eficienci.co_curva,   
+         dt_curva_eficienci.cs_secuencia,   
+         dt_curva_eficienci.prc_eficiencia,   
+         dt_curva_eficienci.nu_dias,   
+         dt_curva_eficienci.observacion,
+         dt_curva_eficienci.dia_inicio,
+         dt_curva_eficienci.dia_fin,
+         dt_curva_eficienci.fe_creacion,   
+         dt_curva_eficienci.fe_actualizacion,   
+         dt_curva_eficienci.usuario,   
+         dt_curva_eficienci.instancia
+    FROM dt_curva_eficienci  
+   WHERE dt_curva_eficienci.co_curva = :an_curva    
+" update="dt_curva_eficienci" updatewhere=1 updatekeyinplace=no arguments=(("an_curva", number)) )
+text(band=header alignment="2" text="No."border="6" color="0" x="421" y="4" height="52" width="101"  name=prc_eficiencia_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Curva"border="6" color="0" x="9" y="4" height="52" width="393"  name=co_tipo_prenda_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="% Eficiencia"border="6" color="0" x="539" y="4" height="52" width="261"  name=co_categoria_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="D$$HEX1$$ed00$$ENDHEX$$as"border="6" color="0" x="818" y="4" height="52" width="137"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Observaci$$HEX1$$f300$$ENDHEX$$n"border="6" color="0" x="974" y="4" height="52" width="809"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Inicio"border="6" color="0" x="1801" y="4" height="52" width="137"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Fin"border="6" color="0" x="1957" y="4" height="52" width="137"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="9" y="4" height="64" width="393" format="[general]"  name=co_curva dddw.name=dddw_curvas_eficiencia dddw.displaycolumn=de_curva dddw.datacolumn=co_curva dddw.percentwidth=100 dddw.lines=5 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="0" x="421" y="4" height="64" width="101" format="[general]"  name=cs_secuencia edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=3 alignment="0" tabsequence=10 border="5" color="0" x="539" y="4" height="64" width="261" format="[general]"  name=prc_eficiencia edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=20 border="5" color="0" x="818" y="4" height="64" width="137" format="[general]"  name=nu_dias edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="0" tabsequence=30 border="5" color="0" x="974" y="4" height="64" width="809" format="[general]"  name=observacion edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="5" color="0" x="1801" y="4" height="64" width="137" format="0"  name=dia_inicio edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=7 alignment="2" tabsequence=32766 border="5" color="0" x="1957" y="4" height="64" width="137" format="0"  name=dia_fin edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")
