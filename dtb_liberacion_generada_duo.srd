@@ -1,0 +1,88 @@
+HA$PBExportHeader$dtb_liberacion_generada_duo.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=160 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes name=cs_lib_duo dbname="cs_lib_duo" )
+ column=(type=long update=yes updatewhereclause=yes name=co_fabrica_exp dbname="co_fabrica_exp" )
+ column=(type=long update=yes updatewhereclause=yes name=co_linea_exp dbname="co_linea_exp" )
+ column=(type=char(15) update=yes updatewhereclause=yes name=co_ref_exp dbname="co_ref_exp" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=co_color_exp dbname="co_color_exp" )
+ column=(type=char(15) update=yes updatewhereclause=yes name=co_talla_exp dbname="co_talla_exp" )
+ column=(type=long update=yes updatewhereclause=yes name=co_fabrica_pt dbname="co_fabrica_pt" )
+ column=(type=long update=yes updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long update=yes updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long update=yes updatewhereclause=yes name=co_color_pt dbname="co_color_pt" )
+ column=(type=long update=yes updatewhereclause=yes name=co_talla dbname="co_talla" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_programada dbname="ca_programada" )
+ column=(type=long updatewhereclause=yes name=ca_minima dbname="ca_minima" )
+ column=(type=long updatewhereclause=yes name=ca_pedida dbname="ca_pedida" )
+ column=(type=char(40) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=char(30) updatewhereclause=yes name=de_linea_exp dbname="de_linea_exp" )
+ column=(type=char(30) updatewhereclause=yes name=de_linea_pdn dbname="de_linea_pdn" )
+ retrieve="  SELECT temp_unid_liberar_duo.cs_lib_duo,   
+         temp_unid_liberar_duo.co_fabrica_exp,   
+         temp_unid_liberar_duo.co_linea_exp,   
+         temp_unid_liberar_duo.co_ref_exp,   
+         temp_unid_liberar_duo.co_color_exp,   
+         temp_unid_liberar_duo.co_talla_exp,   
+         temp_unid_liberar_duo.co_fabrica_pt,   
+         temp_unid_liberar_duo.co_linea,   
+         temp_unid_liberar_duo.co_referencia,   
+         temp_unid_liberar_duo.co_color_pt,   
+         temp_unid_liberar_duo.co_talla,   
+         temp_unid_liberar_duo.ca_programada,   
+         temp_unid_liberar_duo.ca_minima,
+         temp_unid_liberar_duo.ca_pedida,
+         h_preref_pv.de_referencia,
+			(SELECT m_lineas.de_linea
+				FROM m_lineas
+			  WHERE m_lineas.co_fabrica = temp_unid_liberar_duo.co_fabrica_exp 
+				 AND m_lineas.co_linea	 = temp_unid_liberar_duo.co_linea_exp ) as de_linea_exp,
+			(SELECT m_lineas.de_linea
+				FROM m_lineas
+			  WHERE m_lineas.co_fabrica = temp_unid_liberar_duo.co_fabrica_pt
+				 AND m_lineas.co_linea	 = temp_unid_liberar_duo.co_linea) as de_linea_pdn 
+    FROM temp_unid_liberar_duo,   
+         h_preref_pv  
+   WHERE ( temp_unid_liberar_duo.co_fabrica_pt 	= h_preref_pv.co_fabrica ) and  
+         ( temp_unid_liberar_duo.co_linea 		= h_preref_pv.co_linea ) and  
+         (Cast(temp_unid_liberar_duo.co_referencia as char(15) ) = h_preref_pv.co_referencia ) and
+         ( h_preref_pv.co_tipo_ref 					= 'P' ) and
+         ( temp_unid_liberar_duo.cs_lib_duo 		= :an_lib_duo )    
+" arguments=(("an_lib_duo", number))  sort="co_fabrica_exp A co_linea_exp A co_ref_exp A co_color_exp A co_fabrica_pt A co_linea A co_referencia A co_talla A ca_programada A " )
+text(band=header alignment="2" text="Fab." border="6" color="33554432" x="14" y="96" height="56" width="101" html.valueishtml="0"  name=co_fabrica_exp_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=header alignment="2" text="L$$HEX1$$ed00$$ENDHEX$$nea" border="6" color="33554432" x="133" y="96" height="56" width="498" html.valueishtml="0"  name=co_linea_exp_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=header alignment="2" text="Estilo " border="6" color="33554432" x="649" y="96" height="56" width="238" html.valueishtml="0"  name=co_ref_exp_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=header alignment="2" text="Ventas" border="6" color="33554432" x="14" y="20" height="56" width="1230" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+column(band=detail id=2 alignment="2" tabsequence=20 border="5" color="33554432" x="14" y="4" height="56" width="101" format="[general]" html.valueishtml="0"  name=co_fabrica_exp visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+compute(band=detail alignment="0" expression="String( co_linea_exp )+ ' - ' +Trim( de_linea_exp )"border="5" color="33554432" x="133" y="4" height="56" width="498" format="[GENERAL]" html.valueishtml="0"  name=linea_exp visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="5" color="33554432" x="649" y="4" height="56" width="238" format="[general]" html.valueishtml="0"  name=co_ref_exp visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=header alignment="2" text="Producci$$HEX1$$f300$$ENDHEX$$n" border="6" color="33554432" x="1271" y="20" height="56" width="1957" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Fab." border="6" color="33554432" x="1266" y="96" height="56" width="110" html.valueishtml="0"  name=co_fabrica_pt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="L$$HEX1$$ed00$$ENDHEX$$nea" border="6" color="33554432" x="1394" y="96" height="56" width="498" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Estilo" border="6" color="33554432" x="1911" y="96" height="56" width="667" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=7 alignment="2" tabsequence=70 border="5" color="33554432" x="1266" y="4" height="56" width="110" format="[general]" html.valueishtml="0"  name=co_fabrica_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="String( co_linea )+' - ' +Trim( de_linea_pdn )"border="5" color="33554432" x="1394" y="4" height="56" width="498" format="[GENERAL]" html.valueishtml="0"  name=linea_pdn visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="string( co_referencia )+' - ' +Trim( de_referencia )"border="5" color="33554432" x="1911" y="4" height="56" width="667" format="[GENERAL]" html.valueishtml="0"  name=estilo_pdn visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=120 border="5" color="33554432" x="3195" y="4" height="56" width="78" format="[general]" html.valueishtml="0"  name=ca_programada visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=130 border="5" color="33554432" x="3296" y="4" height="52" width="96" format="[general]" html.valueishtml="0"  name=ca_minima visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+column(band=detail id=14 alignment="0" tabsequence=140 border="0" color="33554432" x="3392" y="4" height="56" width="69" format="[general]" html.valueishtml="0"  name=ca_pedida visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=header alignment="2" text="Talla" border="6" color="33554432" x="2875" y="96" height="56" width="155" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Liberar" border="6" color="33554432" x="3049" y="96" height="56" width="178" html.valueishtml="0"  name=ca_programada_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=11 alignment="2" tabsequence=110 border="5" color="33554432" x="2875" y="4" height="56" width="155" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="IF ( isNull( ca_minima ),  ca_programada ,  ca_minima )"border="5" color="33554432" x="3049" y="4" height="56" width="178" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+text(band=header alignment="2" text="Color" border="6" color="33554432" x="2597" y="96" height="56" width="265" html.valueishtml="0"  name=co_color_pt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=10 alignment="2" tabsequence=100 border="5" color="33554432" x="2597" y="4" height="56" width="265" format="[general]" html.valueishtml="0"  name=co_color_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Talla" border="6" color="33554432" x="1125" y="96" height="56" width="123" html.valueishtml="0"  name=co_talla_exp_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+column(band=detail id=6 alignment="0" tabsequence=60 border="5" color="33554432" x="1125" y="4" height="56" width="123" format="[general]" html.valueishtml="0"  name=co_talla_exp visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=header alignment="2" text="Color" border="6" color="33554432" x="905" y="96" height="56" width="201" html.valueishtml="0"  name=co_color_exp_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="5" color="33554432" x="905" y="4" height="56" width="201" format="[general]" html.valueishtml="0"  name=co_color_exp visible="1" edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+
+sparse(names="co_fabrica_exp	linea_exp	co_ref_exp	co_color_exp	co_talla_exp	co_fabrica_pt	co_color_pt	estilo_pdn	linea_pdn")htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
