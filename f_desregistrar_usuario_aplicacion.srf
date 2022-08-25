@@ -1,0 +1,43 @@
+HA$PBExportHeader$f_desregistrar_usuario_aplicacion.srf
+global type f_desregistrar_usuario_aplicacion from function_object
+end type
+
+forward prototypes
+global function long f_desregistrar_usuario_aplicacion ()
+end prototypes
+
+global function long f_desregistrar_usuario_aplicacion ();/*	---------------------------------------------------------------------
+	Funcion utilizada para desregistrar esta sesion de usuario en la B.D.
+	con el proposito de administrar la desconexion de usuarios y otros.
+	---------------------------------------------------------------------*/
+Long ll_registros, ll_aplicacion
+String ls_usuario
+Datetime ldt_hora_inicio
+DataStore lds_usuxapli
+
+
+lds_usuxapli = Create DataStore
+lds_usuxapli.DataObject = 'd_usuarios_x_aplicacion'
+ll_registros = lds_usuxapli.SetTransObject(SQLCA) 
+ll_registros = lds_usuxapli.Retrieve(lul_id_inicio_usuario)
+
+If ll_registros > 0 Then												 
+	lds_usuxapli.DeleteRow(1)
+	If lds_usuxapli.UPDATE() > 0 Then
+		Commit Using SQLCA;
+	Else
+		MessageBox("Atenci$$HEX1$$f300$$ENDHEX$$n","No fue posible Cometer el borrado de registro de usuarios" &
+					+ "~n~nPor favor avise al Administrador de Sistemas", StopSign!)
+		Destroy lds_usuxapli				
+		Return -2
+	End If	
+Else
+	MessageBox("Atenci$$HEX1$$f300$$ENDHEX$$n","No fue posible leer el registro de usuario x aplicaci$$HEX1$$f300$$ENDHEX$$n" &
+				+ "~n~nPor favor avise al Administrador de Sistemas", StopSign!)
+	Return -1
+End If
+
+If IsValid(lds_usuxapli) Then Destroy lds_usuxapli
+Return 1
+end function
+
