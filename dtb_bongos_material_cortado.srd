@@ -1,0 +1,96 @@
+HA$PBExportHeader$dtb_bongos_material_cortado.srd
+release 9;
+datawindow(units=0 timer_interval=60000 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=yes print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=344 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=88 color="536870912" )
+detail(height=68 color="536870912"  height.autosize=yes)
+table(column=(type=char(20) updatewhereclause=yes name=gpa dbname="h_preref_pv.gpa" )
+ column=(type=char(20) updatewhereclause=yes name=po dbname="dt_agrupa_pdn.po" )
+ column=(type=char(20) updatewhereclause=yes name=de_referencia_crta dbname="h_preref_pv.de_referencia_crta" )
+ column=(type=long updatewhereclause=yes name=orden_corte dbname="dt_canasta_corte.cs_orden_corte" )
+ column=(type=char(20) updatewhereclause=yes name=bongo dbname="h_canasta_corte.pallet_id" )
+ column=(type=char(24) updatewhereclause=yes name=ubicacion dbname="h_canasta_corte.ubicacion_actual" )
+ column=(type=decimal(2) updatewhereclause=yes name=unidades dbname="unidades" )
+ column=(type=long updatewhereclause=yes name=dt_agrupa_pdn_cs_liberacion dbname="dt_agrupa_pdn.cs_liberacion" )
+ column=(type=long updatewhereclause=yes name=dt_agrupa_pdn_co_color_pt dbname="dt_agrupa_pdn.co_color_pt" )
+ column=(type=char(3) updatewhereclause=yes name=dt_agrupa_pdn_tono dbname="dt_agrupa_pdn.tono" )
+ retrieve="SELECT DISTINCT  h_preref_pv.gpa ,
+           dt_agrupa_pdn.po ,
+           h_preref_pv.de_referencia_crta ,
+           dt_canasta_corte.cs_orden_corte ,
+           h_canasta_corte.pallet_id ,
+           h_canasta_corte.ubicacion_actual ,
+           sum(dt_canasta_corte.ca_actual)unidades,
+           dt_agrupa_pdn.cs_liberacion ,
+           dt_agrupa_pdn.co_color_pt ,
+           dt_agrupa_pdn.tono     
+        FROM h_canasta_corte ,
+           dt_canasta_corte ,
+           h_preref_pv ,
+           dt_agrupa_pdn     
+        WHERE ( h_canasta_corte.cs_canasta = dt_canasta_corte.cs_canasta ) and 
+              ( h_preref_pv.co_tipo_ref = 'P') and
+				  ( dt_canasta_corte.co_linea = h_preref_pv.co_linea ) and     
+			     ( dt_canasta_corte.co_fabrica_ref = h_preref_pv.co_fabrica ) and   
+				  ( dt_canasta_corte.co_referencia = h_preref_pv.co_referencia ) and    
+				  ( dt_canasta_corte.co_fabrica_ref = dt_agrupa_pdn.co_fabrica_pt ) and       
+			     ( dt_canasta_corte.co_linea = dt_agrupa_pdn.co_linea ) and        
+		        ( cast(dt_canasta_corte.co_referencia as char(15)) = dt_agrupa_pdn.co_referencia ) and  
+				  ( dt_canasta_corte.co_color = dt_agrupa_pdn.co_color_pt ) and   
+				  ( dt_canasta_corte.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion ) and    
+				  ( dt_canasta_corte.cs_pdn = dt_agrupa_pdn.cs_pdn ) and        
+		        ( ( h_canasta_corte.co_estado = 40 ) And         
+		        ( dt_canasta_corte.cs_secuencia = 1 ) and        
+		        ( h_preref_pv.co_fabrica > 0 ) And       
+		        ( h_preref_pv.id_linea > '0' ) And      
+			     ( dt_canasta_corte.co_referencia > 0 ) ) 
+        GROUP BY h_preref_pv.gpa ,
+           dt_agrupa_pdn.po ,
+           h_preref_pv.de_referencia_crta ,
+           dt_canasta_corte.cs_orden_corte ,
+           h_canasta_corte.pallet_id ,
+           h_canasta_corte.ubicacion_actual ,
+           h_canasta_corte.co_estado ,
+           dt_agrupa_pdn.cs_liberacion ,
+           dt_agrupa_pdn.co_color_pt ,
+           dt_agrupa_pdn.tono  
+           ORDER BY h_canasta_corte.pallet_id          ASC,
+           h_preref_pv.gpa          ASC,
+           dt_agrupa_pdn.po          ASC,
+           h_preref_pv.de_referencia_crta          ASC,
+           dt_canasta_corte.cs_orden_corte          ASC,
+           dt_agrupa_pdn.cs_liberacion          ASC,
+           dt_agrupa_pdn.co_color_pt          ASC,
+           dt_agrupa_pdn.tono          ASC  " )
+text(band=header alignment="2" text="Bongo" border="2" color="33554432" x="5" y="228" height="112" width="165" html.valueishtml="0"  name=h_canasta_corte_pallet_id_t visible="1"  resizeable=1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Grupo" border="2" color="33554432" x="174" y="228" height="112" width="261" html.valueishtml="0"  name=h_preref_gpa_t visible="1"  resizeable=1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Po." border="2" color="33554432" x="439" y="228" height="112" width="270" html.valueishtml="0"  name=dt_agrupa_pdn_po_t visible="1"  resizeable=1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Estilo" border="2" color="33554432" x="713" y="228" height="112" width="416" html.valueishtml="0"  name=h_preref_de_referencia_crta_t visible="1"  resizeable=1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="SALDOS BODEGA MATERIAL CORTADO" border="0" color="33554432" x="617" y="116" height="80" width="1426" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="today()"border="0" color="0" x="5" y="84" height="56" width="535" format="dd-mmm-yyyy HH:mm" html.valueishtml="0"  name=date_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="1" expression="'P$$HEX1$$e100$$ENDHEX$$gina ' + page() + ' de ' + pageCount()"border="0" color="0" x="2752" y="32" height="64" width="562" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="c. i. Nicole s. a." border="0" color="33554432" x="5" y="16" height="64" width="443" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+button(band=header text="ordenar" filename="" enabled=yes action="8" border="0" color="0" x="1303" y="16" height="92" width="242" vtextalign="0" htextalign="0"  name=b_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217739" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="2" color="33554432" x="5" y="0" height="64" width="165" format="[general]" html.valueishtml="0"  name=bongo visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="439" y="0" height="64" width="270" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="33554432" x="183" y="0" height="64" width="242" format="[general]" html.valueishtml="0"  name=gpa visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="2" color="33554432" x="722" y="0" height="64" width="398" format="[general]" html.valueishtml="0"  name=de_referencia_crta visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=footer alignment="0" text="dtb_bongos_material_cortado" border="0" color="33554432" x="5" y="12" height="56" width="859" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Orden
+ Corte" border="2" color="33554432" x="1417" y="228" height="112" width="178" html.valueishtml="0"  name=dt_canasta_corte_cs_orden_corte_t visible="1"  resizeable=1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ubica-
+ci$$HEX1$$f300$$ENDHEX$$n" border="2" color="33554432" x="1600" y="228" height="112" width="169" html.valueishtml="0"  name=h_canasta_corte_ubicacion_actual_t visible="1"  resizeable=1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Unidades" border="2" color="33554432" x="1774" y="228" height="112" width="219" html.valueishtml="0"  name=t_1 visible="1"  resizeable=1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tallas" border="2" color="33554432" x="1998" y="228" height="112" width="1390" html.valueishtml="0"  name=t_2 visible="1"  resizeable=1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="2" color="33554432" x="1417" y="0" height="64" width="178" format="[general]" html.valueishtml="0"  name=orden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="2" color="33554432" x="1600" y="0" height="64" width="165" format="[general]" html.valueishtml="0"  name=ubicacion visible="1" edit.limit=24 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="2" color="33554432" x="1769" y="0" height="64" width="224" format="###,###" html.valueishtml="0"  name=unidades visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+report(band=detail dataobject="dnu_tallas_bongos_material_cortado" x="1998" y="0" height="64" width="1390" border="0"  height.autosize=yes criteria="" nest_arguments=((" bongo ")) trail_footer = yes  name=dw_1 visible="1"  slideup=directlyabove )
+text(band=header alignment="2" text="Lote" border="2" color="33554432" x="1134" y="228" height="112" width="279" html.valueishtml="0"  name=t_3 visible="1"  resizeable=1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression=" dt_agrupa_pdn_co_color_pt +trim( dt_agrupa_pdn_tono )+  dt_agrupa_pdn_cs_liberacion "border="2" color="33554432" x="1134" y="0" height="64" width="279" format="[GENERAL]" html.valueishtml="0"  name=lote visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
