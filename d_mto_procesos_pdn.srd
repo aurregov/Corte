@@ -1,0 +1,68 @@
+HA$PBExportHeader$d_mto_procesos_pdn.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=co_tipoprod dbname="m_procesos_pdn.co_tipoprod" initial="1" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_centro_pdn dbname="m_procesos_pdn.co_centro_pdn" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_subcentro_pdn dbname="m_procesos_pdn.co_subcentro_pdn" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_proceso_pdn dbname="m_procesos_pdn.co_proceso_pdn" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=de_proceso_pdn dbname="m_procesos_pdn.de_proceso_pdn" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_secuencia dbname="m_procesos_pdn.cs_secuencia" )
+ column=(type=long update=yes updatewhereclause=yes name=tipo dbname="m_procesos_pdn.tipo" initial="1" )
+ column=(type=long update=yes updatewhereclause=yes name=co_estado dbname="m_procesos_pdn.co_estado" initial="1" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="m_procesos_pdn.fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="m_procesos_pdn.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="m_procesos_pdn.instancia" )
+ column=(type=char(30) updatewhereclause=yes name=m_centros_pdn_de_centro_pdn dbname="m_centros_pdn.de_centro_pdn" )
+ column=(type=char(30) updatewhereclause=yes name=m_subcentros_pdn_de_subcentro_pdn dbname="m_subcentros_pdn.de_subcentro_pdn" )
+ retrieve="  SELECT m_procesos_pdn.co_tipoprod,   
+         m_procesos_pdn.co_centro_pdn,   
+         m_procesos_pdn.co_subcentro_pdn,   
+         m_procesos_pdn.co_proceso_pdn,   
+         m_procesos_pdn.de_proceso_pdn,   
+         m_procesos_pdn.cs_secuencia,   
+         m_procesos_pdn.tipo,   
+         m_procesos_pdn.co_estado,   
+         m_procesos_pdn.fe_actualizacion,   
+         m_procesos_pdn.usuario,   
+         m_procesos_pdn.instancia,
+			m_centros_pdn.de_centro_pdn,
+			m_subcentros_pdn.de_subcentro_pdn  
+    FROM m_procesos_pdn,
+			m_centros_pdn,
+			m_subcentros_pdn
+   WHERE m_procesos_pdn.co_tipoprod = m_centros_pdn.co_tipoprod AND
+			m_procesos_pdn.co_centro_pdn = m_centros_pdn.co_centro_pdn AND
+  			m_procesos_pdn.co_tipoprod = m_subcentros_pdn.co_tipoprod AND
+			m_procesos_pdn.co_centro_pdn = m_subcentros_pdn.co_centro_pdn AND
+			m_procesos_pdn.co_subcentro_pdn = m_subcentros_pdn.co_subcentro_pdn
+ORDER BY m_procesos_pdn.co_tipoprod ASC,   
+         m_procesos_pdn.co_centro_pdn ASC,   
+         m_procesos_pdn.co_subcentro_pdn ASC,   
+         m_procesos_pdn.co_proceso_pdn ASC   
+" update="m_procesos_pdn" updatewhere=0 updatekeyinplace=no )
+text(band=header alignment="2" text="Est" border="6" color="0" x="2898" y="8" height="56" width="101" html.valueishtml="0"  name=co_estado_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Producto" border="6" color="0" x="9" y="8" height="56" width="251" html.valueishtml="0"  name=co_tipoprod_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Centro" border="6" color="0" x="270" y="8" height="56" width="201" html.valueishtml="0"  name=co_centro_pdn_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Sub centro" border="6" color="0" x="873" y="8" height="56" width="274" html.valueishtml="0"  name=co_subcentro_pdn_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="C$$HEX1$$f300$$ENDHEX$$digo" border="6" color="0" x="1541" y="8" height="56" width="183" html.valueishtml="0"  name=co_proceso_pdn_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Descripci$$HEX1$$f300$$ENDHEX$$n" border="6" color="0" x="1733" y="8" height="56" width="846" html.valueishtml="0"  name=de_proceso_pdn_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Sec" border="6" color="0" x="2587" y="8" height="56" width="165" html.valueishtml="0"  name=cs_secuencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Tipo" border="6" color="0" x="2761" y="8" height="56" width="128" html.valueishtml="0"  name=tipo_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Descripci$$HEX1$$f300$$ENDHEX$$n" border="6" color="0" x="480" y="8" height="56" width="384" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Descripci$$HEX1$$f300$$ENDHEX$$n" border="6" color="0" x="1157" y="8" height="56" width="375" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=8 alignment="1" tabsequence=80 border="0" color="0" x="2898" y="4" height="64" width="101" format="[general]" html.valueishtml="0"  name=co_estado visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="9" y="4" height="64" width="251" format="[general]" html.valueishtml="0"  name=co_tipoprod visible="1" dddw.name=dddw_tipo_producto dddw.displaycolumn=de_tipoprod dddw.datacolumn=co_tipoprod dddw.percentwidth=180 dddw.lines=4 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="0" color="0" x="270" y="4" height="64" width="201" format="[general]" html.valueishtml="0"  name=co_centro_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=30 border="0" color="0" x="873" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_subcentro_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=40 border="0" color="0" x="1541" y="4" height="64" width="183" format="[general]" html.valueishtml="0"  name=co_proceso_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="0" color="0" x="1737" y="4" height="64" width="841" format="[general]" html.valueishtml="0"  name=de_proceso_pdn visible="1" editmask.mask="!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" editmask.imemode=0 editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=60 border="0" color="0" x="2587" y="4" height="64" width="165" format="[general]" html.valueishtml="0"  name=cs_secuencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=70 border="0" color="0" x="2761" y="4" height="64" width="128" format="[general]" html.valueishtml="0"  name=tipo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="0" x="480" y="4" height="64" width="384" format="[general]" html.valueishtml="0"  name=m_centros_pdn_de_centro_pdn visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="0" x="1157" y="4" height="64" width="375" format="[general]" html.valueishtml="0"  name=m_subcentros_pdn_de_subcentro_pdn visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
