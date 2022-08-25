@@ -1,0 +1,133 @@
+HA$PBExportHeader$dtb_loteado_por_modulo.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=244 color="536870912" )
+summary(height=208 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_modulo_fis dbname="co_modulo_fis" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=char(30) updatewhereclause=yes name=de_linea dbname="de_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=char(50) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=long updatewhereclause=yes name=cs_ordencorte dbname="cs_ordencorte" )
+ column=(type=char(30) updatewhereclause=yes name=de_modulo dbname="de_modulo" )
+ column=(type=char(20) updatewhereclause=yes name=po dbname="po" )
+ column=(type=long updatewhereclause=yes name=ca_actual dbname="ca_actual" )
+ column=(type=decimal(3) updatewhereclause=yes name=volumen dbname="volumen" )
+ column=(type=long updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long updatewhereclause=yes name=minutos_disponibles dbname="minutos_disponibles" )
+ retrieve="select {+ ORDERED}
+       distinct
+		 h_preref_pv.co_fabrica,
+      	(select max(m1.co_modulo) from h_canasta_corte h1, dt_canasta_corte d1, m_modulos m1, m_lotes_conf mf1
+        where h1.cs_canasta = d1.cs_canasta and d1.cs_orden_corte = m.cs_ordencorte
+          and d1.co_referencia = m.co_referencia and h1.pallet_id = mf1.atributo1 and d1.cs_orden_corte = mf1.cs_ordencorte
+          and h1.co_modulo_fis =  m1.co_modulo and m1.co_tipoprod	= :an_tipoprod 
+  		    and m1.co_centro_pdn = :an_centro and m1.co_subcentro_pdn		= :an_subcentro
+          and m1.co_fabrica = 2 and m1.co_planta = 2) as co_modulo_fis,
+		 h_preref_pv.co_linea,
+		 m_lineas.de_linea,
+		 m.co_referencia,
+		 h_preref_pv.de_referencia, 
+		 m.cs_ordencorte,
+       (CASE WHEN (select max(m1.de_modulo) from h_canasta_corte h1, dt_canasta_corte d1, m_modulos m1, m_lotes_conf mf1
+        where h1.cs_canasta = d1.cs_canasta and d1.cs_orden_corte = m.cs_ordencorte
+          and d1.co_referencia = m.co_referencia and h1.pallet_id = mf1.atributo1 and d1.cs_orden_corte = mf1.cs_ordencorte
+          and h1.co_modulo_fis =  m1.co_modulo and m1.co_tipoprod	= :an_tipoprod 
+  		    and m1.co_centro_pdn = :an_centro and m1.co_subcentro_pdn		= :an_subcentro
+          and m1.co_fabrica = 2 and m1.co_planta = 2)  IS NULL THEN
+             (select max(md1.de_modulo) from dt_kamban_corte dt1, m_modulos md1 where dt1.cs_orden_corte = m.cs_ordencorte 
+                 and dt1.co_tipoprod = 1 and dt1.co_centro_pdn = 1 and dt1.co_subcentro_pdn = 3 and dt1.co_modulo = md1.co_modulo
+                 and dt1.co_tipoprod = md1.co_tipoprod and dt1.co_centro_pdn = md1.co_centro_pdn
+                 and dt1.co_subcentro_pdn = md1.co_subcentro_pdn)
+
+       ELSE
+    		(select max(m1.de_modulo) from h_canasta_corte h1, dt_canasta_corte d1, m_modulos m1, m_lotes_conf mf1
+          where h1.cs_canasta = d1.cs_canasta and d1.cs_orden_corte = m.cs_ordencorte
+          and d1.co_referencia = m.co_referencia and h1.pallet_id = mf1.atributo1 and d1.cs_orden_corte = mf1.cs_ordencorte
+          and h1.co_modulo_fis =  m1.co_modulo and m1.co_tipoprod	= :an_tipoprod 
+  		    and m1.co_centro_pdn = :an_centro and m1.co_subcentro_pdn		= :an_subcentro
+          and m1.co_fabrica = 2 and m1.co_planta = 2) 
+       END ) as de_modulo,
+       m.po,
+       0 as ca_actual,
+		 tiempo_st as volumen, 
+		 m.co_fabrica,
+		 0 minutos_disponibles
+  from m_lotes_conf m,
+	
+		 h_preref_pv,
+		 m_lineas
+		 
+ where m.fe_loteo					      	>= :fe_inicial and
+ 		 m.fe_loteo								<= :fe_final and
+		
+	
+		 m_lineas.co_fabrica 				= m.co_fabrica and
+		 m_lineas.co_linea   				= m.co_linea and
+		 h_preref_pv.co_fabrica  			= m.co_fabrica and
+		 h_preref_pv.co_linea				= m.co_linea and
+       (Cast(m.co_referencia as char(15) ) = h_preref_pv.co_referencia ) AND
+       h_preref_pv.co_tipo_ref 			= 'P' AND
+       m.cs_ordencorte 						> 1   and
+
+		 m.co_calidad							= 1	
+
+
+
+		 
+" arguments=(("fe_inicial", datetime),("fe_final", datetime),("an_modulo", number),("an_tipoprod", number),("an_centro", number),("an_subcentro", number))  sort="co_modulo_fis A co_linea A co_referencia A cs_ordencorte A po A " )
+group(level=1 header.height=164 trailer.height=168 by=("co_modulo_fis" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="LOTEADO POR MODULO" border="0" color="33554432" x="731" y="80" height="92" width="1074" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="23" y="8" height="56" width="480" format="[SHORTDATE] [TIME]" html.valueishtml="0"  name=date_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="1" expression="'P$$HEX1$$e100$$ENDHEX$$gina ' + page() + ' de ' + pageCount()"border="0" color="33554432" x="1961" y="8" height="56" width="613" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Hasta:" border="0" color="0" x="1280" y="176" height="56" width="151" html.valueishtml="0"  name=t_7 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression=" fe_final "border="0" color="0" x="1440" y="176" height="56" width="480" format="[SHORTDATE] [TIME]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Desde:" border="0" color="0" x="603" y="176" height="56" width="155" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression=" fe_inicial "border="0" color="0" x="777" y="176" height="56" width="480" format="[SHORTDATE] [TIME]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+button(band=header text="Filtrar" enabled=yes action="9" border="0" color="0" x="2816" y="136" height="88" width="320" vtextalign="0" htextalign="0"  name=b_1 visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="65535" )
+text(band=header.1 alignment="2" text="Fab." border="6" color="33554432" x="288" y="96" height="56" width="123" html.valueishtml="0"  name=t_11 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Ord. Corte" border="6" color="33554432" x="18" y="96" height="56" width="256" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="L$$HEX1$$ed00$$ENDHEX$$nea" border="6" color="33554432" x="430" y="96" height="56" width="599" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Referencia" border="6" color="33554432" x="1047" y="96" height="56" width="1042" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="P.O." border="6" color="33554432" x="2107" y="100" height="56" width="384" html.valueishtml="0"  name=t_12 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Cantidad" border="6" color="33554432" x="2519" y="96" height="56" width="279" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Minutos" border="6" color="0" x="2825" y="96" height="56" width="187" html.valueishtml="0"  name=t_8 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Total" border="6" color="0" x="3040" y="96" height="56" width="233" html.valueishtml="0"  name=t_9 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="M$$HEX1$$f300$$ENDHEX$$dulo" border="6" color="33554432" x="18" y="8" height="56" width="306" html.valueishtml="0"  name=co_modulo_fis_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+column(band=header.1 id=8 alignment="0" tabsequence=32766 border="0" color="0" x="334" y="8" height="56" width="626" format="[general]" html.valueishtml="0"  name=de_modulo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header.1 alignment="2" text="Minutos Disponibles:" border="6" color="0" x="1376" y="8" height="56" width="475" html.valueishtml="0"  name=t_10 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+compute(band=header.1 alignment="0" expression="/*  minutos_disponibles  / count(  co_modulo_fis  for group 1 ) */"border="0" color="0" x="2158" y="8" height="56" width="55" format="[GENERAL]" html.valueishtml="0"  name=compute_11 visible="0"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header.1 alignment="1" text="Eficiencia:" border="6" color="0" x="2240" y="8" height="56" width="247" html.valueishtml="0"  name=t_13 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+compute(band=header.1 alignment="1" expression="/* ( compute_6 /  minutos_disponibles ) * 100 */"border="6" color="0" x="2514" y="8" height="56" width="165" format="0.00" html.valueishtml="0"  name=compute_9 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+text(band=header.1 alignment="2" text="%" border="6" color="0" x="2702" y="8" height="56" width="55" html.valueishtml="0"  name=t_15 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="2" color="0" x="288" y="0" height="56" width="123" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="2" color="0" x="18" y="0" height="56" width="256" format="[general]" html.valueishtml="0"  name=cs_ordencorte visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="2" color="33554432" x="425" y="0" height="56" width="91" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="2" color="33554432" x="521" y="0" height="56" width="521" format="[general]" html.valueishtml="0"  name=de_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="2" color="33554432" x="1042" y="0" height="56" width="197" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="2" color="33554432" x="1253" y="0" height="56" width="837" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="2" color="0" x="2107" y="4" height="56" width="384" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="2" color="33554432" x="2519" y="0" height="56" width="279" format="#,###,###" html.valueishtml="0"  name=ca_actual visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="2" color="0" x="2825" y="0" height="56" width="187" format="[General]" html.valueishtml="0"  name=volumen visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="1" expression=" volumen   *  ca_actual  "border="2" color="0" x="3040" y="0" height="56" width="233" format="#,###,###" html.valueishtml="0"  name=minutos_estandar visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="0" x="3273" y="0" height="56" width="69" format="[general]" html.valueishtml="0"  name=minutos_disponibles visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=trailer.1 alignment="1" expression="sum( ca_actual  for group 1) "border="6" color="33554432" x="2519" y="8" height="56" width="279" format="#,###,###" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=trailer.1 alignment="1" expression="sum(volumen for group 1) / count(  co_referencia  for group 1 )"border="6" color="0" x="2825" y="4" height="56" width="187" format="##.##" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=trailer.1 alignment="1" expression="sum( volumen   *  ca_actual   for group 1)"border="6" color="0" x="3035" y="8" height="56" width="233" format="#,###,###" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=trailer.1 alignment="2" text="Total M$$HEX1$$f300$$ENDHEX$$dulo:" border="6" color="33554432" x="2126" y="8" height="56" width="366" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=summary alignment="1" expression="sum( ca_actual  for all) "border="6" color="33554432" x="2519" y="8" height="56" width="279" format="#,###,###" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=summary alignment="1" expression="sum(volumen for all) / count(  co_referencia  for all )"border="6" color="0" x="2825" y="8" height="56" width="187" format="##.##" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=summary alignment="1" expression="sum( volumen   *  ca_actual   for all)"border="6" color="0" x="3035" y="8" height="56" width="233" format="#,###,###" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=summary alignment="1" text="Gran Total:" border="6" color="33554432" x="2199" y="8" height="56" width="293" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=summary alignment="1" text="Eficiencia:" border="6" color="0" x="2752" y="96" height="56" width="247" html.valueishtml="0"  name=t_14 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+compute(band=summary alignment="1" expression="/* ( compute_8   /   sum( compute_11   for all )  ) * 100 */"border="6" color="0" x="3026" y="96" height="56" width="165" format="0.00" html.valueishtml="0"  name=compute_10 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+text(band=summary alignment="2" text="%" border="6" color="0" x="3214" y="96" height="56" width="55" html.valueishtml="0"  name=t_16 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+compute(band=summary alignment="1" expression="/*  sum( compute_11   for all ) */"border="0" color="0" x="2683" y="96" height="56" width="41" format="[GENERAL]" html.valueishtml="0"  name=compute_12 visible="0"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
