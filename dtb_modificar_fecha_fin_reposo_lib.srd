@@ -1,0 +1,56 @@
+HA$PBExportHeader$dtb_modificar_fecha_fin_reposo_lib.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=long updatewhereclause=yes key=yes name=pedido dbname="dt_simulacion.pedido" )
+ column=(type=long updatewhereclause=yes key=yes name=co_fabrica_sim dbname="dt_simulacion.co_fabrica_sim" )
+ column=(type=long updatewhereclause=yes key=yes name=co_planta dbname="dt_simulacion.co_planta" )
+ column=(type=long updatewhereclause=yes key=yes name=co_centro_pdn dbname="dt_simulacion.co_centro_pdn" )
+ column=(type=long updatewhereclause=yes key=yes name=co_subcentro_pdn dbname="dt_simulacion.co_subcentro_pdn" )
+ column=(type=long updatewhereclause=yes key=yes name=co_tipo_negocio dbname="dt_simulacion.co_tipo_negocio" )
+ column=(type=long updatewhereclause=yes key=yes name=co_maquina dbname="dt_simulacion.co_maquina" )
+ column=(type=long updatewhereclause=yes key=yes name=simulacion dbname="dt_simulacion.simulacion" )
+ column=(type=long updatewhereclause=yes key=yes identity=yes name=secuencia dbname="dt_simulacion.secuencia" )
+ column=(type=char(30) updatewhereclause=yes key=yes name=co_referencia dbname="dt_simulacion.co_referencia" )
+ column=(type=char(30) updatewhereclause=yes name=de_referencia dbname="dt_simulacion.de_referencia" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fecha_inicio_bck dbname="dt_simulacion.fecha_inicio_bck" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fecha_fin_bck dbname="dt_simulacion.fecha_fin_bck" )
+ retrieve=" SELECT pedido,
+        co_fabrica_sim,
+        co_planta,
+        co_centro_pdn,
+        co_subcentro_pdn,
+        co_tipo_negocio,
+        co_maquina,
+        simulacion,
+        secuencia,
+        co_referencia,
+        de_referencia,
+        fecha_inicio_bck,
+        fecha_fin_bck 
+  FROM dt_simulacion 
+ WHERE pedido          = :an_pedido 
+   AND co_tipo_negocio = (select cast(numerico as integer)
+						from m_constantes
+						where var_nombre = 'REPOSO_TIPONEGOCIO')       
+	AND co_estado 		  = 'A'    
+   AND fecha_inicio_bck is not null 
+   AND fecha_fin_bck    is not null 
+" update="dt_simulacion" updatewhere=2 updatekeyinplace=yes arguments=(("an_pedido", number)) )
+text(band=header alignment="2" text="Liberaci$$HEX1$$f300$$ENDHEX$$n" border="6" color="33554432" x="0" y="4" height="56" width="229" html.valueishtml="0"  name=pedido_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="33554432" x="14" y="4" height="68" width="201" format="[general]" html.valueishtml="0"  name=pedido visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fecha Inicio Reposo" border="6" color="33554432" x="969" y="4" height="56" width="485" html.valueishtml="0"  name=fecha_inicio_bck_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fecha Fin Reposo" border="6" color="33554432" x="1472" y="4" height="56" width="489" html.valueishtml="0"  name=fecha_fin_bck_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=10 border="5" color="33554432" x="969" y="4" height="68" width="480" format="[shortdate] [time]" html.valueishtml="0"  name=fecha_inicio_bck visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=13 alignment="0" tabsequence=20 border="5" color="33554432" x="1472" y="4" height="68" width="494" format="[shortdate] [time]" html.valueishtml="0"  name=fecha_fin_bck visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Tela" border="6" color="33554432" x="251" y="4" height="56" width="699" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="5" color="33554432" x="242" y="4" height="68" width="219" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="5" color="33554432" x="485" y="4" height="68" width="462" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
