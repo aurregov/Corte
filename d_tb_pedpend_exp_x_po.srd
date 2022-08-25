@@ -1,0 +1,310 @@
+HA$PBExportHeader$d_tb_pedpend_exp_x_po.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=136 color="536870912" )
+summary(height=72 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=pedido dbname="pedido" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=item dbname="item" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=nu_cut dbname="nu_cut" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes name=co_fabrica_exp dbname="co_fabrica_exp" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes name=co_linea_exp dbname="co_linea_exp" initial="0" )
+ column=(type=char(15) update=yes updatewhereclause=yes name=co_ref_exp dbname="co_ref_exp" )
+ column=(type=char(15) update=yes updatewhereclause=yes name=co_talla_exp dbname="co_talla_exp" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=co_color_exp dbname="co_color_exp" validationmsg="'Debe mantenerce con longitud menor o igual a 8 caracteres'" )
+ column=(type=long update=yes updatewhereclause=yes name=co_fabrica dbname="co_fabrica" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes name=co_linea dbname="co_linea" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes name=co_referencia dbname="co_referencia" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes name=co_talla dbname="co_talla" )
+ column=(type=long update=yes updatewhereclause=yes name=co_calidad dbname="co_calidad" initial="1" )
+ column=(type=long update=yes updatewhereclause=yes name=co_color dbname="co_color" )
+ column=(type=long update=yes updatewhereclause=yes name=co_empq_cnsm dbname="co_empq_cnsm" initial="2" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_pedida dbname="ca_pedida" initial="0" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=nu_orden dbname="nu_orden" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=po_master dbname="po_master" initial="0" )
+ column=(type=date update=yes updatewhereclause=yes name=fe_entrega dbname="fe_entrega" initial="TODAY" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=pr_maestro dbname="pr_maestro" initial="0" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=pr_pedido dbname="pr_pedido" initial="0" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=pr_gancho dbname="pr_gancho" initial="0" )
+ column=(type=decimal(3) update=yes updatewhereclause=yes name=pr_neto dbname="pr_neto" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes name=co_coleccion dbname="co_coleccion" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes name=co_centro_distrib dbname="co_centro_distrib" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes name=co_division dbname="co_division" initial="0" )
+ column=(type=date update=yes updatewhereclause=yes name=fe_recep_esp dbname="fe_recep_esp" initial="TODAY" )
+ column=(type=date update=yes updatewhereclause=yes name=fe_envio_muestra dbname="fe_envio_muestra" initial="TODAY" )
+ column=(type=date update=yes updatewhereclause=yes name=fe_pp_comment_rec dbname="fe_pp_comment_rec" initial="TODAY" )
+ column=(type=date update=yes updatewhereclause=yes name=fe_exit_po dbname="fe_exit_po" initial="TODAY" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=instresp_empq dbname="instresp_empq" initial="G " )
+ column=(type=char(20) update=yes updatewhereclause=yes name=upc_barcode dbname="upc_barcode" initial="0" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=marca dbname="marca" initial="A" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_despachada dbname="ca_despachada" initial="0" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_transito dbname="ca_transito" initial="0" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_cancelada dbname="ca_cancelada" initial="0" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=estado dbname="estado" initial="D" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="fe_creacion" initial="TODAY" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="fe_actualizacion" initial="TODAY" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="instancia" )
+ column=(type=long update=yes updatewhereclause=yes name=co_cliente_exp dbname="co_cliente_exp" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes name=co_sucursal_exp dbname="co_sucursal_exp" initial="0" )
+ column=(type=date update=yes updatewhereclause=yes name=fe_act_exit dbname="fe_act_exit" initial="TODAY" )
+ column=(type=long update=yes updatewhereclause=yes name=nro_invoice dbname="nro_invoice" initial="0" )
+ column=(type=char(3) update=yes updatewhereclause=yes name=grupo_empaque dbname="grupo_empaque" initial="0" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=single_item dbname="single_item" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_bolsa_x_caja dbname="ca_bolsa_x_caja" initial="0" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=peso dbname="peso" initial="0" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=volumen dbname="volumen" initial="0" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=tejido dbname="tejido" initial="0" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=segundas dbname="segundas" initial="0" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=area dbname="area" initial="0" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=zona dbname="zona" initial="0" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=aisle dbname="aisle" initial="0" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=bahia dbname="bahia" initial="0" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=nivel dbname="nivel" initial="0" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=posicion dbname="posicion" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes name=co_lista dbname="co_lista" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes name=co_vendedor dbname="co_vendedor" initial="0" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_anulada dbname="ca_anulada" initial="0" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_cortada dbname="ca_cortada" initial="0" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_transito_seg dbname="ca_transito_seg" initial="0" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_despachada_seg dbname="ca_despachada_seg" initial="0" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=opc_ped11 dbname="opc_ped11" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=opc_ped12 dbname="opc_ped12" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=opc_ped13 dbname="opc_ped13" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=opc_ped14 dbname="opc_ped14" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=opc_ped15 dbname="opc_ped15" )
+ column=(type=char(15) update=yes updatewhereclause=yes name=ompro dbname="ompro" values="	S/	N" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_comprada dbname="ca_comprada" initial="0" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_liberada dbname="ca_liberada" initial="0" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_pedida_comprar dbname="ca_pedida_comprar" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_inicial dbname="ca_inicial" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=co_prepack dbname="co_prepack" )
+ column=(type=char(1) updatewhereclause=yes name=seleccion dbname="seleccion" initial="S" values="	S/	N" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=cantidad_102 dbname="cantidad_102" initial="0" )
+ column=(type=char(1) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=omdiv dbname="omdiv" )
+ column=(type=char(5) update=yes updatewhereclause=yes name=cusol dbname="cusol" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=cuship dbname="cuship" )
+ column=(type=char(16) update=yes updatewhereclause=yes name=categoria_sap dbname="categoria_sap" )
+ column=(type=char(18) update=yes updatewhereclause=yes name=co_material_sap dbname="co_material_sap" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=co_talla_sap dbname="co_talla_sap" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=co_color_sap dbname="co_color_sap" )
+ column=(type=long updatewhereclause=yes name=item_primera dbname="item_primera" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_tejido dbname="ca_tejido" )
+ column=(type=char(2) updatewhereclause=yes name=tipo_pedido dbname="tipo_pedido" )
+ column=(type=char(12) update=yes updatewhereclause=yes name=tipo_orden_toc dbname="tipo_orden_toc" )
+ column=(type=long update=yes updatewhereclause=yes name=toc dbname="toc" )
+ retrieve="  SELECT pedpend_exp.pedido,   
+         pedpend_exp.item,   
+         pedpend_exp.nu_cut, 
+			pedpend_exp.co_fabrica_exp,                          
+			pedpend_exp.co_linea_exp,
+         pedpend_exp.co_ref_exp,   
+         pedpend_exp.co_talla_exp,   
+         pedpend_exp.co_color_exp,   
+         pedpend_exp.co_fabrica,   
+			pedpend_exp.co_linea,
+         pedpend_exp.co_referencia,   
+         pedpend_exp.co_talla,   
+         pedpend_exp.co_calidad,   
+         pedpend_exp.co_color,   
+         pedpend_exp.co_empq_cnsm,   
+         pedpend_exp.ca_pedida,   
+         pedpend_exp.nu_orden,  
+         pedpend_exp.po_master,   
+         pedpend_exp.fe_entrega,   
+         pedpend_exp.pr_maestro,   
+         pedpend_exp.pr_pedido, 
+         pedpend_exp.pr_gancho,  
+         pedpend_exp.pr_neto,  
+         pedpend_exp.co_coleccion,
+         pedpend_exp.co_centro_distrib,
+         pedpend_exp.co_division,  
+         pedpend_exp.fe_recep_esp,   
+         pedpend_exp.fe_envio_muestra,   
+         pedpend_exp.fe_pp_comment_rec,   
+         pedpend_exp.fe_exit_po,   
+         pedpend_exp.instresp_empq,   
+         pedpend_exp.upc_barcode,   
+         pedpend_exp.marca,   
+         pedpend_exp.ca_despachada,   
+         pedpend_exp.ca_transito,   
+         pedpend_exp.ca_cancelada,   
+         pedpend_exp.estado,   
+         pedpend_exp.fe_creacion,   
+         pedpend_exp.fe_actualizacion,   
+         pedpend_exp.usuario,   
+         pedpend_exp.instancia,     
+         pedpend_exp.co_cliente_exp,   
+         pedpend_exp.co_sucursal_exp,   
+         pedpend_exp.fe_act_exit,   
+         pedpend_exp.nro_invoice,   
+         pedpend_exp.grupo_empaque,   
+         pedpend_exp.single_item,   
+         pedpend_exp.ca_bolsa_x_caja,   
+         pedpend_exp.peso,   
+         pedpend_exp.volumen,   
+         pedpend_exp.tejido,   
+         pedpend_exp.segundas,   
+         pedpend_exp.area,   
+         pedpend_exp.zona,   
+         pedpend_exp.aisle,   
+         pedpend_exp.bahia,   
+         pedpend_exp.nivel,   
+         pedpend_exp.posicion,   
+         pedpend_exp.co_lista,   
+         pedpend_exp.co_vendedor,   
+         pedpend_exp.ca_anulada,   
+         pedpend_exp.ca_cortada,   
+         pedpend_exp.ca_transito_seg,   
+         pedpend_exp.ca_despachada_seg,
+         pedpend_exp.opc_ped11,   
+         pedpend_exp.opc_ped12,   
+         pedpend_exp.opc_ped13,   
+         pedpend_exp.opc_ped14,   
+         pedpend_exp.opc_ped15,			
+			pedpend_exp.ompro,
+         pedpend_exp.ca_comprada,
+			pedpend_exp.ca_liberada,
+         pedpend_exp.ca_pedida_comprar,
+         pedpend_exp.ca_inicial,
+         pedpend_exp.co_prepack,
+			( Case When pedpend_exp.co_calidad = 1 then
+				'S'
+			Else 
+				'N' 
+			End ) seleccion,
+			pedpend_exp.cantidad_102,
+			/*(NVL(( SELECT de_referencia_crta
+					FROM h_preref 
+					WHERE h_preref.co_fabrica = pedpend_exp.co_fabrica AND
+						 h_preref.co_linea = pedpend_exp.co_linea AND
+						 h_preref.co_referencia = pedpend_exp.co_referencia  
+				), '-0-')
+			)*/ '' de_referencia,
+			pedpend_exp.omdiv,
+			pedpend_exp.cusol,
+			pedpend_exp.cuship,
+			pedpend_exp.categoria_sap,
+			pedpend_exp.co_material_sap,
+			pedpend_exp.co_talla_sap,
+			pedpend_exp.co_color_sap,
+			( select max(p.item) 
+				from pedpend_exp p
+				where p.pedido = peddig.pedido) item_primera,
+			pedpend_exp.ca_tejido,
+			peddig.tipo_pedido,
+			pedpend_exp.tipo_orden_toc,
+			pedpend_exp.toc
+    FROM pedpend_exp, peddig  
+   WHERE pedpend_exp.pedido = peddig.pedido
+	and ( pedpend_exp.nu_orden = :an_nu_orden ) 
+" update="pedpend_exp" updatewhere=1 updatekeyinplace=yes arguments=(("an_nu_orden", string))  sort="pedido A co_calidad A co_fabrica_exp A co_linea_exp A co_ref_exp A co_talla_exp A co_color_exp A co_referencia A co_color A " )
+text(band=header alignment="2" text="Item" border="6" color="8388608" x="82" y="8" height="108" width="105" html.valueishtml="0"  name=item_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cut" border="6" color="8388608" x="201" y="8" height="108" width="142" html.valueishtml="0"  name=nu_cut_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="F$$HEX1$$e100$$ENDHEX$$b
+Vta." border="6" color="8388608" x="357" y="8" height="108" width="105" html.valueishtml="0"  name=co_fabrica_vta_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="L$$HEX1$$ed00$$ENDHEX$$nea
+Vta." border="6" color="8388608" x="475" y="8" height="108" width="128" html.valueishtml="0"  name=t_7 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Referencia
+Vta." border="6" color="8388608" x="617" y="8" height="108" width="375" html.valueishtml="0"  name=co_ref_exp_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Talla
+Vta." border="6" color="8388608" x="1001" y="8" height="108" width="169" html.valueishtml="0"  name=co_talla_exp_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Color
+Vta." border="6" color="8388608" x="1179" y="8" height="108" width="183" html.valueishtml="0"  name=co_color_exp_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="F$$HEX1$$e100$$ENDHEX$$b/L$$HEX1$$ed00$$ENDHEX$$nea/ Referencia         / Talla / Color" border="6" color="8388608" x="1376" y="8" height="108" width="983" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="UPC" border="6" color="8388608" x="2373" y="8" height="108" width="393" html.valueishtml="0"  name=t_19 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Calidad" border="6" color="8388608" x="2779" y="8" height="108" width="165" html.valueishtml="0"  name=co_calidad_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Empq" border="6" color="8388608" x="2958" y="8" height="108" width="133" html.valueishtml="0"  name=co_empq_cnsm_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cantidad
+Pedida" border="6" color="8388608" x="3104" y="8" height="108" width="242" html.valueishtml="0"  name=ca_pedida_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cantidad a Comprar" border="6" color="8388608" x="3360" y="8" height="108" width="242" html.valueishtml="0"  name=ca_pedida_comprar_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="P.O.
+Master" border="6" color="8388608" x="3616" y="8" height="108" width="370" html.valueishtml="0"  name=po_master_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fecha 
+Despacho" border="6" color="8388608" x="4000" y="8" height="108" width="279" html.valueishtml="0"  name=fe_entrega_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Precio 
+Maestro" border="6" color="8388608" x="4293" y="8" height="108" width="288" html.valueishtml="0"  name=pr_maestro_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Precio 
+Pedido" border="6" color="8388608" x="4590" y="8" height="108" width="288" html.valueishtml="0"  name=pr_pedido_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Precio 
+Gancho" border="6" color="8388608" x="4891" y="8" height="108" width="302" html.valueishtml="0"  name=pr_gancho_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Precio 
+Neto" border="6" color="8388608" x="5207" y="8" height="108" width="302" html.valueishtml="0"  name=pr_neto_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fecha Recep.
+Especificaci$$HEX1$$f300$$ENDHEX$$n" border="6" color="8388608" x="5522" y="8" height="108" width="320" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fecha Env$$HEX1$$ed00$$ENDHEX$$o
+Muestra" border="6" color="8388608" x="5856" y="8" height="108" width="288" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fecha
+Comment Rec." border="6" color="8388608" x="6158" y="8" height="108" width="288" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Temporada" border="6" color="8388608" x="6459" y="8" height="108" width="773" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="(Opc # 11):" border="6" color="8388608" x="7241" y="8" height="108" width="672" html.valueishtml="0"  name=opc_ped11_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="(Opc # 12):" border="6" color="8388608" x="7927" y="8" height="108" width="672" html.valueishtml="0"  name=opc_ped12_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="(Opc. #13)" border="6" color="8388608" x="8613" y="8" height="108" width="672" html.valueishtml="0"  name=opc_ped13_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="(Opc. # 14)" border="6" color="8388608" x="9298" y="8" height="108" width="672" html.valueishtml="0"  name=opc_ped14_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="(Opc. # 15)" border="6" color="8388608" x="9989" y="8" height="108" width="672" html.valueishtml="0"  name=opc_ped15_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ompro" border="6" color="8388608" x="10674" y="8" height="108" width="347" html.valueishtml="0"  name=t_16 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Grupo
+Empaque" border="6" color="8388608" x="11035" y="8" height="108" width="210" html.valueishtml="0"  name=grupo_empaque_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Categoria
+SAP" border="6" color="8388608" x="11259" y="12" height="104" width="210" html.valueishtml="0"  name=t_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Material
+SAP" border="6" color="8388608" x="11488" y="12" height="104" width="407" html.valueishtml="0"  name=t_6 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Color
+SAP" border="6" color="8388608" x="12169" y="12" height="104" width="187" html.valueishtml="0"  name=t_9 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Talla
+
+SAP" border="6" color="8388608" x="11913" y="12" height="104" width="233" html.valueishtml="0"  name=t_8 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=76 alignment="0" tabsequence=10 border="0" color="0" x="9" y="16" height="48" width="55" format="[general]" html.valueishtml="0"  name=seleccion visible="1" checkbox.text="" checkbox.on="S" checkbox.off="N" checkbox.scale=yes checkbox.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="0" x="82" y="12" height="64" width="105" format="[general]" html.valueishtml="0"  name=item visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=3 alignment="0" tabsequence=330 border="5" color="0" x="206" y="12" height="64" width="142" format="[general]" html.valueishtml="0"  name=nu_cut visible="1" edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=4 alignment="0" tabsequence=20 border="5" color="33554432" x="361" y="12" height="64" width="105" format="[general]" html.valueishtml="0"  name=co_fabrica_exp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=5 alignment="1" tabsequence=30 border="5" color="0" x="475" y="12" height="64" width="133" format="[general]" html.valueishtml="0"  name=co_linea_exp visible="1" edit.limit=8 edit.case=upper edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=6 alignment="0" tabsequence=40 border="5" color="0" x="617" y="12" height="64" width="375" format="[general]" html.valueishtml="0"  name=co_ref_exp visible="1" edit.limit=15 edit.case=upper edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=7 alignment="0" tabsequence=50 border="5" color="0" x="1006" y="12" height="64" width="160" format="[general]" html.valueishtml="0"  name=co_talla_exp visible="1" edit.limit=15 edit.case=upper edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=8 alignment="0" tabsequence=60 border="5" color="0" x="1179" y="12" height="64" width="183" format="[general]" html.valueishtml="0"  name=co_color_exp visible="1" edit.limit=8 edit.case=upper edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=9 alignment="1" tabsequence=70 border="2" color="0" x="1381" y="12" height="64" width="73" format="[general]" html.valueishtml="0" protect="0~t1"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="Left(String(co_referencia,~"######~") + ~"     ~", 6) + ~" - ~" + Trim(de_referencia)"border="2" color="0" x="1554" y="12" height="64" width="526" format="[GENERAL]" html.valueishtml="0"  name=cmp_referencia  tag="String(co_referencia) + ~" - ~" + Trim(de_referencia)" visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=13 alignment="1" tabsequence=130 border="5" color="0" x="2779" y="12" height="64" width="165" format="[general]" html.valueishtml="0"  name=co_calidad visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=15 alignment="1" tabsequence=140 border="5" color="0" x="2958" y="12" height="64" width="128" format="[general]" html.valueishtml="0"  name=co_empq_cnsm visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=19 alignment="0" tabsequence=180 border="5" color="0" x="4000" y="12" height="64" width="279" format="dd/mm/yyyy" html.valueishtml="0"  name=fe_entrega visible="1" editmask.mask="dd/mm/yyyy" editmask.imemode=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=16 alignment="1" tabsequence=150 border="5" color="0" x="3104" y="12" height="64" width="242" format="##0" html.valueishtml="0"  name=ca_pedida visible="1" editmask.useformat=yes editmask.mask="#########" editmask.imemode=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=73 alignment="1" tabsequence=160 border="5" color="0" x="3360" y="12" height="64" width="242" format="##0" html.valueishtml="0"  name=ca_pedida_comprar visible="1" editmask.useformat=yes editmask.mask="#########" editmask.imemode=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=18 alignment="0" tabsequence=170 border="5" color="0" x="3616" y="12" height="64" width="370" format="[general]" html.valueishtml="0"  name=po_master visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=20 alignment="1" tabsequence=190 border="5" color="0" x="4293" y="12" height="64" width="270" format="[general]" html.valueishtml="0"  name=pr_maestro visible="1" editmask.mask="###,###.0000" editmask.imemode=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=21 alignment="1" tabsequence=200 border="5" color="0" x="4590" y="12" height="64" width="288" format="[general]" html.valueishtml="0"  name=pr_pedido visible="1" editmask.mask="###,###.0000" editmask.imemode=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=22 alignment="1" tabsequence=210 border="5" color="0" x="4891" y="12" height="64" width="302" format="###,###.###" html.valueishtml="0"  name=pr_gancho visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=23 alignment="1" tabsequence=220 border="5" color="33554432" x="5207" y="12" height="64" width="302" format="###,###.####" html.valueishtml="0"  name=pr_neto visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=10 alignment="0" tabsequence=80 border="2" color="0" x="1458" y="12" height="64" width="91" format="[general]" html.valueishtml="0" protect="0~t1"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=11 alignment="0" tabsequence=90 border="0" color="0" x="1554" y="12" height="64" width="169" format="[general]" html.valueishtml="0" protect="0~t1"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=12 alignment="1" tabsequence=100 border="2" color="0" x="2085" y="12" height="64" width="123" format="[general]" html.valueishtml="0" protect="0~t1"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=14 alignment="1" tabsequence=110 border="2" color="0" x="2213" y="12" height="64" width="155" format="[general]" html.valueishtml="0" protect="0~t1"  name=co_color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=27 alignment="0" tabsequence=230 border="5" color="0" x="5522" y="12" height="64" width="320" format="dd/mm/yyyy" html.valueishtml="0"  name=fe_recep_esp visible="1" editmask.mask="dd/mm/yyyy" editmask.imemode=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=28 alignment="0" tabsequence=240 border="5" color="0" x="5861" y="12" height="64" width="288" format="dd/mm/yyyy" html.valueishtml="0"  name=fe_envio_muestra visible="1" editmask.mask="dd/mm/yyyy" editmask.imemode=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=29 alignment="0" tabsequence=250 border="5" color="0" x="6158" y="12" height="64" width="288" format="dd/mm/yyyy" html.valueishtml="0"  name=fe_pp_comment_rec visible="1" editmask.mask="dd/mm/yyyy" editmask.imemode=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=32 alignment="0" tabsequence=120 border="2" color="0" x="2373" y="12" height="64" width="393" format="[general]" html.valueishtml="0" protect="0~t1"  name=upc_barcode visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=75 alignment="0" tabsequence=32766 border="2" color="0" x="6455" y="12" height="64" width="773" format="[general]" html.valueishtml="0"  name=co_prepack visible="1" dddw.name=d_gr_mnmto_temporada_equivalencia dddw.displaycolumn=compute_nombre dddw.datacolumn=co_prepack dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=65 alignment="0" tabsequence=260 border="5" color="0" x="7237" y="12" height="64" width="672" format="[general]" html.valueishtml="0"  name=opc_ped11 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=66 alignment="0" tabsequence=270 border="5" color="0" x="7918" y="12" height="64" width="672" format="[general]" html.valueishtml="0"  name=opc_ped12 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=67 alignment="0" tabsequence=280 border="5" color="0" x="8603" y="12" height="64" width="672" format="[general]" html.valueishtml="0"  name=opc_ped13 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=68 alignment="0" tabsequence=290 border="5" color="0" x="9298" y="12" height="64" width="672" format="[general]" html.valueishtml="0"  name=opc_ped14 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=69 alignment="0" tabsequence=300 border="5" color="0" x="9984" y="12" height="64" width="672" format="[general]" html.valueishtml="0"  name=opc_ped15 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=70 alignment="0" tabsequence=310 border="5" color="0" x="10670" y="12" height="64" width="347" format="[general]" html.valueishtml="0"  name=ompro visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=46 alignment="0" tabsequence=320 border="5" color="0" x="11031" y="12" height="64" width="210" format="[general]" html.valueishtml="0"  name=grupo_empaque visible="1" edit.limit=3 edit.case=upper edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=82 alignment="0" tabsequence=350 border="5" color="0" x="11259" y="12" height="64" width="210" format="[general]" html.valueishtml="0"  name=categoria_sap visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=83 alignment="0" tabsequence=360 border="5" color="0" x="11488" y="12" height="64" width="416" format="[general]" html.valueishtml="0"  name=co_material_sap visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=85 alignment="0" tabsequence=380 border="5" color="0" x="12169" y="12" height="64" width="187" format="[general]" html.valueishtml="0"  name=co_color_sap visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=84 alignment="0" tabsequence=370 border="5" color="0" x="11913" y="12" height="64" width="233" format="[general]" html.valueishtml="0"  name=co_talla_sap visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=88 alignment="0" tabsequence=390 border="0" color="0" x="12357" y="0" height="68" width="114" format="[general]" html.valueishtml="0"  name=tipo_pedido visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=86 alignment="0" tabsequence=400 border="0" color="0" x="12475" y="8" height="52" width="146" format="[general]" html.valueishtml="0"  name=item_primera visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=1 alignment="0" tabsequence=410 border="0" color="0" x="12645" y="12" height="52" width="320" format="[general]" html.valueishtml="0"  name=pedido visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=89 alignment="0" tabsequence=420 border="0" color="0" x="12965" y="0" height="52" width="279" format="[general]" html.valueishtml="0"  name=tipo_orden_toc visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=summary alignment="0" text="Total" border="0" color="0" x="2853" y="8" height="56" width="169" html.valueishtml="0"  name=t_10 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+compute(band=summary alignment="1" expression="sum(ca_pedida for all)"border="2" color="0" x="3040" y="8" height="56" width="261" format="#########" html.valueishtml="0"  name=ca_total_pedida visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=90 alignment="0" tabsequence=430 border="0" color="0" x="13243" y="0" height="52" width="23" html.valueishtml="0"  name=toc visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
