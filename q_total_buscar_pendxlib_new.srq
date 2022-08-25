@@ -1,0 +1,94 @@
+HA$PBExportHeader$q_total_buscar_pendxlib_new.srq
+  SELECT peddig.co_fabrica_exp,   
+         peddig.pedido,   
+         peddig.gpa, 
+			peddig.tipo_pedido,     
+         pedpend_exp.nu_orden,   
+         pedpend_exp.co_fabrica,   
+         pedpend_exp.co_linea,
+			m_lineas.de_linea,   
+         pedpend_exp.co_referencia,  
+			h_preref.de_referencia, 
+         pedpend_exp.co_color,
+			m_colores.de_color, 
+			0 cs_liberacion,
+         " ",
+			0 cs_estilocolortono,
+         SUM(pedpend_exp.ca_pedida)  
+    FROM peddig,   
+         pedpend_exp, m_lineas, h_preref,m_colores  
+   WHERE ( peddig.co_fabrica_exp = :an_co_fabrica_exp ) and  
+			( peddig.co_fabrica_exp = pedpend_exp.co_fabrica_exp ) and  
+         ( peddig.pedido = pedpend_exp.pedido ) and  
+         ( ( peddig.co_fabrica_exp > 0 ) AND  
+         ( peddig.tipo_pedido = "AL" ) )   AND
+			( peddig.gpa LIKE :as_grupo ) AND
+         ( pedpend_exp.co_fabrica = m_lineas.co_fabrica ) AND
+         ( pedpend_exp.co_linea   = m_lineas.co_linea ) AND
+         ( pedpend_exp.co_fabrica = h_preref.co_fabrica ) AND
+         ( pedpend_exp.co_linea 	 = h_preref.co_linea ) AND
+         ( pedpend_exp.co_referencia= h_preref.co_referencia ) AND
+         ( pedpend_exp.co_fabrica = m_colores.co_fabrica ) AND
+         ( pedpend_exp.co_linea   = m_colores.co_linea ) AND
+         ( pedpend_exp.co_color = m_colores.co_color ) 
+
+GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13
+
+UNION
+  SELECT dt_libera_estilos.co_fabrica_exp,   
+         dt_libera_estilos.pedido,   
+         peddig.gpa,   
+         peddig.tipo_pedido,   
+         dt_libera_estilos.nu_orden,   
+         dt_libera_estilos.co_fabrica,   
+         dt_libera_estilos.co_linea,   
+			m_lineas.de_linea,
+         dt_libera_estilos.co_referencia, 
+			h_preref.de_referencia,  
+         dt_libera_estilos.co_color_pt,
+			m_colores.de_color,   
+         dt_libera_estilos.cs_liberacion,   
+         dt_libera_estilos.tono,   
+			dt_libera_estilos.cs_estilocolortono,   
+         sum(dt_libera_estilos.ca_unidades)  
+    FROM peddig,   
+         pedpend_exp,   
+         dt_libera_estilos,   
+         m_lineas,h_preref,m_colores  
+   WHERE ( peddig.co_fabrica_exp 					= :an_co_fabrica_exp ) and  
+			( peddig.co_fabrica_exp 					= pedpend_exp.co_fabrica_exp ) and  
+         ( peddig.pedido 								= pedpend_exp.pedido ) and  
+         ( pedpend_exp.co_fabrica_exp 				= dt_libera_estilos.co_fabrica_exp ) and  
+         ( pedpend_exp.pedido 						= dt_libera_estilos.pedido_po ) and  
+         ( pedpend_exp.nu_orden 						= dt_libera_estilos.nu_orden ) and  
+         ( pedpend_exp.co_fabrica 					= dt_libera_estilos.co_fabrica ) and  
+         ( pedpend_exp.co_linea 						= dt_libera_estilos.co_linea ) and  
+         ( pedpend_exp.co_referencia 				= dt_libera_estilos.co_referencia ) and  
+         ( pedpend_exp.co_color 						= dt_libera_estilos.co_color_pt ) and  
+         ( ( peddig.co_fabrica_exp 					> 0 ) AND  
+         ( peddig.tipo_pedido 						<> "AL" ) AND  
+         ( peddig.gpa 									LIKE :as_grupo ) ) AND  
+         ( dt_libera_estilos.co_fabrica 			= m_lineas.co_fabrica ) AND
+         ( dt_libera_estilos.co_linea   			= m_lineas.co_linea ) AND
+         ( dt_libera_estilos.co_fabrica 			= h_preref.co_fabrica ) AND
+         ( dt_libera_estilos.co_linea 	 			= h_preref.co_linea ) AND
+         ( dt_libera_estilos.co_referencia		= h_preref.co_referencia ) AND
+         ( dt_libera_estilos.co_fabrica 			= m_colores.co_fabrica ) AND
+         ( dt_libera_estilos.co_linea   			= m_colores.co_linea ) AND
+         ( dt_libera_estilos.co_color_pt 			= m_colores.co_color )
+GROUP BY dt_libera_estilos.co_fabrica_exp,   
+         dt_libera_estilos.pedido,   
+         peddig.gpa,   
+         peddig.tipo_pedido,   
+         dt_libera_estilos.nu_orden,   
+         dt_libera_estilos.co_fabrica,   
+         dt_libera_estilos.co_linea, 
+			m_lineas.de_linea,  
+         dt_libera_estilos.co_referencia,
+   		h_preref.de_referencia, 
+         dt_libera_estilos.co_color_pt, 
+			m_colores.de_color,   
+         dt_libera_estilos.cs_liberacion,   
+         dt_libera_estilos.tono,   
+			dt_libera_estilos.cs_estilocolortono
+ ARG(NAME = "an_co_fabrica_exp" TYPE = number)  ARG(NAME = "as_grupo" TYPE = string)
