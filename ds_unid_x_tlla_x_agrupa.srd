@@ -1,0 +1,28 @@
+HA$PBExportHeader$ds_unid_x_tlla_x_agrupa.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=60 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=decimal(0) updatewhereclause=yes name=unid_tlla dbname="unid_tlla" )
+ retrieve="  SELECT sum(dt_escalaxpdnbase.ca_unidades)  unid_tlla
+    FROM dt_escalaxpdnbase,   
+         dt_agrupa_pdn  
+   WHERE ( dt_agrupa_pdn.cs_agrupacion = dt_escalaxpdnbase.cs_agrupacion ) and  
+         ( dt_escalaxpdnbase.cs_pdn = dt_agrupa_pdn.cs_pdn ) and  
+         ( dt_escalaxpdnbase.cs_agrupacion = :al_agrupacion ) AND  
+         ( dt_agrupa_pdn.cs_pdn = :ai_cs_pdn ) and
+         ( dt_escalaxpdnbase.cs_base_trazos = 1 ) AND  
+         ( dt_agrupa_pdn.co_fabrica_pt = :ai_fabrica ) AND
+         ( dt_agrupa_pdn.co_linea  = :ai_linea ) and
+         ( dt_agrupa_pdn.co_referencia = :al_ref ) and
+          ( dt_escalaxpdnbase.co_talla = :ai_talla )    
+" arguments=(("al_agrupacion", number),("ai_cs_pdn", number),("ai_fabrica", number),("ai_linea", number),("al_ref", number),("ai_talla", number)) )
+text(band=header alignment="2" text="Unid Tlla" border="0" color="33554432" x="5" y="4" height="52" width="274" html.valueishtml="0"  name=compute_0001_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="14" y="4" height="56" width="402" format="[general]" html.valueishtml="0"  name=unid_tlla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
