@@ -1,0 +1,77 @@
+HA$PBExportHeader$dtb_maestro_trazos.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=472 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=co_trazo dbname="h_trazos.co_trazo" )
+ column=(type=char(18) update=yes updatewhereclause=yes name=molderia dbname="h_trazos.molderia" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ancho dbname="h_trazos.ancho" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=largo dbname="h_trazos.largo" )
+ column=(type=long update=yes updatewhereclause=yes name=tipo dbname="h_trazos.tipo" )
+ column=(type=long update=yes updatewhereclause=yes name=extendido dbname="h_trazos.extendido" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=porc_util dbname="h_trazos.porc_util" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="h_trazos.fe_creacion" initial="current" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="h_trazos.fe_actualizacion" initial="current" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="h_trazos.usuario" initial="gstr_info_usuario.codigo_usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="h_trazos.instancia" initial="gstr_info_usuario.instancia" )
+ column=(type=long update=yes updatewhereclause=yes name=co_estado_trazo dbname="h_trazos.co_estado_trazo" )
+ column=(type=long update=yes updatewhereclause=yes name=forma_ext dbname="h_trazos.forma_ext" values="Normal	0/Por Escala	1/" )
+ column=(type=decimal(3) update=yes updatewhereclause=yes name=repite dbname="h_trazos.repite" )
+ column=(type=char(40) update=yes updatewhereclause=yes name=de_trazo dbname="h_trazos.de_trazo" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=observaciones dbname="h_trazos.observaciones" )
+ column=(type=long update=yes updatewhereclause=yes name=optimizado dbname="h_trazos.optimizado" initial="0" values="SI	1/NO	0/SIN MEDIOS	2/" )
+ column=(type=long update=yes updatewhereclause=yes name=co_raya dbname="h_trazos.co_raya" values="10	10/20	20/30	30/40	40/50	50/60	60/70	70/80	80/90	90/100	100/110	110/120	120/130	130/140	140/150	150/160	160/170	170/180	180/190	190/200	200/210	210/220	220/230	230/240	240/250	250/260	260/270	270/280	280/290	290/300	300/310	310/320	320/330	330/340	340/350	350/" )
+ retrieve="SELECT  h_trazos.co_trazo ,
+           h_trazos.molderia ,
+           h_trazos.ancho ,
+           h_trazos.largo ,
+           h_trazos.tipo ,
+           h_trazos.extendido ,
+           h_trazos.porc_util ,
+           h_trazos.fe_creacion ,
+           h_trazos.fe_actualizacion ,
+           h_trazos.usuario ,
+           h_trazos.instancia ,
+           h_trazos.co_estado_trazo ,
+           h_trazos.forma_ext ,
+           h_trazos.repite ,
+           h_trazos.de_trazo ,
+           h_trazos.observaciones,
+           h_trazos.optimizado,
+  			  h_trazos.co_raya     
+        FROM        h_trazos      
+        WHERE ( h_trazos.co_trazo = :an_cotrazo )   " update="h_trazos" updatewhere=0 updatekeyinplace=no arguments=(("an_cotrazo", number)) )
+text(band=detail alignment="0" text="C$$HEX1$$f300$$ENDHEX$$digo:" border="0" color="0" x="27" y="4" height="52" width="224" html.valueishtml="0"  name=co_trazo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="343" y="4" height="64" width="443" format="[general]" html.valueishtml="0"  name=co_trazo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="1" text="Descripci$$HEX1$$f300$$ENDHEX$$n Trazo:" border="0" color="0" x="832" y="4" height="56" width="411" html.valueishtml="0"  name=de_trazo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=10 border="5" color="0" x="1257" y="4" height="64" width="1093" format="[general]" html.valueishtml="0"  name=de_trazo visible="1" editmask.mask="!XXXXXXXXXXXXXXXXXXXX!XXXXXXXXXXXXXXXXXXXX" editmask.imemode=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="0" text="Molderia:" border="0" color="0" x="27" y="88" height="52" width="224" html.valueishtml="0"  name=molderia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="5" color="0" x="343" y="88" height="64" width="279" format="[general]" html.valueishtml="0"  name=molderia visible="1" edit.limit=18 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="0" text="Tipo:" border="0" color="0" x="27" y="164" height="52" width="224" html.valueishtml="0"  name=tipo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=60 border="5" color="0" x="343" y="164" height="64" width="539" format="[general]" html.valueishtml="0"  name=tipo visible="1" dddw.name=dddw_tipostrazos dddw.displaycolumn=de_tipo dddw.datacolumn=co_tipo dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.imemode=0 dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="1" text="Tipo Extendido:" border="0" color="0" x="951" y="164" height="52" width="338" html.valueishtml="0"  name=extendido_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Repite:" border="0" color="0" x="1943" y="164" height="52" width="155" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=70 border="5" color="0" x="1307" y="164" height="64" width="521" format="[general]" html.valueishtml="0"  name=extendido visible="1" dddw.name=dddw_tiposextendidos dddw.displaycolumn=de_tipo dddw.datacolumn=co_tipo dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.imemode=0 dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="0" text="% Utilizaci$$HEX1$$f300$$ENDHEX$$n:" border="0" color="0" x="27" y="240" height="52" width="293" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Estado:" border="0" color="0" x="722" y="240" height="52" width="174" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=100 border="5" color="0" x="914" y="240" height="64" width="581" format="[general]" html.valueishtml="0"  name=co_estado_trazo visible="1" dddw.name=dddw_estados_trazos dddw.displaycolumn=de_estado_trazo dddw.datacolumn=co_estado_trazo dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.imemode=0 dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=7 alignment="1" tabsequence=90 border="5" color="0" x="343" y="240" height="64" width="238" format="##0.00" html.valueishtml="0"  name=porc_util visible="1" editmask.useformat=yes editmask.mask="###.00" editmask.imemode=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="1" text="Forma:" border="0" color="0" x="1655" y="240" height="52" width="155" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=110 border="5" color="0" x="1829" y="240" height="64" width="521" format="[general]" html.valueishtml="0"  name=forma_ext visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="0" text="Observaciones:" border="0" color="0" x="27" y="324" height="52" width="338" html.valueishtml="0"  name=t_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=120 border="5" color="0" x="389" y="328" height="132" width="1422" format="[general]" html.valueishtml="0"  name=observaciones visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="0" text="Optimizado:" border="0" color="0" x="1838" y="324" height="52" width="256" html.valueishtml="0"  name=t_6 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=130 border="5" color="0" x="2107" y="324" height="64" width="233" format="[general]" html.valueishtml="0"  name=optimizado visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="1" text="Ancho:" border="0" color="0" x="681" y="88" height="52" width="197" html.valueishtml="0"  name=ancho_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=30 border="5" color="0" x="905" y="88" height="64" width="279" format="[general]" html.valueishtml="0"  name=ancho visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="1" text="Largo:" border="0" color="0" x="1344" y="88" height="52" width="187" html.valueishtml="0"  name=largo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=40 border="5" color="0" x="1550" y="88" height="64" width="279" format="[general]" html.valueishtml="0"  name=largo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="1" text="Raya:" border="0" color="0" x="1938" y="96" height="52" width="155" html.valueishtml="0"  name=t_7 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=80 border="5" color="0" x="2121" y="164" height="64" width="229" format="##0.00" html.valueishtml="0"  name=repite visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=18 alignment="0" tabsequence=50 border="5" color="0" x="2121" y="96" height="52" width="229" format="[general]" html.valueishtml="0"  name=co_raya visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.vscrollbar=yes ddlb.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
