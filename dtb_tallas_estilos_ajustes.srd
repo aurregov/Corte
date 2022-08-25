@@ -1,0 +1,31 @@
+HA$PBExportHeader$dtb_tallas_estilos_ajustes.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=60 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=dt_agrupaescalapdn_co_talla dbname="co_talla" )
+ column=(type=char(15) updatewhereclause=yes name=m_tallas_x_grupo_de_talla dbname="de_talla" )
+ retrieve="SELECT dt_agrupaescalapdn.co_talla ,
+       m_tallas_x_grupo.de_talla     
+FROM dt_agrupa_pdn ,
+  dt_agrupaescalapdn ,
+  h_preref_pv ,
+  m_tallas_x_grupo     
+WHERE ( dt_agrupaescalapdn.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion ) and 
+		( dt_agrupaescalapdn.cs_pdn = dt_agrupa_pdn.cs_pdn ) and    
+		( h_preref_pv.co_tipo_ref = 'P') and     
+		( dt_agrupa_pdn.co_fabrica_pt = h_preref_pv.co_fabrica ) and     
+		( dt_agrupa_pdn.co_linea = h_preref_pv.co_linea ) and        
+		( cast(dt_agrupa_pdn.co_referencia as char(15)) = h_preref_pv.co_referencia ) and   
+		( h_preref_pv.co_grupo_tlla = m_tallas_x_grupo.co_grupo_tlla ) and   
+		( dt_agrupaescalapdn.co_talla = m_tallas_x_grupo.co_talla ) and      
+		( ( dt_agrupa_pdn.cs_agrupacion = :agrupacion ) and     
+		( dt_agrupa_pdn.cs_pdn = :pdn ) )  " arguments=(("agrupacion", number),("pdn", number)) )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="33554432" x="14" y="0" height="52" width="119" format="[general]" html.valueishtml="0"  name=dt_agrupaescalapdn_co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="33554432" x="151" y="0" height="52" width="151" format="[general]" html.valueishtml="0"  name=m_tallas_x_grupo_de_talla visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
