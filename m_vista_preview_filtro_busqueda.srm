@@ -1,0 +1,151 @@
+HA$PBExportHeader$m_vista_preview_filtro_busqueda.srm
+forward
+global type m_vista_preview_filtro_busqueda from m_vista_previa_filtro
+end type
+end forward
+
+global type m_vista_preview_filtro_busqueda from m_vista_previa_filtro
+end type
+global m_vista_preview_filtro_busqueda m_vista_preview_filtro_busqueda
+
+on m_vista_preview_filtro_busqueda.create
+m_vista_preview_filtro_busqueda=this
+call super::create
+end on
+
+on m_vista_preview_filtro_busqueda.destroy
+call super::destroy
+end on
+
+type m_vistaprevia from m_vista_previa_filtro`m_vistaprevia within m_vista_preview_filtro_busqueda
+end type
+
+on m_vistaprevia.create
+call super::create
+end on
+
+on m_vistaprevia.destroy
+call super::destroy
+end on
+
+type m_imprimir from m_vista_previa_filtro`m_imprimir within m_vistaprevia
+end type
+
+on m_imprimir.create
+call super::create
+end on
+
+on m_imprimir.destroy
+call super::destroy
+end on
+
+type m_sep1 from m_vista_previa_filtro`m_sep1 within m_vistaprevia
+end type
+
+on m_sep1.create
+call super::create
+end on
+
+on m_sep1.destroy
+call super::destroy
+end on
+
+type m_mostrarvistaprevia from m_vista_previa_filtro`m_mostrarvistaprevia within m_vistaprevia
+end type
+
+on m_mostrarvistaprevia.create
+call super::create
+end on
+
+on m_mostrarvistaprevia.destroy
+call super::destroy
+end on
+
+type m_mostrarregleta from m_vista_previa_filtro`m_mostrarregleta within m_vistaprevia
+end type
+
+on m_mostrarregleta.create
+call super::create
+end on
+
+on m_mostrarregleta.destroy
+call super::destroy
+end on
+
+type m_zoom from m_vista_previa_filtro`m_zoom within m_vistaprevia
+end type
+
+on m_zoom.create
+call super::create
+end on
+
+on m_zoom.destroy
+call super::destroy
+end on
+
+type m_sep2 from m_vista_previa_filtro`m_sep2 within m_vistaprevia
+end type
+
+on m_sep2.create
+call super::create
+end on
+
+on m_sep2.destroy
+call super::destroy
+end on
+
+type m_salir from m_vista_previa_filtro`m_salir within m_vistaprevia
+end type
+
+on m_salir.create
+call super::create
+end on
+
+on m_salir.destroy
+call super::destroy
+end on
+
+type m_pagina from m_vista_previa_filtro`m_pagina within m_vista_preview_filtro_busqueda
+end type
+
+on m_pagina.create
+call super::create
+end on
+
+on m_pagina.destroy
+call super::destroy
+end on
+
+type m_filtro from m_vista_previa_filtro`m_filtro within m_pagina
+end type
+
+on m_filtro.create
+call super::create
+end on
+
+on m_filtro.destroy
+call super::destroy
+end on
+
+type m_anterior from m_vista_previa_filtro`m_anterior within m_pagina
+end type
+
+on m_anterior.create
+call super::create
+end on
+
+on m_anterior.destroy
+call super::destroy
+end on
+
+type m_siguiente from m_vista_previa_filtro`m_siguiente within m_pagina
+end type
+
+on m_siguiente.create
+call super::create
+end on
+
+on m_siguiente.destroy
+call super::destroy
+end on
+
