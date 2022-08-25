@@ -1,0 +1,69 @@
+HA$PBExportHeader$dtb_mantenimiento_unidxprenda_tela.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=79741120 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=co_tipoprod dbname="co_tipoprod" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_centro_pdn dbname="co_centro_pdn" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_subcentro_pdn dbname="co_subcentro_pdn" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_linea dbname="co_linea" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_tipo_tela dbname="co_tipo_tela" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=min_unidad dbname="min_unidad" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="instancia" )
+ column=(type=decimal(3) update=yes updatewhereclause=yes name=porc_distribuir dbname="porc_distribuir" )
+ column=(type=long update=yes updatewhereclause=yes name=minimo_partir dbname="minimo_partir" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=ca_historico dbname="ca_historico" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=ca_cotizacion dbname="ca_cotizacion" )
+ column=(type=char(3) updatewhereclause=yes name=descripcion dbname="descripcion" )
+ retrieve="  SELECT dt_unixprenda_tela.co_tipoprod,   
+         dt_unixprenda_tela.co_centro_pdn,   
+         dt_unixprenda_tela.co_subcentro_pdn,   
+         dt_unixprenda_tela.co_fabrica,   
+         dt_unixprenda_tela.co_linea,   
+         dt_unixprenda_tela.co_tipo_tela,   
+         dt_unixprenda_tela.min_unidad,   
+         dt_unixprenda_tela.fe_creacion,   
+         dt_unixprenda_tela.fe_actualizacion,   
+         dt_unixprenda_tela.usuario,   
+	      dt_unixprenda_tela.instancia,
+			dt_unixprenda_tela.porc_distribuir,
+			dt_unixprenda_tela.minimo_partir,
+			dt_unixprenda_tela.ca_historico,
+			dt_unixprenda_tela.ca_cotizacion,	
+			'			' descripcion 
+    FROM dt_unixprenda_tela
+
+			 
+" update="dt_unixprenda_tela" updatewhere=0 updatekeyinplace=no )
+text(band=header alignment="2" text="Tipo" border="6" color="0" x="9" y="8" height="56" width="187"  name=co_tipoprod_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Centro" border="6" color="0" x="206" y="8" height="56" width="315"  name=co_centro_pdn_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Subcentro" border="6" color="0" x="530" y="8" height="56" width="357"  name=co_subcentro_pdn_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Fabrica" border="6" color="0" x="896" y="8" height="56" width="251"  name=co_fabrica_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="L$$HEX1$$ed00$$ENDHEX$$nea" border="6" color="0" x="1157" y="8" height="56" width="297"  name=co_linea_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Tipo Tela" border="6" color="0" x="1463" y="8" height="56" width="293"  name=co_tipo_tela_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Max. # Unids." border="6" color="0" x="2139" y="8" height="56" width="347"  name=min_unidad_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Descripci$$HEX1$$f300$$ENDHEX$$n" border="6" color="0" x="1765" y="8" height="56" width="366"  name=obj_2919076  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="%" border="6" color="0" x="2496" y="8" height="56" width="133"  name=t_1  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Min. # Unids." border="6" color="0" x="2638" y="8" height="56" width="334"  name=t_2  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Min. Historico" border="6" color="0" x="2981" y="8" height="56" width="384"  name=t_3  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Min. Cotizacion" border="6" color="0" x="3374" y="8" height="56" width="407"  name=t_4  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="5" color="0" x="9" y="4" height="56" width="187" format="[general]"  name=co_tipoprod dddw.name=dddw_m_tipo_producto dddw.displaycolumn=de_tipoprod dddw.datacolumn=co_tipoprod dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="5" color="0" x="206" y="4" height="56" width="315" format="[general]"  name=co_centro_pdn dddw.name=dddw_m_centros dddw.displaycolumn=de_centro_pdn dddw.datacolumn=co_centro_pdn dddw.percentwidth=300 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="5" color="0" x="530" y="4" height="56" width="357" format="[general]"  name=co_subcentro_pdn dddw.name=dddw_m_subcentros_pdn dddw.displaycolumn=de_subcentro_pdn dddw.datacolumn=co_subcentro_pdn dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="5" color="0" x="896" y="4" height="56" width="251" format="[general]"  name=co_fabrica dddw.name=dddw_fabricas dddw.displaycolumn=razon_social dddw.datacolumn=co_fabrica dddw.percentwidth=260 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="5" color="0" x="1157" y="4" height="56" width="297" format="[general]"  name=co_linea dddw.name=dddw_m_lineas dddw.displaycolumn=de_linea dddw.datacolumn=co_linea dddw.percentwidth=300 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=6 alignment="1" tabsequence=60 border="5" color="0" x="1463" y="4" height="56" width="293" format="[general]"  name=co_tipo_tela edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=7 alignment="1" tabsequence=70 border="5" color="0" x="2139" y="4" height="56" width="347" format="########"  name=min_unidad edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="5" color="0" x="1765" y="4" height="56" width="366" format="[general]"  name=descripcion edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=12 alignment="2" tabsequence=80 border="5" color="0" x="2496" y="4" height="56" width="133" format="###"  name=porc_distribuir edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=13 alignment="1" tabsequence=90 border="5" color="0" x="2638" y="4" height="56" width="334" format="########"  name=minimo_partir edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=14 alignment="2" tabsequence=32766 border="5" color="0" x="2981" y="4" height="56" width="384" format="[general]"  name=ca_historico edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=15 alignment="2" tabsequence=32766 border="5" color="0" x="3374" y="4" height="56" width="407" format="[general]"  name=ca_cotizacion edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
