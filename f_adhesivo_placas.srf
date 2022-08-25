@@ -1,0 +1,146 @@
+HA$PBExportHeader$f_adhesivo_placas.srf
+global type f_adhesivo_placas from function_object
+end type
+
+forward prototypes
+global function long f_adhesivo_placas (string ls_placa_camion)
+end prototypes
+
+global function long f_adhesivo_placas (string ls_placa_camion);String blancos,esca,etx,stx,ln_inicial,ln_final,ls_registro,ls_de_fabrica
+Long ll_filas,ll_fila,li_numero_archivo
+String  ls_nombrearchivo = 'C:\corte\ADHES_PLACAS.TXT'
+String gs_adhesivi
+gs_adhesivi =ls_nombrearchivo
+
+
+IF FileExists(gs_adhesivi) THEN
+	FileDelete(gs_adhesivi)
+END IF	
+
+
+IF FileExists(ls_nombrearchivo) THEN
+	FileDelete(ls_nombrearchivo)  
+END IF
+
+li_numero_archivo	=	f_preparar_archivo_plano(ls_nombrearchivo)
+
+IF li_numero_archivo = -1 THEN
+	//ROLLBACK;
+	MessageBox("Advertencia","No se pudo abrir el archivo para generar el adhesivo",Exclamation!)
+	Return(-1)
+END IF	
+
+// Busco el Nombre de la fabrica de parametro
+SELECT placa_camion 
+INTO :ls_placa_camion
+FROM m_camiones
+WHERE m_camiones.placa_camion = :ls_placa_camion;
+
+IF SQLCA.SQLCODE = -1 THEN
+	MessageBox("Error","Hubo problemas con la Base de Datos"+ sqlca.sqlerrtext,Stopsign!,OK!)
+//	ROLLBACK;
+	Return(-1)
+ELSE
+	IF SQLCA.SQLCODE = 100 THEN
+	  MessageBox("Advertencia..","Esta placa No Existe",Stopsign!,OK!)
+//	  ROLLBACK;
+	  Return(-1)
+   END IF
+END IF
+
+
+
+ll_fila = 0
+
+esca = "^"
+stx  = "{"
+etx  = "}"
+
+IF li_numero_archivo > 0 THEN
+   blancos = "                    "
+	
+	//	LINEA # 1 DESCRIPCION FABRICA
+	ln_inicial = stx+esca+"A"+esca+"N"
+	ls_registro = ln_inicial
+	FileWrite(li_numero_archivo, ls_registro)
+	
+	//Linea # 2 Placa del carro
+	ls_registro = esca+"H0600"+esca+"V0020"+esca+"L0101"+esca+"M"+ "PLACA"
+	FileWrite(li_numero_archivo, ls_registro)			
+	ls_registro = esca+"H0600"+esca+"V0060"+esca+"L0101"+esca+"WB0"+trim(ls_placa_camion)
+	FileWrite(li_numero_archivo, ls_registro)			
+
+   // LINEA 5 --codigo de barras de la placa
+	ls_registro =	esca+"H0600"+esca+"V0120"+esca+"L0201"+esca+"BG02080"+trim(ls_placa_camion)
+	FileWrite(li_numero_archivo, ls_registro)	
+
+
+	
+ //Linea final
+	ln_final = esca+"Q1"+esca+"Z"+etx
+	ls_registro = ln_final
+	FileWrite(li_numero_archivo, ls_registro)	
+ 
+ IF FileClose(li_numero_archivo) = 1 THEN
+	 //continue para imprimir en la sato
+ ELSE
+	//ROLLBACK;
+	MessageBox("Advertencia","No se pudo cerrar el archivo que genera el adhesivo",Exclamation!)
+	Return(-1)	
+ END IF
+END IF
+
+/******************************************/
+
+
+Long    Job,  li_FileNum, li_filaread
+String  ls_archivo
+
+IF IsNull(ls_placa_camion) OR ls_placa_camion = "" THEN
+	MessageBox("Advertencia","No hay datos para imprimir",Exclamation!)
+ELSE
+	
+	ll_fila = 1
+	li_FileNum = FileOpen(gs_adhesivi,StreamMode!)
+
+	IF li_FileNum = -1 OR IsNull(li_FileNum) THEN
+//		ROLLBACK;
+		MessageBox("Advertencia","No se pudo abrir el archivo para imprimir el adhesivo",Exclamation!)
+		Return (-1)
+	END IF
+	
+	li_filaread = FileRead(li_FileNum, ls_archivo)
+	IF li_filaread = -1 OR IsNull(li_filaread) THEN
+//	ROLLBACK;
+		MessageBox("Advertencia","No se pudo leer el archivo para imprimir el adhesivo",Exclamation!)
+		Return (-1)
+	END IF
+
+	IF FileClose(li_FileNum) = -1 THEN
+//		ROLLBACK;
+		MessageBox("Advertencia","No se pudo cerrar el archivo para imprimir el adhesivo",Exclamation!)
+		Return (-1)
+	END IF
+
+	Job = PrintOpen()
+	IF Job = -1 OR IsNull(Job) THEN
+//		ROLLBACK;
+		MessageBox("Advertencia","Hay problemas con la impresora",Exclamation!)
+		Return	(-1)
+	ELSE
+			li_filaread = PrintSend(Job, ls_archivo)
+		IF li_filaread = -1 OR IsNull(li_filaread) THEN
+//			ROLLBACK;
+			MessageBox("Advertencia","Hay problemas con la impresora al enviar el archivo del adhesivo",Exclamation!)
+			Return	(-1)		
+		ELSE
+			PrintClose(Job)
+		END IF
+	END IF	
+END IF
+
+Return 0
+
+
+end function
+
