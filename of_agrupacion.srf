@@ -1,0 +1,320 @@
+HA$PBExportHeader$of_agrupacion.srf
+global type of_agrupacion from function_object
+end type
+
+forward prototypes
+global function long of_agrupacion (long ai_fabexp, long al_pedido, long ai_libera, string as_po, long ai_fabpt, long ai_linea, long al_ref, long al_colpt, string as_tono, long ai_esticoltono, long ai_particion, long ai_particiones, s_base_parametros ast_cantidad)
+end prototypes
+
+global function long of_agrupacion (long ai_fabexp, long al_pedido, long ai_libera, string as_po, long ai_fabpt, long ai_linea, long al_ref, long al_colpt, string as_tono, long ai_esticoltono, long ai_particion, long ai_particiones, s_base_parametros ast_cantidad);DataStore lds_hagrupa,lds_dtagrupa,lds_agrupaescala,lds_agruparaya,lds_hbase,lds_pdnxbase,lds_escalabase,lds_rayatelabase
+LONG li_agrupacion,li_agrupa
+Long ll_fila,ll_final,ll_fila2,ll_sum,ll_result
+
+//--------------------------------------------
+//selecciono la agrupaci$$HEX1$$f300$$ENDHEX$$n para poder recuperar los registros necesarios en las tablas de agrupaci$$HEX1$$f300$$ENDHEX$$n
+//--------------------------------------------
+select cs_agrupacion
+into :li_agrupacion
+from dt_agrupa_pdn
+where co_fabrica_exp 		= :ai_fabexp and
+		
+		cs_liberacion 			= :ai_libera and
+		po 						= :as_po and
+		co_fabrica_pt 			= :ai_fabpt and
+		co_linea 				= :ai_linea and
+		co_referencia 			= :al_ref and
+		co_color_pt 			= :al_colpt and
+		tono 						= :as_tono and
+		
+		cs_particion 			= :ai_particion;
+
+
+If Sqlca.SqlCode = -1 Then
+	MessageBox('Error','No fue posible recuperar el consecutivo de la agrupaci$$HEX1$$f300$$ENDHEX$$n')
+	Return -1
+End if
+
+lds_hagrupa 		= Create DataStore
+lds_dtagrupa 		= Create DataStore
+lds_agrupaescala 	= Create DataStore
+lds_agruparaya 	= Create DataStore
+lds_hbase 			= Create DataStore
+lds_pdnxbase 		= Create DataStore
+lds_escalabase 	= Create DataStore
+lds_rayatelabase 	= Create DataStore
+
+lds_hagrupa.DataObject 			= 'dgr_lista_h_agrupa_pdn'
+lds_dtagrupa.DataObject 		= 'dgr_lista_dt_agrupa_pdn'
+lds_agrupaescala.DataObject 	= 'dgr_lista_dt_agrupaescalapdn'
+lds_agruparaya.DataObject 		= 'dgr_lista_dt_agrupa_pdn_raya'
+lds_hbase.DataObject 			= 'dgr_lista_h_base_trazos'
+lds_pdnxbase.DataObject 		= 'dgr_lista_dt_pdnxbase'
+lds_escalabase.DataObject 		= 'dgr_lista_dt_escalaxpdnbase'
+lds_rayatelabase.DataObject 	= 'dgr_lista_dt_rayas_telaxbase'
+
+lds_hagrupa.SetTransObject(SQLCA)
+lds_dtagrupa.SetTransObject(SQLCA)
+lds_agrupaescala.SetTransObject(SQLCA)
+lds_agruparaya.SetTransObject(SQLCA)
+lds_hbase.SetTransObject(SQLCA)
+lds_pdnxbase.SetTransObject(SQLCA)
+lds_escalabase.SetTransObject(SQLCA)
+lds_rayatelabase.SetTransObject(SQLCA)
+
+
+//---------------------------
+//actualizo h_agrupa_pdn
+//---------------------------
+ll_result = lds_hagrupa.Retrieve(li_agrupacion)
+
+If ll_result > 0 Then
+	ll_final = lds_hagrupa.RowCount()
+	ll_sum = 0
+
+	For ll_fila = 1 To ai_particiones - 1
+		li_agrupa = lds_hagrupa.GetItemNumber(lds_hagrupa.RowCount(),'cs_agrupacion')
+		lds_hagrupa.RowsCopy(1,ll_final, Primary!,lds_hagrupa,lds_hagrupa.RowCount() + 1,Primary!)
+		lds_hagrupa.AcceptText()
+	
+		For ll_fila2 = ll_final +1  To  lds_hagrupa.RowCount()
+			ll_sum += 1
+			lds_hagrupa.SetItem(ll_fila2,'cs_agrupacion',li_agrupa + ll_sum)
+		Next
+		lds_hagrupa.AcceptText()
+	Next
+	
+	If lds_hagrupa.Update() = -1 Then
+		MessageBox('Error','No fue posible actualizar h_agrupa_pdn')
+		Return -1
+	End if
+End if
+
+
+//-------------------------
+//actualizo dt_agrupa_pdn
+//-------------------------
+ll_result = lds_dtagrupa.Retrieve(li_agrupacion)
+
+If ll_result > 0 Then
+	ll_final = lds_dtagrupa.RowCount()
+	ll_sum = 0
+	
+	For ll_fila = 1 To ai_particiones - 1
+		li_agrupa = lds_dtagrupa.GetItemNumber(lds_dtagrupa.RowCount(),'cs_agrupacion')
+		lds_dtagrupa.RowsCopy(1,ll_final, Primary!,lds_dtagrupa,lds_dtagrupa.RowCount() + 1,Primary!)
+		lds_dtagrupa.AcceptText()
+		
+
+		For ll_fila2 = ll_final +1  To  lds_dtagrupa.RowCount()
+			ll_sum += 1
+			lds_dtagrupa.SetItem(ll_fila2,'cs_agrupacion',li_agrupa + ll_sum)
+		Next
+		lds_dtagrupa.AcceptText()
+	Next
+	
+	//cargo los nuevos valores de las unidades segun la partici$$HEX1$$f300$$ENDHEX$$n realizada
+	For ll_fila = 1 To lds_dtagrupa.RowCount()
+		lds_dtagrupa.SetItem(ll_fila,'ca_unidades',ast_cantidad.entero[ll_fila])
+	Next
+	
+	If lds_dtagrupa.Update() = -1 Then
+		MessageBox('Error','No fue posible actualizar dt_agrupa_pdn')
+		Return -1
+	End if
+End if
+
+
+//--------------------------------
+//actualizo dt_agrupaescalapdn
+//--------------------------------
+ll_result = lds_agrupaescala.Retrieve(li_agrupacion)
+
+If ll_result > 0 Then
+	ll_final = lds_agrupaescala.RowCount()
+	ll_sum = 0
+	
+	For ll_fila = 1 To ai_particiones - 1
+		li_agrupa = lds_agrupaescala.GetItemNumber(lds_agrupaescala.RowCount(),'cs_agrupacion')
+		lds_agrupaescala.RowsCopy(1,ll_final, Primary!,lds_agrupaescala,lds_agrupaescala.RowCount() + 1,Primary!)
+		lds_agrupaescala.AcceptText()
+		
+		For ll_fila2 = ll_final +1  To  lds_agrupaescala.RowCount()
+			ll_sum += 1
+			lds_agrupaescala.SetItem(ll_fila2,'cs_agrupacion',li_agrupa + ll_sum)
+		Next
+		lds_agrupaescala.AcceptText()
+	Next
+	
+	//cargo los nuevos valores de las unidades segun la partici$$HEX1$$f300$$ENDHEX$$n realizada
+	For ll_fila = 1 To lds_agrupaescala.RowCount()
+		lds_agrupaescala.SetItem(ll_fila,'ca_unidades',ast_cantidad.entero[ll_fila])
+	Next
+	
+	If lds_agrupaescala.Update() = -1 Then
+		MessageBox('Error','No fue posible actualizar dt_agrupaescalapdn')
+		Return -1
+	End if
+End if
+
+
+//-------------------------------
+//actualizo dt_agrupa_pdn_raya
+//-------------------------------
+ll_result = lds_agruparaya.Retrieve(li_agrupacion)
+
+If ll_result > 0 Then
+	ll_final = lds_agruparaya.RowCount()
+	ll_sum = 0
+	
+	For ll_fila = 1 To ai_particiones - 1
+		li_agrupa = lds_agruparaya.GetItemNumber(lds_agruparaya.RowCount(),'cs_agrupacion')
+		lds_agruparaya.RowsCopy(1,ll_final, Primary!,lds_agruparaya,lds_agruparaya.RowCount() + 1,Primary!)
+		lds_agruparaya.AcceptText()
+		
+		For ll_fila2 = ll_final +1  To  lds_agruparaya.RowCount()
+			ll_sum += 1
+			lds_agruparaya.SetItem(ll_fila2,'cs_agrupacion',li_agrupa + ll_sum)
+		Next
+		lds_agruparaya.AcceptText()
+	Next
+	
+	//cargo los nuevos valores de las unidades segun la partici$$HEX1$$f300$$ENDHEX$$n realizada
+	For ll_fila = 1 To lds_agruparaya.RowCount()
+		lds_agruparaya.SetItem(ll_fila,'ca_unidades',ast_cantidad.entero[ll_fila])
+	Next
+	
+	If lds_agruparaya.Update() = -1 Then
+		MessageBox('Error','No fue posible actualizar dt_agrupa_pdn_raya')
+		Return -1
+	End if
+End if
+
+
+//----------------------------
+//actualizo h_base_trazos
+//----------------------------
+ll_result = lds_hbase.Retrieve(li_agrupacion)
+
+If ll_result > 0 Then
+	ll_final = lds_hbase.RowCount()
+	ll_sum = 0
+	
+	For ll_fila = 1 To ai_particiones - 1
+		li_agrupa = lds_hbase.GetItemNumber(lds_hbase.RowCount(),'cs_agrupacion')
+		lds_hbase.RowsCopy(1,ll_final, Primary!,lds_hbase,lds_hbase.RowCount() + 1,Primary!)
+		lds_hbase.AcceptText()
+		
+		For ll_fila2 = ll_final +1  To  lds_hbase.RowCount()
+			ll_sum += 1
+			lds_hbase.SetItem(ll_fila2,'cs_agrupacion',li_agrupa + ll_sum)
+		Next
+		lds_hbase.AcceptText()
+	Next
+	
+	If lds_hbase.Update() = -1 Then
+		MessageBox('Error','No fue posible actualizar h_base_trazos')
+		Return -1
+	End if
+End if
+
+
+//-------------------------
+//actualizo dt_pdnxbase
+//-------------------------
+ll_result = lds_pdnxbase.Retrieve(li_agrupacion)
+
+If ll_result > 0 Then
+	ll_final = lds_pdnxbase.RowCount()
+	ll_sum = 0
+	
+	For ll_fila = 1 To ai_particiones - 1
+		li_agrupa = lds_pdnxbase.GetItemNumber(lds_pdnxbase.RowCount(),'cs_agrupacion')
+		lds_pdnxbase.RowsCopy(1,ll_final, Primary!,lds_pdnxbase,lds_pdnxbase.RowCount() + 1,Primary!)
+		lds_pdnxbase.AcceptText()
+		
+		For ll_fila2 = ll_final +1  To  lds_pdnxbase.RowCount()
+			ll_sum += 1
+			lds_pdnxbase.SetItem(ll_fila2,'cs_agrupacion',li_agrupa + ll_sum)
+		Next
+		lds_pdnxbase.AcceptText()
+	Next
+	
+	If lds_pdnxbase.Update() = -1 Then
+		MessageBox('Error','No fue posible actualizar dt_pdnxbase')
+		Return -1
+	End if
+End if
+
+
+//------------------------------
+//actualizo dt_escalaxpdnbase
+//------------------------------
+ll_result = lds_escalabase.Retrieve(li_agrupacion)
+
+If ll_result > 0 Then
+	ll_final = lds_escalabase.RowCount()
+	ll_sum = 0
+	
+	For ll_fila = 1 To ai_particiones - 1
+		li_agrupa = lds_escalabase.GetItemNumber(lds_escalabase.RowCount(),'cs_agrupacion')
+		lds_escalabase.RowsCopy(1,ll_final, Primary!,lds_escalabase,lds_escalabase.RowCount() + 1,Primary!)
+		lds_escalabase.AcceptText()
+		
+		For ll_fila2 = ll_final +1  To  lds_escalabase.RowCount()
+			ll_sum += 1
+			lds_escalabase.SetItem(ll_fila2,'cs_agrupacion',li_agrupa + ll_sum)
+		Next
+		lds_escalabase.AcceptText()
+	Next
+	
+	//cargo los nuevos valores de las unidades segun la partici$$HEX1$$f300$$ENDHEX$$n realizada
+	For ll_fila = 1 To lds_escalabase.RowCount()
+		lds_escalabase.SetItem(ll_fila,'ca_unidades',ast_cantidad.entero[ll_fila])
+	Next
+	
+	If lds_escalabase.Update() = -1 Then
+		MessageBox('Error','No fue posible actualizar dt_escalaxpdnbase')
+		Return -1
+	End if
+End if
+
+
+//--------------------------------
+//actualizo dt_rayas_telaxbase
+//--------------------------------
+ll_result = lds_rayatelabase.Retrieve(li_agrupacion)
+
+If ll_result > 0 Then
+	ll_final = lds_rayatelabase.RowCount()
+	ll_sum = 0
+	
+	For ll_fila = 1 To ai_particiones - 1
+		li_agrupa = lds_rayatelabase.GetItemNumber(lds_rayatelabase.RowCount(),'cs_agrupacion')
+		lds_rayatelabase.RowsCopy(1,ll_final, Primary!,lds_rayatelabase,lds_rayatelabase.RowCount() + 1,Primary!)
+		lds_rayatelabase.AcceptText()
+		
+		For ll_fila2 = ll_final +1  To  lds_rayatelabase.RowCount()
+			ll_sum += 1
+			lds_rayatelabase.SetItem(ll_fila2,'cs_agrupacion',li_agrupa + ll_sum)
+		Next
+		lds_rayatelabase.AcceptText()
+	Next
+	
+	If lds_rayatelabase.Update() = -1 Then
+		MessageBox('Error','No fue posible actualizar dt_rayas_telaxbase')
+		Return -1
+	End if
+End if
+
+Destroy lds_hagrupa
+Destroy lds_dtagrupa
+Destroy lds_agrupaescala
+Destroy lds_agruparaya
+Destroy lds_hbase
+Destroy lds_pdnxbase
+Destroy lds_escalabase
+Destroy lds_rayatelabase
+
+Return 0
+end function
+
