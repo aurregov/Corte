@@ -1,0 +1,98 @@
+HA$PBExportHeader$dtb_modelos_po.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=128 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=char(8) update=yes updatewhereclause=yes key=yes name=usuario dbname="temp_modelos_ref.usuario" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_ordenpd_pt dbname="temp_modelos_ref.cs_ordenpd_pt" )
+ column=(type=char(20) update=yes updatewhereclause=yes key=yes name=po dbname="temp_modelos_ref.po" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_fabrica dbname="temp_modelos_ref.co_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_linea dbname="temp_modelos_ref.co_linea" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_referencia dbname="temp_modelos_ref.co_referencia" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_color dbname="temp_modelos_ref.co_color" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_talla dbname="temp_modelos_ref.co_talla" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_modelo dbname="temp_modelos_ref.co_modelo" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_reftel dbname="temp_modelos_ref.co_reftel" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_caract dbname="temp_modelos_ref.co_caract" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_color_te dbname="temp_modelos_ref.co_color_te" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=diametro dbname="temp_modelos_ref.diametro" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes key=yes name=ancho dbname="temp_modelos_ref.ancho" )
+ column=(type=char(2) update=yes updatewhereclause=yes key=yes name=tono dbname="temp_modelos_ref.tono" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=area dbname="temp_modelos_ref.area" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=grm_ficha dbname="temp_modelos_ref.grm_ficha" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=mt_bodega dbname="temp_modelos_ref.mt_bodega" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=kg_bodega dbname="temp_modelos_ref.kg_bodega" )
+ column=(type=long update=yes updatewhereclause=yes name=unid_bodega dbname="temp_modelos_ref.unid_bodega" )
+ column=(type=long update=yes updatewhereclause=yes name=unid_liberar dbname="temp_modelos_ref.unid_liberar" )
+ column=(type=long update=yes updatewhereclause=yes name=sw_marca dbname="temp_modelos_ref.sw_marca" )
+ column=(type=decimal(3) update=yes updatewhereclause=yes name=consumo dbname="temp_modelos_ref.consumo" )
+ column=(type=long update=yes updatewhereclause=yes name=raya dbname="temp_modelos_ref.raya" )
+ column=(type=long updatewhereclause=yes name=unid_real_liberar dbname="temp_modelos_ref.unid_real_liberar" )
+ column=(type=long updatewhereclause=yes name=unid_prog dbname="temp_modelos_ref.unid_prog" )
+ retrieve="  SELECT temp_modelos_ref.usuario,   
+         temp_modelos_ref.cs_ordenpd_pt,   
+         temp_modelos_ref.po,   
+         temp_modelos_ref.co_fabrica,   
+         temp_modelos_ref.co_linea,   
+         temp_modelos_ref.co_referencia,   
+         temp_modelos_ref.co_color,   
+         temp_modelos_ref.co_talla,   
+         temp_modelos_ref.co_modelo,   
+         temp_modelos_ref.co_reftel,   
+         temp_modelos_ref.co_caract,   
+         temp_modelos_ref.co_color_te,   
+         temp_modelos_ref.diametro,   
+         temp_modelos_ref.ancho,   
+         temp_modelos_ref.tono,   
+         temp_modelos_ref.area,   
+         temp_modelos_ref.grm_ficha,   
+         temp_modelos_ref.mt_bodega,   
+         temp_modelos_ref.kg_bodega,   
+         temp_modelos_ref.unid_bodega,   
+         temp_modelos_ref.unid_liberar,   
+         temp_modelos_ref.sw_marca,   
+         temp_modelos_ref.consumo,   
+         temp_modelos_ref.raya,
+			temp_modelos_ref.unid_real_liberar,
+			temp_modelos_ref.unid_prog
+			
+    FROM temp_modelos_ref  
+   WHERE ( temp_modelos_ref.usuario 		= :an_usuario ) AND  
+         ( temp_modelos_ref.cs_ordenpd_pt = :an_ordenpd_pt ) AND  
+         ( temp_modelos_ref.co_color		= :an_color ) AND
+			( temp_modelos_ref.po				= :as_po)	AND
+			( temp_modelos_ref.co_talla		= :an_talla )    
+" update="temp_modelos_ref" updatewhere=1 updatekeyinplace=no arguments=(("an_usuario", string),("an_ordenpd_pt", number),("an_color", number),("as_po", string),("an_talla", number))  sort="po A ancho A tono A co_color A co_talla A " )
+group(level=1 header.height=68 trailer.height=0 by=("po" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=72 trailer.height=0 by=("co_color" , "ancho" , "tono" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="P.O." border="6" color="33554432" x="9" y="8" height="112" width="215" html.valueishtml="0"  name=po_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Color" border="6" color="33554432" x="242" y="8" height="112" width="160" html.valueishtml="0"  name=co_color_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ancho" border="6" color="33554432" x="421" y="8" height="112" width="151" html.valueishtml="0"  name=ancho_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Tono" border="6" color="33554432" x="590" y="8" height="112" width="114" html.valueishtml="0"  name=tono_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Talla" border="6" color="33554432" x="722" y="8" height="112" width="137" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Pedido" border="6" color="33554432" x="878" y="8" height="112" width="183" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Liberado" border="6" color="33554432" x="1079" y="8" height="112" width="197" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="%Lib." border="6" color="33554432" x="1294" y="8" height="112" width="151" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Unid.Liberar" border="6" color="33554432" x="1463" y="8" height="112" width="215" html.valueishtml="0"  name=unid_liberar_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="%Total" border="6" color="33554432" x="1696" y="8" height="112" width="183" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=header.1 id=3 alignment="0" tabsequence=32766 border="5" color="33554432" x="9" y="4" height="56" width="215" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=7 alignment="1" tabsequence=32766 border="5" color="33554432" x="96" y="8" height="56" width="306" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=14 alignment="2" tabsequence=32766 border="5" color="33554432" x="425" y="8" height="56" width="151" format="[general]" html.valueishtml="0"  name=ancho visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=15 alignment="2" tabsequence=32766 border="5" color="33554432" x="599" y="8" height="56" width="110" format="[general]" html.valueishtml="0"  name=tono visible="1" edit.limit=2 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="2" tabsequence=32766 border="5" color="33554432" x="722" y="4" height="64" width="137" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=26 alignment="1" tabsequence=32766 border="5" color="33554432" x="878" y="4" height="64" width="183" format="[general]" html.valueishtml="0"  name=unid_prog visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="/* if( ca_liberada_exp = 0, ca_liberada_nal , ca_liberada_exp ) */"border="5" color="33554432" x="1079" y="4" height="64" width="197" format="[GENERAL]" html.valueishtml="0"  name=liberado visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="Round( (  liberado  /  unid_prog  ) *100 ,0 )"border="5" color="33554432" x="1294" y="4" height="64" width="151" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=25 alignment="1" tabsequence=10 border="5" color="33554432" x="1463" y="4" height="64" width="215" format="[general]" html.valueishtml="0"  name=unid_real_liberar visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="1" expression="Round( ( ( liberado  +   unid_real_liberar  ) / unid_prog) * 100 ,0)"border="5" color="33554432" x="1696" y="4" height="64" width="183" format="[General]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.2 alignment="1" text="TOTAL COLOR:" border="6" color="0" x="512" y="8" height="56" width="347" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=trailer.2 alignment="1" expression="sum(  unid_prog  for group 2)"border="6" color="33554432" x="878" y="8" height="56" width="183" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=trailer.2 alignment="1" expression="sum( liberado  for group 2)"border="6" color="33554432" x="1079" y="8" height="56" width="197" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=trailer.2 alignment="1" expression="sum(unid_real_liberar for group 2)"border="6" color="33554432" x="1463" y="8" height="56" width="215" format="[general]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
