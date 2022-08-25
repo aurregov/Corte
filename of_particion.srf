@@ -1,0 +1,421 @@
+HA$PBExportHeader$of_particion.srf
+global type of_particion from function_object
+end type
+
+forward prototypes
+global function any of_particion (datawindow adw_datawindow, long al_fila)
+end prototypes
+
+global function any of_particion (datawindow adw_datawindow, long al_fila);u_ds_base lds_pro,lds_talla,lds_pri,lds_talla_cant
+n_cts_corte luo_corte
+s_base_parametros lst_talla,lst_porcentaje,lst_particion,lst_cantidad,lst_talla_cant
+Long li_fabexp,li_libera,li_fabpt,li_linea,li_particion,li_asigna,li_fab,li_planta,li_mod,&
+			li_tipoprod,li_centro,li_subcentro,li_estilo,li_particiones,li_simulacion,li_cont,li_priori,li_talla,&
+			li_maxpriori,li_asignacion,sw_estado,li_partio
+Long ll_ref,ll_colpt,ll_filas,ll_agrupa,ll_count,ll_cantidad,ll_cantidad2,ll_cuenta,ll_canttot,&
+		ll_cantalla,ll_cantottalla,ll_cuenta1,ll_pos,ll_result,ll_cant,ll_contador,ll_conttalla,ll_cuenta2,ll_cuenta3,&
+		ll_porcent,ll_ultimacant,ll_porc,ll_cantsum,ll_pos1,ll_talla_old,ll_i,ll_talla_new,ll_cant_talla,ll_ii,ll_resta,&
+		ll_cant_sum
+String ls_po,ls_tono,ls_sqlerr,ls_pos,ls_pos1,ls_marca, ls_cut, ls_referencia
+Decimal ldc_numparti
+Decimal{3} ldc_minimopart,ldc_residuo,ldc_resulta
+Date   ld_fecha
+
+li_partio=0
+//------------------------------- asigna variable estado =3
+li_asignacion = 3
+
+//------------------------------- actualiza dw de entrada
+adw_datawindow.AcceptText()
+
+//------------------------------- crea objetos, user objects y dw
+luo_corte 		= Create n_cts_corte
+lds_pro 	 		= Create u_ds_base
+lds_talla 		= Create u_ds_base
+lds_pri 	 		= Create u_ds_base
+lds_talla_cant = Create u_ds_base
+
+//-------------------------- asigna objetos dw: tallas, pdn y prioridad
+lds_pro.DataObject   		= 'd_lista_produccion'    //dt_pdnxmodulo con where datos de pdn
+lds_talla.DataObject 		= 'd_lista_talla_produccion'  //---- dt_talla_pdnmodulo con where datos de pdn
+lds_pri.DataObject   		= 'd_lista_produccion_prioridad' // --dt_pdnxmodulo con where de sim=1,modulo y prioridades > a una dada order prior
+lds_talla_cant.DataObject 	= 'd_talla_cant'
+
+lds_pro.SetTransObject(SQLCA)
+lds_talla.SetTransObject(SQLCA)
+lds_pri.SetTransObject(SQLCA)
+lds_talla_cant.SetTransObject(SQLCA)
+
+li_simulacion 	= adw_datawindow.GetItemNumber(al_fila,'simulacion')
+li_fab 			= adw_datawindow.GetItemNumber(al_fila,'co_fabrica')
+li_planta 		= adw_datawindow.GetItemNumber(al_fila,'co_planta')
+li_mod 			= adw_datawindow.GetItemNumber(al_fila,'co_modulo')
+li_fabexp 		= adw_datawindow.GetitemNumber(al_fila,'co_fabrica_exp')
+li_libera 		= adw_datawindow.GetitemNumber(al_fila,'cs_liberacion')
+ls_po     		= adw_datawindow.GetitemString(al_fila,'po')	
+ls_cut			= adw_datawindow.GetItemString(al_fila,'nu_cut')
+li_fabpt  		= adw_datawindow.GetitemNumber(al_fila,'co_fabrica_pt')
+li_linea  		= adw_datawindow.GetitemNumber(al_fila,'co_linea')
+ll_ref    		= adw_datawindow.GetitemNumber(al_fila,'co_referencia')
+ll_colpt  		= adw_datawindow.GetitemNumber(al_fila,'co_color_pt')
+ls_tono   		= adw_datawindow.GetitemString(al_fila,'tono')
+li_particion 	= adw_datawindow.GetitemNumber(al_fila,'cs_particion')
+li_asigna 		= adw_datawindow.GetitemNumber(al_fila,'co_estado_asigna') 
+li_priori 		= adw_datawindow.GetItemNumber(al_fila,'cs_prioridad')
+sw_estado		= adw_datawindow.GetItemNumber(al_fila,'sw_estado')
+li_maxpriori 	= li_priori
+
+//------------------------------------------------------------------------------------------------------------------
+//averiguo el estado de asignacion, si es diferente de 2, pasamos al siguiente registro, sino verificamos agrupaci$$HEX1$$f300$$ENDHEX$$n
+//------------------------------------------------------------------------------------------------------------------
+ 
+//----------- si bd estado =1 y esta chuliada 
+If /*li_asigna = 2 and */sw_estado = 1 Then //li_asigna swich prendido=2, sw_estado bd 1 ingresado
+	//---------------------
+	//verificar agrupacion
+	//---------------------
+	
+	select count(*)
+	into :ll_count
+	from dt_agrupa_pdn
+	where cs_agrupacion = (select cs_agrupacion
+									 from dt_agrupa_pdn
+									where co_fabrica_exp 		= :li_fabexp and
+											cs_liberacion 			= :li_libera and
+											po 						= :ls_po and
+											nu_cut					= :ls_cut and
+											co_fabrica_pt 			= :li_fabpt and
+											co_linea 				= :li_linea and
+											co_referencia 			= :ll_ref and
+											co_color_pt 			= :ll_colpt and
+											tono 						= :ls_tono and
+											cs_particion 			= :li_particion);
+			
+	If sqlca.SqlCode = -1 Then
+		MessageBox('Error','No fue posible establecer los datos de la agrupaci$$HEX1$$f300$$ENDHEX$$n')
+		Return -1
+	End if
+	
+	If ll_count <= 1 Then //tiene agrupacion unica o no tiene agrupacion, evalua partir
+		
+		//----------------------------------------------------------------
+		//Comparo los valores para determinar si es necesario particionar
+		//----------------------------------------------------------------
+		
+		//cantidad en datawindow
+		ll_cantidad = adw_datawindow.GetItemNumber(al_fila,'ca_programada')
+		
+		//cantidad en dt_unixprenda_tela
+		select co_tipoprod,co_centro_pdn,co_subcentro_pdn
+		into :li_tipoprod, :li_centro, :li_subcentro
+		from m_modulos
+		where co_fabrica = :li_fab and
+				co_planta  = :li_planta and
+				co_modulo  = :li_mod;
+		
+		ls_referencia = string(ll_ref)
+		
+		select co_estilo
+		into :li_estilo
+		from h_preref_pv
+		where co_fabrica 		= :li_fab and
+				co_linea 		= :li_linea and
+				co_referencia  = :ls_referencia and
+				co_tipo_ref    = 'P';
+		
+		select min_unidad,porc_distribuir,minimo_partir  
+		into :ll_cantidad2,:ll_porcent,:ldc_minimopart
+		from dt_unixprenda_tela
+		where co_tipoprod 		= :li_tipoprod and   
+				co_centro_pdn 		= :li_centro and   
+				co_subcentro_pdn 	= :li_subcentro and   
+				co_fabrica 			= :li_fab and   
+				co_linea 			= :li_linea and   
+				co_tipo_tela 		= :li_estilo;
+	
+	
+		If Sqlca.Sqlcode = -1 Or Sqlca.sqlCode = 100 Or isnull(ll_cantidad2) Then
+			MessageBox('Advertencia','No existe cantidad tope a confeccionar por favor verifique')
+			Return -1
+		End if
+	
+		If ll_cantidad > ll_cantidad2 Then //debe partir
+			li_partio=1
+			//esto me indica el numero de particiones que se deben realizar
+			ldc_numparti = ll_cantidad / ll_cantidad2
+			li_particiones = Round(ldc_numparti,0)
+			
+			//-----------------------------------------------------------------------------------------------------------
+			//verifico si la ultima agrupacion debe ser repartida entre las otras particiones, debido a que el porcentaje
+			//o la cantidad minima es menor a las establecidas en dt_unixprenda_tela
+			//-----------------------------------------------------------------------------------------------------------
+			
+			//Determino el valor de la ultima cantidad
+			ll_ultimacant = ll_cantidad - (ll_cantidad2 * li_particiones)
+			
+			//determino el porcentaje a que equivale la ultima cantida para determinar si se debe tener en cuenta 
+			//dicha particion o no
+			
+			ll_porc = (ll_ultimacant * 100) / ll_cantidad
+			
+			If ll_porc < ll_porcent Then
+				If li_particiones = 1 Then
+					ll_cantsum = ll_ultimacant
+					//ll_cantidad2 += ll_ultimacant
+					ls_marca = 'S'
+				Else //li_particiones = 1 
+					li_particiones -= 1
+					ll_cantsum = ll_ultimacant / (li_particiones + 1)
+					//ll_cantidad2 += ll_cantsum
+					
+				End if//li_particiones = 1 
+			Else//ll_porc < ll_porcent
+				//el porcentaje no es menor, entonces busco si la cantidad es menor
+				If ll_ultimacant < ldc_minimopart Then
+					If li_particiones = 1 Then
+						ll_cantsum = ll_ultimacant
+						//ll_cantidad2 += ll_ultimacant
+						ls_marca = 'S'
+					Else //li_particiones = 1 
+						li_particiones -= 1
+						ll_cantsum = ll_ultimacant / (li_particiones + 1)
+						//ll_cantidad2 += ll_cantsum
+					End if//li_particiones = 1 
+				End if
+			End if//ll_porc < ll_porcent
+							
+			ll_cantsum = ll_cantidad - (ll_cantidad2 * li_particiones)				
+							
+			//-----------------------------------------
+			//Recalculo las prioridades para el modulo
+			//-----------------------------------------
+			
+			lds_pri.Retrieve(li_fab,li_planta,li_mod,li_priori)
+							
+			For ll_cuenta = 1 To lds_pri.RowCount()
+				lds_pri.SetItem(ll_cuenta,'cs_prioridad',li_priori + li_particiones + ll_cuenta )
+			Next
+							
+			lds_pri.AcceptText()
+			
+			If lds_pri.Update() = -1 Then
+				MessageBox('Error','No fue posible actualizar dt_pdnxmodulo')
+				Return -1
+			End if
+						
+			//--------------------
+			//genero la partici$$HEX1$$f300$$ENDHEX$$n
+			//--------------------
+									
+			lds_pro.Retrieve(li_simulacion,li_fab,li_planta,li_mod,li_fabexp,li_libera,ls_po,ls_cut,&
+								li_fabpt,li_linea,ll_ref,ll_colpt,ls_tono,li_particion,li_asigna)
+				
+			
+			If li_particiones = 1 Then		
+				//si li_particiones, es porque es un dia mas una fracci$$HEX1$$f300$$ENDHEX$$n
+				ll_canttot = ll_cantidad
+															
+					lds_pro.SetItem(1,'ca_programada',ll_cantidad2  )
+					lds_pro.SetItem(1,'ca_pendiente',ll_cantidad2 )
+					//lds_pro.SetItem(1,'co_estado_asigna',li_asignacion)
+					
+					lst_particion.entero[1] = li_particion
+					lst_cantidad.entero[1] = ll_cantidad2 
+					
+					If ls_marca = 'S' Then
+					Else//ls_marca = 'S'
+					
+						ll_result = lds_pro.RowsCopy(1,1, Primary!, lds_pro, lds_pro.RowCount() + 1, Primary!)
+						//antes era 2
+						lds_pro.AcceptText()
+						lds_pro.SetItem( lds_pro.RowCount(),'cs_particion',li_particion + 1)
+													
+						lds_pro.SetItem( lds_pro.RowCount(),'cs_prioridad',li_priori + 1)
+						
+						lst_particion.entero[2] = li_particion + 1
+						li_particiones = 2
+													
+						lds_pro.SetItem(lds_pro.RowCount(),'ca_programada',ll_cantidad - ll_cantidad2 /*+ ll_cantsum*/)
+						lds_pro.SetItem(lds_pro.RowCount(),'ca_pendiente',ll_cantidad - ll_cantidad2 /*+ ll_cantsum*/)
+						//lds_pro.SetItem(1,'co_estado_asigna',li_asignacion)
+					
+						lst_cantidad.entero[2] = ll_cantidad - ll_cantidad2 //+ ll_cantsum
+												
+					End if//ls_marca = 'S'
+							
+			Else //li_particiones = 1 
+				//la programaci$$HEX1$$f300$$ENDHEX$$n cubre m$$HEX1$$e100$$ENDHEX$$s de dos dias
+				ll_canttot = ll_cantidad
+		
+				lds_pro.SetItem(1,'ca_programada',ll_cantidad2 )
+				lds_pro.SetItem(1,'ca_pendiente',ll_cantidad2 )
+				lds_pro.SetItem(1,"fe_actualizacion", f_fecha_servidor())
+				lds_pro.SetItem(1,"usuario", gstr_info_usuario.codigo_usuario)
+				lds_pro.SetItem(1,"instancia", gstr_info_usuario.instancia)
+				
+				lst_particion.entero[1] = li_particion
+				lst_cantidad.entero[1] = ll_cantidad2 
+																
+				For ll_cuenta = 1 To li_particiones //- 1
+					ll_result = lds_pro.RowsCopy(1,1, Primary!,lds_pro,lds_pro.RowCount() + 1,Primary!)
+					
+					lds_pro.AcceptText()
+					
+					lds_pro.SetItem(lds_pro.RowCount(),'cs_particion',li_particion + ll_cuenta)
+					lds_pro.SetItem(lds_pro.RowCount(),'cs_prioridad',li_priori + ll_cuenta)
+					lds_pro.SetItem(lds_pro.RowCount(),'fe_actualizacion', f_fecha_servidor())
+					lds_pro.SetItem(lds_pro.RowCount(),'usuario', gstr_info_usuario.codigo_usuario)
+					lds_pro.SetItem(lds_pro.RowCount(),'instancia', gstr_info_usuario.instancia)
+					lst_particion.entero[ll_cuenta + 1] = li_particion + ll_cuenta
+									
+					If ll_cuenta <> li_particiones /*- 1*/ Then
+						ll_cant	= ll_canttot
+						lds_pro.SetItem(ll_cuenta + 1,'ca_programada',ll_cantidad2)
+						lds_pro.SetItem(ll_cuenta + 1,'ca_pendiente',ll_cantidad2)
+						lst_cantidad.entero[ll_cuenta + 1] = ll_cantidad2
+					Else
+						lds_pro.SetItem(ll_cuenta + 1,'ca_programada',/*ll_cantidad2 + */ll_cantsum)
+						lds_pro.SetItem(ll_cuenta + 1,'ca_pendiente',/*ll_cantidad2 + */ll_cantsum)
+						lst_cantidad.entero[ll_cuenta + 1] = /*ll_cantidad2 +*/ll_cantsum
+					End if
+				Next
+			End if//li_particiones = 1 
+			
+			If lds_pro.AcceptText() = -1 Then
+				MessageBox('Error','Validaci$$HEX1$$f300$$ENDHEX$$n de datos incorrectos')
+			End if
+				
+			If lds_pro.Update() = -1 Then
+				MessageBox('Error','No fue posible actualizar dt_pdnxmodulo')
+				Return -1
+			End if
+							
+					//---------------------------------------------------------------------------------------------
+					//se termino la particion, por lo que se debe cambiar los datos  de la tabla dt_talla_pdnmodulo
+					//---------------------------------------------------------------------------------------------
+							
+					lds_talla.Retrieve(li_simulacion,li_fab,li_planta,li_mod,li_fabexp,li_libera,ls_po,ls_cut,&
+											li_fabpt,li_linea,ll_ref,ll_colpt,ls_tono,li_particion)
+											
+					//obtengo la cantidad total por todas las tallas					
+					For ll_cuenta = 1 To lds_talla.RowCount()
+						ll_cantalla = lds_talla.GetItemNumber(ll_cuenta,'ca_programada')
+						lst_talla_cant.entero[ll_cuenta] = lds_talla.GetItemNumber(ll_cuenta,'ca_programada')
+						ll_cantottalla += ll_cantalla
+					Next
+					
+					//obtengo el porcentaje para cada talla
+					For ll_cuenta = 1 To lds_talla.RowCount()
+						ll_cantalla = lds_talla.GetItemNumber(ll_cuenta,'ca_programada')
+						lst_talla.entero[ll_cuenta] = lds_talla.GetItemNumber(ll_cuenta,'co_talla')
+						lst_porcentaje.decimal[ll_cuenta] = (ll_cantalla * 100) / ll_cantottalla
+					Next
+					
+					ll_conttalla = lds_talla.RowCount()
+					
+					ll_cuenta2 = 1
+					
+					//Cambio los datos para el primer registro (el original)
+					For ll_cuenta = 1 To lds_talla.RowCount()
+														
+						lds_talla.SetItem(ll_cuenta, "fe_actualizacion", f_fecha_servidor())
+						lds_talla.SetItem(ll_cuenta, "usuario", gstr_info_usuario.codigo_usuario)
+						lds_talla.SetItem(ll_cuenta, "instancia", gstr_info_usuario.instancia)
+																						
+						li_talla = lds_talla.GetItemNumber(ll_cuenta,'co_talla')
+							If isnull(lst_talla.entero[ll_cuenta]) Then
+							Else 
+								If li_talla = lst_talla.entero[ll_cuenta] Then
+									lds_talla.SetItem(ll_cuenta,'ca_programada',(lst_cantidad.entero[1] * lst_porcentaje.decimal[ll_cuenta]) / 100)
+									lds_talla.SetItem(ll_cuenta,'ca_pendiente',(lst_cantidad.entero[1] * lst_porcentaje.decimal[ll_cuenta]) / 100)
+								End if
+							End if
+					Next
+					
+					ll_cuenta1 = 1
+					For ll_contador = 2 To lds_pro.RowCount()
+						
+						lds_talla.RowsCopy(1,ll_conttalla, Primary!, lds_talla, lds_talla.RowCount() +1 , Primary!)							 
+																	
+						lds_talla.AcceptText()
+						ll_cuenta3 = 1
+						
+						For ll_cuenta = (lds_talla.RowCount() - ll_conttalla) + 1 To lds_talla.RowCount()
+														
+							lds_talla.SetItem(ll_cuenta,'cs_particion',ll_cuenta1 + 1)
+							lds_talla.SetItem(ll_cuenta, "fe_actualizacion", f_fecha_servidor())
+							lds_talla.SetItem(ll_cuenta, "usuario", gstr_info_usuario.codigo_usuario)
+							lds_talla.SetItem(ll_cuenta, "instancia", gstr_info_usuario.instancia)
+							li_talla = lds_talla.GetItemNumber(ll_cuenta3,'co_talla')
+								
+								If isnull(lst_talla.entero[ll_cuenta3]) Then
+								Else 
+									If li_talla = lst_talla.entero[ll_cuenta3] Then
+										lds_talla.SetItem(ll_cuenta,'ca_programada',(lst_cantidad.entero[ll_cuenta1 + 1] * lst_porcentaje.decimal[ll_cuenta3]) / 100)
+										lds_talla.SetItem(ll_cuenta,'ca_pendiente',(lst_cantidad.entero[ll_cuenta1 + 1] * lst_porcentaje.decimal[ll_cuenta3]) / 100)
+									End if
+								End if
+							
+							ll_cuenta3 += 1								
+						Next
+						ll_cuenta1 += 1
+					Next
+										
+					If lds_talla.Update() = -1 Then
+						MessageBox('Error','No fue posible actualizar dt_talla_pdnmodulo')
+						Return -1
+					End if
+					
+					//-----------------------------------------------------------------------------------------------------
+					//verifico las cantidades para cada talla y determinar que sea igual al total inicial
+					ll_result = lds_talla_cant.Retrieve(li_simulacion,li_fab,li_planta,li_mod,li_fabexp,li_libera,ls_po,ls_cut,&
+											li_fabpt,li_linea,ll_ref,ll_colpt,ls_tono)
+										
+					ll_talla_old = lds_talla_cant.GetItemNumber(1,'co_talla')
+					
+					For ll_i = 1 to lds_talla_cant.RowCount()
+						ll_cant_talla += lds_talla_cant.GetItemNumber(ll_i,'ca_programada')
+						ll_talla_new = lds_talla_cant.GetItemNumber(ll_i,'co_talla')
+						If ll_talla_new <> ll_talla_old Or ll_i = lds_talla_cant.RowCount() Then
+							//busco la cantidad original, para la talla 
+							If ll_i < lds_talla_cant.RowCount() Then
+								ll_cant_talla -= lds_talla_cant.GetItemNumber(ll_i,'ca_programada')
+								ll_cant_sum = lds_talla_cant.GetItemNumber(ll_i,'ca_programada')
+							End if
+								For ll_ii = 1 To lds_talla_cant.RowCount()
+									If lst_talla.entero[ll_ii] = ll_talla_old Then
+										ll_resta = lst_talla_cant.entero[ll_ii] - ll_cant_talla
+										If ll_i = lds_talla_cant.RowCount() Then ll_i += 1
+										ll_resta += lds_talla_cant.GetItemNumber(ll_i - 1,'ca_programada')
+										lds_talla_cant.SetItem(ll_i -1 ,'ca_programada',ll_resta)
+										lds_talla_cant.SetItem(ll_i -1 ,'ca_pendiente',ll_resta)
+										ll_cant_talla = ll_cant_sum
+										ll_ii = lds_talla_cant.RowCount() + 1
+										
+									End if	
+								Next
+								ll_talla_old = ll_talla_new
+						End if
+						
+					Next
+						
+					If lds_talla_cant.Update() = -1 Then
+						MessageBox('Error','No fue posible actualizar dt_talla_pdnmodulo')
+						Return -1
+					End if		
+					//-----------------------------------------------------------------------------------------------------			
+								
+		End if//ll_cantidad > ll_cantidad2	
+	
+	End if//ll_count = 1
+
+End if//li_asigna = 2 and sw_estado = 1 
+ 
+Destroy lds_pro
+Destroy lds_talla
+Destroy lds_pri
+Destroy n_cts_corte
+
+Return 0
+end function
+
