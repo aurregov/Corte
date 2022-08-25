@@ -1,0 +1,48 @@
+HA$PBExportHeader$dtb_actualiza_estado_solicitud.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=64 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=long updatewhereclause=yes key=yes name=cs_solicitud dbname="cs_solicitud" )
+ column=(type=char(20) updatewhereclause=yes key=yes name=caja dbname="caja" )
+ column=(type=long updatewhereclause=yes key=yes name=co_producto dbname="co_producto" )
+ column=(type=long updatewhereclause=yes key=yes name=co_color dbname="co_color" )
+ column=(type=long updatewhereclause=yes key=yes name=co_caracteristica dbname="co_caracteristica" )
+ column=(type=long updatewhereclause=yes key=yes name=co_diametro dbname="co_diametro" )
+ column=(type=long updatewhereclause=yes key=yes name=cs_secuencia dbname="cs_secuencia" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=estado dbname="estado" )
+ retrieve="  SELECT dt_solic_x_caja_gbi.cs_solicitud,   
+         dt_solic_x_caja_gbi.caja,   
+         dt_solic_x_caja_gbi.co_producto,   
+         dt_solic_x_caja_gbi.co_color,   
+         dt_solic_x_caja_gbi.co_caracteristica,   
+         dt_solic_x_caja_gbi.co_diametro,   
+         dt_solic_x_caja_gbi.cs_secuencia,   
+         dt_solic_x_caja_gbi.estado  
+    FROM dt_solic_x_caja_gbi  
+   WHERE dt_solic_x_caja_gbi.cs_solicitud = :an_solicitud    
+     AND dt_solic_x_caja_gbi.estado			= 'P'
+" update="dt_solic_x_caja_gbi" updatewhere=1 updatekeyinplace=yes arguments=(("an_solicitud", number)) )
+text(band=header alignment="2" text="Cs Solicitud" border="0" color="33554432" x="5" y="4" height="56" width="274" html.valueishtml="0"  name=cs_solicitud_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Caja" border="0" color="33554432" x="283" y="4" height="56" width="480" html.valueishtml="0"  name=caja_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Producto" border="0" color="33554432" x="768" y="4" height="56" width="274" html.valueishtml="0"  name=co_producto_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Color" border="0" color="33554432" x="1047" y="4" height="56" width="274" html.valueishtml="0"  name=co_color_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Caracteristica" border="0" color="33554432" x="1326" y="4" height="56" width="379" html.valueishtml="0"  name=co_caracteristica_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Diametro" border="0" color="33554432" x="1710" y="4" height="56" width="274" html.valueishtml="0"  name=co_diametro_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Secuencia" border="0" color="33554432" x="1989" y="4" height="56" width="306" html.valueishtml="0"  name=cs_secuencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Estado" border="0" color="33554432" x="2299" y="4" height="56" width="151" html.valueishtml="0"  name=estado_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="0" color="33554432" x="5" y="4" height="68" width="274" format="[general]" html.valueishtml="0"  name=cs_solicitud visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="33554432" x="283" y="4" height="68" width="480" format="[general]" html.valueishtml="0"  name=caja visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=30 border="0" color="33554432" x="768" y="4" height="68" width="274" format="[general]" html.valueishtml="0"  name=co_producto visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=40 border="0" color="33554432" x="1047" y="4" height="68" width="274" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=50 border="0" color="33554432" x="1326" y="4" height="68" width="274" format="[general]" html.valueishtml="0"  name=co_caracteristica visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=60 border="0" color="33554432" x="1710" y="4" height="68" width="274" format="[general]" html.valueishtml="0"  name=co_diametro visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=70 border="0" color="33554432" x="1989" y="4" height="68" width="274" format="[general]" html.valueishtml="0"  name=cs_secuencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=80 border="0" color="33554432" x="2299" y="4" height="68" width="46" format="[general]" html.valueishtml="0"  name=estado visible="1" edit.limit=1 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
