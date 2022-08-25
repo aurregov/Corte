@@ -1,0 +1,28 @@
+HA$PBExportHeader$ds_po_ref_col_total_x_raya.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=60 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=raya dbname="dt_total_ordcr_po.raya" )
+ column=(type=decimal(0) updatewhereclause=yes name=unid_liquida dbname="unid_liquida" )
+ retrieve="  SELECT dt_total_ordcr_po.raya,   
+         SUM(dt_total_ordcr_po.ca_liquidada) unid_liquida
+    FROM dt_total_ordcr_po  
+   WHERE dt_total_ordcr_po.cs_orden_corte = :al_orden_corte  
+     AND dt_total_ordcr_po.po = :as_po
+     AND dt_total_ordcr_po.co_fabrica = :al_fabrica
+     AND dt_total_ordcr_po.co_linea = :al_linea
+     AND dt_total_ordcr_po.co_referencia = :al_referencia
+     AND dt_total_ordcr_po.co_color = :al_color
+     AND (dt_total_ordcr_po.raya = 10 OR dt_total_ordcr_po.tipo in (4,8))
+GROUP BY 1
+order by 1
+" arguments=(("al_orden_corte", number),("as_po", string),("al_fabrica", number),("al_linea", number),("al_referencia", number),("al_color", number)) )
+text(band=header alignment="2" text="Raya" border="0" color="33554432" x="5" y="4" height="52" width="329" html.valueishtml="0"  name=cs_orden_corte_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca liquidada" border="0" color="33554432" x="347" y="4" height="52" width="480" html.valueishtml="0"  name=po_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="5" y="4" height="60" width="329" format="[general]" html.valueishtml="0"  name=raya visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="347" y="4" height="56" width="485" format="[general]" html.valueishtml="0"  name=unid_liquida visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
