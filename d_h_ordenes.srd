@@ -1,0 +1,78 @@
+HA$PBExportHeader$d_h_ordenes.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=81324524 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=404 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=cs_orden_corte dbname="h_ordenes_corte.cs_orden_corte" )
+ column=(type=long update=yes updatewhereclause=yes name=co_estado dbname="h_ordenes_corte.co_estado" )
+ column=(type=long update=yes updatewhereclause=yes name=co_tipo dbname="h_ordenes_corte.co_tipo" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_prog_orden dbname="h_ordenes_corte.fe_prog_orden" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_liquidacion dbname="h_ordenes_corte.fe_liquidacion" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_unidades_prog dbname="h_ordenes_corte.ca_unidades_prog" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_unidades_cortad dbname="h_ordenes_corte.ca_unidades_cortad" )
+ column=(type=long update=yes updatewhereclause=yes name=co_ruta dbname="h_ordenes_corte.co_ruta" )
+ column=(type=datetime update=yes updatewhereclause=yes name=ano_mes dbname="h_ordenes_corte.ano_mes" )
+ column=(type=char(30) updatewhereclause=yes name=m_estados_ordencr_de_estado dbname="m_estados_ordencr.de_estado" )
+ column=(type=char(30) updatewhereclause=yes name=m_tipos_ordencr_de_tipo dbname="m_tipos_ordencr.de_tipo" )
+ column=(type=long update=yes updatewhereclause=yes name=co_cpto_liq_ordcr dbname="h_ordenes_corte.co_cpto_liq_ordcr" )
+ column=(type=long update=yes updatewhereclause=yes name=co_motivo_anula dbname="h_ordenes_corte.co_motivo_anula" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario_anulacion dbname="h_ordenes_corte.usuario_anulacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_anulacion dbname="h_ordenes_corte.fe_anulacion" )
+ column=(type=long update=yes updatewhereclause=yes name=h_ordenes_corte_co_fab_propietario dbname="h_ordenes_corte.co_fab_propietario" )
+ retrieve="  SELECT h_ordenes_corte.cs_orden_corte,   
+         h_ordenes_corte.co_estado,   
+         h_ordenes_corte.co_tipo,   
+         h_ordenes_corte.fe_prog_orden,   
+         h_ordenes_corte.fe_liquidacion,   
+         h_ordenes_corte.ca_unidades_prog,   
+         h_ordenes_corte.ca_unidades_cortad,   
+         h_ordenes_corte.co_ruta,   
+         h_ordenes_corte.ano_mes,   
+         m_estados_ordencr.de_estado,   
+         m_tipos_ordencr.de_tipo,   
+         h_ordenes_corte.co_cpto_liq_ordcr,   
+         h_ordenes_corte.co_motivo_anula,   
+         h_ordenes_corte.usuario_anulacion,   
+         h_ordenes_corte.fe_anulacion,
+         h_ordenes_corte.co_fab_propietario  
+    FROM h_ordenes_corte,   
+         m_estados_ordencr,   
+         m_tipos_ordencr  
+   WHERE ( h_ordenes_corte.co_estado = m_estados_ordencr.co_estado ) and  
+         ( h_ordenes_corte.co_tipo = m_tipos_ordencr.co_tipo ) and  
+         ( h_ordenes_corte.cs_orden_corte = :an_orden )    
+
+
+" update="h_ordenes_corte" updatewhere=0 updatekeyinplace=no arguments=(("an_orden", number)) )
+column(band=detail id=3 alignment="0" tabsequence=30 border="5" color="0" x="613" y="92" height="56" width="293" html.valueishtml="0"  name=co_tipo visible="1" dddw.name=dddw_m_cptos_corte dddw.displaycolumn=de_cptos dddw.datacolumn=co_codigo dddw.percentwidth=500 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0 dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="0" x="210" y="12" height="56" width="261" format="[general]" html.valueishtml="0"  name=cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Fe Prog:" border="0" color="0" x="494" y="12" height="56" width="178" html.valueishtml="0"  name=fe_prog_orden_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="5" color="0" x="690" y="12" height="56" width="192" format="dd-mmm" html.valueishtml="0"  name=fe_prog_orden visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Fe Liq:" border="0" color="0" x="919" y="12" height="56" width="178" html.valueishtml="0"  name=fe_liquidacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="5" color="0" x="210" y="92" height="56" width="261" format="[general]" html.valueishtml="0"  name=m_estados_ordencr_de_estado visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Tipo:" border="0" color="0" x="494" y="92" height="56" width="101" html.valueishtml="0"  name=co_tipo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Paro:" border="0" color="0" x="919" y="92" height="56" width="110" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="5" color="0" x="210" y="172" height="56" width="261" format="[general]" html.valueishtml="0"  name=ca_unidades_cortad visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Un Prog:" border="0" color="0" x="489" y="172" height="56" width="183" html.valueishtml="0"  name=ca_unidades_prog_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="5" color="0" x="690" y="172" height="56" width="224" format="[general]" html.valueishtml="0"  name=ca_unidades_prog visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="A$$HEX1$$f100$$ENDHEX$$o Mes:" border="0" color="0" x="937" y="172" height="56" width="192" html.valueishtml="0"  name=ano_mes_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="0" x="1129" y="12" height="56" width="242" format="dd-mmm" html.valueishtml="0"  name=fe_liquidacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="5" color="0" x="1152" y="172" height="56" width="219" format="yyyy-mm" html.valueishtml="0"  name=ano_mes visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="5" color="0" x="425" y="252" height="56" width="946" format="[general]" html.valueishtml="0"  name=co_motivo_anula visible="1" dddw.name=dgr_motivos_anulacion dddw.displaycolumn=de_motivo_anula dddw.datacolumn=co_motivo_anula dddw.percentwidth=400 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=detail alignment="0" text="# O.C:" border="0" color="0" x="18" y="12" height="56" width="174" html.valueishtml="0"  name=cs_orden_corte_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Estado:" border="0" color="0" x="18" y="92" height="56" width="174" html.valueishtml="0"  name=co_estado_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Un Cort:" border="0" color="0" x="18" y="172" height="56" width="174" html.valueishtml="0"  name=ca_unidades_cortad_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Motivo Anulaci$$HEX1$$f300$$ENDHEX$$n:" border="0" color="0" x="18" y="252" height="56" width="389" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=detail alignment="0" text="Usuario:" border="0" color="0" x="18" y="332" height="56" width="178" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=14 alignment="2" tabsequence=32766 border="5" color="0" x="219" y="332" height="56" width="206" format="[general]" html.valueishtml="0"  name=usuario_anulacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=12 alignment="0" tabsequence=10 border="5" color="0" x="1047" y="92" height="56" width="325" format="[general]" html.valueishtml="0"  name=co_cpto_liq_ordcr visible="1" dddw.name=dddw_cptos_liq_corte dddw.displaycolumn=de_cpto_liq_ordcr dddw.datacolumn=co_cpto_liq_ordcr dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.imemode=0 dddw.vscrollbar=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=16 alignment="2" tabsequence=20 border="5" color="0" x="1266" y="328" height="56" width="101" format="[general]" html.valueishtml="0"  name=h_ordenes_corte_co_fab_propietario visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="F.Propiet:" border="0" color="0" x="1042" y="332" height="56" width="206" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=detail alignment="0" text="Fecha:" border="0" color="0" x="443" y="332" height="56" width="142" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=15 alignment="2" tabsequence=32766 border="5" color="0" x="594" y="332" height="56" width="416" format="[SHORTDATE] [TIME]" html.valueishtml="0"  name=fe_anulacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
