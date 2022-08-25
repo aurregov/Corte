@@ -1,0 +1,50 @@
+HA$PBExportHeader$f_leer_registro_desde_plano.srf
+global type f_leer_registro_desde_plano from function_object
+end type
+
+forward prototypes
+global function long f_leer_registro_desde_plano (long ai_numero_archivo, long ai_numero_de_campos, string as_campo[], long ai_longituddeseada[])
+end prototypes
+
+global function long f_leer_registro_desde_plano (long ai_numero_archivo, long ai_numero_de_campos, string as_campo[], long ai_longituddeseada[]);/////////////////////////////////////////////////////////////////////////////
+//
+//	PARA LLAMAR ESTA FUNCION DEBE CREAR LOCALMENTE LOS TRES (3) VECTORES
+//	SIGUIENTES :	String 	ls_campo[]
+//						Long 	li_longituddeseada[]
+//
+//	LUEGO DEBE LLENAR DE FORMA QUE CORRESPONDAN ENTRE SI EN EL ORDEN QUE
+//	SE DEBE GENERAR EN EL PLANO
+//
+//	PARAMETROS : 	ai_numero_archivo		:	Apuntador al archivo plano
+//	----------		ai_numero_de_campos	:	Numero campos x registro
+//														del archivo plano
+//						as_campo[]				:	Valor o contenido del campo
+//						ai_longituddeseada[]	:	Longitud deseada del campo dentro
+//														del registro plano
+//					
+//	RETORNA : 		-1		:	Hubo problemas, no leyo el registro
+//						>= 0	:	Registro leido
+//						-100  :  Fin de Archivo
+/////////////////////////////////////////////////////////////////////////////
+					
+String ls_registro, ls_campo
+Long ll_contador = 1, ll_resultado, ll_posicion = 1
+
+ll_resultado = FileRead(ai_numero_archivo, ls_registro)
+
+IF ll_resultado <= 0 THEN
+	Return(ll_resultado)
+END IF	
+	
+DO WHILE ll_contador <= ai_numero_de_campos
+	ls_campo 					= ''
+	ls_campo						=	Mid(ls_registro, ll_posicion, ai_longituddeseada[ll_contador])
+	as_campo[ll_contador] = ls_campo
+	ll_posicion 				= ll_posicion + ai_longituddeseada[ll_contador]
+	
+	ll_contador ++
+LOOP
+
+Return(0)
+end function
+
