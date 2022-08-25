@@ -1,0 +1,34 @@
+HA$PBExportHeader$ds_unidxrayaliq.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=132 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_orden_corte dbname="cs_orden_corte" )
+ column=(type=long updatewhereclause=yes name=cs_agrupacion dbname="cs_agrupacion" )
+ column=(type=decimal(0) updatewhereclause=yes name=compute_0003 dbname="compute_0003" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_liquidadas dbname="ca_liquidadas" )
+ retrieve="  SELECT cs_orden_corte,
+         cs_agrupacion,
+         cs_base_trazos * 10,   
+         Sum(ca_liquidadas) ca_liquidadas 
+    FROM dt_liq_unixespacio
+   WHERE ( cs_orden_corte in (:an_ordencorte) )   
+       
+		
+GROUP BY 1,2,3 
+" arguments=(("an_ordencorte", numberlist),("an_agrupacion", number),("an_base_trazos", number)) )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="5" color="33554432" x="9" y="8" height="56" width="270" format="[general]" html.valueishtml="0"  name=ca_liquidadas visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=0 border="0" color="33554432" x="293" y="0" height="56" width="151" html.valueishtml="0"  name=cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=0 border="0" color="33554432" x="457" y="0" height="56" width="183" html.valueishtml="0"  name=cs_agrupacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=0 border="0" color="33554432" x="654" y="0" height="56" width="375" html.valueishtml="0"  name=compute_0003 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="UnidadesLiquidadas" border="6" color="33554432" x="9" y="8" height="112" width="270" html.valueishtml="0"  name=ca_liquidadas_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Orden Corte" border="6" color="0" x="288" y="8" height="116" width="155" html.valueishtml="0"  name=cs_orden_corte_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Agrupacion" border="6" color="0" x="453" y="8" height="112" width="187" html.valueishtml="0"  name=cs_agrupacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Raya" border="6" color="0" x="649" y="8" height="108" width="379" html.valueishtml="0"  name=compute_0003_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
