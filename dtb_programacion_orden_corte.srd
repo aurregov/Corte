@@ -1,0 +1,279 @@
+HA$PBExportHeader$dtb_programacion_orden_corte.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=4 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no  crosstab.dynamic = yes grid.lines=0 grid.columnmove=no selected.mouse=no )
+header[1](height=68 color="536870912" )
+header[2](height=68 color="536870912" )
+header[3](height=120 color="536870912" )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=number updatewhereclause=yes name=co_modulo dbname="co_modulo" )
+ column=(type=number updatewhereclause=yes name=cs_prioridad dbname="cs_prioridad" )
+ column=(type=char(20) updatewhereclause=yes name=modulo dbname="modulo" )
+ column=(type=date updatewhereclause=yes name=x_col dbname="x_col" )
+ column=(type=char(20) updatewhereclause=yes name=gpa dbname="gpa" )
+ column=(type=char(20) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=char(20) updatewhereclause=yes name=po dbname="po" )
+ column=(type=char(20) updatewhereclause=yes name=row_column dbname="row_column" )
+ column=(type=char(20) updatewhereclause=yes name=estilo dbname="estilo" )
+ column=(type=number updatewhereclause=yes name=cs_asignacion dbname="cs_asignacion" )
+ column=(type=char(20) updatewhereclause=yes name=de_linea dbname="de_linea" )
+ column=(type=char(20) updatewhereclause=yes name=de_color dbname="de_color" )
+ column=(type=number updatewhereclause=yes name=ca_programada dbname="ca_programada" )
+ column=(type=datetime updatewhereclause=yes name=fe_inicio_corte dbname="fe_inicio_corte" )
+ column=(type=datetime updatewhereclause=yes name=fe_fin_prog dbname="fe_fin_prog" )
+ column=(type=number updatewhereclause=yes name=co_consumo_proceso dbname="co_consumo_proceso" )
+ column=(type=number updatewhereclause=yes name=ca_consumo_estimad dbname="ca_consumo_estimad" )
+ retrieve="SELECT dt_pdnxmodulo.simulacion,   
+         dt_pdnxmodulo.co_fabrica,   
+         dt_pdnxmodulo.co_planta,   
+         dt_pdnxmodulo.co_modulo,   
+         dt_pdnxmodulo.co_fabrica_exp,   
+         dt_pdnxmodulo.pedido,   
+         dt_pdnxmodulo.cs_liberacion,   
+         dt_pdnxmodulo.po,   
+         dt_pdnxmodulo.co_fabrica_pt,   
+         dt_pdnxmodulo.co_linea,   
+         dt_pdnxmodulo.co_referencia,   
+         dt_pdnxmodulo.co_color_pt,   
+         dt_pdnxmodulo.tono,   
+         dt_pdnxmodulo.cs_estilocolortono,   
+         dt_pdnxmodulo.cs_particion,   
+         dt_pdnxmodulo.pedido_po,   
+         dt_pdnxmodulo.cs_prioridad,   
+         dt_pdnxmodulo.ca_programada,   
+         dt_pdnxmodulo.ca_producida,   
+         dt_pdnxmodulo.ca_pendiente,   
+         dt_pdnxmodulo.co_estado_asigna,   
+         dt_pdnxmodulo.co_curva,   
+         dt_pdnxmodulo.fe_inicio_prog  as fe_inicio_corte,   
+         dt_pdnxmodulo.fe_fin_prog,   
+         dt_pdnxmodulo.fe_requerida_desp,   
+         dt_pdnxmodulo.ca_minutos_std,   
+         dt_pdnxmodulo.co_tipo_asignacion,   
+         dt_pdnxmodulo.ca_personasxmod,   
+         dt_pdnxmodulo.cod_tur,   
+         dt_pdnxmodulo.minutos_jornada,   
+         dt_pdnxmodulo.ind_cambio_estilo,   
+         dt_pdnxmodulo.ca_unid_base_dia,   
+         dt_pdnxmodulo.orige_uni_base_dia,   
+         dt_pdnxmodulo.tipo_empate,   
+         dt_pdnxmodulo.unidades_empate,   
+         dt_pdnxmodulo.metodo_programa,   
+         dt_pdnxmodulo.fuente_dato,   
+         dt_pdnxmodulo.fe_creacion,   
+         dt_pdnxmodulo.fe_actualizacion,   
+         dt_pdnxmodulo.usuario,   
+         dt_pdnxmodulo.instancia,   
+         dt_pdnxmodulo.fe_entra_pdn,   
+         dt_pdnxmodulo.tipo_fe_prog,   
+         dt_pdnxmodulo.fe_lim_prog,   
+         dt_pdnxmodulo.fe_desp_programada,   
+         dt_pdnxmodulo.indicativo_base,   
+         dt_pdnxmodulo.ca_base_dia_prod,   
+         dt_pdnxmodulo.ca_base_dia_prog,   
+         dt_pdnxmodulo.ca_a_programar,   
+         dt_pdnxmodulo.co_estado_merc,   
+         dt_pdnxmodulo.ca_proyectada,   
+         dt_pdnxmodulo.ca_actual,   
+         dt_pdnxmodulo.ca_numerada,   
+         dt_pdnxmodulo.fe_fogueo,   
+         dt_pdnxmodulo.fe_trabajo,   
+         dt_pdnxmodulo.cs_asignacion,
+			h_preref.de_referencia,
+			m_lineas.de_linea,
+			m_colores.de_color,
+			h_preref.co_estilo,
+			m_modulos.co_tipoprod,
+			h_preref.co_composicion,
+			m_procesos_pdn.co_proceso_pdn,
+			m_procesos_pdn.de_proceso_pdn,
+			dt_procesos_plan.ca_consumo_estimad,
+			(SELECT min(pedpend_exp.fe_entrega)  
+						 FROM pedpend_exp
+						WHERE ( pedpend_exp.co_fabrica_exp 	= dt_pdnxmodulo.co_fabrica_exp ) and
+								( pedpend_exp.pedido 			=dt_pdnxmodulo.pedido_po	) and
+								(pedpend_exp.nu_orden		  	= dt_pdnxmodulo.po) AND
+								(pedpend_exp.co_fabrica			=dt_pdnxmodulo.co_fabrica_pt) AND	
+								(pedpend_exp.co_linea			=dt_pdnxmodulo.co_linea )AND
+								(pedpend_exp.co_referencia		=dt_pdnxmodulo.co_referencia) AND
+								(pedpend_exp.co_color			=dt_pdnxmodulo.co_color_pt)
+								) as x_col,   			
+			(select unique peddig.gpa
+          from   peddig
+			 where  peddig.co_fabrica_exp=dt_pdnxmodulo.co_fabrica_exp
+			 and    peddig.pedido		  =dt_pdnxmodulo.pedido) as gpa,
+			(select sum(co_consumo_proceso)
+			 from dt_procesos_plan
+			 where dt_procesos_plan.simulacion = dt_pdnxmodulo.simulacion and
+				dt_procesos_plan.co_fabrica = dt_pdnxmodulo.co_fabrica and
+				dt_procesos_plan.co_planta = dt_pdnxmodulo.co_planta and
+				dt_procesos_plan.co_modulo = dt_pdnxmodulo.co_modulo and
+				dt_procesos_plan.co_fabrica_exp = dt_pdnxmodulo.co_fabrica_exp and
+				dt_procesos_plan.pedido = dt_pdnxmodulo.pedido and
+				dt_procesos_plan.cs_liberacion = dt_pdnxmodulo.cs_liberacion  and
+				dt_procesos_plan.po = dt_pdnxmodulo.po and
+				dt_procesos_plan.co_fabrica_pt = dt_pdnxmodulo.co_fabrica_pt and
+				dt_procesos_plan.co_linea = dt_pdnxmodulo.co_linea and
+				dt_procesos_plan.co_referencia = dt_pdnxmodulo.co_referencia and
+				dt_procesos_plan.co_color_pt = dt_pdnxmodulo.co_color_pt and
+				dt_procesos_plan.tono = dt_pdnxmodulo.tono and
+				dt_procesos_plan.cs_estilocolortono = dt_pdnxmodulo.cs_estilocolortono and
+				dt_procesos_plan.cs_particion = dt_pdnxmodulo.cs_particion) as co_consumo_proceso,
+			(select m_estilos.de_estilo
+				from m_estilos
+				where m_estilos.co_tipoprod = m_modulos.co_tipoprod and
+						m_estilos.co_estilo = h_preref.co_estilo ) as estilo,
+			(select h_composiciones.de_composicion
+				from h_composiciones
+				where h_composiciones.co_composicion = h_preref.co_composicion ) as composicion,
+			(select dt_observaxmodulo.observacion  
+			 from dt_observaxmodulo  
+			where dt_observaxmodulo.simulacion = dt_pdnxmodulo.simulacion  and  
+					dt_observaxmodulo.co_fabrica = dt_pdnxmodulo.co_fabrica  and  
+					dt_observaxmodulo.co_planta =  dt_pdnxmodulo.co_planta and  
+					dt_observaxmodulo.co_modulo =  dt_pdnxmodulo.co_modulo  and  
+					dt_observaxmodulo.co_fabrica_exp = dt_pdnxmodulo.co_fabrica_exp  and  
+					dt_observaxmodulo.pedido = dt_pdnxmodulo.pedido  and  
+					dt_observaxmodulo.cs_liberacion = dt_pdnxmodulo.cs_liberacion  and  
+					dt_observaxmodulo.po = dt_pdnxmodulo.po  and  
+					dt_observaxmodulo.co_fabrica_pt = dt_pdnxmodulo.co_fabrica_pt  and  
+					dt_observaxmodulo.co_linea = dt_pdnxmodulo.co_linea  and  
+					dt_observaxmodulo.co_referencia = dt_pdnxmodulo.co_referencia  and  
+					dt_observaxmodulo.co_color_pt = dt_pdnxmodulo.co_color_pt  and  
+					dt_observaxmodulo.tono = dt_pdnxmodulo.tono  and  
+					dt_observaxmodulo.cs_estilocolortono = dt_pdnxmodulo.cs_estilocolortono  and  
+					dt_observaxmodulo.cs_particion = dt_pdnxmodulo.cs_particion ) as observaciones,
+			(select m_modulos.de_modulo
+				from m_modulos
+				where m_modulos.co_fabrica = dt_pdnxmodulo.co_fabrica and
+						m_modulos.co_planta = dt_pdnxmodulo.co_planta and
+						m_modulos.co_modulo = dt_pdnxmodulo.co_modulo ) as modulo,
+			(select min(a.fe_inicio_prog)
+				from dt_pdnxmodulo a
+				where a.simulacion = dt_pdnxmodulo.simulacion and  
+						a.co_fabrica = dt_pdnxmodulo.co_fabrica and  
+						a.co_planta = 2 and   
+						a.co_fabrica_exp = dt_pdnxmodulo.co_fabrica_exp and   
+						a.pedido = dt_pdnxmodulo.pedido and   
+						a.cs_liberacion = dt_pdnxmodulo.cs_liberacion and   
+						a.po = dt_pdnxmodulo.po and   
+						a.co_fabrica_pt = dt_pdnxmodulo.co_fabrica_pt and   
+						a.co_linea = dt_pdnxmodulo.co_linea and   
+						a.co_referencia = dt_pdnxmodulo.co_referencia and   
+						a.co_color_pt = dt_pdnxmodulo.co_color_pt and   
+						a.tono = dt_pdnxmodulo.tono and   
+						a.cs_estilocolortono = dt_pdnxmodulo.cs_estilocolortono and   
+						a.cs_particion = dt_pdnxmodulo.cs_particion ) as fe_ini_confeccion
+    FROM dt_pdnxmodulo,
+			h_preref,
+			m_lineas,
+			m_colores,
+			m_modulos,
+			dt_procesos_plan, outer
+			m_procesos_pdn
+   WHERE ( dt_pdnxmodulo.co_fabrica_pt = m_lineas.co_fabrica ) and  
+         ( dt_pdnxmodulo.co_linea = m_lineas.co_linea ) and  
+         ( dt_pdnxmodulo.co_fabrica_pt = h_preref.co_fabrica ) and  
+         ( dt_pdnxmodulo.co_linea = h_preref.co_linea ) and  
+         ( dt_pdnxmodulo.co_referencia = h_preref.co_referencia ) and
+			( dt_pdnxmodulo.co_linea = m_colores.co_linea ) and  
+         ( dt_pdnxmodulo.co_color_pt = m_colores.co_color ) and
+			( dt_pdnxmodulo.co_fabrica = h_preref.co_fabrica ) and
+			( dt_pdnxmodulo.co_linea = h_preref.co_linea ) and
+			( dt_pdnxmodulo.co_referencia = h_preref.co_referencia ) and
+			( dt_pdnxmodulo.co_fabrica = m_modulos.co_fabrica ) and
+			( dt_pdnxmodulo.co_planta = m_modulos.co_planta ) and
+			( dt_pdnxmodulo.co_modulo = m_modulos.co_modulo)   and
+			( dt_pdnxmodulo.co_fabrica = 91 ) and
+			( dt_pdnxmodulo.co_planta = 1 ) and
+			( dt_pdnxmodulo.co_estado_asigna <  11 )and
+			( dt_procesos_plan.co_proces = m_procesos_pdn.co_proceso_pdn ) and  
+         ( m_procesos_pdn.co_centro_pdn = 1 ) AND  
+         ( m_procesos_pdn.co_subcentro_pdn = 1 ) AND  
+         ( dt_procesos_plan.simulacion = dt_pdnxmodulo.simulacion ) AND  
+         ( dt_procesos_plan.co_fabrica =  dt_pdnxmodulo.co_fabrica ) AND  
+         ( dt_procesos_plan.co_planta = dt_pdnxmodulo.co_planta ) AND  
+         ( dt_procesos_plan.co_modulo = dt_pdnxmodulo.co_modulo ) AND  
+         ( dt_procesos_plan.co_fabrica_exp = dt_pdnxmodulo.co_fabrica_exp ) AND  
+         ( dt_procesos_plan.pedido = dt_pdnxmodulo.pedido ) AND  
+         ( dt_procesos_plan.cs_liberacion =dt_pdnxmodulo.cs_liberacion ) AND  
+         ( dt_procesos_plan.po = dt_pdnxmodulo.po ) AND  
+         ( dt_procesos_plan.co_fabrica_pt =dt_pdnxmodulo.co_fabrica_pt ) AND  
+         ( dt_procesos_plan.co_linea = dt_pdnxmodulo.co_linea ) AND  
+         ( dt_procesos_plan.co_referencia = dt_pdnxmodulo.co_referencia) AND  
+         ( dt_procesos_plan.co_color_pt = dt_pdnxmodulo.co_color_pt ) AND  
+         ( dt_procesos_plan.tono = dt_pdnxmodulo.tono ) AND  
+         ( dt_procesos_plan.cs_estilocolortono = dt_pdnxmodulo.cs_estilocolortono ) AND  
+         ( dt_procesos_plan.cs_particion = dt_pdnxmodulo.cs_particion ) and
+			( dt_pdnxmodulo.co_tipo_asignacion = 2)
+ORDER BY modulo,
+			dt_pdnxmodulo.cs_prioridad
+
+
+"  sort="modulo A cs_prioridad A " )
+group(level=1 header.height=0 trailer.height=0 by=("co_modulo" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=0 trailer.height=0 by=("cs_prioridad" ) header.color="536870912" trailer.color="536870912" )
+group(level=3 header.height=0 trailer.height=0 by=("modulo" ) header.color="536870912" trailer.color="536870912" )
+group(level=4 header.height=0 trailer.height=0 by=("x_col" ) header.color="536870912" trailer.color="536870912" )
+group(level=5 header.height=0 trailer.height=0 by=("gpa" ) header.color="536870912" trailer.color="536870912" )
+group(level=6 header.height=0 trailer.height=4 by=("de_referencia" ) header.color="536870912" trailer.color="536870912" )
+group(level=7 header.height=0 trailer.height=4 by=("po" ) header.color="536870912" trailer.color="536870912" )
+group(level=8 header.height=0 trailer.height=0 by=("row_column" ) header.color="536870912" trailer.color="536870912" )
+group(level=9 header.height=0 trailer.height=0 by=("estilo" ) header.color="536870912" trailer.color="536870912" )
+group(level=10 header.height=0 trailer.height=0 by=("cs_asignacion" ) header.color="536870912" trailer.color="536870912" )
+group(level=11 header.height=0 trailer.height=0 by=("de_linea" ) header.color="536870912" trailer.color="536870912" )
+group(level=12 header.height=0 trailer.height=0 by=("de_color" ) header.color="536870912" trailer.color="536870912" )
+group(level=13 header.height=0 trailer.height=0 by=("ca_programada" ) header.color="536870912" trailer.color="536870912" )
+group(level=14 header.height=0 trailer.height=0 by=("fe_inicio_corte" ) header.color="536870912" trailer.color="536870912" )
+group(level=15 header.height=0 trailer.height=0 by=("fe_fin_prog" ) header.color="536870912" trailer.color="536870912" )
+text(band=header[1] alignment="0" text="Sum Of Ca Consumo Estimad" border="0" color="0" x="9" y="4" height="52" width="9" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[1] alignment="0" text="Co Proceso Pdn" border="0" color="0" x="27" y="4" height="52" width="14" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[1] alignment="0" text="De Proceso Pdn" border="0" color="0" x="50" y="4" height="52" width="160" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="@co_proceso_pdn" border="0" color="0" x="4530" y="4" height="52" width="416" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="@co_proceso_pdn Sum Of Ca Consumo Estimad" border="0" color="0" x="4955" y="4" height="52" width="686" html.valueishtml="0"  name=t_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="Co Modulo" border="0" color="0" x="9" y="4" height="52" width="9" html.valueishtml="0"  name=co_modulo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="Cs Prioridad" border="0" color="0" x="27" y="4" height="52" width="14" html.valueishtml="0"  name=cs_prioridad_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="Modulo" border="0" color="0" x="50" y="4" height="52" width="160" html.valueishtml="0"  name=modulo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="X Col" border="0" color="0" x="219" y="4" height="52" width="155" html.valueishtml="0"  name=x_col_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="Gpa" border="0" color="0" x="384" y="4" height="52" width="229" html.valueishtml="0"  name=gpa_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="De Referencia" border="0" color="0" x="622" y="4" height="52" width="329" html.valueishtml="0"  name=de_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="Po" border="0" color="0" x="960" y="4" height="52" width="283" html.valueishtml="0"  name=po_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text=" co_color_pt +  tono + cs_liberacion" border="0" color="0" x="1253" y="4" height="52" width="773" html.valueishtml="0"  name=row_column_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="Estilo" border="0" color="0" x="2034" y="4" height="52" width="224" html.valueishtml="0"  name=estilo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="Cs Asignacion" border="0" color="0" x="2267" y="4" height="52" width="306" html.valueishtml="0"  name=cs_asignacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="De Linea" border="0" color="0" x="2583" y="4" height="52" width="256" html.valueishtml="0"  name=de_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="De Color" border="0" color="0" x="2848" y="4" height="52" width="279" html.valueishtml="0"  name=de_color_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="Ca Programada" border="0" color="0" x="3136" y="4" height="52" width="334" html.valueishtml="0"  name=ca_programada_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="Fe Inicio Corte" border="0" color="0" x="3479" y="4" height="52" width="311" html.valueishtml="0"  name=fe_inicio_corte_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="Fe Fin Prog" border="0" color="0" x="3799" y="4" height="52" width="247" html.valueishtml="0"  name=fe_fin_prog_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="Co Consumo Proceso" border="0" color="0" x="4055" y="4" height="52" width="466" html.valueishtml="0"  name=co_consumo_proceso_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="@de_proceso_pdn" border="0" color="0" x="4530" y="4" height="52" width="416" html.valueishtml="0"  name=ca_consumo_estimad_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="Grand Total " border="0" color="0" x="5650" y="4" height="52" width="686" html.valueishtml="0"  name=grand_sum_ca_consumo_estimad_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="4" height="64" width="9" format="[general]" html.valueishtml="0"  name=co_modulo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="27" y="4" height="64" width="14" format="[general]" html.valueishtml="0"  name=cs_prioridad visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="50" y="4" height="64" width="160" format="[general]" html.valueishtml="0"  name=modulo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="219" y="4" height="64" width="155" format="[general]" html.valueishtml="0"  name=x_col visible="1" dddw.name=dddw_semana dddw.displaycolumn=semana dddw.datacolumn=fe_calendario dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="384" y="4" height="64" width="229" format="[general]" html.valueishtml="0"  name=gpa visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="622" y="4" height="64" width="329" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="960" y="4" height="64" width="283" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="1253" y="4" height="64" width="773" format="[general]" html.valueishtml="0"  name=row_column visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="2034" y="4" height="64" width="224" format="[general]" html.valueishtml="0"  name=estilo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="33554432" x="2267" y="4" height="64" width="306" format="[general]" html.valueishtml="0"  name=cs_asignacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="2583" y="4" height="64" width="256" format="[general]" html.valueishtml="0"  name=de_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="2848" y="4" height="64" width="279" format="[general]" html.valueishtml="0"  name=de_color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="0" color="33554432" x="3136" y="4" height="64" width="334" format="[general]" html.valueishtml="0"  name=ca_programada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="2" tabsequence=32766 border="0" color="33554432" x="3479" y="4" height="64" width="311" format="[shortdate]" html.valueishtml="0"  name=fe_inicio_corte visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="2" tabsequence=32766 border="0" color="33554432" x="3799" y="4" height="64" width="247" format="[shortdate]" html.valueishtml="0"  name=fe_fin_prog visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="1" tabsequence=32766 border="0" color="33554432" x="4055" y="4" height="64" width="466" format="[general]" html.valueishtml="0"  name=co_consumo_proceso visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="1" tabsequence=32766 border="0" color="33554432" x="4530" y="4" height="64" width="416" format="[general]" html.valueishtml="0"  name=ca_consumo_estimad visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0 crosstab.repeat=yes  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="crosstabsum(1, 2, ~"@co_proceso_pdn~")"border="0" color="33554432" x="4955" y="4" height="64" width="686" format="[general]" html.valueishtml="0"  name=sum_ca_consumo_estimad visible="1"  font.face="Arial" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" crosstab.repeat=yes )
+compute(band=detail alignment="1" expression="crosstabsum(1)"border="0" color="33554432" x="5650" y="4" height="64" width="686" format="[general]" html.valueishtml="0"  name=grand_sum_ca_consumo_estimad visible="1"  font.face="Arial" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="~"Grand Total~""border="0" color="0" x="9" y="4" height="64" width="9" format="[general]" html.valueishtml="0"  name=compute_61 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_consumo_estimad for all )"border="0" color="33554432" x="4530" y="4" height="64" width="416" format="[general]" html.valueishtml="0"  name=compute_62 visible="1"  font.face="Arial" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(sum_ca_consumo_estimad for all )"border="0" color="33554432" x="4955" y="4" height="64" width="686" format="[general]" html.valueishtml="0"  name=compute_63 visible="1"  font.face="Arial" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(grand_sum_ca_consumo_estimad for all )"border="0" color="33554432" x="5650" y="4" height="64" width="686" format="[general]" html.valueishtml="0"  name=compute_64 visible="1"  font.face="Arial" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+ crosstab(band = foreground  crosstabonly = yes 
+ columns = "co_proceso_pdn, de_proceso_pdn" rows = "co_modulo, cs_prioridad, modulo, x_col, gpa, de_referencia, po,  co_color_pt +  tono + cs_liberacion, estilo, cs_asignacion, de_linea, de_color, ca_programada, fe_inicio_corte, fe_fin_prog, co_consumo_proceso" values = "sum(ca_consumo_estimad for crosstab)" sourcenames = "simulacion, co_fabrica, co_planta, co_modulo, co_fabrica_exp, pedido, cs_liberacion, po, co_fabrica_pt, co_linea, co_referencia, co_color_pt, tono, cs_estilocolortono, cs_particion, pedido_po, cs_prioridad, ca_programada, ca_producida, ca_pendiente, co_estado_asigna, co_curva, fe_inicio_corte, fe_fin_prog, fe_requerida_desp, ca_minutos_std, co_tipo_asignacion, ca_personasxmod, cod_tur, minutos_jornada, ind_cambio_estilo, ca_unid_base_dia, orige_uni_base_dia, tipo_empate, unidades_empate, metodo_programa, fuente_dato, fe_creacion, fe_actualizacion, usuario, instancia, fe_entra_pdn, tipo_fe_prog, fe_lim_prog, fe_desp_programada, indicativo_base, ca_base_dia_prod, ca_base_dia_prog, ca_a_programar, co_estado_merc, ca_proyectada, ca_actual, ca_numerada, fe_fogueo, fe_trabajo, cs_asignacion, de_referencia, de_linea, de_color, co_estilo, co_tipoprod, co_composicion, co_proceso_pdn, de_proceso_pdn, ca_consumo_estimad, x_col, gpa, co_consumo_proceso, estilo, composicion, observaciones, modulo, fe_ini_confeccion")
+sparse(names="co_modulo	cs_prioridad	modulo	x_col	gpa	de_referencia	po	row_column	estilo	cs_asignacion	de_linea	de_color	ca_programada	fe_inicio_corte	fe_fin_prog")htmltable(border="0" cellpadding="1" cellspacing="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
