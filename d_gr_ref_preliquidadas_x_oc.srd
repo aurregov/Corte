@@ -1,0 +1,59 @@
+HA$PBExportHeader$d_gr_ref_preliquidadas_x_oc.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica_pt dbname="co_fabrica_pt" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=char(50) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=long updatewhereclause=yes name=co_reftel dbname="co_reftel" )
+ column=(type=decimal(2) updatewhereclause=yes name=medida_empate dbname="medida_empate" )
+ column=(type=decimal(2) updatewhereclause=yes name=peso_empate dbname="peso_empate" )
+ retrieve="select c.co_fabrica_pt, c.co_linea, c.co_referencia, 
+(select max(h.de_referencia) from h_preref_pv h where h.co_tipo_ref = 'P' and
+		c.co_fabrica_pt = h.co_fabrica and
+		c.co_linea = h.co_linea and
+		cast(c.co_referencia as char(15)) = h.co_referencia) as de_referencia, 
+		b.co_reftel,
+		cast(0.00 as decimal(8,2)) medida_empate,
+		cast(0.00 as decimal(8,2)) peso_empate
+from dt_liq_unixespacio a, dt_rayas_telaxoc b, dt_agrupa_pdn c
+where a.cs_orden_corte = b.cs_orden_corte
+and a.cs_agrupacion = b.cs_agrupacion
+and a.cs_base_trazos = b.cs_base_trazos
+and b.cs_agrupacion = c.cs_agrupacion
+and b.cs_pdn = c.cs_pdn
+and a.cs_orden_corte = :an_oc
+and b.raya = 10
+and exists (select d.co_modelo
+			from dt_modelos d
+			where c.co_fabrica_pt = d.co_fabrica and
+		c.co_linea = d.co_linea and
+		c.co_referencia = d.co_referencia and
+		a.co_talla = d.co_talla and
+		d.raya = :an_raya and
+		(Upper(d.de_modelo) like '%SESGO%' or d.raya = 80))
+group by 1,2,3,4,5,6
+order by 1,2,3,4,5,6" arguments=(("an_oc", number),("an_raya", number)) )
+text(band=header alignment="2" text="Fabrica" border="6" color="33554432" x="9" y="8" height="104" width="174" html.valueishtml="0"  name=co_fabrica_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Linea" border="6" color="33554432" x="192" y="8" height="104" width="151" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Referencia" border="6" color="33554432" x="352" y="8" height="104" width="311" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="De Referencia" border="6" color="33554432" x="672" y="8" height="104" width="686" html.valueishtml="0"  name=de_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Reftel" border="6" color="33554432" x="1367" y="8" height="104" width="274" html.valueishtml="0"  name=co_reftel_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Medida Empate a Empate (cms)" border="6" color="33554432" x="1650" y="8" height="104" width="416" html.valueishtml="0"  name=medida_empate_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Peso Empate a Empate (grs)" border="6" color="33554432" x="2075" y="8" height="104" width="352" html.valueishtml="0"  name=peso_empate_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="33554432" x="9" y="8" height="64" width="174" format="[general]" html.valueishtml="0"  name=co_fabrica_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="33554432" x="192" y="8" height="64" width="151" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="33554432" x="352" y="8" height="64" width="311" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="5" color="33554432" x="672" y="8" height="64" width="686" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="5" color="33554432" x="1367" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_reftel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="2" tabsequence=10 border="5" color="33554432" x="1650" y="8" height="64" width="416" format="[general]" html.valueishtml="0"  name=medida_empate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="2" tabsequence=20 border="5" color="33554432" x="2075" y="8" height="64" width="352" format="[general]" html.valueishtml="0"  name=peso_empate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
