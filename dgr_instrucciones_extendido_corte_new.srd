@@ -1,0 +1,36 @@
+HA$PBExportHeader$dgr_instrucciones_extendido_corte_new.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=136 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=112 color="536870912" )
+table(column=(type=char(200) updatewhereclause=yes name=de_instruccion dbname="de_instruccion" )
+ retrieve="select unique m_instruccionxtipo.de_instruccion  
+ from m_instruccionxtipo,	
+      dt_instxestilo_tip ,
+      m_tipo_instruccion,
+      h_base_trazos,   
+      dt_trazosxoc,   
+      dt_agrupa_pdn  
+	where ( dt_trazosxoc.cs_orden_corte           = :an_orden_corte) and
+         ( dt_instxestilo_tip.co_fabrica         = dt_agrupa_pdn.co_fabrica_pt) AND  
+			( dt_instxestilo_tip.co_linea           = dt_agrupa_pdn.co_linea ) AND  
+			( dt_instxestilo_tip.co_referencia      = dt_agrupa_pdn.co_referencia ) and
+			( m_instruccionxtipo.co_tipo_instruccio = 3) and
+			(  m_instruccionxtipo.de_instruccion    <> '' ) and
+         ( m_instruccionxtipo.co_tipo_instruccio = dt_instxestilo_tip.co_tipo_instruccio ) and  
+			( m_instruccionxtipo.co_instruccion     = dt_instxestilo_tip.co_instruccion ) and  
+			( m_tipo_instruccion.co_tipo_instruccio = dt_instxestilo_tip.co_tipo_instruccio ) and	
+         ( dt_trazosxoc.cs_agrupacion            = h_base_trazos.cs_agrupacion ) and  
+         ( dt_trazosxoc.cs_base_trazos           = h_base_trazos.cs_base_trazos ) and  
+         ( dt_trazosxoc.cs_agrupacion 	          = dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_trazosxoc.cs_pdn 			          = dt_agrupa_pdn.cs_pdn )   " arguments=(("an_orden_corte", number)) )
+text(band=header alignment="0" text="Instrucciones Extendido" border="0" color="33554432" x="9" y="76" height="56" width="2231" html.valueishtml="0"  name=de_instruccion_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="4" height="144" width="2231" format="[general]" html.valueishtml="0"  name=de_instruccion visible="1" edit.limit=200 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="ESPECIFICACIONES DE OC" border="0" color="33554432" x="5" y="8" height="60" width="2235" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
