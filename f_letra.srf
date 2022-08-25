@@ -1,0 +1,32 @@
+HA$PBExportHeader$f_letra.srf
+global type f_letra from function_object
+end type
+
+forward prototypes
+global function string f_letra (long al_num)
+end prototypes
+
+global function string f_letra (long al_num);String ls_letra,ls_char1,ls_char2
+Long ll_resul,ll_totres,ll_numreal
+
+ll_resul = Round(al_num / 26,0)
+
+IF ll_resul > 1 OR al_num > 26 THEN
+	ls_char1 = Char(64 + ll_resul)
+	
+	IF ll_resul = 1 THEN ll_resul = 2
+	ll_totres = (ll_resul -1 ) * 26
+	
+	ll_numreal = al_num - ll_totres
+	
+	ls_char2 = Char(64 + ll_numreal)
+	
+ELSE
+	ls_char1 = Char(64 + al_num)
+END IF
+
+ls_letra = ls_char1+ls_char2
+
+Return ls_letra
+end function
+
