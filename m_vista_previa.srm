@@ -1,0 +1,331 @@
+HA$PBExportHeader$m_vista_previa.srm
+forward
+global type m_vista_previa from menu
+end type
+type m_vistaprevia from menu within m_vista_previa
+end type
+type m_imprimir from menu within m_vistaprevia
+end type
+type m_sep1 from menu within m_vistaprevia
+end type
+type m_mostrarvistaprevia from menu within m_vistaprevia
+end type
+type m_mostrarregleta from menu within m_vistaprevia
+end type
+type m_guardarcomo from menu within m_vistaprevia
+end type
+type m_zoom from menu within m_vistaprevia
+end type
+type m_sep2 from menu within m_vistaprevia
+end type
+type m_salir from menu within m_vistaprevia
+end type
+type m_vistaprevia from menu within m_vista_previa
+m_imprimir m_imprimir
+m_sep1 m_sep1
+m_mostrarvistaprevia m_mostrarvistaprevia
+m_mostrarregleta m_mostrarregleta
+m_guardarcomo m_guardarcomo
+m_zoom m_zoom
+m_sep2 m_sep2
+m_salir m_salir
+end type
+type m_pagina from menu within m_vista_previa
+end type
+type m_anterior from menu within m_pagina
+end type
+type m_siguiente from menu within m_pagina
+end type
+type m_pagina from menu within m_vista_previa
+m_anterior m_anterior
+m_siguiente m_siguiente
+end type
+global type m_vista_previa from menu
+m_vistaprevia m_vistaprevia
+m_pagina m_pagina
+end type
+end forward
+
+global type m_vista_previa from menu
+m_vistaprevia m_vistaprevia
+m_pagina m_pagina
+end type
+global m_vista_previa m_vista_previa
+
+on m_vista_previa.create
+m_vista_previa=this
+call super::create
+this.m_vistaprevia=create m_vistaprevia
+this.m_pagina=create m_pagina
+this.Item[UpperBound(this.Item)+1]=this.m_vistaprevia
+this.Item[UpperBound(this.Item)+1]=this.m_pagina
+end on
+
+on m_vista_previa.destroy
+call super::destroy
+destroy(this.m_vistaprevia)
+destroy(this.m_pagina)
+end on
+
+type m_vistaprevia from menu within m_vista_previa
+m_imprimir m_imprimir
+m_sep1 m_sep1
+m_mostrarvistaprevia m_mostrarvistaprevia
+m_mostrarregleta m_mostrarregleta
+m_guardarcomo m_guardarcomo
+m_zoom m_zoom
+m_sep2 m_sep2
+m_salir m_salir
+end type
+
+on m_vistaprevia.create
+call super::create
+this.text = "&Vista previa"
+this.toolbaritembarindex = 2
+this.mergeoption = filemenu!
+this.m_imprimir=create m_imprimir
+this.m_sep1=create m_sep1
+this.m_mostrarvistaprevia=create m_mostrarvistaprevia
+this.m_mostrarregleta=create m_mostrarregleta
+this.m_guardarcomo=create m_guardarcomo
+this.m_zoom=create m_zoom
+this.m_sep2=create m_sep2
+this.m_salir=create m_salir
+this.Item[UpperBound(this.Item)+1]=this.m_imprimir
+this.Item[UpperBound(this.Item)+1]=this.m_sep1
+this.Item[UpperBound(this.Item)+1]=this.m_mostrarvistaprevia
+this.Item[UpperBound(this.Item)+1]=this.m_mostrarregleta
+this.Item[UpperBound(this.Item)+1]=this.m_guardarcomo
+this.Item[UpperBound(this.Item)+1]=this.m_zoom
+this.Item[UpperBound(this.Item)+1]=this.m_sep2
+this.Item[UpperBound(this.Item)+1]=this.m_salir
+end on
+
+on m_vistaprevia.destroy
+call super::destroy
+destroy(this.m_imprimir)
+destroy(this.m_sep1)
+destroy(this.m_mostrarvistaprevia)
+destroy(this.m_mostrarregleta)
+destroy(this.m_guardarcomo)
+destroy(this.m_zoom)
+destroy(this.m_sep2)
+destroy(this.m_salir)
+end on
+
+type m_imprimir from menu within m_vistaprevia
+end type
+
+event clicked;ParentWindow.TriggerEvent("ue_imprimir")
+end event
+
+on m_imprimir.create
+call super::create
+this.text = "&Imprimir~tCtrl+P"
+this.shortcut = 336
+this.toolbaritemname = "print!"
+this.toolbaritemtext = "Imprimir"
+this.toolbaritemorder = 11
+this.toolbaritemspace = 1
+end on
+
+on m_imprimir.destroy
+call super::destroy
+end on
+
+type m_sep1 from menu within m_vistaprevia
+end type
+
+on m_sep1.create
+call super::create
+this.text = "-"
+end on
+
+on m_sep1.destroy
+call super::destroy
+end on
+
+type m_mostrarvistaprevia from menu within m_vistaprevia
+end type
+
+on m_mostrarvistaprevia.create
+call super::create
+this.text = "&Vista preliminar~tCtrl+W"
+this.shortcut = 343
+this.toolbaritemname = "Custom090!"
+this.toolbaritemtext = "Vista preliminar"
+this.toolbaritemorder = 12
+this.toolbaritemspace = 3
+end on
+
+event clicked;This.checked = not This.checked
+
+IF This.checked then
+	m_mostrarregleta.Enabled = TRUE
+	m_zoom.Enabled = TRUE
+ELSE	
+	m_mostrarregleta.Enabled = FALSE
+	m_zoom.Enabled = FALSE
+END IF
+
+ParentWindow.TriggerEvent("ue_preliminar")
+end event
+
+on m_mostrarvistaprevia.destroy
+call super::destroy
+end on
+
+type m_mostrarregleta from menu within m_vistaprevia
+end type
+
+event clicked;This.checked = not This.checked
+
+ParentWindow.TriggerEvent("ue_regleta")
+
+
+end event
+
+on m_mostrarregleta.create
+call super::create
+this.text = "Mostrar &regleta"
+this.enabled = false
+this.toolbaritemname = "DesignMode!"
+this.toolbaritemtext = "Regleta"
+this.toolbaritemorder = 13
+end on
+
+on m_mostrarregleta.destroy
+call super::destroy
+end on
+
+type m_guardarcomo from menu within m_vistaprevia
+end type
+
+event clicked;ParentWindow.TriggerEvent("ue_guardar_como")
+end event
+
+on m_guardarcomo.create
+call super::create
+this.text = "Guardar Como"
+this.toolbaritemname = "Custom008!"
+end on
+
+on m_guardarcomo.destroy
+call super::destroy
+end on
+
+type m_zoom from menu within m_vistaprevia
+end type
+
+event clicked;ParentWindow.TriggerEvent("ue_zoom")
+
+
+end event
+
+on m_zoom.create
+call super::create
+this.text = "&Zoom"
+this.enabled = false
+this.toolbaritemname = "Custom062!"
+this.toolbaritemtext = "Zoom"
+this.toolbaritemorder = 14
+end on
+
+on m_zoom.destroy
+call super::destroy
+end on
+
+type m_sep2 from menu within m_vistaprevia
+end type
+
+on m_sep2.create
+call super::create
+this.text = "-"
+end on
+
+on m_sep2.destroy
+call super::destroy
+end on
+
+type m_salir from menu within m_vistaprevia
+end type
+
+on m_salir.create
+call super::create
+this.text = "&Salir~tCtrl+F4"
+this.shortcut = 371
+this.toolbaritemname = "Exit!"
+this.toolbaritemtext = "Salir"
+this.toolbaritemorder = 99
+this.toolbaritemspace = 3
+end on
+
+event clicked;Close(ParentWindow)
+end event
+
+on m_salir.destroy
+call super::destroy
+end on
+
+type m_pagina from menu within m_vista_previa
+m_anterior m_anterior
+m_siguiente m_siguiente
+end type
+
+on m_pagina.create
+call super::create
+this.text = "&Pagina"
+this.mergeoption = editmenu!
+this.m_anterior=create m_anterior
+this.m_siguiente=create m_siguiente
+this.Item[UpperBound(this.Item)+1]=this.m_anterior
+this.Item[UpperBound(this.Item)+1]=this.m_siguiente
+end on
+
+on m_pagina.destroy
+call super::destroy
+destroy(this.m_anterior)
+destroy(this.m_siguiente)
+end on
+
+type m_anterior from menu within m_pagina
+end type
+
+event clicked;ParentWindow.TriggerEvent("ue_paganterior")
+
+
+end event
+
+on m_anterior.create
+call super::create
+this.text = "&Anterior"
+this.toolbaritemname = "VCRPrior!"
+this.toolbaritemtext = "Anterior"
+this.toolbaritemorder = 21
+this.toolbaritemspace = 3
+end on
+
+on m_anterior.destroy
+call super::destroy
+end on
+
+type m_siguiente from menu within m_pagina
+end type
+
+event clicked;ParentWindow.TriggerEvent("ue_pagsiguiente")
+
+
+end event
+
+on m_siguiente.create
+call super::create
+this.text = "&Siguiente"
+this.toolbaritemname = "VCRNext!"
+this.toolbaritemtext = "Siguiente"
+this.toolbaritemorder = 22
+end on
+
+on m_siguiente.destroy
+call super::destroy
+end on
+
