@@ -1,0 +1,207 @@
+HA$PBExportHeader$d_gr_bongos_sobrantes_cambio_grupo.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes key=yes name=cs_canasta dbname="cs_canasta" )
+ column=(type=long updatewhereclause=yes key=yes name=co_fabrica_ref dbname="co_fabrica_ref" )
+ column=(type=long updatewhereclause=yes key=yes name=co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes key=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long updatewhereclause=yes key=yes name=co_talla dbname="co_talla" )
+ column=(type=long updatewhereclause=yes key=yes name=co_color dbname="co_color" )
+ column=(type=long updatewhereclause=yes key=yes name=co_calidad dbname="co_calidad" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=pedido dbname="pedido" )
+ column=(type=char(20) update=yes updatewhereclause=yes key=yes name=po dbname="po" )
+ column=(type=char(10) updatewhereclause=yes key=yes name=nu_cut dbname="nu_cut" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=co_grupo_cte dbname="co_grupo_cte" )
+ column=(type=long updatewhereclause=yes name=co_fabrica_exp dbname="co_fabrica_exp" )
+ column=(type=long updatewhereclause=yes name=co_linea_exp dbname="co_linea_exp" )
+ column=(type=char(15) updatewhereclause=yes name=co_ref_exp dbname="co_ref_exp" )
+ column=(type=char(15) updatewhereclause=yes name=co_talla_exp dbname="co_talla_exp" )
+ column=(type=char(8) updatewhereclause=yes name=co_color_exp dbname="co_color_exp" )
+ column=(type=char(20) updatewhereclause=yes name=upc_barcode dbname="upc_barcode" )
+ column=(type=char(20) updatewhereclause=yes name=co_prepack dbname="co_prepack" )
+ column=(type=char(16) updatewhereclause=yes name=categoria_sap dbname="categoria_sap" )
+ column=(type=char(18) updatewhereclause=yes name=co_material_sap dbname="co_material_sap" )
+ column=(type=char(10) updatewhereclause=yes name=co_talla_sap dbname="co_talla_sap" )
+ column=(type=char(8) updatewhereclause=yes name=co_color_sap dbname="co_color_sap" )
+ column=(type=char(1) updatewhereclause=yes name=sw_origen dbname="sw_origen" )
+ column=(type=long updatewhereclause=yes name=semana dbname="semana" )
+ column=(type=char(16) updatewhereclause=yes name=grupo dbname="grupo" )
+ column=(type=long updatewhereclause=yes name=co_cliente dbname="co_cliente" )
+ column=(type=long updatewhereclause=yes name=co_sucursal dbname="co_sucursal" )
+ column=(type=char(70) updatewhereclause=yes name=de_cliente dbname="de_cliente" )
+ column=(type=char(2) updatewhereclause=yes name=tipo_pedido dbname="tipo_pedido" )
+ column=(type=char(20) updatewhereclause=yes name=pallet_id dbname="pallet_id" )
+ column=(type=long updatewhereclause=yes name=zona dbname="zona" )
+ column=(type=long updatewhereclause=yes name=co_caja dbname="co_caja" )
+ column=(type=char(12) updatewhereclause=yes name=tipo_orden_toc dbname="tipo_orden_toc" )
+ column=(type=char(5) updatewhereclause=yes name=co_adhesivo dbname="co_adhesivo" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_actual dbname="ca_actual" )
+ retrieve="SELECT distinct 
+	dt_canasta_corte.cs_canasta,
+	dt_canasta_corte.co_fabrica_ref,
+	dt_canasta_corte.co_linea,
+	dt_canasta_corte.co_referencia,
+	dt_canasta_corte.co_talla,
+	dt_canasta_corte.co_color,
+	dt_canasta_corte.co_calidad,
+	dt_canasta_corte.pedido,
+	dt_canasta_corte.po,
+	dt_canasta_corte.nu_cut,
+   dt_canasta_corte.co_grupo_cte,
+	pedpend_exp.co_fabrica_exp,
+	pedpend_exp.co_linea_exp,
+	pedpend_exp.co_ref_exp,
+	pedpend_exp.co_talla_exp,
+	pedpend_exp.co_color_exp,
+	pedpend_exp.upc_barcode,
+	pedpend_exp.co_prepack,
+	pedpend_exp.categoria_sap,
+	pedpend_exp.co_material_sap,
+	pedpend_exp.co_talla_sap,
+	pedpend_exp.co_color_sap,
+	h_canasta_corte.sw_origen,
+	c.semana,
+	c.grupo,
+	c.co_cliente,
+	peddig.co_sucursal,
+	cc_cliente.razon_social de_cliente,
+	peddig.tipo_pedido,
+	h_canasta_corte.pallet_id,
+	peddig.zona,
+	peddig.co_caja,
+	peddig.tipo_orden_toc,
+	peddig.co_adhesivo,
+	sum(dt_canasta_corte.ca_actual ) ca_actual
+ 
+  FROM dt_canasta_corte , h_canasta_corte , peddig , pedpend_exp,
+		 cliente_grupo_sobrantes c, cc_cliente
+ WHERE  dt_canasta_corte.cs_canasta = h_canasta_corte.cs_canasta 
+	AND pallet_id in ( :as_bongos )
+	AND dt_canasta_corte.pedido = peddig.pedido
+	and sw_origen = 'S'
+	and peddig.co_cliente = c.co_cliente
+	and c.estado = 'A'
+	and cc_cliente.co_cliente = c.co_cliente
+	and dt_canasta_corte.co_fabrica_ref = pedpend_exp.co_fabrica
+	and dt_canasta_corte.co_linea = pedpend_exp.co_linea
+	and dt_canasta_corte.co_referencia = pedpend_exp.co_referencia
+	and dt_canasta_corte.co_talla = pedpend_exp.co_talla
+	and dt_canasta_corte.co_color = pedpend_exp.co_color
+	and dt_canasta_corte.co_calidad = pedpend_exp.co_calidad
+	and dt_canasta_corte.pedido = pedpend_exp.pedido
+	and dt_canasta_corte.po = pedpend_exp.nu_orden
+	and dt_canasta_corte.nu_cut = pedpend_exp.nu_cut
+
+group by dt_canasta_corte.cs_canasta,
+	dt_canasta_corte.co_fabrica_ref,
+	dt_canasta_corte.co_linea,
+	dt_canasta_corte.co_referencia,
+	dt_canasta_corte.co_talla,
+	dt_canasta_corte.co_color,
+	dt_canasta_corte.co_calidad,
+	dt_canasta_corte.pedido,
+	dt_canasta_corte.po,
+	dt_canasta_corte.nu_cut,
+   dt_canasta_corte.co_grupo_cte,
+	pedpend_exp.co_fabrica_exp,
+	pedpend_exp.co_linea_exp,
+	pedpend_exp.co_ref_exp,
+	pedpend_exp.co_talla_exp,
+	pedpend_exp.co_color_exp,
+	pedpend_exp.upc_barcode,
+	pedpend_exp.co_prepack,
+	pedpend_exp.categoria_sap,
+	pedpend_exp.co_material_sap,
+	pedpend_exp.co_talla_sap,
+	pedpend_exp.co_color_sap,
+	h_canasta_corte.sw_origen,
+	c.semana,
+	c.grupo,
+	c.co_cliente,
+	peddig.co_sucursal,
+	cc_cliente.razon_social,
+	peddig.tipo_pedido,
+	h_canasta_corte.pallet_id,
+	peddig.zona,
+	peddig.co_caja,
+	peddig.tipo_orden_toc,
+	peddig.co_adhesivo" update="dt_canasta_corte" updatewhere=1 updatekeyinplace=yes arguments=(("as_bongos", stringlist)) )
+text(band=header alignment="2" text="Cs Canasta" border="0" color="33554432" x="9" y="8" height="52" width="480" html.valueishtml="0"  name=cs_canasta_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Fabrica Ref" border="0" color="33554432" x="498" y="8" height="52" width="325" html.valueishtml="0"  name=co_fabrica_ref_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Linea" border="0" color="33554432" x="832" y="8" height="52" width="274" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Referencia" border="0" color="33554432" x="1115" y="8" height="52" width="311" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Talla" border="0" color="33554432" x="1435" y="8" height="52" width="274" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Color" border="0" color="33554432" x="1719" y="8" height="52" width="274" html.valueishtml="0"  name=co_color_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Calidad" border="0" color="33554432" x="2002" y="8" height="52" width="274" html.valueishtml="0"  name=co_calidad_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pedido" border="0" color="33554432" x="2286" y="8" height="52" width="274" html.valueishtml="0"  name=pedido_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Po" border="0" color="33554432" x="2569" y="8" height="52" width="480" html.valueishtml="0"  name=po_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Nu Cut" border="0" color="33554432" x="3058" y="8" height="52" width="251" html.valueishtml="0"  name=nu_cut_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sw Origen" border="0" color="33554432" x="3319" y="8" height="52" width="224" html.valueishtml="0"  name=sw_origen_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Semana" border="0" color="33554432" x="3552" y="8" height="52" width="274" html.valueishtml="0"  name=semana_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Grupo" border="0" color="33554432" x="3835" y="8" height="52" width="389" html.valueishtml="0"  name=grupo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Cliente" border="0" color="33554432" x="4233" y="8" height="52" width="274" html.valueishtml="0"  name=co_cliente_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="De Cliente" border="0" color="33554432" x="4517" y="8" height="52" width="1623" html.valueishtml="0"  name=de_cliente_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Actual" border="0" color="33554432" x="6149" y="8" height="52" width="274" html.valueishtml="0"  name=ca_actual_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Fabrica Exp" border="0" color="0" x="6432" y="4" height="76" width="14" html.valueishtml="0"  name=co_fabrica_exp_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Linea Exp" border="0" color="0" x="6455" y="4" height="76" width="59" html.valueishtml="0"  name=co_linea_exp_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Ref Exp" border="0" color="0" x="6523" y="4" height="76" width="334" html.valueishtml="0"  name=co_ref_exp_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Talla Exp" border="0" color="0" x="6866" y="4" height="76" width="334" html.valueishtml="0"  name=co_talla_exp_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Color Exp" border="0" color="0" x="7209" y="4" height="76" width="174" html.valueishtml="0"  name=co_color_exp_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Upc Barcode" border="0" color="0" x="7392" y="4" height="76" width="453" html.valueishtml="0"  name=upc_barcode_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Prepack" border="0" color="0" x="7854" y="4" height="76" width="453" html.valueishtml="0"  name=co_prepack_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Categoria Sap" border="0" color="33554432" x="8315" y="4" height="52" width="361" html.valueishtml="0"  name=categoria_sap_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Material Sap" border="0" color="33554432" x="8686" y="4" height="52" width="407" html.valueishtml="0"  name=co_material_sap_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Talla Sap" border="0" color="33554432" x="9102" y="4" height="52" width="219" html.valueishtml="0"  name=co_talla_sap_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Color Sap" border="0" color="33554432" x="9330" y="4" height="52" width="174" html.valueishtml="0"  name=co_color_sap_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Sucursal" border="0" color="33554432" x="9513" y="4" height="52" width="155" html.valueishtml="0"  name=co_sucursal_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Tipo Pedido" border="0" color="33554432" x="9678" y="4" height="52" width="37" html.valueishtml="0"  name=tipo_pedido_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Grupo Cte" border="0" color="0" x="9723" y="4" height="76" width="681" html.valueishtml="0"  name=co_grupo_cte_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Pallet Id" border="0" color="0" x="10414" y="4" height="76" width="453" html.valueishtml="0"  name=pallet_id_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="480" format="[general]" html.valueishtml="0"  name=cs_canasta visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="498" y="8" height="64" width="325" format="[general]" html.valueishtml="0"  name=co_fabrica_ref visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="832" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="1115" y="8" height="64" width="311" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1435" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1719" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="2002" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_calidad visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="2286" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=pedido visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="2569" y="8" height="64" width="480" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="3058" y="8" height="64" width="251" format="[general]" html.valueishtml="0"  name=nu_cut visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="0" tabsequence=32766 border="0" color="33554432" x="3319" y="8" height="64" width="224" format="[general]" html.valueishtml="0"  name=sw_origen visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=24 alignment="1" tabsequence=32766 border="0" color="33554432" x="3552" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=semana visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=25 alignment="0" tabsequence=32766 border="0" color="33554432" x="3835" y="8" height="64" width="389" format="[general]" html.valueishtml="0"  name=grupo visible="1" edit.limit=16 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=26 alignment="1" tabsequence=32766 border="0" color="33554432" x="4233" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_cliente visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=28 alignment="0" tabsequence=32766 border="0" color="33554432" x="4517" y="8" height="64" width="1623" format="[general]" html.valueishtml="0"  name=de_cliente visible="1" edit.limit=70 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=35 alignment="1" tabsequence=32766 border="0" color="33554432" x="6149" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=ca_actual visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="6432" y="0" height="52" width="14" format="[general]" html.valueishtml="0"  name=co_fabrica_exp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="6455" y="0" height="52" width="59" format="[general]" html.valueishtml="0"  name=co_linea_exp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="33554432" x="6523" y="0" height="52" width="334" format="[general]" html.valueishtml="0"  name=co_ref_exp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="33554432" x="6866" y="0" height="52" width="334" format="[general]" html.valueishtml="0"  name=co_talla_exp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="33554432" x="7209" y="0" height="52" width="174" format="[general]" html.valueishtml="0"  name=co_color_exp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="33554432" x="7392" y="0" height="52" width="453" format="[general]" html.valueishtml="0"  name=upc_barcode visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="33554432" x="7854" y="0" height="52" width="453" format="[general]" html.valueishtml="0"  name=co_prepack visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="33554432" x="8315" y="0" height="52" width="361" format="[general]" html.valueishtml="0"  name=categoria_sap visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="33554432" x="8686" y="0" height="52" width="407" format="[general]" html.valueishtml="0"  name=co_material_sap visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="0" color="33554432" x="9102" y="0" height="52" width="219" format="[general]" html.valueishtml="0"  name=co_talla_sap visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="0" tabsequence=32766 border="0" color="33554432" x="9330" y="0" height="52" width="174" format="[general]" html.valueishtml="0"  name=co_color_sap visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=27 alignment="0" tabsequence=32766 border="0" color="33554432" x="9513" y="0" height="52" width="155" format="[general]" html.valueishtml="0"  name=co_sucursal visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=29 alignment="0" tabsequence=32766 border="0" color="33554432" x="9678" y="0" height="52" width="37" format="[general]" html.valueishtml="0"  name=tipo_pedido visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="9723" y="0" height="52" width="681" format="[general]" html.valueishtml="0"  name=co_grupo_cte visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=30 alignment="0" tabsequence=32766 border="0" color="33554432" x="10414" y="0" height="52" width="453" format="[general]" html.valueishtml="0"  name=pallet_id visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=31 alignment="0" tabsequence=0 border="0" color="33554432" x="10880" y="0" height="52" width="14" html.valueishtml="0"  name=zona visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Zona" border="0" color="0" x="10875" y="4" height="76" width="18" html.valueishtml="0"  name=zona_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=32 alignment="0" tabsequence=0 border="0" color="33554432" x="10907" y="0" height="52" width="14" html.valueishtml="0"  name=co_caja visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Caja" border="0" color="0" x="10903" y="4" height="76" width="18" html.valueishtml="0"  name=co_caja_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=33 alignment="0" tabsequence=0 border="0" color="33554432" x="10935" y="0" height="52" width="265" html.valueishtml="0"  name=tipo_orden_toc visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Tipo Orden Toc" border="0" color="0" x="10930" y="4" height="76" width="270" html.valueishtml="0"  name=tipo_orden_toc_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=34 alignment="0" tabsequence=0 border="0" color="33554432" x="11214" y="0" height="52" width="105" html.valueishtml="0"  name=co_adhesivo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Adhesivo" border="0" color="0" x="11209" y="4" height="76" width="110" html.valueishtml="0"  name=co_adhesivo_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
