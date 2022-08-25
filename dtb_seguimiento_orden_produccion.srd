@@ -1,0 +1,99 @@
+HA$PBExportHeader$dtb_seguimiento_orden_produccion.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=120 color="536870912" )
+summary(height=72 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912"  height.autosize=yes)
+table(column=(type=long updatewhereclause=yes name=dt_orden_telcol_co_reftel dbname="co_reftel" )
+ column=(type=char(42) updatewhereclause=yes name=h_telas_de_reftel dbname="h_telas.de_reftel" )
+ column=(type=long updatewhereclause=yes name=dt_orden_telcol_co_caract dbname="dt_orden_telcol.co_caract" )
+ column=(type=long updatewhereclause=yes name=dt_orden_telcol_co_color dbname="dt_orden_telcol.co_color" )
+ column=(type=decimal(2) updatewhereclause=yes name=dt_orden_telcol_ca_kilos_prog dbname="dt_orden_telcol.ca_kilos_prog" )
+ column=(type=decimal(2) updatewhereclause=yes name=kilos dbname="kilos" )
+ column=(type=decimal(0) updatewhereclause=yes name=unidades dbname="unidades" )
+ column=(type=decimal(2) updatewhereclause=yes name=metros dbname="metros" )
+ column=(type=decimal(2) updatewhereclause=yes name=metros_liberados dbname="metros_liberados" )
+ column=(type=decimal(0) updatewhereclause=yes name=unidades_liberadas dbname="unidades_liberadas" )
+ retrieve="select {+ORDERED}
+		dt_orden_telcol.co_reftel, 
+		h_telas.de_reftel, dt_orden_telcol.co_caract, 
+		dt_orden_telcol.co_color, dt_orden_telcol.ca_kilos_prog, 
+		Nvl((	SELECT Sum(m_rollo.ca_kg) 
+				FROM m_rollo
+				WHERE m_rollo.cs_orden_pr_act = :al_ordenpdn and
+						dt_orden_telcol.co_reftel = m_rollo.co_reftel_act and
+						dt_orden_telcol.co_caract = m_rollo.co_caract_act and
+						dt_orden_telcol.co_color = m_rollo.co_color_act and
+						m_rollo.co_centro in (15, 90) ), 0) kilos, 
+		Nvl((	SELECT Sum(m_rollo.ca_unidades) 
+				FROM m_rollo
+				WHERE m_rollo.cs_orden_pr_act = :al_ordenpdn and
+						dt_orden_telcol.co_reftel = m_rollo.co_reftel_act and
+						dt_orden_telcol.co_caract = m_rollo.co_caract_act and
+						dt_orden_telcol.co_color = m_rollo.co_color_act and
+						m_rollo.co_centro in (15, 90) ), 0) unidades, 
+		Nvl((	SELECT Sum(m_rollo.ca_mt) 
+				FROM m_rollo
+				WHERE m_rollo.cs_orden_pr_act = :al_ordenpdn and
+						dt_orden_telcol.co_reftel = m_rollo.co_reftel_act and
+						dt_orden_telcol.co_caract = m_rollo.co_caract_act and
+						dt_orden_telcol.co_color = m_rollo.co_color_act and
+						m_rollo.co_centro in (15, 90) ), 0) metros, 
+		Nvl((	SELECT Sum(dt_rollos_libera.ca_metros) 
+				FROM m_rollo, dt_rollos_libera
+				WHERE m_rollo.cs_orden_pr_act = :al_ordenpdn and
+						dt_orden_telcol.co_reftel = m_rollo.co_reftel_act and
+						dt_orden_telcol.co_caract = m_rollo.co_caract_act and
+						dt_orden_telcol.co_color = m_rollo.co_color_act and
+						m_rollo.co_centro in (15, 90) and
+						m_rollo.cs_rollo = dt_rollos_libera.cs_rollo), 0) metros_liberados, 
+		Nvl((	SELECT Sum(dt_rollos_libera.ca_unidades) 
+				FROM m_rollo, dt_rollos_libera
+				WHERE m_rollo.cs_orden_pr_act = :al_ordenpdn and
+						dt_orden_telcol.co_reftel = m_rollo.co_reftel_act and
+						dt_orden_telcol.co_caract = m_rollo.co_caract_act and
+						dt_orden_telcol.co_color = m_rollo.co_color_act and
+						m_rollo.co_centro in (15, 90) and
+						m_rollo.cs_rollo = dt_rollos_libera.cs_rollo), 0) unidades_liberadas
+from h_ordenpd_te, dt_orden_telcol, h_telas
+where h_ordenpd_te.cs_ordenpd_pt = :al_ordenpdn and
+		h_ordenpd_te.cs_ordenpd_te = dt_orden_telcol.cs_ordenpd_te and
+		h_ordenpd_te.co_reftel = h_telas.co_reftel and
+		h_ordenpd_te.co_caract = h_telas.co_caract
+order by dt_orden_telcol.co_reftel, 
+		dt_orden_telcol.co_caract, dt_orden_telcol.co_color" arguments=(("al_ordenpdn", number)) )
+text(band=header alignment="2" text="Tela" border="2" color="33554432" x="9" y="8" height="108" width="777" html.valueishtml="0"  name=dt_orden_telcol_co_reftel_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="187" y="4" height="64" width="599" format="[general]" html.valueishtml="0"  name=h_telas_de_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression=" dt_orden_telcol_co_reftel + '-' +  dt_orden_telcol_co_caract "border="2" color="33554432" x="9" y="4" height="64" width="174" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Kilos Ing" border="2" color="33554432" x="1289" y="8" height="108" width="215" html.valueishtml="0"  name=kilos_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Metros Ing" border="2" color="33554432" x="1509" y="8" height="108" width="215" html.valueishtml="0"  name=metros_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Metros Lib" border="2" color="33554432" x="1728" y="8" height="108" width="215" html.valueishtml="0"  name=metros_liberados_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Metros Pend Lib" border="2" color="33554432" x="1947" y="8" height="108" width="215" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unidad Ing" border="2" color="33554432" x="2167" y="8" height="108" width="169" html.valueishtml="0"  name=unidades_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Kilos Progr" border="2" color="33554432" x="1070" y="8" height="108" width="215" html.valueishtml="0"  name=dt_orden_telcol_ca_kilos_prog_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unidad Lib" border="2" color="33554432" x="2341" y="8" height="108" width="169" html.valueishtml="0"  name=unidades_liberadas_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unidad Pend Lib" border="2" color="33554432" x="2514" y="8" height="108" width="197" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="2" color="33554432" x="1289" y="4" height="64" width="215" format="###,##0.00" html.valueishtml="0"  name=kilos visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression=" metros  -  metros_liberados "border="2" color="33554432" x="1947" y="4" height="64" width="215" format="###,##0.00" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="2" color="33554432" x="1509" y="4" height="64" width="215" format="###,##0.00" html.valueishtml="0"  name=metros visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="2" color="33554432" x="1728" y="4" height="64" width="215" format="###,##0.00" html.valueishtml="0"  name=metros_liberados visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="2" color="33554432" x="2167" y="4" height="64" width="169" format="###,##0" html.valueishtml="0"  name=unidades visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="2" color="33554432" x="2341" y="4" height="64" width="169" format="###,##0" html.valueishtml="0"  name=unidades_liberadas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="2" color="33554432" x="1070" y="4" height="64" width="215" format="###,##0.00" html.valueishtml="0"  name=dt_orden_telcol_ca_kilos_prog visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression=" unidades  -  unidades_liberadas "border="2" color="33554432" x="2514" y="4" height="64" width="197" format="###,##0" html.valueishtml="0"  name=compute_9 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(kilos for all)"border="2" color="33554432" x="1289" y="4" height="64" width="215" format="###,##0.00" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(metros for all)"border="2" color="33554432" x="1509" y="4" height="64" width="215" format="###,##0.00" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(metros_liberados for all)"border="2" color="33554432" x="1728" y="4" height="64" width="215" format="###,##0.00" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum( metros  -  metros_liberados  for all)"border="2" color="33554432" x="1947" y="4" height="64" width="215" format="###,##0.00" html.valueishtml="0"  name=compute_10 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(unidades for all)"border="2" color="33554432" x="2167" y="4" height="64" width="169" format="###,##0" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum( unidades  -  unidades_liberadas  for all)"border="2" color="33554432" x="2514" y="4" height="64" width="197" format="###,##0" html.valueishtml="0"  name=compute_11 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(unidades_liberadas for all)"border="2" color="33554432" x="2341" y="4" height="64" width="169" format="###,##0" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(dt_orden_telcol_ca_kilos_prog for all)"border="2" color="33554432" x="1070" y="4" height="64" width="215" format="###,##0.00" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Color" border="2" color="33554432" x="791" y="8" height="108" width="274" html.valueishtml="0"  name=dt_orden_telcol_co_color_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="2" color="33554432" x="791" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_orden_telcol_co_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
