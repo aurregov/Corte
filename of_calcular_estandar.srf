@@ -1,0 +1,74 @@
+HA$PBExportHeader$of_calcular_estandar.srf
+global type of_calcular_estandar from function_object
+end type
+
+forward prototypes
+global function decimal of_calcular_estandar (long an_oc)
+end prototypes
+
+global function decimal of_calcular_estandar (long an_oc);//funcion que dada la O.C y la raya calcula el estandar
+//1.halla el tiempo por capa
+//2.halla el tiempo extendido 
+//3.suma los tiempos de extendido
+
+Long    ll_filas_info, ll_n, ll_num_capas, ll_calculo_estandar, ll_tipo_tela
+Decimal ldc_largo, ldc_tiempo_capas, ldc_tiempo_ext, ldc_tiempo_ext_tot
+
+uo_dsbase lds_info_cal_est
+
+//datasotre para consultar por O.C,raya. el trazo,largo,espacio y numero de capas
+lds_info_cal_est = Create uo_dsbase				
+lds_info_cal_est.dataobject = "dtb_info_calc_estandar_oc"
+lds_info_cal_est.settransobject(gnv_recursos.of_get_transaccion_sucia())
+
+ll_filas_info = lds_info_cal_est.Retrieve(an_oc) //,an_raya
+
+//valida que no haya error en caso de que haber error devuelve -1
+IF ll_filas_info < 0 THEN
+	messagebox("Error","Al consultar informacion de la O.C: "+string(an_oc))
+	RETURN -1
+END IF
+
+//si no tiene datos informa que no tiene tipo de extendido matriculado
+IF ll_filas_info = 0 THEN
+	messagebox("Aviso","No se encontro informacion para la O.C: "+string(an_oc))
+	RETURN -1
+END IF
+
+//cilco para traer informacion para calcular el tiempo estandar
+FOR ll_n = 1 TO ll_filas_info
+	ldc_largo    = lds_info_cal_est.getitemdecimal(ll_n,"largo")
+	ll_num_capas = lds_info_cal_est.getitemnumber(ll_n,'capas') 
+	ll_tipo_tela = lds_info_cal_est.getitemnumber(ll_n,'co_ttejido') 
+	
+	//valdia que no se vaya enviar un nulo a la funcion
+	IF isnull(ldc_largo) THEN
+		ldc_largo = 0
+	END IF	
+	
+	//valdia que no se vaya enviar un nulo a la funcion
+	IF isnull(ll_num_capas) THEN
+		ll_num_capas = 0
+	END IF
+	
+	//valdia que no se vaya enviar un nulo a la funcion
+	IF isnull(ll_tipo_tela) THEN
+		ll_tipo_tela = 0
+	END IF
+	
+	//llama a funcion que calcula el tiempo de extendido
+	ll_calculo_estandar = of_calcular_tiempo_por_capa(an_oc,ldc_largo,ll_num_capas,ldc_tiempo_capas,ldc_tiempo_ext,ll_tipo_tela)
+	
+	IF ll_calculo_estandar  = -1 THEN
+		messagebox("Erro","Al calcular tiempo estandar")
+	   RETURN -1
+	END IF
+	
+	ldc_tiempo_ext_tot = ldc_tiempo_ext_tot + ll_calculo_estandar
+	
+NEXT
+
+
+RETURN  ldc_tiempo_ext_tot
+end function
+
