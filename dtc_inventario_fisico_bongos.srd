@@ -1,0 +1,105 @@
+HA$PBExportHeader$dtc_inventario_fisico_bongos.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=4 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no  crosstab.dynamic = yes grid.lines=0 grid.columnmove=no selected.mouse=no )
+header[1](height=4 color="536870912" )
+header[2](height=72 color="536870912" )
+summary(height=72 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=gpa dbname="gpa" )
+ column=(type=char(20) updatewhereclause=yes name=pallet_id dbname="pallet_id" )
+ column=(type=char(20) updatewhereclause=yes name=de_referencia_crta dbname="de_referencia_crta" )
+ column=(type=char(20) updatewhereclause=yes name=po dbname="po" )
+ column=(type=char(20) updatewhereclause=yes name=row_column dbname="row_column" )
+ column=(type=char(20) updatewhereclause=yes name=de_color dbname="de_color" )
+ column=(type=number updatewhereclause=yes name=ca_actual dbname="ca_actual" )
+ retrieve="  SELECT m_tallas_x_grupo.de_talla,   
+         h_preref_pv.de_referencia_crta,   
+         dt_canasta_corte.co_color,   
+         m_color.de_color,   
+         h_canasta_corte.pallet_id,   
+         sum(dt_canasta_corte.ca_actual)ca_actual,   
+         h_preref_pv.gpa,   
+         dt_agrupa_pdn.cs_liberacion,   
+         dt_agrupa_pdn.tono,   
+         dt_agrupa_pdn.po  
+    FROM dt_canasta_corte,   
+         h_canasta_corte,   
+          h_preref_pv,   
+          outer (m_tallas_x_grupo,   
+          m_color,   
+          dt_agrupa_pdn)  
+   WHERE ( h_canasta_corte.cs_canasta = dt_canasta_corte.cs_canasta ) and  
+         ( dt_canasta_corte.co_fabrica_ref = h_preref_pv.co_fabrica ) and  
+         ( dt_canasta_corte.co_linea = h_preref_pv.co_linea ) and  
+         ( Cast(dt_canasta_corte.co_referencia as char(15) ) = h_preref_pv.co_referencia ) and  
+			( h_preref_pv.co_tipo_ref = 'P' ) and
+         ( h_preref_pv.co_grupo_tlla = m_tallas_x_grupo.co_grupo_tlla ) and  
+         ( m_tallas_x_grupo.co_talla = dt_canasta_corte.co_talla ) and  
+         ( dt_canasta_corte.co_color = m_color.co_color ) and  
+         ( dt_canasta_corte.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_canasta_corte.cs_pdn = dt_agrupa_pdn.cs_pdn ) and
+			( h_canasta_corte.co_fabrica = :an_fabrica ) and  
+         (h_canasta_corte.pallet_id = :an_bongo  OR  
+         :an_bongo = ~"0~") AND  
+         h_canasta_corte.atributo1 = 'F'   
+GROUP BY m_tallas_x_grupo.de_talla,   
+         h_preref_pv.de_referencia_crta,   
+         dt_canasta_corte.co_color,   
+         m_color.de_color,   
+         h_canasta_corte.pallet_id,   
+         dt_agrupa_pdn.po,   
+         dt_canasta_corte.cs_pdn,   
+         h_preref_pv.gpa,   
+         dt_agrupa_pdn.tono,   
+         dt_agrupa_pdn.cs_liberacion  
+ORDER BY m_tallas_x_grupo.de_talla ASC   
+" arguments=(("an_fabrica", number),("an_bongo", string))  sort="gpa A pallet_id A de_referencia_crta A po A row_column A de_color A " )
+group(level=1 header.height=0 trailer.height=0 by=("gpa" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=0 trailer.height=0 by=("pallet_id" ) header.color="536870912" trailer.color="536870912" )
+group(level=3 header.height=0 trailer.height=0 by=("de_referencia_crta" ) header.color="536870912" trailer.color="536870912" )
+group(level=4 header.height=0 trailer.height=4 by=("po" ) header.color="536870912" trailer.color="536870912" )
+group(level=5 header.height=0 trailer.height=0 by=("row_column" ) header.color="536870912" trailer.color="536870912" )
+text(band=header[1] alignment="0" text="Sum Of Ca Actual" border="0" color="0" x="9" y="4" height="52" width="233" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[1] alignment="0" text="De Talla" border="0" color="0" x="251" y="4" height="52" width="187" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="GRUPO" border="0" color="0" x="9" y="4" height="52" width="233" html.valueishtml="0"  name=gpa_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="BONGO" border="0" color="0" x="251" y="4" height="52" width="187" html.valueishtml="0"  name=pallet_id_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="ESTILO" border="0" color="0" x="448" y="4" height="52" width="457" html.valueishtml="0"  name=de_referencia_crta_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="PO" border="0" color="0" x="914" y="4" height="52" width="320" html.valueishtml="0"  name=po_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="LOTE" border="0" color="0" x="1243" y="4" height="52" width="274" html.valueishtml="0"  name=row_column_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="COLOR" border="0" color="0" x="1527" y="4" height="52" width="457" html.valueishtml="0"  name=de_color_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="Talla @de_talla" border="0" color="0" x="1993" y="4" height="52" width="219" html.valueishtml="0"  name=ca_actual_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="TOTAL" border="0" color="0" x="2222" y="4" height="52" width="256" html.valueishtml="0"  name=grand_sum_ca_actual_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="4" height="64" width="233" format="[general]" html.valueishtml="0"  name=gpa visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="251" y="4" height="64" width="187" format="[general]" html.valueishtml="0"  name=pallet_id visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="448" y="4" height="64" width="457" format="[general]" html.valueishtml="0"  name=de_referencia_crta visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="914" y="4" height="64" width="320" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1243" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=row_column visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="1527" y="4" height="64" width="457" format="[general]" html.valueishtml="0"  name=de_color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="1993" y="4" height="64" width="219" format="[general]" html.valueishtml="0"  name=ca_actual visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0 crosstab.repeat=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="crosstabsum(1)"border="0" color="33554432" x="2222" y="4" height="64" width="256" format="[general]" html.valueishtml="0"  name=grand_sum_ca_actual visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.5 alignment="1" expression="row_column + ~" Total~""border="0" color="33554432" x="1243" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.5 alignment="1" expression="sum(ca_actual for group 5)"border="0" color="33554432" x="1993" y="4" height="64" width="219" format="[general]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.5 alignment="1" expression="sum(grand_sum_ca_actual for group 5)"border="0" color="33554432" x="2222" y="4" height="64" width="256" format="[general]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.4 alignment="1" expression="po + ~" Total~""border="0" color="33554432" x="914" y="4" height="64" width="320" format="[general]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.4 alignment="1" expression="sum(ca_actual for group 4)"border="0" color="33554432" x="1993" y="4" height="64" width="219" format="[general]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.4 alignment="1" expression="sum(grand_sum_ca_actual for group 4)"border="0" color="33554432" x="2222" y="4" height="64" width="256" format="[general]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression="de_referencia_crta + ~" Total~""border="0" color="33554432" x="448" y="4" height="64" width="457" format="[general]" html.valueishtml="0"  name=compute_7 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression="sum(ca_actual for group 3)"border="0" color="33554432" x="1993" y="4" height="64" width="219" format="[general]" html.valueishtml="0"  name=compute_8 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression="sum(grand_sum_ca_actual for group 3)"border="0" color="33554432" x="2222" y="4" height="64" width="256" format="[general]" html.valueishtml="0"  name=compute_9 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="pallet_id + ~" Total~""border="0" color="33554432" x="251" y="4" height="64" width="187" format="[general]" html.valueishtml="0"  name=compute_10 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum(ca_actual for group 2)"border="0" color="33554432" x="1993" y="4" height="64" width="219" format="[general]" html.valueishtml="0"  name=compute_11 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum(grand_sum_ca_actual for group 2)"border="0" color="33554432" x="2222" y="4" height="64" width="256" format="[general]" html.valueishtml="0"  name=compute_12 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="gpa + ~" Total~""border="0" color="33554432" x="9" y="4" height="64" width="233" format="[general]" html.valueishtml="0"  name=compute_13 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(ca_actual for group 1)"border="0" color="33554432" x="1993" y="4" height="64" width="219" format="[general]" html.valueishtml="0"  name=compute_14 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(grand_sum_ca_actual for group 1)"border="0" color="33554432" x="2222" y="4" height="64" width="256" format="[general]" html.valueishtml="0"  name=compute_15 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="~"TOTAL~""border="0" color="0" x="9" y="4" height="64" width="233" format="[general]" html.valueishtml="0"  name=compute_16 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_actual for all )"border="0" color="33554432" x="1993" y="4" height="64" width="219" format="[general]" html.valueishtml="0"  name=compute_17 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(grand_sum_ca_actual for all )"border="0" color="33554432" x="2222" y="4" height="64" width="256" format="[general]" html.valueishtml="0"  name=compute_18 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+ crosstab(band = foreground  crosstabonly = yes 
+ columns = "de_talla" rows = "gpa, pallet_id, de_referencia_crta, po, co_color +trim( tono ) + cs_liberacion, de_color" values = "sum(ca_actual for crosstab)" sourcenames = "de_talla, de_referencia_crta, co_color, de_color, pallet_id, ca_actual, gpa, cs_liberacion, tono, po")
+sparse(names="gpa	pallet_id	de_referencia_crta	po	row_column")htmltable(border="0" cellpadding="1" cellspacing="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
