@@ -1,0 +1,14 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "mantenimientos_bolsas.pbl" "";
+@end;
+@begin Objects
+ "ds_lectura_bolsas.srd" "mantenimientos_bolsas.pbl";
+ "ds_dt_lectura_bolsas.srd" "mantenimientos_bolsas.pbl";
+ "ds_liquidacion_talla.srd" "mantenimientos_bolsas.pbl";
+ "ds_dt_canasta_corte.srd" "mantenimientos_bolsas.pbl";
+ "w_mantenimiento_bolsas.srw" "mantenimientos_bolsas.pbl";
+ "n_cst_kamban_corte.sru" "mantenimientos_bolsas.pbl";
+ "ds_h_canasta_corte_copia.srd" "mantenimientos_bolsas.pbl";
+ "dgr_mantenimiento_bolsas.srd" "mantenimientos_bolsas.pbl";
+@end;
