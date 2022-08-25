@@ -1,0 +1,65 @@
+HA$PBExportHeader$dtb_dt_capas_reftela.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=76 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(update.method.type=SP update.method="admtelas.sp_dt_capas_reftela" update.method.arguments=(("
+",column=("co_fabrica",orig,in)),("
+",column=("co_linea",orig,in)),("
+",column=("co_referencia",orig,in)),("
+",column=("co_reftel",orig,in)),("
+",column=("co_caract",orig,in)),("
+",column=("capas_max",new,in)))column=(type=long update=yes updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long update=yes updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long update=yes updatewhereclause=yes name=co_reftel dbname="co_reftel" )
+ column=(type=char(42) updatewhereclause=yes name=de_reftel dbname="de_reftel" )
+ column=(type=long update=yes updatewhereclause=yes name=co_caract dbname="co_caract" )
+ column=(type=char(30) updatewhereclause=yes name=de_caract dbname="de_caract" )
+ column=(type=long updatewhereclause=yes name=capas_max dbname="compute_0008" validation="(Long(getText()) )>= 0" validationmsg="'Por favor ingrese un n$$HEX1$$fa00$$ENDHEX$$mero mayor o igual a cero'" )
+ column=(type=datetime updatewhereclause=yes name=fe_creacion dbname="fe_creacion" )
+ column=(type=datetime updatewhereclause=yes name=fe_actualizacion dbname="fe_actualizacion" )
+ column=(type=char(8) updatewhereclause=yes name=usuario dbname="usuario" )
+ column=(type=char(20) updatewhereclause=yes name=instancia dbname="instancia" )
+ retrieve="  SELECT distinct dt_color_modelo.co_fabrica,   
+         dt_color_modelo.co_linea,   
+         dt_color_modelo.co_referencia,   
+         dt_color_modelo.co_reftel,
+			h_telas.de_reftel,   
+         dt_color_modelo.co_caract,
+			m_caract.de_caract,   
+         NVL(dt_capas_reftela.max_capas, 0),
+			dt_capas_reftela.fe_creacion,
+			dt_capas_reftela.fe_actualizacion,
+			dt_capas_reftela.usuario,
+			dt_capas_reftela.instancia  
+    FROM m_caract, h_telas, dt_color_modelo, outer dt_capas_reftela 
+		where   dt_color_modelo.co_fabrica = dt_capas_reftela.co_fabrica
+					and dt_color_modelo.co_linea = dt_capas_reftela.co_linea
+				and dt_color_modelo.co_referencia = dt_capas_reftela.co_referencia
+				and dt_color_modelo.co_reftel = dt_capas_reftela.co_reftel
+				and dt_color_modelo.co_caract = dt_capas_reftela.co_caract
+				and h_telas.co_reftel = dt_color_modelo.co_reftel
+				and m_caract.co_caract = dt_color_modelo.co_caract
+				and dt_color_modelo.co_fabrica = :ai_co_fabrica
+					and dt_color_modelo.co_linea = :ai_co_linea
+				and dt_color_modelo.co_referencia = :as_co_referencia
+
+" arguments=(("ai_co_fabrica", number),("ai_co_linea", number),("as_co_referencia", string)) )
+text(band=header alignment="2" text="Tela" border="6" color="33554432" x="9" y="8" height="52" width="274" html.valueishtml="0"  name=co_reftel_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Desc Tela" border="6" color="33554432" x="293" y="8" height="52" width="955" html.valueishtml="0"  name=de_reftel_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Caracteristica" border="6" color="33554432" x="1257" y="8" height="52" width="361" html.valueishtml="0"  name=co_caract_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Desc Caracteristica" border="6" color="33554432" x="1627" y="8" height="52" width="681" html.valueishtml="0"  name=de_caract_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Capas Max" border="6" color="0" x="2318" y="8" height="52" width="247" html.valueishtml="0"  name=capas_max1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=4 alignment="1" tabsequence=10 border="5" color="33554432" x="9" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_reftel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0 edit.displayonly=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=20 border="5" color="33554432" x="293" y="8" height="64" width="955" format="[general]" html.valueishtml="0"  name=de_reftel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0 edit.displayonly=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=30 border="5" color="33554432" x="1257" y="8" height="64" width="361" format="[general]" html.valueishtml="0"  name=co_caract visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0 edit.displayonly=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=40 border="5" color="33554432" x="1627" y="8" height="64" width="681" format="[general]" html.valueishtml="0"  name=de_caract visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0 edit.displayonly=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=50 border="5" color="33554432" x="2318" y="8" height="64" width="247" format="[general]" html.valueishtml="0"  name=capas_max visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
