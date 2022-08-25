@@ -1,0 +1,79 @@
+HA$PBExportHeader$d_lista_trazos_tallasxtrazo_respaldo.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=1090519039 processing=4 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no  crosstab.dynamic = yes grid.lines=0 grid.columnmove=no selected.mouse=no )
+header[1](height=0 color="536870912" )
+header[2](height=64 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=number updatewhereclause=yes name=co_trazo dbname="co_trazo" )
+ column=(type=char(20) updatewhereclause=yes name=de_trazo dbname="de_trazo" )
+ column=(type=number updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=number updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=number updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=char(20) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=number updatewhereclause=yes name=ca_paquetes dbname="ca_paquetes" )
+ retrieve="SELECT DISTINCT dt_tallasxtrazo.co_trazo,   
+         dt_tallasxtrazo.co_fabrica,   
+         dt_tallasxtrazo.co_linea,   
+         dt_tallasxtrazo.co_referencia,   
+         dt_tallasxtrazo.co_talla,   
+         dt_tallasxtrazo.ca_paquetes,   
+         h_preref_pv.de_referencia,
+         h_trazos.de_trazo          
+    FROM dt_agrupa_pdn,   
+         dt_tallasxtrazo,
+         h_trazos,   
+         dt_agrupaescalapdn,   
+         h_preref_pv 
+   WHERE ( dt_agrupa_pdn.co_fabrica_pt = dt_tallasxtrazo.co_fabrica ) and  
+         ( dt_agrupa_pdn.co_linea = dt_tallasxtrazo.co_linea ) and  
+         ( dt_agrupa_pdn.co_referencia = dt_tallasxtrazo.co_referencia ) and  
+         ( dt_agrupa_pdn.cs_agrupacion = dt_agrupaescalapdn.cs_agrupacion) and  
+         ( dt_agrupa_pdn.cs_pdn = dt_agrupaescalapdn.cs_pdn ) and  
+         ( dt_tallasxtrazo.co_talla = dt_agrupaescalapdn.co_talla ) and  
+         ( dt_tallasxtrazo.co_trazo = h_trazos.co_trazo ) and 
+         ( dt_agrupa_pdn.co_fabrica_pt = h_preref_pv.co_fabrica ) and  
+         ( dt_agrupa_pdn.co_linea = h_preref_pv.co_linea ) and  
+         ( cast(dt_agrupa_pdn.co_referencia as char(15)) = h_preref_pv.co_referencia ) and
+         ( h_preref_pv.co_tipo_ref  = 'P') and  
+         ( dt_agrupa_pdn.cs_agrupacion = :an_agrupa )
+ORDER BY dt_tallasxtrazo.co_trazo ASC,   
+         dt_tallasxtrazo.co_fabrica ASC,   
+         dt_tallasxtrazo.co_linea ASC,   
+         dt_tallasxtrazo.co_referencia ASC,   
+         dt_tallasxtrazo.co_talla ASC   " arguments=(("an_agrupa", number))  sort="co_trazo A de_trazo A co_fabrica A co_linea A co_referencia A de_referencia A " )
+group(level=1 header.height=0 trailer.height=0 by=("co_trazo" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=0 trailer.height=0 by=("de_trazo" ) header.color="536870912" trailer.color="536870912" )
+group(level=3 header.height=0 trailer.height=0 by=("co_fabrica" ) header.color="536870912" trailer.color="536870912" )
+group(level=4 header.height=0 trailer.height=0 by=("co_linea" ) header.color="536870912" trailer.color="536870912" )
+group(level=5 header.height=0 trailer.height=0 by=("co_referencia" ) header.color="536870912" trailer.color="536870912" )
+text(band=header[1] alignment="0" text="Sum Of Ca Paquetes" border="0" color="0" x="9" y="4" height="52" width="146"  name=t_1  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[1] alignment="0" text="Co Talla" border="0" color="0" x="165" y="4" height="52" width="434"  name=t_2  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="2" text="Trazo" border="6" color="0" x="9" y="4" height="56" width="146"  name=co_trazo_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header[2] alignment="2" text="Descripci$$HEX1$$f300$$ENDHEX$$n" border="6" color="0" x="165" y="4" height="56" width="434"  name=de_trazo_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header[2] alignment="2" text="Estilo" border="6" color="0" x="649" y="4" height="56" width="375"  name=de_referencia_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header[2] alignment="2" text="@co_talla" border="6" color="0" x="1033" y="4" height="56" width="119"  name=ca_paquetes_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="4" height="64" width="146" format="[general]"  name=co_trazo edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="165" y="4" height="64" width="434" format="[general]"  name=de_trazo edit.limit=18 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="608" y="4" height="64" width="5" format="[general]"  name=co_fabrica visible="1~t0"  hidesnaked=1 edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="622" y="4" height="56" width="5" format="[general]"  name=co_linea visible="1~t0"  hidesnaked=1 edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="635" y="4" height="64" width="5" format="[general]"  name=co_referencia visible="1~t0"  hidesnaked=1 edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="649" y="4" height="64" width="375" format="[general]"  name=de_referencia edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="1033" y="4" height="64" width="119" format="[general]"  name=ca_paquetes edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes crosstab.repeat=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.5 alignment="1" expression="co_referencia + ~" Total~""border="0" color="33554432" x="9" y="4" height="64" width="146" format="[general]"  name=compute_1  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.5 alignment="1" expression="sum(ca_paquetes for group 5)"border="0" color="33554432" x="1033" y="4" height="64" width="119" format="[general]"  name=compute_2  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.4 alignment="1" expression="co_linea + ~" Total~""border="0" color="33554432" x="9" y="4" height="64" width="146" format="[general]"  name=compute_4  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.4 alignment="1" expression="sum(ca_paquetes for group 4)"border="0" color="33554432" x="1033" y="4" height="64" width="119" format="[general]"  name=compute_5  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression="co_fabrica + ~" Total~""border="0" color="33554432" x="9" y="4" height="64" width="146" format="[general]"  name=compute_7  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression="sum(ca_paquetes for group 3)"border="0" color="33554432" x="1033" y="4" height="64" width="119" format="[general]"  name=compute_8  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="de_trazo + ~" Total~""border="0" color="33554432" x="165" y="4" height="64" width="434" format="[general]"  name=compute_10  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum(ca_paquetes for group 2)"border="0" color="33554432" x="1033" y="4" height="64" width="119" format="[general]"  name=compute_11  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="co_trazo + ~" Total~""border="0" color="33554432" x="9" y="4" height="64" width="146" format="[general]"  name=compute_13  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(ca_paquetes for group 1)"border="0" color="33554432" x="1033" y="4" height="64" width="119" format="[general]"  name=compute_14  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="~"Grand Total~""border="0" color="0" x="9" y="4" height="64" width="146" format="[general]"  name=compute_16  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_paquetes for all )"border="0" color="33554432" x="1033" y="4" height="64" width="119" format="[general]"  name=compute_17  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+ crosstab(band = foreground  crosstabonly = yes 
+ columns = "co_talla" rows = "co_trazo, de_trazo, co_fabrica, co_linea, co_referencia, de_referencia" values = "sum(ca_paquetes for crosstab)" sourcenames = "co_trazo, co_fabrica, co_linea, co_referencia, co_talla, ca_paquetes, de_referencia, de_trazo")
+sparse(names="co_trazo	de_trazo	co_fabrica	co_linea	co_referencia")htmltable(border="0" cellpadding="1" cellspacing="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
