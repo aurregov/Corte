@@ -1,0 +1,50 @@
+HA$PBExportHeader$ds_reftel_por_liberar.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_reftel dbname="temp_modelos_ref.co_reftel" )
+ column=(type=long updatewhereclause=yes name=co_caract dbname="temp_modelos_ref.co_caract" )
+ column=(type=long updatewhereclause=yes name=co_color_te dbname="temp_modelos_ref.co_color_te" )
+ column=(type=long updatewhereclause=yes name=diametro dbname="temp_modelos_ref.diametro" )
+ column=(type=decimal(2) updatewhereclause=yes name=ancho dbname="temp_modelos_ref.ancho" )
+ column=(type=char(2) updatewhereclause=yes name=tono dbname="temp_modelos_ref.tono" )
+ column=(type=long updatewhereclause=yes name=cs_ordenpd_pt dbname="temp_modelos_ref.cs_ordenpd_pt" )
+ column=(type=char(20) updatewhereclause=yes name=po dbname="temp_modelos_ref.po" )
+ column=(type=long updatewhereclause=yes name=co_color dbname="temp_modelos_ref.co_color" )
+ retrieve="  SELECT DISTINCT temp_modelos_ref.co_reftel,   
+         temp_modelos_ref.co_caract,   
+         temp_modelos_ref.co_color_te,   
+         temp_modelos_ref.diametro,   
+         temp_modelos_ref.ancho,   
+         temp_modelos_ref.tono,
+			temp_modelos_ref.cs_ordenpd_pt,
+		   temp_modelos_ref.po, 
+			temp_modelos_ref.co_color  
+    FROM temp_modelos_ref  
+   WHERE temp_modelos_ref.usuario = :as_usuario AND
+			temp_modelos_ref.cs_ordenpd_pt = :an_ordenpd AND
+			temp_modelos_ref.po = :as_po AND
+			temp_modelos_ref.co_color_te = :an_color;" arguments=(("as_usuario", string),("an_ordenpd", number),("as_po", string),("an_color", number)) )
+text(band=header alignment="2" text="Co Reftel" border="0" color="33554432" x="9" y="8" height="56" width="274" html.valueishtml="0"  name=co_reftel_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Caract" border="0" color="33554432" x="293" y="8" height="56" width="274" html.valueishtml="0"  name=co_caract_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Color Te" border="0" color="33554432" x="576" y="8" height="56" width="274" html.valueishtml="0"  name=co_color_te_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Diametro" border="0" color="33554432" x="859" y="8" height="56" width="274" html.valueishtml="0"  name=diametro_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ancho" border="0" color="33554432" x="1143" y="8" height="56" width="274" html.valueishtml="0"  name=ancho_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tono" border="0" color="33554432" x="1426" y="8" height="56" width="114" html.valueishtml="0"  name=tono_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Cs Ordenpd Pt" border="0" color="0" x="1550" y="8" height="56" width="978" html.valueishtml="0"  name=cs_ordenpd_pt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_reftel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="293" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_caract visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="576" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_color_te visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="859" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=diametro visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1143" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=ancho visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="1426" y="4" height="64" width="114" format="[general]" html.valueishtml="0"  name=tono visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="1550" y="4" height="64" width="978" format="[general]" html.valueishtml="0"  name=cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="2537" y="4" height="64" width="453" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=0 border="0" color="33554432" x="3003" y="4" height="64" width="978" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Po" border="0" color="0" x="2537" y="8" height="56" width="453" html.valueishtml="0"  name=po_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Color" border="0" color="0" x="2999" y="8" height="56" width="983" html.valueishtml="0"  name=co_color_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
