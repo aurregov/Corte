@@ -1,0 +1,116 @@
+HA$PBExportHeader$dtb_guias_numeracion.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=4 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no  crosstab.dynamic = yes grid.lines=0 grid.columnmove=no selected.mouse=no )
+header[1](height=72 color="536870912" )
+header[2](height=0 color="536870912" )
+header[3](height=68 color="536870912" )
+summary(height=60 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=char(20) updatewhereclause=yes name=po dbname="po" )
+ column=(type=number updatewhereclause=yes name=co_color_pt dbname="co_color_pt" )
+ column=(type=char(20) updatewhereclause=yes name=tono dbname="tono" )
+ column=(type=number updatewhereclause=yes name=cs_liberacion dbname="cs_liberacion" )
+ column=(type=number updatewhereclause=yes name=lote dbname="lote" )
+ retrieve="  SELECT h_preref_pv.de_referencia,   
+         dt_agrupa_pdn.po,
+			dt_agrupa_pdn.co_color_pt,
+		 	dt_agrupa_pdn.tono,
+			dt_agrupa_pdn.cs_liberacion,   
+         dt_unidadesxtrazo.co_talla,   
+         m_tallas_x_grupo_pv.de_talla,   
+         sum( dt_unidadesxtrazo.ca_programada),
+			dt_agrupa_pdn.cs_pdn
+    FROM dt_unidadesxtrazo,   
+         dt_agrupa_pdn,   
+         h_preref_pv,   
+         m_tallas_x_grupo_pv  
+   WHERE ( dt_unidadesxtrazo.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_unidadesxtrazo.cs_pdn = dt_agrupa_pdn.cs_pdn ) and  
+         ( dt_agrupa_pdn.co_linea = h_preref_pv.co_linea ) and  
+         ( dt_agrupa_pdn.co_fabrica_pt = h_preref_pv.co_fabrica ) and  
+         ( h_preref_pv.co_referencia = Cast(dt_agrupa_pdn.co_referencia as Char(15)) ) and  
+         ( h_preref_pv.co_grupo_tlla = m_tallas_x_grupo_pv.co_grupo_tlla ) and  
+         ( m_tallas_x_grupo_pv.co_talla = cast(dt_unidadesxtrazo.co_talla as char(10)) ) and 
+			( h_preref_pv.co_tipo_ref = 'P' ) and
+         ( ( dt_unidadesxtrazo.cs_orden_corte = :an_orden ) AND  
+         ( dt_unidadesxtrazo.cs_base_trazos = :an_raya ) )   
+GROUP BY h_preref_pv.de_referencia,   
+         dt_agrupa_pdn.po,   
+         dt_agrupa_pdn.co_color_pt,   
+         dt_agrupa_pdn.tono,   
+         dt_agrupa_pdn.cs_liberacion,   
+         dt_unidadesxtrazo.co_talla,   
+         m_tallas_x_grupo_pv.de_talla   ,
+			dt_agrupa_pdn.cs_pdn   
+UNION
+  SELECT h_preref_pv.de_referencia,   
+         dt_agrupa_pdn.po,
+			dt_agrupa_pdn.co_color_pt,
+		 	dt_agrupa_pdn.tono,
+			dt_agrupa_pdn.cs_liberacion,   
+         dt_unidadesxtrazo.co_talla,   
+         m_tallas_grupo_inf.de_talla,   
+         sum( dt_unidadesxtrazo.ca_programada),
+			dt_agrupa_pdn.cs_pdn
+    FROM dt_unidadesxtrazo,   
+         dt_agrupa_pdn,   
+         h_preref_pv,   
+         m_tallas_grupo_inf  
+   WHERE ( dt_unidadesxtrazo.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_unidadesxtrazo.cs_pdn = dt_agrupa_pdn.cs_pdn ) and  
+         ( dt_agrupa_pdn.co_linea = h_preref_pv.co_linea ) and  
+         ( dt_agrupa_pdn.co_fabrica_pt = h_preref_pv.co_fabrica ) and  
+         ( h_preref_pv.co_referencia = Cast(dt_agrupa_pdn.co_referencia as Char(15)) ) and  
+         ( h_preref_pv.co_grupo_tlla = m_tallas_grupo_inf.co_grupo_tlla ) and  
+         ( m_tallas_grupo_inf.co_talla = dt_unidadesxtrazo.co_talla ) and 
+			( h_preref_pv.co_tipo_ref = 'P' ) and
+         ( ( dt_unidadesxtrazo.cs_orden_corte = :an_orden ) AND  
+         ( dt_unidadesxtrazo.cs_base_trazos = :an_raya ) )   
+GROUP BY h_preref_pv.de_referencia,   
+         dt_agrupa_pdn.po,   
+         dt_agrupa_pdn.co_color_pt,   
+         dt_agrupa_pdn.tono,   
+         dt_agrupa_pdn.cs_liberacion,   
+         dt_unidadesxtrazo.co_talla,   
+         m_tallas_grupo_inf.de_talla   ,
+			dt_agrupa_pdn.cs_pdn   
+ORDER BY 6
+
+
+
+" arguments=(("an_orden", number),("an_raya", number))  sort="de_referencia A po A co_color_pt A tono A cs_liberacion A " )
+group(level=1 header.height=0 trailer.height=68 by=("de_referencia" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=0 trailer.height=0 by=("po" ) header.color="536870912" trailer.color="536870912" )
+group(level=3 header.height=0 trailer.height=0 by=("co_color_pt" ) header.color="536870912" trailer.color="536870912" )
+group(level=4 header.height=0 trailer.height=8 by=("tono" ) header.color="536870912" trailer.color="536870912" )
+text(band=header[2] alignment="0" text="@co_talla" border="0" color="33554432" x="1074" y="4" height="52" width="219" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="@de_talla" border="0" color="33554432" x="1074" y="4" height="52" width="219" html.valueishtml="0"  name=lote_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Total " border="0" color="33554432" x="1303" y="4" height="52" width="215" html.valueishtml="0"  name=grand_sum_compute_0008_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Estilo" border="0" color="33554432" x="9" y="4" height="52" width="393" html.valueishtml="0"  name=de_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="P.O." border="0" color="33554432" x="411" y="4" height="52" width="343" html.valueishtml="0"  name=po_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Lote" border="0" color="33554432" x="763" y="8" height="52" width="256" html.valueishtml="0"  name=t_6 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="Cs Liberacion" border="0" color="16777215" x="1061" y="4" height="52" width="5" html.valueishtml="0"  name=cs_liberacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="Co Color Pt" border="0" color="16777215" x="1029" y="4" height="52" width="9" html.valueishtml="0"  name=co_color_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="Tono" border="0" color="16777215" x="1047" y="4" height="52" width="5" html.valueishtml="0"  name=tono_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="4" height="64" width="393" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="411" y="4" height="64" width="343" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression=" co_color_pt  +  tono  +  cs_liberacion "border="0" color="0" x="763" y="8" height="52" width="256" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="16777215" x="1061" y="4" height="64" width="5" format="[general]" html.valueishtml="0"  name=cs_liberacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="16777215" x="1047" y="4" height="64" width="5" format="[general]" html.valueishtml="0"  name=tono visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="16777215" x="1029" y="4" height="64" width="9" format="[general]" html.valueishtml="0"  name=co_color_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1074" y="4" height="64" width="219" format="[general]" html.valueishtml="0"  name=lote visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0 crosstab.repeat=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="crosstabsum(1)"border="0" color="33554432" x="1303" y="4" height="64" width="215" format="[general]" html.valueishtml="0"  name=grand_sum_compute_0008 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(lote for group 1)"border="0" color="33554432" x="1074" y="8" height="52" width="219" format="[general]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(crosstabsum(1) for group 1)"border="0" color="33554432" x="1303" y="8" height="52" width="215" format="[general]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(lote for all)"border="0" color="33554432" x="1074" y="8" height="52" width="219" format="[general]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(crosstabsum(1) for all)"border="0" color="33554432" x="1303" y="8" height="52" width="215" format="[general]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=foreground alignment="2" text="ESCALAS" border="0" color="33554432" x="192" y="4" height="52" width="960" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+ crosstab(band = foreground  crosstabonly = yes 
+ columns = "co_talla, de_talla" rows = "de_referencia, po, co_color_pt, tono, cs_liberacion" values = "sum(compute_0008 for crosstab)" sourcenames = "de_referencia, po, co_color_pt, tono, cs_liberacion, co_talla, de_talla, compute_0008, cs_pdn")
+sparse(names="de_referencia	po	co_color_pt	tono")htmltable(border="0" cellpadding="1" cellspacing="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
