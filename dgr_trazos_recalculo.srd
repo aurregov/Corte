@@ -1,0 +1,60 @@
+HA$PBExportHeader$dgr_trazos_recalculo.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=char(40) updatewhereclause=yes name=de_trazo dbname="h_trazos.de_trazo" )
+ column=(type=decimal(2) updatewhereclause=yes name=ancho dbname="h_trazos.ancho" )
+ column=(type=decimal(2) updatewhereclause=yes name=largo dbname="h_trazos.largo" )
+ column=(type=decimal(2) updatewhereclause=yes name=porc_util dbname="h_trazos.porc_util" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_agrupacion dbname="dt_trazosrecalculo.cs_agrupacion" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=raya dbname="dt_trazosrecalculo.raya" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_trazo dbname="dt_trazosrecalculo.co_trazo" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_capas dbname="dt_trazosrecalculo.ca_capas" initial="0" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="dt_trazosrecalculo.fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="dt_trazosrecalculo.fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="dt_trazosrecalculo.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="dt_trazosrecalculo.instancia" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_pdn dbname="dt_trazosrecalculo.cs_pdn" )
+ retrieve="  SELECT h_trazos.de_trazo,   
+         h_trazos.ancho,   
+         h_trazos.largo,   
+         h_trazos.porc_util,   
+         dt_trazosrecalculo.cs_agrupacion,   
+         dt_trazosrecalculo.raya,   
+         dt_trazosrecalculo.co_trazo,   
+         dt_trazosrecalculo.ca_capas,   
+         dt_trazosrecalculo.fe_creacion,   
+         dt_trazosrecalculo.fe_actualizacion,   
+         dt_trazosrecalculo.usuario,   
+         dt_trazosrecalculo.instancia,   
+         dt_trazosrecalculo.cs_pdn  
+    FROM h_trazos,   
+         dt_trazosrecalculo  
+   WHERE ( h_trazos.co_trazo = dt_trazosrecalculo.co_trazo ) and 
+			( dt_trazosrecalculo.cs_pdn = :al_pdn ) and
+         ( ( dt_trazosrecalculo.cs_agrupacion = :al_agrupacion ) AND  
+         ( dt_trazosrecalculo.raya = :ai_raya ) )    
+" update="dt_trazosrecalculo" updatewhere=2 updatekeyinplace=yes arguments=(("al_agrupacion", number),("ai_raya", number),("al_pdn", number)) )
+text(band=header alignment="2" text="Ancho" border="6" color="0" x="786" y="8" height="60" width="155" html.valueishtml="0"  name=h_trazos_ancho_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Largo" border="6" color="0" x="951" y="8" height="60" width="151" html.valueishtml="0"  name=h_trazos_largo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="Capas" border="6" color="0" x="1682" y="8" height="56" width="137" html.valueishtml="0"  name=dt_trazosrecalculo_ca_capas_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Trazo" border="6" color="0" x="201" y="8" height="60" width="576" html.valueishtml="0"  name=h_trazos_de_trazo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Util" border="6" color="0" x="1111" y="8" height="56" width="169" html.valueishtml="0"  name=h_trazos_porc_util_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Area" border="6" color="0" x="1289" y="8" height="56" width="197" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Util Pon" border="6" color="0" x="1495" y="8" height="56" width="178" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="5" color="33554432" x="9" y="4" height="60" width="183" format="[general]" html.valueishtml="0"  name=co_trazo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="33554432" x="201" y="4" height="60" width="576" format="[general]" html.valueishtml="0"  name=de_trazo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=detail alignment="1" expression=" ancho  *  largo "border="5" color="0" x="1289" y="4" height="60" width="197" format="##0.00" html.valueishtml="0"  name=area visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=8 alignment="1" tabsequence=10 border="5" color="33554432" x="1682" y="4" height="60" width="137" format="[general]" html.valueishtml="0"  name=ca_capas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="33554432" x="786" y="4" height="60" width="155" format="##0.00" html.valueishtml="0"  name=ancho visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="5" color="33554432" x="1111" y="4" height="60" width="169" format="##0.00" html.valueishtml="0"  name=porc_util visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="33554432" x="951" y="4" height="60" width="151" format="##0.00" html.valueishtml="0"  name=largo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=detail alignment="1" expression="(area / Sum(area for all)) *  porc_util "border="5" color="0" x="1495" y="4" height="60" width="178" format="##0.00" html.valueishtml="0"  name=utilizacion visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
