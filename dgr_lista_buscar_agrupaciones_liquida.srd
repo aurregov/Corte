@@ -1,0 +1,71 @@
+HA$PBExportHeader$dgr_lista_buscar_agrupaciones_liquida.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=79741120 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica dbname="dt_pdnxmodulo.co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_planta dbname="dt_pdnxmodulo.co_planta" )
+ column=(type=long updatewhereclause=yes name=co_modulo dbname="dt_pdnxmodulo.co_modulo" )
+ column=(type=long updatewhereclause=yes name=pedido dbname="dt_pdnxmodulo.pedido" )
+ column=(type=char(20) updatewhereclause=yes name=po dbname="dt_pdnxmodulo.po" )
+ column=(type=long updatewhereclause=yes name=co_fabrica_pt dbname="dt_pdnxmodulo.co_fabrica_pt" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="dt_pdnxmodulo.co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="dt_pdnxmodulo.co_referencia" )
+ column=(type=long updatewhereclause=yes name=co_color_pt dbname="dt_pdnxmodulo.co_color_pt" )
+ column=(type=long updatewhereclause=yes name=cs_estilocolortono dbname="dt_pdnxmodulo.cs_estilocolortono" )
+ column=(type=long updatewhereclause=yes name=cs_particion dbname="dt_pdnxmodulo.cs_particion" )
+ column=(type=long updatewhereclause=yes name=cs_prioridad dbname="dt_pdnxmodulo.cs_prioridad" )
+ column=(type=long updatewhereclause=yes name=ca_pendiente dbname="dt_pdnxmodulo.ca_pendiente" )
+ column=(type=long updatewhereclause=yes name=cs_liberacion dbname="dt_pdnxmodulo.cs_liberacion" )
+ column=(type=char(2) updatewhereclause=yes name=tono dbname="dt_pdnxmodulo.tono" )
+ column=(type=char(5) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=char(5) updatewhereclause=yes name=de_color dbname="de_color" )
+ column=(type=char(5) updatewhereclause=yes name=de_linea dbname="de_linea" )
+ column=(type=char(5) updatewhereclause=yes name=de_modulo dbname="de_modulo" )
+ retrieve="  SELECT DISTINCT dt_pdnxmodulo.co_fabrica,   
+         dt_pdnxmodulo.co_planta,   
+         dt_pdnxmodulo.co_modulo,   
+         dt_pdnxmodulo.pedido,   
+         dt_pdnxmodulo.po,
+			dt_pdnxmodulo.co_fabrica_pt,   
+         dt_pdnxmodulo.co_linea,   
+         dt_pdnxmodulo.co_referencia,   
+         dt_pdnxmodulo.co_color_pt,   
+         dt_pdnxmodulo.cs_estilocolortono,   
+         dt_pdnxmodulo.cs_particion,   
+         dt_pdnxmodulo.cs_prioridad,   
+         dt_pdnxmodulo.ca_pendiente,
+			dt_pdnxmodulo.cs_liberacion,
+			dt_pdnxmodulo.tono,
+			'					' de_referencia,	
+			'					' de_color,
+			'					' de_linea,
+			'					' de_modulo	
+    FROM dt_pdnxmodulo
+	WHERE dt_pdnxmodulo.simulacion = 1 and
+			dt_pdnxmodulo.co_fabrica = 91 and
+			dt_pdnxmodulo.co_planta = 1 and
+			dt_pdnxmodulo.co_tipo_asignacion = 2 AND
+			dt_pdnxmodulo.co_fabrica_exp = 91 and
+			dt_pdnxmodulo.co_estado_asigna >= 11
+" )
+text(band=header alignment="2" text="M$$HEX1$$f300$$ENDHEX$$dulo" border="6" color="0" x="9" y="8" height="56" width="192" html.valueishtml="0"  name=obj_12749047 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Unidades" border="6" color="0" x="1938" y="8" height="56" width="274" html.valueishtml="0"  name=ca_pendiente_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Po" border="6" color="0" x="210" y="8" height="56" width="261" html.valueishtml="0"  name=po_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Estilo" border="6" color="0" x="1083" y="8" height="56" width="370" html.valueishtml="0"  name=obj_37153404 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Color" border="6" color="0" x="1463" y="8" height="56" width="320" html.valueishtml="0"  name=obj_38566285 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Lib." border="6" color="0" x="1792" y="8" height="56" width="133" html.valueishtml="0"  name=obj_38852243 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Prenda" border="6" color="0" x="727" y="8" height="56" width="347" html.valueishtml="0"  name=obj_43090558 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Lote" border="6" color="0" x="480" y="8" height="56" width="238" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="5" color="0" x="9" y="8" height="56" width="192" format="[general]" html.valueishtml="0"  name=de_modulo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="5" color="0" x="1938" y="8" height="56" width="274" format="[general]" html.valueishtml="0"  name=ca_pendiente visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="0" x="210" y="8" height="56" width="261" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="5" color="0" x="1083" y="8" height="56" width="370" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="5" color="0" x="1463" y="8" height="56" width="320" format="[general]" html.valueishtml="0"  name=de_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=14 alignment="2" tabsequence=32766 border="5" color="0" x="1792" y="8" height="56" width="133" format="[general]" html.valueishtml="0"  name=cs_liberacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="5" color="0" x="727" y="8" height="56" width="347" format="[general]" html.valueishtml="0"  name=de_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="2" expression=" co_color_pt  +  tono  +  cs_liberacion "border="5" color="0" x="480" y="8" height="56" width="238" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
