@@ -1,0 +1,24 @@
+HA$PBExportHeader$dgr_pedidos.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(retrieve="SELECT * FROM pedpend_exp a, peddig b        
+ WHERE a.co_fabrica_exp = b.co_fabrica_exp   
+   AND a.pedido      = b.pedido              
+   AND a.co_fabrica = :ai_fabrica                         
+   AND a.co_linea = :ai_linea                           
+   AND a.co_referencia = :ai_referencia                     
+   AND a.co_talla = :ai_talla                            
+   AND a.co_calidad = :ai_calidad                        
+   AND a.co_color = :ai_color                          
+   AND a.ca_comprada >0                         
+   AND b.tipo_pedido not in('AL','AC','AP');    
+" arguments=(("ai_fabrica", number),("ai_linea", number),("ai_referencia", number),("ai_talla", number),("ai_calidad", number),("ai_color", number)) )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
