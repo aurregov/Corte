@@ -1,0 +1,340 @@
+HA$PBExportHeader$f_crea_detalle_bolsa.srf
+global type f_crea_detalle_bolsa from function_object
+end type
+
+forward prototypes
+global function long f_crea_detalle_bolsa (string ll_cs_bolsa, long ll_co_fabrica_pt, long ll_co_linea, long ll_co_referencia, long ll_co_talla, long ll_calidad, long ll_co_color_pt, long ll_cs_orden_corte, long ll_cs_espacio, long ll_tipo_bolsa, long ll_cantidad, string ls_letra, long ll_cs_pdn, long ll_cs_agrupacion, string as_po, string as_cut, string as_grupo)
+end prototypes
+
+global function long f_crea_detalle_bolsa (string ll_cs_bolsa, long ll_co_fabrica_pt, long ll_co_linea, long ll_co_referencia, long ll_co_talla, long ll_calidad, long ll_co_color_pt, long ll_cs_orden_corte, long ll_cs_espacio, long ll_tipo_bolsa, long ll_cantidad, string ls_letra, long ll_cs_pdn, long ll_cs_agrupacion, string as_po, string as_cut, string as_grupo);String ls_sqlerr, ls_ups, ls_prepack
+Long li_fabrica, li_planta, li_fabrica_exp, li_result, li_linea_exp, li_existe, li_fabrica_exp2
+Long		ll_pedido, ll_unir_oc
+String	ls_color_exp, ls_ref_exp, ls_talla_exp, ls_grupo, ls_linea_exp, ls_upc
+n_cts_constantes luo_constantes
+DataStore lds_gpa
+
+lds_gpa = Create DataStore
+lds_gpa.DataObject = 'ds_gpa'
+lds_gpa.SetTransObject(sqlca)
+
+
+luo_constantes = Create n_cts_constantes
+
+li_fabrica = luo_constantes.of_consultar_numerico("FABRICA PLANTA")
+
+IF li_fabrica = -1 THEN
+	Return -1
+END IF
+
+li_planta = luo_constantes.of_consultar_numerico("PLANTA LIBERACIONES")
+
+IF li_planta = -1 THEN
+	Return -1
+END IF
+
+
+//busco en dt_pdnxmodulo
+SELECT UNIQUE co_color_exp, co_ref_exp, co_linea_exp, pedido, cs_unir_oc, a.co_fabrica_exp
+  INTO :ls_color_exp, :ls_ref_exp, :li_linea_exp, :ll_pedido, :ll_unir_oc, :li_fabrica_exp2
+  FROM dt_pdnxmodulo a, dt_talla_pdnmodulo b
+ WHERE a.co_fabrica_exp = b.co_fabrica_exp AND
+       a.cs_liberacion  = b.cs_liberacion AND
+		 a.po             = b.po AND
+		 a.nu_cut         = b.nu_cut AND
+		 a.co_fabrica_pt  = b.co_fabrica_pt AND
+		 a.co_linea       = b.co_linea AND
+		 a.co_referencia  = b.co_referencia AND
+		 a.co_color_pt    = b.co_color_pt AND
+		 a.tono           = b.tono AND
+       a.cs_asignacion  = :ll_cs_orden_corte AND
+ 		 a.co_fabrica_pt  = :ll_co_fabrica_pt AND
+		 a.co_linea 		= :ll_co_linea AND
+		 a.co_referencia  = :ll_co_referencia AND
+       a.co_color_pt 	= :ll_co_color_pt  AND
+		 b.co_talla       = :ll_co_talla AND
+		 a.pedido         IS NOT NULL AND
+		 a.po             = :as_po;
+
+//traemos la talla del pedido para evitar problemas de tallas que no existen en el pedido
+//inicialmente estaba contra m_referencias_eq_nuevo pero se cambio porque en dicha tabla
+//puede existir diferentes talla_exp  dependiendo del tiraje
+SELECT co_fabrica_exp, MAX(co_Talla_exp)
+  INTO :li_fabrica_exp, :ls_talla_exp
+  FROM pedpend_exp
+ WHERE pedido        = :ll_pedido
+   AND nu_orden      = :as_po
+	AND co_fabrica    = :ll_co_fabrica_pt
+	AND co_linea      = :ll_co_linea
+	AND co_referencia = :ll_co_referencia 
+	AND co_color      = :ll_co_color_pt
+	AND co_talla      = :ll_co_talla
+	AND co_ref_exp    = :ls_ref_exp
+	AND co_color_exp  = :ls_color_exp
+	ANd co_linea_exp  = :li_linea_exp
+GROUP BY 1	;
+IF sqlca.sqlcode = 100 THEN 
+	//buscar la talla y el color de ventas por el cambio de SAP agosto 27-2010
+	SELECT co_fabrica_exp, MAX(co_Talla_exp)
+	  INTO :li_fabrica_exp, :ls_talla_exp
+	  FROM pedpend_exp
+	 WHERE pedido        = :ll_pedido
+		AND nu_orden      = :as_po
+		AND co_fabrica    = :ll_co_fabrica_pt
+		AND co_linea      = :ll_co_linea
+		AND co_referencia = :ll_co_referencia 
+		AND co_color      = :ll_co_color_pt
+		AND co_talla      = :ll_co_talla
+		AND co_ref_exp    = :ls_ref_exp
+//		AND co_color_exp  = :ls_color_exp
+		AND co_linea_exp  = :li_linea_exp
+	GROUP BY 1	;
+	IF sqlca.sqlcode = 100 THEN 
+		//con la agrupacion de pedidos, puede pasar que la talla sea de otra ref, se hace la busqueda con las demas ref agrupadas para probar si no falla jorodrig 22-07-2021
+			SELECT  MAX(co_Talla_exp)
+			  INTO  :ls_talla_exp
+			  FROM pedpend_exp
+			 WHERE pedido        = :ll_pedido
+				AND nu_orden      = :as_po
+				AND co_fabrica    = :ll_co_fabrica_pt
+				AND co_linea      = :ll_co_linea
+				AND co_referencia in (select  b.co_Referencia
+												from dt_op_agrupa_lib a, h_ordenpd_pt b, dt_pdnxmodulo c
+												where a.cs_ordenpd_pt = b.cs_ordenpd_pt
+												and a.cs_liberacion = c.cs_liberacion
+												and c.cs_asignacion = :ll_cs_orden_corte) 
+				AND co_color      = :ll_co_color_pt
+				AND co_talla      = :ll_co_talla
+				AND co_ref_exp    = :ls_ref_exp
+				AND co_linea_exp  = :li_linea_exp;
+			IF sqlca.sqlcode = 100 THEN 
+				ls_sqlerr = sqlca.SqlErrText
+				Rollback ;
+				MessageBox("Advertencia!","No se encontr$$HEX2$$f3002000$$ENDHEX$$la talla de ventas, se cancela el proceso" + ls_sqlerr)
+				Return -1
+			END IF
+			IF IsNull(li_fabrica_exp) OR li_fabrica_exp= 0  THEN
+				li_fabrica_exp = li_fabrica_exp2
+			END IF
+	ELSE
+		SELECT co_fabrica_exp, MAX(co_color_exp)
+		  INTO :li_fabrica_exp, :ls_color_exp
+		  FROM pedpend_exp
+		 WHERE pedido        = :ll_pedido
+			AND nu_orden      = :as_po
+			AND co_fabrica    = :ll_co_fabrica_pt
+			AND co_linea      = :ll_co_linea
+			AND co_referencia = :ll_co_referencia 
+			AND co_color      = :ll_co_color_pt
+			AND co_talla      = :ll_co_talla
+			AND co_ref_exp    = :ls_ref_exp
+			AND co_talla_exp  = :ls_talla_exp
+			AND co_linea_exp  = :li_linea_exp
+		GROUP BY 1	;
+		IF sqlca.sqlcode = 100 THEN 
+			ls_sqlerr = sqlca.SqlErrText
+			Rollback ;
+			MessageBox("Advertencia!","No se encontr$$HEX2$$f3002000$$ENDHEX$$el color de ventas, se cancela el proceso" + ls_sqlerr)
+			Return -1
+		END IF	
+		
+	END IF
+END IF
+
+
+////IF sqlca.sqlcode = 0 AND li_linea_exp > 0 THEN
+//	//luego la talla y la fabrica de ventas de m_referencias_eq_nuevo
+//	SELECT UNIQUE co_fabrica_exp, co_talla_exp
+//	  INTO :li_fabrica_exp, :ls_talla_exp
+//	  FROM m_referencias_eq_nuevo
+//	 WHERE co_fabrica 	= :ll_co_fabrica_pt AND
+//	 		 co_linea 		= :ll_co_linea AND
+//			 co_referencia = :ll_co_referencia AND
+//			 co_talla 		= :ll_co_talla AND
+//			 co_color 		= :ll_co_color_pt AND
+//			 co_calidad 	= 1 AND
+//			 co_linea_exp 	= :li_linea_exp AND
+//			 co_ref_exp 	= :ls_ref_exp AND
+//			 co_color_exp 	= :ls_color_exp;
+//			 
+//	IF sqlca.sqlcode = 100 THEN //no se encontro registro en m_referencias_eq_nuevo se iguala al de produccion.
+//		li_fabrica_exp = ll_co_fabrica_pt
+//		ls_talla_exp = String(ll_co_talla)
+//	END IF
+//			 
+
+
+IF ll_pedido > 0 THEN   //encontro el pedido en dt_pdnxmodulo esto es el cambio nuevo para los pedidos de pdd de confeccion generados al liberar
+ELSE
+	//Vamos a traer el pedido, para esto necesitamos la orden de corte y con esta vamos a buscar
+	//la orden de produccion, luego con la orden de produccion traermos el pedido
+	SELECT MAX(a.pedido)
+	  INTO :ll_pedido
+	  FROM dt_pdnxmodulo a, dt_caxpedidos b, dt_talla_pdnmodulo c
+	 WHERE a.cs_ordenpd_pt = b.cs_ordenpd_pt
+		AND a.po = b.nu_orden
+		AND a.cs_asignacion = :ll_cs_orden_corte
+		AND b.nu_orden = :as_po 
+		AND a.co_fabrica_exp = c.co_fabrica_exp
+		AND a.cs_liberacion = c.cs_liberacion
+		AND a.po = c.po
+		AND a.nu_cut = c.nu_cut
+		AND a.co_fabrica_pt = c.co_fabrica_pt
+		AND a.co_linea = c.co_linea
+		AND a.co_referencia = c.co_referencia
+		AND a.co_color_pt = c.co_color_pt
+		AND a.tono = c.tono
+		AND b.co_color = a.co_color_pt
+		AND a.co_color_pt = :ll_co_color_pt
+		AND b.co_talla = c.co_talla
+		AND c.co_talla = :ll_co_talla;
+	IF IsNull(ll_pedido) OR ll_pedido = 0 THEN
+		SELECT MAX(b.pedido)
+		  INTO :ll_pedido
+		  FROM dt_pdnxmodulo a, dt_caxpedidos b, dt_talla_pdnmodulo c
+		 WHERE a.cs_ordenpd_pt = b.cs_ordenpd_pt
+			AND a.po = b.nu_orden
+			AND a.cs_asignacion = :ll_cs_orden_corte
+			AND b.nu_orden = :as_po 
+			AND a.co_fabrica_exp = c.co_fabrica_exp
+			AND a.cs_liberacion = c.cs_liberacion
+			AND a.po = c.po
+			AND a.nu_cut = c.nu_cut
+			AND a.co_fabrica_pt = c.co_fabrica_pt
+			AND a.co_linea = c.co_linea
+			AND a.co_referencia = c.co_referencia
+			AND a.co_color_pt = c.co_color_pt
+			AND a.tono = c.tono
+			AND b.co_color = :ll_co_color_pt
+			AND b.co_talla = c.co_talla
+			AND c.co_talla = :ll_co_talla;
+		IF IsNull(ll_pedido) THEN
+			rollback ;
+			MessageBox("Advertencia!","No se pudo encontrar el numero del pedido" + ls_sqlerr)
+			Return -1
+		END IF
+	END IF
+	
+END IF
+
+//se adiciona el co_grupo_cte buscandolo en peddig con la po y el pedido
+//esto se hace debido a que se detecto un problema cuando se buscaba
+//solo teniendo en cuenta la po.
+//jcrm
+//diciembre 18 de 2007
+li_result = lds_gpa.Retrieve(as_po,ll_pedido)
+If li_result > 0 Then
+	ls_grupo = lds_gpa.GetItemString(1,'gpa')
+Else
+	ls_grupo = 'SIN GRUPO'
+End if
+
+
+
+	
+IF IsNull(ls_color_exp) THEN ls_color_exp = '0'
+IF IsNull(ls_ref_exp) THEN ls_ref_exp = '0'
+IF IsNull(ls_talla_exp) THEN ls_talla_exp = '0'
+IF IsNull(li_fabrica_exp) THEN li_fabrica_exp = 2
+IF IsNull(li_linea_exp )  THEN  ll_co_linea = ll_co_linea
+/*If IsNull(as_cut) Then*/ as_cut = '0'
+
+//cargar el upc en la canasta   julio 11 - 08  jorodrig
+ Select upc_barcode, co_prepack
+   Into :ls_ups, :ls_prepack
+	From pedpend_exp
+  Where pedido        = :ll_pedido
+    And co_fabrica    = :ll_co_fabrica_pt
+	 And co_linea      = :ll_co_linea
+	 And co_referencia = :ll_co_referencia
+	 And co_color      = :ll_co_color_pt
+	 And co_talla      = :ll_co_talla;
+If IsNull(ls_ups) Then
+	ls_ups = ''
+End If
+
+IF ls_talla_exp = '' Or IsNull(ls_talla_exp) THEN
+	Rollback ;
+	MessageBox("Advertencia!","No se encontr$$HEX2$$f3002000$$ENDHEX$$la talla de ventas, se cancela el proceso" + ls_sqlerr)
+	Return -1
+END IF
+
+IF li_fabrica_exp = 0 Or IsNull(li_fabrica_exp) THEN
+	Rollback ;
+	MessageBox("Advertencia!","No se encontr$$HEX2$$f3002000$$ENDHEX$$la talla de ventas, se cancela el proceso" + ls_sqlerr)
+	Return -1
+END IF
+
+
+//se adiciona el campo co_grupo_cte por solicitud de Luis Evelio Tonuzco
+//mayo 22 de 2007
+//elaborado jcrm
+//mayo 22 de 2007
+
+//validar que si exista la canasta en h_canasta_corte,  esto porque entre estas dos tablas
+//no existe el contraints  jorodrig  febrero 4 -10
+SELECT COUNT(*)
+INTO :li_existe
+FROM h_canasta_corte
+WHERE cs_canasta = :ll_cs_bolsa;
+IF Sqlca.SqlCode = -1 Then
+	ls_sqlerr = Sqlca.SqlErrText
+	rollback ;
+	MessageBox("Advertencia!","No se pudo crear detalle de bolsa.~n~n~n" + ls_sqlerr)
+	Return -1
+End If	
+
+IF li_existe > 0 THEN
+	
+	SELECT COUNT(*)
+	INTO :li_existe
+	FROM dt_canasta_corte
+	WHERE cs_canasta = :ll_cs_bolsa
+	  AND co_calidad = 1;
+	IF Sqlca.SqlCode = -1 Then
+		ls_sqlerr = Sqlca.SqlErrText
+		rollback ;
+		MessageBox("Advertencia!","Error verificando si existe la bolsa.~n~n~n" + ls_sqlerr)
+		Return -1
+	End If	
+	IF li_existe >  0 THEN
+		Return 2  //la canasta ya existe, buscar una nueva
+	END IF
+	
+	INSERT INTO dt_canasta_corte(cs_canasta, co_fabrica_ref, co_linea, co_referencia, co_talla, co_calidad, 
+		co_color, cs_orden_corte, lote, cs_espacio, cs_secuencia, ca_inicial, ca_actual, ca_segundas,
+		co_fabrica_modulo, co_planta_modulo, co_modulo, fe_creacion, fe_expiracion, fe_actualizacion, 
+		usuario, instancia, sw_leido, sw_cerrados, letra, cs_pdn, cs_agrupacion, po, nu_cut, upccode, ca_reproceso, 
+		pedido, co_grupo_cte, co_ref_exp, co_talla_exp, co_color_exp, co_fabrica_exp, co_linea_exp, cs_unir_oc, co_prepack )
+	VALUES(:ll_cs_bolsa, :ll_co_fabrica_pt, :ll_co_linea, :ll_co_referencia, :ll_co_talla, :ll_calidad,
+		:ll_co_color_pt, :ll_cs_orden_corte, :ll_cs_pdn, :ll_cs_espacio, :ll_tipo_bolsa, :ll_cantidad,
+		:ll_cantidad, 0, :li_fabrica, :li_planta, 0, current, current, current, :gstr_info_usuario.codigo_usuario,	
+		:gstr_info_usuario.instancia, 0, 0, :ls_letra, :ll_cs_pdn, :ll_cs_agrupacion, :as_po, :as_cut, :ls_ups, 0, :ll_pedido, 
+		:ls_grupo, :ls_ref_exp, :ls_talla_exp, :ls_color_exp, :li_fabrica_exp, :li_linea_exp, :ll_unir_oc, :ls_prepack );
+		
+	 If Sqlca.SqlCode = -1 Then
+		ls_sqlerr = Sqlca.SqlErrText
+		rollback ;
+		MessageBox("Advertencia!","No se pudo crear detalle de bolsa.~n~n~n" + ls_sqlerr)
+		Return -1
+	Else
+		commit ;
+	End If	
+
+	
+	DECLARE sp_inscanastas PROCEDURE FOR
+		pr_ins_canastas(:ll_cs_bolsa, :ll_cs_orden_corte, :ll_co_fabrica_pt, :ll_co_linea, :ll_co_referencia);
+		
+	EXECUTE sp_inscanastas;
+	
+	IF SQLCA.SQLCode = -1 THEN
+		ROLLBACK;
+		MessageBox("Error Base Datos","Error al crear la lectura de bolsas " + SQLCA.SQLErrText)
+		Return -1
+	ELSE
+		COMMIT;
+	END IF
+END IF
+
+return 0
+end function
+
