@@ -1,0 +1,185 @@
+HA$PBExportHeader$dtb_conceptos_planta_nivel0.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=33554431 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 460 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=432 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_centro dbname="co_centro" )
+ column=(type=char(30) updatewhereclause=yes name=de_centro dbname="de_centro" )
+ column=(type=decimal(0) updatewhereclause=yes name=dia dbname="dia" )
+ column=(type=number updatewhereclause=yes name=semana dbname="semana" )
+ column=(type=number updatewhereclause=yes name=semana_ant dbname="semana_ant" )
+ column=(type=number updatewhereclause=yes name=mes dbname="mes" )
+ column=(type=number updatewhereclause=yes name=mes_ant dbname="mes_ant" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_kg dbname="ca_kg" )
+ column=(type=number updatewhereclause=yes name=unidades dbname="unidades" )
+ column=(type=long updatewhereclause=yes name=orden dbname="orden" )
+ retrieve="  SELECT m_centros.co_centro,
+         m_centros.de_centro , 
+      	(select sum(tot_unidades)
+				from mv_totxcpto_diario
+				where mv_totxcpto_diario.co_centro = m_rollo.co_centro and
+						fe_proceso = extend(current, year to day) - 1 units day  ) as dia,
+			(select Sum(tot_unidades) / 7
+				from mv_totxcpto_diario
+				where mv_totxcpto_diario.co_centro = m_rollo.co_centro and
+						fe_proceso >= extend(current,year to day ) - 8 units day and
+						fe_proceso <= extend(current,year to day ) -1 units day ) as semana,
+			(select Sum(tot_unidades) / 7
+				from mv_totxcpto_diario
+				where mv_totxcpto_diario.co_centro = m_rollo.co_centro and
+						fe_proceso >= extend(current,year to day ) - 14 units day and
+						fe_proceso <= extend(current,year to day ) -8 units day ) as semana_ant,
+			(select sum(tot_unidades) / 28
+				from mv_totxcpto_diario
+				where mv_totxcpto_diario.co_centro = m_rollo.co_centro and
+						fe_proceso >= extend(current,year to day ) - 30 units day and
+						fe_proceso <= extend(current,year to day) -1 units day ) as mes,
+			(select sum(tot_unidades) / 1
+				from mv_totxcpto_diario
+				where mv_totxcpto_diario.co_centro = m_rollo.co_Centro and
+						fe_proceso >= extend(current,year to day ) - 60 units day and
+						fe_proceso <= extend(current,year to day) -29 units day ) as mes_ant,
+			sum(m_rollo.ca_kg) ca_kg,
+         0 as unidades,
+         1 as orden
+		
+    FROM m_cpto_bodega,   
+         m_rollo,
+         m_centros  
+   WHERE ( m_cpto_bodega.co_cpto_bodega = m_rollo.co_planeador ) and  
+         ( m_rollo.co_centro = m_centros.co_centro ) and
+         ( m_rollo.ca_kg > 0 ) and 
+         ( m_rollo.co_centro in (15,10,7,6 )) AND  
+         ( m_cpto_bodega.tipo in (1,2,4) )    
+GROUP BY 1,2,3,4,5,6,7
+
+UNION
+
+  SELECT 90 as co_centro,
+         '90 CORTE' as de_centro , 
+          	(select sum(tot_unidades)
+				from mv_totxcpto_diario
+				where mv_totxcpto_diario.co_centro = 90 and
+						fe_proceso = extend(current, year to day) - 1 units day  ) as dia,
+			(select Sum(tot_unidades) / 7
+				from mv_totxcpto_diario
+				where mv_totxcpto_diario.co_centro = 90 and
+						fe_proceso >= extend(current,year to day ) - 7 units day and
+						fe_proceso <= extend(current,year to day ) -1 units day ) as semana,
+			(select Sum(tot_unidades) / 7
+				from mv_totxcpto_diario
+				where mv_totxcpto_diario.co_centro = 90 and
+						fe_proceso >= extend(current,year to day ) - 14 units day and
+						fe_proceso <= extend(current,year to day ) -8 units day ) as semana_ant,
+			(select sum(tot_unidades) / 21
+				from mv_totxcpto_diario
+				where mv_totxcpto_diario.co_centro = 90 and
+						fe_proceso >= extend(current,year to day ) - 30 units day and
+						fe_proceso <= extend(current,year to day) -1 units day ) as mes,
+			(select sum(tot_unidades) / 21
+				from mv_totxcpto_diario
+				where mv_totxcpto_diario.co_centro = 90 and
+						fe_proceso >= extend(current,year to day ) - 60 units day and
+						fe_proceso <= extend(current,year to day) -29 units day ) as mes_ant,
+			0 as kilos,
+         sum(tmp_kamban_cte_po.ca_prog_oc) as unidades,
+         2 as orden
+		
+    FROM tmp_kamban_cte_po
+UNION
+ 
+select dt_confeccion_kpo.co_subcentro  as co_centro  ,                                          
+       m_subcentros_pdn.de_subcentro_pdn as de_centro,   
+       0,0,0,0,0,                     
+       0 as ca_kg,              
+       (sum(ca_inicial) + sum(ca_entradas) - sum(ca_salidas) + sum(ca_transito)) as unidades ,
+       3 as orden 
+from dt_confeccion_kpo , m_subcentros_pdn                                           
+where  ano = 2006                                                               
+and mes = 9                                                                     
+and co_fabrica_exp = 2                                                          
+and co_centro = 1                                                               
+and co_planta = 2     
+and dt_confeccion_kpo.co_subcentro not in (1,4,16,17)                                                          
+and dt_confeccion_kpo.co_tipoprod = m_subcentros_pdn.co_tipoprod
+and dt_confeccion_kpo.co_centro = m_subcentros_pdn.co_centro_pdn
+and dt_confeccion_kpo.co_subcentro = m_subcentros_pdn.co_subcentro_pdn
+group by 1,2
+
+
+UNION
+ 
+select 999  as co_centro  ,                                          
+       'TERCEROS' as de_centro,  
+        0,0,0,0,0,                      
+       0 as ca_kg,              
+       (sum(ca_inicial) + sum(ca_entradas) - sum(ca_salidas) + sum(ca_transito)) as unidades ,
+       4 as orden 
+from dt_confeccion_kpo , m_subcentros_pdn                                           
+where  ano = 2006                                                               
+and mes = 9                                                                     
+and co_fabrica_exp = 2                                                          
+and co_centro = 1                                                               
+and co_planta <> 2     
+and dt_confeccion_kpo.co_tipoprod = m_subcentros_pdn.co_tipoprod
+and dt_confeccion_kpo.co_centro = m_subcentros_pdn.co_centro_pdn
+and dt_confeccion_kpo.co_subcentro = m_subcentros_pdn.co_subcentro_pdn
+group by 1,2
+order by 1,2
+
+"  sort="orden A co_centro A " )
+text(band=header alignment="2" text="KILOS Y UNIDADES EN PROCESO" border="6" color="0" x="910" y="40" height="64" width="1303" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="2" expression="today()"border="0" color="0" x="2299" y="24" height="60" width="567" format="dd/mmm/yy h:mm" html.valueishtml="0"  name=date_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="%" border="6" color="0" x="2464" y="216" height="104" width="155" html.valueishtml="0"  name=t_12 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="%" border="6" color="0" x="1710" y="216" height="104" width="155" html.valueishtml="0"  name=t_11 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="%" border="6" color="0" x="3113" y="216" height="104" width="155" html.valueishtml="0"  name=t_13 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+button(band=header text="Guardar Como..." enabled=yes action="14" border="0" color="0" x="18" y="8" height="80" width="393" vtextalign="0" htextalign="0"  name=b_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="UNID. DIAANTERIOR" border="6" color="0" x="1417" y="216" height="104" width="270" html.valueishtml="0"  name=t_6 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="1 SEMANAANTES" border="6" color="0" x="1893" y="216" height="104" width="251" html.valueishtml="0"  name=t_7 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="2 SEMANASANTES" border="6" color="0" x="2162" y="216" height="104" width="283" html.valueishtml="0"  name=t_9 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="1 MESANTES" border="6" color="0" x="2642" y="216" height="104" width="215" html.valueishtml="0"  name=t_8 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="2 MESESANTES" border="6" color="0" x="2875" y="216" height="104" width="215" html.valueishtml="0"  name=t_10 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="CENTROS" border="6" color="33554432" x="18" y="216" height="104" width="850" html.valueishtml="0"  name=m_cpto_bodega_de_cpto_bodega_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="TOTALKILOS" border="6" color="33554432" x="887" y="216" height="104" width="224" html.valueishtml="0"  name=compute_0003_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="TOTALUNIDADES" border="6" color="33554432" x="1134" y="216" height="104" width="261" html.valueishtml="0"  name=t_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+line(band=header x1="878" y1="176" x2="1019" y2="176"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="1230" y1="176" x2="1371" y2="176"  name=l_2 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="1371" y1="176" x2="1371" y2="196"  name=l_3 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="878" y1="176" x2="878" y2="196"  name=l_4 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Proceso ejecutado al terminar el dia anterior" border="0" color="0" x="1861" y="152" height="48" width="864" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="En Linea" border="0" color="0" x="1033" y="148" height="48" width="187" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=header x1="1463" y1="172" x2="1838" y2="172"  name=l_5 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="2729" y1="172" x2="3150" y2="172"  name=l_6 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="3150" y1="172" x2="3150" y2="196"  name=l_7 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="1463" y1="172" x2="1463" y2="196"  name=l_8 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="TOTAL :" border="6" color="33554432" x="389" y="352" height="52" width="462" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=header alignment="1" expression="sum( ca_kg  for all) "border="6" color="33554432" x="887" y="352" height="52" width="224" format="###,###" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=header alignment="1" expression="sum( unidades  for all)"border="6" color="33554432" x="1134" y="352" height="52" width="261" format="#,##0" html.valueishtml="0"  name=compute_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=header alignment="1" expression="sum( semana  for all) "border="6" color="33554432" x="1893" y="352" height="52" width="251" format="#,##0" html.valueishtml="0"  name=compute_9 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=header alignment="1" expression="sum( semana_ant  for all) "border="6" color="33554432" x="2162" y="352" height="52" width="283" format="#,##0" html.valueishtml="0"  name=compute_15 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=header alignment="1" expression="(sum( unidades  for all) - sum( dia  for all) ) /sum( unidades  for all)"border="6" color="33554432" x="1710" y="352" height="52" width="155" format="0" html.valueishtml="0"  name=compute_13 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=header alignment="1" expression="(sum( semana  for all) - sum( semana_ant  for all)  ) / sum( semana  for all) "border="6" color="33554432" x="2464" y="352" height="52" width="155" format="0" html.valueishtml="0"  name=compute_18 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=header alignment="1" expression="sum( mes_ant  for all) "border="6" color="33554432" x="2875" y="356" height="52" width="215" format="#,##0" html.valueishtml="0"  name=compute_20 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=header alignment="1" expression="(sum( mes  for all)   - sum( mes_ant  for all) )/ sum( mes  for all) "border="6" color="33554432" x="3113" y="352" height="52" width="155" format="0" html.valueishtml="0"  name=compute_23 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=header alignment="1" expression="sum( mes  for all) "border="6" color="33554432" x="2642" y="352" height="52" width="215" format="#,##0" html.valueishtml="0"  name=compute_10 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=header alignment="1" expression="sum( dia  for all) "border="6" color="33554432" x="1422" y="352" height="52" width="270" format="#,##0" html.valueishtml="0"  name=compute_8 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="5" color="33554432" x="887" y="4" height="52" width="224" format="###,###" html.valueishtml="0"  name=ca_kg visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="4" height="52" width="5" format="[general]" html.valueishtml="0"  name=co_centro visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="32" y="8" height="52" width="827" format="[general]" html.valueishtml="0"  name=de_centro visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tif ( co_centro = 15 , rgb(226,226,226), rgb(255,255,255))" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="3296" y="8" height="52" width="69" format="[general]" html.valueishtml="0"  name=orden visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="5" color="33554432" x="1134" y="4" height="52" width="261" format="#,##0" html.valueishtml="0"  name=unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="5" color="33554432" x="1893" y="4" height="52" width="251" format="#,##0" html.valueishtml="0"  name=semana visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="5" color="33554432" x="2162" y="4" height="52" width="283" format="#,##0" html.valueishtml="0"  name=semana_ant visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="2" expression="(( semana  -  semana_ant ) / semana  ) * 100"border="5" color="33554432" x="2464" y="4" height="52" width="155" format="0" html.valueishtml="0"  name=compute_16 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tIF ((( semana  -  semana_ant ) / semana  ) * 100 > 0 , rgb(255,0,0) ,rgb(0,255,0))" )
+compute(band=detail alignment="2" expression="(( mes  -  mes_ant ) / mes  ) * 100"border="5" color="33554432" x="3113" y="4" height="52" width="155" format="0" html.valueishtml="0"  name=compute_21 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tIF ((( mes  -  mes_ant ) / mes  ) * 100 > 0 , rgb(255,0,0) ,rgb(0,255,0))" )
+column(band=detail id=7 alignment="2" tabsequence=32766 border="5" color="33554432" x="2875" y="4" height="52" width="215" format="#,##0" html.valueishtml="0"  name=mes_ant visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="5" color="33554432" x="2642" y="4" height="52" width="215" format="#,##0" html.valueishtml="0"  name=mes visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="5" color="33554432" x="1417" y="4" height="52" width="270" format="#,##0" html.valueishtml="0"  name=dia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="1" expression="(( unidades  -   dia ) /  unidades  ) * 100"border="5" color="33554432" x="1710" y="4" height="52" width="155" format="0" html.valueishtml="0"  name=compute_11 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tIF (((( unidades  -   dia ) /  unidades  ) * 100) > 0 , rgb(255,0,0) ,rgb(0,255,0))" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
