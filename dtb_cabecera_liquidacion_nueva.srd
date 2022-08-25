@@ -1,0 +1,82 @@
+HA$PBExportHeader$dtb_cabecera_liquidacion_nueva.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=368 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="536870912"  height.autosize=yes)
+table(column=(type=long updatewhereclause=yes name=cs_orden_corte dbname="h_ordenes_corte.cs_orden_corte" )
+ column=(type=long updatewhereclause=yes name=co_estado dbname="h_ordenes_corte.co_estado" )
+ column=(type=char(20) updatewhereclause=yes name=h_preref_pv_de_referencia_crta dbname="h_preref_pv.de_referencia_crta" )
+ column=(type=char(20) updatewhereclause=yes name=dt_agrupa_pdn_po dbname="dt_agrupa_pdn.po" )
+ column=(type=char(20) updatewhereclause=yes name=h_preref_pv_gpa dbname="h_preref_pv.gpa" )
+ column=(type=char(30) updatewhereclause=yes name=m_colores_de_color dbname="m_colores.de_color" )
+ column=(type=char(3) updatewhereclause=yes name=dt_agrupa_pdn_tono dbname="dt_agrupa_pdn.tono" )
+ column=(type=decimal(0) updatewhereclause=yes name=compute_0008 dbname="compute_0008" )
+ column=(type=datetime updatewhereclause=yes name=dt_liquidaxespacio_fe_liquidacion dbname="dt_liquidaxespacio.fe_liquidacion" )
+ retrieve="SELECT  h_ordenes_corte.cs_orden_corte ,
+        h_ordenes_corte.co_estado ,
+        h_preref_pv.de_referencia_crta ,
+        dt_agrupa_pdn.po ,
+        h_preref_pv.gpa ,
+        m_colores.de_color ,
+        dt_agrupa_pdn.tono ,
+        sum(dt_liq_unixespacio.ca_liquidadas),
+        dt_liquidaxespacio.fe_liquidacion     
+   FROM h_ordenes_corte ,
+        dt_agrupa_pdn ,
+        h_preref_pv ,
+        m_colores ,
+        dt_liquidaxespacio ,
+        dt_liq_unixespacio     
+  WHERE ( dt_agrupa_pdn.co_fabrica_pt = h_preref_pv.co_fabrica ) 
+    and ( dt_agrupa_pdn.co_linea = h_preref_pv.co_linea ) 
+    and ( Cast(dt_agrupa_pdn.co_referencia as Char(15)) = h_preref_pv.co_referencia ) 
+    and ( dt_agrupa_pdn.co_fabrica_pt = m_colores.co_fabrica ) 
+	 and ( dt_agrupa_pdn.co_linea = m_colores.co_linea ) 
+	 and ( dt_agrupa_pdn.co_color_pt = m_colores.co_color ) 
+	 and ( dt_liq_unixespacio.cs_orden_corte = dt_liquidaxespacio.cs_orden_corte ) 
+	 and ( dt_liq_unixespacio.cs_agrupacion = dt_liquidaxespacio.cs_agrupacion ) 
+	 and ( dt_liq_unixespacio.cs_base_trazos = dt_liquidaxespacio.cs_base_trazos ) 
+	 and ( dt_liq_unixespacio.cs_trazo = dt_liquidaxespacio.cs_trazo ) 
+	 and ( dt_liq_unixespacio.cs_liquidacion = dt_liquidaxespacio.cs_liquidacion ) 
+	 and ( h_ordenes_corte.cs_orden_corte = dt_liq_unixespacio.cs_orden_corte ) 
+    and ( h_preref_pv.co_tipo_ref = 'P' ) 
+	 and ( ( dt_liq_unixespacio.cs_orden_corte = :an_ordencorte ) 
+	 and ( dt_liquidaxespacio.cs_agrupacion = :an_agrupacion ) 
+	 and ( dt_liquidaxespacio.cs_base_trazos = :an_base_trazos ) 
+	 and ( dt_liq_unixespacio.cs_liquidacion = :an_liquidacion ) ) 
+GROUP BY h_ordenes_corte.cs_orden_corte ,
+         h_ordenes_corte.co_estado ,
+         h_preref_pv.de_referencia_crta ,
+         dt_agrupa_pdn.po ,
+         h_preref_pv.gpa ,
+         m_colores.de_color ,
+         dt_agrupa_pdn.tono ,
+         dt_liquidaxespacio.fe_liquidacion   " arguments=(("an_ordencorte", number),("an_agrupacion", number),("an_base_trazos", number),("an_liquidacion", number)) )
+text(band=header alignment="2" text="C. I. NICOLE S. A." border="0" color="0" x="14" y="8" height="60" width="507" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=1 alignment="0" tabsequence=10 border="0" color="0" x="366" y="104" height="56" width="329" format="[general]" html.valueishtml="0"  name=cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=2 alignment="0" tabsequence=32766 border="0" color="0" x="215" y="172" height="56" width="453" format="[general]" html.valueishtml="0"  name=co_estado visible="1" dddw.name=dddw_estados_ordencorte dddw.displaycolumn=de_estado dddw.datacolumn=co_estado dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Orden Corte:" border="0" color="0" x="14" y="104" height="56" width="338" html.valueishtml="0"  name=cs_orden_corte_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Estado:" border="0" color="0" x="14" y="172" height="56" width="183" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="LIQUIDACION DE ORDEN DE CORTE" border="0" color="0" x="882" y="20" height="64" width="1143" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="'*'+ cs_orden_corte +'*'"border="0" color="0" x="2153" y="128" height="156" width="1051" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="SKANDATArC39" font.height="-26" font.weight="400"  font.family="0" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Grupo" border="0" color="0" x="2222" y="12" height="64" width="178" html.valueishtml="0"  name=t_7 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Estilo" border="2" color="0" x="23" y="308" height="56" width="539" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="P.o." border="2" color="0" x="576" y="308" height="56" width="539" html.valueishtml="0"  name=t_8 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Color" border="2" color="0" x="1129" y="308" height="56" width="809" html.valueishtml="0"  name=t_9 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Tono" border="2" color="0" x="1957" y="308" height="56" width="128" html.valueishtml="0"  name=t_10 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Unidades Cortadas" border="0" color="0" x="5" y="240" height="56" width="480" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=8 alignment="0" tabsequence=32766 border="0" color="0" x="503" y="240" height="56" width="288" format="[general]" html.valueishtml="0"  name=compute_0008 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Fecha de Liquidaci$$HEX1$$f300$$ENDHEX$$n:" border="0" color="0" x="951" y="172" height="56" width="539" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=9 alignment="0" tabsequence=32766 border="0" color="0" x="1504" y="172" height="56" width="521" format="yyyy-mmmm-dd" html.valueishtml="0"  name=dt_liquidaxespacio_fe_liquidacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="2" color="0" x="576" y="0" height="56" width="539" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_po visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="2" color="0" x="1129" y="0" height="56" width="809" format="[general]" html.valueishtml="0"  name=m_colores_de_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="2" tabsequence=32766 border="2" color="0" x="1957" y="0" height="56" width="128" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_tono visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=0 border="0" color="0" x="3205" y="0" height="64" width="539" html.valueishtml="0"  name=h_preref_pv_de_referencia_crta visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=0 border="0" color="0" x="3744" y="0" height="64" width="539" html.valueishtml="0"  name=h_preref_pv_gpa visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
