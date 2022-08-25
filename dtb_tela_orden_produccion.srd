@@ -1,0 +1,53 @@
+HA$PBExportHeader$dtb_tela_orden_produccion.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 1 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=156 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=224 color="536870912"  height.autosize=yes)
+table(column=(type=long updatewhereclause=yes name=h_ordenpd_te_cs_ordenpd_pt dbname="cs_ordenpd_pt" )
+ column=(type=long updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=char(30) updatewhereclause=yes name=h_ordenpd_pt_de_linea dbname="de_linea" )
+ column=(type=long updatewhereclause=yes name=h_ordenpd_pt_co_referencia dbname="co_referencia" )
+ column=(type=char(40) updatewhereclause=yes name=m_lineas_de_referencia dbname="de_referencia" )
+ retrieve="select distinct {+ORDERED}
+		h_ordenpd_pt.cs_ordenpd_pt, h_ordenpd_pt.co_fabrica,
+		h_ordenpd_pt.co_linea, m_lineas.de_linea, h_ordenpd_pt.co_referencia,
+		h_preref_pv.de_referencia
+ from h_ordenpd_pt, 
+		m_rollo, 
+		m_lineas, 
+		h_preref_pv
+where (	h_ordenpd_pt.cs_ordenpd_pt = :al_ordenpdn 	OR :al_ordenpdn = 0 	 ) and
+		(	h_ordenpd_pt.co_fabrica 	= :ai_fabrica 		OR :ai_fabrica = 0 	 ) and
+		(  h_ordenpd_pt.co_linea 		= :ai_linea 		OR :ai_linea = 0 		 ) and
+		(	h_ordenpd_pt.co_referencia = :al_referencia 	OR :al_referencia = 0 ) and
+      h_ordenpd_pt.cs_ordenpd_pt = m_rollo.cs_orden_pr_act AND
+		m_rollo.co_centro 			in (15, 90, 91) AND
+		h_ordenpd_pt.co_fabrica 	= h_preref_pv.co_fabrica and
+		h_ordenpd_pt.co_linea 		= h_preref_pv.co_linea and 
+      (Cast(h_ordenpd_pt.co_referencia as char(15) ) = h_preref_pv.co_referencia ) and
+      h_preref_pv.co_tipo_ref = 'P' and
+		h_ordenpd_pt.co_fabrica 	= m_lineas.co_fabrica and
+		h_ordenpd_pt.co_linea 		= m_lineas.co_linea " arguments=(("al_ordenpdn", number),("ai_fabrica", number),("ai_linea", number),("al_referencia", number)) )
+text(band=header alignment="2" text="SEGUIMIENTO ORDEN PRODUCCI$$HEX1$$d300$$ENDHEX$$N" border="2" color="33554432" x="1006" y="44" height="80" width="1344" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="'P$$HEX1$$e100$$ENDHEX$$gina ' + page() + ' de ' + pageCount()"border="0" color="33554432" x="2720" y="56" height="60" width="608" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="27" y="52" height="64" width="521" format="dd/mm/yyyy hh:mm" html.valueishtml="0"  name=date_1 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Orden Producci$$HEX1$$f300$$ENDHEX$$n:" border="0" color="33554432" x="14" y="8" height="56" width="489" html.valueishtml="0"  name=h_ordenpd_te_cs_ordenpd_pt_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="526" y="8" height="52" width="503" format="[general]" html.valueishtml="0"  name=h_ordenpd_te_cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="L$$HEX1$$ed00$$ENDHEX$$nea:" border="0" color="33554432" x="1829" y="8" height="52" width="174" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="F$$HEX1$$e100$$ENDHEX$$brica:" border="0" color="33554432" x="1074" y="8" height="52" width="206" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="1294" y="8" height="52" width="471" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" dddw.name=dddw_fabricas dddw.displaycolumn=razon_social dddw.datacolumn=co_fabrica dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="2021" y="8" height="52" width="69" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="2107" y="8" height="52" width="416" format="[general]" html.valueishtml="0"  name=h_ordenpd_pt_de_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Referencia:" border="0" color="33554432" x="2574" y="8" height="52" width="283" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="4283" y="0" height="56" width="69" format="[general]" html.valueishtml="0"  name=h_ordenpd_pt_co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="4352" y="0" height="56" width="919" format="[general]" html.valueishtml="0"  name=m_lineas_de_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+report(band=detail dataobject="dtb_seguimiento_orden_produccion_sp" x="18" y="88" height="136" width="2720" border="0"  height.autosize=yes criteria="" nest_arguments=((" h_ordenpd_te_cs_ordenpd_pt ")) trail_footer = yes  name=dw_1 visible="1"  slideup=directlyabove )
+report(band=detail dataobject="dtb_referencias_po_ordenpdn" x="2747" y="84" height="136" width="1774" border="0"  height.autosize=yes criteria="" nest_arguments=((" h_ordenpd_te_cs_ordenpd_pt ")) trail_footer = yes  name=dw_2 visible="1"  slideup=directlyabove )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
