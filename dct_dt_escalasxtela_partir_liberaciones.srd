@@ -1,0 +1,84 @@
+HA$PBExportHeader$dct_dt_escalasxtela_partir_liberaciones.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=79741120 processing=4 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no  crosstab.dynamic = yes grid.lines=0 grid.columnmove=no selected.mouse=no )
+header[1](height=60 color="536870912" )
+header[2](height=60 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=compute_0003 dbname="compute_0003" )
+ column=(type=number updatewhereclause=yes name=ca_unidades dbname="ca_unidades" )
+ retrieve="  SELECT dt_escalasxtela.co_talla,   
+         dt_escalasxtela.ca_unidades,   
+         ~"liberadas~"  
+    FROM dt_escalasxtela
+WHERE co_fabrica_exp=:co_fabrica_exp AND
+		pedido=:pedido AND
+		cs_liberacion=:cs_liberacion AND
+		nu_orden=:nu_orden 	AND
+		co_fabrica_pt=:co_fabrica_pt AND
+		co_linea=:co_linea AND
+		co_referencia=:co_referencia AND
+		co_color_pt=:co_color_pt AND
+		tono=:tono AND
+		cs_estilocolortono=:cs_estilocolortono AND
+		co_fabrica_tela=:co_fabrica_tela AND
+		co_reftel=:co_reftel AND
+		diametro=:diametro AND
+		co_color_tela=:co_color_tela AND
+		ancho_cortable=:ancho_cortable
+UNION
+  SELECT dt_escalasxtela.co_talla,   
+         dt_escalasxtela.ca_proporcion,   
+         ~"proporcion~"  
+    FROM dt_escalasxtela   
+WHERE co_fabrica_exp=:co_fabrica_exp AND
+		pedido=:pedido AND
+		cs_liberacion=:cs_liberacion AND
+		nu_orden=:nu_orden 	AND
+		co_fabrica_pt=:co_fabrica_pt AND
+		co_linea=:co_linea AND
+		co_referencia=:co_referencia AND
+		co_color_pt=:co_color_pt AND
+		tono=:tono AND
+		cs_estilocolortono=:cs_estilocolortono AND
+		co_fabrica_tela=:co_fabrica_tela AND
+		co_reftel=:co_reftel AND
+		diametro=:diametro AND
+		co_color_tela=:co_color_tela AND
+		ancho_cortable=:ancho_cortable
+   UNION
+  SELECT dt_escalasxtela.co_talla,   
+         dt_escalasxtela.ca_numerada,   
+         ~"numeradas~"  
+    FROM dt_escalasxtela   
+WHERE co_fabrica_exp=:co_fabrica_exp AND
+		pedido=:pedido AND
+		cs_liberacion=:cs_liberacion AND
+		nu_orden=:nu_orden 	AND
+		co_fabrica_pt=:co_fabrica_pt AND
+		co_linea=:co_linea AND
+		co_referencia=:co_referencia AND
+		co_color_pt=:co_color_pt AND
+		tono=:tono AND
+		cs_estilocolortono=:cs_estilocolortono AND
+		co_fabrica_tela=:co_fabrica_tela AND
+		co_reftel=:co_reftel AND
+		diametro=:diametro AND
+		co_color_tela=:co_color_tela AND
+		ancho_cortable=:ancho_cortable
+" arguments=(("co_fabrica_exp", number),("pedido", number),("cs_liberacion", number),("nu_orden", string),("co_fabrica_pt", number),("co_linea", number),("co_referencia", number),("co_color_pt", number),("tono", string),("cs_estilocolortono", number),("co_fabrica_tela", number),("co_reftel", number),("diametro", number),("co_color_tela", number),("ancho_cortable", number))  sort="compute_0003 A " )
+text(band=header[1] alignment="2" text="Escala" border="6" color="0" x="9" y="4" height="52" width="457"  name=t_1  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[1] alignment="2" text="Tallas" border="6" color="0" x="475" y="4" height="52" width="224"  name=t_2  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="Tipo de Cant." border="6" color="0" x="9" y="4" height="52" width="457"  name=compute_0003_t  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="2" text="@co_talla" border="6" color="0" x="475" y="4" height="52" width="224"  name=ca_unidades_t  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="2" text="Total " border="6" color="0" x="709" y="4" height="52" width="247"  name=grand_sum_ca_unidades_t  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="0" x="9" y="4" height="64" width="457" format="[general]"  name=compute_0003 edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="0" x="475" y="4" height="64" width="224" format="######,##0.##"  name=ca_unidades edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes crosstab.repeat=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+compute(band=detail alignment="2" expression="crosstabsum(1)"border="5" color="0" x="709" y="4" height="64" width="247" format="######,##0.##"  name=grand_sum_ca_unidades  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+compute(band=summary alignment="1" expression="~"Grand Total~""border="0" color="0" x="9" y="4" height="64" width="457" format="[general]"  name=compute_1  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(ca_unidades for all )"border="5" color="0" x="475" y="4" height="64" width="224" format="######,##0.##"  name=compute_2  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+compute(band=summary alignment="2" expression="sum(grand_sum_ca_unidades for all )"border="5" color="0" x="709" y="4" height="64" width="247" format="######,##0.##"  name=compute_3  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+ crosstab(band = foreground  crosstabonly = yes 
+ columns = "co_talla" rows = "compute_0003" values = "sum(ca_unidades for crosstab)" sourcenames = "co_talla, ca_unidades, compute_0003")htmltable(border="0" cellpadding="1" cellspacing="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
