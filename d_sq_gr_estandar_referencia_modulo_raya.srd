@@ -1,0 +1,71 @@
+HA$PBExportHeader$d_sq_gr_estandar_referencia_modulo_raya.srd
+$PBExportComments$SA48603 E00368
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=128 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_centro_pdn dbname="co_centro_pdn" )
+ column=(type=long updatewhereclause=yes name=co_subcentro_pdn dbname="co_subcentro_pdn" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long updatewhereclause=yes name=ca_unidades dbname="ca_unidades" )
+ column=(type=decimal(4) updatewhereclause=yes name=tiempo_st dbname="tiempo_st" )
+ column=(type=decimal(4) updatewhereclause=yes name=porc_eficiencia dbname="porc_eficiencia" )
+ retrieve="SELECT  UNIQUE 
+      m_estandares_med.co_centro_pdn,
+			 m_estandares_med.co_subcentro_pdn,
+       m_estandares_med.co_referencia ,
+       dt_agrupa_pdn.ca_unidades,    
+      m_estandares_med.tiempo_st,   
+      (select max(a.prc_eficiencia) from dt_fichatiempos_cs a 
+        where a.co_fabrica = m_estandares_med.co_fabrica
+          and a.co_linea = m_estandares_med.co_linea
+          and a.co_referencia = m_estandares_med.co_referencia
+          and a.co_tipoprod = m_estandares_med.co_tipoprod
+          and a.co_centro_pdn = m_estandares_med.co_centro_pdn
+          and a.co_subcentro_pdn = m_estandares_med.co_subcentro_pdn)  porc_eficiencia
+  FROM m_estandares m_estandares_med,
+			m_plantacentro_pdn,     
+		dt_pdnxmodulo,
+		dt_agrupa_pdn, 
+dt_modelos
+WHERE    ( m_estandares_med.co_tipo_centro_pdn = 2 ) and  
+
+			( m_estandares_med.co_modelo = dt_modelos.co_modelo) and 
+		 ( m_estandares_med.co_fabrica = dt_modelos.co_fabrica ) and
+		 ( m_estandares_med.co_linea = dt_modelos.co_linea ) and
+		 ( m_estandares_med.co_referencia = dt_modelos.co_referencia ) and
+		 ( dt_modelos.raya = :ai_raya or :ai_raya = 0) and
+   
+        ( m_estandares_med.co_tipoprod = m_plantacentro_pdn.co_tipoprod ) and   
+       ( m_estandares_med.co_centro_pdn = m_plantacentro_pdn.co_centro_pdn ) and 
+		 ( m_estandares_med.co_subcentro_pdn = m_plantacentro_pdn.co_subcentro_pdn ) and  
+       ( m_plantacentro_pdn.sw_estandar_corte = 1) and	
+      
+       ( m_estandares_med.co_fabrica = dt_agrupa_pdn.co_fabrica_pt) and  
+       ( m_estandares_med.co_linea = dt_agrupa_pdn.co_linea)  and     
+       ( m_estandares_med.co_referencia = dt_agrupa_pdn.co_referencia)   AND
+		(dt_agrupa_pdn.cs_liberacion = dt_pdnxmodulo.cs_liberacion) and 
+       (dt_pdnxmodulo.cs_asignacion = :al_orden_corte OR :al_orden_corte = 0) and
+       (dt_agrupa_pdn.co_referencia = :al_referencia OR :al_referencia = 0)	and 	
+       ( m_estandares_med.co_tipoprod = 1 ) and
+		 (m_estandares_med.tiempo_st > 0)
+ORDER BY m_estandares_med.co_referencia" arguments=(("al_orden_corte", number),("al_referencia", number),("al_modulo", number),("ai_raya", number)) )
+text(band=header alignment="2" text="Co Referencia" border="0" color="33554432" x="9" y="8" height="56" width="315" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Unidades" border="0" color="33554432" x="334" y="8" height="56" width="279" html.valueishtml="0"  name=ca_unidades_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Centro Pdn" border="0" color="33554432" x="622" y="4" height="76" width="174" html.valueishtml="0"  name=co_centro_pdn_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Subcentro Pdn" border="0" color="33554432" x="805" y="4" height="76" width="238" html.valueishtml="0"  name=co_subcentro_pdn_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Tiempo St" border="0" color="33554432" x="1051" y="4" height="76" width="978" html.valueishtml="0"  name=tiempo_st_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Porc Eficiencia" border="0" color="33554432" x="2039" y="4" height="76" width="978" html.valueishtml="0"  name=porc_eficiencia_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="68" width="315" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="334" y="8" height="68" width="279" format="[general]" html.valueishtml="0"  name=ca_unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="622" y="0" height="56" width="174" format="[general]" html.valueishtml="0"  name=co_centro_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="805" y="0" height="56" width="238" format="[general]" html.valueishtml="0"  name=co_subcentro_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1051" y="0" height="56" width="978" format="[general]" html.valueishtml="0"  name=tiempo_st visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="2039" y="0" height="56" width="978" format="[general]" html.valueishtml="0"  name=porc_eficiencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
