@@ -1,0 +1,79 @@
+HA$PBExportHeader$d_lista_secciones_x_trazos_v2_copia.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1090519039 processing=4 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no  crosstab.dynamic = yes grid.lines=0 grid.columnmove=no selected.mouse=no )
+header[1](height=0 color="536870912" )
+header[2](height=64 color="536870912" )
+header[3](height=68 color="536870912" )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=number updatewhereclause=yes name=cs_trazo dbname="cs_trazo" )
+ column=(type=number updatewhereclause=yes name=cs_seccion dbname="cs_seccion" )
+ column=(type=number updatewhereclause=yes name=capas dbname="capas" )
+ column=(type=number updatewhereclause=yes name=co_trazo dbname="co_trazo" )
+ column=(type=number updatewhereclause=yes name=co_color_te dbname="co_color_te" )
+ column=(type=char(20) updatewhereclause=yes name=de_color dbname="de_color" )
+ column=(type=number updatewhereclause=yes name=cs_pdn dbname="cs_pdn" )
+ column=(type=number updatewhereclause=yes name=cs_ordenpdn dbname="cs_ordenpdn" )
+ column=(type=number updatewhereclause=yes name=ca_paquetes dbname="ca_paquetes" )
+ column=(type=number updatewhereclause=yes name=ca_programadas dbname="ca_programadas" )
+ retrieve="SELECT   dt_trazosxbase.co_color_te,
+			m_color.de_color,
+			dt_trazosxbase.capas,
+			dt_trazosxbase.cs_trazo,   
+         dt_trazosxbase.cs_seccion,
+			dt_trazosxbase.co_trazo,   
+         dt_trazosxbase.cs_pdn,
+         dt_trazosxbase.co_talla,   
+         dt_trazosxbase.ca_paquetes,   
+         dt_trazosxbase.ca_programadas,
+			dt_trazosxbase.cs_ordenpdn
+    FROM dt_trazosxbase, dt_agrupa_pdn, m_color
+   WHERE ( dt_trazosxbase.cs_agrupacion = :an_agrupa ) AND  
+         ( dt_trazosxbase.cs_base_trazos = :an_trazo ) AND
+			( dt_trazosxbase.co_modelo = :an_modelo ) AND
+			( dt_trazosxbase.co_fabrica_te = :an_fabtela ) AND
+			( dt_trazosxbase.co_reftel = :an_reftel ) AND
+			( dt_trazosxbase.co_caract = :an_caract ) AND
+			( dt_trazosxbase.diametro = :an_diametro ) AND  
+			( dt_trazosxbase.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion ) AND
+			( dt_trazosxbase.cs_pdn = dt_agrupa_pdn.cs_pdn ) AND
+			( dt_trazosxbase.co_color_te = m_color.co_color )" arguments=(("an_agrupa", number),("an_trazo", number),("an_modelo", number),("an_fabtela", number),("an_reftel", number),("an_caract", number),("an_diametro", number))  sort="cs_trazo A total A  cs_seccion A  cs_ordenpdn A  co_trazo A  co_color_te A  de_color A  cs_pdn A " )
+group(level=1 header.height=0 trailer.height=4 by=("cs_trazo" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=0 trailer.height=0 by=("cs_seccion" ) header.color="536870912" trailer.color="536870912" )
+group(level=3 header.height=0 trailer.height=0 by=("capas" ) header.color="536870912" trailer.color="536870912" )
+group(level=4 header.height=0 trailer.height=0 by=("co_trazo" ) header.color="536870912" trailer.color="536870912" )
+group(level=5 header.height=0 trailer.height=0 by=("co_color_te" ) header.color="536870912" trailer.color="536870912" )
+group(level=6 header.height=0 trailer.height=0 by=("de_color" ) header.color="536870912" trailer.color="536870912" )
+group(level=7 header.height=0 trailer.height=0 by=("cs_pdn" ) header.color="536870912" trailer.color="536870912" )
+text(band=header[1] alignment="0" text="Co Talla" border="0" color="0" x="133" y="4" height="52" width="133" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="2" text="@co_talla" border="0" color="0" x="919" y="4" height="52" width="256" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Esp" border="0" color="0" x="9" y="4" height="52" width="114" html.valueishtml="0"  name=cs_trazo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Sec" border="0" color="0" x="133" y="4" height="52" width="133" html.valueishtml="0"  name=cs_seccion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Capas" border="0" color="0" x="274" y="4" height="52" width="165" html.valueishtml="0"  name=capas_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Co Trazo" border="0" color="0" x="448" y="4" height="52" width="5" html.valueishtml="0"  name=co_trazo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Co Color Te" border="0" color="0" x="462" y="4" height="52" width="5" html.valueishtml="0"  name=co_color_te_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="De Color" border="0" color="0" x="475" y="4" height="52" width="274" html.valueishtml="0"  name=de_color_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Pdn" border="0" color="0" x="773" y="4" height="52" width="123" html.valueishtml="0"  name=cs_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Cs Ordenpdn" border="0" color="0" x="905" y="4" height="52" width="5" html.valueishtml="0"  name=cs_ordenpdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Paq" border="0" color="0" x="919" y="4" height="52" width="119" html.valueishtml="0"  name=ca_paquetes_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Und" border="0" color="0" x="1047" y="4" height="52" width="123" html.valueishtml="0"  name=ca_programadas_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="4" height="60" width="114" format="[general]" html.valueishtml="0"  name=cs_trazo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="133" y="4" height="60" width="133" format="[general]" html.valueishtml="0"  name=cs_seccion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="274" y="4" height="60" width="165" format="[general]" html.valueishtml="0"  name=capas visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="448" y="4" height="60" width="5" format="[general]" html.valueishtml="0"  name=co_trazo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="462" y="4" height="60" width="5" format="[general]" html.valueishtml="0"  name=co_color_te visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="475" y="4" height="60" width="274" format="[general]" html.valueishtml="0"  name=de_color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="773" y="4" height="60" width="123" format="[general]" html.valueishtml="0"  name=cs_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="905" y="4" height="60" width="5" format="[general]" html.valueishtml="0"  name=cs_ordenpdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="919" y="4" height="60" width="119" format="[general]" html.valueishtml="0"  name=ca_paquetes visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0 crosstab.repeat=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="33554432" x="1047" y="4" height="60" width="123" format="[general]" html.valueishtml="0"  name=ca_programadas visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0 crosstab.repeat=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="sum( capas for group 2)"border="0" color="0" x="759" y="4" height="60" width="5" format="[GENERAL]" html.valueishtml="0"  name=total visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=trailer.2 alignment="1" expression="sum(capas for group 2)"border="0" color="33554432" x="274" y="8" height="56" width="165" format="[general]" html.valueishtml="0"  name=totalcapas visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="~"Grand Total~""border="0" color="0" x="9" y="4" height="60" width="114" format="[general]" html.valueishtml="0"  name=compute_36 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_paquetes for all )"border="0" color="33554432" x="919" y="4" height="60" width="119" format="[general]" html.valueishtml="0"  name=compute_37 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_programadas for all )"border="0" color="33554432" x="1047" y="4" height="60" width="123" format="[general]" html.valueishtml="0"  name=compute_38 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+ crosstab(band = foreground  crosstabonly = yes 
+ columns = "co_talla" rows = "cs_trazo, cs_seccion, capas, co_trazo, co_color_te, de_color, cs_pdn, cs_ordenpdn" values = "sum(ca_paquetes for crosstab), sum(ca_programadas for crosstab)" sourcenames = "co_color_te, de_color, capas, cs_trazo, cs_seccion, co_trazo, cs_pdn, co_talla, ca_paquetes, ca_programadas, cs_ordenpdn")
+sparse(names="cs_trazo	cs_seccion	capas	co_trazo	co_color_te	de_color	cs_pdn")htmltable(border="0" cellpadding="1" cellspacing="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
