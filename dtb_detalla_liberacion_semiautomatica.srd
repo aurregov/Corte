@@ -1,0 +1,133 @@
+HA$PBExportHeader$dtb_detalla_liberacion_semiautomatica.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=12639424 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=char(8) update=yes updatewhereclause=yes key=yes name=usuario dbname="usuario" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_ordenpd_pt dbname="cs_ordenpd_pt" )
+ column=(type=char(20) update=yes updatewhereclause=yes key=yes name=po dbname="po" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_linea dbname="co_linea" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_color dbname="co_color" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_talla dbname="co_talla" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_modelo dbname="co_modelo" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_reftel dbname="co_reftel" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_caract dbname="co_caract" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_color_te dbname="co_color_te" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=diametro dbname="diametro" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes key=yes name=ancho dbname="ancho" )
+ column=(type=long updatewhereclause=yes key=yes name=cs_tanda dbname="cs_tanda" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=area dbname="area" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=grm_ficha dbname="grm_ficha" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=mt_bodega dbname="mt_bodega" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=kg_bodega dbname="kg_bodega" )
+ column=(type=long update=yes updatewhereclause=yes name=unid_bodega dbname="unid_bodega" )
+ column=(type=long update=yes updatewhereclause=yes name=unid_liberar dbname="unid_liberar" )
+ column=(type=long update=yes updatewhereclause=yes name=sw_marca dbname="sw_marca" )
+ column=(type=decimal(3) update=yes updatewhereclause=yes name=consumo dbname="consumo" )
+ column=(type=long update=yes updatewhereclause=yes name=raya dbname="raya" )
+ column=(type=long update=yes updatewhereclause=yes name=unid_real_liberar dbname="unid_real_liberar" )
+ column=(type=long updatewhereclause=yes name=unid_prog dbname="unid_prog" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_programada_exp dbname="ca_programada_exp" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_liberada_exp dbname="ca_liberada_exp" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_programada_nal dbname="ca_programada_nal" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_liberada_nal dbname="ca_liberada_nal" )
+ column=(type=char(40) updatewhereclause=yes name=h_preref_de_referencia dbname="de_referencia" )
+ retrieve="  SELECT temp_modelos_ref.usuario,   
+         temp_modelos_ref.cs_ordenpd_pt,   
+         temp_modelos_ref.po,   
+         temp_modelos_ref.co_fabrica,   
+         temp_modelos_ref.co_linea,   
+         temp_modelos_ref.co_referencia,   
+         temp_modelos_ref.co_color,   
+         temp_modelos_ref.co_talla,   
+         temp_modelos_ref.co_modelo,   
+         temp_modelos_ref.co_reftel,   
+         temp_modelos_ref.co_caract,   
+         temp_modelos_ref.co_color_te,   
+         temp_modelos_ref.diametro,   
+         temp_modelos_ref.ancho,   
+         temp_modelos_ref.cs_tanda,   
+         temp_modelos_ref.area,   
+         temp_modelos_ref.grm_ficha,   
+         temp_modelos_ref.mt_bodega,   
+         temp_modelos_ref.kg_bodega,   
+         temp_modelos_ref.unid_bodega,   
+         temp_modelos_ref.unid_liberar,   
+         temp_modelos_ref.sw_marca,   
+         temp_modelos_ref.consumo,   
+         temp_modelos_ref.raya,
+			temp_modelos_ref.unid_real_liberar,
+			temp_modelos_ref.unid_prog,
+			(select nvl(sum(dt_caxpedidos.ca_programada),0)
+            from dt_caxpedidos
+				where dt_caxpedidos.cs_ordenpd_pt = temp_modelos_ref.cs_ordenpd_pt and
+						dt_caxpedidos.co_talla      = temp_modelos_ref.co_talla and
+						dt_caxpedidos.co_color      = temp_modelos_ref.co_color and
+						dt_caxpedidos.nu_orden 		 = temp_modelos_ref.po ) as ca_programada_exp	,
+			(select nvl(sum(dt_caxpedidos.ca_liberadas),0)
+            from dt_caxpedidos
+				where dt_caxpedidos.cs_ordenpd_pt =temp_modelos_ref.cs_ordenpd_pt and
+						dt_caxpedidos.co_talla      = temp_modelos_ref.co_talla and
+						dt_caxpedidos.co_color      = temp_modelos_ref.co_color and
+			   		dt_caxpedidos.nu_orden 		 = temp_modelos_ref.po) as ca_liberada_exp	,
+		    (select nvl(sum(dt_orden_tllaclor.ca_programada),0)
+				from dt_orden_tllaclor
+				where dt_orden_tllaclor.cs_ordenpd_pt = temp_modelos_ref.cs_ordenpd_pt and
+						dt_orden_tllaclor.co_talla		  = temp_modelos_ref.co_talla and
+						dt_orden_tllaclor.co_color      = temp_modelos_ref.co_color	) as ca_programada_nal,
+			 (select nvl(sum(dt_orden_tllaclor.ca_liberada),0)
+				from dt_orden_tllaclor
+				where dt_orden_tllaclor.cs_ordenpd_pt = temp_modelos_ref.cs_ordenpd_pt and
+						dt_orden_tllaclor.co_talla		  = temp_modelos_ref.co_talla and
+						dt_orden_tllaclor.co_color      = temp_modelos_ref.co_color	) as ca_liberada_nal,
+         h_preref_pv.de_referencia
+    FROM temp_modelos_ref,
+			h_preref_pv  
+   WHERE ( temp_modelos_ref.usuario 			 = :an_usuario ) AND  
+         ( temp_modelos_ref.cs_ordenpd_pt 	 = :an_ordenpd_pt OR :an_ordenpd_pt = 999999) AND  
+         ( temp_modelos_ref.co_color			 = :an_color ) AND
+			( temp_modelos_ref.po					 = :as_po) AND
+			( temp_modelos_ref.ancho         	 = :an_ancho) AND
+			( temp_modelos_ref.cs_tanda        	 = :an_tanda) AND
+			( temp_modelos_ref.raya					 = 10) AND
+			( temp_modelos_ref.co_fabrica			 = h_preref_pv.co_fabrica ) AND
+			( temp_modelos_ref.co_linea			 = h_preref_pv.co_linea ) AND
+         (Cast(temp_modelos_ref.co_referencia as char(15) ) = h_preref_pv.co_referencia ) and
+         ( h_preref_pv.co_tipo_ref 				  = 'P' )
+" update="h_preref_pv" updatewhere=0 updatekeyinplace=no arguments=(("an_usuario", string),("an_ordenpd_pt", number),("an_color", number),("as_po", string),("an_ancho", number),("an_tanda", number))  sort="po A raya A ancho A co_color A cs_tanda A co_talla A " )
+group(level=1 header.height=68 trailer.height=0 by=("po" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=76 trailer.height=172 by=("co_color" , "raya" , "ancho" , "cs_tanda" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="P.O." border="6" color="33554432" x="9" y="8" height="104" width="329" html.valueishtml="0"  name=po_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Color" border="6" color="33554432" x="357" y="8" height="104" width="137" html.valueishtml="0"  name=co_color_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Talla" border="6" color="33554432" x="823" y="8" height="104" width="137" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Pedido" border="6" color="33554432" x="978" y="8" height="104" width="183" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Liberado" border="6" color="33554432" x="1179" y="8" height="104" width="197" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="%Lib." border="6" color="33554432" x="1394" y="8" height="104" width="151" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Unid.Liberar" border="6" color="33554432" x="1563" y="8" height="104" width="215" html.valueishtml="0"  name=unid_liberar_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="%Total" border="6" color="33554432" x="1797" y="8" height="104" width="183" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Anch" border="6" color="33554432" x="512" y="8" height="104" width="119" html.valueishtml="0"  name=ancho_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Tanda" border="6" color="33554432" x="649" y="8" height="104" width="160" html.valueishtml="0"  name=tono_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header.1 id=3 alignment="0" tabsequence=32766 border="5" color="33554432" x="9" y="4" height="56" width="421" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=31 alignment="0" tabsequence=20 border="6" color="33554432" x="457" y="4" height="56" width="919" format="[general]" html.valueishtml="0"  name=h_preref_de_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+column(band=header.2 id=7 alignment="1" tabsequence=32766 border="5" color="33554432" x="201" y="8" height="56" width="293" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=14 alignment="2" tabsequence=32766 border="5" color="33554432" x="517" y="8" height="56" width="119" format="####" html.valueishtml="0"  name=ancho visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=15 alignment="0" tabsequence=20 border="5" color="33554432" x="649" y="8" height="56" width="160" format="[general]" html.valueishtml="0"  name=cs_tanda visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="2" tabsequence=32766 border="5" color="33554432" x="823" y="4" height="64" width="137" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=26 alignment="1" tabsequence=32766 border="5" color="33554432" x="978" y="4" height="64" width="183" format="[general]" html.valueishtml="0"  name=unid_prog visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="if(  ca_programada_exp = 0, ca_liberada_nal , ca_liberada_exp )"border="5" color="33554432" x="1179" y="4" height="64" width="197" format="[GENERAL]" html.valueishtml="0"  name=liberado visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="Round( (  liberado  /  unid_prog  ) *100 ,0 )"border="5" color="33554432" x="1394" y="4" height="64" width="151" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=25 alignment="1" tabsequence=10 border="5" color="33554432" x="1563" y="4" height="64" width="215" format="[general]" html.valueishtml="0"  name=unid_real_liberar visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="1" expression="Round( ( ( liberado  +   unid_real_liberar  ) / unid_prog) * 100 ,0)"border="5" color="33554432" x="1797" y="4" height="64" width="183" format="[General]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.2 alignment="1" text="TOTAL COLOR:" border="6" color="0" x="613" y="8" height="56" width="347" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=trailer.2 alignment="1" expression="sum(  unid_prog  for group 2)"border="6" color="33554432" x="978" y="8" height="56" width="183" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=trailer.2 alignment="1" expression="sum( liberado  for group 2)"border="6" color="33554432" x="1179" y="8" height="56" width="197" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=trailer.2 alignment="1" expression="sum(unid_real_liberar for group 2)"border="6" color="33554432" x="1563" y="8" height="56" width="215" format="[general]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
