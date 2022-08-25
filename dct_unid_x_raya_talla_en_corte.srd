@@ -1,0 +1,75 @@
+HA$PBExportHeader$dct_unid_x_raya_talla_en_corte.srd
+$PBExportComments$reporte para control de rectilineos en corte
+release 9;
+datawindow(units=0 timer_interval=0 color=1090519039 processing=4 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no  crosstab.dynamic = yes grid.lines=0 grid.columnmove=no selected.mouse=no )
+header[1](height=0 color="536870912" )
+header[2](height=64 color="536870912" )
+header[3](height=64 color="536870912" )
+header[4](height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=number updatewhereclause=yes name=cs_orden_corte dbname="cs_orden_corte" )
+ column=(type=number updatewhereclause=yes name=ca_liquidada dbname="ca_liquidada" )
+ column=(type=number updatewhereclause=yes name=ca_loteada dbname="ca_loteada" )
+ retrieve="  SELECT dt_total_ordcr_po.cs_orden_corte,
+         dt_total_ordcr_po.raya || '-' || dt_modelos.de_modelo as raya,
+         m_tallas_x_grupo.co_talla || '-' || m_tallas_x_grupo.de_talla de_talla,
+         dt_total_ordcr_po.ca_liquidada,
+         dt_total_ordcr_po.ca_loteada
+
+    FROM dt_total_ordcr_po,     
+         h_preref_pv,
+			m_tallas_x_grupo,
+         dt_modelos  
+   WHERE ( dt_total_ordcr_po.co_fabrica = h_preref_pv.co_fabrica ) and  
+         ( dt_total_ordcr_po.co_linea = h_preref_pv.co_linea ) and  
+         (Cast(dt_total_ordcr_po.co_referencia as char(15) ) = h_preref_pv.co_referencia ) and
+         ( h_preref_pv.co_tipo_ref = 'P' ) and
+         ( dt_total_ordcr_po.co_fabrica = dt_modelos.co_fabrica ) and  
+         ( dt_total_ordcr_po.co_linea = dt_modelos.co_linea ) and  
+         ( dt_total_ordcr_po.co_referencia = dt_modelos.co_referencia ) and  
+         ( dt_total_ordcr_po.co_talla = dt_modelos.co_talla ) and
+         ( dt_total_ordcr_po.co_color = dt_modelos.co_color_pt ) and
+         ( dt_total_ordcr_po.raya = dt_modelos.raya ) and
+         ( ( dt_total_ordcr_po.cs_orden_corte = :al_ordencorte ) AND  
+         ( dt_total_ordcr_po.po = :as_po ) AND  
+         ( dt_total_ordcr_po.co_fabrica = :ai_fabrica ) AND  
+         ( dt_total_ordcr_po.co_linea = :ai_linea )AND
+         ( dt_total_ordcr_po.co_referencia = :al_referencia ) AND
+         ( dt_total_ordcr_po.co_color = :ai_color ))   and 
+    		( h_preref_pv.co_grupo_tlla = m_tallas_x_grupo.co_grupo_tlla ) and  
+    		( m_tallas_x_grupo.co_talla = dt_total_ordcr_po.co_talla ) and
+         ( (dt_total_ordcr_po.raya = 10) OR (dt_total_ordcr_po.tipo in (4,5)))
+" arguments=(("al_ordencorte", number),("as_po", string),("ai_fabrica", number),("ai_linea", number),("al_referencia", number),("ai_color", number))  sort="cs_orden_corte A " )
+text(band=header[1] alignment="0" text="De Talla" border="0" color="33554432" x="23" y="4" height="56" width="174" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[1] alignment="0" text="Raya" border="0" color="33554432" x="206" y="4" height="56" width="178" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="3" text="                   @de_talla" border="0" color="33554432" x="23" y="4" height="56" width="366" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="@de_talla Sum Of Ca Liquidada" border="0" color="16777215" x="393" y="4" height="56" width="5" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="@de_talla Sum Of Ca Loteada" border="0" color="16777215" x="407" y="4" height="56" width="5" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="Total Sum Of Ca Liquidada" border="0" color="16777215" x="421" y="4" height="56" width="5" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="Total Sum Of Ca Loteada" border="0" color="16777215" x="434" y="4" height="56" width="5" html.valueishtml="0"  name=t_7 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="3" text="  @raya" border="0" color="33554432" x="23" y="4" height="60" width="366" html.valueishtml="0"  name=t_8 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[4] alignment="0" text="Cs Orden Corte" border="0" color="16777215" x="9" y="4" height="56" width="5" html.valueishtml="0"  name=cs_orden_corte_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[4] alignment="2" text="Liquida" border="6" color="33554432" x="23" y="4" height="56" width="174" html.valueishtml="0"  name=ca_liquidada_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[4] alignment="2" text="Lotead" border="6" color="33554432" x="206" y="4" height="56" width="178" html.valueishtml="0"  name=ca_loteada_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="16777215" x="9" y="4" height="60" width="5" format="[general]" html.valueishtml="0"  name=cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="crosstabsum(1, 2, ~"@de_talla~")"border="0" color="16777215" x="393" y="4" height="60" width="5" format="[general]" html.valueishtml="0"  name=sum_ca_liquidada visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" crosstab.repeat=yes )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="2" color="0" x="23" y="4" height="60" width="174" format="[general]" html.valueishtml="0"  name=ca_liquidada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0 crosstab.repeat=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="2" color="0~tif(  ca_loteada <> ca_liquidada , rgb(255,0,0), rgb(0,0,0) )" x="206" y="4" height="60" width="178" format="[general]" html.valueishtml="0"  name=ca_loteada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0 crosstab.repeat=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="crosstabsum(2)"border="0" color="16777215" x="434" y="4" height="60" width="5" format="[general]" html.valueishtml="0"  name=grand_sum_ca_loteada visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="crosstabsum(1)"border="0" color="16777215" x="421" y="4" height="60" width="5" format="[general]" html.valueishtml="0"  name=grand_sum_ca_liquidada visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="crosstabsum(2, 2, ~"@de_talla~")"border="0" color="16777215" x="407" y="4" height="60" width="5" format="[general]" html.valueishtml="0"  name=sum_ca_loteada visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" crosstab.repeat=yes )
+compute(band=summary alignment="1" expression="~"Grand Total~""border="0" color="33554432" x="9" y="4" height="60" width="5" format="[general]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(ca_liquidada for all )"border="0" color="0" x="23" y="4" height="60" width="174" format="[general]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(ca_loteada for all )"border="0" color="0" x="206" y="4" height="60" width="178" format="[general]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(sum_ca_liquidada for all )"border="0" color="0" x="9" y="4" height="60" width="5" format="[general]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(sum_ca_loteada for all )"border="0" color="0" x="9" y="4" height="60" width="5" format="[general]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(grand_sum_ca_liquidada for all )"border="0" color="0" x="9" y="4" height="60" width="5" format="[general]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(grand_sum_ca_loteada for all )"border="0" color="0" x="9" y="4" height="60" width="5" format="[general]" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+ crosstab(band = foreground  crosstabonly = yes 
+ columns = "de_talla, raya" rows = "cs_orden_corte" values = "sum(ca_liquidada for crosstab), sum(ca_loteada for crosstab)" sourcenames = "cs_orden_corte, raya, de_talla, ca_liquidada, ca_loteada")htmltable(border="0" cellpadding="1" cellspacing="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
