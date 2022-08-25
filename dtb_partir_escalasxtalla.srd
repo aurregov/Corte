@@ -1,0 +1,53 @@
+HA$PBExportHeader$dtb_partir_escalasxtalla.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=72 color="536870912" )
+summary(height=108 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=104 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_talla dbname="dt_escalasxtela.co_talla" )
+ column=(type=decimal(5) updatewhereclause=yes name=ca_proporcion dbname="dt_escalasxtela.ca_proporcion" )
+ column=(type=long updatewhereclause=yes name=ca_unidades dbname="dt_escalasxtela.ca_unidades" )
+ column=(type=long updatewhereclause=yes name=ca_numerada dbname="dt_escalasxtela.ca_numerada" )
+ column=(type=long updatewhereclause=yes name=ca_a_sacar dbname="dt_escalasxtela.ca_a_sacar" )
+ retrieve="  SELECT dt_escalasxtela.co_talla, 
+			dt_escalasxtela.ca_proporcion,   
+         dt_escalasxtela.ca_unidades,   
+         dt_escalasxtela.ca_numerada ,
+			0 as ca_a_sacar 
+    FROM dt_escalasxtela  
+   WHERE ( dt_escalasxtela.co_fabrica_exp 		= :an_co_fabrica_exp ) AND  
+         ( dt_escalasxtela.pedido 					= :an_pedido ) AND  
+         ( dt_escalasxtela.cs_liberacion 			= :an_cs_liberacion ) AND  
+         ( dt_escalasxtela.nu_orden 				= :as_po ) AND  
+         ( dt_escalasxtela.co_fabrica_pt 			= :an_co_fabrica_pt ) AND  
+         ( dt_escalasxtela.co_linea 				= :an_co_linea ) AND  
+         ( dt_escalasxtela.co_referencia 			= :an_co_referencia ) AND  
+         ( dt_escalasxtela.co_color_pt 			= :an_co_color_pt ) AND  
+         ( dt_escalasxtela.tono 						= :as_tono ) AND  
+         ( dt_escalasxtela.cs_estilocolortono 	= :an_cs_estilocolortono ) AND  
+         ( dt_escalasxtela.co_fabrica_tela 		= :an_co_fabrica_tela ) AND  
+         ( dt_escalasxtela.co_reftel 				= :an_co_reftel ) AND  
+         ( dt_escalasxtela.diametro 				= :an_diametro ) AND  
+         ( dt_escalasxtela.co_color_tela 			= :an_co_color_tela ) AND  
+         ( dt_escalasxtela.ancho_cortable 		= :an_ancho_cortable )    
+" arguments=(("an_co_fabrica_exp", number),("an_pedido", number),("an_cs_liberacion", number),("as_po", string),("an_co_fabrica_pt", number),("an_co_linea", number),("an_co_referencia", number),("an_co_color_pt", number),("as_tono", string),("an_cs_estilocolortono", number),("an_co_fabrica_tela", number),("an_co_reftel", number),("an_diametro", number),("an_co_color_tela", number),("an_ancho_cortable", number))  sort="co_talla A " )
+text(band=header alignment="2" text="Talla" border="6" color="0" x="9" y="8" height="56" width="183"  name=co_talla_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Proporci$$HEX1$$f300$$ENDHEX$$n" border="6" color="0" x="215" y="8" height="56" width="247"  name=t_2  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Liberadas" border="6" color="0" x="485" y="8" height="56" width="338"  name=ca_unidades_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="A Sacar" border="6" color="0" x="1179" y="8" height="56" width="311"  name=t_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Numeradas" border="6" color="0" x="846" y="8" height="56" width="311"  name=ca_numerada_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Quedan" border="6" color="0" x="1509" y="8" height="56" width="311"  name=t_3  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="5" color="0" x="9" y="8" height="76" width="183" format="[general]"  name=co_talla edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="5" color="0" x="215" y="4" height="76" width="242" format="#####,##0.##"  name=ca_proporcion edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="0" x="489" y="8" height="76" width="329" format="######,##0"  name=ca_unidades edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="if(isNull(   ca_numerada ),0,   ca_numerada )"border="5" color="0" x="841" y="12" height="76" width="311" format="######,##0"  name=ca_numeradas  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=10 border="5" color="0" x="1184" y="8" height="76" width="306" format="######,##0"  name=ca_a_sacar edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+compute(band=detail alignment="1" expression="if( isNull( ca_unidades -  ca_a_sacar ),0, ( ca_unidades - ca_a_sacar ) )"border="5" color="0" x="1518" y="12" height="76" width="306" format="######,##0"  name=ca_a_dejar  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(if(isNull(   ca_numerada ),0,   ca_numerada ) for all)"border="5" color="0" x="841" y="4" height="76" width="311" format="######,##0"  name=compute_2  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_unidades for all)"border="5" color="0" x="489" y="4" height="76" width="329" format="######,##0"  name=compute_3  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(ca_proporcion for all)"border="5" color="0" x="215" y="4" height="76" width="242" format="#####,##0.##"  name=compute_4  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_a_sacar for all)"border="5" color="0" x="1179" y="4" height="76" width="306" format="######,##0"  name=compute_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+compute(band=summary alignment="1" expression="sum(if( isNull( ca_unidades -  ca_a_sacar ),0, ( ca_unidades - ca_a_sacar ) ) for all)"border="5" color="0" x="1518" y="4" height="76" width="306" format="######,##0"  name=compute_5  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
