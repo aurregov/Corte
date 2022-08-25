@@ -1,0 +1,86 @@
+HA$PBExportHeader$dtb_verificar_unidades_numeradas.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=128 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=long updatewhereclause=yes key=yes name=dt_talla_pdnmodulo_simulacion dbname="simulacion" )
+ column=(type=long updatewhereclause=yes key=yes name=dt_talla_pdnmodulo_co_fabrica dbname="co_fabrica" )
+ column=(type=long updatewhereclause=yes key=yes name=dt_talla_pdnmodulo_co_planta dbname="co_planta" )
+ column=(type=long updatewhereclause=yes key=yes name=dt_talla_pdnmodulo_co_modulo dbname="co_modulo" )
+ column=(type=long updatewhereclause=yes key=yes name=dt_talla_pdnmodulo_co_fabrica_pt dbname="co_fabrica_pt" )
+ column=(type=long updatewhereclause=yes key=yes name=dt_talla_pdnmodulo_co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes key=yes name=dt_talla_pdnmodulo_co_referencia dbname="co_referencia" )
+ column=(type=char(40) updatewhereclause=yes name=h_preref_de_referencia dbname="de_referencia" )
+ column=(type=char(20) updatewhereclause=yes key=yes name=dt_talla_pdnmodulo_po dbname="po" )
+ column=(type=long updatewhereclause=yes key=yes name=dt_talla_pdnmodulo_co_color_pt dbname="co_color_pt" )
+ column=(type=char(2) updatewhereclause=yes key=yes name=dt_talla_pdnmodulo_tono dbname="tono" )
+ column=(type=long updatewhereclause=yes name=dt_talla_pdnmodulo_cs_particion dbname="cs_particion" )
+ column=(type=long updatewhereclause=yes key=yes name=dt_talla_pdnmodulo_co_talla dbname="co_talla" )
+ column=(type=long updatewhereclause=yes name=dt_talla_pdnmodulo_ca_programada dbname="ca_programada" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_talla_pdnmodulo_ca_numerada dbname="ca_numerada" )
+ column=(type=char(30) updatewhereclause=yes name=m_colores_de_color dbname="de_color" )
+ retrieve="SELECT   dt_talla_pdnmodulo.simulacion ,
+            dt_talla_pdnmodulo.co_fabrica ,
+            dt_talla_pdnmodulo.co_planta ,
+            dt_talla_pdnmodulo.co_modulo ,
+   
+            dt_talla_pdnmodulo.co_fabrica_pt ,
+            dt_talla_pdnmodulo.co_linea ,
+            dt_talla_pdnmodulo.co_referencia ,
+            h_preref_pv.de_referencia ,
+            dt_talla_pdnmodulo.po ,
+            dt_talla_pdnmodulo.co_color_pt ,
+            dt_talla_pdnmodulo.tono ,
+
+            dt_talla_pdnmodulo.cs_particion ,
+            dt_talla_pdnmodulo.co_talla ,
+            dt_talla_pdnmodulo.ca_programada ,
+            dt_talla_pdnmodulo.ca_numerada ,
+            m_colores.de_color     
+        FROM  h_preref_pv ,
+            dt_talla_pdnmodulo ,
+            m_colores     
+        WHERE (  h_preref_pv.co_fabrica =  dt_talla_pdnmodulo.co_fabrica_pt ) and
+          (  h_preref_pv.co_linea =  dt_talla_pdnmodulo.co_linea ) and
+          (  Cast(dt_talla_pdnmodulo.co_referencia as char(15) ) = h_preref_pv.co_referencia ) AND
+          (  h_preref_pv.co_tipo_ref = 'P' ) AND
+          (  dt_talla_pdnmodulo.co_fabrica_pt =  m_colores.co_fabrica ) and
+          (  dt_talla_pdnmodulo.co_linea =  m_colores.co_linea ) and
+          (  dt_talla_pdnmodulo.co_color_pt =  m_colores.co_color ) and
+          ( (  h_preref_pv.de_referencia = :as_de_referencia ) and
+          (  dt_talla_pdnmodulo.po = :as_po ) and
+          (  dt_talla_pdnmodulo.simulacion = :an_simulacion ) )  " update="dt_talla_pdnmodulo" updatewhere=1 updatekeyinplace=yes arguments=(("an_simulacion", number),("as_de_referencia", string),("as_po", string)) )
+text(band=header alignment="2" text="Simul." border="6" color="8388608" x="9" y="8" height="112" width="137" html.valueishtml="0"  name=dt_talla_pdnmodulo_simulacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Fabrica" border="6" color="8388608" x="165" y="8" height="112" width="169" html.valueishtml="0"  name=dt_talla_pdnmodulo_co_fabrica_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Planta" border="6" color="8388608" x="352" y="8" height="112" width="146" html.valueishtml="0"  name=dt_talla_pdnmodulo_co_planta_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Modulo" border="6" color="8388608" x="517" y="8" height="112" width="169" html.valueishtml="0"  name=dt_talla_pdnmodulo_co_modulo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Referencia" border="6" color="8388608" x="704" y="8" height="112" width="247" html.valueishtml="0"  name=dt_talla_pdnmodulo_co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Lote
+P:O. / Color / Tono / # Lib
+" border="6" color="8388608" x="1509" y="8" height="112" width="1111" html.valueishtml="0"  name=dt_talla_pdnmodulo_po_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Estilo" border="6" color="8388608" x="969" y="8" height="112" width="521" html.valueishtml="0"  name=h_preref_de_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="5" color="0" x="9" y="4" height="64" width="137" format="[general]" html.valueishtml="0"  name=dt_talla_pdnmodulo_simulacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0 edit.displayonly=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="5" color="0" x="704" y="4" height="64" width="251" format="[general]" html.valueishtml="0"  name=dt_talla_pdnmodulo_co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="5" color="0" x="160" y="4" height="64" width="178" format="[general]" html.valueishtml="0"  name=dt_talla_pdnmodulo_co_fabrica visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="5" color="0" x="352" y="4" height="64" width="151" format="[general]" html.valueishtml="0"  name=dt_talla_pdnmodulo_co_planta visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="5" color="0" x="517" y="4" height="64" width="174" format="[general]" html.valueishtml="0"  name=dt_talla_pdnmodulo_co_modulo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="5" color="0" x="1504" y="4" height="64" width="347" format="[general]" html.valueishtml="0"  name=dt_talla_pdnmodulo_po visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=10 alignment="2" tabsequence=32766 border="5" color="0" x="1865" y="4" height="64" width="251" format="[general]" html.valueishtml="0"  name=dt_talla_pdnmodulo_co_color_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=11 alignment="2" tabsequence=32766 border="5" color="0" x="2450" y="4" height="64" width="82" format="[general]" html.valueishtml="0"  name=dt_talla_pdnmodulo_tono visible="1" edit.limit=2 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="5" color="0" x="2130" y="4" height="64" width="306" format="[general]" html.valueishtml="0"  name=m_colores_de_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="5" color="0" x="969" y="4" height="64" width="521" format="[general]" html.valueishtml="0"  name=h_preref_de_referencia visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Cantidad
+Numerada" border="6" color="8388608" x="3141" y="8" height="112" width="238" html.valueishtml="0"  name=dt_talla_pdnmodulo_ca_numerada_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Talla" border="6" color="8388608" x="2638" y="8" height="112" width="183" html.valueishtml="0"  name=dt_talla_pdnmodulo_co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Cantidad
+Programada" border="6" color="8388608" x="2839" y="8" height="112" width="283" html.valueishtml="0"  name=dt_talla_pdnmodulo_ca_programada_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=15 alignment="2" tabsequence=10 border="5" color="0" x="3141" y="4" height="64" width="238" format="[general]" html.valueishtml="0"  name=dt_talla_pdnmodulo_ca_numerada visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=13 alignment="2" tabsequence=32766 border="5" color="0" x="2633" y="4" height="64" width="187" format="[general]" html.valueishtml="0"  name=dt_talla_pdnmodulo_co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=14 alignment="2" tabsequence=32766 border="5" color="0" x="2839" y="4" height="64" width="283" format="[general]" html.valueishtml="0"  name=dt_talla_pdnmodulo_ca_programada visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
