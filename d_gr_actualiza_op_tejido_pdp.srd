@@ -1,0 +1,49 @@
+HA$PBExportHeader$d_gr_actualiza_op_tejido_pdp.srd
+$PBExportComments$//datawindow para cambiar el estado a cumplida de op tejido relacionadas a una op estilo
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=long updatewhereclause=yes key=yes name=pedido dbname="pedido" )
+ column=(type=long updatewhereclause=yes key=yes identity=yes name=secuencia dbname="secuencia" )
+ column=(type=char(1) update=yes updatewhereclause=yes key=yes name=co_estado dbname="co_estado" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="usuario" )
+ column=(type=decimal(0) updatewhereclause=yes name=total dbname="total" )
+ column=(type=decimal(0) updatewhereclause=yes name=total_op dbname="total_op" )
+ retrieve="SELECT  distinct pedido,secuencia,dt_simulacion.co_estado ,dt_simulacion.fe_actualizacion,dt_simulacion.usuario
+,(select count(d.cs_ordenpd_pt) from h_op_tejido as d where d.cs_op_tejido=h_op_tejido.cs_op_tejido
+and co_estado_orden<5
+
+)as total,
+(select count(d.cs_ordenpd_pt) from h_op_tejido as d where d.cs_op_tejido=h_op_tejido.cs_op_tejido
+and co_estado_orden<5 and d.cs_ordenpd_pt in(:an_opestilo)
+
+)as total_op
+
+        FROM h_op_tejido,dt_simulacion      
+        WHERE ( h_op_tejido.cs_ordenpd_pt in ( :an_opestilo ) ) 
+and h_op_tejido.cs_op_tejido=pedido
+and dt_simulacion.co_estado  =~"A~"
+and co_tipo_negocio=4" update="dt_simulacion" updatewhere=1 updatekeyinplace=yes filter=" total <= total_op "arguments=(("an_opestilo", numberlist)) )
+text(band=header alignment="0" text="Pedido" border="0" color="33554432" x="9" y="4" height="76" width="238" html.valueishtml="0"  name=pedido_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Secuencia" border="0" color="33554432" x="256" y="4" height="76" width="219" html.valueishtml="0"  name=secuencia_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Estado" border="0" color="33554432" x="485" y="4" height="76" width="329" html.valueishtml="0"  name=co_estado_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Fe Actualizacion" border="0" color="33554432" x="823" y="4" height="76" width="919" html.valueishtml="0"  name=fe_actualizacion_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Usuario" border="0" color="33554432" x="1751" y="4" height="76" width="247" html.valueishtml="0"  name=usuario_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="0" height="76" width="238" format="[general]" html.valueishtml="0"  name=pedido visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="256" y="0" height="76" width="219" format="[general]" html.valueishtml="0"  name=secuencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="485" y="0" height="76" width="329" format="[general]" html.valueishtml="0"  name=co_estado visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="823" y="0" height="76" width="919" format="[shortdate] [time]" html.valueishtml="0"  name=fe_actualizacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1751" y="0" height="76" width="247" format="[general]" html.valueishtml="0"  name=usuario visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="0" tabsequence=0 border="0" color="33554432" x="2011" y="0" height="76" width="265" html.valueishtml="0"  name=total visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Total" border="0" color="33554432" x="2007" y="4" height="76" width="270" html.valueishtml="0"  name=total_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="0" tabsequence=0 border="0" color="33554432" x="2290" y="0" height="76" width="1367" html.valueishtml="0"  name=total_op visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Total Op" border="0" color="33554432" x="2286" y="4" height="76" width="1371" html.valueishtml="0"  name=total_op_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
