@@ -1,0 +1,30 @@
+HA$PBExportHeader$d_sq_gr_estandares_operaciones.srd
+$PBExportComments$/***********************************************************~r~nSA53802 - Ceiba/JJ - 29-10-2015~r~nComentario: Se adiciona para validar que un bongo que lleve el proceso de dobladillado de mangas~r~n***********************************************************/
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=76 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_operacion dbname="co_operacion" )
+ column=(type=char(60) updatewhereclause=yes name=de_operacion dbname="de_operacion" )
+ retrieve="SELECT DISTINCT m_operaciones.co_operacion,
+		 m_operaciones.de_operacion
+ FROM m_estandares, m_operaciones
+ WHERE m_estandares.co_operacion			= m_operaciones.co_operacion 
+	AND m_estandares.co_tipoprod			= m_operaciones.co_tipoprod 
+	AND m_estandares.co_centro_pdn		= m_operaciones.co_centro_pdn 
+	AND m_estandares.co_subcentro_pdn	= m_operaciones.co_subcentro_pdn
+	AND m_estandares.co_fabrica 			= :an_fabrica 
+	AND m_estandares.co_linea 				= :an_linea 
+	AND m_estandares.co_referencia 		= :an_referencia 
+	AND m_estandares.co_tipoprod 			= :an_tipoPdto 
+	AND m_estandares.co_centro_pdn 		= :an_centro_pdn 
+	AND m_operaciones.co_info_proc		= :an_infoProc" arguments=(("an_fabrica", number),("an_linea", number),("an_referencia", number),("an_tipoPdto", number),("an_centro_pdn", number),("an_infoProc", number)) )
+text(band=header alignment="0" text="Descripci$$HEX1$$f300$$ENDHEX$$n Procesos Confecci$$HEX1$$f300$$ENDHEX$$n" border="0" color="0" x="9" y="8" height="56" width="1911" html.valueishtml="0"  name=de_operacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="4" height="76" width="1911" format="[general]" html.valueishtml="0"  name=de_operacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
