@@ -1,0 +1,30 @@
+HA$PBExportHeader$dtb_and_total_kg_x_raya.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=decimal(2) updatewhereclause=yes name=metros_mercar dbname="metros_mercar" )
+ column=(type=decimal(2) updatewhereclause=yes name=kg_rollo dbname="kg_rollo" )
+ column=(type=decimal(2) updatewhereclause=yes name=mt_rollo dbname="mt_rollo" )
+ retrieve="select sum(dt_rollosmercada.ca_metros_mercar) metros_mercar,
+       sum(m_rollo.ca_kg) kg_rollo,
+       sum(m_rollo.ca_mt) mt_rollo
+from dt_rollosmercada,   
+		h_mercada,   
+		m_rollo  
+WHERE	( h_mercada.cs_mercada = dt_rollosmercada.cs_mercada ) and  
+		( dt_rollosmercada.cs_rollo = m_rollo.cs_rollo ) and  
+      ( dt_rollosmercada.co_estado_mercada <> 5 ) and
+	   ( h_mercada.cs_orden_corte = :al_orden_corte )  and
+      ( dt_rollosmercada.raya = :ai_raya) 
+    " arguments=(("al_orden_corte", number),("ai_raya", number),("ad_porc_util", number)) )
+text(band=detail alignment="0" text="Kg bode:" border="6" color="0" x="9" y="8" height="56" width="215" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression="( kg_rollo * metros_mercar ) / mt_rollo "border="0" color="0" x="242" y="8" height="56" width="197" format="0.00" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="Kg Min Conf:" border="6" color="0" x="453" y="8" height="56" width="306" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression="(( kg_rollo * metros_mercar ) / mt_rollo ) * (ad_porc_util /100)"border="0" color="0" x="782" y="8" height="56" width="187" format="0.00" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
