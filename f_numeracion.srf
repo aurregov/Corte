@@ -1,0 +1,231 @@
+HA$PBExportHeader$f_numeracion.srf
+global type f_numeracion from function_object
+end type
+
+forward prototypes
+global function long f_numeracion (long al_ordencorte, long al_raya)
+end prototypes
+
+global function long f_numeracion (long al_ordencorte, long al_raya);DataStore lds_num,lds_sort
+String ls_sqlerr,ls_letra,ls_let,ls_letra1
+Long ll_ctdtz,ll_const,ll_tllax,ll_inicio,ll_trazo,ll_talla,ll_capa,ll_pack,ll_findfd,ll_finfd,ll_fin,ll_tzaux,&
+	  ll_agrupa,ll_cssec,ll_cspdn,ll_result,ll_ord1,ll_agr1,ll_bas1,ll_esp1,ll_sec1,ll_tal1,ll_pdn1,&
+	  ll_ord,ll_agr,ll_bas,ll_esp,ll_sec,ll_tal,ll_pdn,ll_i,ll_codbarra,ll_tra,ll_barras,ll_talla1
+Long li_i,li_j,li_conletra,li_cont,li_cont2
+
+SetPointer(HourGlass!)
+
+lds_num = Create DataStore
+lds_sort = Create DataStore
+
+lds_num.DataObject = 'd_lista_guias_numeracion'
+lds_sort.DataObject = 'd_reporte_numeracion'
+
+lds_num.SetTransObject(sqlca)
+lds_sort.SetTransObject(sqlca)
+
+ll_result = lds_num.Retrieve(al_ordencorte,al_raya)
+
+IF ll_result > 0 THEN
+	//elimino los datos que existan en la tabla temporal
+	
+	delete from t_guias_num_prog
+	where cs_orden_corte = :al_ordencorte ;
+	
+	If Sqlca.SqlCode = -1 Then
+			ls_sqlerr = Sqlca.SqlErrText
+			rollback ;
+			MessageBox("Advertencia!","No se pudo borrar la temporal para el reporte.~n~n~n" + ls_sqlerr)
+			Return -1
+	Else
+		commit ;
+	End If	
+	
+	ll_agrupa = lds_num.GetItemNumber(1,'cs_agrupacion')
+		
+	ll_ctdtz  = 0	
+	ll_const  = 0
+	ll_tllax  = -1
+	ll_tzaux  = -1
+	ll_inicio = 1
+	
+	
+	For li_i = 1 To ll_result
+		ll_cspdn = lds_num.GetItemNumber(li_i,'cs_pdn')
+		ll_cssec = lds_num.GetItemNumber(li_i,'cs_sec_ext')
+		ll_trazo = lds_num.GetItemNumber(li_i,'cs_trazo')
+		ll_talla = lds_num.GetItemNumber(li_i,'co_talla')
+		ll_capa  = lds_num.GetItemNumber(li_i,'capas')
+		ll_pack  = lds_num.GetItemNumber(li_i,'paquetes')
+		
+		If ll_talla <> ll_tllax Then
+			ll_const = 0
+			li_conletra -= (li_cont - 1 )
+			li_cont = 0
+			select max(valor_final)  
+			  into :ll_finfd  
+			  from t_guias_num_prog  
+			 where cs_orden_corte 	= :al_ordencorte and
+					 cs_base_trazos 	= :al_raya and
+					 co_talla 			= :ll_talla   ;
+
+			If Sqlca.SqlCode = -1 Then
+				ls_sqlerr = Sqlca.SqlErrText
+				Rollback ;
+				MessageBox("Advertencia!","No se pudo buscar la cantidad final de la talla.~n~n~n" + ls_sqlerr)
+				Return -1
+			ElseIf IsNull(ll_finfd) Or ll_finfd = 0 Then
+				ll_inicio = 1
+				ll_fin    = ll_capa
+							
+			Else
+				ll_inicio = ll_finfd + 1
+				ll_fin    = ll_finfd + ll_capa
+			End If
+					
+		Else
+			ll_inicio = ll_fin + 1
+			ll_fin 	 += ll_capa
+			li_cont += 1
+			
+		End If
+		
+		If ll_trazo <> ll_tzaux Then
+			ll_ctdtz = 0
+			li_conletra = 0
+			li_cont = 0 
+			li_cont2 = 0
+		End If
+		
+		ll_tzaux = ll_trazo
+		ll_tllax = ll_talla
+			
+		For li_j = 1 To ll_pack
+			
+			li_conletra += 1
+			ls_letra = f_letra(li_conletra - li_cont)								
+			ll_const ++
+			ll_ctdtz ++
+			
+			insert into t_guias_num_prog  
+			(cs_orden_corte,	cs_agrupacion,		cs_base_trazos,							cs_espacio,
+			 cs_sec_ext,		co_talla,			cs_pdn,										letra,
+			 ca_paquetes,		capas,				valor_inicial,								valor_final,	
+			 fe_creacion,		fe_actualizacion,	usuario,										instancia)  
+		 	values 
+			(:al_ordencorte,	:ll_agrupa,			:al_raya,									:ll_trazo,
+			 :ll_cssec,			:ll_talla,			:ll_cspdn,									:ls_letra,
+			 :ll_pack,			:ll_capa,			1,												1,
+			 current,			current,				:gstr_info_usuario.codigo_usuario,	:gstr_info_usuario.instancia);
+
+			If Sqlca.SqlCode = -1 Then
+				ls_sqlerr = Sqlca.SqlErrText
+				Rollback;
+				MessageBox("Advertencia!","No se pudo insertar en la temporal para el reporte.~n~n~n" + ls_sqlerr)
+				Return -1
+			End If
+			
+			li_cont2 += 1	
+						
+			If li_j < ll_pack Then
+				ll_inicio = ll_fin + 1 
+				ll_fin    += ll_capa
+			End If
+		Next
+		If li_cont2 = 1 Then li_cont2 = 2
+		li_cont += li_cont2 - 1
+		li_cont2 = 0
+		
+	Next		
+	commit ;
+	
+ELSE//ll_result > 0 
+	MessageBox('Error','No existen trazos para la orden de corte n$$HEX1$$fa00$$ENDHEX$$mero: '+String(al_ordencorte))
+	Return -1
+END IF//ll_result > 0
+
+
+select max(codigo_barras)
+	into :ll_codbarra
+	from t_guias_num_prog;
+	
+If sqlca.sqlcode = -1 Then
+	MessageBox('error','No fue posible determinar el c$$HEX1$$f300$$ENDHEX$$digo de barras')
+	return -1
+End if
+	
+If ll_codbarra = 0 Or isnull(ll_codbarra) Then ll_codbarra = 1
+
+ll_result = lds_sort.retrieve(al_ordencorte,al_raya)
+
+If ll_result > 0 Then
+	ll_inicio = 1
+	ll_fin = 0
+	ll_tra = lds_sort.GetItemNumber(1,'cs_espacio')
+	ll_talla1 = lds_sort.GetItemNumber(1,'co_talla')
+End if
+//genera la numeracion
+
+For ll_i = 1 To ll_result
+	ll_ord = lds_sort.GetItemNumber(ll_i,'cs_orden_corte')
+	ll_agr = lds_sort.GetItemNumber(ll_i,'cs_agrupacion')
+	ll_bas = lds_sort.GetItemNumber(ll_i,'cs_base_trazos')
+	ll_esp = lds_sort.GetItemNumber(ll_i,'cs_espacio')
+	ll_sec = lds_sort.GetItemNumber(ll_i,'cs_sec_ext')
+	ll_tal = lds_sort.GetItemNumber(ll_i,'co_talla')
+	ll_pdn = lds_sort.GetItemNumber(ll_i,'cs_pdn')
+	ls_let = lds_sort.GetItemString(ll_i,'letra')
+	ll_capa = lds_sort.GetItemNumber(ll_i,'capas')	
+	
+	If ll_talla1 <> ll_tal Then
+		ll_inicio = 0
+		ll_fin = 0
+		ll_talla1 = ll_tal
+		
+		select max(valor_final)  
+		  into :ll_finfd  
+		  from t_guias_num_prog  
+		 where cs_orden_corte 	= :al_ordencorte and
+				cs_base_trazos = :al_raya and
+				co_talla 		= :ll_tal;
+		
+			If Sqlca.SqlCode = -1 Then
+				ls_sqlerr = Sqlca.SqlErrText
+				Rollback ;
+				MessageBox("Advertencia!","No se pudo buscar la cantidad final de la talla.~n~n~n" + ls_sqlerr)
+				Return -1 
+			ElseIf IsNull(ll_finfd) Or ll_finfd = 0 Then
+				ll_inicio = 1
+				ll_fin    = ll_capa
+			Else
+				If ll_finfd = 1 Then ll_finfd = 0
+				ll_inicio = ll_finfd + 1
+				ll_fin    = ll_finfd + ll_capa
+			End if
+	Else
+		ll_inicio = ll_fin + 1
+		ll_fin 	 += ll_capa
+	End If
+		
+		update t_guias_num_prog  
+		  set valor_inicial 	= :ll_inicio,   
+				valor_final 	= :ll_fin
+		where	cs_orden_corte =  :ll_ord and
+				cs_agrupacion 	=  :ll_agr and
+				cs_base_trazos = :ll_bas  and
+				cs_sec_ext 		= :ll_sec and
+				co_talla 		= :ll_tal and
+				cs_pdn 			= :ll_pdn and
+				letra 			= :ls_let ;
+Next
+
+Commit;
+
+Destroy lds_num
+Destroy lds_sort
+
+return 0
+
+
+end function
+
