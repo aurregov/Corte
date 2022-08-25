@@ -1,0 +1,120 @@
+HA$PBExportHeader$dtb_unid_liqxgrupo.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=112 color="536870912" )
+summary(height=84 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(30) updatewhereclause=yes name=peddig_grupo dbname="peddig.grupo" )
+ column=(type=long updatewhereclause=yes name=dt_agrupa_pdn_cia dbname="dt_agrupa_pdn.cia" )
+ column=(type=long updatewhereclause=yes name=dt_agrupa_pdn_co_linea dbname="dt_agrupa_pdn.co_linea" )
+ column=(type=char(30) updatewhereclause=yes name=m_lineas_prenda dbname="m_lineas.prenda" )
+ column=(type=long updatewhereclause=yes name=dt_agrupa_pdn_cod_ref dbname="dt_agrupa_pdn.cod_ref" )
+ column=(type=char(40) updatewhereclause=yes name=h_preref_estilo dbname="h_preref.estilo" )
+ column=(type=char(20) updatewhereclause=yes name=dt_agrupa_pdn_po dbname="dt_agrupa_pdn.po" )
+ column=(type=long updatewhereclause=yes name=dt_agrupa_pdn_cod_color dbname="dt_agrupa_pdn.cod_color" )
+ column=(type=char(30) updatewhereclause=yes name=m_colores_desc_color dbname="m_colores.desc_color" )
+ column=(type=char(3) updatewhereclause=yes name=dt_agrupa_pdn_tono dbname="dt_agrupa_pdn.tono" )
+ column=(type=long updatewhereclause=yes name=dt_liq_unixespacio_cod_talla dbname="dt_liq_unixespacio.cod_talla" )
+ column=(type=char(15) updatewhereclause=yes name=m_tallas_x_grupo_desc_talla dbname="m_tallas_x_grupo.desc_talla" )
+ column=(type=decimal(0) updatewhereclause=yes name=unid dbname="unid" )
+ retrieve="  SELECT peddig.gpa grupo,   
+         dt_agrupa_pdn.co_fabrica_pt cia,   
+         dt_agrupa_pdn.co_linea co_linea,   
+         m_lineas.de_linea prenda,   
+         dt_agrupa_pdn.co_referencia cod_ref,   
+         pacasash.h_preref.de_referencia estilo,   
+         dt_agrupa_pdn.po PO,   
+         dt_agrupa_pdn.co_color_pt cod_color,   
+         m_colores.de_color desc_color,   
+         dt_agrupa_pdn.tono tono,   
+         dt_liq_unixespacio.co_talla cod_talla,   
+         m_tallas_x_grupo.de_talla desc_talla,   
+         sum(dt_liq_unixespacio.ca_liquidadas )  unid
+    FROM dt_liquidaxespacio,   
+         dt_liq_unixespacio,   
+         dt_agrupa_pdn,   
+         peddig,   
+         pacasash.h_preref,   
+         m_colores,   
+         m_tallas_x_grupo,   
+         m_lineas  
+   WHERE ( dt_liq_unixespacio.cs_orden_corte 	= dt_liquidaxespacio.cs_orden_corte ) and  
+         ( dt_liq_unixespacio.cs_agrupacion 		= dt_liquidaxespacio.cs_agrupacion ) and  
+         ( dt_liq_unixespacio.cs_base_trazos 	= dt_liquidaxespacio.cs_base_trazos ) and  
+         ( dt_liq_unixespacio.cs_trazo 			= dt_liquidaxespacio.cs_trazo ) and  
+         ( dt_liq_unixespacio.cs_liquidacion 	= dt_liquidaxespacio.cs_liquidacion ) and  
+         ( dt_liquidaxespacio.cs_agrupacion 		= dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_liq_unixespacio.cs_pdn 				= dt_agrupa_pdn.cs_pdn ) and  
+         ( dt_agrupa_pdn.co_fabrica_exp 			= peddig.co_fabrica_exp ) and  
+         ( dt_agrupa_pdn.pedido 						= peddig.pedido ) and  
+         ( dt_agrupa_pdn.co_fabrica_pt 			= pacasash.h_preref.co_fabrica ) and  
+         ( dt_agrupa_pdn.co_linea 					= pacasash.h_preref.co_linea ) and  
+         ( dt_agrupa_pdn.co_referencia 			= pacasash.h_preref.co_referencia ) and  
+         ( dt_agrupa_pdn.co_fabrica_pt 			= m_colores.co_fabrica ) and  
+         ( dt_agrupa_pdn.co_linea 					= m_colores.co_linea ) and  
+         ( dt_agrupa_pdn.co_color_pt 				= m_colores.co_color ) and  
+         ( pacasash.h_preref.co_grupo_tlla 		= m_tallas_x_grupo.co_grupo_tlla ) and  
+         ( dt_liq_unixespacio.co_talla 			= m_tallas_x_grupo.co_talla ) and  
+         ( pacasash.h_preref.co_fabrica 			= m_tallas_x_grupo.co_fabrica ) and  
+         ( dt_agrupa_pdn.co_fabrica_pt 			= m_lineas.co_fabrica ) and  
+         ( dt_agrupa_pdn.co_linea 					= m_lineas.co_linea ) and  
+         ( ( dt_liquidaxespacio.cs_orden_corte 	> 0 ) AND  
+         ( dt_liquidaxespacio.cs_base_trazos 	= 1 ) AND  
+         ( dt_liquidaxespacio.co_estado 			= 6 ) AND  
+         ( peddig.gpa 									= :GRUPO ) AND  
+         ( peddig.tipo_pedido 						= ~"AL~" ) )   
+GROUP BY peddig.gpa,   
+         dt_agrupa_pdn.co_fabrica_pt,   
+         dt_agrupa_pdn.co_linea,   
+         m_lineas.de_linea,   
+         dt_agrupa_pdn.co_referencia,   
+         pacasash.h_preref.de_referencia,   
+         dt_agrupa_pdn.po,   
+         dt_agrupa_pdn.co_color_pt,   
+         m_colores.de_color,   
+         dt_agrupa_pdn.tono,   
+         dt_liq_unixespacio.co_talla,   
+         m_tallas_x_grupo.de_talla   
+" arguments=(("GRUPO", string)) )
+text(band=header alignment="2" text="Peddig
+Grupo" border="0" color="33554432" x="5" y="4" height="104" width="709" html.valueishtml="0"  name=peddig_grupo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Agrupa Pdn
+Cia" border="0" color="33554432" x="718" y="4" height="104" width="320" html.valueishtml="0"  name=dt_agrupa_pdn_cia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Agrupa Pdn
+Co Linea" border="0" color="33554432" x="1042" y="4" height="104" width="320" html.valueishtml="0"  name=dt_agrupa_pdn_co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Lineas
+Prenda" border="0" color="33554432" x="1367" y="4" height="104" width="713" html.valueishtml="0"  name=m_lineas_prenda_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Agrupa Pdn
+Cod Ref" border="0" color="33554432" x="2085" y="4" height="104" width="320" html.valueishtml="0"  name=dt_agrupa_pdn_cod_ref_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="H Preref
+Estilo" border="0" color="33554432" x="2409" y="4" height="104" width="937" html.valueishtml="0"  name=h_preref_estilo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Agrupa Pdn
+Cod Color" border="0" color="33554432" x="3835" y="4" height="104" width="320" html.valueishtml="0"  name=dt_agrupa_pdn_cod_color_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Colores
+Desc Color" border="0" color="33554432" x="4160" y="4" height="104" width="709" html.valueishtml="0"  name=m_colores_desc_color_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Agrupa Pdn
+Tono" border="0" color="33554432" x="4873" y="4" height="104" width="320" html.valueishtml="0"  name=dt_agrupa_pdn_tono_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Liq Unixespacio
+Cod Talla" border="0" color="33554432" x="5198" y="4" height="104" width="407" html.valueishtml="0"  name=dt_liq_unixespacio_cod_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Tallas X Grupo
+Desc Talla" border="0" color="33554432" x="5609" y="4" height="104" width="375" html.valueishtml="0"  name=m_tallas_x_grupo_desc_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unid" border="0" color="33554432" x="5993" y="4" height="52" width="270" html.valueishtml="0"  name=unid_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="64" width="709" format="[general]" html.valueishtml="0"  name=peddig_grupo visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="718" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_cia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="1042" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1367" y="4" height="64" width="713" format="[general]" html.valueishtml="0"  name=m_lineas_prenda visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="2085" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_cod_ref visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="2409" y="4" height="64" width="937" format="[general]" html.valueishtml="0"  name=h_preref_estilo visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="3835" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_cod_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="4160" y="4" height="64" width="709" format="[general]" html.valueishtml="0"  name=m_colores_desc_color visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="4873" y="4" height="64" width="91" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_tono visible="1" edit.limit=3 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="0" color="33554432" x="5198" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_liq_unixespacio_cod_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="5609" y="4" height="64" width="366" format="[general]" html.valueishtml="0"  name=m_tallas_x_grupo_desc_talla visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="0" color="33554432" x="5993" y="4" height="64" width="270" format="[general]" html.valueishtml="0"  name=unid visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(unid for all)"border="0" color="33554432" x="5993" y="4" height="64" width="270" format="[general]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Agrupa Pdn
+Po" border="0" color="33554432" x="3351" y="4" height="104" width="480" html.valueishtml="0"  name=dt_agrupa_pdn_po_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="3351" y="4" height="64" width="480" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_po visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
