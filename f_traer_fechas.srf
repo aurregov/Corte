@@ -1,0 +1,203 @@
+HA$PBExportHeader$f_traer_fechas.srf
+global type f_traer_fechas from function_object
+end type
+
+forward prototypes
+global function date f_traer_fechas (long an_co_fabrica_mod, long an_co_planta_mod, long an_co_modulo, long an_co_turno, datetime adt_fecha, long an_numero_dias, long an_tipo_avance)
+end prototypes
+
+global function date f_traer_fechas (long an_co_fabrica_mod, long an_co_planta_mod, long an_co_modulo, long an_co_turno, datetime adt_fecha, long an_numero_dias, long an_tipo_avance);LONG			ll_dias_que_lleva
+
+DATE			ldt_fe_retorno,ldt_fe_cursor,ldt_fe_calendario_modulo 
+
+
+SETNULL(ldt_fe_retorno)
+
+//-------------------------- Busca Fecha siguiente en Calenario General ----------------//
+
+// Debe hacer un ciclo para saber que fecha le corresponde en el calendario
+// Hacia Adelante 
+IF an_tipo_avance = 1 THEN 
+	DECLARE cur_calendario_ade CURSOR FOR  
+	  SELECT m_calendario_cont.fe_calendario  
+		 FROM m_calendario_cont  
+		WHERE ( m_calendario_cont.ano > 0 ) AND  
+				( m_calendario_cont.fe_calendario > EXTEND(:adt_fecha, YEAR TO DAY) )   
+	ORDER BY m_calendario_cont.fe_calendario ASC;
+	
+	IF SQLCA.SQLCODE=-1 THEN
+		MESSAGEBOX("ERROR BASE DATOS","No Pudo Posicionar Fecha Siguiente en Calendario General")
+		SETNULL(ldt_fe_retorno)
+	ELSE
+	END IF
+	
+	OPEN cur_calendario_ade;
+	IF SQLCA.SQLCODE=-1 THEN
+		MESSAGEBOX("ERROR BASE DATOS","No Pudo Abrir Busqueda Fecha Siguiente en Calendario General")
+		SETNULL(ldt_fe_retorno)
+	ELSE
+	END IF
+	
+	FETCH  cur_calendario_ade INTO :ldt_fe_cursor;
+	IF SQLCA.SQLCODE=-1 THEN
+		MESSAGEBOX("ERROR BASE DATOS","No Pudo Leer Fecha Siguiente en Calendario General")
+		SETNULL(ldt_fe_retorno)
+	ELSE
+	END IF
+
+	// -------------------------- Busca Fecha en Calenario por Modulo -------------------- //
+	ll_dias_que_lleva=0
+	DO WHILE SQLCA.SQLCODE =0 
+		
+		ll_dias_que_lleva=ll_dias_que_lleva + 1
+		
+		IF ll_dias_que_lleva = an_numero_dias THEN
+			//busca en calendario por modulo
+			SELECT dt_mod_calendario.fe_mod_calendario  
+			 INTO :ldt_fe_calendario_modulo  
+			 FROM dt_mod_calendario  
+			WHERE ( dt_mod_calendario.co_fabrica 			= :an_co_fabrica_mod ) AND  
+					( dt_mod_calendario.co_planta 			= :an_co_planta_mod ) 	AND  
+					( dt_mod_calendario.co_modulo 			= :an_co_modulo ) 			AND  
+					( dt_mod_calendario.fe_mod_calendario 	= :ldt_fe_cursor )   AND
+					( dt_mod_calendario.co_tipo_dia 			<> "T" )   					;
+					
+			IF SQLCA.SQLCODE=0 THEN				
+				//la fecha esta marcada como excepci$$HEX1$$f300$$ENDHEX$$n en el calendario por m$$HEX1$$f300$$ENDHEX$$dulo, continue		
+				ll_dias_que_lleva=ll_dias_que_lleva - 1
+				
+				FETCH  cur_calendario_ade INTO :ldt_fe_cursor;
+				IF SQLCA.SQLCODE=-1 THEN
+					MESSAGEBOX("ERROR BASE DATOS","No Pudo Leer Fecha Siguiente en Calendario General")
+					SETNULL(ldt_fe_retorno)
+				ELSE
+				END IF
+			ELSE
+				IF SQLCA.SQLCODE=100 THEN
+					ldt_fe_retorno=ldt_fe_cursor
+					SQLCA.SQLCODE=-1
+				ELSE
+					IF SQLCA.SQLCODE=-1 THEN
+						MESSAGEBOX("ERROR BASE DATOS","No Pudo Hallar Fecha Siguiente en Calendario Modulo")
+						SETNULL(ldt_fe_retorno)
+					ELSE
+					END IF
+				END IF
+			END IF
+		// Ultimo Dia Encontrado
+		ELSE
+			FETCH  cur_calendario_ade INTO :ldt_fe_cursor;
+			IF SQLCA.SQLCODE=-1 THEN
+				MESSAGEBOX("ERROR BASE DATOS","No Pudo Leer Fecha Siguiente en Calendario General")
+				SETNULL(ldt_fe_retorno)
+			ELSE
+			END IF
+		END IF
+		
+	LOOP	// 	DO WHILE SQLCA.SQLCODE =0 
+	
+	CLOSE cur_calendario_ade;
+	IF SQLCA.SQLCODE=-1 THEN
+		MESSAGEBOX("ERROR BASE DATOS","NO PUDO CERRAR BUSQUEDA DE FECHA SIGUIENTE EN CALENDARIO GENERAL")
+		SETNULL(ldt_fe_retorno)
+	ELSE
+	END IF
+
+//-------------------------- Busca Fecha Anterior en Calenario General ----------------//
+// tipo avance=2 
+
+ELSE 	
+	DECLARE cur_calendario_atr CURSOR FOR  
+	  SELECT m_calendario_cont.fe_calendario  
+		 FROM m_calendario_cont  
+		WHERE ( m_calendario_cont.ano > 0 ) AND  
+				( m_calendario_cont.fe_calendario < EXTEND(:adt_fecha, YEAR TO DAY) )   
+	ORDER BY m_calendario_cont.fe_calendario DESC;
+	
+	IF SQLCA.SQLCODE=-1 THEN
+		MESSAGEBOX("ERROR BASE DATOS","No Pudo Posicionar Fecha Anterior en Calendario General")
+		SETNULL(ldt_fe_retorno)
+	ELSE
+	END IF
+	
+	OPEN cur_calendario_atr;
+	IF SQLCA.SQLCODE=-1 THEN
+		MESSAGEBOX("ERROR BASE DATOS","No Pudo Abrir Fecha Anterior en Calendario General")
+		SETNULL(ldt_fe_retorno)
+		
+	ELSE
+	END IF
+	
+	FETCH  cur_calendario_atr INTO :ldt_fe_cursor;
+	IF SQLCA.SQLCODE=-1 THEN
+		MESSAGEBOX("ERROR BASE DATOS","No Pudo Leer Fecha Anterior en Calendario General")
+		SETNULL(ldt_fe_retorno)
+	ELSE
+	END IF
+	
+	// -------------------- Busca fecha en Calendario por Modulo -------------------------- //
+	ll_dias_que_lleva=0
+	DO WHILE SQLCA.SQLCODE =0 
+		
+		ll_dias_que_lleva=ll_dias_que_lleva + 1
+		
+		IF ll_dias_que_lleva = an_numero_dias THEN
+			//busca en calendario por modulo
+			SELECT dt_mod_calendario.fe_mod_calendario  
+			 INTO :ldt_fe_calendario_modulo  
+			 FROM dt_mod_calendario  
+			WHERE ( dt_mod_calendario.co_fabrica 			= :an_co_fabrica_mod ) AND  
+					( dt_mod_calendario.co_planta 			= :an_co_planta_mod ) 	AND  
+					( dt_mod_calendario.co_modulo 			= :an_co_modulo ) 			AND  
+					( dt_mod_calendario.fe_mod_calendario 	= :ldt_fe_cursor )   AND
+					( dt_mod_calendario.co_tipo_dia 			<> "T" )   					;
+			IF SQLCA.SQLCODE=0 THEN
+				//la fecha esta marcada como excepci$$HEX1$$f300$$ENDHEX$$n en el calendario por m$$HEX1$$f300$$ENDHEX$$dulo, continue
+				ll_dias_que_lleva=ll_dias_que_lleva - 1
+				
+				FETCH  cur_calendario_atr INTO :ldt_fe_cursor;
+				IF SQLCA.SQLCODE=-1 THEN
+					MESSAGEBOX("ERROR BASE DATOS","No Pudo Leer Fecha Anterior en Calendario General")
+					SETNULL(ldt_fe_retorno)
+				ELSE
+				END IF
+			ELSE
+				IF SQLCA.SQLCODE=100 THEN
+					ldt_fe_retorno=ldt_fe_cursor
+					SQLCA.SQLCODE=-1
+				ELSE
+					IF SQLCA.SQLCODE=-1 THEN
+						MESSAGEBOX("ERROR BASE DATOS","No Pudo Leer Fecha Anterior en Calendario Modulo")
+						SETNULL(ldt_fe_retorno)
+					ELSE
+					END IF
+				END IF
+			END IF
+
+		ELSE
+			FETCH  cur_calendario_atr INTO :ldt_fe_cursor;
+			IF SQLCA.SQLCODE=-1 THEN
+				MESSAGEBOX("ERROR BASE DATOS","No Pudo Leer Fecha Anterior en Calendario General")
+				SETNULL(ldt_fe_retorno)
+			ELSE
+			END IF
+		END IF
+		
+	LOOP		// 	DO WHILE SQLCA.SQLCODE =0 
+	
+	CLOSE cur_calendario_atr;
+	IF SQLCA.SQLCODE=-1 THEN
+		MESSAGEBOX("ERROR BASE DATOS","NO PUDO CERRAR BUSQUEDA DE FECHA ANTERIOR EN CALENDARIO GENERAL")
+		SETNULL(ldt_fe_retorno)
+	ELSE
+	END IF
+
+	
+END IF
+
+
+RETURN ldt_fe_retorno
+
+
+end function
+
