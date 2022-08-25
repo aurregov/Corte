@@ -1,0 +1,22 @@
+HA$PBExportHeader$f_fecha_servidor.srf
+global type f_fecha_servidor from function_object
+end type
+
+forward prototypes
+global function datetime f_fecha_servidor ()
+end prototypes
+
+global function datetime f_fecha_servidor ();DateTime ldt_fecha
+
+SELECT 	DISTINCT Current
+INTO	:ldt_fecha
+FROM	m_fabricas;
+
+IF SQLCA.SQLCode = -1 THEN
+	MessageBox("Error Base Datos","Error al consultar la fecha del servidor")
+	SetNull(ldt_fecha)
+	Return(ldt_fecha)
+END IF
+Return(ldt_fecha)
+end function
+
