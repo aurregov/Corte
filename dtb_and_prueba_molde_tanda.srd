@@ -1,0 +1,28 @@
+HA$PBExportHeader$dtb_and_prueba_molde_tanda.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(12) updatewhereclause=yes name=prueba_mold_est_larg dbname="prueba_mold_est_larg" )
+ column=(type=char(12) updatewhereclause=yes name=prueba_mold_est_anc dbname="prueba_mold_est_anc" )
+ column=(type=char(12) updatewhereclause=yes name=prueba_mold_viro dbname="prueba_mold_viro" )
+ retrieve="SELECT prueba_mold_est_larg,
+       prueba_mold_est_anc, 
+       prueba_mold_viro
+  FROM m_norma_cal
+ WHERE cs_tanda > 0
+   AND co_reftel = :al_tela
+   AND lote = :al_tanda
+   AND co_aprueba_tono > 0
+   AND cs_calidad = (select max(cs_calidad) from m_norma_cal
+                     where co_reftel = :al_tela and lote = :al_tanda
+                       and co_aprueba_tono > 0)" arguments=(("al_tela", number),("al_tanda", number)) )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="33554432" x="5" y="4" height="56" width="155" format="[general]" html.valueishtml="0"  name=prueba_mold_est_larg visible="1" edit.limit=12 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="165" y="4" height="56" width="165" format="[general]" html.valueishtml="0"  name=prueba_mold_est_anc visible="1" edit.limit=12 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="2" color="33554432" x="334" y="4" height="56" width="183" format="[general]" html.valueishtml="0"  name=prueba_mold_viro visible="1" edit.limit=12 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
