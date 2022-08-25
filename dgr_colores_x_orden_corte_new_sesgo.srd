@@ -1,0 +1,66 @@
+HA$PBExportHeader$dgr_colores_x_orden_corte_new_sesgo.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=134217739 processing=4 HTMLDW=no print.printername="" print.documentname="" print.orientation = 1 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no  crosstab.dynamic = yes grid.lines=0 grid.columnmove=no selected.mouse=no )
+header[1](height=0 color="536870912" )
+header[2](height=48 color="536870912" )
+header[3](height=56 color="536870912" )
+header[4](height=0 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=color dbname="color" )
+ column=(type=char(20) updatewhereclause=yes name=tallas dbname="tallas" )
+ column=(type=char(20) updatewhereclause=yes name=unidades dbname="unidades" )
+ column=(type=number updatewhereclause=yes name=ca_programada dbname="ca_programada" )
+ retrieve="SELECT	'COLOR' COLOR,
+        'TALLAS' TALLAS,
+        'UNIDADES' UNIDADES,
+         dt_escalasxoc.co_talla ,
+	      trim((dt_agrupa_pdn.co_color_pt||' '||m_color.de_color)) as co_color_pt,	
+         Sum(dt_escalasxoc.ca_programada) ca_programada
+FROM	dt_agrupa_pdn ,
+		dt_pdnxmodulo,
+		dt_escalasxoc ,
+      h_ordenpd_pt,
+		m_color     
+WHERE ( dt_escalasxoc.cs_agrupacion 	= dt_agrupa_pdn.cs_agrupacion ) and          
+		( dt_escalasxoc.cs_pdn 				= dt_agrupa_pdn.cs_pdn ) and          
+		( ( dt_escalasxoc.cs_orden_corte = :an_orden_corte ) ) and
+		( dt_agrupa_pdn.co_fabrica_exp 	= dt_pdnxmodulo.co_fabrica_exp ) and
+		( dt_agrupa_pdn.cs_liberacion 	= dt_pdnxmodulo.cs_liberacion ) and
+		( dt_agrupa_pdn.po 					= dt_pdnxmodulo.po ) and
+		( dt_agrupa_pdn.nu_cut 				= dt_pdnxmodulo.nu_cut ) and
+		( dt_agrupa_pdn.co_fabrica_pt 	= dt_pdnxmodulo.co_fabrica_pt ) and
+		( dt_agrupa_pdn.co_linea 			= dt_pdnxmodulo.co_linea ) and
+		( dt_agrupa_pdn.co_referencia 	= dt_pdnxmodulo.co_referencia ) and
+		( dt_agrupa_pdn.co_color_pt 		= dt_pdnxmodulo.co_color_pt ) and
+		( dt_agrupa_pdn.tono 				= dt_pdnxmodulo.tono )  and
+      ( dt_pdnxmodulo.cs_ordenpd_pt 	= h_ordenpd_pt.cs_ordenpd_pt ) and
+		( m_color.co_color					= dt_pdnxmodulo.co_color_pt )and
+		( SELECT count(dt_trazosxoc.cs_orden_corte)
+		  FROM h_base_trazos,   
+				dt_trazosxoc  
+		  WHERE ( dt_trazosxoc.cs_agrupacion   = h_base_trazos.cs_agrupacion ) and  
+			     ( dt_trazosxoc.cs_base_trazos  = h_base_trazos.cs_base_trazos ) and  
+				  ( dt_trazosxoc.cs_orden_corte  = :an_orden_corte ) and
+				  pr_descripcion_raya(dt_trazosxoc.cs_orden_corte, h_base_trazos.raya) LIKE ~"%SESGO%~") > 0
+GROUP BY 1,2,3,4,5
+" arguments=(("an_orden_corte", number))  sort="color A tallas A unidades A " )
+group(level=1 header.height=0 trailer.height=0 by=("color" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=0 trailer.height=0 by=("tallas" ) header.color="536870912" trailer.color="536870912" )
+text(band=header[2] alignment="0" text="COLOR" border="2" color="33554432" x="9" y="4" height="40" width="197" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217739" )
+text(band=header[2] alignment="0" text="@dt_agrupa_pdn_co_color_pt" border="2" color="33554432" x="215" y="4" height="40" width="174" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217739" )
+text(band=header[3] alignment="0" text="TALLAS" border="2" color="33554432" x="9" y="0" height="48" width="197" html.valueishtml="0"  name=t_7 visible="1"  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217739" )
+text(band=header[3] alignment="2" text="@dt_escalasxoc_co_talla" border="2" color="33554432" x="215" y="0" height="48" width="174" html.valueishtml="0"  name=t_8 visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="33554432" x="398" y="8" height="64" width="27" format="[general]" html.valueishtml="0"  name=color visible="0" edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217739" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="434" y="8" height="52" width="160" format="[general]" html.valueishtml="0"  name=tallas visible="0" edit.limit=6 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217739" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="2" color="33554432" x="9" y="108" height="64" width="197" format="[general]" html.valueishtml="0"  name=unidades visible="1" edit.limit=8 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="UNIDADES" border="2" color="33554432" x="9" y="0" height="56" width="197" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217739" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="2" color="33554432" x="215" y="0" height="56" width="174" format="[general]" html.valueishtml="0"  name=ca_programada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0 crosstab.repeat=yes  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217739" )
+ crosstab(band = foreground  crosstabonly = yes 
+ columns = "dt_agrupa_pdn_co_color_pt, dt_escalasxoc_co_talla, ca_programada" rows = "color, tallas, unidades" values = "sum(ca_programada for crosstab)" sourcenames = "color, tallas, unidades, dt_escalasxoc_co_talla, dt_agrupa_pdn_co_color_pt, ca_programada")
+sparse(names="color	tallas")htmltable(border="0" cellpadding="1" cellspacing="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
