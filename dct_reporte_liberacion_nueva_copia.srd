@@ -1,0 +1,53 @@
+HA$PBExportHeader$dct_reporte_liberacion_nueva_copia.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=4 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no  crosstab.dynamic = yes grid.lines=0 grid.columnmove=no selected.mouse=no )
+header[1](height=108 color="536870912" )
+header[2](height=112 color="536870912" )
+header[3](height=112 color="536870912" )
+summary(height=156 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=h_liberar_escalas_usuario dbname="h_liberar_escalas_usuario" )
+ column=(type=char(20) updatewhereclause=yes name=m_lineas_de_linea dbname="m_lineas_de_linea" )
+ column=(type=number updatewhereclause=yes name=unidades dbname="unidades" )
+ retrieve=" select h.co_est_liberacion, 
+			date(h.fe_creacion) as fecha ,
+			h.usuario,
+			d.co_linea,
+			m.de_linea,
+			Sum(d.ca_unidades) as unidades
+	 from h_liberar_escalas h, 
+			dt_pdnxmodulo dt, 
+			dt_libera_estilos d,
+			m_lineas m
+	where ( dt.cs_liberacion 		= h.cs_liberacion ) and
+			( d.cs_liberacion 		= h.cs_liberacion ) and
+			( dt.co_estado_asigna 	<> 28 ) and
+			( Date(h.fe_creacion) 	Between :ad_fe_inicial and :ad_fe_final ) and
+			( m.co_fabrica				= d.co_fabrica ) and
+			( m.co_linea				= d.co_linea )
+group by 1,2,3,4,5;" arguments=(("ad_fe_inicial", date),("ad_fe_final", date))  sort="h_liberar_escalas_usuario A m_lineas_de_linea A " )
+group(level=1 header.height=0 trailer.height=0 by=("h_liberar_escalas_usuario" ) header.color="536870912" trailer.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="h_liberar_escalas_usuario + ~" Total~""border="0" color="33554432" x="9" y="4" height="104" width="558" format="[general]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(unidades for group 1)"border="0" color="33554432" x="1042" y="4" height="104" width="315" format="[general]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(grand_sum_unidades for group 1)"border="0" color="33554432" x="1371" y="4" height="104" width="325" format="[general]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=background alignment="2" text="REPORTES DE UNIDADES LIBERADAS" border="0" color="33554432" x="14" y="4" height="92" width="1673" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="2" text="@fecha" border="0" color="33554432" x="1042" y="4" height="56" width="315" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Usuario" border="0" color="33554432" x="9" y="4" height="56" width="558" html.valueishtml="0"  name=h_liberar_escalas_usuario_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="L$$HEX1$$ed00$$ENDHEX$$nea" border="0" color="33554432" x="576" y="4" height="56" width="457" html.valueishtml="0"  name=m_lineas_de_linea_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="@col" border="0" color="33554432" x="1042" y="4" height="56" width="315" html.valueishtml="0"  name=unidades_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Grand Total " border="0" color="33554432" x="1371" y="4" height="56" width="325" html.valueishtml="0"  name=grand_sum_unidades_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="4" height="64" width="558" format="[general]" html.valueishtml="0"  name=h_liberar_escalas_usuario visible="1" edit.limit=8 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="576" y="4" height="64" width="457" format="[general]" html.valueishtml="0"  name=m_lineas_de_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="1042" y="4" height="64" width="315" format="[general]" html.valueishtml="0"  name=unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0 crosstab.repeat=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="crosstabsum(1)"border="0" color="33554432" x="1371" y="4" height="64" width="325" format="[general]" html.valueishtml="0"  name=grand_sum_unidades visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="~"Grand Total~""border="0" color="33554432" x="9" y="4" height="104" width="558" format="[general]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(unidades for all )"border="0" color="33554432" x="1042" y="4" height="104" width="315" format="[general]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(grand_sum_unidades for all )"border="0" color="33554432" x="1371" y="4" height="104" width="325" format="[general]" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+ crosstab(band = foreground  crosstabonly = yes 
+ columns = "fecha, if(  h_liberar_escalas_co_est_liberacion  = 1,'Lib. Manual','Lib. Nueva')" rows = "h_liberar_escalas_usuario, m_lineas_de_linea" values = "sum(unidades for crosstab)" sourcenames = "h_liberar_escalas_co_est_liberacion, fecha, h_liberar_escalas_usuario, dt_libera_estilos_co_linea, m_lineas_de_linea, unidades")
+sparse(names="h_liberar_escalas_usuario")htmltable(border="0" cellpadding="1" cellspacing="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
