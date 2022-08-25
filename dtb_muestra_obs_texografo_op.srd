@@ -1,0 +1,25 @@
+HA$PBExportHeader$dtb_muestra_obs_texografo_op.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=140 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=264 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=cs_ordenpd_pt dbname="dt_obs_orden_pt.cs_ordenpd_pt" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_secuencia dbname="dt_obs_orden_pt.cs_secuencia" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=observacion dbname="dt_obs_orden_pt.observacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="dt_obs_orden_pt.fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="dt_obs_orden_pt.fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="dt_obs_orden_pt.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="dt_obs_orden_pt.instancia" )
+ column=(type=long update=yes updatewhereclause=yes name=co_tipo dbname="dt_obs_orden_pt.co_tipo" )
+ retrieve="select *
+from dt_obs_orden_pt
+where (cs_ordenpd_pt = :ll_ordenpd_pt OR cs_ordenpd_pt = :ll_ordenpd_pt2)
+
+  and co_tipo = 1" update="dt_obs_orden_pt" updatewhere=1 updatekeyinplace=no arguments=(("ll_ordenpd_pt", number),("ll_ordenpd_pt2", number)) )
+text(band=header alignment="2" text="Fecha"border="6" color="0" x="2501" y="12" height="120" width="512"  name=fe_creacion_t  font.face="MS Sans Serif" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Observacion para Texografo"border="6" color="0" x="9" y="12" height="120" width="2469"  name=observacion_t  font.face="MS Sans Serif" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="2" color="0" x="9" y="8" height="252" width="2469" format="[general]"  name=observacion edit.limit=0 edit.case=any edit.autoselect=yes edit.autovscroll=yes  font.face="MS Sans Serif" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="2" color="0" x="2501" y="8" height="252" width="512" format="dd/mmm/yyyy h:mm"  name=fe_creacion editmask.autoskip=yes editmask.mask="mm/dd/yy hh:mm:ss:fff" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")
