@@ -1,0 +1,84 @@
+HA$PBExportHeader$d_dt_unidadesxtrazo.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=81324524 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=76 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes key=yes name=cs_pdn dbname="dt_unidadesxtrazo.cs_pdn" )
+ column=(type=long updatewhereclause=yes key=yes name=co_modelo dbname="dt_unidadesxtrazo.co_modelo" )
+ column=(type=long updatewhereclause=yes key=yes name=co_fabrica_tela dbname="dt_unidadesxtrazo.co_fabrica_tela" )
+ column=(type=long updatewhereclause=yes key=yes name=co_reftel dbname="dt_unidadesxtrazo.co_reftel" )
+ column=(type=long updatewhereclause=yes key=yes name=co_caract dbname="dt_unidadesxtrazo.co_caract" )
+ column=(type=long updatewhereclause=yes key=yes name=diametro dbname="dt_unidadesxtrazo.diametro" )
+ column=(type=long updatewhereclause=yes key=yes name=co_color_te dbname="dt_unidadesxtrazo.co_color_te" )
+ column=(type=long updatewhereclause=yes key=yes name=cs_trazo dbname="dt_unidadesxtrazo.cs_trazo" )
+ column=(type=long updatewhereclause=yes key=yes name=cs_seccion dbname="dt_unidadesxtrazo.cs_seccion" )
+ column=(type=long updatewhereclause=yes key=yes name=co_talla dbname="dt_unidadesxtrazo.co_talla" )
+ column=(type=long updatewhereclause=yes name=cs_talla dbname="dt_unidadesxtrazo.cs_talla" )
+ column=(type=long updatewhereclause=yes name=co_tipo_uni_oc dbname="dt_unidadesxtrazo.co_tipo_uni_oc" )
+ column=(type=long updatewhereclause=yes name=co_estado dbname="dt_unidadesxtrazo.co_estado" )
+ column=(type=long update=yes updatewhereclause=yes name=capas dbname="dt_unidadesxtrazo.capas" )
+ column=(type=long update=yes updatewhereclause=yes name=paquetes dbname="dt_unidadesxtrazo.paquetes" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_programada dbname="dt_unidadesxtrazo.ca_programada" )
+ column=(type=long updatewhereclause=yes name=ca_prog_liquida dbname="dt_unidadesxtrazo.ca_prog_liquida" )
+ column=(type=long updatewhereclause=yes name=ca_liquidada dbname="dt_unidadesxtrazo.ca_liquidada" )
+ column=(type=long updatewhereclause=yes key=yes name=cs_agrupacion dbname="dt_unidadesxtrazo.cs_agrupacion" )
+ column=(type=long updatewhereclause=yes key=yes name=cs_orden_corte dbname="dt_unidadesxtrazo.cs_orden_corte" )
+ column=(type=long updatewhereclause=yes key=yes name=cs_base_trazos dbname="dt_unidadesxtrazo.cs_base_trazos" )
+ retrieve="SELECT  dt_unidadesxtrazo.cs_pdn ,
+           dt_unidadesxtrazo.co_modelo ,
+           dt_unidadesxtrazo.co_fabrica_tela ,
+           dt_unidadesxtrazo.co_reftel ,
+           dt_unidadesxtrazo.co_caract ,
+           dt_unidadesxtrazo.diametro ,
+           dt_unidadesxtrazo.co_color_te ,
+           dt_unidadesxtrazo.cs_trazo ,
+           dt_unidadesxtrazo.cs_seccion ,
+           dt_unidadesxtrazo.co_talla ,
+           dt_unidadesxtrazo.cs_talla ,
+           dt_unidadesxtrazo.co_tipo_uni_oc ,
+           dt_unidadesxtrazo.co_estado ,
+           dt_unidadesxtrazo.capas ,
+           dt_unidadesxtrazo.paquetes ,
+           dt_unidadesxtrazo.ca_programada ,
+           dt_unidadesxtrazo.ca_prog_liquida ,
+           dt_unidadesxtrazo.ca_liquidada ,
+           dt_unidadesxtrazo.cs_agrupacion ,
+           dt_unidadesxtrazo.cs_orden_corte ,
+           dt_unidadesxtrazo.cs_base_trazos     
+        FROM        dt_unidadesxtrazo      
+        WHERE ( dt_unidadesxtrazo.cs_orden_corte = :an_orden ) and          
+				( dt_unidadesxtrazo.cs_agrupacion = :an_agrupacion ) And          
+				( dt_unidadesxtrazo.cs_pdn = :an_produccion ) And          
+				( dt_unidadesxtrazo.co_modelo = :an_modelo ) And          
+				( dt_unidadesxtrazo.co_fabrica_tela = :an_fabtela ) And          
+				( dt_unidadesxtrazo.co_reftel = :an_reftel ) And          
+				( dt_unidadesxtrazo.co_caract = :an_caract ) And          
+				( dt_unidadesxtrazo.diametro = :an_diametro ) And          
+				( dt_unidadesxtrazo.co_color_te = :an_colorte ) And          
+				( dt_unidadesxtrazo.cs_trazo = :an_trazo ) And          
+				( dt_unidadesxtrazo.cs_seccion = :an_seccion ) And          
+				( dt_unidadesxtrazo.cs_base_trazos = :an_base )   " update="dt_unidadesxtrazo" updatewhere=0 updatekeyinplace=no arguments=(("an_orden", number),("an_agrupacion", number),("an_produccion", number),("an_modelo", number),("an_fabtela", number),("an_reftel", number),("an_caract", number),("an_diametro", number),("an_colorte", number),("an_trazo", number),("an_seccion", number),("an_base", number)) )
+text(band=header alignment="2" text="Estado" border="6" color="0" x="407" y="8" height="56" width="334" html.valueishtml="0"  name=co_estado_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Capas" border="6" color="0" x="750" y="8" height="56" width="197" html.valueishtml="0"  name=capas_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Paquetes" border="6" color="0" x="955" y="8" height="56" width="238" html.valueishtml="0"  name=paquetes_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Unid Prog" border="6" color="0" x="1202" y="8" height="56" width="265" html.valueishtml="0"  name=ca_programada_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Liquidadas" border="6" color="0" x="1783" y="8" height="56" width="261" html.valueishtml="0"  name=ca_liquidada_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Unid Prog Liq" border="6" color="0" x="1477" y="8" height="56" width="297" html.valueishtml="0"  name=ca_prog_liquida_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Tipo Unid." border="6" color="0" x="160" y="8" height="56" width="238" html.valueishtml="0"  name=co_tipo_uni_oc_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Talla" border="6" color="0" x="9" y="8" height="56" width="142" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="5" color="0" x="407" y="4" height="60" width="334" format="[general]" html.valueishtml="0"  name=co_estado visible="1" dddw.name=dddw_estados_ordencorte dddw.displaycolumn=de_estado dddw.datacolumn=co_estado dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="5" color="0" x="160" y="4" height="60" width="238" format="[general]" html.valueishtml="0"  name=co_tipo_uni_oc visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="1" tabsequence=32766 border="5" color="0" x="1477" y="4" height="60" width="297" format="[general]" html.valueishtml="0"  name=ca_prog_liquida visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="1" tabsequence=32766 border="5" color="0" x="1783" y="4" height="60" width="261" format="[general]" html.valueishtml="0"  name=ca_liquidada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="5" color="0" x="9" y="4" height="60" width="142" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(paquetes for all)"border="5" color="0" x="955" y="4" height="56" width="238" format="[general]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+compute(band=summary alignment="1" expression="sum(ca_programada for all)"border="5" color="0" x="1202" y="4" height="56" width="265" format="[general]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+compute(band=summary alignment="1" expression="sum(ca_prog_liquida for all)"border="5" color="0" x="1477" y="4" height="56" width="297" format="[general]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+compute(band=summary alignment="1" expression="sum(ca_liquidada for all)"border="5" color="0" x="1783" y="4" height="56" width="261" format="[general]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="5" color="0" x="750" y="4" height="60" width="197" format="[general]" html.valueishtml="0"  name=capas visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=15 alignment="1" tabsequence=32766 border="5" color="0" x="955" y="4" height="60" width="238" format="[general]" html.valueishtml="0"  name=paquetes visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=16 alignment="1" tabsequence=32766 border="5" color="0" x="1202" y="4" height="60" width="265" format="[general]" html.valueishtml="0"  name=ca_programada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
