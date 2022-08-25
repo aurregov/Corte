@@ -1,0 +1,42 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "liberacion_manual.pbl" "";
+@end;
+@begin Objects
+ "dgr_telas_ficha.srd" "liberacion_manual.pbl";
+ "w_oc_duos.srw" "liberacion_manual.pbl";
+ "d_gr_tipo_orden_corte.srd" "liberacion_manual.pbl";
+ "w_liberacion_manual.srw" "liberacion_manual.pbl";
+ "d_gr_op_sin_riel.srd" "liberacion_manual.pbl";
+ "d_gr_campo_parte.srd" "liberacion_manual.pbl";
+ "d_gr_datos_x_oc.srd" "liberacion_manual.pbl";
+ "w_diagrama_repite.srw" "liberacion_manual.pbl";
+ "w_lectura_bolsa.srw" "liberacion_manual.pbl";
+ "d_gr_po_x_lotear.srd" "liberacion_manual.pbl";
+ "w_telas_op_estilo.srw" "liberacion_manual.pbl";
+ "d_gr_estado_bolsa_x_cana.srd" "liberacion_manual.pbl";
+ "dgr_consulta_unidades_liberadas.srd" "liberacion_manual.pbl";
+ "w_consulta_unidades_liberadas.srw" "liberacion_manual.pbl";
+ "w_consulta_ordenpt.srw" "liberacion_manual.pbl";
+ "w_mensaje_error.srw" "liberacion_manual.pbl";
+ "d_gr_valida_ca_bolsa_x_oc.srd" "liberacion_manual.pbl";
+ "d_gr_consulta_bolsa_agrupacion.srd" "liberacion_manual.pbl";
+ "d_gr_sq_validar_oc_lotear.srd" "liberacion_manual.pbl";
+ "dgr_colores_liberacion_manual.srd" "liberacion_manual.pbl";
+ "dgr_rollos_liberacion_manual.srd" "liberacion_manual.pbl";
+ "dgr_tallas_liberacion_manual.srd" "liberacion_manual.pbl";
+ "w_reporte_kamban_corte_new.srw" "liberacion_manual.pbl";
+ "w_mantenimiento_auditores_calidad.srw" "liberacion_manual.pbl";
+ "d_gr_h_ordenes_corte_x_oc.srd" "liberacion_manual.pbl";
+ "w_parametro_kardex_po_corte.srw" "liberacion_manual.pbl";
+ "dff_parametros_orden_produccion.srd" "liberacion_manual.pbl";
+ "d_gr_bongos_loteados_x_oc.srd" "liberacion_manual.pbl";
+ "w_mensaje.srw" "liberacion_manual.pbl";
+ "n_cerrar_po.sru" "liberacion_manual.pbl";
+ "w_unidades_ordenpdn_ordcorte.srw" "liberacion_manual.pbl";
+ "w_buscar_op.srw" "liberacion_manual.pbl";
+ "w_reporte_mv_loteo_auditor.srw" "liberacion_manual.pbl";
+ "d_gr_oc_pendientes_lotear_x_oc.srd" "liberacion_manual.pbl";
+ "dgr_colores_liberacion_exportaciones.srd" "liberacion_manual.pbl";
+ "dgr_tallas_liberacion_exportaciones.srd" "liberacion_manual.pbl";
+@end;
