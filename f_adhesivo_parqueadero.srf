@@ -1,0 +1,128 @@
+HA$PBExportHeader$f_adhesivo_parqueadero.srf
+global type f_adhesivo_parqueadero from function_object
+end type
+
+forward prototypes
+global function long f_adhesivo_parqueadero (string ls_parqueadero)
+end prototypes
+
+global function long f_adhesivo_parqueadero (string ls_parqueadero);String blancos,esca,etx,stx,ln_inicial,ln_final,ls_registro,ls_de_fabrica
+Long ll_filas,ll_fila,li_numero_archivo
+String  ls_nombrearchivo = 'C:\corte\ADHES_parqueo.TXT'
+String gs_adhesivi
+gs_adhesivi =ls_nombrearchivo
+
+
+IF FileExists(gs_adhesivi) THEN
+	FileDelete(gs_adhesivi)
+END IF	
+
+
+IF FileExists(ls_nombrearchivo) THEN
+	FileDelete(ls_nombrearchivo)  
+END IF
+
+li_numero_archivo	=	f_preparar_archivo_plano(ls_nombrearchivo)
+
+IF li_numero_archivo = -1 THEN
+	//ROLLBACK;
+	MessageBox("Advertencia","No se pudo abrir el archivo para generar el adhesivo",Exclamation!)
+	Return(-1)
+END IF	
+
+
+
+ll_fila = 0
+
+esca = "^"
+stx  = "{"
+etx  = "}"
+
+IF li_numero_archivo > 0 THEN
+   blancos = "                    "
+	
+	//	LINEA # 1 DESCRIPCION FABRICA
+	ln_inicial = stx+esca+"A"+esca+"N"
+	ls_registro = ln_inicial
+	FileWrite(li_numero_archivo, ls_registro)
+	
+	//Linea # 2 # carro
+	ls_registro = esca+"H020"+esca+"V0080"+esca+"L0303"+esca+"M"+ "PARQUEADERO"
+   FileWrite(li_numero_archivo, ls_registro)			
+	ls_registro = esca+"H020"+esca+"V0160"+esca+"L0803"+esca+"WB0"+ trim(ls_parqueadero)
+	FileWrite(li_numero_archivo, ls_registro)			
+
+   // LINEA 5 --codigo de barras del carrito
+	ls_registro =	esca+"H0580"+esca+"V0130"+esca+"L0303"+esca+"BG02190"+trim(ls_parqueadero)
+	FileWrite(li_numero_archivo, ls_registro)	
+
+
+	
+ //Linea final
+	ln_final = esca+"Q1"+esca+"Z"+etx
+	ls_registro = ln_final
+	FileWrite(li_numero_archivo, ls_registro)	
+ 
+ IF FileClose(li_numero_archivo) = 1 THEN
+	 //continue para imprimir en la sato
+ ELSE
+	//ROLLBACK;
+	MessageBox("Advertencia","No se pudo cerrar el archivo que genera el adhesivo",Exclamation!)
+	Return(-1)	
+ END IF
+END IF
+
+/******************************************/
+
+
+Long    Job,  li_FileNum, li_filaread
+String  ls_archivo
+
+IF IsNull(ls_parqueadero) OR ls_parqueadero = "" THEN
+	MessageBox("Advertencia","No hay datos para imprimir",Exclamation!)
+ELSE
+	
+	ll_fila = 1
+	li_FileNum = FileOpen(gs_adhesivi,StreamMode!)
+
+	IF li_FileNum = -1 OR IsNull(li_FileNum) THEN
+//		ROLLBACK;
+		MessageBox("Advertencia","No se pudo abrir el archivo para imprimir el adhesivo",Exclamation!)
+		Return (-1)
+	END IF
+	
+	li_filaread = FileRead(li_FileNum, ls_archivo)
+	IF li_filaread = -1 OR IsNull(li_filaread) THEN
+//	ROLLBACK;
+		MessageBox("Advertencia","No se pudo leer el archivo para imprimir el adhesivo",Exclamation!)
+		Return (-1)
+	END IF
+
+	IF FileClose(li_FileNum) = -1 THEN
+//		ROLLBACK;
+		MessageBox("Advertencia","No se pudo cerrar el archivo para imprimir el adhesivo",Exclamation!)
+		Return (-1)
+	END IF
+
+	Job = PrintOpen()
+	IF Job = -1 OR IsNull(Job) THEN
+//		ROLLBACK;
+		MessageBox("Advertencia","Hay problemas con la impresora",Exclamation!)
+		Return	(-1)
+	ELSE
+			li_filaread = PrintSend(Job, ls_archivo)
+		IF li_filaread = -1 OR IsNull(li_filaread) THEN
+//			ROLLBACK;
+			MessageBox("Advertencia","Hay problemas con la impresora al enviar el archivo del adhesivo",Exclamation!)
+			Return	(-1)		
+		ELSE
+			PrintClose(Job)
+		END IF
+	END IF	
+END IF
+
+Return 0
+
+
+end function
+
