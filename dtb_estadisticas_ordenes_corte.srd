@@ -1,0 +1,35 @@
+HA$PBExportHeader$dtb_estadisticas_ordenes_corte.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=320 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=codigo dbname="h_ordenes_corte.codigo" )
+ column=(type=char(11) updatewhereclause=yes name=operacion dbname="operacion" )
+ column=(type=long updatewhereclause=yes name=ordenes dbname="ordenes" )
+ retrieve="SELECT 1 codigo, 'Programadas' Operacion, Count(*) ordenes
+FROM h_ordenes_corte  
+WHERE Extend(h_ordenes_corte.fe_creacion, year to day) between :adt_feinicial and :adt_fefinal
+UNION
+SELECT 2 codigo, 'Liquidadas', Count(Distinct cs_orden_corte)
+FROM dt_liquida_espacio
+WHERE Extend(fe_liquidacion, year to day) between :adt_feinicial and :adt_fefinal
+UNION
+SELECT 3 codigo, 'Loteadas', Count(Distinct cs_orden_corte)
+FROM h_unidades_reales
+WHERE Extend(fe_loteado, year to day) Between :adt_feinicial and :adt_fefinal
+ORDER BY 1" arguments=(("adt_feinicial", date),("adt_fefinal", date)) )
+text(band=header alignment="2" text="ESTADISTICAS ORDENES CORTE" border="0" color="0" x="923" y="16" height="80" width="1792"  name=t_1  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="today()"border="0" color="0" x="46" y="20" height="60" width="366" format="DD/MM/YYYY"  name=date_1  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="'P$$HEX1$$e100$$ENDHEX$$gina ' + page() + ' of ' + pageCount()"border="0" color="0" x="3241" y="16" height="64" width="599" format="[general]"  name=page_1  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Operacion" border="2" color="0" x="5" y="248" height="64" width="425"  name=operacion_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ordenes" border="2" color="0" x="434" y="248" height="64" width="329"  name=compute_0002_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="0" x="5" y="4" height="76" width="425" format="[general]"  name=operacion edit.limit=11 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="2" color="0" x="434" y="4" height="76" width="329" format="[general]"  name=ordenes edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Fecha Inicial:" border="0" color="0" x="27" y="140" height="64" width="393"  name=t_2  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Fecha Final:" border="0" color="0" x="969" y="144" height="64" width="361"  name=t_3  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression=" adt_feinicial "border="0" color="0" x="443" y="140" height="64" width="357" format="dd/mm/yyyy"  name=compute_1  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression=" adt_fefinal "border="0" color="0" x="1353" y="140" height="64" width="357" format="dd/mm/yyyy"  name=compute_2  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
