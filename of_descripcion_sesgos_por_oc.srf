@@ -1,0 +1,44 @@
+HA$PBExportHeader$of_descripcion_sesgos_por_oc.srf
+global type of_descripcion_sesgos_por_oc from function_object
+end type
+
+forward prototypes
+global function string of_descripcion_sesgos_por_oc (long an_orden_corte)
+end prototypes
+
+global function string of_descripcion_sesgos_por_oc (long an_orden_corte);//funcion que trae las partes por modelo
+String ls_descripcion, ls_parte
+Long   ll_n, ll_filas_info
+
+
+uo_dsbase lds_desc_x_oc
+
+//datastore que trae las descripciones de los sesgos dada la oc
+lds_desc_x_oc = Create uo_dsbase				
+lds_desc_x_oc.dataobject = "dtb_descripcion_sesgo_x_oc"
+lds_desc_x_oc.settransobject(gnv_recursos.of_get_transaccion_sucia())
+
+ll_filas_info = lds_desc_x_oc.Retrieve(an_orden_corte)
+
+////cilco para traer informacion para la descripcion de los sesgos por oc
+FOR ll_n = 1 TO ll_filas_info
+	ls_parte = trim(lds_desc_x_oc.getitemstring(ll_n,"des_sesgo"))
+	
+	IF ll_filas_info = 1 THEN
+		ls_descripcion = ls_descripcion + ls_parte
+	ELSE
+		//ls_descripcion = ls_descripcion + ls_parte + '-'	
+		
+		IF ll_n = ll_filas_info THEN
+		 ls_descripcion = ls_descripcion + ls_parte
+	   ELSE
+		 ls_descripcion = ls_descripcion + ls_parte + ' -- '
+		END IF 	
+	END IF
+		
+NEXT
+
+RETURN ls_descripcion
+
+end function
+
