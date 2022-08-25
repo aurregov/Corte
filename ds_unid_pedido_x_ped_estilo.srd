@@ -1,0 +1,63 @@
+HA$PBExportHeader$ds_unid_pedido_x_ped_estilo.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=76 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=172 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_cliente_exp dbname="co_cliente_exp" )
+ column=(type=long updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long updatewhereclause=yes name=co_color dbname="co_color" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="co_talla" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_pedida dbname="ca_pedida" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_pedida_comprar dbname="ca_pedida_comprar" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_ped_op dbname="ca_ped_op" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_tejido dbname="ca_tejido" )
+ retrieve="
+SELECT co_cliente_exp, co_fabrica, co_linea, co_referencia, co_color, co_talla, sum(ca_pedida) as ca_pedida,
+		Nvl(sum(ca_pedida_comprar),0) as ca_pedida_comprar,
+		Nvl( (select sum(dt_caxpedidos.ca_programada) from dt_caxpedidos, h_ordenpd_pt 
+				where dt_caxpedidos.cs_ordenpd_pt = h_ordenpd_pt.cs_ordenpd_pt
+						and dt_caxpedidos.pedido = pedpend_exp.pedido
+						and dt_caxpedidos.nu_orden = pedpend_exp.nu_orden 
+						and co_color = pedpend_exp.co_color 
+						and dt_caxpedidos.co_talla = pedpend_exp.co_talla
+						and h_ordenpd_pt.co_fabrica = pedpend_exp.co_fabrica
+						and h_ordenpd_pt.co_linea = pedpend_exp.co_linea
+						and h_ordenpd_pt.co_referencia = pedpend_exp.co_referencia
+						and h_ordenpd_pt.co_estado_orden <> 5),0) as ca_ped_op,
+		Nvl(sum(pedpend_exp.ca_tejido),0) as ca_tejido
+		
+FROM pedpend_exp
+WHERE pedido = :al_pedido
+AND co_calidad = 1
+AND co_fabrica = :ai_fabrica
+AND co_linea = :ai_linea
+AND co_referencia = :al_referencia
+AND co_color = :ai_color_pt
+GROUP BY 1,2,3,4,5,6,9
+ORDER BY 1,2,3,4,5,6" arguments=(("al_pedido", number),("ai_fabrica", number),("ai_linea", number),("al_referencia", number),("ai_color_pt", number)) )
+text(band=header alignment="2" text="Fabrica" border="0" color="33554432" x="5" y="4" height="52" width="325" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Linea" border="0" color="33554432" x="288" y="4" height="52" width="274" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Referencia" border="0" color="33554432" x="526" y="4" height="52" width="430" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Color" border="0" color="33554432" x="1097" y="4" height="52" width="274" html.valueishtml="0"  name=co_color_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Pedida" border="0" color="33554432" x="1349" y="4" height="52" width="306" html.valueishtml="0"  name=ca_pedida_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Talla" border="0" color="33554432" x="933" y="4" height="52" width="151" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cliente" border="0" color="33554432" x="1664" y="8" height="52" width="306" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unid OP" border="0" color="33554432" x="1975" y="0" height="52" width="306" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="33554432" x="27" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="33554432" x="306" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="5" color="33554432" x="585" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="5" color="33554432" x="1079" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="5" color="33554432" x="878" y="8" height="52" width="197" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="5" color="33554432" x="1362" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=ca_pedida visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="33554432" x="1664" y="4" height="64" width="306" format="[general]" html.valueishtml="0"  name=co_cliente_exp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="5" color="33554432" x="1998" y="4" height="64" width="265" format="[general]" html.valueishtml="0"  name=ca_ped_op visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="5" color="33554432" x="2281" y="4" height="64" width="265" format="[general]" html.valueishtml="0"  name=ca_pedida_comprar visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
