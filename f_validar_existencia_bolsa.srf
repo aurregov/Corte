@@ -1,0 +1,35 @@
+HA$PBExportHeader$f_validar_existencia_bolsa.srf
+global type f_validar_existencia_bolsa from function_object
+end type
+
+forward prototypes
+global function long f_validar_existencia_bolsa (long ll_cs_orden_corte, long ll_cs_espacio, long ll_talla, string ls_letra, long ll_co_referencia, long ll_cs_pdn, ref string as_canasta)
+end prototypes
+
+global function long f_validar_existencia_bolsa (long ll_cs_orden_corte, long ll_cs_espacio, long ll_talla, string ls_letra, long ll_co_referencia, long ll_cs_pdn, ref string as_canasta);string ls_cs_canasta = " "
+
+SELECT UNIQUE dt_canasta_corte.cs_canasta 
+INTO :ls_cs_canasta
+FROM dt_canasta_corte, h_canasta_corte 
+WHERE dt_canasta_corte.co_referencia  = :ll_co_referencia
+AND   dt_canasta_corte.cs_orden_corte = :ll_cs_orden_corte
+AND   dt_canasta_corte.cs_espacio     = :ll_cs_espacio
+AND   dt_canasta_corte.co_talla       = :ll_talla
+AND   dt_canasta_corte.letra          = :ls_letra
+AND   dt_canasta_corte.cs_secuencia   = 1
+AND   dt_canasta_corte.cs_pdn         = :ll_cs_pdn
+AND   h_canasta_corte.cs_canasta      = dt_canasta_corte.cs_canasta ;
+
+IF SQLCA.SQLCode = -1 THEN
+	MessageBox("Error Base Datos","Error al validar la canasta " + SQLCA.SQLErrText)
+	Return -1
+ELSE
+	IF SQLCA.SQLCode = 100 THEN
+		Return 0
+	ELSE
+		as_canasta = ls_cs_canasta
+		Return 1
+	END IF
+END IF
+end function
+
