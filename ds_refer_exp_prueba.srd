@@ -1,0 +1,100 @@
+HA$PBExportHeader$ds_refer_exp_prueba.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long updatewhereclause=yes name=h_ordenpd_pt_co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes name=h_ordenpd_pt_co_referencia dbname="co_referencia" )
+ column=(type=long updatewhereclause=yes name=h_ordenpd_pt_cs_ordenpd_pt dbname="cs_ordenpd_pt" )
+ column=(type=char(20) updatewhereclause=yes name=dt_caxpedidos_nu_orden dbname="nu_orden" )
+ column=(type=long updatewhereclause=yes name=dt_caxpedidos_co_color dbname="co_color" )
+ column=(type=long updatewhereclause=yes name=dt_caxpedidos_co_talla dbname="co_talla" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_programada dbname="ca_programada" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_liberadas dbname="ca_liberadas" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_real dbname="ca_real" )
+ column=(type=char(10) updatewhereclause=yes name=nu_cut dbname="nu_cut" )
+ column=(type=long updatewhereclause=yes name=sw_marca dbname="sw_marca" )
+ column=(type=decimal(0) updatewhereclause=yes name=total_color_bdsize dbname="total_color_bdsize" )
+ column=(type=decimal(0) updatewhereclause=yes name=total_color dbname="total_color" )
+ retrieve="select unique h_ordenpd_pt.co_fabrica,
+              h_ordenpd_pt.co_linea,
+	      	  h_ordenpd_pt.co_referencia,
+				  h_ordenpd_pt.cs_ordenpd_pt,	
+              dt_caxpedidos.nu_orden,
+              dt_caxpedidos.co_color,
+              dt_caxpedidos.co_talla,
+	           sum(dt_caxpedidos.ca_programada) as ca_programada,
+	           sum(dt_caxpedidos.ca_liberadas) as ca_liberadas,
+				  sum(dt_caxpedidos.ca_real) as ca_real,	
+				  dt_caxpedidos.nu_cut,	
+	           0 as sw_marca,
+				  (select sum(a.ca_programada)
+      				from dt_caxpedidos a
+						where a.cs_ordenpd_pt 	= h_ordenpd_pt.cs_ordenpd_pt and
+								a.nu_orden 			= dt_caxpedidos.nu_orden and
+								a.co_color 			= dt_caxpedidos.co_color and
+                        a.co_talla 			= dt_caxpedidos.co_talla and
+								a.color_exp       = dt_caxpedidos.color_exp ) total_color_bdsize,
+				  (select sum(a.ca_programada)
+      				from dt_caxpedidos a
+						where a.cs_ordenpd_pt 	= h_ordenpd_pt.cs_ordenpd_pt and
+								a.nu_orden 			= dt_caxpedidos.nu_orden and
+								a.co_color 			= dt_caxpedidos.co_color and
+								a.color_exp       = dt_caxpedidos.color_exp ) total_color 		
+
+from temp_tela_n, h_ordenpd_pt, dt_caxpedidos, h_ordenpd_te, dt_telas_ordxcol
+where temp_tela_n.usuario 					= :co_usuario
+  and temp_tela_n.cs_ordenpd_pt 			= h_ordenpd_pt.cs_ordenpd_pt
+  and h_ordenpd_pt.cs_ordenpd_pt 		= dt_caxpedidos.cs_ordenpd_pt
+  and h_ordenpd_pt.cs_ordenpd_pt 		= h_ordenpd_te.cs_ordenpd_pt
+  and h_ordenpd_te.co_reftel 				= temp_tela_n.co_reftel
+  and h_ordenpd_te.co_estado_orden 		<> 5
+  and dt_telas_ordxcol.cs_ordenpd_te 	= h_ordenpd_te.cs_ordenpd_te
+
+  and dt_telas_ordxcol.co_reftel 		= temp_tela_n.co_reftel
+  and dt_telas_ordxcol.diametro 			= temp_tela_n.diametro
+  and dt_telas_ordxcol.co_color_te 		= temp_tela_n.co_color
+  and dt_telas_ordxcol.co_talla_pt 		= dt_caxpedidos.co_talla
+  and dt_telas_ordxcol.co_color_pt 		= dt_caxpedidos.co_color
+  and dt_caxpedidos.ca_programada		> 0
+  and (dt_caxpedidos.co_color			   = :ai_color OR  :ai_color = 0)
+  and (dt_caxpedidos.nu_orden				= :as_po OR :as_po = '')
+  and (dt_caxpedidos.color_exp			= :as_color_exp OR :as_color_exp = '' )
+group by 1,2,3,4,5,6,7,11,12,13,14
+
+   
+" arguments=(("co_usuario", string),("ai_color", number),("as_po", string),("as_color_exp", string)) )
+text(band=header alignment="2" text="Fabrica" border="0" color="33554432" x="5" y="4" height="52" width="274" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Linea" border="0" color="33554432" x="283" y="4" height="52" width="297" html.valueishtml="0"  name=h_ordenpd_pt_co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Referencia" border="0" color="33554432" x="585" y="4" height="52" width="311" html.valueishtml="0"  name=h_ordenpd_pt_co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="P.O." border="0" color="33554432" x="901" y="4" height="52" width="480" html.valueishtml="0"  name=dt_caxpedidos_nu_orden_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="O.P." border="0" color="33554432" x="2693" y="4" height="52" width="311" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unid Lib" border="0" color="33554432" x="2368" y="4" height="52" width="311" html.valueishtml="0"  name=dt_caxpedidos_ca_liberadas_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unid Prog" border="0" color="33554432" x="2025" y="4" height="52" width="334" html.valueishtml="0"  name=dt_caxpedidos_ca_programada_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Talla" border="0" color="33554432" x="1705" y="4" height="52" width="315" html.valueishtml="0"  name=dt_caxpedidos_co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Color" border="0" color="33554432" x="1385" y="4" height="52" width="315" html.valueishtml="0"  name=dt_caxpedidos_co_color_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="sw_marca" border="0" color="33554432" x="3013" y="4" height="52" width="283" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="total Color" border="0" color="33554432" x="3301" y="4" height="52" width="283" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="total Bodysize" border="0" color="33554432" x="3657" y="8" height="52" width="297" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="283" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=h_ordenpd_pt_co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="585" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=h_ordenpd_pt_co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="901" y="4" height="64" width="480" format="[general]" html.valueishtml="0"  name=dt_caxpedidos_nu_orden visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="2693" y="4" height="64" width="311" format="[general]" html.valueishtml="0"  name=h_ordenpd_pt_cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="2" tabsequence=32766 border="0" color="33554432" x="2368" y="4" height="64" width="311" format="[general]" html.valueishtml="0"  name=ca_liberadas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="2" tabsequence=32766 border="0" color="33554432" x="1705" y="4" height="64" width="315" format="[general]" html.valueishtml="0"  name=dt_caxpedidos_co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1385" y="4" height="64" width="315" format="[general]" html.valueishtml="0"  name=dt_caxpedidos_co_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="2" tabsequence=32766 border="0" color="33554432" x="2039" y="8" height="52" width="288" format="[general]" html.valueishtml="0"  name=ca_programada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="3013" y="4" height="64" width="283" format="[general]" html.valueishtml="0"  name=sw_marca visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="33554432" x="3310" y="4" height="64" width="279" format="[general]" html.valueishtml="0"  name=total_color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="3589" y="4" height="64" width="293" format="[general]" html.valueishtml="0"  name=total_color_bdsize visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="3927" y="8" height="52" width="229" format="[general]" html.valueishtml="0"  name=nu_cut visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="4155" y="0" height="52" width="69" format="[general]" html.valueishtml="0"  name=ca_real visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
