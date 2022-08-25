@@ -1,0 +1,84 @@
+HA$PBExportHeader$d_gr_rollos_btt.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=400 color="536870912" )
+summary(height=124 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=po dbname="po" )
+ column=(type=char(30) updatewhereclause=yes name=grupo dbname="grupo" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long updatewhereclause=yes name=co_color_act dbname="co_color_act" )
+ column=(type=long updatewhereclause=yes name=co_reftel_act dbname="co_reftel_act" )
+ column=(type=char(50) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=decimal(2) updatewhereclause=yes name=kilos dbname="kilos" )
+ retrieve="select nu_orden as PO,
+     (SELECT MAX(peddig.gpa)
+	    FROM peddig  
+       WHERE (peddig.co_fabrica_vta = 2) AND
+			     peddig.orden_compra =nu_orden ) as Grupo  ,
+    h_ordenpd_pt.co_referencia,
+co_color_act,
+co_reftel_act,
+de_referencia, 
+sum(ca_kg) as Kilos
+ 
+
+
+from m_rollo,h_ordenpd_pt,dt_pedidosxorden ,h_preref_pv,dt_kardex d, h_kardex h
+where co_centro=15
+and h_ordenpd_pt.cs_ordenpd_pt=cs_orden_pr_act and
+dt_pedidosxorden.cs_ordenpd_pt  = h_ordenpd_pt.cs_ordenpd_pt
+and ca_kg>0
+and( m_rollo.co_reftel_act=:a_tela or :a_tela=0)
+and ( m_rollo.co_color_Act=:a_color or :a_color=0)
+and ( h_ordenpd_pt.co_cliente=:a_cliente or :a_cliente=0)
+and ( (m_rollo.cs_ordencr>0 and :a_concorte=1) or(m_rollo.cs_ordencr=0 and :a_concorte=0))
+and ( h_ordenpd_pt.co_referencia=:a_referencia or :a_referencia=0)
+and ( nu_orden=:a_po or  :a_po=~"~")
+and ( h_preref_pv.co_marca=:a_co_marca or :a_co_marca=0)
+and h_ordenpd_pt.co_fabrica=h_preref_pv.co_fabrica
+and h_ordenpd_pt.co_linea=h_preref_pv.co_linea
+and (Cast(h_ordenpd_pt.co_referencia as char(15) ) = h_preref_pv.co_referencia )
+and h_preref_pv.co_tipo_ref = 'P' 
+and h.co_fabrica = d.co_fabrica
+and h.co_concepto = d.co_concepto
+and h.documento = d.documento
+and d.cs_rollo = m_rollo.cs_rollo
+and h.destino = 15
+and h.co_concepto in (10,12)
+and (date(h.fe_kardex) >= :a_fecha_ini or :a_fecha_ini =Date(~"1900-1-1~"))
+and (date(h.fe_kardex) <= :a_fecha_fin or :a_fecha_fin =Date(~"1900-1-1~"))
+
+
+Group by 1,2,3,4,5,6
+;" arguments=(("a_tela", number),("a_color", number),("a_cliente", number),("a_grupo", string),("a_po", string),("a_fecha_ini", date),("a_fecha_fin", date),("a_concorte", number),("a_referencia", number),("a_co_marca", string))  sort="po A grupo A co_referencia A co_color_act A co_reftel_act A kilos D " )
+group(level=1 header.height=0 trailer.height=140 by=("po" , "grupo" , "co_referencia" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="Kilos" border="6" color="0" x="4087" y="316" height="76" width="242" html.valueishtml="0"  name=kilos_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+text(band=header alignment="2" text="Color" border="6" color="0" x="3726" y="316" height="76" width="357" html.valueishtml="0"  name=co_color_act_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+text(band=header alignment="2" text="REPORTE BODEGA DE TELA TERMINADA" border="0" color="0" x="809" y="104" height="80" width="1490" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="bitmap(~"fabrica2.jpg~")"border="0" color="0" x="18" y="112" height="180" width="704" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="0" x="2409" y="36" height="92" width="855" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="today()"border="0" color="0" x="59" y="8" height="92" width="366" format="[general]" html.valueishtml="0"  name=date_1 visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Grupo" border="6" color="0" x="9" y="316" height="76" width="690" html.valueishtml="0"  name=grupo_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+text(band=header alignment="2" text="Po" border="6" color="0" x="709" y="316" height="76" width="768" html.valueishtml="0"  name=po_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+text(band=header alignment="2" text="Referencia" border="6" color="0" x="1486" y="316" height="76" width="590" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+text(band=header alignment="2" text="Descripcion" border="6" color="0" x="2085" y="316" height="76" width="1271" html.valueishtml="0"  name=de_referencia_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="9" y="0" height="76" width="690" format="[general]" html.valueishtml="0"  name=grupo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="33554432" x="709" y="0" height="76" width="768" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="2" color="33554432" x="1486" y="0" height="76" width="590" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="2" color="33554432" x="2085" y="0" height="76" width="1271" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="2" tabsequence=32766 border="2" color="33554432" x="4087" y="0" height="76" width="242" format="0.0" html.valueishtml="0"  name=kilos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=trailer.1 alignment="2" expression="Sum(kilos for group 1)"border="2" color="33554432" x="4087" y="4" height="76" width="242" format="0" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+text(band=trailer.1 alignment="2" text="Total x Ref" border="6" color="0" x="3602" y="4" height="80" width="434" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+compute(band=summary alignment="2" expression="Sum(kilos for  all)"border="2" color="33554432" x="4087" y="8" height="76" width="242" format="0" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+text(band=summary alignment="2" text="Total " border="6" color="0" x="3598" y="8" height="80" width="434" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="2" color="33554432" x="3365" y="0" height="76" width="352" format="[general]" html.valueishtml="0"  name=co_reftel_act visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Tela" border="6" color="0" x="3369" y="316" height="76" width="352" html.valueishtml="0"  name=co_reftel_act_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="2" color="33554432" x="3726" y="0" height="76" width="357" format="[general]" html.valueishtml="0"  name=co_color_act visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+
+sparse(names="grupo	po	co_referencia	de_referencia	co_reftel_act	co_color_act")htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
