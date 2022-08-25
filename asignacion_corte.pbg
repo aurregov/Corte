@@ -1,0 +1,38 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "asignacion_corte.pbl" "";
+@end;
+@begin Objects
+ "q_tela.srq" "asignacion_corte.pbl";
+ "w_info_calidad_tanda.srw" "asignacion_corte.pbl";
+ "w_buscar_log_pdnxmodulo.srw" "asignacion_corte.pbl";
+ "dtb_tallas_liberacion.srd" "asignacion_corte.pbl";
+ "dgr_unid_mas_oc.srd" "asignacion_corte.pbl";
+ "dtb_r_proyeccion_corte.srd" "asignacion_corte.pbl";
+ "w_crear_orden_corte.srw" "asignacion_corte.pbl";
+ "dtb_kamban_corte.srd" "asignacion_corte.pbl";
+ "dtb_observa_oc.srd" "asignacion_corte.pbl";
+ "dtb_observacion_modulo.srd" "asignacion_corte.pbl";
+ "f_prioridad.srf" "asignacion_corte.pbl";
+ "dtb_rollos_mercada_raya.srd" "asignacion_corte.pbl";
+ "w_unid_mas_oc.srw" "asignacion_corte.pbl";
+ "w_concepto_critica_orden_corte.srw" "asignacion_corte.pbl";
+ "w_crear_ordenes.srw" "asignacion_corte.pbl";
+ "w_observacion.srw" "asignacion_corte.pbl";
+ "q_verificar_mercada_telaxoc_tela.srq" "asignacion_corte.pbl";
+ "w_fechas_requisito_independiente.srw" "asignacion_corte.pbl";
+ "w_buscar_filter.srw" "asignacion_corte.pbl";
+ "dtb_info_trazos_referencia.srd" "asignacion_corte.pbl";
+ "w_info_trazos_referencia.srw" "asignacion_corte.pbl";
+ "dtb_r_log_pdnxmodulo.srd" "asignacion_corte.pbl";
+ "w_buscar_agrupaciones_parametros.srw" "asignacion_corte.pbl";
+ "w_buscar_agrupaciones_parametros2.srw" "asignacion_corte.pbl";
+ "w_fecha_requisito.srw" "asignacion_corte.pbl";
+ "w_fechas_modulos.srw" "asignacion_corte.pbl";
+ "w_kamban_corte.srw" "asignacion_corte.pbl";
+ "dtb_fechas_independientes.srd" "asignacion_corte.pbl";
+ "w_liquidados.srw" "asignacion_corte.pbl";
+ "dtb_info_calidad_tanda.srd" "asignacion_corte.pbl";
+ "w_buscar_agrupaciones_parametros_liquida.srw" "asignacion_corte.pbl";
+ "w_crear_ordenes_sin_busqueda.srw" "asignacion_corte.pbl";
+@end;
