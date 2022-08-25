@@ -1,0 +1,35 @@
+HA$PBExportHeader$dgr_unidades_liberar.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=decimal(3) updatewhereclause=yes name=consumo dbname="temp_modelos_ref.consumo" )
+ column=(type=long updatewhereclause=yes name=unid_prog dbname="temp_referen_n.unid_prog" )
+ retrieve=" SELECT distinct temp_modelos_ref.consumo,   
+         temp_referen_n.unid_prog
+    FROM temp_modelos_ref,   
+         temp_referen_n  
+   WHERE ( temp_modelos_ref.usuario 		= temp_referen_n.usuario ) and  
+         ( temp_modelos_ref.cs_ordenpd_pt = temp_referen_n.cs_ordenpd_pt ) and  
+         ( temp_modelos_ref.po 				= temp_referen_n.po ) and  
+         ( temp_modelos_ref.co_fabrica 	= temp_referen_n.co_fabrica ) and  
+         ( temp_modelos_ref.co_linea 		= temp_referen_n.co_linea ) and  
+         ( temp_modelos_ref.co_referencia = temp_referen_n.co_referencia ) and  
+         ( temp_modelos_ref.co_color 		= temp_referen_n.co_color ) and  
+         ( temp_modelos_ref.co_talla 		= temp_referen_n.co_talla ) and  
+         ( temp_modelos_ref.usuario 		= :as_usuario ) AND  
+         ( temp_modelos_ref.cs_ordenpd_pt = :an_ordenpd_pt ) AND  
+         ( temp_modelos_ref.po 				= :as_po ) AND  
+         ( temp_modelos_ref.co_color 		= :an_color ) AND
+			( temp_modelos_ref.raya				= :an_raya) ;
+" arguments=(("as_usuario", string),("an_ordenpd_pt", number),("as_po", string),("an_color", number),("an_raya", number)) )
+text(band=header alignment="2" text="Temp Modelos Ref
+Consumo" border="0" color="33554432" x="9" y="8" height="104" width="411" html.valueishtml="0"  name=temp_modelos_ref_consumo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Temp Referen N
+Unid Prog" border="0" color="33554432" x="430" y="8" height="104" width="361" html.valueishtml="0"  name=temp_referen_n_unid_prog_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="411" format="[general]" html.valueishtml="0"  name=consumo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="430" y="8" height="64" width="361" format="[general]" html.valueishtml="0"  name=unid_prog visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
