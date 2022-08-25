@@ -1,0 +1,32 @@
+HA$PBExportHeader$ds_buscar_tandas_tinto_marcar_x_liberar.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_tanda dbname="h_tandas.cs_tanda" )
+ column=(type=long updatewhereclause=yes name=cs_secundario dbname="h_tandas.cs_secundario" )
+ retrieve="  SELECT DISTINCT h_tandas.cs_tanda,   
+         h_tandas.cs_secundario  
+    FROM h_tandas,   
+         dt_lotesxtandas  
+   WHERE ( h_tandas.cs_tanda = dt_lotesxtandas.cs_tanda ) and  
+         ( dt_lotesxtandas.cs_secundario = h_tandas.cs_secundario ) and  
+         ( ( h_tandas.co_estado_tanda = 6 ) AND  
+         ( dt_lotesxtandas.cs_espera <> 2 ) AND
+         ( h_tandas.co_color = :ai_color ) AND  
+         ( dt_lotesxtandas.cs_ordenpd_pt = :al_ordenpd_pt ) AND  
+         ( dt_lotesxtandas.co_reftel = :al_co_reftel ) )    
+" arguments=(("ai_color", number),("al_ordenpd_pt", number),("al_co_reftel", number)) )
+text(band=header alignment="2" text="H Tandas
+Cs Tanda" border="0" color="33554432" x="9" y="8" height="104" width="274" html.valueishtml="0"  name=h_tandas_cs_tanda_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="H Tandas
+Cs Secundario" border="0" color="33554432" x="293" y="8" height="104" width="315" html.valueishtml="0"  name=h_tandas_cs_secundario_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_tanda visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="293" y="8" height="64" width="315" format="[general]" html.valueishtml="0"  name=cs_secundario visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
