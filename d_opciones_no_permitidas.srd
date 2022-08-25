@@ -1,0 +1,44 @@
+HA$PBExportHeader$d_opciones_no_permitidas.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=144 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(40) updatewhereclause=yes name=dt_opcxapl_nom_obj_ventana dbname="dt_opcxapl.nom_obj_ventana" )
+ column=(type=long updatewhereclause=yes name=dt_opcxapl_cs_nivel dbname="dt_opcxapl.cs_nivel" initial="0" )
+ column=(type=long updatewhereclause=yes name=dt_opcxapl_cs_prim_nivel dbname="dt_opcxapl.cs_prim_nivel" initial="0" )
+ column=(type=long updatewhereclause=yes name=dt_opcxapl_cs_seg_nivel dbname="dt_opcxapl.cs_seg_nivel" initial="0" )
+ column=(type=long updatewhereclause=yes name=dt_opcxapl_cs_ter_nivel dbname="dt_opcxapl.cs_ter_nivel" initial="0" )
+ column=(type=long updatewhereclause=yes name=dt_opcxapl_cs_cuar_nivel dbname="dt_opcxapl.cs_cuar_nivel" initial="0" )
+ retrieve="SELECT produc.dt_opcxapl.nom_obj_ventana,   
+       produc.dt_opcxapl.cs_nivel,   
+		 produc.dt_opcxapl.cs_prim_nivel,   
+		 produc.dt_opcxapl.cs_seg_nivel,   
+		 produc.dt_opcxapl.cs_ter_nivel,   
+		 produc.dt_opcxapl.cs_cuar_nivel  
+	FROM produc.dt_opcxapl, produc.dt_opcxper  
+  		WHERE ( produc.dt_opcxper.co_aplicacion = produc.dt_opcxapl.co_aplicacion ) AND
+		      ( produc.dt_opcxper.co_opcion = produc.dt_opcxapl.co_opcion ) AND  
+   	      ( ( produc.dt_opcxapl.co_aplicacion = :codigo_aplicacion ) AND  
+		      ( produc.dt_opcxper.co_perfil = :codigo_perfil ) );" arguments=(("codigo_aplicacion", number),("codigo_perfil", number)) )
+text(band=header alignment="2" text="Dt Opcxapl
+Nom Obj Ventana" border="0" color="8388608" x="9" y="8" height="128" width="745" html.valueishtml="0"  name=dt_opcxapl_nom_obj_ventana_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Dt Opcxapl
+Cs Nivel" border="0" color="8388608" x="763" y="8" height="128" width="329" html.valueishtml="0"  name=dt_opcxapl_cs_nivel_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Dt Opcxapl
+Cs Prim Nivel" border="0" color="8388608" x="1102" y="8" height="128" width="357" html.valueishtml="0"  name=dt_opcxapl_cs_prim_nivel_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Dt Opcxapl
+Cs Seg Nivel" border="0" color="8388608" x="1467" y="8" height="128" width="338" html.valueishtml="0"  name=dt_opcxapl_cs_seg_nivel_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Dt Opcxapl
+Cs Ter Nivel" border="0" color="8388608" x="1815" y="8" height="128" width="329" html.valueishtml="0"  name=dt_opcxapl_cs_ter_nivel_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Dt Opcxapl
+Cs Cuar Nivel" border="0" color="8388608" x="2153" y="8" height="128" width="357" html.valueishtml="0"  name=dt_opcxapl_cs_cuar_nivel_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="76" width="745" format="[general]" html.valueishtml="0"  name=dt_opcxapl_nom_obj_ventana visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="763" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=dt_opcxapl_cs_nivel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="1102" y="8" height="76" width="357" format="[general]" html.valueishtml="0"  name=dt_opcxapl_cs_prim_nivel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="1467" y="8" height="76" width="338" format="[general]" html.valueishtml="0"  name=dt_opcxapl_cs_seg_nivel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1815" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=dt_opcxapl_cs_ter_nivel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="2153" y="8" height="76" width="357" format="[general]" html.valueishtml="0"  name=dt_opcxapl_cs_cuar_nivel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
