@@ -1,0 +1,39 @@
+HA$PBExportHeader$dtb_temp_calcular_kilos_modelo_std_talla.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=number updatewhereclause=yes name=compute_0001 dbname="compute_0001" )
+ column=(type=decimal(2) updatewhereclause=yes name=porc_utilizacion dbname="dt_modelos.porc_utilizacion" )
+ retrieve="select ((sum(ca_grs))/1000) /count(distinct dt_color_modelo.co_talla),
+		 dt_modelos.porc_utilizacion
+from dt_color_modelo, dt_agrupaescalapdn, dt_modelos
+where dt_color_modelo.co_fabrica = :ai_fabrica
+  and dt_color_modelo.co_linea = :ai_linea
+  and dt_color_modelo.co_referencia = :al_referencia
+  and dt_color_modelo.co_color_pt = :ai_color_pt
+  and dt_color_modelo.co_modelo = :al_modelo
+  and dt_color_modelo.co_talla = dt_agrupaescalapdn.co_talla
+  and dt_agrupaescalapdn.cs_agrupacion = :al_agrupacion
+  and dt_modelos.co_fabrica = dt_color_modelo.co_fabrica
+  and dt_modelos.co_linea = dt_color_modelo.co_linea
+  and dt_modelos.co_referencia = dt_color_modelo.co_referencia
+  and dt_modelos.co_color_pt = dt_color_modelo.co_color_pt
+  and dt_modelos.co_modelo = dt_color_modelo.co_modelo
+  and dt_modelos.co_talla = dt_color_modelo.co_talla
+  and dt_color_modelo.co_talla = :an_talla
+group by 2
+
+; " arguments=(("ai_fabrica", number),("ai_linea", number),("al_referencia", number),("ai_color_pt", number),("al_modelo", number),("al_unidades", number),("porc_utiliza", number),("al_agrupacion", number),("an_talla", number)) )
+text(band=detail alignment="2" text="Kg:" border="0" color="33554432" x="14" y="8" height="60" width="123" html.valueishtml="0"  name=compute_0001_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="2" color="33554432" x="1125" y="4" height="64" width="274" format="0.00" html.valueishtml="0"  name=compute_0001 visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="( compute_0001 * al_unidades ) "border="2" color="33554432" x="146" y="4" height="60" width="279" format="0.00" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="( compute_1 *  porc_utilizacion )/100"border="2" color="33554432" x="718" y="4" height="64" width="224" format="0.00" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Kg Min:" border="0" color="33554432" x="489" y="8" height="52" width="215" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="1015" y="8" height="52" width="41" format="[general]" html.valueishtml="0"  name=porc_utilizacion visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
