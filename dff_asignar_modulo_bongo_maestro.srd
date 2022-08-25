@@ -1,0 +1,60 @@
+HA$PBExportHeader$dff_asignar_modulo_bongo_maestro.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=360 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=h_canasta_corte_pallet_id dbname="pallet_id" )
+ column=(type=long updatewhereclause=yes name=co_fabrica_modulo dbname="co_fabrica_modulo" )
+ column=(type=long updatewhereclause=yes name=co_planta_modulo dbname="co_planta_modulo" )
+ column=(type=long updatewhereclause=yes name=co_modulo dbname="co_modulo" )
+ column=(type=char(30) updatewhereclause=yes name=peddig_gpa dbname="gpa" )
+ column=(type=char(30) updatewhereclause=yes name=m_plantas_de_planta dbname="de_planta" )
+ column=(type=char(30) updatewhereclause=yes name=de_modulo dbname="de_modulo" )
+ column=(type=char(30) updatewhereclause=yes name=de_planta dbname="de_planta" )
+ retrieve="  SELECT DISTINCT h_canasta_corte.pallet_id,   
+         dt_canasta_corte.co_fabrica_modulo,   
+         dt_canasta_corte.co_planta_modulo,   
+         dt_canasta_corte.co_modulo,   
+         peddig.gpa,   
+         m_plantas.de_planta,
+			m_modulos.de_modulo,
+			m_plantas.de_planta  
+    FROM dt_canasta_corte,   
+         h_canasta_corte,   
+         dt_agrupa_pdn,   
+         peddig,   
+         m_plantas,
+			m_modulos  
+   WHERE ( dt_canasta_corte.cs_canasta 			= h_canasta_corte.cs_canasta ) and  
+         ( dt_canasta_corte.lote 					= dt_agrupa_pdn.cs_pdn ) and  
+         ( dt_canasta_corte.cs_agrupacion 		= dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_agrupa_pdn.co_fabrica_exp 			= peddig.co_fabrica_exp ) and  
+         ( dt_agrupa_pdn.pedido 						= peddig.pedido ) and  
+         ( dt_canasta_corte.co_fabrica_modulo 	= m_plantas.co_fabrica ) and  
+         ( dt_canasta_corte.co_planta_modulo 	= m_plantas.co_planta ) and
+			( dt_canasta_corte.co_fabrica_modulo 	= m_modulos.co_fabrica ) and
+			( dt_canasta_corte.co_planta_modulo 	= m_modulos.co_planta ) and
+			( dt_canasta_corte.co_modulo 				= m_modulos.co_modulo ) and
+			( h_canasta_corte.pallet_id  				= :as_bongo ) and
+			( dt_canasta_corte.co_fabrica_modulo   = m_plantas.co_fabrica ) and
+			( dt_canasta_corte.co_planta_modulo    = m_plantas.co_planta ) and
+			( h_canasta_corte.co_estado 				= 40 )" arguments=(("as_bongo", string)) )
+text(band=detail alignment="0" text="Recipiente:" border="0" color="33554432" x="37" y="24" height="52" width="421" html.valueishtml="0"  name=h_canasta_corte_pallet_id_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Fabrica:" border="0" color="33554432" x="37" y="108" height="52" width="421" html.valueishtml="0"  name=dt_canasta_corte_co_fabrica_modulo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="M$$HEX1$$f300$$ENDHEX$$dulo:" border="0" color="33554432" x="37" y="276" height="52" width="421" html.valueishtml="0"  name=dt_canasta_corte_co_modulo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Grupo:" border="0" color="33554432" x="754" y="24" height="52" width="165" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="33554432" x="969" y="24" height="52" width="690" format="[general]" html.valueishtml="0"  name=peddig_gpa visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="33554432" x="631" y="108" height="52" width="1029" format="[general]" html.valueishtml="0"  name=co_fabrica_modulo_1 visible="1" dddw.name=dddw_fabricas dddw.displaycolumn=razon_social dddw.datacolumn=co_fabrica dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="5" color="33554432" x="631" y="276" height="52" width="1029" format="[general]" html.valueishtml="0"  name=de_modulo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=detail alignment="0" text="Planta:" border="0" color="33554432" x="37" y="192" height="52" width="421" html.valueishtml="0"  name=dt_canasta_corte_co_planta_modulo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="5" color="33554432" x="631" y="192" height="52" width="1029" format="[general]" html.valueishtml="0"  name=de_planta visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=4 alignment="1" tabsequence=40 border="5" color="33554432" x="471" y="276" height="52" width="128" format="[general]" html.valueishtml="0"  name=co_modulo visible="1" dddw.name=dddw_m_modulos_bongo dddw.displaycolumn=co_modulo dddw.datacolumn=co_modulo dddw.percentwidth=740 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.imemode=0 dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="1" tabsequence=30 border="5" color="33554432" x="471" y="192" height="52" width="128" format="[general]" html.valueishtml="0"  name=co_planta_modulo visible="1" dddw.name=dddw_plantas_x_fabrica dddw.displaycolumn=co_planta dddw.datacolumn=co_planta dddw.percentwidth=735 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.imemode=0 dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="5" color="33554432" x="471" y="108" height="52" width="128" format="[general]" html.valueishtml="0"  name=co_fabrica_modulo visible="1" dddw.name=dddw_fabricas_codigo_descripcion dddw.displaycolumn=co_fabrica dddw.datacolumn=co_fabrica dddw.percentwidth=740 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.imemode=0 dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="33554432" x="471" y="24" height="52" width="238" format="[general]" html.valueishtml="0"  name=h_canasta_corte_pallet_id visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
