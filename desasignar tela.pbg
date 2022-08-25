@@ -1,0 +1,17 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "desasignar tela.pbl" "";
+@end;
+@begin Objects
+ "dtb_tela_requerida_op.srd" "desasignar tela.pbl";
+ "dtb_ordenes_produccion.srd" "desasignar tela.pbl";
+ "w_asignar_tela_op.srw" "desasignar tela.pbl";
+ "dtb_liberaciones_rollo.srd" "desasignar tela.pbl";
+ "w_desasignar_rollos.srw" "desasignar tela.pbl";
+ "dtb_rollos_op.srd" "desasignar tela.pbl";
+ "dtb_tela_requerida_op_respaldo.srd" "desasignar tela.pbl";
+ "dff_consultar_orden_produccion.srd" "desasignar tela.pbl";
+ "dtb_ordenes_produccion_completas.srd" "desasignar tela.pbl";
+ "dtb_rollos_disponibles_tela.srd" "desasignar tela.pbl";
+ "dtb_ordenes_produccion_incompletas.srd" "desasignar tela.pbl";
+@end;
