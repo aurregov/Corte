@@ -1,0 +1,140 @@
+HA$PBExportHeader$dtb_telas_consolida.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=112 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=nu_orden dbname="dt_telaxmodelo_lib.nu_orden" )
+ column=(type=char(10) updatewhereclause=yes name=nu_cut dbname="dt_telaxmodelo_lib.nu_cut" )
+ column=(type=long updatewhereclause=yes name=co_fabrica_pt dbname="dt_telaxmodelo_lib.co_fabrica_pt" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="dt_telaxmodelo_lib.co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="dt_telaxmodelo_lib.co_referencia" )
+ column=(type=long updatewhereclause=yes name=co_color_pt dbname="dt_telaxmodelo_lib.co_color_pt" )
+ column=(type=char(2) updatewhereclause=yes name=co_tono dbname="dt_telaxmodelo_lib.co_tono" )
+ column=(type=long updatewhereclause=yes name=co_modelo dbname="dt_telaxmodelo_lib.co_modelo" )
+ column=(type=long updatewhereclause=yes name=co_fabrica_tela dbname="dt_telaxmodelo_lib.co_fabrica_tela" )
+ column=(type=long updatewhereclause=yes name=co_reftel dbname="dt_telaxmodelo_lib.co_reftel" )
+ column=(type=long updatewhereclause=yes name=co_caract dbname="dt_telaxmodelo_lib.co_caract" )
+ column=(type=long updatewhereclause=yes name=diametro dbname="dt_telaxmodelo_lib.diametro" )
+ column=(type=long updatewhereclause=yes name=co_color_tela dbname="dt_telaxmodelo_lib.co_color_tela" )
+ column=(type=decimal(2) updatewhereclause=yes name=ancho_cortable dbname="dt_telaxmodelo_lib.ancho_cortable" )
+ column=(type=char(2) updatewhereclause=yes name=tono_tela dbname="dt_telaxmodelo_lib.tono_tela" )
+ column=(type=long updatewhereclause=yes name=raya dbname="dt_telaxmodelo_lib.raya" )
+ column=(type=number updatewhereclause=yes name=yield dbname="yield" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_unidades dbname="ca_unidades" )
+ column=(type=decimal(5) updatewhereclause=yes name=ca_tela dbname="ca_tela" )
+ column=(type=long updatewhereclause=yes name=co_tiptel dbname="h_telas.co_tiptel" )
+ column=(type=long updatewhereclause=yes name=cs_tanda dbname="dt_telaxmodelo_lib.cs_tanda" )
+ retrieve="SELECT	dt_telaxmodelo_lib.nu_orden ,
+			dt_telaxmodelo_lib.nu_cut ,
+			dt_telaxmodelo_lib.co_fabrica_pt ,
+			dt_telaxmodelo_lib.co_linea ,
+			dt_telaxmodelo_lib.co_referencia ,
+			dt_telaxmodelo_lib.co_color_pt ,
+			dt_telaxmodelo_lib.co_tono ,
+			dt_telaxmodelo_lib.co_modelo ,
+			dt_telaxmodelo_lib.co_fabrica_tela ,
+			dt_telaxmodelo_lib.co_reftel ,
+			dt_telaxmodelo_lib.co_caract ,
+			dt_telaxmodelo_lib.diametro ,
+			dt_telaxmodelo_lib.co_color_tela ,
+			dt_telaxmodelo_lib.ancho_cortable ,
+			dt_telaxmodelo_lib.tono_tela ,
+			dt_telaxmodelo_lib.raya ,
+			Avg(dt_telaxmodelo_lib.yield) yield ,
+			Sum(dt_telaxmodelo_lib.ca_unidades) ca_unidades,
+			Sum(dt_telaxmodelo_lib.ca_tela) ca_tela,
+			h_telas.co_tiptel,
+			dt_telaxmodelo_lib.cs_tanda  
+FROM	dt_telaxmodelo_lib ,
+		t_libera_consolida ,
+		h_telas     
+WHERE ( t_libera_consolida.usuario = :as_usuario ) and
+		( dt_telaxmodelo_lib.co_fabrica_exp = t_libera_consolida.co_fabrica_exp ) and          
+		( dt_telaxmodelo_lib.cs_liberacion = t_libera_consolida.cs_liberacion ) and    
+		( dt_telaxmodelo_lib.nu_orden = t_libera_consolida.nu_orden ) and
+		( dt_telaxmodelo_lib.nu_cut = t_libera_consolida.nu_cut ) and
+		( dt_telaxmodelo_lib.co_fabrica_pt = t_libera_consolida.co_fabrica_pt ) and
+		( dt_telaxmodelo_lib.co_linea = t_libera_consolida.co_linea ) and
+		( dt_telaxmodelo_lib.co_referencia = t_libera_consolida.co_referencia ) and
+		( dt_telaxmodelo_lib.co_color_pt = t_libera_consolida.co_color_pt ) and  
+		( dt_telaxmodelo_lib.co_reftel = h_telas.co_reftel ) and          
+		( dt_telaxmodelo_lib.co_caract = h_telas.co_caract )  
+GROUP BY	dt_telaxmodelo_lib.nu_orden ,
+			dt_telaxmodelo_lib.nu_cut ,
+			dt_telaxmodelo_lib.co_fabrica_pt ,
+			dt_telaxmodelo_lib.co_linea ,
+			dt_telaxmodelo_lib.co_referencia ,
+			dt_telaxmodelo_lib.co_color_pt ,
+			dt_telaxmodelo_lib.co_tono ,
+			dt_telaxmodelo_lib.co_modelo ,
+			dt_telaxmodelo_lib.co_fabrica_tela ,
+			dt_telaxmodelo_lib.co_reftel ,
+			dt_telaxmodelo_lib.co_caract ,
+			dt_telaxmodelo_lib.diametro ,
+			dt_telaxmodelo_lib.co_color_tela ,
+			dt_telaxmodelo_lib.ancho_cortable ,
+			dt_telaxmodelo_lib.tono_tela ,
+			dt_telaxmodelo_lib.raya ,
+			h_telas.co_tiptel,
+			dt_telaxmodelo_lib.cs_tanda " arguments=(("as_usuario", string)) )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Nu Orden" border="0" color="33554432" x="5" y="4" height="104" width="480" html.valueishtml="0"  name=dt_telaxmodelo_lib_nu_orden_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Nu Cut" border="0" color="33554432" x="489" y="4" height="104" width="416" html.valueishtml="0"  name=dt_telaxmodelo_lib_nu_cut_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Co Fabrica Pt" border="0" color="33554432" x="910" y="4" height="104" width="416" html.valueishtml="0"  name=dt_telaxmodelo_lib_co_fabrica_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Co Linea" border="0" color="33554432" x="1330" y="4" height="104" width="416" html.valueishtml="0"  name=dt_telaxmodelo_lib_co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Co Referencia" border="0" color="33554432" x="1751" y="4" height="104" width="416" html.valueishtml="0"  name=dt_telaxmodelo_lib_co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Co Color Pt" border="0" color="33554432" x="2176" y="4" height="104" width="416" html.valueishtml="0"  name=dt_telaxmodelo_lib_co_color_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Co Tono" border="0" color="33554432" x="2597" y="4" height="104" width="416" html.valueishtml="0"  name=dt_telaxmodelo_lib_co_tono_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Co Modelo" border="0" color="33554432" x="3017" y="4" height="104" width="416" html.valueishtml="0"  name=dt_telaxmodelo_lib_co_modelo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Co Fabrica Tela" border="0" color="33554432" x="3438" y="4" height="104" width="416" html.valueishtml="0"  name=dt_telaxmodelo_lib_co_fabrica_tela_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Co Reftel" border="0" color="33554432" x="3858" y="4" height="104" width="416" html.valueishtml="0"  name=dt_telaxmodelo_lib_co_reftel_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Co Caract" border="0" color="33554432" x="4279" y="4" height="104" width="416" html.valueishtml="0"  name=dt_telaxmodelo_lib_co_caract_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Diametro" border="0" color="33554432" x="4699" y="4" height="104" width="416" html.valueishtml="0"  name=dt_telaxmodelo_lib_diametro_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Co Color Tela" border="0" color="33554432" x="5120" y="4" height="104" width="416" html.valueishtml="0"  name=dt_telaxmodelo_lib_co_color_tela_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Ancho Cortable" border="0" color="33554432" x="5541" y="4" height="104" width="416" html.valueishtml="0"  name=dt_telaxmodelo_lib_ancho_cortable_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Tono Tela" border="0" color="33554432" x="5961" y="4" height="104" width="416" html.valueishtml="0"  name=dt_telaxmodelo_lib_tono_tela_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Raya" border="0" color="33554432" x="6386" y="4" height="104" width="416" html.valueishtml="0"  name=dt_telaxmodelo_lib_raya_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Yield" border="0" color="33554432" x="6807" y="4" height="104" width="416" html.valueishtml="0"  name=dt_telaxmodelo_lib_yield_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Unidades" border="0" color="33554432" x="7227" y="4" height="52" width="279" html.valueishtml="0"  name=ca_unidades_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Tela" border="0" color="33554432" x="7511" y="4" height="52" width="274" html.valueishtml="0"  name=ca_tela_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="64" width="480" format="[general]" html.valueishtml="0"  name=nu_orden visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="489" y="4" height="64" width="251" format="[general]" html.valueishtml="0"  name=nu_cut visible="1" edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="910" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_fabrica_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="1330" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1751" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="2176" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_color_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="2597" y="4" height="64" width="69" format="[general]" html.valueishtml="0"  name=co_tono visible="1" edit.limit=2 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="3017" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_modelo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="3438" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_fabrica_tela visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="33554432" x="3858" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="0" color="33554432" x="4279" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_caract visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="0" color="33554432" x="4699" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=diametro visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="0" color="33554432" x="5120" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_color_tela visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="0" color="33554432" x="5541" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=ancho_cortable visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="33554432" x="5961" y="4" height="64" width="73" format="[general]" html.valueishtml="0"  name=tono_tela visible="1" edit.limit=2 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="1" tabsequence=32766 border="0" color="33554432" x="6386" y="4" height="64" width="270" format="[general]" html.valueishtml="0"  name=raya visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="1" tabsequence=32766 border="0" color="33554432" x="7227" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=ca_unidades visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="1" tabsequence=32766 border="0" color="33554432" x="7511" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=ca_tela visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="33554432" x="7785" y="0" height="52" width="23" format="[general]" html.valueishtml="0"  name=co_tiptel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="33554432" x="7808" y="0" height="52" width="992" format="[general]" html.valueishtml="0"  name=yield visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=0 border="0" color="33554432" x="8800" y="0" height="52" width="69" html.valueishtml="0"  name=cs_tanda visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
