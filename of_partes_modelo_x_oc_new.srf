@@ -1,0 +1,51 @@
+HA$PBExportHeader$of_partes_modelo_x_oc_new.srf
+global type of_partes_modelo_x_oc_new from function_object
+end type
+
+forward prototypes
+global function string of_partes_modelo_x_oc_new (long an_orden_corte, long an_raya, long an_fabrica, long an_linea, long an_referencia)
+end prototypes
+
+global function string of_partes_modelo_x_oc_new (long an_orden_corte, long an_raya, long an_fabrica, long an_linea, long an_referencia);//funcion que trae las partes por modelo
+String ls_descripcion, ls_parte
+Long   ll_n, ll_filas_info
+
+
+uo_dsbase lds_desc_x_modelo
+
+//datastore que trae las partes por modelos dado oc,raya,fabrica,linea y ref
+lds_desc_x_modelo = Create uo_dsbase				
+lds_desc_x_modelo.dataobject = "dtb_partes_modelo_x_oc_new"
+lds_desc_x_modelo.settransobject(gnv_recursos.of_get_transaccion_sucia())
+
+ll_filas_info = lds_desc_x_modelo.Retrieve(an_orden_corte,an_raya,an_fabrica,an_linea,an_referencia)
+
+//IF ll_filas_info > 0 THEN
+//   ls_descripcion = '('
+//ELSE
+//   ls_descripcion = ''
+//END IF
+//cilco para traer informacion de la decripcion del modelo
+FOR ll_n = 1 TO ll_filas_info
+	ls_parte = trim(lds_desc_x_modelo.getitemstring(ll_n,"de_parte"))
+	
+	IF ll_filas_info = 1 THEN
+		//ls_descripcion = ls_descripcion + ls_parte+')'
+		ls_descripcion = ls_descripcion + ls_parte
+	ELSE
+		//ls_descripcion = ls_descripcion + ls_parte + '-'	
+		
+		IF ll_n = ll_filas_info THEN
+		 ls_descripcion = ls_descripcion + ls_parte
+		 //ls_descripcion = ls_descripcion + ls_parte+')'
+	   ELSE
+		 ls_descripcion = ls_descripcion + ls_parte + ' - '
+		END IF 	
+	END IF
+		
+NEXT
+
+RETURN ls_descripcion
+
+end function
+
