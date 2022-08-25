@@ -1,0 +1,80 @@
+HA$PBExportHeader$d_lista_produccion_para_programar.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica_exp dbname="co_fabrica_exp" )
+ column=(type=long updatewhereclause=yes name=pedido dbname="pedido" )
+ column=(type=long updatewhereclause=yes name=cs_liberacion dbname="cs_liberacion" )
+ column=(type=char(20) updatewhereclause=yes name=po dbname="po" )
+ column=(type=long updatewhereclause=yes name=co_fabrica_pt dbname="co_fabrica_pt" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long updatewhereclause=yes name=co_color_pt dbname="co_color_pt" )
+ column=(type=char(2) updatewhereclause=yes name=tono dbname="tono" )
+ column=(type=long updatewhereclause=yes name=cs_estilocolortono dbname="cs_estilocolortono" )
+ column=(type=long updatewhereclause=yes name=cs_particion dbname="cs_particion" )
+ column=(type=long updatewhereclause=yes name=cs_prioridad dbname="cs_prioridad" )
+ column=(type=long updatewhereclause=yes name=co_estilo dbname="co_estilo" )
+ column=(type=long updatewhereclause=yes name=ca_pendiente dbname="ca_pendiente" )
+ retrieve="  SELECT dt_pdnxmodulo.co_fabrica_exp,   
+         dt_pdnxmodulo.pedido,   
+         dt_pdnxmodulo.cs_liberacion,   
+         dt_pdnxmodulo.po,   
+         dt_pdnxmodulo.co_fabrica_pt,   
+         dt_pdnxmodulo.co_linea,   
+         dt_pdnxmodulo.co_referencia,   
+         dt_pdnxmodulo.co_color_pt,   
+         dt_pdnxmodulo.tono,   
+         dt_pdnxmodulo.cs_estilocolortono,   
+         dt_pdnxmodulo.cs_particion,   
+         dt_pdnxmodulo.cs_prioridad,   
+         pacasash.h_preref.co_estilo,   
+         dt_pdnxmodulo.ca_pendiente  
+    FROM dt_pdnxmodulo,   
+         pacasash.h_preref  
+   WHERE ( dt_pdnxmodulo.co_fabrica_pt = pacasash.h_preref.co_fabrica ) and  
+         ( dt_pdnxmodulo.co_linea = pacasash.h_preref.co_linea ) and  
+         ( dt_pdnxmodulo.co_referencia = pacasash.h_preref.co_referencia ) and  
+         ( ( dt_pdnxmodulo.simulacion = :an_simulacion ) AND  
+         ( dt_pdnxmodulo.co_fabrica = :an_fabrica ) AND  
+         ( dt_pdnxmodulo.co_planta = :an_planta ) AND  
+         ( dt_pdnxmodulo.co_modulo = :an_modulo ) AND  
+         ( dt_pdnxmodulo.cs_prioridad >= :an_prioridad ) ) and
+			( dt_pdnxmodulo.co_estado_asigna < 11)
+			
+   
+ORDER BY dt_pdnxmodulo.cs_prioridad ASC   
+" arguments=(("an_simulacion", number),("an_fabrica", number),("an_planta", number),("an_modulo", number),("an_prioridad", number)) )
+text(band=header alignment="2" text="Co Fabrica Exp" border="0" color="0" x="5" y="4" height="64" width="411" html.valueishtml="0"  name=co_fabrica_exp_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pedido" border="0" color="0" x="421" y="4" height="64" width="329" html.valueishtml="0"  name=pedido_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Liberacion" border="0" color="0" x="754" y="4" height="64" width="361" html.valueishtml="0"  name=cs_liberacion_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Po" border="0" color="0" x="1120" y="4" height="64" width="576" html.valueishtml="0"  name=po_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Fabrica Pt" border="0" color="0" x="1701" y="4" height="64" width="366" html.valueishtml="0"  name=co_fabrica_pt_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Linea" border="0" color="0" x="2071" y="4" height="64" width="329" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Referencia" border="0" color="0" x="2409" y="4" height="64" width="366" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Color Pt" border="0" color="0" x="2784" y="4" height="64" width="329" html.valueishtml="0"  name=co_color_pt_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tono" border="0" color="0" x="3118" y="4" height="64" width="128" html.valueishtml="0"  name=tono_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Estilocolortono" border="0" color="0" x="3250" y="4" height="64" width="485" html.valueishtml="0"  name=cs_estilocolortono_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Particion" border="0" color="0" x="3739" y="4" height="64" width="329" html.valueishtml="0"  name=cs_particion_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Prioridad" border="0" color="0" x="4073" y="4" height="64" width="329" html.valueishtml="0"  name=cs_prioridad_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Estilo" border="0" color="0" x="4425" y="4" height="64" width="219" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Pendiente" border="0" color="0" x="4667" y="4" height="64" width="434" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="5" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=co_fabrica_exp visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="421" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=pedido visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="0" x="754" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=cs_liberacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="1120" y="4" height="76" width="576" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="0" x="1701" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=co_fabrica_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="0" x="2071" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="0" x="2409" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="0" x="2784" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=co_color_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="0" x="3118" y="4" height="76" width="82" format="[general]" html.valueishtml="0"  name=tono visible="1" edit.limit=2 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="0" x="3250" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=cs_estilocolortono visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="0" color="0" x="3739" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=cs_particion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="0" color="0" x="4073" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=cs_prioridad visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="0" color="0" x="4425" y="8" height="64" width="219" format="[general]" html.valueishtml="0"  name=co_estilo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="0" color="0" x="4667" y="16" height="64" width="434" format="[general]" html.valueishtml="0"  name=ca_pendiente visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
