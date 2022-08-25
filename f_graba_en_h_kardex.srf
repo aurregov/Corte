@@ -1,0 +1,142 @@
+HA$PBExportHeader$f_graba_en_h_kardex.srf
+global type f_graba_en_h_kardex from function_object
+end type
+
+forward prototypes
+global function long f_graba_en_h_kardex (long ai_concepto, long ai_origen, long ai_destino, long ai_caract, long al_tela, long al_color, long ai_diametro, long al_lote, long al_ordenpd_pt, long al_rollo, decimal ad_kilos, long al_tanda)
+end prototypes
+
+global function long f_graba_en_h_kardex (long ai_concepto, long ai_origen, long ai_destino, long ai_caract, long al_tela, long al_color, long ai_diametro, long al_lote, long al_ordenpd_pt, long al_rollo, decimal ad_kilos, long al_tanda);STRING	ls_usuario, ls_instancia, ls_error
+DATETIME	ldt_ano_mes
+LONG		li_documento	
+Long  li_co_caract_nue, li_ya_movio, li_cpto_critica, li_co_planeador
+
+ls_usuario = gstr_info_usuario.codigo_usuario
+ls_instancia = gstr_info_usuario.instancia
+
+//mirar si el lote esta marcado como liberar
+SELECT cs_espera
+  INTO :li_cpto_critica
+  FROM dt_lotesxtandas
+ WHERE cs_tanda = :al_tanda
+	AND cs_secundario = 2
+	AND cs_ordenpd_pt = :al_ordenpd_pt
+	AND cs_lote =  :al_lote
+	AND co_reftel = :al_tela
+	AND co_caract = :ai_caract
+	AND cs_parte = 1;
+	
+IF li_cpto_critica = 2 THEN
+	li_co_planeador = 66
+ELSE
+	li_co_planeador = 66
+END IF
+
+SELECT ano_mes
+  INTO :ldt_ano_mes
+  FROM cf_user_prod
+ WHERE usuario = :ls_usuario;
+ IF SQLCA.SQLCODE <> 0 THEN
+	ls_error = sqlca.sqlerrtext
+	ROLLBACK;
+	Messagebox('Error','Error al buscar el a$$HEX1$$f100$$ENDHEX$$o_mes, Error: ' + ls_error)
+	RETURN 0
+END IF
+
+//traer documento
+SELECT cs_concepto
+  INTO :li_documento
+  FROM m_consecutivos
+ WHERE co_fabrica  = 2
+   AND co_concepto = :ai_concepto;
+IF SQLCA.SQLCODE <> 0 THEN
+	ls_error = sqlca.sqlerrtext
+	ROLLBACK;
+	Messagebox('Error','Error al buscar el numero del documento, Error: ' + ls_error)
+	RETURN 0
+END IF
+
+	
+li_documento = li_documento + 1 
+UPDATE m_consecutivos
+SET cs_concepto = :li_documento
+WHERE co_fabrica  = 2
+  AND co_concepto = :ai_concepto;
+IF SQLCA.SQLCODE <> 0 THEN
+	ls_error = sqlca.sqlerrtext
+	ROLLBACK;
+	Messagebox('Error','Error al actualizar el numero del documento, Error: ' + ls_error)
+	RETURN 0
+END IF
+  
+//Inserta en h_kardex
+INSERT INTO h_kardex ( co_fabrica, co_concepto, documento, documento_ext, origen, destino,
+                       fe_kardex, hora, ano_mes, usuario, instancia )
+VALUES (2, :ai_concepto, :li_documento, :li_documento, :ai_origen, :ai_destino, CURRENT,
+        CURRENT, :ldt_ano_mes, :ls_usuario, :ls_instancia );
+IF SQLCA.SQLCODE <> 0 THEN
+	ls_error = sqlca.sqlerrtext
+	ROLLBACK;
+	Messagebox('Error','Error al grabar en h_kardex, Error: ' + ls_error)
+	RETURN 0
+END IF
+
+//Valida la ruta de la caract
+SELECT m_rutas.co_caract_nue
+  INTO :li_co_caract_nue
+  FROM m_rutas 
+ WHERE m_rutas.co_concepto  = :ai_concepto
+   AND m_rutas.origen = :ai_origen
+   AND m_rutas.destino = :ai_destino
+	AND m_rutas.co_caract = :ai_caract;
+IF SQLCA.SQLCODE <> 0 THEN
+	ls_error = sqlca.sqlerrtext
+	ROLLBACK;
+	Messagebox('Error','Error validar la ruta, Error: ' + ls_error)
+	RETURN 0
+END IF
+
+SELECT COUNT(*)
+  INTO :li_ya_movio
+  FROM m_rollo
+ WHERE cs_rollo = :al_rollo
+   AND co_centro = :ai_destino;
+IF li_ya_movio > 0 THEN
+	ls_error = sqlca.sqlerrtext
+	ROLLBACK;
+	Messagebox('Error','Rollo ya movido a centro destino, Error: ' + ls_error)
+	RETURN 0
+END IF
+
+//Inserta en dt_kardex
+INSERT INTO dt_kardex (co_fabrica, co_concepto, documento, item, cs_rollo, cs_ordenpd, co_reftel, co_caract,
+                       co_color, diametro, ubicacion, ca_kardex_kg, ca_kardex_mt, pr_kardex, co_recurso,
+                       co_caractn, lote, fe_ingreso, usuario_upd, fe_actualizacion, usuario, instancia )
+VALUES (2, :ai_concepto, :li_documento, 1, :al_rollo, :al_ordenpd_pt, :al_tela, :ai_caract,
+        :al_color, :ai_diametro, 0, :ad_kilos, 0, 0, 0, :li_co_caract_nue, :al_lote, current, :ls_usuario,
+	 current, :ls_usuario, :ls_instancia )	;			
+IF SQLCA.SQLCODE <> 0 THEN
+	ls_error = sqlca.sqlerrtext
+	ROLLBACK;
+	Messagebox('Error','Error al insertar en dt_kardex, Error: ' + ls_error)
+	RETURN 0
+END IF
+
+UPDATE m_rollo SET (co_caract_act, co_centro, fe_actualizacion, co_estado_rollo, ancho_tub_term, co_planeador) =
+                   (:li_co_caract_nue, :ai_destino, CURRENT,  2, 0, :li_co_planeador)
+WHERE cs_rollo = :al_rollo; 
+IF SQLCA.SQLCODE <> 0 THEN
+	ls_error = sqlca.sqlerrtext
+	ROLLBACK;
+	Messagebox('Error','Error al actualizar el rollo, Error: ' + ls_error)
+	RETURN 0
+END IF
+
+RETURN 1
+
+			 
+
+
+
+end function
+
