@@ -1,0 +1,15 @@
+HA$PBExportHeader$r_liquidacion_orden_corte_nueva.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=5 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=560 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=452 color="536870912"  height.autosize=yes)
+table(column=(type=char(10) updatewhereclause=yes name=a dbname="a" )
+ unbound = "yes"arguments=(("an_ordencorte", number),("an_agrupacion", number),("an_base_trazos", number),("an_liquidacion", number)) )
+report(band=header dataobject="dtb_cabecera_liquidacion_nueva" x="9" y="8" height="540" width="2834" border="0"  height.autosize=yes criteria="" nest_arguments=((" an_ordencorte "),(" an_agrupacion "),(" an_base_trazos "),(" an_liquidacion ")) trail_footer = yes  name=dw_1 visible="1"  slideup=directlyabove )
+report(band=detail dataobject="dtb_porcentajes_liquidacion_nueva" x="9" y="8" height="136" width="3383" border="0"  height.autosize=yes criteria="" nest_arguments=((" an_ordencorte "),(" an_agrupacion "),(" an_base_trazos "),(" an_liquidacion ")) trail_footer = yes  name=dw_4 visible="1"  slideup=directlyabove )
+report(band=detail dataobject="dtc_tallas_liquidadas_nueva" x="9" y="160" height="136" width="3383" border="0"  height.autosize=yes criteria="" nest_arguments=((" an_ordencorte "),(" an_agrupacion "),(" an_base_trazos "),(" an_liquidacion ")) trail_footer = yes  name=dw_2 visible="1"  slideleft=yes  slideup=directlyabove )
+report(band=detail dataobject="dtb_rollos_liquidados_nueva" x="9" y="312" height="136" width="3383" border="0"  height.autosize=yes criteria="" nest_arguments=((" an_ordencorte "),(" an_agrupacion "),(" an_base_trazos "),(" an_liquidacion ")) trail_footer = yes  name=dw_3 visible="1"  slideup=directlyabove )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
