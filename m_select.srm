@@ -1,0 +1,86 @@
+HA$PBExportHeader$m_select.srm
+forward
+global type m_select from menu
+end type
+type m_edicion from menu within m_select
+end type
+type m_marcar from menu within m_edicion
+end type
+type m_desmarcar from menu within m_edicion
+end type
+type m_edicion from menu within m_select
+m_marcar m_marcar
+m_desmarcar m_desmarcar
+end type
+global type m_select from menu
+m_edicion m_edicion
+end type
+end forward
+
+global type m_select from menu
+m_edicion m_edicion
+end type
+global m_select m_select
+
+on m_select.create
+m_select=this
+call super::create
+this.m_edicion=create m_edicion
+this.Item[UpperBound(this.Item)+1]=this.m_edicion
+end on
+
+on m_select.destroy
+call super::destroy
+destroy(this.m_edicion)
+end on
+
+type m_edicion from menu within m_select
+m_marcar m_marcar
+m_desmarcar m_desmarcar
+end type
+
+on m_edicion.create
+call super::create
+this.text = "Edicion"
+this.m_marcar=create m_marcar
+this.m_desmarcar=create m_desmarcar
+this.Item[UpperBound(this.Item)+1]=this.m_marcar
+this.Item[UpperBound(this.Item)+1]=this.m_desmarcar
+end on
+
+on m_edicion.destroy
+call super::destroy
+destroy(this.m_marcar)
+destroy(this.m_desmarcar)
+end on
+
+type m_marcar from menu within m_edicion
+end type
+
+event clicked;ParentWindow.Dynamic Trigger Event ue_select(1)
+end event
+
+on m_marcar.create
+call super::create
+this.text = "Marcar todos"
+end on
+
+on m_marcar.destroy
+call super::destroy
+end on
+
+type m_desmarcar from menu within m_edicion
+end type
+
+event clicked;ParentWindow.Dynamic Trigger Event ue_select(0)
+end event
+
+on m_desmarcar.create
+call super::create
+this.text = "Desmarcar"
+end on
+
+on m_desmarcar.destroy
+call super::destroy
+end on
+
