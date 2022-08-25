@@ -1,0 +1,93 @@
+HA$PBExportHeader$dtb_maestro_liberacion_semiautomatica.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=128 color="536870912" )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes name=cs_ordenpd_pt dbname="cs_ordenpd_pt" )
+ column=(type=long update=yes updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long update=yes updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=char(40) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_programada_exp dbname="ca_programada_exp" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_liberada_exp dbname="ca_liberada_exp" )
+ column=(type=decimal(0) updatewhereclause=yes name=contador_po dbname="contador_po" )
+ column=(type=datetime updatewhereclause=yes name=fecha dbname="fecha" )
+ column=(type=long updatewhereclause=yes name=po_cumplidas dbname="po_cumplidas" )
+ column=(type=long updatewhereclause=yes name=a_liberar dbname="a_liberar" )
+ column=(type=char(1) updatewhereclause=yes name=seleccion dbname="seleccion" )
+ column=(type=char(1) updatewhereclause=yes name=marca dbname="marca" values="	S/	N" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=liberar dbname="unid_liberar" )
+ column=(type=long updatewhereclause=yes name=lib_creadas dbname="lib_creadas" )
+ column=(type=long updatewhereclause=yes name=lib_anuladas dbname="lib_anuladas" )
+ column=(type=long updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ retrieve="  SELECT DISTINCT temp_modelos_ref.cs_ordenpd_pt,   
+         temp_modelos_ref.co_linea,   
+         temp_modelos_ref.co_referencia, 
+			h_preref_pv.de_referencia, 
+			(select nvl(sum(dt_caxpedidos.ca_programada),0)
+            from dt_caxpedidos
+				where dt_caxpedidos.cs_ordenpd_pt =temp_modelos_ref.cs_ordenpd_pt) as ca_programada_exp	,
+			(select nvl(sum(dt_caxpedidos.ca_liberadas),0)
+            from dt_caxpedidos
+				where dt_caxpedidos.cs_ordenpd_pt =temp_modelos_ref.cs_ordenpd_pt) as ca_liberada_exp	,
+			(select count(distinct a.po)
+				from temp_modelos_ref a
+           where a.cs_ordenpd_pt = temp_modelos_ref.cs_ordenpd_pt) as contador_po,	
+			(select distinct h_ordenpd_pt.fe_termin_pg
+				from h_ordenpd_pt
+				where h_ordenpd_pt.cs_ordenpd_pt = temp_modelos_ref.cs_ordenpd_pt ) as fecha,
+         pr_po_cumplibera(temp_modelos_ref.usuario,temp_modelos_ref.cs_ordenpd_pt) as po_cumplidas,
+			0 as a_liberar,
+         'N'  as seleccion,
+         'N'  as marca,
+        	sum(temp_modelos_ref.unid_real_liberar) unid_liberar,
+         0 as lib_creadas,
+         0 as lib_anuladas,
+			temp_modelos_ref.co_fabrica
+    FROM temp_modelos_ref,
+         h_preref_pv 
+   WHERE temp_modelos_ref.usuario         = :as_usuario and
+			temp_modelos_ref.co_fabrica 		= h_preref_pv.co_fabrica  and
+			temp_modelos_ref.co_linea 			= h_preref_pv.co_linea  and
+         (Cast(temp_modelos_ref.co_referencia as char(15) ) = h_preref_pv.co_referencia ) and
+         h_preref_pv.co_tipo_ref 			= 'P' and
+			temp_modelos_ref.raya				= 10 
+GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,16
+" arguments=(("as_usuario", string))  sort="cs_ordenpd_pt A " )
+text(band=header alignment="2" text="Linea" border="6" color="33554432" x="14" y="8" height="112" width="123" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="%Lib." border="6" color="0" x="1682" y="8" height="112" width="142" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="#P.O." border="6" color="0" x="1842" y="8" height="112" width="91" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="P.O.Cump." border="6" color="33554432" x="1952" y="8" height="112" width="137" html.valueishtml="0"  name=t_7 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Fecha" border="6" color="33554432" x="2107" y="8" height="112" width="146" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="PorLiberar" border="6" color="0" x="1509" y="8" height="112" width="155" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="UnidadesA Liberar" border="6" color="33554432" x="2277" y="8" height="112" width="224" html.valueishtml="0"  name=unid_liberar_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="%Total" border="6" color="0" x="2514" y="8" height="112" width="142" html.valueishtml="0"  name=t_8 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Lib.Ok" border="6" color="0" x="2674" y="8" height="112" width="101" html.valueishtml="0"  name=t_9 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="LibNulas" border="6" color="0" x="2793" y="8" height="112" width="137" html.valueishtml="0"  name=t_10 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Orden Pdn." border="6" color="33554432" x="155" y="8" height="112" width="233" html.valueishtml="0"  name=cs_ordenpd_pt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Estilo" border="6" color="33554432" x="407" y="8" height="112" width="658" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Pedido" border="6" color="0" x="1083" y="8" height="112" width="192" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Liberado" border="6" color="0" x="1294" y="8" height="112" width="197" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="5" color="33554432" x="14" y="4" height="48" width="123" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="67108864~tIf( seleccion =~"S~", RGB(255,204,204), RGB(255,255,255))" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="5" color="33554432" x="155" y="4" height="48" width="233" format="[general]" html.valueishtml="0"  name=cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="67108864~tIf( seleccion =~"S~", RGB(255,204,204), RGB(255,255,255))" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="5" color="33554432" x="613" y="4" height="48" width="457" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="67108864~tIf( seleccion =~"S~", RGB(255,204,204), RGB(255,255,255))" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="5" color="33554432" x="407" y="4" height="48" width="183" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="67108864~tIf( seleccion =~"S~", RGB(255,204,204), RGB(255,255,255))" )
+compute(band=detail alignment="2" expression="Round( (   ca_liberada_exp /   ca_programada_exp )  * 100,0)"border="5" color="33554432" x="1682" y="4" height="48" width="142" format="[General]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="67108864~tIf( seleccion =~"S~", RGB(255,204,204), RGB(255,255,255))" )
+column(band=detail id=7 alignment="2" tabsequence=32766 border="5" color="33554432" x="1842" y="4" height="48" width="91" format="[general]" html.valueishtml="0"  name=contador_po visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="67108864~tIf( seleccion =~"S~", RGB(255,204,204), RGB(255,255,255))" )
+column(band=detail id=9 alignment="2" tabsequence=32766 border="5" color="0" x="1952" y="4" height="48" width="137" format="[general]" html.valueishtml="0"  name=po_cumplidas visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="67108864~tIf( seleccion =~"S~", RGB(255,204,204), RGB(255,255,255))" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="5" color="33554432" x="1509" y="4" height="48" width="155" format="[general]" html.valueishtml="0"  name=unid_liberar visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="67108864~tIf( seleccion =~"S~", RGB(255,204,204), RGB(255,255,255))" )
+column(band=detail id=8 alignment="2" tabsequence=32766 border="5" color="33554432" x="2107" y="4" height="48" width="146" format="mmm/dd" html.valueishtml="0"  name=fecha visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="67108864~tIf( seleccion =~"S~", RGB(255,204,204), RGB(255,255,255))" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="5" color="33554432" x="2272" y="4" height="48" width="224" format="[general]" html.valueishtml="0"  name=a_liberar visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tIf( seleccion =~"S~", RGB(255,204,204), RGB(255,255,255))" )
+compute(band=detail alignment="2" expression="Round( ( (  ca_liberada_exp +  a_liberar  ) /  ca_programada_exp ) * 100 ,0)"border="5" color="33554432" x="2514" y="4" height="48" width="142" format="[General]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="67108864~tIf( seleccion =~"S~", RGB(255,204,204), RGB(255,255,255))" )
+column(band=detail id=14 alignment="2" tabsequence=32766 border="5" color="33554432" x="2674" y="4" height="48" width="101" format="[general]" html.valueishtml="0"  name=lib_creadas visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="67108864~tIf( seleccion =~"S~", RGB(255,204,204), RGB(255,255,255))" )
+column(band=detail id=15 alignment="2" tabsequence=32766 border="5" color="33554432" x="2798" y="4" height="48" width="137" format="[general]" html.valueishtml="0"  name=lib_anuladas visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="67108864~tIf( seleccion =~"S~", RGB(255,204,204), RGB(255,255,255))" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="3035" y="4" height="48" width="201" format="[general]" html.valueishtml="0"  name=seleccion visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="2953" y="0" height="48" width="64" format="[general]" html.valueishtml="0"  name=marca visible="1" checkbox.text="" checkbox.on="S" checkbox.off="N" checkbox.scale=yes checkbox.threed=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="33554432" x="1083" y="4" height="56" width="192" format="[general]" html.valueishtml="0"  name=ca_programada_exp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="67108864~tIf( seleccion =~"S~", RGB(255,204,204), RGB(255,255,255))" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="5" color="33554432" x="1294" y="4" height="56" width="197" format="[general]" html.valueishtml="0"  name=ca_liberada_exp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="67108864~tIf( seleccion =~"S~", RGB(255,204,204), RGB(255,255,255))" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
