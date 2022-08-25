@@ -1,0 +1,62 @@
+HA$PBExportHeader$dtb_ref_vta_recipiente_new.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=140 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica dbname="m_referencias_eq_nuevo.co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="m_referencias_eq_nuevo.co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="m_referencias_eq_nuevo.co_referencia" )
+ column=(type=long updatewhereclause=yes name=co_color dbname="m_referencias_eq_nuevo.co_color" )
+ column=(type=char(40) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ retrieve="SELECT distinct a.co_fabrica,   
+         a.co_linea,   
+         a.co_referencia,   
+         a.co_color,   
+         (select h_preref_pv.de_referencia
+				from h_preref_pv
+				where h_preref_pv.co_fabrica = a.co_fabrica
+				  and h_preref_pv.co_linea = a.co_linea
+				  and h_preref_pv.co_referencia = cast(a.co_referencia as char(15))
+              and h_preref_pv.co_tipo_ref = 'P' ) as de_referencia
+    FROM m_referencias_eq_nuevo a
+   where a.co_fabrica_exp	= :an_fabrica_exp  
+     and a.co_linea_exp   = :an_linea_exp
+     and a.co_ref_exp     = :as_ref_exp
+     and a.co_color_exp   = :as_color_exp
+	  and (current between a.fe_inicio and a.fe_final)	
+	  
+UNION 
+
+
+SELECT distinct a.co_fabrica_ref,   
+         a.co_linea,   
+         a.co_referencia,   
+         a.co_color,   
+         (select h_preref_pv.de_referencia
+				from h_preref_pv
+				where h_preref_pv.co_fabrica = a.co_fabrica_ref
+				  and h_preref_pv.co_linea = a.co_linea
+				  and h_preref_pv.co_referencia = cast(a.co_referencia as char(15))
+              and h_preref_pv.co_tipo_ref = 'P' ) as de_referencia
+    FROM dt_canasta_corte a
+   where a.co_fabrica_ref	= :an_fabrica
+     and a.co_linea   		= :an_linea
+     and a.co_referencia	= :an_referencia
+     and a.co_color   		= :an_color" arguments=(("an_fabrica", number),("an_linea", number),("an_referencia", number),("an_color", number),("an_ordencorte", number),("an_fabrica_exp", number),("an_linea_exp", number),("as_ref_exp", string),("as_color_exp", string)) )
+text(band=header alignment="2" text="REFERENCIA DE PRODUCCION" border="6" color="33554432" x="18" y="8" height="80" width="1275" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="FABRICA" border="6" color="33554432" x="18" y="80" height="48" width="219" html.valueishtml="0"  name=co_fabrica_exp_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="LINEA" border="6" color="33554432" x="261" y="80" height="48" width="137" html.valueishtml="0"  name=co_linea_exp_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="REFERENCIA" border="6" color="33554432" x="421" y="80" height="48" width="576" html.valueishtml="0"  name=co_ref_exp_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="5" color="33554432" x="18" y="4" height="56" width="219" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(  (co_referencia =  an_referencia  and  co_color =  an_color),rgb(192,192,192),rgb(255,255,255)  )" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="5" color="33554432" x="261" y="4" height="56" width="137" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(  (co_referencia =  an_referencia  and  co_color =  an_color),rgb(192,192,192),rgb(255,255,255)  )" )
+compute(band=detail alignment="0" expression="String( co_referencia )+' - '+Trim( de_referencia )"border="5" color="33554432" x="421" y="4" height="56" width="576" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(  (co_referencia =  an_referencia  and  co_color =  an_color),rgb(192,192,192),rgb(255,255,255)  )" )
+text(band=header alignment="2" text="COLOR" border="6" color="33554432" x="1010" y="80" height="48" width="283" html.valueishtml="0"  name=co_color_exp_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="5" color="33554432" x="1010" y="4" height="56" width="283" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(  (co_referencia =  an_referencia  and  co_color =  an_color),rgb(192,192,192),rgb(255,255,255)  )" )
+
+sparse(names="co_fabrica	co_linea	co_color	compute_1")htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
