@@ -1,0 +1,81 @@
+HA$PBExportHeader$dtb_reporte_tiempo_metas.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 460 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=yes print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=152 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=datetime updatewhereclause=yes name=fe_act_cpto_ant dbname="mv_indicadores.fe_act_cpto_ant" )
+ column=(type=datetime updatewhereclause=yes name=fe_act_cpto_new dbname="mv_indicadores.fe_act_cpto_new" )
+ column=(type=long updatewhereclause=yes name=co_centro_ant dbname="mv_indicadores.co_centro_ant" )
+ column=(type=long updatewhereclause=yes name=co_centropdn_ant dbname="mv_indicadores.co_centropdn_ant" )
+ column=(type=long updatewhereclause=yes name=co_subctropdn_ant dbname="mv_indicadores.co_subctropdn_ant" )
+ column=(type=long updatewhereclause=yes name=co_centro_new dbname="mv_indicadores.co_centro_new" )
+ column=(type=long updatewhereclause=yes name=co_centropdn_new dbname="mv_indicadores.co_centropdn_new" )
+ column=(type=long updatewhereclause=yes name=co_subctropdn_new dbname="mv_indicadores.co_subctropdn_new" )
+ column=(type=decimal(2) updatewhereclause=yes name=tiempo_meta dbname="mv_indicadores.tiempo_meta" )
+ column=(type=long updatewhereclause=yes name=co_cpto_ant dbname="mv_indicadores.co_cpto_ant" )
+ column=(type=long updatewhereclause=yes name=co_cpto_new dbname="mv_indicadores.co_cpto_new" )
+ column=(type=long updatewhereclause=yes name=co_fabrica dbname="h_ordenpd_pt.co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_reftel_act dbname="m_rollo.co_reftel_act" )
+ column=(type=char(1) updatewhereclause=yes name=estado dbname="estado" )
+ retrieve="SELECT i.fe_act_cpto_ant,
+		 i.fe_act_cpto_new,
+		 i.co_centro_ant,		
+		 i.co_centropdn_ant,
+		 i.co_subctropdn_ant,
+		 i.co_centro_new,		
+		 i.co_centropdn_new,
+		 i.co_subctropdn_new,
+		 i.tiempo_meta,
+		 i.co_cpto_ant,
+		 i.co_cpto_new,
+	 	 o.co_fabrica,
+		 r.co_reftel_act,
+		 '' as estado
+FROM	 mv_indicadores i,
+		 h_ordenpd_pt o,
+		 m_rollo r
+WHERE	 i.cs_ordenpd_pt = o.cs_ordenpd_pt AND
+	    i.cs_rollo = r.cs_rollo AND
+		 i.co_centro_ant = :an_centro_ant
+		 
+		 " filter=" co_cpto_ant <>1"arguments=(("an_centro_ant", number))  sort="estado A fe_act_cpto_ant A co_reftel_act A " )
+group(level=1 header.height=116 trailer.height=0 by=("estado" ) header.color="536870912" trailer.color="536870912"  sort="count(estado for group 1) A " )
+group(level=2 header.height=160 trailer.height=0 by=("estado" , "date(fe_act_cpto_new)" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="Calificaci$$HEX1$$f300$$ENDHEX$$n Indicadores" border="6" color="0" x="818" y="32" height="64" width="1467" html.valueishtml="0"  name=t_6 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="1" expression="today()"border="0" color="0" x="2738" y="32" height="60" width="567" format="dd/mmm/yy h:mm" html.valueishtml="0"  name=date_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+button(band=header text="ordenar" enabled=yes action="8" border="0" color="0" x="5" y="4" height="80" width="306" vtextalign="0" htextalign="0"  name=b_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Filtrar" enabled=yes action="9" border="0" color="0" x="338" y="4" height="80" width="315" vtextalign="0" htextalign="0"  name=b_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=header.1 id=14 alignment="2" tabsequence=32766 border="6" color="33554432~tIf ( estado = 'MALO',RGB(255,0,0),RGB(0,0,0))" x="27" y="8" height="56" width="485" format="[general]" html.valueishtml="0"  name=estado visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="65535" )
+compute(band=header.2 alignment="0" expression="date( fe_act_cpto_new )"border="0" color="33554432" x="773" y="16" height="52" width="553" format="[SHORTDATE]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.2 alignment="2" text="Tela" border="6" color="0" x="274" y="96" height="52" width="251" html.valueishtml="0"  name=t_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header.2 alignment="2" text="Concepto Ant." border="6" color="0" x="544" y="96" height="52" width="658" html.valueishtml="0"  name=t_11 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header.2 alignment="2" text="Concepto Nuevo" border="6" color="0" x="1221" y="96" height="52" width="658" html.valueishtml="0"  name=t_12 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header.2 alignment="2" text="Meta" border="6" color="0" x="2939" y="96" height="52" width="160" html.valueishtml="0"  name=t_9 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header.2 alignment="2" text="Hrs. Dif" border="6" color="0" x="3118" y="96" height="52" width="187" html.valueishtml="0"  name=t_10 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header.2 alignment="2" text="Centro" border="6" color="0" x="23" y="96" height="52" width="233" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header.2 alignment="2" text="Fecha Empezo Concepto" border="6" color="0" x="0" y="16" height="52" width="741" html.valueishtml="0"  name=t_7 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.2 alignment="2" text="Fecha Fin cpto" border="6" color="0" x="2418" y="96" height="52" width="503" html.valueishtml="0"  name=t_8 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header.2 alignment="2" text="Fe Ini Cpto" border="6" color="0" x="1897" y="96" height="52" width="503" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="2" color="33554432" x="55" y="276" height="64" width="247" format="[general]" html.valueishtml="0"  name=co_centro_new visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="2" color="33554432" x="306" y="276" height="64" width="247" format="[general]" html.valueishtml="0"  name=co_centropdn_new visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="2" color="33554432" x="558" y="276" height="64" width="247" format="[general]" html.valueishtml="0"  name=co_subctropdn_new visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Centropdn" border="6" color="0" x="128" y="384" height="52" width="274" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=detail alignment="2" text="Subcentro" border="6" color="0" x="421" y="384" height="52" width="279" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="5" color="33554432" x="128" y="516" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_centropdn_ant visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="5" color="33554432" x="421" y="516" height="64" width="279" format="[general]" html.valueishtml="0"  name=co_subctropdn_ant visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="2" tabsequence=32766 border="5" color="33554432" x="274" y="4" height="64" width="251" format="[general]" html.valueishtml="0"  name=co_reftel_act visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="5" color="33554432" x="549" y="4" height="60" width="658" format="[general]" html.valueishtml="0"  name=co_cpto_ant visible="1" dddw.name=dddw_cpto_bodega dddw.displaycolumn=de_cpto_bodega dddw.datacolumn=co_cpto_bodega dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=9 alignment="2" tabsequence=32766 border="5" color="33554432" x="2935" y="4" height="60" width="160" format="[General]" html.valueishtml="0"  name=tiempo_meta visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="2" expression=" ((daysafter( date(   fe_act_cpto_ant ), date( fe_act_cpto_new ) ))  * 24)  + (((secondsafter(time(   fe_act_cpto_ant ), time( fe_act_cpto_new ) )  ))/60)/60 "border="5" color="33554432~tif( horas > tiempo_meta ,RGB(255,0,0),RGB(0,0,0))" x="3113" y="4" height="60" width="187" format="0.000" html.valueishtml="0"  name=horas visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="5" color="33554432" x="23" y="4" height="60" width="233" format="[general]" html.valueishtml="0"  name=co_centro_ant visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="33554432" x="2418" y="4" height="60" width="503" format="[shortdate] [time]" html.valueishtml="0"  name=fe_act_cpto_new visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="5" color="33554432" x="1221" y="4" height="60" width="658" format="[general]" html.valueishtml="0"  name=co_cpto_new visible="1" dddw.name=dddw_cpto_bodega dddw.displaycolumn=de_cpto_bodega dddw.datacolumn=co_cpto_bodega dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="33554432" x="1897" y="4" height="60" width="503" format="[shortdate] [time]" html.valueishtml="0"  name=fe_act_cpto_ant visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+
+sparse(names="co_centro_ant	co_centropdn_ant	co_subctropdn_ant	co_reftel_act")htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
