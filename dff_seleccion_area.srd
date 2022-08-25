@@ -1,0 +1,17 @@
+HA$PBExportHeader$dff_seleccion_area.srd
+$PBExportComments$(JCR)
+release 7;
+datawindow(units=0 timer_interval=0 color=81324524 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=co_area dbname="m_area.co_area" )
+ column=(type=char(1) updatewhereclause=yes name=area dbname="area" )
+ retrieve=" SELECT m_area.co_area,
+			'' as area    
+        FROM m_area    " update="m_area" updatewhere=0 updatekeyinplace=no )
+text(band=detail alignment="0" text="Area:" border="0" color="0" x="37" y="4" height="52" width="178"  name=area_t  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="5" color="0" x="329" y="4" height="60" width="617" format="[general]"  name=co_area  tag="" dddw.name=dddw_areas dddw.displaycolumn=de_area dddw.datacolumn=co_area dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="0" x="233" y="4" height="60" width="82" format="[general]"  name=area edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
