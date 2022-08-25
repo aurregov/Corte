@@ -1,0 +1,61 @@
+HA$PBExportHeader$ds_report_nivel0_cent15_1_calculo.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=64 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=decimal(2) updatewhereclause=yes name=dia_ant dbname="dia_ant" )
+ column=(type=number updatewhereclause=yes name=semana dbname="semana" )
+ column=(type=number updatewhereclause=yes name=semana_ant dbname="semana_ant" )
+ column=(type=number updatewhereclause=yes name=mes dbname="mes" )
+ column=(type=number updatewhereclause=yes name=mes_ant dbname="mes_ant" )
+ retrieve="SELECT UNIQUE sum(tot_kilos) as dia_ant,
+			(select Sum(tot_kilos) / 7
+				from mv_totxcpto_diario
+				where mv_totxcpto_diario.co_centro = :li_centro and
+					  fe_proceso >= extend(current,year to day ) - 7 units day and
+						fe_proceso <= extend(current,year to day ) -1 units day ) as semana,
+			(select Sum(tot_kilos) / 7
+				from mv_totxcpto_diario
+				where mv_totxcpto_diario.co_centro = :li_centro and
+						fe_proceso >= extend(current,year to day ) - 14 units day and
+						fe_proceso <= extend(current,year to day ) -8 units day ) as semana_ant,
+			(select sum(tot_kilos) / 30
+				from mv_totxcpto_diario
+				where mv_totxcpto_diario.co_centro = :li_centro and
+						fe_proceso >= extend(current,year to day ) - 30 units day and
+						fe_proceso <= extend(current,year to day) -1 units day ) as mes,
+			(select sum(tot_kilos) /30
+				from mv_totxcpto_diario
+				where mv_totxcpto_diario.co_centro = :li_centro and
+						fe_proceso >= extend(current,year to day ) - 60 units day and
+						fe_proceso <= extend(current,year to day) -31 units day ) as mes_ant
+    FROM  mv_totxcpto_diario
+	WHERE ( mv_totxcpto_diario.co_centro = :li_centro ) 
+     AND fe_proceso = extend(current, year to day) - 1 units day  
+        
+
+order by 3 desc, 1 asc;
+
+
+
+
+
+
+" arguments=(("li_centro", number)) )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="33554432" x="9" y="16" height="52" width="430" format="0" html.valueishtml="0"  name=dia_ant visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="2" color="33554432" x="448" y="16" height="52" width="443" format="0" html.valueishtml="0"  name=semana visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="2" color="33554432" x="901" y="16" height="52" width="439" format="0" html.valueishtml="0"  name=semana_ant visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="2" color="33554432" x="1349" y="16" height="52" width="439" format="0" html.valueishtml="0"  name=mes visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="2" color="33554432" x="1797" y="16" height="52" width="439" format="0" html.valueishtml="0"  name=mes_ant visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Dia Ant" border="6" color="0" x="9" y="4" height="64" width="430" html.valueishtml="0"  name=dia_ant_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Semana" border="6" color="33554432" x="448" y="8" height="64" width="443" html.valueishtml="0"  name=semana_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Semana Ant" border="6" color="33554432" x="901" y="8" height="64" width="439" html.valueishtml="0"  name=semana_ant_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mes" border="6" color="33554432" x="1349" y="8" height="64" width="439" html.valueishtml="0"  name=mes_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mes Ant" border="6" color="33554432" x="1797" y="8" height="64" width="439" html.valueishtml="0"  name=mes_ant_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
