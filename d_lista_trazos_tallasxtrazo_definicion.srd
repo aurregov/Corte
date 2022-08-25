@@ -1,0 +1,58 @@
+HA$PBExportHeader$d_lista_trazos_tallasxtrazo_definicion.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=67108864 processing=4 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no  crosstab.dynamic = yes grid.lines=0 grid.columnmove=no selected.mouse=no )
+header[1](height=60 color="536870912" )
+header[2](height=60 color="536870912" )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=number updatewhereclause=yes name=co_trazo dbname="co_trazo" )
+ column=(type=char(20) updatewhereclause=yes name=de_trazo dbname="de_trazo" )
+ column=(type=char(20) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=number updatewhereclause=yes name=porc_utili dbname="porc_utili" )
+ column=(type=number updatewhereclause=yes name=largo dbname="largo" )
+ column=(type=number updatewhereclause=yes name=ancho dbname="ancho" )
+ column=(type=number updatewhereclause=yes name=co_raya dbname="co_raya" )
+ column=(type=number updatewhereclause=yes name=ca_paquetes dbname="ca_paquetes" )
+ retrieve="  SELECT temp_constrazos.co_trazo,   
+         temp_constrazos.co_fabrica,   
+         temp_constrazos.co_linea,   
+         temp_constrazos.co_referencia,   
+         temp_constrazos.co_talla,   
+         temp_constrazos.ca_paquetes,   
+         temp_constrazos.de_referencia,   
+         temp_constrazos.de_trazo,   
+         temp_constrazos.ancho,   
+         temp_constrazos.porc_utili,   
+         temp_constrazos.co_raya,   
+         temp_constrazos.largo  
+    FROM temp_constrazos  
+   WHERE temp_constrazos.usuario = :as_usuario    " arguments=(("as_usuario", string))  sort="co_trazo A de_trazo A de_referencia A porc_utili A largo A ancho A co_raya A " )
+group(level=1 header.height=0 trailer.height=0 by=("co_trazo" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=0 trailer.height=0 by=("de_trazo" ) header.color="536870912" trailer.color="536870912" )
+group(level=3 header.height=0 trailer.height=0 by=("de_referencia" ) header.color="536870912" trailer.color="536870912" )
+group(level=4 header.height=0 trailer.height=0 by=("porc_utili" ) header.color="536870912" trailer.color="536870912" )
+group(level=5 header.height=0 trailer.height=0 by=("largo" ) header.color="536870912" trailer.color="536870912" )
+group(level=6 header.height=0 trailer.height=0 by=("ancho" ) header.color="536870912" trailer.color="536870912" )
+text(band=header[1] alignment="0" text="Sum Of Ca Paquetes" border="0" color="33554432" x="9" y="4" height="52" width="219" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[1] alignment="0" text="Co Talla" border="0" color="33554432" x="238" y="4" height="52" width="466" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="2" text="Trazo" border="6" color="33554432" x="9" y="4" height="52" width="219" html.valueishtml="0"  name=co_trazo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="2" text="%" border="6" color="33554432" x="1216" y="4" height="52" width="87" html.valueishtml="0"  name=porc_utili_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="Largo" border="0" color="33554432" x="1312" y="4" height="52" width="5" html.valueishtml="0"  name=largo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="Co Raya" border="0" color="33554432" x="1417" y="4" height="52" width="5" html.valueishtml="0"  name=co_raya_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="2" text="Descripci$$HEX1$$f300$$ENDHEX$$n" border="6" color="33554432" x="238" y="4" height="52" width="466" html.valueishtml="0"  name=de_trazo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="2" text="Estilo" border="6" color="33554432" x="713" y="4" height="52" width="494" html.valueishtml="0"  name=de_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="2" text="An" border="6" color="33554432" x="1326" y="4" height="52" width="82" html.valueishtml="0"  name=ancho_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="2" text="@co_talla" border="6" color="33554432" x="1431" y="4" height="52" width="82" html.valueishtml="0"  name=ca_paquetes_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="4" height="64" width="219" format="[general]" html.valueishtml="0"  name=co_trazo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="238" y="4" height="64" width="466" format="[general]" html.valueishtml="0"  name=de_trazo visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="713" y="4" height="64" width="494" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1216" y="4" height="64" width="87" format="###.0" html.valueishtml="0"  name=porc_utili visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1312" y="4" height="64" width="5" format="[general]" html.valueishtml="0"  name=largo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1326" y="4" height="64" width="82" format="[general]" html.valueishtml="0"  name=ancho visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="1417" y="4" height="64" width="5" format="[general]" html.valueishtml="0"  name=co_raya visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="1431" y="4" height="64" width="82" format="[general]" html.valueishtml="0"  name=ca_paquetes visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0 crosstab.repeat=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+ crosstab(band = foreground  crosstabonly = yes 
+ columns = "co_talla" rows = "co_trazo, de_trazo, de_referencia, porc_utili, largo, ancho, co_raya" values = "sum(ca_paquetes for crosstab)" sourcenames = "co_trazo, co_fabrica, co_linea, co_referencia, co_talla, ca_paquetes, de_referencia, de_trazo, ancho, porc_utili, co_raya, largo")
+sparse(names="co_trazo	de_trazo	de_referencia	porc_utili	largo	ancho")htmltable(border="0" cellpadding="1" cellspacing="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
