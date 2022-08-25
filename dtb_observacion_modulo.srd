@@ -1,0 +1,71 @@
+HA$PBExportHeader$dtb_observacion_modulo.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=60 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=468 color="536870912" )
+table(column=(type=char(200) update=yes updatewhereclause=yes key=yes name=dt_observaxmodulo_observacion dbname="dt_observaxmodulo.observacion" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_observaxmodulo_simulacion dbname="dt_observaxmodulo.simulacion" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_observaxmodulo_co_fabrica dbname="dt_observaxmodulo.co_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_observaxmodulo_co_planta dbname="dt_observaxmodulo.co_planta" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_observaxmodulo_co_modulo dbname="dt_observaxmodulo.co_modulo" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_observaxmodulo_co_fabrica_exp dbname="dt_observaxmodulo.co_fabrica_exp" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_observaxmodulo_cs_liberacion dbname="dt_observaxmodulo.cs_liberacion" )
+ column=(type=char(20) update=yes updatewhereclause=yes key=yes name=dt_observaxmodulo_po dbname="dt_observaxmodulo.po" )
+ column=(type=char(10) updatewhereclause=yes key=yes name=dt_observaxmodulo_nu_cut dbname="dt_observaxmodulo.nu_cut" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_observaxmodulo_co_fabrica_pt dbname="dt_observaxmodulo.co_fabrica_pt" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_observaxmodulo_co_linea dbname="dt_observaxmodulo.co_linea" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_observaxmodulo_co_referencia dbname="dt_observaxmodulo.co_referencia" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_observaxmodulo_co_color_pt dbname="dt_observaxmodulo.co_color_pt" )
+ column=(type=char(2) update=yes updatewhereclause=yes key=yes name=dt_observaxmodulo_tono dbname="dt_observaxmodulo.tono" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dt_observaxmodulo_cs_particion dbname="dt_observaxmodulo.cs_particion" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_observaxmodulo_area dbname="dt_observaxmodulo.area" )
+ column=(type=datetime update=yes updatewhereclause=yes name=dt_observaxmodulo_fe_actualizacion dbname="dt_observaxmodulo.fe_actualizacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=dt_observaxmodulo_fe_creacion dbname="dt_observaxmodulo.fe_creacion" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=dt_observaxmodulo_usuario dbname="dt_observaxmodulo.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=dt_observaxmodulo_instancia dbname="dt_observaxmodulo.instancia" )
+ column=(type=char(40) updatewhereclause=yes name=m_area_de_area dbname="m_area.de_area" )
+ retrieve=" SELECT dt_observaxmodulo.observacion,  
+			dt_observaxmodulo.simulacion,
+			dt_observaxmodulo.co_fabrica,
+			dt_observaxmodulo.co_planta,
+			dt_observaxmodulo.co_modulo,
+			dt_observaxmodulo.co_fabrica_exp,
+			dt_observaxmodulo.cs_liberacion,
+			dt_observaxmodulo.po,
+			dt_observaxmodulo.nu_cut,
+			dt_observaxmodulo.co_fabrica_pt,
+			dt_observaxmodulo.co_linea,
+			dt_observaxmodulo.co_referencia,
+		 	dt_observaxmodulo.co_color_pt,
+			dt_observaxmodulo.tono,
+			dt_observaxmodulo.cs_particion,
+			dt_observaxmodulo.area,    
+			dt_observaxmodulo.fe_actualizacion,
+			dt_observaxmodulo.fe_creacion,
+			dt_observaxmodulo.usuario,
+			dt_observaxmodulo.instancia,
+          m_area.de_area  
+    FROM dt_observaxmodulo,   
+         m_area  
+   WHERE dt_observaxmodulo.area = m_area.co_area and
+			simulacion = :ai_simulacion and	
+			co_fabrica = :ai_co_fabrica and
+			co_planta = :ai_co_planta and
+			co_modulo = :ai_modulo and
+			co_fabrica_exp = :ai_co_fabrica_exp and
+			cs_liberacion = :ai_cs_liberacion and
+			po = :as_po and
+			nu_cut = :as_cut and
+			co_fabrica_pt = :ai_co_fabrica_pt and
+			co_linea = :ai_co_linea and
+			co_referencia = :ai_co_referencia and
+			co_color_pt = :ai_co_color_pt and
+			tono = :as_tono and
+			cs_particion = :ai_cs_particion and
+			dt_observaxmodulo.area = :ai_area" update="dt_observaxmodulo" updatewhere=1 updatekeyinplace=no arguments=(("ai_simulacion", number),("ai_co_fabrica", number),("ai_co_planta", number),("ai_modulo", number),("ai_co_fabrica_exp", number),("ai_cs_liberacion", number),("as_po", string),("as_cut", string),("ai_co_fabrica_pt", number),("ai_co_linea", number),("ai_co_referencia", number),("ai_co_color_pt", number),("as_tono", string),("ai_cs_particion", number),("ai_area", number)) )
+text(band=header alignment="2" text="observacion" border="6" color="0" x="5" y="4" height="52" width="466" html.valueishtml="0"  name=dt_observaxmodulo_observacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="0" x="5" y="4" height="452" width="2149" format="[general]" html.valueishtml="0"  name=dt_observaxmodulo_observacion  tag="" visible="1" edit.limit=200 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
