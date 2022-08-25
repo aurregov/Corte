@@ -1,0 +1,107 @@
+HA$PBExportHeader$dff_reporte_ordencorte3.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 0 print.margin.right = 0 print.margin.top = 0 print.margin.bottom = 0 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=1828 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=0 color="536870912"  height.autosize=yes)
+table(column=(type=long updatewhereclause=yes name=dt_trazosxoc_cs_orden_corte dbname="dt_trazosxoc.cs_orden_corte" )
+ column=(type=long updatewhereclause=yes name=h_base_trazos_raya dbname="h_base_trazos.raya" )
+ column=(type=long updatewhereclause=yes name=dt_trazosxoc_cs_trazo dbname="dt_trazosxoc.cs_trazo" )
+ column=(type=long updatewhereclause=yes name=cs_agrupacion dbname="dt_trazosxoc.cs_agrupacion" )
+ column=(type=long updatewhereclause=yes name=dt_trazosxoc_cs_base_trazos dbname="dt_trazosxoc.cs_base_trazos" )
+ column=(type=char(30) updatewhereclause=yes name=dt_modelos_de_modelo dbname="dt_modelos.de_modelo" )
+ column=(type=char(42) updatewhereclause=yes name=h_telas_de_reftel dbname="h_telas.de_reftel" )
+ retrieve="  SELECT DISTINCT dt_trazosxoc.cs_orden_corte,   
+         h_base_trazos.raya,   
+         dt_trazosxoc.cs_trazo,  
+         dt_trazosxoc.cs_agrupacion,   
+         dt_trazosxoc.cs_base_trazos,   
+         dt_modelos.de_modelo,   
+         h_telas.de_reftel
+    FROM h_base_trazos,   
+         dt_trazosxoc,   
+         dt_agrupa_pdn,   
+         dt_modelos,   
+         h_telas,   
+         dt_agrupaescalapdn
+   WHERE ( dt_trazosxoc.cs_agrupacion = h_base_trazos.cs_agrupacion ) and  
+         ( dt_trazosxoc.cs_base_trazos = h_base_trazos.cs_base_trazos ) and  
+         ( dt_agrupaescalapdn.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_agrupaescalapdn.cs_pdn = dt_agrupa_pdn.cs_pdn ) and  
+         ( dt_trazosxoc.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_trazosxoc.cs_pdn = dt_agrupa_pdn.cs_pdn ) and  
+         ( dt_agrupa_pdn.co_fabrica_pt = dt_modelos.co_fabrica ) and  
+         ( dt_agrupa_pdn.co_linea = dt_modelos.co_linea ) and  
+         ( dt_agrupa_pdn.co_referencia = dt_modelos.co_referencia ) and  
+         ( dt_agrupa_pdn.co_color_pt = dt_modelos.co_color_pt ) and  
+         ( dt_agrupaescalapdn.co_talla = dt_modelos.co_talla ) and  
+         ( dt_trazosxoc.co_reftel = h_telas.co_reftel ) and  
+         ( dt_trazosxoc.co_caract = h_telas.co_caract ) and  
+         ( dt_trazosxoc.co_modelo = dt_modelos.co_modelo ) and  
+         ( ( dt_trazosxoc.cs_orden_corte = :al_ordencorte ) AND  
+         ( dt_modelos.co_calidad = 1 ) )" arguments=(("al_ordencorte", number))  sort="dt_trazosxoc_cs_orden_corte A " )
+group(level=1 header.height=0 trailer.height=0 by=("dt_trazosxoc_cs_orden_corte" ) newpage=yes header.color="536870912" trailer.color="536870912" )
+report(band=header dataobject="dtb_observaxoc_reporte" x="14" y="16" height="24" width="2473" border="0"  height.autosize=yes criteria="" nest_arguments=((" dt_trazosxoc_cs_orden_corte ")) trail_footer = yes  name=dw_1 visible="0" )
+line(band=header x1="5" y1="48" x2="5" y2="1480"  name=l_22 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="EXTENDIDO" border="2" color="0" x="841" y="52" height="56" width="329" html.valueishtml="0"  name=t_5 visible="1"  slideup=directlyabove  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="EMPATES" border="2" color="0" x="1175" y="52" height="56" width="366" html.valueishtml="0"  name=t_6 visible="1"  slideup=directlyabove  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="IMPERFECTO" border="2" color="0" x="1545" y="52" height="56" width="366" html.valueishtml="0"  name=t_7 visible="1"  slideup=directlyabove  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="REMANENTE" border="2" color="0" x="1915" y="52" height="56" width="366" html.valueishtml="0"  name=t_8 visible="1"  slideup=directlyabove  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="FALTANTE" border="2" color="0" x="2286" y="52" height="56" width="338" html.valueishtml="0"  name=t_9 visible="1"  slideup=directlyabove  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="YDS. TIQ." border="2" color="0" x="549" y="52" height="56" width="283" html.valueishtml="0"  name=t_4 visible="1"  slideup=directlyabove  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=header x1="544" y1="112" x2="544" y2="1544"  name=l_24 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="837" y1="104" x2="837" y2="1536"  name=l_26 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="1170" y1="108" x2="1170" y2="1540"  name=l_25 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="1541" y1="108" x2="1541" y2="1540"  name=l_27 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="1911" y1="112" x2="1911" y2="1544"  name=l_28 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="2281" y1="112" x2="2281" y2="1544"  name=l_29 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="2281" y1="112" x2="2281" y2="1544"  name=l_32 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="2624" y1="108" x2="2624" y2="1540"  name=l_33 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="2976" y1="108" x2="2976" y2="1540"  name=l_36 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="TOTALES" border="2" color="0" x="9" y="1472" height="68" width="416" html.valueishtml="0"  name=t_12 visible="1"  slideup=directlyabove  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="PROGRAMADO" border="2" color="0" x="187" y="1608" height="56" width="635" html.valueishtml="0"  name=t_13 visible="1"  slideup=directlyabove  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="EXTENDIDO" border="2" color="0" x="827" y="1608" height="56" width="635" html.valueishtml="0"  name=t_14 visible="1"  slideup=directlyabove  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="CORTADO" border="2" color="0" x="1467" y="1608" height="56" width="603" html.valueishtml="0"  name=t_15 visible="1"  slideup=directlyabove  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="FECHA" border="2" color="0" x="5" y="1672" height="64" width="178" html.valueishtml="0"  name=t_18 visible="1"  slideup=directlyabove  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="FIRMA" border="2" color="0" x="5" y="1740" height="68" width="178" html.valueishtml="0"  name=t_19 visible="1"  slideup=directlyabove  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=header x1="1463" y1="1664" x2="1463" y2="1808"  name=l_41 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="823" y1="1664" x2="823" y2="1808"  name=l_40 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="LOTE" border="2" color="0" x="338" y="52" height="56" width="206" html.valueishtml="0"  name=t_3 visible="1"  slideup=directlyabove  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="ROLLO" border="2" color="0" x="9" y="52" height="56" width="325" html.valueishtml="0"  name=t_2 visible="1"  slideup=directlyabove  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=header x1="334" y1="112" x2="334" y2="1460"  name=l_23 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="EXCEDENTE" border="2" color="0" x="2629" y="52" height="56" width="347" html.valueishtml="0"  name=t_10 visible="1"  slideup=directlyabove  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="SOBREROLLO" border="2" color="0" x="2981" y="52" height="56" width="334" html.valueishtml="0"  name=t_11 visible="1"  slideup=directlyabove  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="244" x2="3314" y2="244"  name=l_2 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="316" x2="3314" y2="316"  name=l_3 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="388" x2="3314" y2="388"  name=l_4 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="460" x2="3314" y2="460"  name=l_5 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="532" x2="3314" y2="532"  name=l_6 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="604" x2="3314" y2="604"  name=l_7 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="676" x2="3314" y2="676"  name=l_9 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="748" x2="3314" y2="748"  name=l_10 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="820" x2="3314" y2="820"  name=l_11 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="892" x2="3314" y2="892"  name=l_12 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="964" x2="3314" y2="964"  name=l_13 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="1036" x2="3314" y2="1036"  name=l_14 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="1108" x2="3314" y2="1108"  name=l_15 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="1180" x2="3314" y2="1180"  name=l_16 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="1252" x2="3314" y2="1252"  name=l_17 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="1324" x2="3314" y2="1324"  name=l_18 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="1396" x2="3314" y2="1396"  name=l_19 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="0" y1="1544" x2="3314" y2="1544"  name=l_21 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="1468" x2="3314" y2="1468"  name=l_20 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="172" x2="3314" y2="172"  name=l_1 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="172" x2="3314" y2="172"  name=l_31 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="RECOGIDO" border="2" color="0" x="2075" y="1608" height="56" width="635" html.valueishtml="0"  name=t_16 visible="1"  slideup=directlyabove  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=header x1="2071" y1="1664" x2="2071" y2="1808"  name=l_43 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="LIQUIDADO" border="2" color="0" x="2715" y="1608" height="56" width="599" html.valueishtml="0"  name=t_17 visible="1"  slideup=directlyabove  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="1736" x2="3314" y2="1736"  name=l_39 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+column(band=header id=1 alignment="0" tabsequence=32766 border="0" color="0" x="3328" y="244" height="76" width="9" format="[general]" html.valueishtml="0"  name=dt_trazosxoc_cs_orden_corte visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=header id=4 alignment="0" tabsequence=32766 border="0" color="0" x="3328" y="440" height="76" width="9" format="[general]" html.valueishtml="0"  name=cs_agrupacion visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=header x1="2711" y1="1664" x2="2711" y2="1808"  name=l_42 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="5" y1="1808" x2="3319" y2="1808"  name=l_38 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="3314" y1="108" x2="3314" y2="1808"  name=l_44 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=summary x1="18" y1="4" x2="3410" y2="4"  name=l_8 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
