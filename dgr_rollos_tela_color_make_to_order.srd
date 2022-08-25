@@ -1,0 +1,75 @@
+HA$PBExportHeader$dgr_rollos_tela_color_make_to_order.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=76 color="536870912" )
+summary(height=68 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=cs_rollo dbname="cs_rollo" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_unidades dbname="ca_unidades" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_mt dbname="ca_mt" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_kg dbname="ca_kg" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=co_tono dbname="co_tono" )
+ column=(type=long updatewhereclause=yes name=cs_orden_pr_act dbname="cs_orden_pr_act" )
+ column=(type=char(40) updatewhereclause=yes name=de_estilo dbname="de_estilo" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=mt_consumidos dbname="mt_consumidos" )
+ column=(type=long update=yes updatewhereclause=yes name=unid_consumidos dbname="unid_consumidos" )
+ retrieve="SELECT DISTINCT  m_rollo.cs_rollo,   
+         m_rollo.ca_unidades,   
+         m_rollo.ca_mt,   
+         m_rollo.ca_kg,   
+         m_rollo.co_tono,
+			m_rollo.cs_orden_pr_act,
+			( select h_preref_pv.de_referencia
+				from h_preref_pv, h_ordenpd_pt
+				where h_ordenpd_pt.cs_ordenpd_pt = m_rollo.cs_orden_pr_act and
+                  h_preref_pv.co_tipo_ref    = 'P'  and
+						h_ordenpd_pt.co_fabrica 	= h_preref_pv.co_fabrica and
+						h_ordenpd_pt.co_linea		= h_preref_pv.co_linea and
+		            (Cast(h_ordenpd_pt.co_referencia as char(15) ) = h_preref_pv.co_referencia ) and
+                  h_preref_pv.co_tipo_ref    = 'P'   ) as de_estilo,
+         nvl((select nvl(ca_metros,0) from dt_consumo_rollos where cs_rollo = m_rollo.cs_rollo),0) as mt_consumidos,
+         nvl((select nvl(ca_unidades,0) from dt_consumo_rollos where cs_rollo = m_rollo.cs_rollo),0) as unid_consumidos
+    FROM m_rollo  
+   WHERE ( m_rollo.co_fabrica_act = 2 ) AND  
+         ( m_rollo.co_reftel_act = :an_reftel ) AND  
+         ( m_rollo.co_caract_act = :an_caract ) AND  
+         ( m_rollo.diametro_act = :an_diametro OR :an_diametro = 9999) AND  
+         ( m_rollo.co_color_act = :an_color_te ) AND 
+			( m_rollo.cs_orden_pr_act <> :an_ordenpd_pt ) AND 
+         ( m_rollo.co_centro = 15 ) AND  
+         ( m_rollo.co_estado_rollo = 2 ) AND  
+         ( m_rollo.ca_kg > 0 ) " update="m_rollo" updatewhere=1 updatekeyinplace=no arguments=(("an_reftel", number),("an_caract", number),("an_diametro", number),("an_color_te", number),("an_ordenpd_pt", number))  sort="cs_orden_pr_act A cs_rollo A " )
+text(band=header alignment="2" text="" border="6" color="0" x="9" y="8" height="56" width="160" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Rollo" border="6" color="33554432" x="178" y="8" height="56" width="274" html.valueishtml="0"  name=cs_rollo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Unidades" border="6" color="33554432" x="2327" y="8" height="56" width="242" html.valueishtml="0"  name=ca_unidades_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text=" Mt. Rollo" border="6" color="33554432" x="1454" y="8" height="56" width="210" html.valueishtml="0"  name=ca_mt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Kg. Rollo" border="6" color="33554432" x="1906" y="8" height="56" width="224" html.valueishtml="0"  name=ca_kg_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Tono" border="6" color="33554432" x="1326" y="8" height="56" width="119" html.valueishtml="0"  name=co_tono_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Mt. Lib." border="6" color="33554432" x="1673" y="8" height="56" width="224" html.valueishtml="0"  name=mt_consumidos_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Unid. Lib." border="6" color="33554432" x="2578" y="8" height="56" width="247" html.valueishtml="0"  name=unid_consumidos_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Kg. Lib." border="6" color="0" x="2139" y="8" height="56" width="178" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="O.P." border="6" color="0" x="462" y="8" height="56" width="265" html.valueishtml="0"  name=cs_orden_pr_act_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Estilo" border="6" color="33554432" x="736" y="8" height="56" width="581" html.valueishtml="0"  name=de_estilo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="getrow()"border="6" color="32768" x="9" y="8" height="52" width="160" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="33554432" x="178" y="8" height="52" width="274" format="[general]" html.valueishtml="0"  name=cs_rollo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="5" color="33554432" x="462" y="8" height="52" width="265" format="[general]" html.valueishtml="0"  name=cs_orden_pr_act visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="5" color="33554432" x="2578" y="8" height="52" width="247" format="[general]" html.valueishtml="0"  name=unid_consumidos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="33554432" x="2327" y="8" height="52" width="242" format="[general]" html.valueishtml="0"  name=ca_unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="33554432" x="1454" y="8" height="52" width="210" format="[general]" html.valueishtml="0"  name=ca_mt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="5" color="33554432" x="1906" y="8" height="52" width="224" format="[general]" html.valueishtml="0"  name=ca_kg visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="33554432" x="1326" y="8" height="52" width="119" format="[general]" html.valueishtml="0"  name=co_tono visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="5" color="33554432" x="1673" y="8" height="52" width="224" format="[general]" html.valueishtml="0"  name=mt_consumidos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression=" (  mt_consumidos  *  ca_kg  )  /  ca_mt "border="5" color="0" x="2139" y="8" height="52" width="178" format="[GENERAL]" html.valueishtml="0"  name=kilos_consumidos visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="5" color="33554432" x="736" y="8" height="52" width="581" format="[general]" html.valueishtml="0"  name=de_estilo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_unidades for all)"border="6" color="33554432" x="2327" y="4" height="56" width="242" format="0" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=summary alignment="1" expression="sum( (  mt_consumidos  *  ca_kg  )  /  ca_mt  for all)"border="6" color="0" x="2139" y="4" height="56" width="178" format="#,##0" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=summary alignment="1" expression="sum(ca_kg for all)"border="6" color="33554432" x="1906" y="4" height="56" width="224" format="#,##0" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=summary alignment="1" expression="sum(mt_consumidos for all)"border="6" color="33554432" x="1673" y="4" height="56" width="224" format="#,##0" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=summary alignment="1" expression="sum(ca_mt for all)"border="6" color="33554432" x="1454" y="4" height="56" width="210" format="#,##0" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=summary alignment="1" expression="sum(unid_consumidos for all)"border="6" color="33554432" x="2578" y="4" height="56" width="247" format="0" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
