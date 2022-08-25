@@ -1,0 +1,47 @@
+HA$PBExportHeader$p_a_asignacion_modulos_exe.srj
+$PBExportComments$Generated Application Executable Project
+EXE:D:\Fabrica Software\Desarrollo\Corte\Fuentes\a_asignacion_modulos.exe,,0,1,0
+CMP:0,0,0,2,0,0
+COM:Sybase, Inc.
+DES:Sybase, Inc. Product File
+CPY:
+PRD:PowerBuilder Enterprise Series
+PVN:1,0,0,1
+PVS:1,0,0,1
+FVN:1,0,0,1
+FVS:1,0,0,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\asignacion_modulos.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\servicios_comunes.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\servicios_comunes_dw.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\reportes_asignacion_modulos.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\pedidos.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\nicole.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\procesos.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\partir liberaciones.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\rieles.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\reportes_indicadores.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\mantenimientos.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\mantenimientos_bolsas.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\ficha_pt.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\liquidacion.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\inventarioxetapas.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\reportes2.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\empaque de bolsas.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\carga.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\pruebas.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\liberacion_manual.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\liquidacion espacio.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\liberacion escalas.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\liberacion_semiautomatica.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\mercada tela.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\desasignar tela.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\asignacion_corte.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\asignacion_corte3.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\asignacion_corte2.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\dropdowns.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\trazos 2.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\principal.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\base.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\calendario_planeacion.pbl,,1
+PBD:D:\Fabrica Software\Desarrollo\Corte\Fuentes\planeador.pbl,,1
+
