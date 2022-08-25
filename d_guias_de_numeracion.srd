@@ -1,0 +1,16 @@
+HA$PBExportHeader$d_guias_de_numeracion.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=5 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=168 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=300 color="536870912"  height.autosize=yes)
+table(column=(type=char(10) updatewhereclause=yes name=a dbname="a" )
+ unbound = "yes"arguments=(("an_corte", number)) )
+report(band=detail dataobject="d_crooss_cantidad_x_trazo_corte" x="9" y="4" height="136" width="3438" border="0"  height.autosize=yes criteria="" nest_arguments=((" an_corte ")) trail_footer = yes  name=dw_1  slideleft=yes  slideup=directlyabove )
+report(band=detail dataobject="d_paqutes_x_capas_un_trazo" x="9" y="156" height="136" width="3438" border="0"  height.autosize=yes criteria="" nest_arguments=((" an_corte ")) trail_footer = yes  name=dw_2  slideleft=yes  slideup=directlyabove )
+compute(band=header alignment="0" expression="today()"border="0" color="0" x="14" y="104" height="56" width="823" format="[general]"  name=date_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="'P$$HEX1$$e100$$ENDHEX$$gina ' + page() + ' de ' + pageCount()"border="0" color="0" x="14" y="44" height="56" width="823" format="[general]"  name=page_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="GUIAS DE NUMERACI$$HEX1$$d300$$ENDHEX$$N" border="0" color="0" x="1472" y="44" height="60" width="640"  name=t_1  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
