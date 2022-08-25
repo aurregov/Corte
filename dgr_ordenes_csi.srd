@@ -1,0 +1,33 @@
+HA$PBExportHeader$dgr_ordenes_csi.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=76 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_asignacion dbname="cs_asignacion" )
+ column=(type=char(60) updatewhereclause=yes name=observacion dbname="observacion" )
+ column=(type=long updatewhereclause=yes name=co_estado_asigna dbname="co_estado_asigna" )
+ column=(type=long updatewhereclause=yes name=marca dbname="marca" values="	1/	0" )
+ retrieve="  SELECT dt_pdnxmodulo.cs_asignacion,   
+         h_ordenes_corte.observacion,   
+         dt_pdnxmodulo.co_estado_asigna,
+			0 as marca  
+    FROM dt_pdnxmodulo,  
+         h_ordenes_corte  
+   WHERE ( dt_pdnxmodulo.cs_asignacion 	= h_ordenes_corte.cs_orden_corte ) and  
+         ( dt_pdnxmodulo.co_estado_asigna = 99 )    
+"  sort="cs_asignacion A " )
+text(band=header alignment="0" text="Co Estado Asigna" border="0" color="0" x="1787" y="4" height="56" width="50" html.valueishtml="0"  name=dt_pdnxmodulo_co_estado_asigna_t visible="0"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Orden Corte" border="6" color="33554432" x="9" y="8" height="56" width="288" html.valueishtml="0"  name=dt_pdnxmodulo_cs_asignacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Observaci$$HEX1$$f300$$ENDHEX$$n" border="6" color="33554432" x="306" y="8" height="56" width="1394" html.valueishtml="0"  name=h_ordenes_corte_observacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="" border="6" color="33554432" x="1710" y="8" height="56" width="69" html.valueishtml="0"  name=marca_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=3 alignment="0" tabsequence=40 border="0" color="33554432" x="1787" y="0" height="56" width="50" format="[general]" html.valueishtml="0"  name=co_estado_asigna visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="5" color="33554432" x="9" y="8" height="56" width="288" format="[general]" html.valueishtml="0"  name=cs_asignacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="5" color="33554432" x="306" y="8" height="56" width="1394" format="[general]" html.valueishtml="0"  name=observacion visible="1" edit.limit=60 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="2" tabsequence=30 border="0" color="33554432" x="1710" y="8" height="56" width="69" format="[general]" html.valueishtml="0"  name=marca visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
