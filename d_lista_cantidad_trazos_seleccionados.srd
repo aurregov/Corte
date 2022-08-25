@@ -1,0 +1,56 @@
+HA$PBExportHeader$d_lista_cantidad_trazos_seleccionados.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica dbname="dt_tallasxtrazo.co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="dt_tallasxtrazo.co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="dt_tallasxtrazo.co_referencia" )
+ column=(type=char(40) updatewhereclause=yes name=de_referencia dbname="h_preref_pv.de_referencia" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="dt_tallasxtrazo.co_talla" )
+ column=(type=decimal(0) updatewhereclause=yes name=unidades dbname="unidades" )
+ retrieve="SELECT  dt_tallasxtrazo.co_fabrica ,
+           dt_tallasxtrazo.co_linea ,
+           dt_tallasxtrazo.co_referencia ,
+           h_preref_pv.de_referencia ,
+           dt_tallasxtrazo.co_talla ,
+           Sum(ca_paquetes * ca_capas) unidades    
+        FROM        dt_tallasxtrazo ,
+                  dt_trazosrecalculo ,
+                  h_preref_pv     
+        WHERE ( dt_tallasxtrazo.co_trazo = dt_trazosrecalculo.co_trazo ) and 
+              ( dt_tallasxtrazo.co_fabrica = h_preref_pv.co_fabrica ) and 
+              ( dt_tallasxtrazo.co_linea = h_preref_pv.co_linea ) and  
+              ( cast(dt_tallasxtrazo.co_referencia as char(15)) = h_preref_pv.co_referencia ) and 
+              ( h_preref_pv.co_tipo_ref = 'P') and
+			     (dt_trazosrecalculo.cs_pdn = :an_pdn ) and
+              ( ( dt_trazosrecalculo.cs_agrupacion = :al_agrupacion ) And
+              ( dt_trazosrecalculo.raya = :ai_raya ) ) 
+        GROUP BY dt_tallasxtrazo.co_fabrica ,
+           dt_tallasxtrazo.co_linea ,
+           dt_tallasxtrazo.co_referencia ,
+           h_preref_pv.de_referencia ,
+           dt_tallasxtrazo.co_talla   " arguments=(("al_agrupacion", number),("ai_raya", number),("an_pdn", number))  sort="co_fabrica A co_linea A co_referencia A " )
+text(band=header alignment="2" text="Dt Tallasxtrazo
+Co Fabrica" border="0" color="33554432" x="9" y="8" height="104" width="320" html.valueishtml="0"  name=dt_tallasxtrazo_co_fabrica_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Tallasxtrazo
+Co Linea" border="0" color="33554432" x="338" y="8" height="104" width="320" html.valueishtml="0"  name=dt_tallasxtrazo_co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Tallasxtrazo
+Co Referencia" border="0" color="33554432" x="667" y="8" height="104" width="320" html.valueishtml="0"  name=dt_tallasxtrazo_co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Tallasxtrazo
+Co Talla" border="0" color="33554432" x="997" y="8" height="104" width="320" html.valueishtml="0"  name=dt_tallasxtrazo_co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unidades" border="0" color="33554432" x="1326" y="8" height="52" width="274" html.valueishtml="0"  name=unidades_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="H Preref De Referencia" border="0" color="0" x="1609" y="4" height="76" width="910" html.valueishtml="0"  name=h_preref_de_referencia_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="320" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="338" y="8" height="64" width="320" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="667" y="8" height="64" width="320" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="997" y="8" height="64" width="320" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1326" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1609" y="8" height="64" width="910" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
