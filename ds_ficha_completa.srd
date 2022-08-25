@@ -1,0 +1,91 @@
+HA$PBExportHeader$ds_ficha_completa.srd
+$PBExportComments$Datos de dt_modelos y dt_color_modelo con consumo
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_modelo dbname="co_modelo" )
+ column=(type=long updatewhereclause=yes name=co_reftel dbname="co_reftel" )
+ column=(type=long updatewhereclause=yes name=co_caract dbname="co_caract" )
+ column=(type=long updatewhereclause=yes name=diametro dbname="diametro" )
+ column=(type=long updatewhereclause=yes name=co_color_te dbname="co_color_te" )
+ column=(type=decimal(4) updatewhereclause=yes name=area dbname="area" )
+ column=(type=decimal(4) updatewhereclause=yes name=ca_grs dbname="ca_grs" )
+ column=(type=decimal(3) updatewhereclause=yes name=ca_mts dbname="ca_mts" )
+ column=(type=decimal(2) updatewhereclause=yes name=porc_utilizacion dbname="porc_utilizacion" )
+ column=(type=long updatewhereclause=yes name=raya dbname="raya" )
+ column=(type=decimal(2) updatewhereclause=yes name=peso_tela dbname="peso_tela" )
+ column=(type=long updatewhereclause=yes name=co_ttejido dbname="co_ttejido" )
+ column=(type=char(6) updatewhereclause=yes name=co_disenno dbname="co_disenno" )
+ retrieve="  SELECT DISTINCT dt_color_modelo.co_modelo,   
+         dt_color_modelo.co_reftel,   
+         dt_color_modelo.co_caract,   
+         dt_color_modelo.diametro,   
+         dt_color_modelo.co_color_te,   
+         sum((dt_color_modelo.ca_area * dt_color_modelo.ca_partes)) as area ,   
+         sum(dt_color_modelo.ca_grs) ca_grs,   
+         sum(dt_color_modelo.ca_mts) ca_mts,   
+         dt_modelos.porc_utilizacion,   
+         dt_modelos.raya,
+         (select gr_mt2_terminado from h_telas where co_reftel = dt_color_modelo.co_reftel and co_caract = dt_color_modelo.co_caract) as peso_tela,
+         (select co_ttejido from h_telas where co_reftel = dt_color_modelo.co_reftel and co_caract = 0) as co_ttejido,
+         nvl(dt_color_modelo.co_disenno, '0') as co_disenno
+    FROM dt_color_modelo,   
+         dt_modelos,
+         h_ficha_pt  
+   WHERE ( dt_modelos.co_fabrica = dt_color_modelo.co_fabrica ) and  
+         ( dt_modelos.co_linea = dt_color_modelo.co_linea ) and  
+         ( dt_modelos.co_referencia = dt_color_modelo.co_referencia ) and  
+         ( dt_modelos.co_talla = dt_color_modelo.co_talla ) and  
+         ( dt_modelos.co_calidad = dt_color_modelo.co_calidad ) and  
+         ( dt_modelos.co_color_pt = dt_color_modelo.co_color_pt ) and  
+         ( dt_modelos.co_modelo = dt_color_modelo.co_modelo ) and  
+			( dt_modelos.co_fabrica = h_ficha_pt.co_fabrica ) and  
+         ( dt_modelos.co_linea = h_ficha_pt.co_linea ) and  
+         ( dt_modelos.co_referencia = h_ficha_pt.co_referencia ) and  
+         ( dt_modelos.co_talla = h_ficha_pt.co_talla ) and  
+         ( dt_modelos.co_calidad = h_ficha_pt.co_calidad ) and  
+         ( dt_modelos.co_color_pt = h_ficha_pt.co_color_pt ) and  
+	
+         ( ( dt_color_modelo.co_fabrica = :an_fabrica ) AND  
+         ( dt_color_modelo.co_linea = :an_linea ) AND  
+         ( dt_color_modelo.co_referencia = :an_referencia ) AND  
+         ( dt_color_modelo.co_talla = :an_talla ) AND  
+         ( dt_color_modelo.co_calidad = 1 ) AND  
+         ( dt_color_modelo.co_reftel <> 0 ) AND
+         ( dt_color_modelo.co_color_pt = :an_color ) )  
+GROUP BY 1,2,3,4,5,9,10,11,12,13  
+" arguments=(("an_fabrica", number),("an_linea", number),("an_referencia", number),("an_talla", number),("an_color", number))  sort="co_modelo D " )
+text(band=header alignment="2" text="Co Modelo" border="0" color="33554432" x="9" y="8" height="52" width="274" html.valueishtml="0"  name=co_modelo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Reftel" border="0" color="33554432" x="293" y="8" height="52" width="274" html.valueishtml="0"  name=co_reftel_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Caract" border="0" color="33554432" x="576" y="8" height="52" width="274" html.valueishtml="0"  name=co_caract_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Diametro" border="0" color="33554432" x="859" y="8" height="52" width="274" html.valueishtml="0"  name=diametro_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Color Te" border="0" color="33554432" x="1143" y="8" height="56" width="274" html.valueishtml="0"  name=co_color_te_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Grs" border="0" color="0" x="1426" y="4" height="56" width="187" html.valueishtml="0"  name=dt_color_modelo_ca_grs_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Ca Mts" border="0" color="0" x="1623" y="4" height="56" width="174" html.valueishtml="0"  name=ca_mts_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="%Utilizacion" border="0" color="0" x="1806" y="4" height="56" width="219" html.valueishtml="0"  name=porc_utilizacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Raya" border="0" color="0" x="2034" y="4" height="56" width="123" html.valueishtml="0"  name=raya_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Area" border="0" color="0" x="2167" y="4" height="56" width="146" html.valueishtml="0"  name=area_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Peso Tela" border="0" color="0" x="2322" y="4" height="76" width="978" html.valueishtml="0"  name=peso_tela_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Co Ttejido" border="0" color="0" x="3310" y="4" height="76" width="192" html.valueishtml="0"  name=co_ttejido_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_modelo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="293" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_reftel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="576" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_caract visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="859" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=diametro visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1143" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_color_te visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="1426" y="8" height="64" width="187" format="[general]" html.valueishtml="0"  name=ca_grs visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="1623" y="8" height="64" width="174" format="[general]" html.valueishtml="0"  name=ca_mts visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="1806" y="8" height="64" width="219" format="[general]" html.valueishtml="0"  name=porc_utilizacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="2034" y="8" height="64" width="123" format="[general]" html.valueishtml="0"  name=raya visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="2167" y="8" height="64" width="146" format="[general]" html.valueishtml="0"  name=area visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="2322" y="0" height="52" width="978" format="[general]" html.valueishtml="0"  name=peso_tela visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="3310" y="0" height="52" width="192" format="[general]" html.valueishtml="0"  name=co_ttejido visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=0 border="0" color="33554432" x="3515" y="0" height="52" width="128" html.valueishtml="0"  name=co_disenno visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Disenno" border="0" color="0" x="3511" y="4" height="76" width="133" html.valueishtml="0"  name=co_disenno_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
