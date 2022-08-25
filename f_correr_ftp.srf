@@ -1,0 +1,16 @@
+HA$PBExportHeader$f_correr_ftp.srf
+global type f_correr_ftp from function_object
+end type
+
+forward prototypes
+global subroutine f_correr_ftp (string as_archivo)
+end prototypes
+
+global subroutine f_correr_ftp (string as_archivo);IF Run("C:\TTPLUS\PWFTP.EXE "+as_archivo) = -1 THEN
+							MessageBox("Error","No se pudo ejecutar el paso de archivos planos a UNIX")
+ELSE
+							MessageBox("Paso de Archivos Exitoso.","El sistema transfirio "+ &
+											"a UNIX/des/informix/tmp los archivos")
+END IF
+end subroutine
+
