@@ -1,0 +1,49 @@
+HA$PBExportHeader$dnup_mins_standard_orden_planeacion.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1090519039 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 0 print.margin.bottom = 0 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no rows_per_detail = 7 )
+header(height=124 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_proces dbname="dt_procesos_plan.co_proces" )
+ column=(type=decimal(4) updatewhereclause=yes name=ca_consumo_estimad dbname="dt_procesos_plan.ca_consumo_estimad" )
+ column=(type=char(30) updatewhereclause=yes name=m_procesos_pdn_de_proceso_pdn dbname="m_procesos_pdn.de_proceso_pdn" )
+ retrieve="  SELECT dt_procesos_plan.co_proces,   
+         dt_procesos_plan.ca_consumo_estimad,
+			m_procesos_pdn.de_proceso_pdn  
+    FROM dt_procesos_plan,m_procesos_pdn
+   WHERE dt_procesos_plan.simulacion = :an_simulacion and
+			dt_procesos_plan.co_fabrica = :an_fabrica and
+			dt_procesos_plan.co_planta = :an_planta and
+			dt_procesos_plan.co_modulo = :an_modulo and
+			dt_procesos_plan.co_fabrica_exp = :an_fabexp and
+			dt_procesos_plan.pedido = :an_pedido and
+			dt_procesos_plan.cs_liberacion = :an_liberacion  and
+			dt_procesos_plan.po = :as_po and
+			dt_procesos_plan.co_fabrica_pt = :an_fabpt and
+			dt_procesos_plan.co_linea = :an_linea and
+			dt_procesos_plan.co_referencia = :an_ref and
+			dt_procesos_plan.co_color_pt = :an_color and
+			dt_procesos_plan.tono = :as_tono and
+			dt_procesos_plan.cs_estilocolortono = :an_estcol and
+			dt_procesos_plan.cs_particion = :an_particion and
+			m_procesos_pdn.co_proceso_pdn = dt_procesos_plan.co_proces and
+			m_procesos_pdn.co_centro_pdn = 1 and
+			m_procesos_pdn.co_subcentro_pdn = 1
+   " arguments=(("an_simulacion", number),("an_fabrica", number),("an_planta", number),("an_modulo", number),("an_fabexp", number),("an_pedido", number),("an_liberacion", number),("as_po", string),("an_fabpt", number),("an_linea", number),("an_ref", number),("an_color", number),("as_tono", string),("an_estcol", number),("an_particion", number))  sort="co_proces A " )
+column(band=header id=3 alignment="0" tabsequence=32766 border="0" color="0" x="18" y="12" height="48" width="357" format="[general]" html.valueishtml="0" row_in_detail=1  name=m_procesos_pdn_de_proceso_pdn_1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+column(band=header id=3 alignment="0" tabsequence=32766 border="0" color="0" x="389" y="12" height="48" width="357" format="[general]" html.valueishtml="0" row_in_detail=2  name=m_procesos_pdn_de_proceso_pdn_2 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+column(band=header id=3 alignment="0" tabsequence=32766 border="0" color="0" x="1490" y="12" height="48" width="357" format="[general]" html.valueishtml="0" row_in_detail=5  name=m_procesos_pdn_de_proceso_pdn_5 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+column(band=header id=3 alignment="0" tabsequence=32766 border="0" color="0" x="1856" y="12" height="48" width="357" format="[general]" html.valueishtml="0" row_in_detail=6  name=m_procesos_pdn_de_proceso_pdn_6 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+text(band=header alignment="2" text="T. Min. Std" border="0" color="0" x="2226" y="12" height="48" width="233" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+column(band=header id=3 alignment="0" tabsequence=32766 border="0" color="0" x="759" y="12" height="48" width="357" format="[general]" html.valueishtml="0" row_in_detail=3  name=m_procesos_pdn_de_proceso_pdn_3 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+column(band=header id=3 alignment="0" tabsequence=32766 border="0" color="0" x="1125" y="12" height="48" width="357" format="[general]" html.valueishtml="0" row_in_detail=4  name=m_procesos_pdn_de_proceso_pdn_4 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+compute(band=header alignment="1" expression="sum(ca_consumo_estimad for all)"border="0" color="0" x="2240" y="68" height="44" width="219" format="###,##" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="18" y="68" height="44" width="357" format="###,##" html.valueishtml="0" row_in_detail=1  name=ca_consumo_estimad_1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="389" y="68" height="44" width="357" format="###,##" html.valueishtml="0" row_in_detail=2  name=ca_consumo_estimad_2 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="759" y="68" height="44" width="357" format="###,##" html.valueishtml="0" row_in_detail=3  name=ca_consumo_estimad_3 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="1125" y="68" height="44" width="357" format="###,##" html.valueishtml="0" row_in_detail=4  name=ca_consumo_estimad_4 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="1490" y="68" height="44" width="357" format="###,##" html.valueishtml="0" row_in_detail=5  name=ca_consumo_estimad_5 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="1856" y="68" height="44" width="357" format="###,##" html.valueishtml="0" row_in_detail=6  name=ca_consumo_estimad_6 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="0" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
