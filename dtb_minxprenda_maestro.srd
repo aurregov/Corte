@@ -1,0 +1,34 @@
+HA$PBExportHeader$dtb_minxprenda_maestro.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes name=co_tipoprod dbname="dt_minxprenda_tela.co_tipoprod" )
+ column=(type=long update=yes updatewhereclause=yes name=co_centro_pdn dbname="dt_minxprenda_tela.co_centro_pdn" )
+ column=(type=long update=yes updatewhereclause=yes name=co_subcentro_pdn dbname="dt_minxprenda_tela.co_subcentro_pdn" )
+ column=(type=long update=yes updatewhereclause=yes name=co_fabrica dbname="dt_minxprenda_tela.co_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes name=co_linea dbname="dt_minxprenda_tela.co_linea" )
+ column=(type=long update=yes updatewhereclause=yes name=co_tipo_tela dbname="dt_minxprenda_tela.co_tipo_tela" )
+ retrieve="  SELECT DISTINCT dt_minxprenda_tela.co_tipoprod,   
+         dt_minxprenda_tela.co_centro_pdn,   
+         dt_minxprenda_tela.co_subcentro_pdn,   
+         dt_minxprenda_tela.co_fabrica,   
+         dt_minxprenda_tela.co_linea,   
+         dt_minxprenda_tela.co_tipo_tela
+    FROM dt_minxprenda_tela"  sort="co_centro_pdn A co_subcentro_pdn A " )
+text(band=header alignment="2" text="Tipo Prenda" border="6" color="0" x="1033" y="8" height="56" width="626" html.valueishtml="0"  name=co_tipo_tela_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Tipo Tela" border="6" color="0" x="1678" y="8" height="56" width="416" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="F$$HEX1$$e100$$ENDHEX$$brica" border="6" color="0" x="526" y="8" height="56" width="489" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Subcentro" border="6" color="0" x="18" y="8" height="56" width="489" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=6 alignment="0" tabsequence=40 border="5" color="0" x="1746" y="4" height="56" width="347" format="[general]" html.valueishtml="0"  name=co_tipo_tela visible="1" dddw.name=dddw_m_estilos_prod_1 dddw.displaycolumn=de_estilo dddw.datacolumn=co_estilo dddw.percentwidth=650 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.imemode=0 dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="1" tabsequence=30 border="5" color="0" x="1115" y="4" height="56" width="544" format="[general]" html.valueishtml="0"  name=co_linea visible="1" dddw.name=dddw_m_lineas dddw.displaycolumn=de_linea dddw.datacolumn=co_linea dddw.percentwidth=500 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.imemode=0 dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=20 border="5" color="0" x="585" y="4" height="56" width="430" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" dddw.name=dddw_fabricas_codigo_descripcion dddw.displaycolumn=de_fabrica dddw.datacolumn=co_fabrica dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.imemode=0 dddw.vscrollbar=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=10 border="5" color="0" x="82" y="4" height="56" width="430" format="[general]" html.valueishtml="0"  name=co_subcentro_pdn visible="1" dddw.name=dddw_m_subcentros_pdn dddw.displaycolumn=de_subcentro_pdn dddw.datacolumn=co_subcentro_pdn dddw.percentwidth=400 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.imemode=0 dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression=" co_subcentro_pdn "border="5" color="0" x="9" y="4" height="56" width="55" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=detail alignment="0" expression=" co_fabrica "border="5" color="0" x="526" y="4" height="56" width="46" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=detail alignment="0" expression=" co_linea "border="5" color="0" x="1038" y="4" height="56" width="59" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=detail alignment="0" expression=" co_tipo_tela "border="5" color="0" x="1678" y="4" height="56" width="50" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
