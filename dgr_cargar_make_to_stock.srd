@@ -1,0 +1,56 @@
+HA$PBExportHeader$dgr_cargar_make_to_stock.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=140 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_linea dbname="co_linea" )
+ column=(type=char(15) update=yes updatewhereclause=yes key=yes name=co_referencia dbname="co_referencia" )
+ column=(type=char(40) update=yes updatewhereclause=yes key=yes name=de_referencia dbname="de_referencia" )
+ column=(type=char(10) update=yes updatewhereclause=yes key=yes name=co_color dbname="co_color" )
+ column=(type=char(15) update=yes updatewhereclause=yes key=yes name=co_talla dbname="co_talla" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cant_terminado_jdt dbname="cant_terminado_jdt" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dias_cedi_jct dbname="dias_cedi_jct" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cant_terminado dbname="cant_terminado" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=dias_cedi dbname="dias_cedi" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=critica dbname="critica" )
+ retrieve="SELECT  t_criticas_cedi_jdt.co_fabrica ,
+           t_criticas_cedi_jdt.co_linea ,
+           t_criticas_cedi_jdt.co_referencia ,
+           t_criticas_cedi_jdt.de_referencia ,
+           t_criticas_cedi_jdt.co_color ,
+           t_criticas_cedi_jdt.co_talla ,
+           t_criticas_cedi_jdt.cant_terminado_jdt ,
+           t_criticas_cedi_jdt.dias_cedi_jct ,
+           t_criticas_cedi_jdt.cant_terminado ,
+           t_criticas_cedi_jdt.dias_cedi,
+           t_criticas_cedi_jdt.critica     
+        FROM t_criticas_cedi_jdt    " update="t_criticas_cedi_jdt" updatewhere=2 updatekeyinplace=yes )
+text(band=header alignment="2" text="CantidadNecesidad" border="6" color="33554432" x="1911" y="8" height="112" width="247" html.valueishtml="0"  name=cant_terminado_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Fabrica" border="6" color="33554432" x="146" y="8" height="112" width="183" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="L$$HEX1$$ed00$$ENDHEX$$nea" border="6" color="33554432" x="338" y="8" height="112" width="137" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="C$$HEX1$$f300$$ENDHEX$$digo Estilo" border="6" color="33554432" x="485" y="8" height="112" width="229" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="estilo" border="6" color="33554432" x="722" y="8" height="112" width="521" html.valueishtml="0"  name=de_referencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Color" border="6" color="33554432" x="1253" y="8" height="112" width="270" html.valueishtml="0"  name=co_color_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Talla" border="6" color="33554432" x="1531" y="8" height="112" width="146" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Promedio" border="6" color="33554432" x="1687" y="8" height="112" width="215" html.valueishtml="0"  name=dias_cedi_jct_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="DiasCedi" border="6" color="33554432" x="2167" y="8" height="112" width="128" html.valueishtml="0"  name=dias_cedi_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="Critica" border="6" color="0" x="2304" y="8" height="112" width="101" html.valueishtml="0"  name=critica_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="5" color="33554432" x="485" y="8" height="64" width="229" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="5" color="33554432" x="722" y="8" height="64" width="521" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="5" color="33554432" x="1253" y="8" height="64" width="270" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=60 border="5" color="33554432" x="1531" y="8" height="64" width="146" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=70 border="5" color="33554432" x="1687" y="8" height="64" width="215" format="[general]" html.valueishtml="0"  name=dias_cedi_jct visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=80 border="5" color="33554432" x="1911" y="8" height="64" width="247" format="[general]" html.valueishtml="0"  name=cant_terminado visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=20 border="5" color="33554432" x="338" y="8" height="64" width="137" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=10 border="5" color="33554432" x="146" y="8" height="64" width="183" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="getrow()"border="6" color="32768" x="9" y="8" height="64" width="128" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=10 alignment="1" tabsequence=90 border="5" color="33554432" x="2167" y="8" height="64" width="128" format="[general]" html.valueishtml="0"  name=dias_cedi visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=100 border="5" color="33554432" x="2304" y="8" height="64" width="101" format="[general]" html.valueishtml="0"  name=critica visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
