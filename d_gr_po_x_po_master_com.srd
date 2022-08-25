@@ -1,0 +1,149 @@
+HA$PBExportHeader$d_gr_po_x_po_master_com.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=po_master dbname="po_master" )
+ column=(type=char(20) updatewhereclause=yes name=nu_orden dbname="nu_orden" )
+ column=(type=long updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="co_talla" )
+ column=(type=long updatewhereclause=yes name=co_color dbname="co_color" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_pedida dbname="ca_pedida" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_programada dbname="ca_programada" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_numerada dbname="ca_numerada" )
+ column=(type=long updatewhereclause=yes name=ca_numerada_inicial dbname="ca_numerada_inicial" )
+ column=(type=date updatewhereclause=yes name=fe_entrega dbname="fe_entrega" )
+ column=(type=char(15) updatewhereclause=yes name=co_ref_exp dbname="co_ref_exp" )
+ column=(type=long updatewhereclause=yes name=ca_asignada dbname="ca_asignada" )
+ column=(type=long updatewhereclause=yes key=yes name=pedido dbname="pedido" )
+ column=(type=long updatewhereclause=yes key=yes name=item dbname="item" )
+ column=(type=char(20) updatewhereclause=yes name=po_origen dbname="po_origen" )
+ column=(type=long updatewhereclause=yes name=co_referencia_origen dbname="co_referencia_origen" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="usuario" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="fe_actualizacion" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="instancia" )
+ column=(type=long updatewhereclause=yes name=cs_grupo dbname="cs_grupo" )
+ column=(type=long updatewhereclause=yes name=co_fabrica_origen dbname="co_fabrica_origen" )
+ column=(type=long updatewhereclause=yes name=co_linea_origen dbname="co_linea_origen" )
+ retrieve="  SELECT pedpend_exp.po_master,   
+         pedpend_exp.nu_orden,   
+         pedpend_exp.co_fabrica,   
+         pedpend_exp.co_linea,   
+         pedpend_exp.co_referencia,   
+         pedpend_exp.co_talla,   
+         pedpend_exp.co_color,   
+         pedpend_exp.ca_pedida,
+			(
+				Select sum(a.ca_programada)
+				From dt_caxpedidos a, h_ordenpd_pt b
+				where a.cs_ordenpd_pt = b.cs_ordenpd_pt  and 
+						a.pedido = pedpend_exp.pedido and 
+						a.nu_orden = pedpend_exp.nu_orden and 
+						b.co_estado_orden <> 5 and 
+						b.co_fabrica = pedpend_exp.co_fabrica and 
+						b.co_linea = pedpend_exp.co_linea and 
+						b.co_referencia = pedpend_exp.co_referencia and 
+						a.co_color = pedpend_exp.co_color and 
+						a.co_talla = pedpend_exp.co_talla and 
+						a.color_exp = pedpend_exp.co_color_exp and 
+						a.co_talla_exp = pedpend_exp.co_talla_exp
+
+			) as ca_programada,  
+         pedpend_exp.ca_numerada,   
+         pedpend_exp.ca_numerada_inicial,   
+         pedpend_exp.fe_entrega,   
+			pedpend_exp.co_ref_exp,
+         0 as ca_asignada,   
+         pedpend_exp.pedido,   
+         pedpend_exp.item,
+			pedpend_exp.nu_orden as po_origen,
+			pedpend_exp.co_referencia as co_referencia_origen,
+			pedpend_exp.usuario,
+			pedpend_exp.fe_actualizacion,
+			pedpend_exp.instancia,
+			dt_grupo_cambio_referencia.cs_grupo,
+			pedpend_exp.co_fabrica as co_fabrica_origen,
+			pedpend_exp.co_linea as co_linea_origen 
+    FROM pedpend_exp,   
+         peddig,
+			dt_grupo_cambio_referencia  
+   WHERE ( pedpend_exp.pedido = peddig.pedido ) and  
+         ( pedpend_exp.po_master = :as_po_master ) AND  
+         ( pedpend_exp.co_calidad = 1 ) AND  
+			( peddig.sw_cierre_corte not in (1,2) or peddig.sw_cierre_corte is Null) and
+			( dt_grupo_cambio_referencia.cs_grupo in (:al_cs_grupo) ) and
+			( dt_grupo_cambio_referencia.co_fabrica = pedpend_exp.co_fabrica ) and
+			( dt_grupo_cambio_referencia.co_linea = pedpend_exp.co_linea ) and
+			( dt_grupo_cambio_referencia.co_referencia = pedpend_exp.co_referencia ) and
+			(Select sum(a.ca_programada)
+				From dt_caxpedidos a, h_ordenpd_pt b
+				where a.cs_ordenpd_pt = b.cs_ordenpd_pt  and 
+						a.pedido = pedpend_exp.pedido and 
+						a.nu_orden = pedpend_exp.nu_orden and 
+						b.co_estado_orden <> 5 and 
+						b.co_fabrica = pedpend_exp.co_fabrica and 
+						b.co_linea = pedpend_exp.co_linea and 
+						b.co_referencia = pedpend_exp.co_referencia and 
+						a.co_color = pedpend_exp.co_color and 
+						a.co_talla = pedpend_exp.co_talla and 
+						a.color_exp = pedpend_exp.co_color_exp and 
+						a.co_talla_exp = pedpend_exp.co_talla_exp  ) > 0 
+" update="pedpend_exp" updatewhere=1 updatekeyinplace=yes arguments=(("as_po_master", string),("al_cs_grupo", numberlist)) )
+text(band=header alignment="2" text="Po Master" border="0" color="33554432" x="9" y="8" height="52" width="480" html.valueishtml="0"  name=po_master_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Nu Orden" border="0" color="33554432" x="498" y="8" height="52" width="480" html.valueishtml="0"  name=nu_orden_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Fabrica" border="0" color="33554432" x="987" y="8" height="52" width="274" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Linea" border="0" color="33554432" x="1271" y="8" height="52" width="274" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Referencia" border="0" color="33554432" x="1554" y="8" height="52" width="311" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Talla" border="0" color="33554432" x="1874" y="8" height="52" width="274" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Color" border="0" color="33554432" x="2158" y="8" height="52" width="274" html.valueishtml="0"  name=co_color_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Pedida" border="0" color="33554432" x="2441" y="8" height="52" width="274" html.valueishtml="0"  name=ca_pedida_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Numerada" border="0" color="33554432" x="2725" y="8" height="52" width="297" html.valueishtml="0"  name=ca_numerada_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Numerada Inicial" border="0" color="33554432" x="3031" y="8" height="52" width="434" html.valueishtml="0"  name=ca_numerada_inicial_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fe Entrega" border="0" color="33554432" x="3474" y="8" height="52" width="274" html.valueishtml="0"  name=fe_entrega_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Ca Asignada" border="0" color="33554432" x="4192" y="4" height="52" width="183" html.valueishtml="0"  name=ca_asignada_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Pedido" border="0" color="33554432" x="4384" y="4" height="52" width="261" html.valueishtml="0"  name=pedpend_exp_pedido_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Item" border="0" color="33554432" x="4654" y="4" height="52" width="407" html.valueishtml="0"  name=pedpend_exp_item_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Po Origen" border="0" color="33554432" x="5070" y="4" height="76" width="407" html.valueishtml="0"  name=po_origen_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Referencia Origen" border="0" color="33554432" x="5486" y="4" height="76" width="256" html.valueishtml="0"  name=co_referencia_origen_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Usuario" border="0" color="33554432" x="5751" y="4" height="76" width="174" html.valueishtml="0"  name=usuario_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Fe Actualizacion" border="0" color="33554432" x="5934" y="4" height="76" width="658" html.valueishtml="0"  name=fe_actualizacion_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Instancia" border="0" color="33554432" x="6601" y="4" height="76" width="453" html.valueishtml="0"  name=instancia_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Ref Exp" border="0" color="33554432" x="7063" y="4" height="76" width="334" html.valueishtml="0"  name=co_ref_exp_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Ca Programada" border="0" color="33554432" x="7406" y="4" height="76" width="599" html.valueishtml="0"  name=ca_programada_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Cs Grupo" border="0" color="33554432" x="8014" y="4" height="76" width="352" html.valueishtml="0"  name=cs_grupo_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="480" format="[general]" html.valueishtml="0"  name=po_master visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="498" y="8" height="64" width="480" format="[general]" html.valueishtml="0"  name=nu_orden visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="987" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="1271" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1554" y="8" height="64" width="311" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1874" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="2158" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="2441" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=ca_pedida visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=10 border="0" color="33554432" x="2725" y="8" height="64" width="297" format="[general]" html.valueishtml="0"  name=ca_numerada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=20 border="0" color="33554432" x="3031" y="8" height="64" width="434" format="[general]" html.valueishtml="0"  name=ca_numerada_inicial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=30 border="0" color="33554432" x="3474" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=fe_entrega visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="ca_programada  -  ca_numerada"border="0" color="33554432" x="3758" y="12" height="52" width="425" format="[GENERAL]" html.valueishtml="0"  name=ca_faltante visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=40 border="0" color="33554432" x="4192" y="8" height="52" width="183" format="[general]" html.valueishtml="0"  name=ca_asignada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="33554432" x="4384" y="0" height="52" width="261" format="[general]" html.valueishtml="0"  name=pedido visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="33554432" x="4654" y="0" height="52" width="407" format="[general]" html.valueishtml="0"  name=item visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=50 border="0" color="33554432" x="5070" y="0" height="52" width="407" format="[general]" html.valueishtml="0"  name=po_origen visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=60 border="0" color="33554432" x="5486" y="0" height="52" width="256" format="[general]" html.valueishtml="0"  name=co_referencia_origen visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=70 border="0" color="33554432" x="5751" y="0" height="52" width="174" format="[general]" html.valueishtml="0"  name=usuario visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=80 border="0" color="33554432" x="5934" y="0" height="52" width="658" format="[shortdate] [time]" html.valueishtml="0"  name=fe_actualizacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=90 border="0" color="33554432" x="6601" y="0" height="52" width="453" format="[general]" html.valueishtml="0"  name=instancia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=100 border="0" color="33554432" x="7063" y="0" height="52" width="334" format="[general]" html.valueishtml="0"  name=co_ref_exp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=110 border="0" color="33554432" x="7406" y="0" height="52" width="599" format="[general]" html.valueishtml="0"  name=ca_programada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="0" tabsequence=120 border="0" color="33554432" x="8014" y="0" height="52" width="352" format="[general]" html.valueishtml="0"  name=cs_grupo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="0" tabsequence=130 border="0" color="33554432" x="8379" y="0" height="52" width="229" html.valueishtml="0"  name=co_fabrica_origen visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Fabrica Origen" border="0" color="33554432" x="8375" y="4" height="76" width="233" html.valueishtml="0"  name=co_fabrica_origen_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=24 alignment="0" tabsequence=140 border="0" color="33554432" x="8622" y="0" height="52" width="375" html.valueishtml="0"  name=co_linea_origen visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Linea Origen" border="0" color="33554432" x="8617" y="4" height="76" width="379" html.valueishtml="0"  name=co_linea_origen_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
