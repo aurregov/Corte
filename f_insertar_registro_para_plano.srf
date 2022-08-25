@@ -1,0 +1,46 @@
+HA$PBExportHeader$f_insertar_registro_para_plano.srf
+global type f_insertar_registro_para_plano from function_object
+end type
+
+forward prototypes
+global function long f_insertar_registro_para_plano (long ai_numero_archivo, long ai_numero_de_campos, string as_campo[], long ai_longituddeseada[], string as_tipocampo[])
+end prototypes
+
+global function long f_insertar_registro_para_plano (long ai_numero_archivo, long ai_numero_de_campos, string as_campo[], long ai_longituddeseada[], string as_tipocampo[]);/////////////////////////////////////////////////////////////////////////////
+//
+//	PARA LLAMAR ESTA FUNCION DEBE CREAR LOCALMENTE LOS TRES (3) VECTORES
+//	SIGUIENTES :	String 	ls_campo[]
+//						Long 	li_longituddeseada[]
+//						String	ls_tipocampo[]
+//
+//	LUEGO DEBE LLENAR DE FORMA QUE CORRESPONDAN ENTRE SI EN EL ORDEN QUE
+//	SE DEBE GENERAR EN EL PLANO
+//
+//	PARAMETROS : 	ai_numero_archivo		:	Apuntador al archivo plano
+//	----------		ai_numero_de_campos	:	Numero campos x registro
+//														del archivo plano
+//						as_campo[]				:	Valor o contenido del campo
+//						ai_longituddeseada[]	:	Longitud deseada del campo dentro
+//														del registro plano
+//						as_tipocampo[]			:	Tipo del campo (NUMERICO o TEXTO)
+//					
+//	RETORNA : 		-1		:	Hubo problemas, no se inserto el registro
+//						> 0	:	Registro insertado
+//
+/////////////////////////////////////////////////////////////////////////////
+					
+String ls_registro, ls_campo
+Long ll_contador = 1
+
+DO WHILE ll_contador <= ai_numero_de_campos
+	ls_campo		=	f_formatear_campo_para_plano(	as_campo[ ll_contador ], &
+																ai_longituddeseada[ ll_contador ], &
+																as_tipocampo[ ll_contador ])
+	ls_registro = 	ls_registro + ls_campo
+	ll_contador ++
+LOOP
+
+Return(FileWrite(ai_numero_archivo, ls_registro))
+
+end function
+
