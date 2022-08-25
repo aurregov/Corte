@@ -1,0 +1,135 @@
+HA$PBExportHeader$d_gr_reporte_reposo_anulado.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=1 )
+header(height=456 color="536870912" )
+summary(height=92 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_ordenpd_pt dbname="cs_ordenpd_pt" )
+ column=(type=decimal(4) updatewhereclause=yes name=tiempo_estandar dbname="tiempo_estandar" )
+ column=(type=datetime updatewhereclause=yes name=fecha_inicio_bck dbname="fecha_inicio_bck" )
+ column=(type=datetime updatewhereclause=yes name=fecha_fin_bck dbname="fecha_fin_bck" )
+ column=(type=long updatewhereclause=yes name=co_reftel dbname="co_reftel" )
+ column=(type=char(42) updatewhereclause=yes name=de_reftel dbname="de_reftel" )
+ column=(type=long updatewhereclause=yes name=tiempo_reposo dbname="tiempo_reposo" )
+ column=(type=long updatewhereclause=yes name=co_color_tela dbname="co_color_tela" )
+ column=(type=decimal(2) updatewhereclause=yes name=ancho_cortable dbname="ancho_cortable" )
+ column=(type=long updatewhereclause=yes name=ca_unidades dbname="ca_unidades" )
+ column=(type=decimal(5) updatewhereclause=yes name=ca_tela dbname="ca_tela" )
+ column=(type=char(50) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=char(30) updatewhereclause=yes name=de_color dbname="de_color" )
+ column=(type=long updatewhereclause=yes name=cs_liberacion dbname="cs_liberacion" )
+ column=(type=char(30) updatewhereclause=yes name=grupo dbname="grupo" )
+ retrieve="
+select b.cs_ordenpd_pt, a.tiempo_estandar, a.fecha_inicio_bck, a.fecha_fin_bck, d.co_reftel, d.de_reftel,
+      d.tiempo_reposo, c.co_color_tela, c.ancho_cortable, c.ca_unidades, c.ca_tela, e.de_referencia, f.de_color, 
+      b.cs_liberacion,
+       (select max(gpa) from peddig where pedido = b.pedido) as grupo
+       
+
+from dt_simulacion a, dt_pdnxmodulo b, dt_telaxmodelo_lib c, h_telas d, h_preref_pv e, m_color f
+
+where a.pedido = b.cs_liberacion
+
+and a.co_tipo_negocio = (select cast(numerico as integer)
+						from m_constantes
+						where var_nombre = 'REPOSO_TIPONEGOCIO')
+
+and b.co_fabrica_exp = c.co_fabrica_exp
+
+and b.cs_liberacion = c.cs_liberacion
+
+and b.po = c.nu_orden
+
+and b.co_fabrica_pt = c.co_fabrica_pt
+
+and b.co_linea = c.co_linea
+
+and b.co_referencia = c.co_referencia
+
+and b.co_color_pt = c.co_color_pt
+
+and c.co_reftel = d.co_reftel
+
+and d.co_caract = 0
+
+and a.co_estado = 'I'
+and c.raya = 10
+
+and a.tiempo_estandar > 0
+
+and d.tiempo_reposo > 0
+
+and b.co_estado_asigna = 28
+
+and a.fecha_inicio_bck is not null
+
+and b.co_fabrica_pt = e.co_Fabrica
+
+and b.co_linea = e.co_linea
+
+and (a.co_referencia   = c.co_reftel )
+
+and (Cast(b.co_referencia as char(15) ) = e.co_referencia )
+
+and (e.co_tipo_ref = 'P' )
+
+and c.co_color_tela = f.co_color
+
+and (c.co_reftel = :AL_REFTEL OR :AL_REFTEL = 0)
+
+and (b.cs_ordenpd_pt = :AL_OP OR :AL_OP = 0)
+
+and (b.co_referencia = :AL_REFERENCIA OR :AL_REFERENCIA = 0)
+
+and date(b.fe_creacion) >= :FECHA_INI
+
+and date(b.fe_creacion) <= :FECHA_FIN" arguments=(("al_reftel", number),("al_op", number),("al_referencia", number),("fecha_ini", date),("fecha_fin", date))  sort="cs_liberacion A " )
+text(band=header alignment="2" text="Tiempo
+Estandar" border="6" color="33554432" x="9" y="320" height="112" width="183" html.valueishtml="0"  name=tiempo_estandar_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fecha
+Inicio Bck" border="6" color="33554432" x="201" y="320" height="112" width="215" html.valueishtml="0"  name=fecha_inicio_bck_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fecha
+Fin Bck" border="6" color="33554432" x="425" y="320" height="112" width="229" html.valueishtml="0"  name=fecha_fin_bck_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Reftel
+" border="6" color="33554432" x="663" y="320" height="112" width="197" html.valueishtml="0"  name=co_reftel_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="De Reftel
+" border="6" color="33554432" x="869" y="320" height="112" width="603" html.valueishtml="0"  name=de_reftel_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Color
+Tela" border="6" color="33554432" x="1678" y="320" height="112" width="201" html.valueishtml="0"  name=co_color_tela_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ancho
+Cortable" border="6" color="33554432" x="1888" y="320" height="112" width="229" html.valueishtml="0"  name=ancho_cortable_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Unidades
+" border="6" color="33554432" x="2126" y="320" height="112" width="197" html.valueishtml="0"  name=ca_unidades_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Tela
+" border="6" color="33554432" x="2331" y="320" height="112" width="178" html.valueishtml="0"  name=ca_tela_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="De Referencia
+" border="6" color="33554432" x="2519" y="320" height="112" width="297" html.valueishtml="0"  name=de_referencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="33554432" x="9" y="8" height="68" width="183" format="[general]" html.valueishtml="0"  name=tiempo_estandar visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="33554432" x="201" y="8" height="68" width="215" format="[shortdate] [time]" html.valueishtml="0"  name=fecha_inicio_bck visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="5" color="33554432" x="425" y="8" height="68" width="229" format="[shortdate] [time]" html.valueishtml="0"  name=fecha_fin_bck visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="5" color="33554432" x="663" y="8" height="68" width="197" format="[general]" html.valueishtml="0"  name=co_reftel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="5" color="33554432" x="869" y="8" height="68" width="603" format="[general]" html.valueishtml="0"  name=de_reftel visible="1" edit.limit=42 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="5" color="33554432" x="1678" y="8" height="68" width="201" format="[general]" html.valueishtml="0"  name=co_color_tela visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="5" color="33554432" x="1888" y="8" height="68" width="229" format="[general]" html.valueishtml="0"  name=ancho_cortable visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="5" color="33554432" x="2126" y="8" height="68" width="197" format="[general]" html.valueishtml="0"  name=ca_unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="5" color="33554432" x="2331" y="8" height="68" width="178" format="[general]" html.valueishtml="0"  name=ca_tela visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="5" color="33554432" x="2519" y="8" height="68" width="297" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="De Color
+" border="6" color="33554432" x="2825" y="320" height="112" width="338" html.valueishtml="0"  name=de_color_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="OP" border="6" color="0" x="3173" y="320" height="112" width="265" html.valueishtml="0"  name=cs_ordenpd_pt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="5" color="33554432" x="2825" y="8" height="68" width="338" format="[general]" html.valueishtml="0"  name=de_color visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="2" tabsequence=0 border="5" color="33554432" x="3177" y="8" height="68" width="261" html.valueishtml="0"  name=cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=15 alignment="0" tabsequence=0 border="5" color="33554432" x="3451" y="8" height="68" width="347" html.valueishtml="0"  name=grupo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=14 alignment="2" tabsequence=0 border="5" color="33554432" x="3813" y="8" height="68" width="238" html.valueishtml="0"  name=cs_liberacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Grupo" border="6" color="0" x="3447" y="320" height="112" width="352" html.valueishtml="0"  name=grupo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="Liberacion" border="6" color="33554432" x="3808" y="320" height="112" width="242" html.valueishtml="0"  name=cs_liberacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=summary alignment="1" expression="sum(ca_unidades for all)"border="5" color="33554432" x="2126" y="4" height="56" width="197" format="[general]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Tiempo
+Reposo" border="6" color="33554432" x="1481" y="320" height="112" width="187" html.valueishtml="0"  name=tiempo_reposo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="5" color="33554432" x="1481" y="8" height="68" width="187" format="[general]" html.valueishtml="0"  name=tiempo_reposo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
