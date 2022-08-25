@@ -1,0 +1,100 @@
+HA$PBExportHeader$dtb_liberaciones_por_rollo.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=440 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_asignacion dbname="cs_asignacion" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_metros dbname="compute_0002" )
+ column=(type=long updatewhereclause=yes name=cs_liberacion dbname="cs_liberacion" )
+ column=(type=char(20) updatewhereclause=yes name=nu_orden dbname="nu_orden" )
+ column=(type=char(10) updatewhereclause=yes name=nu_cut dbname="nu_cut" )
+ column=(type=long updatewhereclause=yes name=co_fabrica_pt dbname="co_fabrica_pt" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=char(30) updatewhereclause=yes name=m_lineas_de_linea dbname="de_linea" )
+ column=(type=char(40) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=long updatewhereclause=yes name=co_color_pt dbname="co_color_pt" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_unidades dbname="compute_0012" )
+ retrieve="	select dt_pdnxmodulo.cs_asignacion, 
+			 sum(ca_metros),
+			 dt_rollos_libera.cs_liberacion,
+			 dt_rollos_libera.nu_orden,
+			 dt_rollos_libera.nu_cut,
+			 dt_rollos_libera.co_fabrica_pt,
+			 dt_rollos_libera.co_linea,
+			 dt_rollos_libera.co_referencia,
+			 m_lineas.de_linea,
+			 h_preref_pv.de_referencia,
+			 dt_rollos_libera.co_color_pt,
+			 sum(dt_rollos_libera.ca_unidades)	
+	  from dt_rollos_libera, 
+			 dt_pdnxmodulo,
+			 m_lineas,
+			 h_preref_pv
+	 where dt_rollos_libera.cs_rollo 		= :an_rollo and
+          dt_rollos_libera.co_fabrica_exp = dt_pdnxmodulo.co_fabrica_exp and
+			 dt_rollos_libera.cs_liberacion 	= dt_pdnxmodulo.cs_liberacion and
+			 dt_rollos_libera.nu_orden 		= dt_pdnxmodulo.po and
+			 dt_rollos_libera.nu_cut 			= dt_pdnxmodulo.nu_cut and
+			 dt_rollos_libera.co_fabrica_pt 	= dt_pdnxmodulo.co_fabrica_pt and
+			 dt_rollos_libera.co_linea 		= dt_pdnxmodulo.co_linea and
+			 dt_rollos_libera.co_referencia 	= dt_pdnxmodulo.co_referencia and
+			 dt_rollos_libera.co_color_pt 	= dt_pdnxmodulo.co_color_pt and
+			 dt_rollos_libera.co_tono 			= dt_pdnxmodulo.tono and
+			 dt_pdnxmodulo.co_estado_asigna  <> 28 and
+			 m_lineas.co_fabrica 				= dt_rollos_libera.co_fabrica_pt and
+			 m_lineas.co_linea					= dt_rollos_libera.co_linea and
+			 h_preref_pv.co_fabrica				= dt_rollos_libera.co_fabrica_pt and
+			 h_preref_pv.co_linea				= dt_rollos_libera.co_linea and
+          (Cast(dt_rollos_libera.co_referencia as char(15) ) = h_preref_pv.co_referencia ) AND
+          h_preref_pv.co_tipo_ref = 'P' 
+group by  dt_pdnxmodulo.cs_asignacion,
+			 dt_rollos_libera.cs_liberacion,
+			 dt_rollos_libera.nu_orden,
+			 dt_rollos_libera.nu_cut,
+			 dt_rollos_libera.co_fabrica_pt,
+			 dt_rollos_libera.co_linea,
+			 dt_rollos_libera.co_referencia,
+			 m_lineas.de_linea,
+			 h_preref_pv.de_referencia,
+			 dt_rollos_libera.co_color_pt" arguments=(("an_rollo", number))  sort="cs_liberacion A nu_orden A nu_cut A co_fabrica_pt A co_linea A co_referencia A " )
+text(band=header alignment="2" text="REPORTE LIBERACIONES POR ROLLO" border="0" color="33554432" x="27" y="160" height="92" width="3557" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="23" y="16" height="60" width="590" format="[SHORTDATE] [TIME]" html.valueishtml="0"  name=date_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="1" expression="'P$$HEX1$$e100$$ENDHEX$$gina ' + page() + ' de ' + pageCount()"border="0" color="33554432" x="3008" y="16" height="60" width="562" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Orden Corte" border="6" color="33554432" x="18" y="364" height="56" width="270" html.valueishtml="0"  name=dt_pdnxmodulo_cs_asignacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Orden Corte" filename="" enabled=yes action="0" border="0" color="0" x="5" y="364" height="72" width="288" vtextalign="0" htextalign="0"  name=cb_cs_asignacion visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Liberaci$$HEX1$$f300$$ENDHEX$$n" border="6" color="33554432" x="315" y="364" height="56" width="224" html.valueishtml="0"  name=dt_rollos_libera_cs_liberacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Liberaci$$HEX1$$f300$$ENDHEX$$n" filename="" enabled=yes action="0" border="0" color="0" x="297" y="364" height="72" width="247" vtextalign="0" htextalign="0"  name=cb_cs_liberacion visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="P.O." border="6" color="33554432" x="558" y="364" height="56" width="197" html.valueishtml="0"  name=dt_rollos_libera_nu_orden_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="P.O." filename="" enabled=yes action="0" border="0" color="0" x="549" y="364" height="72" width="210" vtextalign="0" htextalign="0"  name=cb_nu_orden visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Cut" border="6" color="33554432" x="782" y="364" height="56" width="215" html.valueishtml="0"  name=dt_rollos_libera_nu_cut_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Cut" filename="" enabled=yes action="0" border="0" color="0" x="763" y="364" height="72" width="238" vtextalign="0" htextalign="0"  name=cb_nu_cut visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Fabrica" border="6" color="33554432" x="1019" y="364" height="56" width="361" html.valueishtml="0"  name=dt_rollos_libera_co_fabrica_pt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Fabrica" filename="" enabled=yes action="0" border="0" color="0" x="1006" y="364" height="72" width="384" vtextalign="0" htextalign="0"  name=cb_co_fabrica_pt visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Metros" border="6" color="33554432" x="3081" y="364" height="56" width="224" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Unidades" border="6" color="0" x="3337" y="364" height="56" width="233" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Metros" filename="" enabled=yes action="0" border="0" color="0" x="3067" y="364" height="72" width="242" vtextalign="0" htextalign="0"  name=cb_ca_metros visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Unidades" filename="" enabled=yes action="0" border="0" color="0" x="3328" y="364" height="72" width="251" vtextalign="0" htextalign="0"  name=cb_ca_unidades visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="33554432" x="18" y="4" height="56" width="270" format="#######" html.valueishtml="0"  name=cs_asignacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="33554432" x="311" y="4" height="56" width="224" format="#######" html.valueishtml="0"  name=cs_liberacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="5" color="33554432" x="553" y="4" height="56" width="197" format="[general]" html.valueishtml="0"  name=nu_orden visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="33554432" x="782" y="4" height="56" width="215" format="[general]" html.valueishtml="0"  name=nu_cut visible="1" edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="5" color="33554432" x="1019" y="4" height="56" width="361" format="#######" html.valueishtml="0"  name=co_fabrica_pt visible="1" dddw.name=dddw_fabricas dddw.displaycolumn=razon_social dddw.datacolumn=co_fabrica dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="33554432" x="3067" y="4" height="56" width="242" format="#,##0.00" html.valueishtml="0"  name=ca_metros visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="5" color="33554432" x="3328" y="4" height="56" width="251" format="###,###,###,##0" html.valueishtml="0"  name=ca_unidades visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="L$$HEX1$$ed00$$ENDHEX$$nea" border="6" color="33554432" x="1403" y="364" height="56" width="526" html.valueishtml="0"  name=dt_rollos_libera_co_linea_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="L$$HEX1$$ed00$$ENDHEX$$nea" filename="" enabled=yes action="0" border="0" color="0" x="1394" y="364" height="72" width="539" vtextalign="0" htextalign="0"  name=cb_co_linea visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=detail alignment="0" expression="co_linea +' - '+ trim( m_lineas_de_linea ) "border="5" color="33554432" x="1399" y="4" height="56" width="526" format="[General]" html.valueishtml="0"  name=de_linea visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Referencia" border="6" color="33554432" x="1943" y="364" height="56" width="795" html.valueishtml="0"  name=dt_rollos_libera_co_referencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Referencia" filename="" enabled=yes action="0" border="0" color="0" x="1938" y="364" height="72" width="800" vtextalign="0" htextalign="0"  name=cb_co_referencia visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=detail alignment="0" expression="co_referencia +' - '+Trim( de_referencia )"border="5" color="33554432" x="1947" y="4" height="56" width="795" format="[General]" html.valueishtml="0"  name=de_referencia visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Color" border="6" color="0" x="2766" y="364" height="56" width="283" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Color" filename="" enabled=yes action="0" border="0" color="0" x="2752" y="364" height="72" width="302" vtextalign="0" htextalign="0"  name=cb_co_color_pt visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="5" color="33554432" x="2766" y="4" height="56" width="283" format="#######" html.valueishtml="0"  name=co_color_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
