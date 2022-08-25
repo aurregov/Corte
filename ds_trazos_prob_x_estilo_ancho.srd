@@ -1,0 +1,50 @@
+HA$PBExportHeader$ds_trazos_prob_x_estilo_ancho.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=112 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_trazo dbname="co_trazo" )
+ column=(type=char(40) updatewhereclause=yes name=de_trazo dbname="de_trazo" )
+ column=(type=char(18) updatewhereclause=yes name=molderia dbname="molderia" )
+ column=(type=decimal(4) updatewhereclause=yes name=ancho dbname="ancho" )
+ column=(type=decimal(2) updatewhereclause=yes name=largo dbname="largo" )
+ column=(type=decimal(2) updatewhereclause=yes name=porc_util dbname="porc_util" )
+ column=(type=long updatewhereclause=yes name=co_raya dbname="co_raya" )
+ column=(type=decimal(0) updatewhereclause=yes name=tot_tallas dbname="tot_tallas" )
+ retrieve="select h.co_trazo, h.de_trazo, h.molderia, (h.ancho * 100) ancho, h.largo, 
+       h.porc_util, h.co_raya,
+       (select count(*) from dt_tallasxtrazo a1
+        where a1.co_trazo = h.co_trazo
+          and a1.co_fabrica = dr.co_fabrica
+          and a1.co_linea = dr.co_linea
+          and a1.co_referencia = dr.co_referencia) as tot_tallas
+from h_trazos h, dt_refptxtrazo dr
+where h.co_trazo = dr.co_trazo
+  and h.co_estado_trazo <> 2
+  and dr.co_fabrica =  :ai_fabrica
+  and dr.co_linea = :ai_linea
+  and dr.co_referencia = :al_ref
+  and h.co_raya = :ai_raya" arguments=(("ai_fabrica", number),("ai_linea", number),("al_ref", number),("ai_raya", number)) )
+text(band=header alignment="2" text="Co Trazo" border="0" color="33554432" x="5" y="4" height="52" width="274" html.valueishtml="0"  name=co_trazo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="De Trazo" border="0" color="33554432" x="283" y="4" height="52" width="937" html.valueishtml="0"  name=de_trazo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Molderia" border="0" color="33554432" x="1225" y="4" height="52" width="434" html.valueishtml="0"  name=molderia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ancho" border="0" color="33554432" x="1664" y="4" height="52" width="274" html.valueishtml="0"  name=ancho_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Largo" border="0" color="33554432" x="1943" y="4" height="52" width="274" html.valueishtml="0"  name=largo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Porc Util" border="0" color="33554432" x="2222" y="4" height="52" width="274" html.valueishtml="0"  name=porc_util_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tot Tallas" border="0" color="33554432" x="2501" y="4" height="52" width="274" html.valueishtml="0"  name=tot_tallas_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Raya" border="0" color="33554432" x="2789" y="4" height="52" width="201" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_trazo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="283" y="4" height="64" width="937" format="[general]" html.valueishtml="0"  name=de_trazo visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="1225" y="4" height="64" width="434" format="[general]" html.valueishtml="0"  name=molderia visible="1" edit.limit=18 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="1664" y="4" height="64" width="274" format="0" html.valueishtml="0"  name=ancho visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1943" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=largo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="2222" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=porc_util visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="2501" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=tot_tallas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="2825" y="0" height="52" width="101" format="[general]" html.valueishtml="0"  name=co_raya visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
