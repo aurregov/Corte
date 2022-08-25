@@ -1,0 +1,16 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "ficha_pt.pbl" "";
+@end;
+@begin Objects
+ "dff_maestro_ficha_pt.srd" "ficha_pt.pbl";
+ "dtb_dt_color_modelo1_copia.srd" "ficha_pt.pbl";
+ "w_buscar_ficha_pt.srw" "ficha_pt.pbl";
+ "dtb_h_ficha_pt.srd" "ficha_pt.pbl";
+ "dtb_h_ordenpd_pt.srd" "ficha_pt.pbl";
+ "w_administracion_ficha_pt.srw" "ficha_pt.pbl";
+ "dtb_invisible_m_log_ficha.srd" "ficha_pt.pbl";
+ "dtb_listado_manoobra_ficha.srd" "ficha_pt.pbl";
+ "dgr_pedidos.srd" "ficha_pt.pbl";
+ "dtb_dt_modelos1.srd" "ficha_pt.pbl";
+@end;
