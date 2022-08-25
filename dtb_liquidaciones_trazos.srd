@@ -1,0 +1,79 @@
+HA$PBExportHeader$dtb_liquidaciones_trazos.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=81324524 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=cs_liquidacion dbname="dt_liquida_trazo.cs_liquidacion" )
+ column=(type=long update=yes updatewhereclause=yes name=co_estado dbname="dt_liquida_trazo.co_estado" )
+ column=(type=char(30) updatewhereclause=yes name=de_estado dbname="m_estados_ordencr.de_estado" )
+ column=(type=long update=yes updatewhereclause=yes name=tipo dbname="dt_liquida_trazo.tipo" values="COMPLETA	1/PARCIAL	2/" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_liquidacion dbname="dt_liquida_trazo.fe_liquidacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_loteo dbname="dt_liquida_trazo.fe_loteo" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_orden_corte dbname="dt_liquida_trazo.cs_orden_corte" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_agrupacion dbname="dt_liquida_trazo.cs_agrupacion" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_pdn dbname="dt_liquida_trazo.cs_pdn" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_modelo dbname="dt_liquida_trazo.co_modelo" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_fabrica_tela dbname="dt_liquida_trazo.co_fabrica_tela" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_reftel dbname="dt_liquida_trazo.co_reftel" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_caract dbname="dt_liquida_trazo.co_caract" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=diametro dbname="dt_liquida_trazo.diametro" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_color_te dbname="dt_liquida_trazo.co_color_te" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_trazo dbname="dt_liquida_trazo.cs_trazo" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_seccion dbname="dt_liquida_trazo.cs_seccion" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_base_trazos dbname="dt_liquida_trazo.cs_base_trazos" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="dt_liquida_trazo.fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="dt_liquida_trazo.fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes key=yes name=usuario dbname="dt_liquida_trazo.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes key=yes name=instancia dbname="dt_liquida_trazo.instancia" )
+ retrieve="SELECT  dt_liquida_trazo.cs_liquidacion ,
+           dt_liquida_trazo.co_estado ,
+           m_estados_ordencr.de_estado ,
+           dt_liquida_trazo.tipo ,
+           dt_liquida_trazo.fe_liquidacion ,
+           dt_liquida_trazo.fe_loteo ,
+           dt_liquida_trazo.cs_orden_corte ,
+           dt_liquida_trazo.cs_agrupacion ,
+           dt_liquida_trazo.cs_pdn ,
+           dt_liquida_trazo.co_modelo ,
+           dt_liquida_trazo.co_fabrica_tela ,
+           dt_liquida_trazo.co_reftel ,
+           dt_liquida_trazo.co_caract ,
+           dt_liquida_trazo.diametro ,
+           dt_liquida_trazo.co_color_te ,
+           dt_liquida_trazo.cs_trazo ,
+           dt_liquida_trazo.cs_seccion ,
+           dt_liquida_trazo.cs_base_trazos ,
+           dt_liquida_trazo.fe_creacion ,
+           dt_liquida_trazo.fe_actualizacion ,
+           dt_liquida_trazo.usuario ,
+           dt_liquida_trazo.instancia     
+        FROM        dt_liquida_trazo ,
+                  m_estados_ordencr     
+        WHERE ( dt_liquida_trazo.co_estado = m_estados_ordencr.co_estado ) and          
+					( ( dt_liquida_trazo.cs_orden_corte = :al_ordencorte ) And          
+					( dt_liquida_trazo.cs_agrupacion = :ai_agrupacion ) And          
+					( dt_liquida_trazo.cs_pdn = :ai_produccion ) And          
+					( dt_liquida_trazo.co_modelo = :al_modelo ) And          
+					( dt_liquida_trazo.co_fabrica_tela = :ai_fabtela ) And          
+					( dt_liquida_trazo.co_reftel = :al_tela ) And          
+					( dt_liquida_trazo.co_caract = :ai_caract ) And          
+					( dt_liquida_trazo.diametro = :ai_diametro ) And          
+					( dt_liquida_trazo.co_color_te = :ai_colorte ) And          
+					( dt_liquida_trazo.cs_trazo = :al_trazo ) And          
+					( dt_liquida_trazo.cs_seccion = :ai_seccion ) and          
+					( dt_liquida_trazo.cs_base_trazos = :ai_base ) )  " update="dt_liquida_trazo" updatewhere=0 updatekeyinplace=no arguments=(("al_ordencorte", number),("ai_agrupacion", number),("ai_produccion", number),("al_modelo", number),("ai_fabtela", number),("al_tela", number),("ai_caract", number),("ai_diametro", number),("ai_colorte", number),("al_trazo", number),("ai_seccion", number),("ai_base", number)) )
+text(band=header alignment="2" text="Liq" border="6" color="0" x="9" y="8" height="56" width="96"  name=cs_liquidacion_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tipo" border="6" color="0" x="850" y="8" height="56" width="581"  name=tipo_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Liquidaci$$HEX1$$f300$$ENDHEX$$n" border="6" color="0" x="1449" y="8" height="56" width="507"  name=fe_liquidacion_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Loteo" border="6" color="0" x="1975" y="8" height="56" width="507"  name=fe_loteo_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Estado" border="6" color="0" x="123" y="8" height="56" width="709"  name=co_estado_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="0" x="9" y="8" height="60" width="96" format="[general]"  name=cs_liquidacion edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="0" x="123" y="8" height="60" width="82" format="[general]"  name=co_estado dddw.name=none dddw.displaycolumn=none dddw.datacolumn=none dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=10 border="5" color="0" x="850" y="8" height="60" width="581" format="[general]"  name=tipo ddlb.limit=0 ddlb.allowedit=yes ddlb.case=any ddlb.vscrollbar=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="0" x="1449" y="8" height="60" width="507" format="dd/mm/yyyy hh:mm:ss"  name=fe_liquidacion edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="5" color="0" x="1975" y="8" height="60" width="507" format="dd/mm/yyyy hh:mm:ss"  name=fe_loteo edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="0" x="224" y="8" height="60" width="603" format="[general]"  name=de_estado edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
