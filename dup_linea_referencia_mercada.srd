@@ -1,0 +1,49 @@
+HA$PBExportHeader$dup_linea_referencia_mercada.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no rows_per_detail = 8 )
+header(height=4 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=424 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica_pt dbname="co_fabrica_pt" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=char(30) updatewhereclause=yes name=de_linea dbname="de_linea" )
+ column=(type=char(50) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ retrieve="select distinct 
+      dt_pdnxmodulo.co_fabrica_pt,
+      dt_pdnxmodulo.co_linea, 
+      dt_pdnxmodulo.co_referencia,
+	   m_lineas.de_linea,
+		h_preref_pv.de_referencia	
+ from dt_pdnxmodulo, 
+	   m_lineas,
+		h_preref_pv
+where dt_pdnxmodulo.cs_asignacion = :an_orden_corte and
+		m_lineas.co_fabrica = dt_pdnxmodulo.co_fabrica_pt and
+		m_lineas.co_linea = dt_pdnxmodulo.co_linea and
+		h_preref_pv.co_fabrica = dt_pdnxmodulo.co_fabrica_pt and
+		h_preref_pv.co_linea  = dt_pdnxmodulo.co_linea and
+      (Cast(dt_pdnxmodulo.co_referencia as char(15) ) = h_preref_pv.co_referencia ) and
+      h_preref_pv.co_tipo_ref = 'P'  ;" arguments=(("an_orden_corte", number)) )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="2" color="33554432" x="9" y="4" height="48" width="407" format="[general]" html.valueishtml="0" row_in_detail=1  name=de_linea_1 visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="2" color="33554432" x="9" y="108" height="48" width="407" format="[general]" html.valueishtml="0" row_in_detail=3  name=de_linea_3 visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="2" color="0" x="9" y="160" height="48" width="407" format="[general]" html.valueishtml="0" row_in_detail=4  name=de_linea_4 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="2" color="33554432" x="421" y="4" height="48" width="425" format="[general]" html.valueishtml="0" row_in_detail=1  name=de_referencia_1 visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="2" color="33554432" x="9" y="56" height="48" width="407" format="[general]" html.valueishtml="0" row_in_detail=2  name=de_linea_2 visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="2" color="33554432" x="421" y="56" height="48" width="425" format="[general]" html.valueishtml="0" row_in_detail=2  name=de_referencia_2 visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="2" color="33554432" x="421" y="108" height="48" width="425" format="[general]" html.valueishtml="0" row_in_detail=3  name=de_referencia_3 visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="2" color="0" x="421" y="160" height="48" width="425" format="[general]" html.valueishtml="0" row_in_detail=4  name=de_referencia_4 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="2" color="33554432" x="9" y="212" height="48" width="407" format="[general]" html.valueishtml="0" row_in_detail=5  name=de_linea_5 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="2" color="33554432" x="9" y="264" height="48" width="407" format="[general]" html.valueishtml="0" row_in_detail=6  name=de_linea_6 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="2" color="33554432" x="9" y="316" height="48" width="407" format="[general]" html.valueishtml="0" row_in_detail=7  name=de_linea_7 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="2" color="33554432" x="9" y="368" height="48" width="407" format="[general]" html.valueishtml="0" row_in_detail=8  name=de_linea_8 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="2" color="33554432" x="421" y="212" height="48" width="425" format="[general]" html.valueishtml="0" row_in_detail=5  name=de_referencia_5 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="2" color="33554432" x="421" y="264" height="48" width="425" format="[general]" html.valueishtml="0" row_in_detail=6  name=de_referencia_6 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="2" color="33554432" x="421" y="316" height="48" width="425" format="[general]" html.valueishtml="0" row_in_detail=7  name=de_referencia_7 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="2" color="33554432" x="421" y="368" height="48" width="425" format="[general]" html.valueishtml="0" row_in_detail=8  name=de_referencia_8 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
