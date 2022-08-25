@@ -1,0 +1,42 @@
+HA$PBExportHeader$d_fecha_inicial.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=136 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=datetime updatewhereclause=yes name=dt_programa_diario_fe_inicio dbname="dt_programa_diario.fe_inicio" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_min_dispon_fin dbname="dt_programa_diario.ca_min_dispon_fin" )
+ retrieve="SELECT	dt_programa_diario.fe_inicio ,
+			dt_programa_diario.ca_min_dispon_fin     
+FROM	dt_pdnxmodulo ,
+		dt_programa_diario     
+WHERE ( dt_programa_diario.simulacion = dt_pdnxmodulo.simulacion ) and          
+		( dt_programa_diario.co_fabrica = dt_pdnxmodulo.co_fabrica ) and          
+		( dt_programa_diario.co_planta = dt_pdnxmodulo.co_planta ) and          
+		( dt_programa_diario.co_modulo = dt_pdnxmodulo.co_modulo ) and          
+		( dt_programa_diario.co_fabrica_exp = dt_pdnxmodulo.co_fabrica_exp ) and          
+		( dt_programa_diario.cs_liberacion = dt_pdnxmodulo.cs_liberacion ) and          
+		( dt_programa_diario.po = dt_pdnxmodulo.po ) and          
+		( dt_programa_diario.nu_cut = dt_pdnxmodulo.nu_cut ) and
+		( dt_programa_diario.co_fabrica_pt = dt_pdnxmodulo.co_fabrica_pt ) and          
+		( dt_programa_diario.co_linea = dt_pdnxmodulo.co_linea ) and          
+		( dt_programa_diario.co_referencia = dt_pdnxmodulo.co_referencia ) and          
+		( dt_programa_diario.co_color_pt = dt_pdnxmodulo.co_color_pt ) and          
+		( dt_programa_diario.tono = dt_pdnxmodulo.tono ) and          
+		( dt_programa_diario.cs_particion = dt_pdnxmodulo.cs_particion ) and          
+		( ( dt_pdnxmodulo.simulacion = :ai_sumulacion ) And          
+		( dt_pdnxmodulo.co_fabrica = :ai_fabrica ) And          
+		( dt_pdnxmodulo.co_planta = :ai_planta ) And          
+		( dt_pdnxmodulo.co_modulo = :ai_modulo ) And          
+		( dt_pdnxmodulo.cs_prioridad = :ai_prioridad ) And          
+		( date(dt_programa_diario.fe_inicio) = :ad_fecha ) and          
+		( dt_pdnxmodulo.co_estado_asigna < 10 ) )  " arguments=(("ai_sumulacion", number),("ai_fabrica", number),("ai_planta", number),("ai_modulo", number),("ai_prioridad", number),("ad_fecha", date)) )
+text(band=header alignment="2" text="Dt Programa Diario
+Fe Inicio" border="0" color="0" x="5" y="4" height="128" width="603" html.valueishtml="0"  name=dt_programa_diario_fe_inicio_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Programa Diario
+Ca Min Dispon Fin" border="0" color="0" x="613" y="4" height="128" width="503" html.valueishtml="0"  name=dt_programa_diario_ca_min_dispon_fin_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="5" y="4" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=dt_programa_diario_fe_inicio visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="613" y="4" height="76" width="329" format="[general]" html.valueishtml="0"  name=ca_min_dispon_fin visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
