@@ -1,0 +1,93 @@
+HA$PBExportHeader$dgr_rollos_liberacion.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_reftel dbname="dt_color_modelo.co_reftel" )
+ column=(type=long updatewhereclause=yes name=co_caract dbname="dt_color_modelo.co_caract" )
+ column=(type=long updatewhereclause=yes name=diametro dbname="m_rollo.diametro" )
+ column=(type=long updatewhereclause=yes name=co_color_te dbname="dt_color_modelo.co_color_te" )
+ column=(type=long updatewhereclause=yes name=cs_rollo dbname="m_rollo.cs_rollo" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_mt dbname="m_rollo.ca_mt" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_mts_liberados dbname="ca_mts_liberados" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_mts_lib dbname="ca_mts_lib" )
+ column=(type=long updatewhereclause=yes name=ca_unidades dbname="m_rollo.ca_unidades" )
+ column=(type=long updatewhereclause=yes name=ca_unds_liberadas dbname="ca_unds_liberadas" )
+ column=(type=long updatewhereclause=yes name=ca_und_lib dbname="ca_und_lib" )
+ column=(type=char(42) updatewhereclause=yes name=h_telas_de_reftel dbname="h_telas.de_reftel" )
+ column=(type=long updatewhereclause=yes name=lote dbname="m_rollo.lote" )
+ column=(type=long updatewhereclause=yes name=cs_tanda dbname="m_rollo.cs_tanda" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="co_talla" )
+ column=(type=long updatewhereclause=yes name=co_tiptel dbname="h_telas.co_tiptel" )
+ column=(type=decimal(2) updatewhereclause=yes name=ancho_tub_term dbname="m_rollo.ancho_tub_term" )
+ column=(type=long updatewhereclause=yes name=co_caract_final dbname="m_rollo.co_caract_final" )
+ column=(type=long updatewhereclause=yes name=sw_bodysize dbname="h_ordenpd_te.sw_bodysize" )
+ column=(type=long updatewhereclause=yes name=co_tono dbname="m_color.co_tono" )
+ retrieve="   SELECT DISTINCT    
+         dt_color_modelo.co_reftel,   
+         dt_color_modelo.co_caract,   
+         m_rollo.diametro_act diametro,   
+         dt_color_modelo.co_color_te,   
+         m_rollo.cs_rollo,
+			m_rollo.ca_mt,
+			Nvl(m_rollo.ca_mts_liberados, 0) ca_mts_liberados,
+			pr_cons_mtsliberado(m_rollo.cs_rollo) ca_mts_lib,
+			m_rollo.ca_unidades,
+			Nvl(m_rollo.ca_unds_liberadas, 0) ca_unds_liberadas,
+			pr_cons_unliberado(m_rollo.cs_rollo) ca_und_lib,
+			h_telas.de_reftel,
+			m_rollo.lote,
+			m_rollo.cs_tanda,
+			Nvl(m_rollo.co_talla, 0) co_talla,
+			h_telas.co_tiptel,
+			m_rollo.ancho_tub_term,
+			m_rollo.co_caract_final,
+			h_ordenpd_te.sw_bodysize,
+			m_color.co_tono
+	 FROM dt_color_modelo,   
+         m_rollo,
+			h_telas,
+			h_ordenpd_te,
+			m_color
+   WHERE ( dt_color_modelo.co_reftel 		= m_rollo.co_reftel_act ) and  
+         ( dt_color_modelo.co_caract 		= m_rollo.co_caract_act ) and  
+         ( dt_color_modelo.co_color_te 	= m_rollo.co_color_act ) and  
+         ( m_rollo.cs_orden_pr_act 			= :an_orden ) AND  
+         ( dt_color_modelo.co_fabrica 		= :an_fabrica ) AND  
+         ( dt_color_modelo.co_linea 		= :an_linea) AND  
+         ( dt_color_modelo.co_referencia 	= :an_referencia ) AND
+   		( h_telas.co_reftel 					= dt_color_modelo.co_reftel ) AND
+			( h_telas.co_caract					= dt_color_modelo.co_caract )  AND
+         ( h_ordenpd_te.cs_ordenpd_pt 		= m_rollo.cs_orden_pr_act ) AND
+         ( h_ordenpd_te.co_reftel 			= m_rollo.co_reftel_act ) AND
+         ( h_ordenpd_te.co_caract 			= m_rollo.co_caract_act ) AND
+			( m_rollo.co_centro					= :an_centro ) AND
+			( m_rollo.co_estado_rollo			= :an_estado ) AND
+			( m_rollo.co_color_act				= m_color.co_color )" filter="mt >0 OR  unidades > 0"arguments=(("an_orden", number),("an_fabrica", number),("an_linea", number),("an_referencia", number),("an_estado", number),("an_centro", number))  sort="cs_tanda A co_reftel A co_caract A diametro A co_color_te A mt A unidades A " )
+text(band=header alignment="2" text="Rollo" border="6" color="33554432" x="9" y="8" height="56" width="238" html.valueishtml="0"  name=m_rollo_cs_rollo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Lote" border="6" color="0" x="1088" y="8" height="56" width="219" html.valueishtml="0"  name=m_rollo_lote_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Tanda" border="6" color="0" x="1317" y="8" height="56" width="224" html.valueishtml="0"  name=m_rollo_cs_tanda_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Color" border="6" color="0" x="1550" y="8" height="56" width="256" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Talla" border="6" color="0" x="1943" y="8" height="56" width="114" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Metros" border="6" color="0" x="2066" y="8" height="56" width="210" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Tela" border="6" color="0" x="256" y="8" height="56" width="722" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Dia" border="6" color="0" x="987" y="8" height="56" width="91" html.valueishtml="0"  name=m_rollo_diametro_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Unidades" border="6" color="0" x="2286" y="8" height="56" width="210" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Tono" border="6" color="0" x="1815" y="8" height="56" width="119" html.valueishtml="0"  name=co_tono_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="5" color="33554432" x="9" y="4" height="56" width="238" format="[general]" html.valueishtml="0"  name=cs_rollo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="5" color="33554432" x="1088" y="4" height="56" width="219" format="[general]" html.valueishtml="0"  name=lote visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="5" color="33554432" x="1317" y="4" height="56" width="224" format="[general]" html.valueishtml="0"  name=cs_tanda visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="5" color="0" x="1550" y="4" height="56" width="256" format="[general]" html.valueishtml="0"  name=co_color_te visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=detail alignment="1" expression=" ca_mt  -   ca_mts_lib "border="5" color="33554432" x="2066" y="4" height="56" width="210" format="#,##0.00" html.valueishtml="0"  name=mt visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=15 alignment="1" tabsequence=32766 border="5" color="0" x="1943" y="4" height="56" width="114" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=detail alignment="0" expression="' '+  co_reftel + ' - ' + co_caract + ' - ' + h_telas_de_reftel"border="5" color="33554432" x="256" y="4" height="56" width="722" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="33554432" x="987" y="4" height="56" width="91" format="[general]" html.valueishtml="0"  name=diametro visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=detail alignment="2" expression=" ca_unidades  -   ca_und_lib "border="5" color="33554432" x="2286" y="4" height="56" width="210" format="#,##0" html.valueishtml="0"  name=unidades visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="5" color="0" x="1815" y="4" height="56" width="119" format="[general]" html.valueishtml="0"  name=co_tono visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
