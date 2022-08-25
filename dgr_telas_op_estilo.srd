@@ -1,0 +1,31 @@
+HA$PBExportHeader$dgr_telas_op_estilo.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=76 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_reftel dbname="co_reftel" )
+ column=(type=char(42) updatewhereclause=yes name=h_telas_pre_de_reftel dbname="de_reftel" )
+ retrieve=" SELECT DISTINCT dt_telaxmodelo_lib.co_reftel,   
+         h_telas.de_reftel  
+    FROM dt_pdnxmodulo,   
+         dt_telaxmodelo_lib,   
+         h_telas  
+   WHERE ( dt_pdnxmodulo.cs_liberacion 	= dt_telaxmodelo_lib.cs_liberacion ) and  
+         ( dt_pdnxmodulo.co_fabrica_exp 	= dt_telaxmodelo_lib.co_fabrica_exp ) and  
+         ( dt_pdnxmodulo.po 					= dt_telaxmodelo_lib.nu_orden ) and  
+         ( dt_telaxmodelo_lib.co_reftel 	= h_telas.co_reftel ) and  
+         ( dt_pdnxmodulo.cs_asignacion 	= :an_op_estilo ) AND  
+         ( h_telas.co_caract 					= 0 )  
+ORDER BY dt_telaxmodelo_lib.co_reftel ASC 
+" arguments=(("an_op_estilo", number)) )
+text(band=header alignment="2" text="Tela" border="6" color="33554432" x="9" y="8" height="56" width="178" html.valueishtml="0"  name=co_reftel_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Descripci$$HEX1$$f300$$ENDHEX$$n" border="6" color="33554432" x="197" y="8" height="56" width="1065" html.valueishtml="0"  name=h_telas_pre_de_reftel_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="33554432" x="9" y="8" height="56" width="178" format="[general]" html.valueishtml="0"  name=co_reftel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="33554432" x="197" y="8" height="56" width="1065" format="[general]" html.valueishtml="0"  name=h_telas_pre_de_reftel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
