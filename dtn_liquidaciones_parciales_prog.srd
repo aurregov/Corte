@@ -1,0 +1,70 @@
+HA$PBExportHeader$dtn_liquidaciones_parciales_prog.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no rows_per_detail = 12 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=60 color="536870912" )
+table(column=(type=char(15) updatewhereclause=yes name=m_tallas_x_grupo_de_talla dbname="de_talla" )
+ column=(type=decimal(0) updatewhereclause=yes name=unds_prog dbname="unds_prog" )
+ column=(type=long updatewhereclause=yes name=m_tallas_x_grupo_orden_talla dbname="orden_talla" )
+ retrieve=" SELECT m_tallas_x_grupo.de_talla ,
+        sum(dt_unidadesxtrazo.ca_programada)unds_prog,
+        m_tallas_x_grupo.orden_talla     
+   FROM dt_unidadesxtrazo ,
+        dt_rayas_telaxoc ,
+        dt_agrupa_pdn ,
+        h_preref_pv ,
+        m_tallas_x_grupo ,
+        h_telas     
+  WHERE ( dt_unidadesxtrazo.cs_orden_corte = dt_rayas_telaxoc.cs_orden_corte ) 
+	 and ( dt_rayas_telaxoc.cs_agrupacion = dt_unidadesxtrazo.cs_agrupacion ) 
+	 and ( dt_rayas_telaxoc.cs_base_trazos = dt_unidadesxtrazo.cs_base_trazos ) 
+	 and ( dt_rayas_telaxoc.cs_pdn = dt_unidadesxtrazo.cs_pdn ) 
+	 and ( dt_agrupa_pdn.cs_agrupacion = dt_rayas_telaxoc.cs_agrupacion ) 
+	 and ( dt_agrupa_pdn.cs_pdn = dt_rayas_telaxoc.cs_pdn ) 
+	 and ( h_preref_pv.co_fabrica = dt_agrupa_pdn.co_fabrica_pt ) 
+	 and ( h_preref_pv.co_linea = dt_agrupa_pdn.co_linea ) 
+	 and ( h_preref_pv.co_referencia = Cast(dt_agrupa_pdn.co_referencia as Char(15)) ) 
+	 and ( m_tallas_x_grupo.co_grupo_tlla = h_preref_pv.co_grupo_tlla ) 
+	 and ( m_tallas_x_grupo.co_talla = dt_unidadesxtrazo.co_talla ) 
+	 and ( h_telas.co_reftel = dt_unidadesxtrazo.co_reftel ) 
+	 and ( dt_unidadesxtrazo.co_caract = h_telas.co_caract ) 
+    and ( h_preref_pv.co_tipo_ref = 'P')
+	 and ( ( dt_unidadesxtrazo.cs_orden_corte = :an_ordencorte ) 
+	 and ( dt_rayas_telaxoc.raya = :an_raya ) 
+	 and ( dt_unidadesxtrazo.cs_pdn = :an_pdn ) ) 
+GROUP BY m_tallas_x_grupo.de_talla ,
+         m_tallas_x_grupo.orden_talla  
+ORDER BY m_tallas_x_grupo.orden_talla          ASC  " arguments=(("an_ordencorte", number),("an_raya", number),("an_pdn", number)) )
+column(band=header id=1 alignment="0" tabsequence=32766 border="6" color="0" x="750" y="12" height="52" width="137" format="[general]" html.valueishtml="0" row_in_detail=4  name=m_tallas_x_grupo_de_talla_4 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217750" )
+column(band=header id=1 alignment="0" tabsequence=32766 border="6" color="0" x="878" y="12" height="52" width="137" format="[general]" html.valueishtml="0" row_in_detail=5  name=m_tallas_x_grupo_de_talla_5 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217750" )
+column(band=header id=1 alignment="0" tabsequence=32766 border="6" color="0" x="1029" y="12" height="52" width="128" format="[general]" html.valueishtml="0" row_in_detail=6  name=m_tallas_x_grupo_de_talla_6 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217750" )
+column(band=header id=1 alignment="0" tabsequence=32766 border="6" color="0" x="1161" y="12" height="52" width="137" format="[general]" html.valueishtml="0" row_in_detail=7  name=m_tallas_x_grupo_de_talla_7 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217750" )
+column(band=header id=1 alignment="0" tabsequence=32766 border="6" color="0" x="1303" y="12" height="52" width="137" format="[general]" html.valueishtml="0" row_in_detail=8  name=m_tallas_x_grupo_de_talla_8 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217750" )
+column(band=header id=1 alignment="0" tabsequence=32766 border="6" color="0" x="1445" y="12" height="52" width="137" format="[general]" html.valueishtml="0" row_in_detail=9  name=m_tallas_x_grupo_de_talla_9 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217750" )
+column(band=header id=1 alignment="0" tabsequence=32766 border="6" color="0" x="1591" y="12" height="52" width="133" format="[general]" html.valueishtml="0" row_in_detail=10  name=m_tallas_x_grupo_de_talla_10 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217750" )
+column(band=header id=1 alignment="0" tabsequence=32766 border="6" color="0" x="1733" y="12" height="52" width="137" format="[general]" html.valueishtml="0" row_in_detail=11  name=m_tallas_x_grupo_de_talla_11 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217750" )
+column(band=header id=1 alignment="0" tabsequence=32766 border="6" color="0" x="1874" y="12" height="52" width="137" format="[general]" html.valueishtml="0" row_in_detail=12  name=m_tallas_x_grupo_de_talla_12 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217750" )
+column(band=header id=1 alignment="0" tabsequence=32766 border="6" color="0" x="608" y="12" height="52" width="137" format="[general]" html.valueishtml="0" row_in_detail=3  name=m_tallas_x_grupo_de_talla_3 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217750" )
+column(band=header id=1 alignment="0" tabsequence=32766 border="6" color="0" x="315" y="12" height="52" width="137" format="[general]" html.valueishtml="0" row_in_detail=1  name=m_tallas_x_grupo_de_talla_1 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217750" )
+column(band=header id=1 alignment="0" tabsequence=32766 border="6" color="0" x="457" y="12" height="52" width="137" format="[general]" html.valueishtml="0" row_in_detail=2  name=m_tallas_x_grupo_de_talla_2 visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217750" )
+text(band=header alignment="1" text="Tallas" border="2" color="0" x="9" y="12" height="52" width="293" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="1" text="programadas" border="2" color="0" x="9" y="0" height="48" width="293" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="2" color="0" x="315" y="0" height="48" width="137" format="[general]" html.valueishtml="0" row_in_detail=1  name=unds_prog_1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="2" color="33554432" x="457" y="0" height="48" width="137" format="[general]" html.valueishtml="0" row_in_detail=2  name=unds_prog_2 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="2" color="33554432" x="599" y="0" height="48" width="137" format="[general]" html.valueishtml="0" row_in_detail=3  name=unds_prog_3 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="2" color="33554432" x="741" y="0" height="48" width="133" format="[general]" html.valueishtml="0" row_in_detail=4  name=unds_prog_4 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="2" color="33554432" x="1015" y="0" height="48" width="137" format="[general]" html.valueishtml="0" row_in_detail=6  name=unds_prog_6 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="2" color="33554432" x="1303" y="0" height="48" width="137" format="[general]" html.valueishtml="0" row_in_detail=8  name=unds_prog_8 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="2" color="33554432" x="1445" y="0" height="48" width="137" format="[general]" html.valueishtml="0" row_in_detail=9  name=unds_prog_9 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="2" color="33554432" x="1586" y="0" height="48" width="137" format="[general]" html.valueishtml="0" row_in_detail=10  name=unds_prog_10 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="2" color="33554432" x="1728" y="0" height="48" width="137" format="[general]" html.valueishtml="0" row_in_detail=11  name=unds_prog_11 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="2" color="33554432" x="1870" y="0" height="48" width="137" format="[general]" html.valueishtml="0" row_in_detail=12  name=unds_prog_12 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="2" color="33554432" x="1157" y="0" height="48" width="142" format="[general]" html.valueishtml="0" row_in_detail=7  name=unds_prog_7 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="2" color="33554432" x="878" y="0" height="48" width="133" format="[general]" html.valueishtml="0" row_in_detail=5  name=unds_prog_5 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
