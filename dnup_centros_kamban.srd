@@ -1,0 +1,42 @@
+HA$PBExportHeader$dnup_centros_kamban.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no rows_per_detail = 6 )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=56 color="536870912" )
+table(column=(type=char(30) updatewhereclause=yes name=m_subcentros_pdn_de_subcentro_pdn dbname="de_subcentro_pdn" )
+ column=(type=long updatewhereclause=yes name=cs_secuencia dbname="dt_kamban_corte.cs_secuencia" )
+ retrieve=" SELECT {+AVOID_FULL(dt_kamban_corte), ORDERED} DISTINCT
+			m_subcentros_pdn.de_subcentro_pdn,
+			m_subcentros_pdn.cs_secuencia  
+    FROM dt_kamban_corte,   
+         m_subcentros_pdn  
+   WHERE ( m_subcentros_pdn.co_tipoprod 		= dt_kamban_corte.co_tipoprod ) and  
+         ( m_subcentros_pdn.co_centro_pdn 	= dt_kamban_corte.co_centro_pdn ) and  
+         ( m_subcentros_pdn.co_subcentro_pdn = dt_kamban_corte.co_subcentro_pdn ) and  
+			( dt_kamban_corte.cs_orden_corte		= :an_ordencorte ) and
+         ( dt_kamban_corte.co_fabrica        = :an_fabrica ) and
+			( dt_kamban_corte.co_linea				= :an_linea ) and
+			( dt_kamban_corte.co_referencia		= :an_referencia ) 
+ ORDER BY m_subcentros_pdn.cs_secuencia;
+" arguments=(("an_ordencorte", number),("an_fabrica", number),("an_linea", number),("an_referencia", number)) )
+text(band=header alignment="2" text="M Subcentros Pdn
+De Subcentro Pdn" border="0" color="33554432" x="5" y="4" height="104" width="709" html.valueishtml="0"  name=m_subcentros_pdn_de_subcentro_pdn_t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Subcentros Pdn
+De Subcentro Pdn" border="0" color="33554432" x="722" y="4" height="104" width="709" html.valueishtml="0"  name=m_subcentros_pdn_de_subcentro_pdn_t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Subcentros Pdn
+De Subcentro Pdn" border="0" color="33554432" x="1445" y="4" height="104" width="709" html.valueishtml="0"  name=m_subcentros_pdn_de_subcentro_pdn_t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Subcentros Pdn
+De Subcentro Pdn" border="0" color="33554432" x="2162" y="4" height="104" width="709" html.valueishtml="0"  name=m_subcentros_pdn_de_subcentro_pdn_t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Subcentros Pdn
+De Subcentro Pdn" border="0" color="33554432" x="2880" y="4" height="104" width="709" html.valueishtml="0"  name=m_subcentros_pdn_de_subcentro_pdn_t_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Subcentros Pdn
+De Subcentro Pdn" border="0" color="33554432" x="3602" y="4" height="104" width="709" html.valueishtml="0"  name=m_subcentros_pdn_de_subcentro_pdn_t_6 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="33554432" x="9" y="4" height="48" width="590" format="[general]" html.valueishtml="0" row_in_detail=1  name=m_subcentros_pdn_de_subcentro_pdn_1 visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="33554432" x="603" y="4" height="48" width="590" format="[general]" html.valueishtml="0" row_in_detail=2  name=m_subcentros_pdn_de_subcentro_pdn_2 visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="33554432" x="1198" y="4" height="48" width="590" format="[general]" html.valueishtml="0" row_in_detail=3  name=m_subcentros_pdn_de_subcentro_pdn_3 visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="33554432" x="1792" y="4" height="48" width="590" format="[general]" html.valueishtml="0" row_in_detail=4  name=m_subcentros_pdn_de_subcentro_pdn_4 visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="33554432" x="2386" y="4" height="48" width="590" format="[general]" html.valueishtml="0" row_in_detail=5  name=m_subcentros_pdn_de_subcentro_pdn_5 visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="33554432" x="2981" y="4" height="48" width="590" format="[general]" html.valueishtml="0" row_in_detail=6  name=m_subcentros_pdn_de_subcentro_pdn_6 visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
