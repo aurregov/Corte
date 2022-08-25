@@ -1,0 +1,66 @@
+HA$PBExportHeader$dct_unidades_orden_corte.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1090519039 processing=4 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no  crosstab.dynamic = yes grid.lines=0 grid.columnmove=no selected.mouse=no )
+header[1](height=0 color="536870912" )
+header[2](height=120 color="536870912" )
+summary(height=76 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=number updatewhereclause=yes name=co_trazo dbname="co_trazo" )
+ column=(type=number updatewhereclause=yes name=capas dbname="capas" )
+ retrieve=" SELECT  dt_trazosxoc.cs_seccion ,
+           dt_trazosxoc.co_trazo ,
+           dt_agrupa_pdn.po ,
+           h_preref_pv.gpa ,
+           h_preref_pv.de_referencia ,
+           dt_agrupa_pdn.co_color_pt ,
+           dt_agrupa_pdn.cs_liberacion ,
+           dt_trazosxoc.capas ,
+           dt_trazosxoc.ca_stdxunidad ,
+           dt_trazosxoc.ca_consumo_std ,
+           dt_unidadesxtrazo.co_talla ,
+           dt_unidadesxtrazo.paquetes ,
+           dt_unidadesxtrazo.ca_programada     
+        FROM dt_agrupa_pdn ,
+           dt_trazosxoc ,
+           dt_unidadesxtrazo ,
+           h_preref_pv     
+        WHERE ( dt_unidadesxtrazo.cs_orden_corte = dt_trazosxoc.cs_orden_corte ) and
+          ( dt_unidadesxtrazo.cs_agrupacion = dt_trazosxoc.cs_agrupacion ) and
+          ( dt_unidadesxtrazo.cs_base_trazos = dt_trazosxoc.cs_base_trazos ) and
+          ( dt_unidadesxtrazo.cs_trazo = dt_trazosxoc.cs_trazo ) and
+          ( dt_unidadesxtrazo.cs_seccion = dt_trazosxoc.cs_seccion ) and
+          ( dt_unidadesxtrazo.cs_pdn = dt_trazosxoc.cs_pdn ) and
+          ( dt_unidadesxtrazo.co_modelo = dt_trazosxoc.co_modelo ) and
+          ( dt_unidadesxtrazo.co_fabrica_tela = dt_trazosxoc.co_fabrica_tela ) and
+          ( dt_unidadesxtrazo.co_reftel = dt_trazosxoc.co_reftel ) and
+          ( dt_unidadesxtrazo.co_caract = dt_trazosxoc.co_caract ) and
+          ( dt_unidadesxtrazo.diametro = dt_trazosxoc.diametro ) and
+          ( dt_unidadesxtrazo.co_color_te = dt_trazosxoc.co_color_te ) and
+          ( dt_agrupa_pdn.co_fabrica_pt = h_preref_pv.co_fabrica ) and
+          ( dt_agrupa_pdn.co_linea = h_preref_pv.co_linea ) and
+			(Cast(dt_agrupa_pdn.co_referencia as char(15) ) = h_preref_pv.co_referencia ) AND
+          ( h_preref_pv.co_tipo_ref = 'P' ) AND
+          ( dt_trazosxoc.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion ) and
+          ( dt_trazosxoc.cs_pdn = dt_agrupa_pdn.cs_pdn ) and
+         ( ( dt_trazosxoc.cs_orden_corte = :al_ordencorte ) And
+          ( dt_trazosxoc.cs_agrupacion = :al_agrupacion ) And 
+         ( dt_trazosxoc.cs_base_trazos = :al_basetrazo ) And 
+         ( dt_trazosxoc.cs_trazo = :al_trazo ) )  " arguments=(("al_ordencorte", number),("al_agrupacion", number),("al_basetrazo", number),("al_trazo", number))  sort="co_trazo A " )
+text(band=header[1] alignment="0" text="Sum Of Capas" border="0" color="0" x="9" y="4" height="52" width="343" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[1] alignment="0" text="Cs Seccion" border="0" color="0" x="361" y="4" height="52" width="343" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="Co Trazo" border="0" color="0" x="9" y="4" height="52" width="343" html.valueishtml="0"  name=co_trazo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="@cs_seccion" border="0" color="0" x="361" y="4" height="52" width="343" html.valueishtml="0"  name=capas_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="Grand Total " border="0" color="0" x="713" y="4" height="52" width="686" html.valueishtml="0"  name=grand_sum_capas_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="2" color="33554432" x="9" y="4" height="76" width="343" format="[general]" html.valueishtml="0"  name=co_trazo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="2" color="33554432" x="361" y="4" height="76" width="343" format="[general]" html.valueishtml="0"  name=capas visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0 crosstab.repeat=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="crosstabsum(1)"border="2" color="33554432" x="713" y="4" height="76" width="686" format="[general]" html.valueishtml="0"  name=grand_sum_capas visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="~"Grand Total~""border="0" color="33554432" x="9" y="4" height="76" width="343" format="[general]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(capas for all )"border="2" color="33554432" x="361" y="4" height="76" width="343" format="[general]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(grand_sum_capas for all )"border="2" color="33554432" x="713" y="4" height="76" width="686" format="[general]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+ crosstab(band = foreground  crosstabonly = yes 
+ columns = "cs_seccion" rows = "co_trazo" values = "sum(capas for crosstab)" sourcenames = "cs_seccion, co_trazo, po, gpa, de_referencia, co_color_pt, cs_liberacion, capas, ca_stdxunidad, ca_consumo_std, co_talla, paquetes, ca_programada")htmltable(border="0" cellpadding="1" cellspacing="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
