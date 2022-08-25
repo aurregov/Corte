@@ -1,0 +1,338 @@
+HA$PBExportHeader$ds_pdnxmodulo.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=144 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes name=simulacion dbname="dt_pdnxmodulo.simulacion" )
+ column=(type=long update=yes updatewhereclause=yes name=co_fabrica dbname="dt_pdnxmodulo.co_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes name=co_planta dbname="dt_pdnxmodulo.co_planta" )
+ column=(type=long update=yes updatewhereclause=yes name=co_modulo dbname="dt_pdnxmodulo.co_modulo" )
+ column=(type=long update=yes updatewhereclause=yes name=co_fabrica_exp dbname="dt_pdnxmodulo.co_fabrica_exp" )
+ column=(type=long update=yes updatewhereclause=yes name=pedido dbname="dt_pdnxmodulo.pedido" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_liberacion dbname="dt_pdnxmodulo.cs_liberacion" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=po dbname="dt_pdnxmodulo.po" )
+ column=(type=long update=yes updatewhereclause=yes name=co_fabrica_pt dbname="dt_pdnxmodulo.co_fabrica_pt" )
+ column=(type=long update=yes updatewhereclause=yes name=co_linea dbname="dt_pdnxmodulo.co_linea" )
+ column=(type=long update=yes updatewhereclause=yes name=co_referencia dbname="dt_pdnxmodulo.co_referencia" )
+ column=(type=long update=yes updatewhereclause=yes name=co_color_pt dbname="dt_pdnxmodulo.co_color_pt" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=tono dbname="dt_pdnxmodulo.tono" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_estilocolortono dbname="dt_pdnxmodulo.cs_estilocolortono" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_particion dbname="dt_pdnxmodulo.cs_particion" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_pdnxmodulo_pedido_po dbname="dt_pdnxmodulo.pedido_po" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_prioridad dbname="dt_pdnxmodulo.cs_prioridad" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_pdnxmodulo_ca_programada dbname="dt_pdnxmodulo.ca_programada" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_pdnxmodulo_ca_producida dbname="dt_pdnxmodulo.ca_producida" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_pdnxmodulo_ca_pendiente dbname="dt_pdnxmodulo.ca_pendiente" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_pdnxmodulo_co_estado_asigna dbname="dt_pdnxmodulo.co_estado_asigna" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_pdnxmodulo_co_curva dbname="dt_pdnxmodulo.co_curva" )
+ column=(type=datetime update=yes updatewhereclause=yes name=dt_pdnxmodulo_fe_inicio_prog dbname="dt_pdnxmodulo.fe_inicio_prog" )
+ column=(type=datetime update=yes updatewhereclause=yes name=dt_pdnxmodulo_fe_fin_prog dbname="dt_pdnxmodulo.fe_fin_prog" )
+ column=(type=datetime update=yes updatewhereclause=yes name=dt_pdnxmodulo_fe_requerida_desp dbname="dt_pdnxmodulo.fe_requerida_desp" )
+ column=(type=decimal(5) update=yes updatewhereclause=yes name=dt_pdnxmodulo_ca_minutos_std dbname="dt_pdnxmodulo.ca_minutos_std" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_pdnxmodulo_co_tipo_asignacion dbname="dt_pdnxmodulo.co_tipo_asignacion" )
+ column=(type=decimal(5) update=yes updatewhereclause=yes name=dt_pdnxmodulo_ca_personasxmod dbname="dt_pdnxmodulo.ca_personasxmod" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_pdnxmodulo_cod_tur dbname="dt_pdnxmodulo.cod_tur" )
+ column=(type=decimal(5) update=yes updatewhereclause=yes name=dt_pdnxmodulo_minutos_jornada dbname="dt_pdnxmodulo.minutos_jornada" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_pdnxmodulo_ind_cambio_estilo dbname="dt_pdnxmodulo.ind_cambio_estilo" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_pdnxmodulo_ca_unid_base_dia dbname="dt_pdnxmodulo.ca_unid_base_dia" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_pdnxmodulo_orige_uni_base_dia dbname="dt_pdnxmodulo.orige_uni_base_dia" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_pdnxmodulo_tipo_empate dbname="dt_pdnxmodulo.tipo_empate" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_pdnxmodulo_unidades_empate dbname="dt_pdnxmodulo.unidades_empate" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_pdnxmodulo_metodo_programa dbname="dt_pdnxmodulo.metodo_programa" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_pdnxmodulo_fuente_dato dbname="dt_pdnxmodulo.fuente_dato" )
+ column=(type=datetime update=yes updatewhereclause=yes name=dt_pdnxmodulo_fe_creacion dbname="dt_pdnxmodulo.fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=dt_pdnxmodulo_fe_actualizacion dbname="dt_pdnxmodulo.fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=dt_pdnxmodulo_usuario dbname="dt_pdnxmodulo.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=dt_pdnxmodulo_instancia dbname="dt_pdnxmodulo.instancia" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_pdnxmodulo_cs_asignacion dbname="dt_pdnxmodulo.cs_asignacion" )
+ column=(type=char(30) updatewhereclause=yes name=m_lineas_de_linea dbname="m_lineas.de_linea" )
+ column=(type=char(40) updatewhereclause=yes name=h_preref_de_referencia dbname="h_preref.de_referencia" )
+ column=(type=char(30) updatewhereclause=yes name=m_colores_de_color dbname="m_colores.de_color" )
+ column=(type=char(1) updatewhereclause=yes name=dt_pdnxmodulo_co_estado_merc dbname="dt_pdnxmodulo.co_estado_merc" )
+ column=(type=char(20) updatewhereclause=yes name=gpa dbname="h_preref.gpa" )
+ column=(type=date updatewhereclause=yes name=x_col dbname="x_col" )
+ column=(type=long updatewhereclause=yes name=semana_actual dbname="semana_actual" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_pdnxmodulo_ca_proyectada dbname="dt_pdnxmodulo.ca_proyectada" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_pdnxmodulo_ca_actual dbname="dt_pdnxmodulo.ca_actual" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_pdnxmodulo_ca_numerada dbname="dt_pdnxmodulo.ca_numerada" )
+ column=(type=char(1) updatewhereclause=yes name=aprueba dbname="aprueba" )
+ column=(type=datetime updatewhereclause=yes name=fe_despacho_corte dbname="fe_despacho_corte" )
+ column=(type=long updatewhereclause=yes name=dt_pdnxmodulo_espejo_asignacion dbname="dt_pdnxmodulo.espejo_asignacion" )
+ column=(type=long updatewhereclause=yes name=dt_agrupa_pdn_cs_agrupacion dbname="dt_agrupa_pdn.cs_agrupacion" )
+ retrieve="  SELECT dt_pdnxmodulo.simulacion,   
+         dt_pdnxmodulo.co_fabrica,   
+         dt_pdnxmodulo.co_planta,   
+         dt_pdnxmodulo.co_modulo,   
+         dt_pdnxmodulo.co_fabrica_exp,   
+         dt_pdnxmodulo.pedido,   
+         dt_pdnxmodulo.cs_liberacion,   
+         dt_pdnxmodulo.po,   
+         dt_pdnxmodulo.co_fabrica_pt,   
+         dt_pdnxmodulo.co_linea,   
+         dt_pdnxmodulo.co_referencia,   
+         dt_pdnxmodulo.co_color_pt,   
+         dt_pdnxmodulo.tono,   
+         dt_pdnxmodulo.cs_estilocolortono,   
+         dt_pdnxmodulo.cs_particion,   
+         dt_pdnxmodulo.pedido_po,   
+         dt_pdnxmodulo.cs_prioridad,   
+         dt_pdnxmodulo.ca_programada,   
+         dt_pdnxmodulo.ca_producida,   
+         dt_pdnxmodulo.ca_pendiente,   
+         dt_pdnxmodulo.co_estado_asigna,   
+         dt_pdnxmodulo.co_curva,   
+         dt_pdnxmodulo.fe_inicio_prog,   
+         dt_pdnxmodulo.fe_fin_prog,   
+         dt_pdnxmodulo.fe_requerida_desp,   
+         dt_pdnxmodulo.ca_minutos_std,   
+         dt_pdnxmodulo.co_tipo_asignacion,   
+         dt_pdnxmodulo.ca_personasxmod,   
+         dt_pdnxmodulo.cod_tur,  
+         dt_pdnxmodulo.minutos_jornada,  
+         dt_pdnxmodulo.ind_cambio_estilo,   
+         dt_pdnxmodulo.ca_unid_base_dia,   
+         dt_pdnxmodulo.orige_uni_base_dia,   
+         dt_pdnxmodulo.tipo_empate,   
+         dt_pdnxmodulo.unidades_empate,   
+         dt_pdnxmodulo.metodo_programa,   
+         dt_pdnxmodulo.fuente_dato,   
+         dt_pdnxmodulo.fe_creacion,   
+         dt_pdnxmodulo.fe_actualizacion,   
+         dt_pdnxmodulo.usuario,   
+         dt_pdnxmodulo.instancia, 
+         dt_pdnxmodulo.cs_asignacion,
+         m_lineas.de_linea,   
+         pacasash.h_preref.de_referencia,   
+         m_colores.de_color,
+			dt_pdnxmodulo.co_estado_merc,
+			pacasash.h_preref.gpa, 
+			(SELECT min(pedpend_exp.fe_entrega)  
+						 FROM pedpend_exp
+						WHERE ( pedpend_exp.co_fabrica_exp 	= dt_pdnxmodulo.co_fabrica_exp ) and
+								( pedpend_exp.pedido 			=dt_pdnxmodulo.pedido_po	) and
+								(pedpend_exp.nu_orden		  	= dt_pdnxmodulo.po) AND
+								(pedpend_exp.co_fabrica			=dt_pdnxmodulo.co_fabrica_pt) AND	
+								(pedpend_exp.co_linea			=dt_pdnxmodulo.co_linea )AND
+								(pedpend_exp.co_referencia		=dt_pdnxmodulo.co_referencia) AND
+								(pedpend_exp.co_color			=dt_pdnxmodulo.co_color_pt)
+								) as x_col,
+ 			(select h_liberar_escalas.semana_actual
+			 from   h_liberar_escalas
+			 where  h_liberar_escalas.co_fabrica_exp=dt_pdnxmodulo.co_fabrica_exp
+			 and    h_liberar_escalas.pedido        =dt_pdnxmodulo.pedido
+	       and    h_liberar_escalas.cs_liberacion =dt_pdnxmodulo.cs_liberacion) as semana_actual,
+			dt_pdnxmodulo.ca_proyectada,
+			dt_pdnxmodulo.ca_actual,
+			dt_pdnxmodulo.ca_numerada,
+			 ' ' as aprueba,
+			(fe_fin_prog + 7 units day) fe_despacho_corte,
+			dt_pdnxmodulo.co_estado_asigna espejo_asignacion,
+			dt_agrupa_pdn.cs_agrupacion
+    FROM pacasash.h_preref,
+			dt_pdnxmodulo,   
+         m_lineas,   
+         m_colores,
+			m_modulos,
+			outer dt_agrupa_pdn
+   WHERE	( dt_pdnxmodulo.simulacion 				= :simulacion) and
+		   ( dt_pdnxmodulo.co_tipo_asignacion 		= 2 ) and
+			( dt_pdnxmodulo.co_fabrica 				= m_modulos.co_fabrica) and 
+			( dt_pdnxmodulo.co_planta 					= m_modulos.co_planta) and
+			( dt_pdnxmodulo.co_modulo 					= m_modulos.co_modulo) and
+			( m_modulos.co_tipoprod 					= 1) and
+			( m_modulos.co_centro_pdn 					= 1) and
+			( m_modulos.co_subcentro_pdn 				= 1) and
+			( dt_pdnxmodulo.co_fabrica_pt 			= m_lineas.co_fabrica ) and  
+         ( dt_pdnxmodulo.co_linea 					= m_lineas.co_linea ) and  
+         ( dt_pdnxmodulo.co_fabrica_pt 			= pacasash.h_preref.co_fabrica ) and  
+         ( dt_pdnxmodulo.co_linea 					= pacasash.h_preref.co_linea ) and  
+         ( dt_pdnxmodulo.co_referencia 			= pacasash.h_preref.co_referencia ) and  
+         ( dt_pdnxmodulo.co_fabrica_pt 			= m_colores.co_fabrica ) and  
+         ( dt_pdnxmodulo.co_linea 					= m_colores.co_linea ) and  
+         ( dt_pdnxmodulo.co_color_pt 				= m_colores.co_color ) and  
+         (   
+         ( dt_pdnxmodulo.co_fabrica 				= :co_fabrica_modulo ) AND  
+         ( dt_pdnxmodulo.co_planta 					= :co_planta_modulo ) )     AND
+
+			( dt_pdnxmodulo.co_fabrica_exp 			= dt_agrupa_pdn.co_fabrica_exp ) and  
+			( dt_pdnxmodulo.pedido			 			= dt_agrupa_pdn.pedido ) and 
+			( dt_pdnxmodulo.cs_liberacion 			= dt_agrupa_pdn.cs_liberacion ) and 
+			( dt_pdnxmodulo.po				 			= dt_agrupa_pdn.po ) and 
+			( dt_pdnxmodulo.co_fabrica_pt  			= dt_agrupa_pdn.co_fabrica_pt  ) and 
+ 			( dt_pdnxmodulo.co_linea		  			= dt_agrupa_pdn.co_linea  ) and
+			( dt_pdnxmodulo.co_referencia  			= dt_agrupa_pdn.co_referencia  ) and  
+			( dt_pdnxmodulo.co_color_pt  				= dt_agrupa_pdn.co_color_pt  ) and 
+			( dt_pdnxmodulo.tono				  			= dt_agrupa_pdn.tono	) and 
+			( dt_pdnxmodulo.cs_estilocolortono  	= dt_agrupa_pdn.cs_estilocolortono  ) and 
+			( dt_pdnxmodulo.cs_particion  			= dt_agrupa_pdn.cs_particion  ) and
+			( dt_pdnxmodulo.co_modulo 					= :co_modulo ) and
+			( dt_pdnxmodulo.co_estado_asigna 		< 11)
+ORDER BY cs_prioridad asc
+								" arguments=(("simulacion", number),("co_fabrica_modulo", number),("co_planta_modulo", number),("co_modulo", number)) )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Simulacion" border="0" color="0" x="9" y="8" height="128" width="110" html.valueishtml="0"  name=dt_pdnxmodulo_simulacion_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Co Fabrica" border="0" color="0" x="128" y="8" height="128" width="146" html.valueishtml="0"  name=dt_pdnxmodulo_co_fabrica_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Co Planta" border="0" color="0" x="283" y="8" height="128" width="192" html.valueishtml="0"  name=dt_pdnxmodulo_co_planta_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Co Modulo" border="0" color="0" x="485" y="8" height="128" width="215" html.valueishtml="0"  name=dt_pdnxmodulo_co_modulo_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Co Fabrica Exp" border="0" color="0" x="709" y="8" height="128" width="146" html.valueishtml="0"  name=dt_pdnxmodulo_co_fabrica_exp_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Pedido" border="0" color="0" x="864" y="8" height="128" width="261" html.valueishtml="0"  name=dt_pdnxmodulo_pedido_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Cs Liberacion" border="0" color="0" x="1134" y="8" height="128" width="242" html.valueishtml="0"  name=dt_pdnxmodulo_cs_liberacion_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Po" border="0" color="0" x="2139" y="8" height="128" width="361" html.valueishtml="0"  name=dt_pdnxmodulo_po_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Co Fabrica Pt" border="0" color="0" x="2510" y="8" height="128" width="251" html.valueishtml="0"  name=dt_pdnxmodulo_co_fabrica_pt_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Co Linea" border="0" color="0" x="2770" y="8" height="128" width="206" html.valueishtml="0"  name=dt_pdnxmodulo_co_linea_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Co Referencia" border="0" color="0" x="2985" y="8" height="128" width="229" html.valueishtml="0"  name=dt_pdnxmodulo_co_referencia_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Co Color Pt" border="0" color="0" x="3223" y="8" height="128" width="233" html.valueishtml="0"  name=dt_pdnxmodulo_co_color_pt_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Tono" border="0" color="0" x="3465" y="8" height="128" width="187" html.valueishtml="0"  name=dt_pdnxmodulo_tono_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Cs Estilocolortono" border="0" color="0" x="3662" y="8" height="128" width="238" html.valueishtml="0"  name=dt_pdnxmodulo_cs_estilocolortono_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Cs Particion" border="0" color="0" x="3909" y="8" height="128" width="183" html.valueishtml="0"  name=dt_pdnxmodulo_cs_particion_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Pedido Po" border="0" color="0" x="4101" y="8" height="128" width="229" html.valueishtml="0"  name=dt_pdnxmodulo_pedido_po_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Cs Prioridad" border="0" color="0" x="1723" y="8" height="128" width="407" html.valueishtml="0"  name=dt_pdnxmodulo_cs_prioridad_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Ca Programada" border="0" color="0" x="4338" y="8" height="128" width="411" html.valueishtml="0"  name=dt_pdnxmodulo_ca_programada_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Ca Producida" border="0" color="0" x="4759" y="8" height="128" width="407" html.valueishtml="0"  name=dt_pdnxmodulo_ca_producida_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Ca Pendiente" border="0" color="0" x="5175" y="8" height="128" width="407" html.valueishtml="0"  name=dt_pdnxmodulo_ca_pendiente_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Co Estado Asigna" border="0" color="0" x="5591" y="8" height="128" width="480" html.valueishtml="0"  name=dt_pdnxmodulo_co_estado_asigna_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Co Curva" border="0" color="0" x="6080" y="8" height="128" width="407" html.valueishtml="0"  name=dt_pdnxmodulo_co_curva_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Fe Inicio Prog" border="0" color="0" x="6496" y="8" height="128" width="603" html.valueishtml="0"  name=dt_pdnxmodulo_fe_inicio_prog_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Fe Fin Prog" border="0" color="0" x="7109" y="8" height="128" width="603" html.valueishtml="0"  name=dt_pdnxmodulo_fe_fin_prog_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Fe Requerida Desp" border="0" color="0" x="7721" y="8" height="128" width="603" html.valueishtml="0"  name=dt_pdnxmodulo_fe_requerida_desp_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Ca Minutos Std" border="0" color="0" x="8334" y="8" height="128" width="411" html.valueishtml="0"  name=dt_pdnxmodulo_ca_minutos_std_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Co Tipo Asignacion" border="0" color="0" x="8754" y="8" height="128" width="512" html.valueishtml="0"  name=dt_pdnxmodulo_co_tipo_asignacion_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Ca Personasxmod" border="0" color="0" x="9275" y="8" height="128" width="489" html.valueishtml="0"  name=dt_pdnxmodulo_ca_personasxmod_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Cod Tur" border="0" color="0" x="9774" y="8" height="128" width="407" html.valueishtml="0"  name=dt_pdnxmodulo_cod_tur_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Minutos Jornada" border="0" color="0" x="10190" y="8" height="128" width="434" html.valueishtml="0"  name=dt_pdnxmodulo_minutos_jornada_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Ind Cambio Estilo" border="0" color="0" x="10633" y="8" height="128" width="466" html.valueishtml="0"  name=dt_pdnxmodulo_ind_cambio_estilo_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Ca Unid Base Dia" border="0" color="0" x="11109" y="8" height="128" width="471" html.valueishtml="0"  name=dt_pdnxmodulo_ca_unid_base_dia_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Orige Uni Base Dia" border="0" color="0" x="11589" y="8" height="128" width="507" html.valueishtml="0"  name=dt_pdnxmodulo_orige_uni_base_dia_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Tipo Empate" border="0" color="0" x="12105" y="8" height="128" width="407" html.valueishtml="0"  name=dt_pdnxmodulo_tipo_empate_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Unidades Empate" border="0" color="0" x="12521" y="8" height="128" width="471" html.valueishtml="0"  name=dt_pdnxmodulo_unidades_empate_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Metodo Programa" border="0" color="0" x="13001" y="8" height="128" width="471" html.valueishtml="0"  name=dt_pdnxmodulo_metodo_programa_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Fuente Dato" border="0" color="0" x="13481" y="8" height="128" width="407" html.valueishtml="0"  name=dt_pdnxmodulo_fuente_dato_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Fe Creacion" border="0" color="0" x="13897" y="8" height="128" width="603" html.valueishtml="0"  name=dt_pdnxmodulo_fe_creacion_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Fe Actualizacion" border="0" color="0" x="14510" y="8" height="128" width="603" html.valueishtml="0"  name=dt_pdnxmodulo_fe_actualizacion_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Usuario" border="0" color="0" x="15122" y="8" height="128" width="407" html.valueishtml="0"  name=dt_pdnxmodulo_usuario_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Instancia" border="0" color="0" x="15538" y="8" height="128" width="576" html.valueishtml="0"  name=dt_pdnxmodulo_instancia_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Cs Asignacion" border="0" color="0" x="16123" y="8" height="128" width="407" html.valueishtml="0"  name=dt_pdnxmodulo_cs_asignacion_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Lineas
+De Linea" border="0" color="0" x="16539" y="8" height="128" width="850" html.valueishtml="0"  name=m_lineas_de_linea_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="H Preref
+De Referencia" border="0" color="0" x="17399" y="8" height="128" width="1125" html.valueishtml="0"  name=h_preref_de_referencia_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Colores
+De Color" border="0" color="0" x="18533" y="8" height="128" width="850" html.valueishtml="0"  name=m_colores_de_color_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Co Estado Merc" border="0" color="0" x="19392" y="8" height="128" width="430" html.valueishtml="0"  name=dt_pdnxmodulo_co_estado_merc_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Gpa" border="0" color="0" x="19831" y="8" height="64" width="850" html.valueishtml="0"  name=gpa_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="X Col" border="0" color="0" x="1385" y="8" height="64" width="329" html.valueishtml="0"  name=x_col_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Semana Actual" border="0" color="0" x="20690" y="8" height="64" width="407" html.valueishtml="0"  name=semana_actual_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Ca Proyectada" border="0" color="0" x="21106" y="8" height="128" width="407" html.valueishtml="0"  name=dt_pdnxmodulo_ca_proyectada_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Ca Actual" border="0" color="0" x="21522" y="8" height="128" width="407" html.valueishtml="0"  name=dt_pdnxmodulo_ca_actual_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Ca Numerada" border="0" color="0" x="21938" y="8" height="128" width="407" html.valueishtml="0"  name=dt_pdnxmodulo_ca_numerada_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Aprueba" border="0" color="0" x="22354" y="8" height="64" width="219" html.valueishtml="0"  name=aprueba_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fe Despacho Corte" border="0" color="0" x="22583" y="8" height="64" width="603" html.valueishtml="0"  name=fe_despacho_corte_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Espejo Asignacion" border="0" color="0" x="23195" y="8" height="128" width="494" html.valueishtml="0"  name=dt_pdnxmodulo_espejo_asignacion_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Agrupa Pdn
+Cs Agrupacion" border="0" color="0" x="23698" y="8" height="128" width="389" html.valueishtml="0"  name=dt_agrupa_pdn_cs_agrupacion_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="9" y="8" height="76" width="110" format="[general]" html.valueishtml="0"  name=simulacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="128" y="8" height="76" width="146" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="0" x="283" y="8" height="76" width="192" format="[general]" html.valueishtml="0"  name=co_planta visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="0" x="485" y="8" height="76" width="215" format="[general]" html.valueishtml="0"  name=co_modulo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="0" x="709" y="8" height="76" width="146" format="[general]" html.valueishtml="0"  name=co_fabrica_exp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="0" x="864" y="8" height="76" width="261" format="[general]" html.valueishtml="0"  name=pedido visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="0" x="1134" y="8" height="76" width="242" format="[general]" html.valueishtml="0"  name=cs_liberacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="2139" y="8" height="76" width="361" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="0" x="2510" y="8" height="76" width="251" format="[general]" html.valueishtml="0"  name=co_fabrica_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="0" x="2770" y="8" height="76" width="206" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="0" color="0" x="2985" y="8" height="76" width="229" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="0" color="0" x="3223" y="8" height="76" width="233" format="[general]" html.valueishtml="0"  name=co_color_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="0" x="3465" y="8" height="76" width="187" format="[general]" html.valueishtml="0"  name=tono visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="0" color="0" x="3662" y="8" height="76" width="238" format="[general]" html.valueishtml="0"  name=cs_estilocolortono visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="1" tabsequence=32766 border="0" color="0" x="3909" y="8" height="76" width="183" format="[general]" html.valueishtml="0"  name=cs_particion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="1" tabsequence=32766 border="0" color="0" x="4101" y="8" height="76" width="229" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_pedido_po visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="1" tabsequence=32766 border="0" color="0" x="1723" y="8" height="76" width="407" format="[general]" html.valueishtml="0"  name=cs_prioridad visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="1" tabsequence=32766 border="0" color="0" x="4338" y="8" height="76" width="411" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_ca_programada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="1" tabsequence=32766 border="0" color="0" x="4759" y="8" height="76" width="407" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_ca_producida visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="1" tabsequence=32766 border="0" color="0" x="5175" y="8" height="76" width="407" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_ca_pendiente visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="1" tabsequence=32766 border="0" color="0" x="5591" y="8" height="76" width="480" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_co_estado_asigna visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="1" tabsequence=32766 border="0" color="0" x="6080" y="8" height="76" width="407" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_co_curva visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="0" tabsequence=32766 border="0" color="0" x="6496" y="8" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=dt_pdnxmodulo_fe_inicio_prog visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=24 alignment="0" tabsequence=32766 border="0" color="0" x="7109" y="8" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=dt_pdnxmodulo_fe_fin_prog visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=25 alignment="0" tabsequence=32766 border="0" color="0" x="7721" y="8" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=dt_pdnxmodulo_fe_requerida_desp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=26 alignment="1" tabsequence=32766 border="0" color="0" x="8334" y="8" height="76" width="411" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_ca_minutos_std visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=27 alignment="1" tabsequence=32766 border="0" color="0" x="8754" y="8" height="76" width="512" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_co_tipo_asignacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=28 alignment="1" tabsequence=32766 border="0" color="0" x="9275" y="8" height="76" width="489" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_ca_personasxmod visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=29 alignment="1" tabsequence=32766 border="0" color="0" x="9774" y="8" height="76" width="407" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_cod_tur visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=30 alignment="1" tabsequence=32766 border="0" color="0" x="10190" y="8" height="76" width="434" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_minutos_jornada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=31 alignment="1" tabsequence=32766 border="0" color="0" x="10633" y="8" height="76" width="466" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_ind_cambio_estilo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=32 alignment="1" tabsequence=32766 border="0" color="0" x="11109" y="8" height="76" width="471" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_ca_unid_base_dia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=33 alignment="1" tabsequence=32766 border="0" color="0" x="11589" y="8" height="76" width="507" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_orige_uni_base_dia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=34 alignment="1" tabsequence=32766 border="0" color="0" x="12105" y="8" height="76" width="407" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_tipo_empate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=35 alignment="1" tabsequence=32766 border="0" color="0" x="12521" y="8" height="76" width="471" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_unidades_empate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=36 alignment="1" tabsequence=32766 border="0" color="0" x="13001" y="8" height="76" width="471" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_metodo_programa visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=37 alignment="1" tabsequence=32766 border="0" color="0" x="13481" y="8" height="76" width="407" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_fuente_dato visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=38 alignment="0" tabsequence=32766 border="0" color="0" x="13897" y="8" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=dt_pdnxmodulo_fe_creacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=39 alignment="0" tabsequence=32766 border="0" color="0" x="14510" y="8" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=dt_pdnxmodulo_fe_actualizacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=40 alignment="0" tabsequence=32766 border="0" color="0" x="15122" y="8" height="76" width="407" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_usuario visible="1" edit.limit=8 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=41 alignment="0" tabsequence=32766 border="0" color="0" x="15538" y="8" height="76" width="576" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_instancia visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=42 alignment="1" tabsequence=32766 border="0" color="0" x="16123" y="8" height="76" width="407" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_cs_asignacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=43 alignment="0" tabsequence=32766 border="0" color="0" x="16539" y="8" height="76" width="850" format="[general]" html.valueishtml="0"  name=m_lineas_de_linea visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=44 alignment="0" tabsequence=32766 border="0" color="0" x="17399" y="8" height="76" width="1125" format="[general]" html.valueishtml="0"  name=h_preref_de_referencia visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=45 alignment="0" tabsequence=32766 border="0" color="0" x="18533" y="8" height="76" width="850" format="[general]" html.valueishtml="0"  name=m_colores_de_color visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=46 alignment="0" tabsequence=32766 border="0" color="0" x="19392" y="8" height="76" width="430" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_co_estado_merc visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=47 alignment="0" tabsequence=32766 border="0" color="0" x="19831" y="8" height="76" width="850" format="[general]" html.valueishtml="0"  name=gpa visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=48 alignment="1" tabsequence=32766 border="0" color="0" x="1385" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=x_col visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=49 alignment="1" tabsequence=32766 border="0" color="0" x="20690" y="8" height="76" width="407" format="[general]" html.valueishtml="0"  name=semana_actual visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=50 alignment="1" tabsequence=32766 border="0" color="0" x="21106" y="8" height="76" width="407" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_ca_proyectada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=51 alignment="1" tabsequence=32766 border="0" color="0" x="21522" y="8" height="76" width="407" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_ca_actual visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=52 alignment="1" tabsequence=32766 border="0" color="0" x="21938" y="8" height="76" width="407" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_ca_numerada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=53 alignment="0" tabsequence=32766 border="0" color="0" x="22354" y="8" height="76" width="219" format="[general]" html.valueishtml="0"  name=aprueba visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=54 alignment="0" tabsequence=32766 border="0" color="0" x="22583" y="8" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=fe_despacho_corte visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=55 alignment="1" tabsequence=32766 border="0" color="0" x="23195" y="8" height="76" width="494" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_espejo_asignacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=56 alignment="1" tabsequence=32766 border="0" color="0" x="23698" y="8" height="76" width="389" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_cs_agrupacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
