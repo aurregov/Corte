@@ -1,0 +1,84 @@
+HA$PBExportHeader$dtb_rep_guias_num_confe.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=112 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=cs_canasta dbname="cs_canasta" )
+ column=(type=long updatewhereclause=yes name=cs_orden_corte dbname="cs_orden_corte" )
+ column=(type=long updatewhereclause=yes name=cs_espacio dbname="cs_espacio" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="co_talla" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_actual dbname="ca_actual" )
+ column=(type=char(1) updatewhereclause=yes name=letra dbname="letra" )
+ column=(type=char(40) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=long updatewhereclause=yes name=co_color_pt dbname="co_color_pt" )
+ column=(type=char(3) updatewhereclause=yes name=tono dbname="tono" )
+ column=(type=long updatewhereclause=yes name=cs_liberacion dbname="cs_liberacion" )
+ column=(type=long updatewhereclause=yes name=lote dbname="lote" )
+ column=(type=long updatewhereclause=yes name=valor_inicial dbname="valor_inicial" )
+ column=(type=long updatewhereclause=yes name=valor_final dbname="valor_final" )
+ retrieve="  SELECT h_canasta_corte.cs_canasta,   
+         dt_canasta_corte.cs_orden_corte,   
+         dt_canasta_corte.cs_espacio,   
+         dt_canasta_corte.co_talla,   
+         dt_canasta_corte.ca_actual,   
+         dt_canasta_corte.letra,   
+         h_preref.de_referencia,   
+         dt_agrupa_pdn.co_color_pt, dt_agrupa_pdn.tono , 
+			dt_agrupa_pdn.cs_liberacion,
+         dt_canasta_corte.lote  ,t_guias_num_prog.valor_inicial,t_guias_num_prog.valor_final
+    FROM h_canasta_corte,   
+         dt_canasta_corte,   
+         dt_agrupa_pdn,   
+         peddig,   
+         h_preref  ,
+			t_guias_num_prog
+   WHERE ( dt_canasta_corte.cs_canasta = h_canasta_corte.cs_canasta ) and  
+         ( dt_canasta_corte.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_canasta_corte.lote = dt_agrupa_pdn.cs_pdn ) and  
+         ( dt_agrupa_pdn.co_fabrica_exp = peddig.co_fabrica_exp ) and  
+         ( dt_agrupa_pdn.pedido = peddig.pedido ) and  
+         ( dt_agrupa_pdn.co_fabrica_pt = h_preref.co_fabrica ) and  
+         ( dt_agrupa_pdn.co_linea = h_preref.co_linea ) and  
+         ( dt_agrupa_pdn.co_referencia = h_preref.co_referencia ) and  
+         ( ( h_canasta_corte.cs_canasta > '0' ) AND  
+         ( dt_canasta_corte.cs_orden_corte = :an_cs_orden_corte ) AND  
+         ( dt_canasta_corte.cs_secuencia = 1 ) )    
+and t_guias_num_prog.cs_orden_corte=dt_canasta_corte.cs_orden_corte
+and t_guias_num_prog.cs_agrupacion=dt_canasta_corte.cs_agrupacion
+and t_guias_num_prog.cs_base_trazos=1
+and t_guias_num_prog.cs_espacio=dt_canasta_corte.cs_espacio
+and t_guias_num_prog.cs_pdn=dt_canasta_corte.cs_pdn
+and t_guias_num_prog.co_talla=dt_canasta_corte.co_talla
+and t_guias_num_prog.letra=dt_canasta_corte.letra
+and t_guias_num_prog.tipo=2
+
+
+" arguments=(("an_cs_orden_corte", number))  sort="cs_orden_corte A co_color_pt A tono A cs_liberacion A co_talla D cs_espacio D letra A " )
+text(band=header alignment="2" text="Cs Canasta" border="2" color="33554432" x="5" y="4" height="52" width="480" html.valueishtml="0"  name=cs_canasta_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Orden Corte" border="2" color="33554432" x="489" y="4" height="52" width="329" html.valueishtml="0"  name=cs_orden_corte_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Espacio" border="2" color="33554432" x="823" y="4" height="52" width="274" html.valueishtml="0"  name=cs_espacio_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Talla" border="2" color="33554432" x="1102" y="4" height="52" width="274" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Actual" border="2" color="33554432" x="1381" y="4" height="52" width="274" html.valueishtml="0"  name=ca_actual_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Letra" border="2" color="33554432" x="1659" y="4" height="52" width="110" html.valueishtml="0"  name=letra_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="De Referencia" border="2" color="33554432" x="1778" y="4" height="52" width="933" html.valueishtml="0"  name=de_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Color Pt" border="2" color="33554432" x="2720" y="4" height="52" width="274" html.valueishtml="0"  name=co_color_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tono" border="2" color="33554432" x="2999" y="4" height="52" width="114" html.valueishtml="0"  name=tono_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Liberacion" border="2" color="33554432" x="3118" y="4" height="52" width="293" html.valueishtml="0"  name=cs_liberacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Lote" border="2" color="33554432" x="3415" y="4" height="52" width="274" html.valueishtml="0"  name=lote_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="33554432" x="5" y="4" height="64" width="480" format="[general]" html.valueishtml="0"  name=cs_canasta visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="2" color="33554432" x="489" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="2" color="33554432" x="823" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_espacio visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="2" color="33554432" x="1102" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="2" color="33554432" x="1381" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=ca_actual visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="2" color="33554432" x="1659" y="4" height="64" width="46" format="[general]" html.valueishtml="0"  name=letra visible="1" edit.limit=1 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="2" color="33554432" x="1778" y="4" height="64" width="933" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="2" color="33554432" x="2720" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_color_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="2" color="33554432" x="2999" y="4" height="64" width="91" format="[general]" html.valueishtml="0"  name=tono visible="1" edit.limit=3 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="2" color="33554432" x="3118" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_liberacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="2" color="33554432" x="3415" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=lote visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=0 border="2" color="33554432" x="3712" y="8" height="52" width="274" html.valueishtml="0"  name=valor_inicial visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=0 border="2" color="33554432" x="4009" y="8" height="52" width="274" html.valueishtml="0"  name=valor_final visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
