@@ -1,0 +1,81 @@
+HA$PBExportHeader$dtb_insumos.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="536870912"  height.autosize=yes)
+table(column=(type=long updatewhereclause=yes name=dt_telaxmodelo_lib_raya dbname="raya" )
+ column=(type=long updatewhereclause=yes name=dt_telaxmodelo_lib_co_reftel dbname="co_reftel" )
+ column=(type=long updatewhereclause=yes name=dt_telaxmodelo_lib_co_color_tela dbname="co_color_tela" )
+ column=(type=decimal(2) updatewhereclause=yes name=dt_telaxmodelo_lib_ancho_cortable dbname="ancho_cortable" )
+ column=(type=char(42) updatewhereclause=yes name=h_telas_de_reftel dbname="de_reftel" )
+ column=(type=char(30) updatewhereclause=yes name=m_color_de_color dbname="de_color" )
+ column=(type=decimal(5) updatewhereclause=yes name=dt_telaxmodelo_lib_yield dbname="yield" )
+ column=(type=long updatewhereclause=yes name=dt_telaxmodelo_lib_ca_unidades dbname="ca_unidades" )
+ column=(type=datetime updatewhereclause=yes name=fecha_inicio_bck dbname="fecha_inicio_bck" )
+ column=(type=datetime updatewhereclause=yes name=fecha_fin_bck dbname="fecha_fin_bck" )
+ column=(type=long updatewhereclause=yes name=tiempo_reposo dbname="tiempo_reposo" )
+ retrieve="SELECT DISTINCT  dt_telaxmodelo_lib.raya ,
+		dt_telaxmodelo_lib.co_reftel ,
+		dt_telaxmodelo_lib.co_color_tela ,
+		dt_telaxmodelo_lib.ancho_cortable ,
+		h_telas.de_reftel ,
+		m_color.de_color ,
+		dt_telaxmodelo_lib.yield ,
+		dt_telaxmodelo_lib.ca_unidades,
+		(Select  min(dt_simulacion.fecha_inicio_bck)
+			 FROM dt_simulacion  
+			WHERE ( dt_simulacion.pedido = dt_telaxmodelo_lib.cs_liberacion ) AND  
+					( trim(dt_simulacion.co_referencia) = trim(cast(dt_telaxmodelo_lib.co_reftel as char(20)))) AND
+					( dt_simulacion.co_tipo_negocio = (select cast(numerico as integer)
+						from m_constantes
+						where var_nombre = 'REPOSO_TIPONEGOCIO') ) AND  
+					( dt_simulacion.co_estado = 'A' )    ) fecha_inicio_bck,
+			(Select  max(dt_simulacion.fecha_fin_bck)
+			 FROM dt_simulacion  
+			WHERE ( dt_simulacion.pedido = dt_telaxmodelo_lib.cs_liberacion ) AND 
+					( trim(dt_simulacion.co_referencia) = trim(cast(dt_telaxmodelo_lib.co_reftel as char(20)))) AND 
+					( dt_simulacion.co_tipo_negocio = (select cast(numerico as integer)
+						from m_constantes
+						where var_nombre = 'REPOSO_TIPONEGOCIO') ) AND  
+					( dt_simulacion.co_estado = 'A' )    ) fecha_fin_bck,
+			Nvl( ( select h.tiempo_reposo from h_telas h where h.co_reftel = h_telas.co_reftel and h.co_caract = 0),0)  tiempo_reposo       
+FROM	h_telas ,
+		m_color ,
+		dt_telaxmodelo_lib     
+WHERE ( dt_telaxmodelo_lib.co_reftel = h_telas.co_reftel ) and          
+		( dt_telaxmodelo_lib.co_caract = h_telas.co_caract ) and          
+		( dt_telaxmodelo_lib.co_color_tela = m_color.co_color ) and          
+		( ( dt_telaxmodelo_lib.raya <> 10 ) and          
+		( dt_telaxmodelo_lib.co_fabrica_exp = :an_fabrica_exp ) and          
+		( dt_telaxmodelo_lib.cs_liberacion = :an_liberacion ) and
+		( dt_telaxmodelo_lib.nu_orden = :as_orden ) and
+		( dt_telaxmodelo_lib.nu_cut = :as_cut ) and
+		( dt_telaxmodelo_lib.co_fabrica_pt = :an_fabrica ) and          
+		( dt_telaxmodelo_lib.co_linea = :an_linea ) and          
+		( dt_telaxmodelo_lib.co_referencia = :an_referencia ) and          
+		( dt_telaxmodelo_lib.co_color_pt = :an_color_pt ) and          
+		( dt_telaxmodelo_lib.co_tono = :as_tono ) )  " arguments=(("an_fabrica_exp", number),("an_liberacion", number),("as_orden", string),("as_cut", string),("an_fabrica", number),("an_linea", number),("an_referencia", number),("an_color_pt", number),("as_tono", string)) )
+text(band=header alignment="2" text="Yield" border="2" color="0" x="1737" y="8" height="52" width="197" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Metros" border="2" color="0" x="1938" y="8" height="52" width="242" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Units" border="2" color="0" x="2185" y="8" height="52" width="238" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="TiempoReposo" border="2" color="0" x="2427" y="8" height="104" width="169" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Inicio FinReposo" border="2" color="0" x="2601" y="8" height="104" width="567" html.valueishtml="0"  name=t_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="0" x="105" y="4" height="52" width="201" format="[general]" html.valueishtml="0"  name=dt_telaxmodelo_lib_co_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="2" color="0" x="311" y="4" height="52" width="654" format="[general]" html.valueishtml="0"  name=h_telas_de_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="0" x="9" y="4" height="52" width="91" format="[general]" html.valueishtml="0"  name=dt_telaxmodelo_lib_raya visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="2" color="0" x="1129" y="4" height="52" width="215" format="[general]" html.valueishtml="0"  name=dt_telaxmodelo_lib_co_color_tela visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="2" color="0" x="1349" y="4" height="52" width="384" format="[general]" html.valueishtml="0"  name=m_color_de_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="2" color="0" x="969" y="4" height="52" width="155" format="[general]" html.valueishtml="0"  name=dt_telaxmodelo_lib_ancho_cortable visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="2" color="0" x="1737" y="4" height="52" width="197" format="###,##0.##0" html.valueishtml="0"  name=dt_telaxmodelo_lib_yield visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression=" dt_telaxmodelo_lib_yield  *  dt_telaxmodelo_lib_ca_unidades "border="2" color="0" x="1938" y="4" height="52" width="242" format="###,##0.##0" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="2" color="0" x="2185" y="4" height="52" width="238" format="[general]" html.valueishtml="0"  name=dt_telaxmodelo_lib_ca_unidades visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="2" tabsequence=32766 border="2" color="0" x="2427" y="4" height="52" width="169" format="[general]" html.valueishtml="0"  name=tiempo_reposo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="2" color="0" x="2601" y="4" height="52" width="265" format="dd-mmm hh:mm" html.valueishtml="0"  name=fecha_inicio_bck visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="2" color="0" x="2871" y="4" height="52" width="297" format="dd-mmm hh:mm" html.valueishtml="0"  name=fecha_fin_bck visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
