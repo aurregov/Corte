@@ -1,0 +1,55 @@
+HA$PBExportHeader$dtb_rep_ord_cte_rango_kilos.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=416 color="536870912" )
+summary(height=156 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_concepto dbname="co_concepto" )
+ column=(type=long updatewhereclause=yes name=documento dbname="documento" )
+ column=(type=long updatewhereclause=yes name=destino dbname="destino" )
+ column=(type=datetime updatewhereclause=yes name=ano_mes dbname="ano_mes" )
+ column=(type=long updatewhereclause=yes name=compute_0006 dbname="compute_0006" )
+ column=(type=decimal(3) updatewhereclause=yes name=compute_0007 dbname="compute_0007" )
+ retrieve="select h.co_fabrica, h.co_concepto, h.documento, h.destino, h.ano_mes,
+      (select max(cs_ordencr) from m_rollo where cs_rollo = d.cs_rollo),
+ sum(ca_kardex_kg)
+from h_kardex h, dt_kardex d
+where h.co_fabrica = d.co_fabrica
+and h.co_concepto = d.co_concepto
+and h.documento = d.documento
+and d.fe_ingreso >= :FE_INICIAL
+and d.fe_ingreso <= :FE_FINAL
+and h.origen = 15
+and h.destino in (90,91,92,93)
+group by 1,2,3,4,5,6;" arguments=(("FE_INICIAL", date),("FE_FINAL", date))  sort="rangos A compute_0007 A " )
+group(level=1 header.height=96 trailer.height=0 by=("rangos" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="KILOS ENTREGADOS A CORTE POR RANGOS" border="6" color="0" x="462" y="16" height="60" width="1184" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16776960" )
+compute(band=header.1 alignment="2" expression="Case( compute_0007   WHEN IS < 50 THEN 1 WHEN 50 TO 99   THEN 2 WHEN 100 TO 149 THEN 3  ELSE 4)"border="6" color="33554432" x="23" y="0" height="68" width="178" format="[GENERAL]" html.valueishtml="0"  name=rangos visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header.1 alignment="0" expression="if(  rangos = 1, 'ORDENES MENORES A 50 KG', ( if(rangos = 2,'ORDENES ENTRE 50 y 100 KG',  (if (rangos  = 3, 'ORDENES ENTRE 100 y 150 KG','ORDENES MAYORES A 150 KG'))    ))) "border="6" color="33554432" x="219" y="0" height="68" width="846" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header.1 alignment="2" expression="count(documento for group 1)"border="6" color="33554432" x="1083" y="0" height="68" width="274" format="#,##0" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="2" expression="sum(compute_0007 for group 1)"border="6" color="33554432" x="1413" y="0" height="68" width="274" format="#,##0.0" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="283" y="4" height="68" width="274" format="[general]" html.valueishtml="0"  name=co_concepto visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="571" y="4" height="68" width="274" format="[general]" html.valueishtml="0"  name=documento visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="850" y="4" height="68" width="274" format="[general]" html.valueishtml="0"  name=destino visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1129" y="4" height="68" width="503" format="[shortdate] [time]" html.valueishtml="0"  name=ano_mes visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1637" y="4" height="68" width="274" format="[general]" html.valueishtml="0"  name=compute_0006 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="1925" y="4" height="68" width="274" format="[general]" html.valueishtml="0"  name=compute_0007 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="68" width="274" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="count(  documento  for all )"border="6" color="33554432" x="1083" y="20" height="56" width="274" format="#,##0" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(  compute_0007  for all )"border="6" color="33554432" x="1413" y="20" height="56" width="274" format="#,##0.0" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="1847" y="20" height="64" width="640" format="dd/mmm/yy hh:mm" html.valueishtml="0"  name=date_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+text(band=header alignment="0" text="RANGOS" border="0" color="0" x="251" y="344" height="56" width="334" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="TOTAL KILOS" border="0" color="0" x="1426" y="328" height="56" width="402" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="TOTAL ORDENES" border="0" color="0" x="997" y="332" height="56" width="402" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Fecha final:" border="0" color="0" x="1170" y="124" height="60" width="306" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+compute(band=header alignment="0" expression=" FE_FINAL "border="0" color="33554432" x="1518" y="124" height="60" width="352" format="dd/mmm/yyyy" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16776960" )
+text(band=header alignment="0" text="Fecha Inicial:" border="0" color="0" x="1143" y="200" height="60" width="357" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+compute(band=header alignment="0" expression=" FE_INICIAL "border="0" color="33554432" x="1522" y="200" height="60" width="352" format="dd/mmm/yyyy" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16776960" )
+compute(band=header alignment="0" expression="bitmap (~"fabrica2.jpg~")"border="0" color="33554432" x="32" y="140" height="132" width="718" format="[GENERAL]" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
