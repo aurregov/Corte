@@ -1,0 +1,78 @@
+HA$PBExportHeader$dgr_lista_seleccionar_rollos.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=76 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=cs_rollo dbname="temp_tela_n.cs_rollo" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_ordenpd_pt dbname="temp_tela_n.cs_ordenpd_pt" )
+ column=(type=long update=yes updatewhereclause=yes name=co_reftel dbname="temp_tela_n.co_reftel" )
+ column=(type=long update=yes updatewhereclause=yes name=co_caract dbname="temp_tela_n.co_caract" )
+ column=(type=long update=yes updatewhereclause=yes name=co_color dbname="temp_tela_n.co_color" )
+ column=(type=long update=yes updatewhereclause=yes name=co_talla dbname="temp_tela_n.co_talla" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_mt dbname="temp_tela_n.ca_mt" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_kg dbname="temp_tela_n.ca_kg" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_tanda dbname="temp_tela_n.cs_tanda" )
+ column=(type=decimal(2) updatewhereclause=yes name=ancho dbname="temp_tela_n.ancho" )
+ column=(type=long updatewhereclause=yes name=diametro dbname="temp_tela_n.diametro" )
+ column=(type=long updatewhereclause=yes name=ca_unidades dbname="temp_tela_n.ca_unidades" )
+ column=(type=char(1) updatewhereclause=yes name=co_tono dbname="temp_tela_n.co_tono" )
+ column=(type=long updatewhereclause=yes name=lote dbname="temp_tela_n.lote" )
+ column=(type=char(8) updatewhereclause=yes key=yes name=usuario dbname="temp_tela_n.usuario" )
+ column=(type=long updatewhereclause=yes name=marca dbname="marca" values="	1/	0" )
+ retrieve="  SELECT temp_tela_n.cs_rollo,   
+         temp_tela_n.cs_ordenpd_pt,   
+         temp_tela_n.co_reftel,   
+         temp_tela_n.co_caract,   
+         temp_tela_n.co_color,   
+         temp_tela_n.co_talla,   
+         temp_tela_n.ca_mt,   
+         temp_tela_n.ca_kg,   
+         temp_tela_n.cs_tanda,
+         temp_tela_n.ancho,
+ 		   temp_tela_n.diametro,
+         temp_tela_n.ca_unidades,
+         temp_tela_n.co_tono,
+         temp_tela_n.lote,
+			temp_tela_n.usuario,
+			0 marca 
+    FROM temp_tela_n  
+   WHERE temp_tela_n.usuario = :as_usuario    
+" update="temp_tela_n" updatewhere=0 updatekeyinplace=no arguments=(("as_usuario", string))  sort="co_reftel A co_color A co_talla A cs_tanda A " )
+text(band=header alignment="2" text="Rollo" border="6" color="33554432" x="9" y="8" height="56" width="242" html.valueishtml="0"  name=cs_rollo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Color" border="6" color="33554432" x="827" y="8" height="56" width="293" html.valueishtml="0"  name=co_color_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Talla" border="6" color="33554432" x="1129" y="8" height="56" width="114" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mt" border="6" color="33554432" x="1253" y="8" height="56" width="142" html.valueishtml="0"  name=ca_mt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Kg" border="6" color="33554432" x="1403" y="8" height="56" width="178" html.valueishtml="0"  name=ca_kg_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tanda" border="6" color="33554432" x="1591" y="8" height="56" width="265" html.valueishtml="0"  name=cs_tanda_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="" border="6" color="33554432" x="2706" y="8" height="56" width="101" html.valueishtml="0"  name=marca_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Ancho" border="6" color="0" x="1957" y="8" height="56" width="151" html.valueishtml="0"  name=ancho_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Dm" border="6" color="0" x="1865" y="8" height="56" width="82" html.valueishtml="0"  name=diametro_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Tela" border="6" color="33554432" x="503" y="8" height="56" width="224" html.valueishtml="0"  name=co_reftel_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cct" border="6" color="33554432" x="736" y="8" height="56" width="82" html.valueishtml="0"  name=co_caract_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="O.P. Estilo" border="6" color="33554432" x="261" y="8" height="56" width="233" html.valueishtml="0"  name=cs_ordenpd_pt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unidad" border="6" color="0" x="2117" y="8" height="56" width="201" html.valueishtml="0"  name=ca_unidades_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Tono" border="6" color="0" x="2327" y="8" height="56" width="110" html.valueishtml="0"  name=co_tono_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Lote" border="6" color="0" x="2446" y="4" height="60" width="251" html.valueishtml="0"  name=lote_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="33554432" x="9" y="8" height="60" width="242" format="[general]" html.valueishtml="0"  name=cs_rollo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="5" color="33554432" x="827" y="8" height="60" width="293" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="5" color="33554432" x="1129" y="8" height="60" width="114" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="5" color="33554432" x="1253" y="8" height="60" width="142" format="[general]" html.valueishtml="0"  name=ca_mt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="5" color="33554432" x="1403" y="8" height="60" width="178" format="[general]" html.valueishtml="0"  name=ca_kg visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="5" color="33554432" x="1591" y="8" height="60" width="265" format="[General]" html.valueishtml="0"  name=cs_tanda  tag="" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="2" tabsequence=60 border="5" color="33554432" x="2706" y="8" height="60" width="101" format="[general]" html.valueishtml="0"  name=marca visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=20 border="5" color="33554432" x="1957" y="8" height="60" width="151" format="[general]" html.valueishtml="0"  name=ancho visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=10 border="5" color="33554432" x="1865" y="8" height="60" width="82" format="[general]" html.valueishtml="0"  name=diametro visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="33554432" x="503" y="8" height="60" width="224" format="[general]" html.valueishtml="0"  name=co_reftel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="5" color="33554432" x="736" y="8" height="60" width="82" format="[general]" html.valueishtml="0"  name=co_caract visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="33554432" x="261" y="8" height="60" width="233" format="[general]" html.valueishtml="0"  name=cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=30 border="5" color="33554432" x="2117" y="8" height="60" width="201" format="[general]" html.valueishtml="0"  name=ca_unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=40 border="5" color="33554432" x="2327" y="8" height="60" width="110" format="[general]" html.valueishtml="0"  name=co_tono visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="2" tabsequence=50 border="5" color="33554432" x="2446" y="8" height="60" width="251" format="[general]" html.valueishtml="0"  name=lote visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=70 border="0" color="33554432" x="2816" y="0" height="56" width="174" format="[general]" html.valueishtml="0"  name=usuario visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
