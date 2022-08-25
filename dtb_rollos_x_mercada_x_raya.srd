@@ -1,0 +1,52 @@
+HA$PBExportHeader$dtb_rollos_x_mercada_x_raya.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=68 color="536870912" )
+summary(height=72 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=dt_rollosmercada_cs_rollo dbname="dt_rollosmercada.cs_rollo" )
+ column=(type=decimal(2) updatewhereclause=yes name=dt_rollosmercada_ca_metros_mercar dbname="dt_rollosmercada.ca_metros_mercar" )
+ column=(type=long updatewhereclause=yes name=m_rollo_co_reftel_act dbname="m_rollo.co_reftel_act" )
+ column=(type=decimal(2) updatewhereclause=yes name=m_rollo_ca_kg dbname="m_rollo.ca_kg" )
+ column=(type=char(42) updatewhereclause=yes name=h_telas_de_reftel dbname="h_telas.de_reftel" )
+ column=(type=long updatewhereclause=yes name=dt_rollosmercada_cs_mercada dbname="dt_rollosmercada.cs_mercada" )
+ column=(type=decimal(2) updatewhereclause=yes name=mts_extendidos dbname="dt_rollosmercada.mts_extendidos" )
+ column=(type=decimal(2) updatewhereclause=yes name=m_rollo_kg_devueltos dbname="m_rollo.kg_devueltos" )
+ column=(type=long updatewhereclause=yes name=rollo_completo dbname="dt_rollosmercada.rollo_completo" values="	1/	0" )
+ retrieve="select dt_rollosmercada.cs_rollo, 
+       dt_rollosmercada.ca_metros_mercar, 
+       m_rollo.co_reftel_act, 
+       m_rollo.ca_kg,
+       h_telas.de_reftel, 
+       dt_rollosmercada.cs_mercada,
+       dt_rollosmercada.ca_metros_mercar as mts_extendidos,
+       m_rollo.ca_kg as kg_devueltos,
+       0 as rollo_completo
+from dt_rollosmercada, m_rollo, h_telas
+where dt_rollosmercada.cs_rollo = m_rollo.cs_rollo
+  and m_rollo.co_reftel_act = h_telas.co_reftel
+  and m_rollo.co_caract_act = h_telas.co_caract
+  and dt_rollosmercada.co_estado_mercada not in (5,8,9)
+  and dt_rollosmercada.cs_mercada = :al_mercada
+  and raya = :ai_raya
+" arguments=(("al_mercada", number),("ai_raya", number))  sort="dt_rollosmercada_cs_rollo A dt_rollosmercada_cs_rollo A " )
+text(band=header alignment="2" text="Mts Rollo" border="6" color="33554432" x="1280" y="4" height="52" width="265" html.valueishtml="0"  name=dt_rollosmercada_ca_metros_mercar_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="count(dt_rollosmercada_cs_rollo for all)"border="0" color="33554432" x="5" y="4" height="64" width="329" format="[general]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(dt_rollosmercada_ca_metros_mercar for all)"border="0" color="33554432" x="1344" y="4" height="64" width="283" format="0.00" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Rollo" border="6" color="33554432" x="5" y="4" height="52" width="293" html.valueishtml="0"  name=dt_rollosmercada_cs_rollo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="64" width="293" format="[general]" html.valueishtml="0"  name=dt_rollosmercada_cs_rollo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="306" y="4" height="64" width="238" format="[general]" html.valueishtml="0"  name=m_rollo_co_reftel_act visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tela" border="6" color="33554432" x="320" y="4" height="52" width="942" html.valueishtml="0"  name=m_rollo_co_reftel_act_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="549" y="4" height="64" width="727" format="[general]" html.valueishtml="0"  name=h_telas_de_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Kg Rollo" border="6" color="33554432" x="1559" y="4" height="52" width="256" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="0" color="33554432" x="1285" y="4" height="64" width="256" format="0.00" html.valueishtml="0"  name=dt_rollosmercada_ca_metros_mercar visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mts Extendio" border="6" color="33554432" x="1829" y="4" height="52" width="329" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Kg Devolver" border="6" color="33554432" x="2176" y="4" height="52" width="338" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=0 border="0" color="33554432" x="1550" y="4" height="64" width="261" html.valueishtml="0"  name=m_rollo_ca_kg visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="2" tabsequence=10 border="5" color="33554432" x="1829" y="4" height="64" width="329" format="0.00" html.valueishtml="0"  name=mts_extendidos visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+column(band=detail id=8 alignment="0" tabsequence=0 border="5" color="33554432" x="2176" y="4" height="64" width="338" html.valueishtml="0"  name=m_rollo_kg_devueltos visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+text(band=header alignment="0" text="Completo" border="6" color="33554432" x="2533" y="4" height="52" width="247" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=20 border="5" color="33554432" x="2610" y="8" height="52" width="69" format="[general]" html.valueishtml="0"  name=rollo_completo visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=no  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
