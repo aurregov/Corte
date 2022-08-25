@@ -1,0 +1,238 @@
+HA$PBExportHeader$d_ff_peddig_exportacion.srd
+$PBExportComments$dw para la tabla peddig
+release 9;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=8 color="536870912" )
+detail(height=740 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes name=co_fabrica_vta dbname="peddig.co_fabrica_vta" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=pedido dbname="peddig.pedido" )
+ column=(type=long update=yes updatewhereclause=yes name=ano_contable dbname="peddig.ano_contable" )
+ column=(type=long update=yes updatewhereclause=yes name=mes_contable dbname="peddig.mes_contable" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=tipo_pedido dbname="peddig.tipo_pedido" initial="EX" )
+ column=(type=char(16) update=yes updatewhereclause=yes name=orden_compra dbname="peddig.orden_compra" initial="0" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=gpa dbname="peddig.gpa" initial="0" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=isd dbname="peddig.isd" initial="0" )
+ column=(type=date update=yes updatewhereclause=yes name=fe_pedido dbname="peddig.fe_pedido" initial="today" )
+ column=(type=date update=yes updatewhereclause=yes name=fe_recepcion dbname="peddig.fe_recepcion" initial="today" )
+ column=(type=long update=yes updatewhereclause=yes name=total_cajas dbname="peddig.total_cajas" initial="0" )
+ column=(type=date update=yes updatewhereclause=yes name=fe_primer_dpacho dbname="peddig.fe_primer_dpacho" initial="today" )
+ column=(type=date update=yes updatewhereclause=yes name=fe_ultimo_dpacho dbname="peddig.fe_ultimo_dpacho" initial="today" )
+ column=(type=date update=yes updatewhereclause=yes name=fe_cancela_dpacho dbname="peddig.fe_cancela_dpacho" initial="today" )
+ column=(type=long update=yes updatewhereclause=yes name=co_coleccion dbname="peddig.co_coleccion" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes name=co_cliente dbname="peddig.co_cliente" )
+ column=(type=long update=yes updatewhereclause=yes name=co_sucursal dbname="peddig.co_sucursal" )
+ column=(type=char(5) update=yes updatewhereclause=yes name=co_adhesivo dbname="peddig.co_adhesivo" initial="1" )
+ column=(type=long update=yes updatewhereclause=yes name=nu_desp_perm dbname="peddig.nu_desp_perm" initial="100" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=porc_permitido dbname="peddig.porc_permitido" initial="100" )
+ column=(type=long update=yes updatewhereclause=yes name=zona dbname="peddig.zona" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes name=co_vendedor dbname="peddig.co_vendedor" initial="0" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=marca dbname="peddig.marca" initial="0" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_pedida dbname="peddig.ca_pedida" initial="0" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_despachada dbname="peddig.ca_despachada" initial="0" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_transito dbname="peddig.ca_transito" initial="0" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_cancelada dbname="peddig.ca_cancelada" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes name=marca_edi dbname="peddig.marca_edi" initial="0" )
+ column=(type=date update=yes updatewhereclause=yes name=fe_transmision dbname="peddig.fe_transmision" initial="today" )
+ column=(type=long update=yes updatewhereclause=yes name=guia_transporte dbname="peddig.guia_transporte" initial="0" )
+ column=(type=date update=yes updatewhereclause=yes name=fe_despacho dbname="peddig.fe_despacho" initial="today" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=prioridad dbname="peddig.prioridad" initial="0" )
+ column=(type=number update=yes updatewhereclause=yes name=especial_packing dbname="peddig.especial_packing" initial="0" values="Pais Esp:	1/Pais Esp:	0" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=pr_sugerido dbname="peddig.pr_sugerido" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes name=nu_despacho dbname="peddig.nu_despacho" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes name=co_lista dbname="peddig.co_lista" initial="0" )
+ column=(type=char(7) update=yes updatewhereclause=yes name=co_factura dbname="peddig.co_factura" initial="0" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=co_listaemp dbname="peddig.co_listaemp" initial="0" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=estado dbname="peddig.estado" initial="D" values="DIGITADO	D /ANULADO	A /TERMINADO	T /" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="peddig.fe_creacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="peddig.usuario" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="peddig.fe_actualizacion" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="peddig.instancia" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=pr_especial dbname="peddig.pr_especial" initial="SI" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=marca_adicional dbname="peddig.marca_adicional" initial="N " values="Retenido por Cartera	A /Espera Producci$$HEX1$$f300$$ENDHEX$$n	B /Pedido de Programaci$$HEX1$$f300$$ENDHEX$$n	C /Pedido en Tr$$HEX1$$e100$$ENDHEX$$mite	D /Demora Envio Pedido Por Vendedor	E /Sin Restricciones	N /" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=nro_planta dbname="peddig.nro_planta" initial="302M" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_anulada dbname="peddig.ca_anulada" initial="0" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_transito_seg dbname="peddig.ca_transito_seg" initial="0" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_despachada_seg dbname="peddig.ca_despachada_seg" initial="0" )
+ column=(type=date update=yes updatewhereclause=yes name=fe_cumpl_guia dbname="peddig.fe_cumpl_guia" )
+ column=(type=long update=yes updatewhereclause=yes name=co_caja dbname="peddig.co_caja" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=dcto dbname="peddig.dcto" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=co_tipo_pedcli dbname="peddig.co_tipo_pedcli" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=sw_prepack dbname="peddig.sw_prepack" values="	S/	N" )
+ column=(type=long update=yes updatewhereclause=yes name=co_empaque dbname="peddig.co_empaque" initial="2" )
+ column=(type=long update=yes updatewhereclause=yes name=co_tipo_envio dbname="peddig.co_tipo_envio" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=opc_ped1 dbname="peddig.opc_ped1" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=opc_ped2 dbname="peddig.opc_ped2" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=opc_ped3 dbname="peddig.opc_ped3" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=opc_ped4 dbname="peddig.opc_ped4" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=opc_ped5 dbname="peddig.opc_ped5" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=opc_ped6 dbname="peddig.opc_ped6" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=opc_ped7 dbname="peddig.opc_ped7" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=opc_ped8 dbname="peddig.opc_ped8" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=opc_ped9 dbname="peddig.opc_ped9" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=opc_ped10 dbname="peddig.opc_ped10" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=co_proposito_po dbname="peddig.co_proposito_po" values="Crono	LI/Crono	0" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=co_tipo_orden dbname="peddig.co_tipo_orden" values="MAKE TO STOCK	S/MAKE TO ORDER	O/" )
+ column=(type=char(60) update=yes updatewhereclause=yes name=cunam dbname="peddig.cunam" )
+ column=(type=char(60) update=yes updatewhereclause=yes name=cuad1 dbname="peddig.cuad1" )
+ column=(type=char(60) update=yes updatewhereclause=yes name=cuad2 dbname="peddig.cuad2" )
+ column=(type=char(60) update=yes updatewhereclause=yes name=cucty dbname="peddig.cucty" )
+ column=(type=char(60) update=yes updatewhereclause=yes name=custt dbname="peddig.custt" )
+ column=(type=char(60) update=yes updatewhereclause=yes name=cuzip dbname="peddig.cuzip" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuarioc dbname="peddig.usuarioc" )
+ column=(type=long update=yes updatewhereclause=yes name=co_planta dbname="peddig.co_planta" )
+ column=(type=long update=yes updatewhereclause=yes name=sw_color_alterno dbname="peddig.sw_color_alterno" initial="0" values="Color Alterno:	1/Color Alterno:	0" )
+ column=(type=char(70) update=yes updatewhereclause=yes name=dir_cliente_ped dbname="peddig.dir_cliente_ped" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=ciudad dbname="peddig.ciudad" )
+ column=(type=long updatewhereclause=yes name=sw_cierre_corte dbname="peddig.sw_cierre_corte" values="CIERRE LIBERACION	1/CIERRE PRENDAS	2/" )
+ column=(type=datetime updatewhereclause=yes name=fe_cierre_corte dbname="peddig.fe_cierre_corte" )
+ column=(type=char(12) update=yes updatewhereclause=yes name=tipo_orden_toc dbname="peddig.tipo_orden_toc" )
+ column=(type=long update=yes updatewhereclause=yes name=co_proceso dbname="peddig.co_proceso" )
+ retrieve="SELECT peddig.co_fabrica_vta ,
+	peddig.pedido ,
+	peddig.ano_contable ,
+	peddig.mes_contable ,
+	peddig.tipo_pedido ,
+	peddig.orden_compra ,
+	peddig.gpa ,
+	peddig.isd ,
+	peddig.fe_pedido ,
+	peddig.fe_recepcion ,
+	peddig.total_cajas ,
+	peddig.fe_primer_dpacho ,
+	peddig.fe_ultimo_dpacho ,
+	peddig.fe_cancela_dpacho ,
+	peddig.co_coleccion ,
+	peddig.co_cliente ,
+	peddig.co_sucursal ,
+	peddig.co_adhesivo ,
+	peddig.nu_desp_perm ,
+	peddig.porc_permitido ,
+	peddig.zona ,
+	peddig.co_vendedor ,
+	peddig.marca ,
+	peddig.ca_pedida ,
+	peddig.ca_despachada ,
+	peddig.ca_transito ,
+	peddig.ca_cancelada ,
+	peddig.marca_edi ,
+	peddig.fe_transmision ,
+	peddig.guia_transporte ,
+	peddig.fe_despacho ,
+	peddig.prioridad ,
+	peddig.especial_packing ,
+	peddig.pr_sugerido ,
+	peddig.nu_despacho ,
+	peddig.co_lista ,
+	peddig.co_factura ,
+	peddig.co_listaemp ,
+	peddig.estado ,
+	peddig.fe_creacion ,
+	peddig.usuario ,
+	peddig.fe_actualizacion ,
+	peddig.instancia ,
+	peddig.pr_especial ,
+	peddig.marca_adicional ,
+	peddig.nro_planta ,
+	peddig.ca_anulada ,
+	peddig.ca_transito_seg ,
+	peddig.ca_despachada_seg ,
+	peddig.fe_cumpl_guia,
+	peddig.co_caja,
+	peddig.dcto,
+	peddig.co_tipo_pedcli,
+	peddig.sw_prepack ,
+	peddig.co_empaque,
+	peddig.co_tipo_envio,
+	peddig.opc_ped1 ,
+	peddig.opc_ped2 ,
+	peddig.opc_ped3 ,
+	peddig.opc_ped4 ,
+	peddig.opc_ped5 ,
+	peddig.opc_ped6 ,
+	peddig.opc_ped7 ,
+	peddig.opc_ped8 ,
+	peddig.opc_ped9 ,
+	peddig.opc_ped10,
+	peddig.co_proposito_po,   
+	peddig.co_tipo_orden,
+	peddig.cunam,
+	peddig.cuad1,
+	peddig.cuad2,
+	peddig.cucty,
+	peddig.custt,
+	peddig.cuzip,
+	peddig.usuarioc,
+	peddig.co_planta,
+	peddig.sw_color_alterno,
+	peddig.dir_cliente_ped,
+	peddig.ciudad,
+	peddig.sw_cierre_corte,
+	peddig.fe_cierre_corte,
+	peddig.tipo_orden_toc,
+	peddig.co_proceso
+
+ 
+FROM peddig 
+WHERE ( peddig.pedido = :an_nu_pedido ) " update="peddig" updatewhere=1 updatekeyinplace=yes arguments=(("an_nu_pedido", number)) )
+text(band=detail alignment="0" text="" border="6" color="0" x="32" y="388" height="340" width="3246" html.valueishtml="0"  name=t_1 visible="1"  resizeable=1  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+groupbox(band=detail text="Fechas"border="5" color="0" x="27" y="128" height="232" width="2418"  name=gb_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="1" text="Ini desp.:" border="0" color="0" x="41" y="284" height="52" width="197" html.valueishtml="0"  name=fe_iniciodesp_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Pedido:" border="0" color="0" x="73" y="196" height="52" width="165" html.valueishtml="0"  name=fe_pedido_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Cliente:" border="0" color="0" x="55" y="404" height="52" width="160" html.valueishtml="0"  name=co_cliente_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Sucursal:" border="0" color="0" x="224" y="404" height="52" width="201" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="string( co_sucursal )"border="5" color="0" x="233" y="472" height="52" width="110" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=17 alignment="0" tabsequence=130 border="5" color="0" x="361" y="472" height="52" width="1577" format="[general]" html.valueishtml="0"  name=co_sucursal visible="1" dddw.name=d_dddw_sucursales_exp dddw.displaycolumn=de_cliente dddw.datacolumn=co_sucursal dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0 dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="1" text="Recepci$$HEX1$$f300$$ENDHEX$$n:" border="0" color="0" x="663" y="196" height="52" width="256" html.valueishtml="0"  name=fe_recepcion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Final Desp.:" border="0" color="0" x="658" y="284" height="52" width="261" html.valueishtml="0"  name=fe_findesp_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=60 border="5" color="0" x="251" y="196" height="52" width="361" format="d/m/yyyy" html.valueishtml="0"  name=fe_pedido visible="1" editmask.spin=yes editmask.mask="dd/mm/yyyy" editmask.imemode=0 editmask.spinrange="~~" editmask.spinincr=1 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=12 alignment="0" tabsequence=80 border="5" color="0" x="251" y="284" height="52" width="361" format="[general]" html.valueishtml="0"  name=fe_primer_dpacho visible="1" editmask.spin=yes editmask.mask="dd/mm/yyyy" editmask.imemode=0 editmask.spinrange="~~" editmask.spinincr=1 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression="string( co_cliente )"border="5" color="0" x="64" y="472" height="52" width="151" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="1" text="Adhesivo:" border="0" color="0" x="64" y="564" height="60" width="238" html.valueishtml="0"  name=t_9 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=18 alignment="0" tabsequence=160 border="5" color="0" x="343" y="564" height="60" width="882" format="[general]" html.valueishtml="0"  name=co_adhesivo visible="1" dddw.name=dddw_adhesivos dddw.displaycolumn=de_adhesivo dddw.datacolumn=co_adhesivo dddw.percentwidth=150 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.imemode=0 dddw.hscrollbar=yes dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="F$$HEX1$$e100$$ENDHEX$$brica:" border="0" color="0" x="32" y="4" height="52" width="215" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="0" x="37" y="68" height="52" width="645" format="[general]" html.valueishtml="0"  name=co_fabrica_vta visible="1" dddw.name=dddw_fabricas dddw.displaycolumn=razon_social dddw.datacolumn=co_fabrica dddw.percentwidth=190 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.imemode=0 dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=55 alignment="0" tabsequence=170 border="5" color="0" x="1518" y="564" height="56" width="453" format="[general]" html.valueishtml="0"  name=co_empaque visible="1" dddw.name=dddw_m_empaques_exp dddw.displaycolumn=de_empaque dddw.datacolumn=co_empaque dddw.percentwidth=150 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.imemode=0 dddw.hscrollbar=yes dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=10 alignment="0" tabsequence=70 border="5" color="0" x="933" y="196" height="52" width="357" format="d/m/yyyy" html.valueishtml="0"  name=fe_recepcion visible="1" editmask.spin=yes editmask.mask="dd/mm/yyyy" editmask.imemode=0 editmask.spinrange="~~" editmask.spinincr=1 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=13 alignment="0" tabsequence=90 border="5" color="0" x="933" y="284" height="52" width="357" format="[general]" html.valueishtml="0"  name=fe_ultimo_dpacho visible="1" editmask.spin=yes editmask.mask="dd/mm/yyyy" editmask.imemode=0 editmask.spinrange="~~" editmask.spinincr=1 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="1" text="Digitaci$$HEX1$$f300$$ENDHEX$$n:" border="0" color="0" x="1335" y="196" height="52" width="242" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Despacho:" border="0" color="0" x="1335" y="284" height="52" width="242" html.valueishtml="0"  name=fe_despacho_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=31 alignment="0" tabsequence=100 border="5" color="0" x="1591" y="284" height="52" width="375" format="d/m/yyyy" html.valueishtml="0"  name=fe_despacho visible="1" editmask.mask="dd/mm/yyyy" editmask.imemode=0 editmask.spinrange="~~" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+text(band=detail alignment="1" text="Cancelaci$$HEX1$$f300$$ENDHEX$$n:" border="0" color="0" x="2021" y="216" height="52" width="283" html.valueishtml="0"  name=fe_cancelacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=110 border="5" color="0" x="2030" y="284" height="52" width="366" format="[general]" html.valueishtml="0"  name=fe_cancela_dpacho visible="1" editmask.spin=yes editmask.mask="dd/mm/yyyy" editmask.imemode=0 editmask.spinrange="~~" editmask.spinincr=1 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=40 alignment="0" tabsequence=32766 border="5" color="0" x="1591" y="196" height="52" width="375" format="" html.valueishtml="0"  name=fe_creacion visible="1" editmask.mask="dd/mm/yyyy" editmask.imemode=0 editmask.spinrange="~~" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Empaque:" border="0" color="0" x="1289" y="564" height="56" width="210" html.valueishtml="0"  name=t_18 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=45 alignment="0" tabsequence=190 border="5" color="0" x="69" y="656" height="60" width="882" format="[general]" html.valueishtml="0"  name=marca_adicional visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes ddlb.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="65535" )
+button(band=detail text="Crono ..." enabled=yes action="0" border="0" color="33554432" x="978" y="648" height="72" width="283" vtextalign="0" htextalign="0"  name=b_cronograma  tag="Ver Cronograma" visible="1~tIf(co_fabrica_vta = 99 Or  co_proposito_po = 'LI',1,0)"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=detail alignment="2" text="Colecci$$HEX1$$f300$$ENDHEX$$n" border="0" color="0" x="2135" y="408" height="48" width="512" html.valueishtml="0"  name=t_7 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=140 border="5" color="0" x="2135" y="476" height="52" width="512" format="[general]" html.valueishtml="0"  name=co_coleccion visible="1" dddw.name=dddw_colecciones2 dddw.displaycolumn=de_coleccion dddw.datacolumn=co_coleccion dddw.percentwidth=250 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.autohscroll=yes dddw.imemode=0 dddw.hscrollbar=yes dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=33 alignment="0" tabsequence=200 border="0" color="0" x="1285" y="656" height="52" width="279" format="[general]" html.valueishtml="0"  name=especial_packing visible="1" checkbox.text="Pais Esp:" checkbox.on="1" checkbox.off="0" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=77 alignment="0" tabsequence=230 border="0" color="0" x="1582" y="656" height="56" width="357" format="[general]" html.valueishtml="0"  name=sw_color_alterno visible="1" checkbox.text="Color Alterno:" checkbox.on="1" checkbox.off="0" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=detail alignment="0" text="Divisi$$HEX1$$f300$$ENDHEX$$n:" border="0" color="0" x="2702" y="404" height="52" width="553" html.valueishtml="0"  name=t_12 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=21 alignment="0" tabsequence=150 border="5" color="0" x="2702" y="472" height="52" width="553" format="[general]" html.valueishtml="0"  name=zona visible="1" dddw.name=dddw_m_divisiones dddw.displaycolumn=de_division dddw.datacolumn=co_division dddw.percentwidth=180 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.imemode=0 dddw.hscrollbar=yes dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=51 alignment="0" tabsequence=180 border="5" color="0" x="2697" y="564" height="52" width="553" format="" html.valueishtml="0"  name=co_caja visible="1" dddw.name=dddw_m_cajas_exp2 dddw.displaycolumn=de_caja dddw.datacolumn=co_caja dddw.percentwidth=150 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0 dddw.hscrollbar=yes dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=68 alignment="0" tabsequence=220 border="5" color="0" x="2697" y="656" height="52" width="558" format="[general]" html.valueishtml="0"  name=co_tipo_orden visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes ddlb.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="1" text="Clase Pedido:" border="0" color="0" x="2359" y="656" height="52" width="297" html.valueishtml="0"  name=t_10 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="1" text="Caja  Despacho:" border="0" color="0" x="2190" y="564" height="52" width="466" html.valueishtml="0"  name=t_13 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=20 alignment="0" tabsequence=210 border="5" color="0" x="2171" y="656" height="60" width="160" format="[general]" html.valueishtml="0"  name=porc_permitido visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="1" text="% Desp:" border="0" color="0" x="1957" y="656" height="60" width="183" html.valueishtml="0"  name=porcdesp_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="0" x="713" y="68" height="52" width="238" format="[general]" html.valueishtml="0"  name=pedido visible="1" edit.limit=9 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="# Pedido:" border="0" color="0" x="713" y="4" height="52" width="238" html.valueishtml="0"  name=nu_pedido_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Planta:" border="0" color="0" x="2482" y="160" height="52" width="192" html.valueishtml="0"  name=t_11 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=76 alignment="0" tabsequence=120 border="5" color="0" x="2693" y="160" height="52" width="585" format="[general]" html.valueishtml="0"  name=co_planta visible="1" dddw.name=d_dddw_plantas_102 dddw.displaycolumn=de_planta dddw.datacolumn=co_planta dddw.percentwidth=150 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0 dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=80 alignment="2" tabsequence=32766 border="5" color="0" x="2693" y="244" height="52" width="585" format="[general]" html.valueishtml="0"  name=sw_cierre_corte visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=81 alignment="2" tabsequence=32766 border="5" color="0" x="2693" y="308" height="52" width="585" format="[shortdate] [time]" html.valueishtml="0"  name=fe_cierre_corte visible="1~tIf(sw_cierre_corte > 0, 1, 0)" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=5 alignment="0" tabsequence=20 border="5" color="0" x="987" y="68" height="52" width="448" format="[general]" html.valueishtml="0"  name=tipo_pedido  tag="tipo del pedido" visible="1" dddw.name=dddw_m_tipos_pedidos dddw.displaycolumn=descripcion dddw.datacolumn=tipo_pedido dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.imemode=0 dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="Tipo Pedido:" border="0" color="0" x="987" y="4" height="52" width="288" html.valueishtml="0"  name=tipo_pedido_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="P.O. #:" border="0" color="0" x="1463" y="4" height="52" width="197" html.valueishtml="0"  name=t_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=30 border="5" color="0" x="1463" y="68" height="52" width="466" format="[general]" html.valueishtml="0"  name=orden_compra visible="1" edit.limit=16 edit.case=upper edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="AGRUPACI$$HEX1$$d300$$ENDHEX$$N:" border="0" color="0" x="1961" y="4" height="52" width="338" html.valueishtml="0"  name=t_6 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="CHASE :" border="0" color="0" x="2560" y="4" height="52" width="192" html.valueishtml="0"  name=t_19 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=40 border="5" color="0" x="1961" y="68" height="52" width="562" format="[general]" html.valueishtml="0"  name=gpa  tag="agrupacion" visible="1" dddw.name=d_dddw_m_grupos_activos dddw.displaycolumn=co_grupo dddw.datacolumn=co_grupo dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.required=yes dddw.nilisnull=yes dddw.imemode=0 dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=28 alignment="0" tabsequence=50 border="5" color="255~tt_6" x="2560" y="68" height="52" width="393" format="" html.valueishtml="0"  name=marca_edi  tag="numero de chase" visible="1" dddw.name=d_dddw_m_recompras dddw.displaycolumn=descripcion_marca_edi dddw.datacolumn=marca_edi dddw.percentwidth=120 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.required=yes dddw.nilisnull=yes dddw.imemode=0 dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="65535" )
+column(band=detail id=39 alignment="0" tabsequence=32766 border="5" color="0" x="2990" y="68" height="52" width="288" format="[general]" html.valueishtml="0"  name=estado visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
