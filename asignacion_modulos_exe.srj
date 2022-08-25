@@ -1,0 +1,948 @@
+HA$PBExportHeader$asignacion_modulos_exe.srj
+$PBExportComments$Generated Application Executable Project
+EXE:corte.exe,corte.pbr,0,1,0
+CMP:0,0,0,2,0,0,1
+COM:Crystal SAS
+DES:Corte
+CPY:2019
+PRD:Corte
+PVS:2019.0.0.2082
+PVN:2019,0,0,2082
+FVS:2019.0.0.2082
+FVN:2019,0,0,2082
+MAN:0,asInvoker,0
+PBD:asignacion_modulos.pbl,,1
+PBD:servicios_comunes.pbl,,1
+PBD:servicios_comunes_dw.pbl,,1
+PBD:reportes_asignacion_modulos.pbl,,1
+PBD:pedidos.pbl,,1
+PBD:nicole.pbl,,1
+PBD:procesos.pbl,,1
+PBD:partir liberaciones.pbl,,1
+PBD:rieles.pbl,,1
+PBD:reportes_indicadores.pbl,,1
+PBD:mantenimientos.pbl,,1
+PBD:mantenimientos_bolsas.pbl,,1
+PBD:ficha_pt.pbl,,1
+PBD:liquidacion.pbl,,1
+PBD:inventarioxetapas.pbl,,1
+PBD:reportes2.pbl,,1
+PBD:empaque de bolsas.pbl,,1
+PBD:carga.pbl,,1
+PBD:pruebas.pbl,,1
+PBD:liberacion_manual.pbl,,1
+PBD:liquidacion espacio.pbl,,1
+PBD:liberacion escalas.pbl,,1
+PBD:liberacion_semiautomatica.pbl,,1
+PBD:mercada tela.pbl,,1
+PBD:desasignar tela.pbl,,1
+PBD:asignacion_corte.pbl,,1
+PBD:asignacion_corte3.pbl,,1
+PBD:asignacion_corte2.pbl,,1
+PBD:dropdowns.pbl,,1
+PBD:trazos 2.pbl,,1
+PBD:principal.pbl,,1
+PBD:base.pbl,,1
+PBD:calendario_planeacion.pbl,,1
+PBD:planeador.pbl,,1
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,dgr_conceptos_impresion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,n_cts_constantes_tela,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,n_cts_tela_sustituta,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dgr_modelos_partes_liberacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,w_convenciones,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,w_buscar_agrupaciones_parametros_liquida,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,d_lista_trazos_x_base_agrupacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,w_rollo_liquida,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,w_buscar_agrupaciones_parametros2,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\pruebas.pbl,n_cts_corte_copia,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,dtb_modificar_produccion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,dtb_rollos_mercada_rectilineos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,dff_parametros_kamban_corte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,dtb_remision,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_manual.pbl,w_reporte_kamban_corte_new,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,w_liquidados,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dff_motivo_anulacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,n_cts_devolver_trazos,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,w_liquidacionesxespacio2,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,w_buscar_trazo_lista_mardila,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_manual.pbl,dgr_telas_ficha,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_opc_programacion,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,dff_criterio_rep_mesa_cortado_bordado,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,dtb_buscar_escalas_tela,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_orden_guias_numeracion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,f_rcpra_dtos_dddw_param2,f
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,w_generar_calendarioxmodulo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\desasignar tela.pbl,dff_consultar_orden_produccion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,w_referencias_response,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_manual.pbl,dgr_consulta_unidades_liberadas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,w_act_unidades_rectilineas,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,w_devolucion_tela,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,dtb_adhesivo_bolsas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,d_reporte_numeracion_fusionado,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,d_mto_metodos_prog,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mto_proveedores_req,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dff_maestro_modulo_logico,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_liberaciones_generadas_duos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_mantenimiento_dt_agrupa_pdn,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,dff_orden_guias_numeracion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,w_seleccionar_tallasordencorte_mardila,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,w_actualizar_dt_confeccion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\partir liberaciones.pbl,w_seleccionar_espacio_partir_corte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,a_asignacion_modulos,a
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,d_lista_plantas_x_fabrica,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,dgr_tallas_particion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_parametros_filtro,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\partir liberaciones.pbl,w_muestra_obs_texografo_op,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_buscar_produccion_base,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,w_parametros_corte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_base_buscar_interactivo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,dtb_liquidacion_unidades,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_principal_asignacion_modulos,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,cst_adm_conexion,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,dgr_rollos_conceptos_texografo_15,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_mantenimiento_seccion_trazos,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_buscar_bongo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,dgr_lista_buscar_agrupaciones2,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,dtb_liberacion_reproceso,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_rep_requisitos_x_area,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,d_rep_tiempo_x_estilo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,dtb_maestro_flujos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dgr_parametros_orden_corte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dgr_color_op,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,w_fecha_requisito,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,d_dt_rayas_x_telaoc,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,dtb_telas_reposicion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_asignar_modulo_bongo_detalle,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,w_cortar_rollo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\rieles.pbl,w_prioridades_rieles_todos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,ds_reporte_nivel3_terceros,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,uo_timer,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,w_unid_mas_oc,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,ds_tmp_trazos_sirve,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_preview_de_impresion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,d_rep_programa_diario,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,dtb_maestro_trazos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,dtb_mv_inventa_etapa,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\dropdowns.pbl,dddw_m_lanzamientos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,w_parametros_kamban_corte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_resumen_liberacion_po,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,w_buscar_log_pdnxmodulo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_consulta_trazos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_base_tabular,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mantenimiento_estado_pdn_corte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_maestro_partesxprenda,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,d_mto_capacidad_minutos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mantenimiento_ubicaciones,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dff_mantenimiento_h_agrupa_pdn,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_mantenimiento_asignacion_escalas,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion.pbl,dtb_seleccionar_unidades_trazo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,dtb_referencias_x_trazo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,dff_adhesivos_rollos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,dff_informacion_rollo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dff_maestro_lectura_bolsas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_inicial_liberacion_semiautomatica,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,n_cts_descripciones,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,drp_reporte_numeracion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,dtb_adhesivos_partes_ordencorte_osw,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,dtb_auditoria_ordencortes,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,w_reporte_movimiento_etapa,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_reporte_mercada,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,d_ext_ff_totales_bodega,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,dtb_reporte_orden_csi,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mantenimiento_cptos_liq_corte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_calendario_contable,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,w_parametro_corte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,n_cst_generar_consecutivo,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,w_devolucion_rollos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,d_lista_m_modulos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dgr_conceptos_planeacion_centro15,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,d_ff_parametros_actualizar_ancho_rollo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,f_rcpra_dtos_dddw,f
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,d_mto_consumo_proceso,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_minxprenda_maestro,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mantenimiento_calendario_contable,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,n_cts_liberacion_semiautomatica,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,w_info_calidad_tanda,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,d_lista_pdn_a_agrupar,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mantenimiento_agrupaciones,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,dgr_lista_buscar_agrupaciones_liquida,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,d_dt_escalasxoc,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_liquidacion,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,w_duo_conjunto,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,dtb_actualizar_modulo_kamban,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dff_criterio_liberacion_semiautomatica,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,dtb_adhesivo_partes_prenda_final,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,dct_reporte_oc_crosstab,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,dtb_movimientos_etapas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,dtb_inventarioxetapas_revisado_sin_etapa,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,dtb_tela_orden_produccion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,dgr_color_nic_vesma,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_buscar_op_liberacion_duo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\pedidos.pbl,w_seleccionar_equivalencia_prod,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,r_liberacion_escalas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_modulos.pbl,f_distribuir_unidades_base,f
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,of_particion,f
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,dtb_ins_refptxtrazo_esc,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dtb_tejidoxorden,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,d_tb_reporte_oc_referencia_x_oc,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,dtb_dt_capas_reftela,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mto_consumo_proceso,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mantenimiento_unidxprenda_tela,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,d_lista_productos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,n_cst_configuracion_kpo,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dtb_rollos_liberacion_critica,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,dgr_conceptos_texografo_15,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,d_lista_trazos_tallasxtrazo_v2,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,dgr_partes_modelo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_reporte_liquidacion_ordencorte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,dtb_seleccionar_reporte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_mercada_tela,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,dgr_mercada_tela_pda,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dgr_rollos_liberacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_parametros_variaciones_detallado,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,dff_parametros_reporte_remision,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,w_grafico_produccion_corte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mto_unidad,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,n_cts_constantes,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_mantenimiento_agrupacion,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_base_maestrotb_detalletb_para_tabs,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,dtb_mercadas_pendientes,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,w_cambiar_mesa,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,d_rep_programacion_tiempo_datos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,d_rep_tiempo_x_grupo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,dtb_inventario_etapa_grafico,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_buscar_ordenpd,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dtb_consulta_trazos_respaldo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dtb_reporte_mv_loteo_auditor,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\ficha_pt.pbl,dtb_invisible_m_log_ficha,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_centro_produccion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_modulos.pbl,dff_dt_pdnxmodulo_para_escalas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,dgr_lista_buscar_agrupaciones,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_base_maestroff_detalletb_para_tabs,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,dtb_imp_solicitud_trazo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mantenimiento_ca_adicional_dt_telasxoc,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,w_lanzamientos_response,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,dw_reporte_kamban_po_new,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_manual.pbl,w_unidades_ordenpdn_ordcorte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,dtb_maestro_transaciones,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,dgr_m_cptos_bodega,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,w_homologacion_telas_nic_vesma,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,dff_password_trazos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,w_act_fechas_reposo_x_lib,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,w_buscar_agrupaciones_parametros,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_modulos.pbl,w_asignacion_modulos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,d_dt_observa_oc,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,dtb_dt_solicitud_trazos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,w_unid_sobrantes_loteo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_cortar_rollos_rectilineos,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,d_procesos_produccion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,dtb_observa_oc,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,w_trazos_x_session_version2,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\calendario_planeacion.pbl,n_utilidades_calendario_new1,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,d_ff_seleccionar_control_generar_oc,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,w_buscar_espaciosxoc,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,w_generar_liquidacion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,ds_unidliq_comp,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,w_mercar_tela,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,dff_mercada,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,w_actualizar_ancho_rollos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_kamban_corte_sp,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_reporte_programacion_oc_crosstab,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dff_reporte_mercada,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dtb_diagrama_repite_tela,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_mantenimiento_maestro_detalle,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,dtb_buscar_referencias,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,w_maestro_conceptos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_mantenimiento_asignacion_modulos,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,dff_maestro_trazo_programado,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,w_atender_reposicion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,n_cst_mover_kardex,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dgr_partes_complementos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_partir_espacios,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dgr_tallas_op_color,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dtb_inicial_liberacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_rep_programacion_corte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,dtc_inventario_fisico_bongos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,n_cerrar_aplicacion,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,d_mto_requisito,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,f_deshabilitar_opciones,f
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dgr_rollos_tela_sustituta,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,w_password_max_lotes,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,w_observacion_corte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,d_lista_base_rayasxbase_v2,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,dff_encabezado_liquidacion_espacio,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_buscar_bongo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,n_cst_rollo,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,dgr_actualizacion_concepto_critica,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,uo_calendario,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,w_buscar,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,w_calculo_consumo_sesgo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,w_bolsas_incompletas_bongo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dtb_cons_corte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\ficha_pt.pbl,dff_maestro_ficha_pt,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,w_homologacion_colores_nic_vesma,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\nicole.pbl,dgr_grupos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dtb_log_errores_liberacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_opciones_impresion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,dtb_rep_trazos_pendientes,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,dtb_devolucion_rollo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,w_actualizar_rollos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,n_cst_canasta,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_manual.pbl,n_cerrar_po,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,w_reporte_tandas_tela_cruda,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_manual.pbl,w_reporte_mv_loteo_auditor,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,uo_adm_recursos,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,n_cst_string,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_parametros_orden_corte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,n_cts_corte,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\pedidos.pbl,n_cst_peddig,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dtb_unidades_libxcolor_talla_exp,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_modulos.pbl,w_buscar_pendientesxasignar,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,w_generar_reposicion_tela,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_buscar_recipientes,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos_bolsas.pbl,w_mantenimiento_bolsas,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dgr_resumen_liberacion_po,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_reporte_numeracion_fusionado,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,w_adhesivos_telas,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_totalordcr,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,s_base_opciones,s
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mto_base,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,d_mto_unidad,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,d_mto_procesos_pdn,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,n_cts_param_raya,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,dtb_poxagrupacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,dtb_administracion_dt_canasta_corte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,n_cst_mercada_tela,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,dtb_variaciones_valorizadas_espacio,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,dtb_variaciones1,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,w_principal,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,dtb_maestro_conceptos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_buscar_escalas_tela,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_buscar_rayasxbase_insert,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_mantenimiento_dt_agrupa_pdn_raya,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_generar_liquidacion,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,w_rutas_etapas,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,w_modificar_produccion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,w_actualizar_modulo_kamban,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_manual.pbl,dgr_rollos_liberacion_manual,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,w_actualiza_maquina_corte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,dtb_movimientos_etapas_resumido,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dtb_porc_permitido,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\pedidos.pbl,n_cst_cronograma,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,d_cuadro_pdn_x_tallas_pendientes,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_seleccion_trazos,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,dgr_m_rollo_liquida,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_cambiar_mesa,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\dropdowns.pbl,dddw_m_subcentros_pdn,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,d_calendario,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dff_consulta_ordenpt,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_reporte_unid_corte_talla_rectili,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dgr_telas_op_estilo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_reporte_oc_referencia,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_base_buscar_lista,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,dtb_info_trazos_referencia,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_modulos.pbl,w_preview_impresion_prog_102,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,f_actualizar_prioridades,f
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_lotear_bongo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos_bolsas.pbl,n_cst_kamban_corte,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\rieles.pbl,d_prioridades_rieles,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,dff_campo_busqueda,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,d_reporte_numeracion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_parametros_variaciones_valorizado,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,dtbe_reporte_nivel0,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,n_cst_tiempos_maq_marquillado,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_reporte_errores,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_base_principal,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,dgr_m_metas_idicadores,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,n_cts_param,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\partir liberaciones.pbl,dgr_mantenimiento_base_trazos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,dtb_observacion_modulo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,d_modulos_asignacion_corte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,w_observaciones_ordcte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dtb_reporte_kamban_centros,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dgr_solicitud_partir_rollos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dtb_detalle_lectura_bolsas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,f_adhesivo_placas,f
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_preview_ordencorte_parciales,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,dtb_meta_indicadores_cptos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dtb_liberacion_generada_duo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_administracion_porc_permitido_ref,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dtb_consultar_ficha_prenda,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,d_molderias_ops_agrupadas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_base_maestroff_detalletb_subdetalletb,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_seleccionar_reporte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,dtb_rutas_etapas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,r_orden_gral2,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_parametros_rep_requisitos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,d_rep_tiempo_x_po,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mantenimiento_estados_reposicion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_mantenimiento_minutos,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_zoom,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,w_prewiew_liberacion_escalas,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_mantenimiento_parametros_asignacion,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,dtb_liquidados,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,w_fechas_modulos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,w_movimientos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,dtb_tallas_produccion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,n_cst_funciones_comunes,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_mantenimiento_bolsas,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_tipo_liberacion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,w_buscar_dato,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_mantenimiento_simple,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,dgr_homologacion_tela_nic_vesma,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dtb_detalla_liberacion_x_proyeccion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,w_crear_ordenes_sin_busqueda,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,d_lista_secciones_x_trazos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion.pbl,w_seleccionar_unidades_liquidacion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_act_rollos_libera,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_liberacion_semiautomatica,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,dtb_lista_perfiles,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,dtbe_reporte_nivel1,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_base_acerca_de,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,w_capas_tipo_tela,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,d_mto_proveedor_req,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,dtb_maestro_m_flujos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_producto,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,n_cts_cargar_temporales_liberacion,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_mantenimiento_asignacion_trazos,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,dtb_maestro_liqxespacio,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,w_generar_calendario_contable_gral,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,dtb_reposiciones_pendientes,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_manual.pbl,dgr_tallas_liberacion_manual,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_filtro_liberacion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_buscar_reporte_mv_loteo_auditor,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dgr_oc_po_duo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,n_registrar_sql,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_mantenimiento_cptos_liq_corte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\partir liberaciones.pbl,dgr_rayas_referencias_agrupacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,dtb_tallas_liberacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,d_lista_secciones_x_trazos_v2_copia21,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion.pbl,dtb_liquidaciones_ordencorte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,dtb_observaciones_oc,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,dtb_trazos_existentes_iguales,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,dtb_usuarios_enviar_correo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,w_administracion_trazos_escala,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,dtg_estilotalla_ajustar,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,n_cst_cambio_po_loteo,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\partir liberaciones.pbl,w_seleccionar_trazosmodeloordencorte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_rollos_liberacion_problemas,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,w_reporte_dtll_indicadores,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_estados_mercada,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_mantenimiento_mesas_lineas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mantenimiento_mod_calendario,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_base_maestroff_detalletb,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_buscar_modulo_logico,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_buscar_estilosxdescripcion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\pedidos.pbl,n_cst_mensaje,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,w_conceptos_texografo_15,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_mantenimiento_dt_pdnxbase,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_mantenimiento_h_base_trazos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,dtb_rollos_mercada_raya,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,w_reproc_unid_num_con_liq,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\dropdowns.pbl,dddw_m_lineas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,dtb_kamban_corte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_cargar_bongo_despachos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,f_crear_bolsa,f
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,dtb_actualizar_ancho_rollos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,w_preview_inventario_etapas_estilo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_reporte_unidades,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dtb_reporte_rollos_calidad,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,w_reporte_ordenes_csi,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,w_reporte_liberaciones_anuladas,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_estados_reposicion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,w_maestro_etapas,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dtb_reporte_user_auditor,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mto_procesos_pdn,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,d_buscar_raya_telaxbase_insert,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,d_lista_trazos_tallasxtrazo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\planeador.pbl,s_parametros_barra,s
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion.pbl,dtb_detalle_lotes_confeccion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,dtb_h_solicitud_trazos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,w_seleccionar_modulo_subcentro,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dgr_buscar_po,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,ds_unid_sobrantes_loteo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_manual.pbl,w_liberacion_manual,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\partir liberaciones.pbl,dtb_rollos_x_mercada_x_raya,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\planeador.pbl,n_cst_ole_calendario,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,f_crea_cabecera_bolsa,f
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_reporte_criticas_liberacion_rep,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dff_criterio_buscar_bongos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,w_trazos_existentes_iguales,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,w_copiar_simulaciones,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,dtb_rollos_tela_reposicion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_telas,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dff_filtro_liberacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,dtb_variaciones_resumen_espacio,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_reporte_remisiones,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_reporte_material_cortado,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dtb_reporte_oc_anuladas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_buscar_mercada,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,w_concepto_bodega,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,w_maestro_tipos_etapas,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_select,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion.pbl,w_reporte_orden_corte_sin_busqueda,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,d_lista_oc_pdn_estilo_po_color_x_agrupa,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,dgr_secciones_por_espacio,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,dtb_parametros_modificacion_produccion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,d_rep_requisitos_x_area,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\ficha_pt.pbl,dtb_dt_modelos1,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dgr_mantenimiento_estado_pdn_corte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,w_conceptos_impresion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_detalle_partesxprenda,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\partir liberaciones.pbl,dtb_detalle_tallasxtrazo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_pendientes_x_programar,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion.pbl,w_consultar_trazos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion.pbl,w_buscar_cb_oc_raya_espacio,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,dtb_buscar_espacios_xoc,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\pruebas.pbl,n_cts_corte_una_copia,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,dtb_referencias_po_ordenpdn,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,w_reporte_dt_sesgos_x_oc_raya,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,w_reporte_movimiento_resumido,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,w_tela_orden_produccion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mto_capacidad_minutos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dgr_buscar_op_liberacion_duo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_modulos.pbl,w_escalas_asignacion_modulos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_modulos.pbl,f_distribuir_unidades,f
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_cargar_segundas_despachos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_conceptos_planeacion_centro_15,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,dff_parametro_produccion_corte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,w_reporte_kilos_centro,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,n_timer,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_base_simple,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mantenimiento_estados_mercada,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mantenimiento_mesas_lineas,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_mantenimiento_ubicaciones,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,n_cts_corte_una,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dgr_rollos_tela_color_make_to_order,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\pedidos.pbl,w_seleccionar_equivalencia_vta,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dtb_rep_criticas_liberacion_x_ref_col,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_dt_rayas_telaxbase,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,d_lista_trazos_x_agrupacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion.pbl,dtb_rollos_liquidacion_trazos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,dtb_dt_pdnxmodulo2_estado19,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,w_ventana_emergente,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dff_info_general_ordenpt,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dff_criterio_reporte_mv_loteo_auditor,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,m_base_principal,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,dtb_maestro_etapas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,f_prioridad,f
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion.pbl,w_consultar_rayas_ordencorte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,dtb_fechas_independientes,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_tela_adicional,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,n_cts_orden_segundo_loteo,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dgr_cpto_validacion_calidad_loteo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dgr_lista_seleccionar_rollos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dgr_maestro_cpto_audi_calidad,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_cambiar_oc_anulada_en_duo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dgr_reporte_mercada,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_criticas_kamban_corte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_mantenimiento_errores,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mto_motodos_prog,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,w_maestro_de_flujos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dgr_motivos_anulacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,dff_parametros_devolver_trazos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_asignar_modulo_bongo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,w_cerrar_mes_inventarioxetapas,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dtb_aprobacion_calidad_tono,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_mantenimiento_dt_pdnxmodulo_x_oc,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,d_gr_unidades_preliq_x_oc,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,d_concepto_reimpresion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,w_tela_terminada,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\pedidos.pbl,n_cst_pedpend_exp,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_modulos.pbl,w_parametros_asignacion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion.pbl,w_liquidaciones,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dff_paramteros_inicial_liberacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,n_cts_oc_csi,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_manual.pbl,w_consulta_ordenpt,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_vista_preview_filtro_busqueda,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,dtb_mv_centro15_nivel2,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,w_cargar_datos_make_to_stock,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,dff_criterio_agrupa_pdn,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,w_asignacion_corte1_estado19,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,w_rep_trazos_pendientes,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos_bolsas.pbl,dgr_mantenimiento_bolsas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dtb_detalla_liberacion_semiautomatica,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,d_gr_reporte_dt_sesgos_x_oc_raya,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,w_consulta_bongos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dtb_consulta_tallas_colores,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dff_fechas_liberacion_diaria_critica,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,dtb_mantenimiento_reportes,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,d_plantas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mto_requisitos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_m_partes_prenda,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,d_h_ordenes,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,dtb_pendientes_x_programar,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,w_parametros_devolver_trazos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,dgr_duo_conjunto,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\partir liberaciones.pbl,dtb_seleccionar_trazosmodeloordencorte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,w_reporte_devolucion_tela,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,w_cargar_fisobras,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,d_parametros_rep_requisitos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,d_parametros_guias_numeracion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\ficha_pt.pbl,dtb_h_ficha_pt,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,dtb_mantenimiento_errores,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_mantenimiento_partesxprenda,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_existencia_en_proceso_critica,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_mantenimiento_dt_escalaxpdnbase,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_mantenimiento_dt_agrupaescalapdn,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,w_tipo_oc,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_lotear,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\desasignar tela.pbl,w_asignar_tela_op,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,dff_parametros_log_pdnxmodulo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,f_validar_existencia_bolsa,f
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_parametros_programacion_corte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,d_parametros_programacion_corte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_manual.pbl,w_diagrama_repite,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,s_base_parametros,s
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,d_centros_produccion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mto_requisitos_x_area,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_inventario_btt_make_to_order,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,w_password_trazos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dtb_existencias_tela_critica,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dgr_ref_equivalentes_make_to_order,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,dgr_m_convenciones,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,w_programacion_produccion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,r_liquidacion_orden_corte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,w_copiar_calendarioxmodulo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,f_preparar_archivo_plano,f
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,dtc_faltantes_bolsa_bongo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,dff_criterio_etapas_datos_resumidos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,r_total_ordencorte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dtb_user_auditor,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,n_cst_liberacion,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,d_rep_procesos_plan,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,dgr_fechas_modulos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,dtb_auditoria_proceso_calidad_corte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,w_definir_trazos_recalculo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,dff_reposicion_tela,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,dtb_usuariosxaplicacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,w_actualizar_unidades_cuellos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dff_reporte_unid_corte_talla_rectili,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,w_tela_cruda,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,n_cst_importfile,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,d_ff_parametro_orden_corte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,uo_dsbase,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dtb_user_auditor_cambio,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_partes_prenda,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,dgr_proporcion_liberacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dtb_existencias_tandas_proceso_criticas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,dtb_modificar_fecha_fin_reposo_lib,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,dtb_tipo_oc,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,d_cuadro_pdn_x_tallas_pendientes_v2,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,n_cts_ocfabrica,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,dtb_liq_rollosxespacio,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,dtb_rollos_mercada,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_reporte_actualizacion_rectilineas,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_vista_guias_numeracion,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,d_rep_tiempo_x_composicion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,dgr_cpto_bodega,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,w_reporte_nivel3_terceros,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,d_gr_reporte_liberaciones_anuladas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,dgr_conceptos_loteo_corte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dff_estilos_h_preref,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,dgr_cargar_make_to_stock,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,n_cts_recalcular_unidades,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dtb_datos_liberacion_unidades,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_modulos.pbl,dtb_modulos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,w_fechas_requisito_independiente,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dgr_bongos_usados_oc_po,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_preview_variaciones_detalle,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,w_reporte_tiempo_meta,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,d_sq_gr_rep_tiempo_maq_marquilladora,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,d_ex_ff_param_tiempo_maq_marquilladora,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_buscar_estilos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\calendario_planeacion.pbl,n_curva,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\pedidos.pbl,d_gr_equivalencia_referencia_nal,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,f_rcpra_dtos_dddw_param,f
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,w_observacion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion.pbl,dtb_consulta_rayas_ordecorte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\pruebas.pbl,w_pdn_agrupar_copia,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,w_solicitud_trazos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_mantenimiento_dt_telaxoc_adicional,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\dropdowns.pbl,dddw_h_preref,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,w_buscar_referencia,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,d_rep_tiempo_x_cliente,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dtb_reporte_criticas_liberacion_rep,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_rep_produccion_maq_marquillado,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,w_m_cptos_bodega,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\calendario_planeacion.pbl,n_utilidades_calendario_new,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_modulos.pbl,dct_reporte_formato_102,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,w_preview_de_impresion_ordencorte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_devolver_loteo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_total_ordencorte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_manual.pbl,w_telas_op_estilo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\ficha_pt.pbl,w_administracion_ficha_pt,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_mantenimiento_unidxprenda_tela,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\partir liberaciones.pbl,w_definir_rayas_agrupacion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,dtb_info_calidad_tanda,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_modulos.pbl,dtb_dt_programa_diario,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,w_trazos_x_session2,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\calendario_planeacion.pbl,s_parametros_calendario,s
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,w_seleccionar_control_generar_oc,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion.pbl,w_loteo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,dtb_estilo_para_ajsute,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,w_mercar_tela_pda,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,s_parametros_pr_graba_pdn,s
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_liberacion_manual,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\partir liberaciones.pbl,w_buscar_rollos_x_espacio_x_raya,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,w_adhesivo_sesgos_recipiente_perfecto,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_rep_liberacion_diaria_critica,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,d_ex_ff_param_pdn_maq_marquilladora,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,w_conexion_asignacion_modulos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,w_parametros_particion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,n_cts_tallas_particion,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,d_lista_trazos_tallasxtrazo_definicion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,w_buscar_solicitud_trazo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,f_rcpra_dtos_dddw_param4,f
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_base_pda,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\desasignar tela.pbl,dtb_tela_requerida_op,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,n_cst_cambios_po,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_manual.pbl,d_gr_campo_parte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_manual.pbl,dff_parametros_orden_produccion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,w_buscar_concepto,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,dtb_inventarioxetapas_estilo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\ficha_pt.pbl,dtb_dt_color_modelo1_copia,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_reporte_rollos_calidad,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,uo_dtwndow,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_base_buscar_lista_parametro,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion.pbl,w_seleccionar_unidades_loteo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_solicitud_partir_rollos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dgr_temp_tela_n,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,dtb_adhesivo_partes_prenda_otras_rayas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dff_filtro_buscar_oc_anuladas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dtb_reporte_liberacion_diaria_criticas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_detalle_mod_calendario,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_log_errores_liberacion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_modulos.pbl,w_seleccionar_modulos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,dff_criterio_buscar_agrupaciones_liquida,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\calendario_planeacion.pbl,n_utilidades_simulacion,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dtb_adhesivos_bongo_new_colores,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,r_devolucion_tela,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,dtb_adhesivos_partes_ordencorte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,dtb_adhesivo_partes_prenda,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,w_inventario_fisico_bongos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_mantenimiento_reportes,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_existencias_tela_critica,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_rollos_tela_sustituta,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\pedidos.pbl,n_cst_dt_pedidos,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_modulos.pbl,dff_modulos_de_asignacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,dff_cargar_preproduccion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_tallas_op,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,f_crea_detalle_bolsa,f
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,w_reporte_bodega_tela_cruda,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,dtb_reporte_dtll_indicadores,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_manual.pbl,w_oc_duos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,n_cst_orden_corte,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,dtb_dt_pdnxmodulo2,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_mantenimiento_creacion_orden,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,d_cuadro_pdn_x_tallas_seleccion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion.pbl,dtb_liquidaciones_trazos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,dtb_liquidacion_rollos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,w_ejecutar_sp_m_lotes_soti_conf,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,dtb_reporte_numeracion_fusionado,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_preview_variaciones_valorizado,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,d_sq_gr_rep_pdn_x_maq_marquilladora,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,d_mto_requisitos_por_area,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\partir liberaciones.pbl,dgr_rayas_telasxbase,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,n_cts_liberacion_x_proyeccion,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_buscar_produccion_raya,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_modulos.pbl,dff_parametros_asignacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_modulos.pbl,w_buscar_moduloxsimulacion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion.pbl,dtb_resumen_consumo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,dtb_liq_unidadesxespacio,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dff_rollos_act_lib,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,dtb_ins_tallasxtrazo_esc,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,w_kamban_corte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_manual.pbl,w_lectura_bolsa,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,w_reporte_guias_numeracion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_preview_variaciones_resumen,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,w_reporte_etapas_datos_resumidos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,w_maestro_de_transaciones,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,u_ds_base,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_modulos.pbl,w_asignar_unid_parciales,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,w_autorizacion_capas,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,w_concepto_critica_orden_corte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,w_cargar_preparacion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,f_graba_en_h_kardex,f
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,dgr_ordenes_csi,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,dtb_r_log_pdnxmodulo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,d_ext_ff_filtro_tela_btt,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,m_reportes,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,f_fecha_servidor,f
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,u_dw_base,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,d_fecha_requisito,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,d_dt_trazozxoc,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,d_lista_base_rayasxbase,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,dgr_trazos_recalculo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,w_modificacion_canastas,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dff_adhesivo_sesgo_perfecto,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,dtb_ordencr_muertas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,w_mantenimiento_concepto_loteo_corte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_subcentro_produccion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_fabrica_planta,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,dgr_rollos_lotes,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,w_tmp_trazos_sirve,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\pedidos.pbl,n_arbol_pedido,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,d_buscar_raya_telaxbase,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_buscar_motivo_anulacion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,d_dt_unidadesxtrazo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,dct_reporte_ordencorte2,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,dtb_remision_rollos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,w_usuariosxaplicacion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_buscar_ordencorte_sesgo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\partir liberaciones.pbl,dct_seleccionar_espacio_partir,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,d_tiempo_programdo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,dtb_rep_bodega_material_cortado,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,r_tela_ordenpt,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,n_cst_reporte_centro_15,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,dtb_maestro_tipos_etapas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_manual.pbl,w_mantenimiento_auditores_calidad,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_ayuda_filtro,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_consultar_ficha_prenda,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_filtro_buscar_oc_anuladas,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,d_ext_ff_filtro_tela_cruda,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\ficha_pt.pbl,w_buscar_ficha_pt,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,dtb_reporte_kilos_centro,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,dtb_lista_controles,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_retroalimentacion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_buscar_modulo_logico,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,n_cts_particion,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,uo_correo,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_porcentaje,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,w_crear_orden_corte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion.pbl,dtb_consulta_trazos_liquidacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,n_cst_liberacion_reproceso,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,w_ordenes_csi,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,n_cts_reportes_varios,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,dgr_unid_mas_oc,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,m_vista_previa_filtro,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte.pbl,w_info_trazos_referencia,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,dtb_buscar_trazo_lista,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_manual.pbl,dgr_colores_liberacion_manual,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_liberacion_semiautomatica,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,d_rep_requisitos_x_proveedor,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_par_sort_guias_numeracion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,dtc_consulta_de_bongos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_preview_auditoria_ordencorte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,w_base_filtro,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_reporte_bodega_tela_terminada,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dtb_maestro_liberacion_semiautomatica,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_modulos.pbl,f_traer_fechas,f
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion.pbl,dtb_unidades_liquidacion_trazos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,w_liquidaciones_espacio,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,w_unidliqxraya,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,w_matar_ordenes_corte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dtb_actualizar_unidades_cuellos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion.pbl,w_reporte_orden_corte,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_reporte_oc_anuladas,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,dtb_detalle_transaciones,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mto_minxprenda_tela,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,w_rollos_lote,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_unid_referencias,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dtb_colores_liberacion_semiautomatica,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,w_asignacion_corte1,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_modulos.pbl,dtb_dt_pdnxmodulo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,dtb_seleccionar_espacio,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,dtb_tela_devolucion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,w_liberacion_reproceso,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_seguimiento_op_procesos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,dtb_variaciones_espacio,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,dff_rep_material_cortado_parametro,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,w_concepto_centro15_nivel2,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,n_cst_pdn_maq_marquillado,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_rep_tiempos_maq_marquillado,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mantenimiento_devolucion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,dtb_usuarios_enviar_correo_trazador,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,dff_autorizacion_capas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,n_cst_loteo_bongo,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_buscar_subcentros,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_aprobacion_calidad_tono,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_rep_requisitos_x_proveedor,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_loteadoxmodulo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,w_m_metas_indicadores,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_minxprenda_detalle,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,dtb_tallas_particion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_modulos.pbl,dtb_dt_talla_pdnxmodulo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion.pbl,dtb_lotes_confeccion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,dtb_rollos_devolucion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_manual.pbl,w_consulta_unidades_liberadas,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,uo_timer_cerrar_aplicacion,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_base_maestrotb_detalletb,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\nicole.pbl,w_grupos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_modulos.pbl,dtb_buscar_pendientesxasignar,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,n_cts_capas_prog_x_liq,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_mantenimiento_maestro_detalle_subdet,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,n_cst_bolsa,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,w_lineas_response,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,w_validar_loteo,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_buscar_po,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_seleccion_rollos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,dtb_seguimiento_op_procesos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,w_conexion_devolver_liquidacion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_preview_reporte_orden_planeacion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,d_parametros_rep_requisitos_x_proveedor,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,dgr_par_orden_guias_numeracion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,dtb_rollos_liquidados_oc,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,dff_parametros_tela_orden_produccion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,w_reporte_nivel1,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,w_base_conexion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_mantenimiento_area,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion_semiautomatica.pbl,w_rollos_liberacion_critica,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\procesos.pbl,d_gr_ref_preliquidadas_x_oc,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\inventarioxetapas.pbl,dff_parametro_movimiento_etapa,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dtb_loteado_por_modulo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dff_criterio_loteopormodulo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,w_totales_bodega_cruda,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,d_ff_parametros_fechas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dgr_mantenimiento_area,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_user_auditor,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,d_subcentros_produccion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,n_cts_constantes_corte,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,w_tallas_liberacion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,dff_criterio_buscar_agrupaciones,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion.pbl,dff_consulta_trazos_liquidacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,dtb_seleccionar_talla_mardila,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,f_digito_de_control_ucc128,f
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,w_validar_auditor,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,w_maestro_cpto_audi_calidad,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,w_parametros_rep_requisitos_proveedor,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,dtb_rep_mesa_bordado_preparacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,w_proporcion_liberacion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,dt_talla_unid_agrupacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\partir liberaciones.pbl,dtb_muestra_obs_texografo_op,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_modulos.pbl,dtb_buscar_modulosxsimulacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,dff_ficho_rollo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,w_mercar_rectilineos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,m_pda,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,w_complementos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,w_base_buscar_maestros,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,dtb_act_unidades_rectilineas,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dtb_cambiar_oc_anulada_en_duo,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\empaque de bolsas.pbl,w_adhesivos_bongos,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,w_prm_fechas,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\servicios_comunes.pbl,n_ds_t_tiempo_perdmaqmar,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,s_base_info_usuario,s
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte3.pbl,w_pdn_agrupar,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,m_vista_previa,m
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,w_buscar_rayasxbase2,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,f_rcpra_dtos_dddw_param1,f
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\base.pbl,n_datetime,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mercada tela.pbl,dff_actualizacion_rollos,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,n_pda,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,n_cst_modulo,u
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,w_buscar_dato_string,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,dtb_reporte_orden_planea,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_indicadores.pbl,w_reporte_nivel0,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,w_tallas_particion,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\principal.pbl,s_base_parametros_seleccionar,s
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,d_insercion_dt_agrupacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\asignacion_corte2.pbl,dff_seleccion_area,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,w_seleccionar_espacio,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion.pbl,dff_consulta_ordencorte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\mantenimientos.pbl,dff_asignar_modulo_bongo_maestro,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\trazos 2.pbl,dtb_buscar_trazos_solicitados,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liberacion escalas.pbl,w_consultar_po_cut_x_op,w
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\liquidacion espacio.pbl,dtb_tarjetas_rollos_programacion,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes_asignacion_modulos.pbl,dtb_rollos_sin_liquidar,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\reportes2.pbl,dtb_unidades_ordpdn_ordcorte,d
+OBJ:D:\SVN\FUENTES\Branches\P19\Corte\carga.pbl,w_rep_mesa_bordado_preparacion,w
