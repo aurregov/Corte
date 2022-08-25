@@ -1,0 +1,58 @@
+HA$PBExportHeader$dgr_m_metas_idicadores.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=co_centro dbname="co_centro" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_tipoprod dbname="co_tipoprod" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_centro_pdn dbname="co_centro_pdn" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_subcentro_pdn dbname="co_subcentro_pdn" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_planta dbname="co_planta" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_minima dbname="ca_minima" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_maxima dbname="ca_maxima" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=porc_limite dbname="porc_limite" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=unidad dbname="unidad" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="instancia" )
+ retrieve="  SELECT m_metas_ctros_n1.co_centro,   
+         m_metas_ctros_n1.co_tipoprod,   
+         m_metas_ctros_n1.co_centro_pdn,   
+         m_metas_ctros_n1.co_subcentro_pdn,   
+         m_metas_ctros_n1.co_planta,   
+         m_metas_ctros_n1.ca_minima,   
+         m_metas_ctros_n1.ca_maxima,
+			m_metas_ctros_n1.porc_limite,   
+         m_metas_ctros_n1.unidad,   
+         m_metas_ctros_n1.fe_creacion,   
+         m_metas_ctros_n1.fe_actualizacion,   
+         m_metas_ctros_n1.usuario,   
+         m_metas_ctros_n1.instancia  
+    FROM m_metas_ctros_n1   
+" update="m_metas_ctros_n1" updatewhere=0 updatekeyinplace=yes  sort="co_centro A co_tipoprod A co_centro_pdn A co_subcentro_pdn A co_planta A " )
+text(band=header alignment="2" text="Centro" border="6" color="33554432" x="9" y="8" height="52" width="274" html.valueishtml="0"  name=co_centro_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tipo Producci$$HEX1$$f300$$ENDHEX$$n" border="6" color="33554432" x="293" y="8" height="52" width="384" html.valueishtml="0"  name=co_tipoprod_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Centro Pdn" border="6" color="33554432" x="686" y="8" height="52" width="270" html.valueishtml="0"  name=co_centro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Subcentro Pdn" border="6" color="33554432" x="965" y="8" height="52" width="357" html.valueishtml="0"  name=co_subcentro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Planta" border="6" color="33554432" x="1330" y="8" height="52" width="251" html.valueishtml="0"  name=co_planta_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Minima" border="6" color="33554432" x="1591" y="8" height="52" width="279" html.valueishtml="0"  name=ca_minima_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unidad" border="6" color="33554432" x="2569" y="8" height="52" width="233" html.valueishtml="0"  name=unidad_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Maxima" border="6" color="33554432" x="1879" y="8" height="52" width="270" html.valueishtml="0"  name=ca_maxima_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Porcentaje  Limite" border="6" color="0" x="2158" y="8" height="52" width="402" html.valueishtml="0"  name=porc_limite_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=5 alignment="2" tabsequence=50 border="5" color="0" x="1330" y="8" height="64" width="251" format="[general]" html.valueishtml="0"  name=co_planta visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=6 alignment="2" tabsequence=60 border="5" color="0" x="1591" y="8" height="64" width="279" format="[general]" html.valueishtml="0"  name=ca_minima visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=7 alignment="2" tabsequence=70 border="5" color="0" x="1879" y="8" height="64" width="270" format="[general]" html.valueishtml="0"  name=ca_maxima visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="2" tabsequence=10 border="5" color="0" x="9" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_centro visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="2" tabsequence=30 border="5" color="0" x="686" y="8" height="64" width="270" format="[general]" html.valueishtml="0"  name=co_centro_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="2" tabsequence=40 border="5" color="0" x="965" y="8" height="64" width="357" format="[general]" html.valueishtml="0"  name=co_subcentro_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="2" tabsequence=20 border="5" color="0" x="293" y="8" height="64" width="384" format="[general]" html.valueishtml="0"  name=co_tipoprod visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=9 alignment="2" tabsequence=90 border="5" color="0" x="2569" y="8" height="64" width="233" format="[general]" html.valueishtml="0"  name=unidad visible="1" edit.limit=2 edit.case=upper edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=8 alignment="2" tabsequence=80 border="5" color="0" x="2158" y="8" height="64" width="402" format="[general]" html.valueishtml="0"  name=porc_limite visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
