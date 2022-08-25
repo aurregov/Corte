@@ -1,0 +1,75 @@
+HA$PBExportHeader$dtb_listado_manoobra_ficha.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=256 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=char(40) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="co_talla" )
+ column=(type=long updatewhereclause=yes name=co_calidad dbname="co_calidad" )
+ column=(type=long updatewhereclause=yes name=co_centro_pdn dbname="co_centro_pdn" )
+ column=(type=long updatewhereclause=yes name=co_subcentro_pdn dbname="co_subcentro_pdn" )
+ column=(type=char(30) updatewhereclause=yes name=de_subcentro_pdn dbname="de_subcentro_pdn" )
+ column=(type=decimal(4) updatewhereclause=yes name=tioperacion dbname="tioperacion" )
+ column=(type=datetime updatewhereclause=yes name=fe_actualizacion dbname="fe_actualizacion" )
+ column=(type=decimal(4) updatewhereclause=yes name=prc_eficiencia dbname="prc_eficiencia" )
+ column=(type=decimal(4) updatewhereclause=yes name=ti_total dbname="ti_total" )
+ retrieve="select dt.co_fabrica, dt.co_linea, dt.co_referencia, h.de_referencia, 
+       dt.co_talla, dt.co_calidad, dt.co_centro_pdn, dt.co_subcentro_pdn,
+       m.de_subcentro_pdn, dt.tioperacion, dt.fe_actualizacion,
+       dt.prc_eficiencia, dt.ti_total
+from dt_fichatiempos_cs dt, h_preref_pv h, m_subcentros_pdn m
+where dt.co_fabrica = h.co_fabrica
+and dt.co_linea = h.co_linea
+and dt.co_referencia = h.co_referencia
+and (Cast(dt.co_referencia as char(15) ) = h.co_referencia ) 
+and h.co_tipo_ref = 'P'  
+and dt.co_tipoprod = m.co_tipoprod
+and dt.co_centro_pdn = m.co_centro_pdn
+and dt.co_subcentro_pdn = m.co_subcentro_pdn
+and (dt.co_fabrica= :ai_fabrica OR :ai_fabrica = 0)
+and (dt.co_linea = :ai_linea OR :ai_linea = 0)
+and (dt.co_referencia = :al_referencia OR :al_referencia = 0)
+and dt.co_tipoprod = 1
+and dt.co_centro_pdn = 1
+and dt.co_subcentro_pdn = 12;" arguments=(("ai_fabrica", number),("ai_linea", number),("al_referencia", number))  sort="co_fabrica A co_linea A co_referencia A co_talla A " )
+group(level=1 header.height=192 trailer.height=0 by=("co_fabrica" , "co_linea" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=84 trailer.height=0 by=("co_fabrica" , "co_linea" , "co_referencia" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="PROCESOS DE REFERENCIAS  (FILTRADO REVISION CUELLOS Y PU$$HEX1$$d100$$ENDHEX$$OS)" border="2" color="33554432" x="590" y="40" height="52" width="1769" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="2450" y="40" height="60" width="539" format="dd/mmm/yy hh:mm" html.valueishtml="0"  name=date_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=header alignment="0" expression="'Pag ' + page() + ' de ' + pageCount()"border="0" color="33554432" x="27" y="20" height="60" width="507" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+button(band=header text="Filtrar" enabled=yes action="9" border="0" color="0" x="78" y="116" height="120" width="320" vtextalign="0" htextalign="0"  name=b_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Guardar como..." enabled=yes action="14" border="0" color="0" x="430" y="116" height="120" width="434" vtextalign="0" htextalign="0"  name=b_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Talla" border="2" color="33554432" x="41" y="112" height="52" width="169" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Calidad" border="2" color="33554432" x="215" y="112" height="52" width="197" html.valueishtml="0"  name=co_calidad_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Centro Pdn" border="2" color="33554432" x="416" y="112" height="52" width="329" html.valueishtml="0"  name=co_centro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Subcentro Pdn" border="2" color="33554432" x="750" y="112" height="52" width="818" html.valueishtml="0"  name=co_subcentro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Tioperacion" border="2" color="33554432" x="1573" y="112" height="52" width="334" html.valueishtml="0"  name=tioperacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Fe Actualizacion" border="2" color="33554432" x="1911" y="112" height="52" width="503" html.valueishtml="0"  name=fe_actualizacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="%Eficiencia" border="2" color="33554432" x="2418" y="112" height="52" width="347" html.valueishtml="0"  name=prc_eficiencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Tiempo Total" border="2" color="33554432" x="2770" y="112" height="52" width="343" html.valueishtml="0"  name=ti_total_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Fab:" border="2" color="33554432" x="27" y="24" height="52" width="197" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+text(band=header.1 alignment="2" text="Linea:" border="2" color="33554432" x="663" y="24" height="52" width="233" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+column(band=header.1 id=1 alignment="0" tabsequence=32766 border="2" color="33554432" x="256" y="24" height="52" width="274" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+column(band=header.1 id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="923" y="24" height="52" width="274" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+text(band=header.2 alignment="2" text="Estilo:" border="2" color="33554432" x="114" y="12" height="52" width="215" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15793151" )
+column(band=header.2 id=4 alignment="0" tabsequence=32766 border="2" color="33554432" x="617" y="12" height="52" width="937" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15793151" )
+column(band=header.2 id=3 alignment="1" tabsequence=32766 border="2" color="33554432" x="334" y="12" height="52" width="274" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15793151" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="2" color="33554432" x="41" y="4" height="64" width="169" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="2" color="33554432" x="215" y="4" height="64" width="197" format="[general]" html.valueishtml="0"  name=co_calidad visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="2" color="33554432" x="416" y="4" height="64" width="329" format="[general]" html.valueishtml="0"  name=co_centro_pdn visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="2" color="33554432" x="750" y="4" height="64" width="119" format="[general]" html.valueishtml="0"  name=co_subcentro_pdn visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="2" color="33554432" x="873" y="4" height="64" width="695" format="[general]" html.valueishtml="0"  name=de_subcentro_pdn visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="2" color="33554432" x="1573" y="4" height="64" width="334" format="[general]" html.valueishtml="0"  name=tioperacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="2" color="33554432" x="1911" y="4" height="64" width="503" format="[shortdate] [time]" html.valueishtml="0"  name=fe_actualizacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="2" color="33554432" x="2418" y="4" height="64" width="347" format="[general]" html.valueishtml="0"  name=prc_eficiencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="2" color="33554432" x="2770" y="4" height="64" width="343" format="[general]" html.valueishtml="0"  name=ti_total visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
