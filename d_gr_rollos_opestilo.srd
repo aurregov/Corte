@@ -1,0 +1,43 @@
+HA$PBExportHeader$d_gr_rollos_opestilo.srd
+$PBExportComments$//busca los rollos de las op tejido relacionada con una cierta op estilo, la op tejido con estado 1 y rollos con estado 1.
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=136 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_op_tejido dbname="cs_op_tejido" )
+ column=(type=long update=yes updatewhereclause=yes name=co_planeador dbname="co_planeador" )
+ column=(type=long updatewhereclause=yes key=yes name=cs_rollo dbname="cs_rollo" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_kg dbname="ca_kg" )
+ column=(type=long updatewhereclause=yes name=cs_ordenpd_pt dbname="cs_ordenpd_pt" )
+ column=(type=long updatewhereclause=yes name=ca_unidades dbname="ca_unidades" )
+ retrieve="SELECT  h_op_tejido.cs_op_tejido ,
+           m_rollo.co_planeador ,
+           m_rollo.cs_rollo ,
+           m_rollo.ca_kg ,
+           h_op_tejido.cs_ordenpd_pt ,
+           m_rollo.ca_unidades    
+        FROM h_op_tejido ,
+           m_rollo     
+        WHERE ( h_op_tejido.cs_op_tejido = m_rollo.cs_orden_pr_act ) and          ( ( admtelas.h_op_tejido.cs_ordenpd_pt in ( :an_opestilo ) ) And          ( admtelas.h_op_tejido.co_estado_orden = 1 ) and          ( admtelas.m_rollo.co_estado_rollo = 1 ) )  " update="m_rollo" updatewhere=1 updatekeyinplace=yes arguments=(("an_opestilo", numberlist)) )
+text(band=header alignment="2" text="H Op Tejido
+Cs Op Tejido" border="0" color="33554432" x="9" y="8" height="120" width="439" html.valueishtml="0"  name=h_op_tejido_cs_op_tejido_t visible="1"  font.face="System" font.height="-9" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Rollo
+Co Planeador" border="0" color="33554432" x="457" y="8" height="120" width="439" html.valueishtml="0"  name=m_rollo_co_planeador_t visible="1"  font.face="System" font.height="-9" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Rollo
+Cs Rollo" border="0" color="33554432" x="905" y="8" height="120" width="439" html.valueishtml="0"  name=m_rollo_cs_rollo_t visible="1"  font.face="System" font.height="-9" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="M Rollo Ca Kg" border="0" color="33554432" x="1353" y="4" height="64" width="416" html.valueishtml="0"  name=m_rollo_ca_kg_t visible="1"  font.face="System" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="H Op Tejido Cs Ordenpd Pt" border="0" color="33554432" x="1778" y="4" height="76" width="101" html.valueishtml="0"  name=h_op_tejido_cs_ordenpd_pt_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="72" width="439" format="[general]" html.valueishtml="0"  name=cs_op_tejido visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="System" font.height="-9" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="457" y="8" height="72" width="439" format="[general]" html.valueishtml="0"  name=co_planeador visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="System" font.height="-9" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="905" y="8" height="72" width="439" format="[general]" html.valueishtml="0"  name=cs_rollo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="System" font.height="-9" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1353" y="0" height="60" width="416" format="[general]" html.valueishtml="0"  name=ca_kg visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="System" font.height="-9" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1778" y="0" height="60" width="101" format="[general]" html.valueishtml="0"  name=cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="System" font.height="-9" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=0 border="0" color="33554432" x="1893" y="0" height="60" width="101" html.valueishtml="0"  name=ca_unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="System" font.height="-9" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Ca Unidades" border="0" color="33554432" x="1888" y="4" height="76" width="105" html.valueishtml="0"  name=ca_unidades_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
