@@ -1,0 +1,52 @@
+HA$PBExportHeader$dtb_kilos_kardex_telas_inactivas.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=188 color="536870912" )
+summary(height=88 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_reftel dbname="co_reftel" )
+ column=(type=long updatewhereclause=yes name=co_caract dbname="co_caract" )
+ column=(type=long updatewhereclause=yes name=diametro dbname="diametro" )
+ column=(type=long updatewhereclause=yes name=co_color dbname="co_color" )
+ column=(type=long updatewhereclause=yes name=co_centro dbname="co_centro" )
+ column=(type=number updatewhereclause=yes name=compute_0006 dbname="compute_0006" )
+ column=(type=decimal(2) updatewhereclause=yes name=compute_0007 dbname="compute_0007" )
+ retrieve="select r.co_reftel, r.co_caract, r.diametro, r.co_color, r.co_centro,
+       (sum(ca_inicial) + sum(ca_entradas) - sum(ca_salidas)),
+       (select sum(ca_kg) from m_rollo 
+        where co_centro = r.co_centro
+          and co_reftel_act = r.co_reftel
+          and co_caract_act = r.co_caract
+          and co_color_act = r.co_color
+          and diametro_act = r.diametro)
+from r_kardex r, h_telas h
+where r.co_reftel = h.co_reftel
+and r.co_caract = h.co_caract
+and h.malla_carga_crudo = 2
+and r.ano_mes = '2008-06'
+and r.co_centro not in (8,99,3,2,5,4)
+and (r.ca_inicial <> 0 or r.ca_entradas <> 0 or r.ca_salidas <> 0)
+group by 1,2,3,4,5;"  sort="co_centro A co_reftel A co_caract A diametro A co_color A " )
+group(level=1 header.height=96 trailer.height=104 by=("co_centro" ) header.color="536870912" trailer.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="283" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_caract visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="562" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=diametro visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="841" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(compute_0006 for all)"border="0" color="33554432" x="1115" y="8" height="64" width="274" format="0.00" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1134" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=compute_0006 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="1413" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=compute_0007 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Co Centro" border="6" color="33554432" x="0" y="20" height="52" width="297" html.valueishtml="0"  name=co_centro_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=5 alignment="1" tabsequence=32766 border="6" color="33554432" x="302" y="20" height="52" width="274" format="[general]" html.valueishtml="0"  name=co_centro visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(compute_0006 for group 1)"border="0" color="33554432" x="1134" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Reftel" border="0" color="33554432" x="0" y="132" height="52" width="283" html.valueishtml="0"  name=co_reftel_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Caract" border="0" color="33554432" x="274" y="132" height="52" width="297" html.valueishtml="0"  name=co_caract_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Diametro" border="0" color="33554432" x="562" y="132" height="52" width="274" html.valueishtml="0"  name=diametro_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Color" border="0" color="33554432" x="841" y="132" height="52" width="274" html.valueishtml="0"  name=co_color_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="kg kardex" border="0" color="33554432" x="1125" y="132" height="52" width="297" html.valueishtml="0"  name=compute_0006_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="kg rollos" border="0" color="33554432" x="1413" y="132" height="52" width="274" html.valueishtml="0"  name=compute_0007_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
