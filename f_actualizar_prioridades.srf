@@ -1,0 +1,22 @@
+HA$PBExportHeader$f_actualizar_prioridades.srf
+global type f_actualizar_prioridades from function_object
+end type
+
+forward prototypes
+global function long f_actualizar_prioridades (long ai_simulacion, long ai_fabrica, long ai_planta, long al_modulo)
+end prototypes
+
+global function long f_actualizar_prioridades (long ai_simulacion, long ai_fabrica, long ai_planta, long al_modulo);DECLARE pr_act_prioridad PROCEDURE FOR
+	pr_act_pri(:ai_simulacion, :ai_fabrica, :ai_planta, :al_modulo);
+	
+EXECUTE pr_act_prioridad;
+
+IF SQLCA.SQLCode = -1 THEN
+	MessageBox("Error Base Datos","Error al ejecutar el stored procedure que actualiza prioridades de corte")
+	Return(-1)
+END IF
+Return(0)
+	
+	
+end function
+
