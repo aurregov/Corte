@@ -1,0 +1,148 @@
+HA$PBExportHeader$dct_unidades_orden_corte3_copia.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1090519039 processing=4 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no  crosstab.dynamic = yes grid.lines=0 grid.columnmove=no selected.mouse=no )
+header[1](height=0 color="536870912" )
+header[2](height=124 color="536870912" )
+header[3](height=128 color="536870912" )
+summary(height=72 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=number updatewhereclause=yes name=total_capas dbname="total_capas" )
+ column=(type=number updatewhereclause=yes name=cs_seccion dbname="cs_seccion" )
+ column=(type=number updatewhereclause=yes name=cs_ordenpdn dbname="cs_ordenpdn" )
+ column=(type=number updatewhereclause=yes name=co_trazo dbname="co_trazo" )
+ column=(type=number updatewhereclause=yes name=tipo dbname="tipo" values="SI CORTAR	1/BALANCEO	2/" )
+ column=(type=number updatewhereclause=yes name=sw_retazos dbname="sw_retazos" values="X	1/                         	2/" )
+ column=(type=char(20) updatewhereclause=yes name=po dbname="po" )
+ column=(type=char(20) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=char(20) updatewhereclause=yes name=lote dbname="lote" )
+ column=(type=number updatewhereclause=yes name=ca_stdxunidad dbname="ca_stdxunidad" )
+ column=(type=number updatewhereclause=yes name=ca_consumo_std dbname="ca_consumo_std" )
+ column=(type=number updatewhereclause=yes name=capas dbname="capas" )
+ column=(type=char(20) updatewhereclause=yes name=campo dbname="campo" )
+ column=(type=number updatewhereclause=yes name=paquetes dbname="paquetes" )
+ column=(type=number updatewhereclause=yes name=ca_programada dbname="ca_programada" )
+ retrieve="  SELECT dt_trazosxoc.cs_seccion,   
+         dt_trazosxoc.co_trazo,   
+         dt_agrupa_pdn.po,   
+         h_preref_pv.de_referencia,   
+         dt_agrupa_pdn.co_color_pt || dt_agrupa_pdn.tono || dt_agrupa_pdn.cs_liberacion as lote,   
+         dt_trazosxoc.capas,   
+         dt_trazosxoc.ca_stdxunidad,   
+         dt_trazosxoc.ca_consumo_std,   
+         dt_unidadesxtrazo.co_talla,   
+         dt_unidadesxtrazo.paquetes,   
+         dt_unidadesxtrazo.ca_programada,
+			dt_trazosxoc.tipo,
+			dt_trazosxbase.sw_retazos,
+			dt_trazosxoc.cs_ordenpdn,
+			( 	SELECT Sum(capas)
+				FROM dt_trazosxoc a
+				WHERE a.cs_orden_corte = :al_ordencorte AND
+						a.cs_agrupacion = :al_agrupacion AND
+						a.cs_base_trazos = :al_basetrazo AND
+						a.cs_trazo = :al_trazo AND
+						a.cs_seccion = dt_trazosxoc.cs_seccion ) total_capas,
+			'			' campo,
+			m_tallas_x_grupo.de_talla
+    FROM dt_agrupa_pdn,   
+         dt_trazosxoc,   
+         dt_unidadesxtrazo,   
+         h_preref_pv,
+			dt_trazosxbase,
+			m_tallas_x_grupo  
+   WHERE ( dt_unidadesxtrazo.cs_orden_corte = dt_trazosxoc.cs_orden_corte ) and  
+         ( dt_unidadesxtrazo.cs_agrupacion = dt_trazosxoc.cs_agrupacion ) and  
+         ( dt_unidadesxtrazo.cs_base_trazos = dt_trazosxoc.cs_base_trazos ) and  
+         ( dt_unidadesxtrazo.cs_trazo = dt_trazosxoc.cs_trazo ) and  
+         ( dt_unidadesxtrazo.cs_seccion = dt_trazosxoc.cs_seccion ) and  
+         ( dt_unidadesxtrazo.cs_pdn = dt_trazosxoc.cs_pdn ) and  
+         ( dt_unidadesxtrazo.co_modelo = dt_trazosxoc.co_modelo ) and  
+         ( dt_unidadesxtrazo.co_fabrica_tela = dt_trazosxoc.co_fabrica_tela ) and  
+         ( dt_unidadesxtrazo.co_reftel = dt_trazosxoc.co_reftel ) and  
+         ( dt_unidadesxtrazo.co_caract = dt_trazosxoc.co_caract ) and  
+         ( dt_unidadesxtrazo.diametro = dt_trazosxoc.diametro ) and  
+         ( dt_unidadesxtrazo.co_color_te = dt_trazosxoc.co_color_te ) and  
+         ( dt_agrupa_pdn.co_fabrica_pt = h_preref_pv.co_fabrica ) and  
+         ( dt_agrupa_pdn.co_linea = h_preref_pv.co_linea ) and  
+         ( cast(dt_agrupa_pdn.co_referencia as char(15)) = h_preref_pv.co_referencia ) and  
+			( h_preref_pv.co_tipo_ref = 'P') and
+         ( dt_trazosxoc.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_trazosxoc.cs_pdn = dt_agrupa_pdn.cs_pdn ) and  
+         ( ( dt_trazosxoc.cs_orden_corte = :al_ordencorte ) AND  
+         ( dt_trazosxoc.cs_agrupacion = :al_agrupacion ) AND  
+         ( dt_trazosxoc.cs_base_trazos = :al_basetrazo ) AND  
+         ( dt_trazosxoc.cs_trazo = :al_trazo ) )   and 
+			dt_unidadesxtrazo.cs_orden_corte=dt_trazosxbase.cs_orden_corte and
+		   dt_unidadesxtrazo.cs_agrupacion=dt_trazosxbase.cs_agrupacion and 
+			dt_unidadesxtrazo.cs_base_trazos=dt_trazosxbase.cs_base_trazos and 
+			dt_unidadesxtrazo.cs_trazo=dt_trazosxbase.cs_trazo and 
+			dt_unidadesxtrazo.cs_seccion=dt_trazosxbase.cs_seccion and 
+			dt_unidadesxtrazo.cs_pdn=dt_trazosxbase.cs_pdn and 
+			dt_unidadesxtrazo.co_modelo=dt_trazosxbase.co_modelo and 
+			dt_unidadesxtrazo.co_fabrica_tela=dt_trazosxbase.co_fabrica_te and 
+			dt_unidadesxtrazo.co_reftel=dt_trazosxbase.co_reftel and 
+			dt_unidadesxtrazo.co_caract=dt_trazosxbase.co_caract and 
+			dt_unidadesxtrazo.diametro=dt_trazosxbase.diametro and 
+			dt_unidadesxtrazo.co_color_te=dt_trazosxbase.co_color_te and 
+			dt_unidadesxtrazo.co_talla=dt_trazosxbase.co_talla and 
+			( h_preref_pv.co_fabrica = m_tallas_x_grupo.co_fabrica ) and  
+    		( h_preref_pv.co_grupo_tlla = m_tallas_x_grupo.co_grupo_tlla ) and  
+    		( m_tallas_x_grupo.co_talla = dt_unidadesxtrazo.co_talla )  
+	" arguments=(("al_ordencorte", number),("al_agrupacion", number),("al_basetrazo", number),("al_trazo", number))  sort="total_capas A cs_seccion A cs_ordenpdn A co_trazo A tipo A sw_retazos A po A de_referencia A lote A ca_stdxunidad A ca_consumo_std A capas A campo A " )
+group(level=1 header.height=0 trailer.height=0 by=("total_capas" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=0 trailer.height=0 by=("cs_seccion" ) header.color="536870912" trailer.color="536870912" )
+group(level=3 header.height=0 trailer.height=0 by=("cs_ordenpdn" ) header.color="536870912" trailer.color="536870912" )
+group(level=4 header.height=0 trailer.height=0 by=("co_trazo" ) header.color="536870912" trailer.color="536870912" )
+group(level=5 header.height=0 trailer.height=0 by=("tipo" ) header.color="536870912" trailer.color="536870912" )
+group(level=6 header.height=0 trailer.height=0 by=("sw_retazos" ) header.color="536870912" trailer.color="536870912" )
+group(level=7 header.height=0 trailer.height=0 by=("po" ) header.color="536870912" trailer.color="536870912" )
+group(level=8 header.height=0 trailer.height=0 by=("de_referencia" ) header.color="536870912" trailer.color="536870912" )
+group(level=9 header.height=0 trailer.height=0 by=("lote" ) header.color="536870912" trailer.color="536870912" )
+group(level=10 header.height=0 trailer.height=0 by=("ca_stdxunidad" ) header.color="536870912" trailer.color="536870912" )
+group(level=11 header.height=0 trailer.height=0 by=("ca_consumo_std" ) header.color="536870912" trailer.color="536870912" )
+group(level=12 header.height=0 trailer.height=0 by=("capas" ) header.color="536870912" trailer.color="536870912" )
+text(band=header[1] alignment="0" text="De Talla" border="0" color="33554432" x="23" y="4" height="56" width="82" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="@de_talla" border="0" color="33554432" x="1623" y="4" height="108" width="210" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="2" text="Total Paq" border="0" color="33554432" x="1838" y="4" height="112" width="110" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="2" text="Total Un" border="0" color="33554432" x="1957" y="4" height="116" width="110" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="Total Capas" border="0" color="33554432" x="9" y="4" height="56" width="5" html.valueishtml="0"  name=total_capas_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="Cs Ordenpdn" border="0" color="33554432" x="114" y="4" height="56" width="5" html.valueishtml="0"  name=cs_ordenpdn_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Tipo" border="0" color="33554432" x="274" y="4" height="56" width="210" html.valueishtml="0"  name=tipo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="Po" border="0" color="33554432" x="539" y="4" height="56" width="5" html.valueishtml="0"  name=po_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="Ca Consumo Std" border="0" color="33554432" x="1239" y="4" height="56" width="5" html.valueishtml="0"  name=ca_consumo_std_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Sec" border="0" color="33554432" x="23" y="4" height="56" width="82" html.valueishtml="0"  name=cs_seccion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Trazo" border="0" color="33554432" x="128" y="4" height="56" width="137" html.valueishtml="0"  name=co_trazo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="R" border="0" color="33554432" x="494" y="4" height="56" width="37" html.valueishtml="0"  name=sw_retazos_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Estilo" border="0" color="33554432" x="553" y="4" height="56" width="334" html.valueishtml="0"  name=de_referencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Lote" border="0" color="33554432" x="896" y="4" height="56" width="165" html.valueishtml="0"  name=lote_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Yield" border="0" color="33554432" x="1070" y="4" height="56" width="160" html.valueishtml="0"  name=ca_stdxunidad_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Capas Prog" border="0" color="33554432" x="1253" y="4" height="116" width="142" html.valueishtml="0"  name=capas_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Capas Reales" border="0" color="33554432" x="1403" y="4" height="112" width="210" html.valueishtml="0"  name=campo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Paq" border="0" color="33554432" x="1623" y="4" height="56" width="96" html.valueishtml="0"  name=paquetes_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="2" text="Un" border="0" color="33554432" x="1728" y="4" height="56" width="101" html.valueishtml="0"  name=ca_programada_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="128" y="4" height="60" width="137" format="[general]" html.valueishtml="0"  name=co_trazo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="494" y="4" height="60" width="37" format="[general]" html.valueishtml="0"  name=sw_retazos visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="553" y="4" height="60" width="334" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="896" y="4" height="60" width="165" format="[general]" html.valueishtml="0"  name=lote visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="33554432" x="1070" y="4" height="60" width="160" format="[general]" html.valueishtml="0"  name=ca_stdxunidad visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="0" color="33554432" x="1253" y="4" height="60" width="142" format="[general]" html.valueishtml="0"  name=capas visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="16777215" x="1403" y="4" height="60" width="210" format="[general]" html.valueishtml="0"  name=campo visible="1" editmask.mask="" editmask.imemode=0 editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="0" color="33554432" x="1623" y="4" height="60" width="96" format="[general]" html.valueishtml="0"  name=paquetes visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0 crosstab.repeat=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="1" tabsequence=32766 border="0" color="33554432" x="1728" y="4" height="60" width="101" format="[general]" html.valueishtml="0"  name=ca_programada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0 crosstab.repeat=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="crosstabsum(1)"border="0" color="33554432" x="1838" y="4" height="60" width="110" format="[general]" html.valueishtml="0"  name=grand_sum_paquetes visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="crosstabsum(2)"border="0" color="33554432" x="1957" y="4" height="60" width="110" format="[general]" html.valueishtml="0"  name=grand_sum_ca_programada visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="23" y="4" height="60" width="82" format="[general]" html.valueishtml="0"  name=cs_seccion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="16777215" x="9" y="4" height="60" width="5" format="[general]" html.valueishtml="0"  name=total_capas visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="16777215" x="114" y="4" height="60" width="5" format="[general]" html.valueishtml="0"  name=cs_ordenpdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="274" y="4" height="60" width="210" format="[general]" html.valueishtml="0"  name=tipo visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="16777215" x="539" y="4" height="60" width="5" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="0" color="16777215" x="1239" y="4" height="60" width="5" format="[general]" html.valueishtml="0"  name=ca_consumo_std visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(paquetes for all )"border="0" color="33554432" x="1623" y="4" height="60" width="96" format="[general]" html.valueishtml="0"  name=compute_62 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_programada for all )"border="0" color="33554432" x="1728" y="4" height="60" width="101" format="[general]" html.valueishtml="0"  name=compute_63 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(grand_sum_paquetes for all )"border="0" color="33554432" x="1838" y="4" height="60" width="110" format="[general]" html.valueishtml="0"  name=compute_64 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(grand_sum_ca_programada for all )"border="0" color="33554432" x="1957" y="4" height="60" width="110" format="[general]" html.valueishtml="0"  name=compute_65 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+ crosstab(band = foreground  crosstabonly = yes 
+ columns = "de_talla" rows = "total_capas, cs_seccion, cs_ordenpdn, co_trazo, tipo, sw_retazos, po, de_referencia, lote, ca_stdxunidad, ca_consumo_std, capas, campo" values = "sum(paquetes for crosstab), sum(ca_programada for crosstab)" sourcenames = "cs_seccion, co_trazo, po, de_referencia, lote, capas, ca_stdxunidad, ca_consumo_std, co_talla, paquetes, ca_programada, tipo, sw_retazos, cs_ordenpdn, total_capas, campo, de_talla")
+sparse(names="total_capas	cs_seccion	cs_ordenpdn	co_trazo	tipo	sw_retazos	po	de_referencia	lote	ca_stdxunidad	ca_consumo_std	capas")htmltable(border="0" cellpadding="1" cellspacing="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
