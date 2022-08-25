@@ -1,0 +1,296 @@
+HA$PBExportHeader$dtb_reporte_numeracion_fusionado.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 2 print.margin.left = 110 print.margin.right = 20 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=472 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="536870912"  height.autosize=yes)
+table(column=(type=long update=yes updatewhereclause=yes name=simulacion dbname="simulacion" )
+ column=(type=long update=yes updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes name=co_planta dbname="co_planta" )
+ column=(type=long update=yes updatewhereclause=yes name=co_modulo dbname="co_modulo" )
+ column=(type=long update=yes updatewhereclause=yes name=co_fabrica_exp dbname="co_fabrica_exp" )
+ column=(type=long update=yes updatewhereclause=yes name=pedido dbname="pedido" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_liberacion dbname="cs_liberacion" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=po dbname="po" )
+ column=(type=long update=yes updatewhereclause=yes name=co_fabrica_pt dbname="co_fabrica_pt" )
+ column=(type=long update=yes updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long update=yes updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long update=yes updatewhereclause=yes name=co_color_pt dbname="co_color_pt" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=tono dbname="tono" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_estilocolortono dbname="cs_estilocolortono" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_particion dbname="cs_particion" )
+ column=(type=long update=yes updatewhereclause=yes name=pedido_po dbname="pedido_po" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_prioridad dbname="cs_prioridad" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_programada dbname="ca_programada" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_producida dbname="ca_producida" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_pendiente dbname="ca_pendiente" )
+ column=(type=long update=yes updatewhereclause=yes name=co_estado_asigna dbname="co_estado_asigna" )
+ column=(type=long update=yes updatewhereclause=yes name=co_curva dbname="co_curva" )
+ column=(type=datetime updatewhereclause=yes name=fe_inicio_corte dbname="fe_inicio_corte" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_fin_prog dbname="fe_fin_prog" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_requerida_desp dbname="fe_requerida_desp" )
+ column=(type=decimal(5) update=yes updatewhereclause=yes name=ca_minutos_std dbname="ca_minutos_std" )
+ column=(type=long update=yes updatewhereclause=yes name=co_tipo_asignacion dbname="co_tipo_asignacion" )
+ column=(type=decimal(5) update=yes updatewhereclause=yes name=ca_personasxmod dbname="ca_personasxmod" )
+ column=(type=long update=yes updatewhereclause=yes name=cod_tur dbname="cod_tur" )
+ column=(type=decimal(5) update=yes updatewhereclause=yes name=minutos_jornada dbname="minutos_jornada" )
+ column=(type=long update=yes updatewhereclause=yes name=ind_cambio_estilo dbname="ind_cambio_estilo" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_unid_base_dia dbname="ca_unid_base_dia" )
+ column=(type=long update=yes updatewhereclause=yes name=orige_uni_base_dia dbname="orige_uni_base_dia" )
+ column=(type=long update=yes updatewhereclause=yes name=tipo_empate dbname="tipo_empate" )
+ column=(type=long update=yes updatewhereclause=yes name=unidades_empate dbname="unidades_empate" )
+ column=(type=long update=yes updatewhereclause=yes name=metodo_programa dbname="metodo_programa" )
+ column=(type=long update=yes updatewhereclause=yes name=fuente_dato dbname="fuente_dato" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="instancia" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_entra_pdn dbname="fe_entra_pdn" )
+ column=(type=long update=yes updatewhereclause=yes name=tipo_fe_prog dbname="tipo_fe_prog" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_lim_prog dbname="fe_lim_prog" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_desp_programada dbname="fe_desp_programada" )
+ column=(type=long update=yes updatewhereclause=yes name=indicativo_base dbname="indicativo_base" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_base_dia_prod dbname="ca_base_dia_prod" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_base_dia_prog dbname="ca_base_dia_prog" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_a_programar dbname="ca_a_programar" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=co_estado_merc dbname="co_estado_merc" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_proyectada dbname="ca_proyectada" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_actual dbname="ca_actual" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_numerada dbname="ca_numerada" )
+ column=(type=date update=yes updatewhereclause=yes name=fe_fogueo dbname="fe_fogueo" )
+ column=(type=date update=yes updatewhereclause=yes name=fe_trabajo dbname="fe_trabajo" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_asignacion dbname="cs_asignacion" )
+ column=(type=char(40) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=char(30) updatewhereclause=yes name=de_linea dbname="de_linea" )
+ column=(type=char(30) updatewhereclause=yes name=de_color dbname="de_color" )
+ column=(type=long updatewhereclause=yes name=co_estilo dbname="co_estilo" )
+ column=(type=long updatewhereclause=yes name=co_tipoprod dbname="co_tipoprod" )
+ column=(type=long updatewhereclause=yes name=co_composicion dbname="co_composicion" )
+ column=(type=date updatewhereclause=yes name=x_col dbname="x_col" )
+ column=(type=char(30) updatewhereclause=yes name=gpa dbname="gpa" )
+ column=(type=decimal(0) updatewhereclause=yes name=co_consumo_proceso dbname="co_consumo_proceso" )
+ column=(type=char(30) updatewhereclause=yes name=estilo dbname="estilo" )
+ column=(type=char(80) updatewhereclause=yes name=composicion dbname="composicion" )
+ column=(type=char(200) updatewhereclause=yes name=observaciones dbname="observaciones" )
+ column=(type=char(30) updatewhereclause=yes name=modulo dbname="modulo" )
+ column=(type=datetime updatewhereclause=yes name=fe_ini_confeccion dbname="fe_ini_confeccion" )
+ column=(type=decimal(4) updatewhereclause=yes name=tiempo_std dbname="tiempo_std" )
+ retrieve="  SELECT dt_pdnxmodulo.simulacion,   
+         dt_pdnxmodulo.co_fabrica,   
+         dt_pdnxmodulo.co_planta,   
+         dt_pdnxmodulo.co_modulo,   
+         dt_pdnxmodulo.co_fabrica_exp,   
+         dt_pdnxmodulo.pedido,   
+         dt_pdnxmodulo.cs_liberacion,   
+         dt_pdnxmodulo.po,   
+         dt_pdnxmodulo.co_fabrica_pt,   
+         dt_pdnxmodulo.co_linea,   
+         dt_pdnxmodulo.co_referencia,   
+         dt_pdnxmodulo.co_color_pt,   
+         dt_pdnxmodulo.tono,   
+         dt_pdnxmodulo.cs_estilocolortono,   
+         dt_pdnxmodulo.cs_particion,   
+         dt_pdnxmodulo.pedido_po,   
+         dt_pdnxmodulo.cs_prioridad,   
+         dt_pdnxmodulo.ca_programada,   
+         dt_pdnxmodulo.ca_producida,   
+         dt_pdnxmodulo.ca_pendiente,   
+         dt_pdnxmodulo.co_estado_asigna,   
+         dt_pdnxmodulo.co_curva,   
+         dt_pdnxmodulo.fe_inicio_prog  as fe_inicio_corte,   
+         dt_pdnxmodulo.fe_fin_prog,   
+         dt_pdnxmodulo.fe_requerida_desp,   
+         dt_pdnxmodulo.ca_minutos_std,   
+         dt_pdnxmodulo.co_tipo_asignacion,   
+         dt_pdnxmodulo.ca_personasxmod,   
+         dt_pdnxmodulo.cod_tur,   
+         dt_pdnxmodulo.minutos_jornada,   
+         dt_pdnxmodulo.ind_cambio_estilo,   
+         dt_pdnxmodulo.ca_unid_base_dia,   
+         dt_pdnxmodulo.orige_uni_base_dia,   
+         dt_pdnxmodulo.tipo_empate,   
+         dt_pdnxmodulo.unidades_empate,   
+         dt_pdnxmodulo.metodo_programa,   
+         dt_pdnxmodulo.fuente_dato,   
+         dt_pdnxmodulo.fe_creacion,   
+         dt_pdnxmodulo.fe_actualizacion,   
+         dt_pdnxmodulo.usuario,   
+         dt_pdnxmodulo.instancia,   
+         dt_pdnxmodulo.fe_entra_pdn,   
+         dt_pdnxmodulo.tipo_fe_prog,   
+         dt_pdnxmodulo.fe_lim_prog,   
+         dt_pdnxmodulo.fe_desp_programada,   
+         dt_pdnxmodulo.indicativo_base,   
+         dt_pdnxmodulo.ca_base_dia_prod,   
+         dt_pdnxmodulo.ca_base_dia_prog,   
+         dt_pdnxmodulo.ca_a_programar,   
+         dt_pdnxmodulo.co_estado_merc,   
+         dt_pdnxmodulo.ca_proyectada,   
+         dt_pdnxmodulo.ca_actual,   
+         dt_pdnxmodulo.ca_numerada,   
+         dt_pdnxmodulo.fe_fogueo,   
+         dt_pdnxmodulo.fe_trabajo,   
+         dt_pdnxmodulo.cs_asignacion,
+			h_preref.de_referencia,
+			m_lineas.de_linea,
+			m_colores.de_color,
+			h_preref.co_estilo,
+			m_modulos.co_tipoprod,
+			h_preref.co_composicion,
+			(SELECT min(pedpend_exp.fe_entrega)  
+						 FROM pedpend_exp
+						WHERE ( pedpend_exp.co_fabrica_exp 	= dt_pdnxmodulo.co_fabrica_exp ) and
+								( pedpend_exp.pedido 			=dt_pdnxmodulo.pedido_po	) and
+								(pedpend_exp.nu_orden		  	= dt_pdnxmodulo.po) AND
+								(pedpend_exp.co_fabrica			=dt_pdnxmodulo.co_fabrica_pt) AND	
+								(pedpend_exp.co_linea			=dt_pdnxmodulo.co_linea )AND
+								(pedpend_exp.co_referencia		=dt_pdnxmodulo.co_referencia) AND
+								(pedpend_exp.co_color			=dt_pdnxmodulo.co_color_pt)
+								) as x_col,   			
+			(select unique peddig.gpa
+          from   peddig
+			 where  peddig.co_fabrica_exp=dt_pdnxmodulo.co_fabrica_exp
+			 and    peddig.pedido		  =dt_pdnxmodulo.pedido) as gpa,
+			(select sum(co_consumo_proceso)
+			 from dt_procesos_plan
+			 where dt_procesos_plan.simulacion = dt_pdnxmodulo.simulacion and
+				dt_procesos_plan.co_fabrica = dt_pdnxmodulo.co_fabrica and
+				dt_procesos_plan.co_planta = dt_pdnxmodulo.co_planta and
+				dt_procesos_plan.co_modulo = dt_pdnxmodulo.co_modulo and
+				dt_procesos_plan.co_fabrica_exp = dt_pdnxmodulo.co_fabrica_exp and
+				dt_procesos_plan.pedido = dt_pdnxmodulo.pedido and
+				dt_procesos_plan.cs_liberacion = dt_pdnxmodulo.cs_liberacion  and
+				dt_procesos_plan.po = dt_pdnxmodulo.po and
+				dt_procesos_plan.co_fabrica_pt = dt_pdnxmodulo.co_fabrica_pt and
+				dt_procesos_plan.co_linea = dt_pdnxmodulo.co_linea and
+				dt_procesos_plan.co_referencia = dt_pdnxmodulo.co_referencia and
+				dt_procesos_plan.co_color_pt = dt_pdnxmodulo.co_color_pt and
+				dt_procesos_plan.tono = dt_pdnxmodulo.tono and
+				dt_procesos_plan.cs_estilocolortono = dt_pdnxmodulo.cs_estilocolortono and
+				dt_procesos_plan.cs_particion = dt_pdnxmodulo.cs_particion) as co_consumo_proceso,
+			(select m_estilos.de_estilo
+				from m_estilos
+				where m_estilos.co_tipoprod = m_modulos.co_tipoprod and
+						m_estilos.co_estilo = h_preref.co_estilo ) as estilo,
+			(select h_composiciones.de_composicion
+				from h_composiciones
+				where h_composiciones.co_composicion = h_preref.co_composicion ) as composicion,
+			(select dt_observaxmodulo.observacion  
+			 from dt_observaxmodulo  
+			where dt_observaxmodulo.simulacion = dt_pdnxmodulo.simulacion  and  
+					dt_observaxmodulo.co_fabrica = dt_pdnxmodulo.co_fabrica  and  
+					dt_observaxmodulo.co_planta =  dt_pdnxmodulo.co_planta and  
+					dt_observaxmodulo.co_modulo =  dt_pdnxmodulo.co_modulo  and  
+					dt_observaxmodulo.co_fabrica_exp = dt_pdnxmodulo.co_fabrica_exp  and  
+					dt_observaxmodulo.pedido = dt_pdnxmodulo.pedido  and  
+					dt_observaxmodulo.cs_liberacion = dt_pdnxmodulo.cs_liberacion  and  
+					dt_observaxmodulo.po = dt_pdnxmodulo.po  and  
+					dt_observaxmodulo.co_fabrica_pt = dt_pdnxmodulo.co_fabrica_pt  and  
+					dt_observaxmodulo.co_linea = dt_pdnxmodulo.co_linea  and  
+					dt_observaxmodulo.co_referencia = dt_pdnxmodulo.co_referencia  and  
+					dt_observaxmodulo.co_color_pt = dt_pdnxmodulo.co_color_pt  and  
+					dt_observaxmodulo.tono = dt_pdnxmodulo.tono  and  
+					dt_observaxmodulo.cs_estilocolortono = dt_pdnxmodulo.cs_estilocolortono  and  
+					dt_observaxmodulo.cs_particion = dt_pdnxmodulo.cs_particion ) as observaciones,
+			(select m_modulos.de_modulo
+				from m_modulos
+				where m_modulos.co_fabrica = dt_pdnxmodulo.co_fabrica and
+						m_modulos.co_planta = dt_pdnxmodulo.co_planta and
+						m_modulos.co_modulo = dt_pdnxmodulo.co_modulo ) as modulo,
+			(select min(a.fe_inicio_prog)
+				from dt_pdnxmodulo a
+				where a.simulacion = dt_pdnxmodulo.simulacion and  
+						a.co_fabrica = dt_pdnxmodulo.co_fabrica and  
+						a.co_planta = 2 and   
+						a.co_fabrica_exp = dt_pdnxmodulo.co_fabrica_exp and   
+						a.pedido = dt_pdnxmodulo.pedido and   
+						a.cs_liberacion = dt_pdnxmodulo.cs_liberacion and   
+						a.po = dt_pdnxmodulo.po and   
+						a.co_fabrica_pt = dt_pdnxmodulo.co_fabrica_pt and   
+						a.co_linea = dt_pdnxmodulo.co_linea and   
+						a.co_referencia = dt_pdnxmodulo.co_referencia and   
+						a.co_color_pt = dt_pdnxmodulo.co_color_pt and   
+						a.tono = dt_pdnxmodulo.tono and   
+						a.cs_estilocolortono = dt_pdnxmodulo.cs_estilocolortono and   
+						a.cs_particion = dt_pdnxmodulo.cs_particion ) as fe_ini_confeccion,
+			(SELECT DISTINCT dt_minxprenda_tela.min_unidad 
+				 FROM dt_minxprenda_tela,
+						m_procesos_pdn,
+						m_estilos  
+				WHERE dt_minxprenda_tela.co_fabrica = m_lineas.co_fabrica AND
+						dt_minxprenda_tela.co_linea = m_lineas.co_linea AND
+						dt_minxprenda_tela.co_tipoprod = m_estilos.co_tipoprod AND
+						m_estilos.co_estilo = h_preref.co_estilo and
+						m_estilos.co_tipoprod = m_modulos.co_tipoprod and
+						dt_minxprenda_tela.co_tipo_tela = m_estilos.co_estilo and
+						dt_minxprenda_tela.co_proceso_pdn = :an_proceso and
+						m_procesos_pdn.co_tipoprod = dt_minxprenda_tela.co_tipoprod AND
+						m_procesos_pdn.co_centro_pdn = dt_minxprenda_tela.co_centro_pdn AND
+						m_procesos_pdn.co_subcentro_pdn = dt_minxprenda_tela.co_subcentro_pdn AND 
+						m_procesos_pdn.co_proceso_pdn = dt_minxprenda_tela.co_proceso_pdn) tiempo_std
+    FROM dt_pdnxmodulo,
+			h_preref,
+			m_lineas,
+			m_colores,
+			m_modulos
+   WHERE ( dt_pdnxmodulo.co_fabrica_pt = m_lineas.co_fabrica ) and  
+         ( dt_pdnxmodulo.co_linea = m_lineas.co_linea ) and  
+         ( dt_pdnxmodulo.co_fabrica_pt = h_preref.co_fabrica ) and  
+         ( dt_pdnxmodulo.co_linea = h_preref.co_linea ) and  
+         ( dt_pdnxmodulo.co_referencia = h_preref.co_referencia ) and
+			( dt_pdnxmodulo.co_linea = m_colores.co_linea ) and  
+         ( dt_pdnxmodulo.co_color_pt = m_colores.co_color ) and
+			( dt_pdnxmodulo.co_fabrica = h_preref.co_fabrica ) and
+			( dt_pdnxmodulo.co_linea = h_preref.co_linea ) and
+			( dt_pdnxmodulo.co_referencia = h_preref.co_referencia ) and
+			( dt_pdnxmodulo.co_fabrica = m_modulos.co_fabrica ) and
+			( dt_pdnxmodulo.co_planta = m_modulos.co_planta ) and
+			( dt_pdnxmodulo.co_modulo = m_modulos.co_modulo)   and
+			( dt_pdnxmodulo.co_fabrica = 91 ) and
+			( dt_pdnxmodulo.co_planta = 1 ) and
+			( dt_pdnxmodulo.co_estado_asigna <  11 )
+
+
+ORDER BY modulo,
+			dt_pdnxmodulo.cs_prioridad
+
+
+" arguments=(("an_proceso", number))  sort="fe_fin_prog A " )
+text(band=header alignment="2" text="~tIf( an_proceso = 6, 'PROGRAMA NUMERACION', if (  an_proceso = 8 , 'PROGRAMA FUSIONADO',''))" border="0" color="0" x="114" y="172" height="92" width="3150" html.valueishtml="0"  name=t_10 visible="1"  font.face="Arial" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="x
+col" border="6" color="0" x="119" y="364" height="96" width="78" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Grupo" border="6" color="0" x="215" y="364" height="96" width="256" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Estilo" border="6" color="0" x="489" y="364" height="96" width="352" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="P.O." border="6" color="0" x="859" y="364" height="96" width="270" html.valueishtml="0"  name=cs_prioridad_t visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Lote" border="6" color="0" x="1147" y="364" height="96" width="192" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Tipo
+ Tela" border="6" color="0" x="1358" y="364" height="96" width="114" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="O.C." border="6" color="0" x="1490" y="364" height="96" width="165" html.valueishtml="0"  name=cs_particion_t visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Prenda" border="6" color="0" x="1678" y="364" height="96" width="247" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Color" border="6" color="0" x="1943" y="364" height="96" width="274" html.valueishtml="0"  name=t_8 visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="0" text="Fecha:" border="0" color="0" x="123" y="24" height="56" width="174" html.valueishtml="0"  name=t_24 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="today()"border="0" color="0" x="320" y="24" height="56" width="366" format="[general]" html.valueishtml="0"  name=date_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="'P$$HEX1$$e100$$ENDHEX$$gina ' + page() + ' de ' + pageCount()"border="0" color="0" x="2405" y="24" height="56" width="823" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Cant.
+Libera" border="6" color="0" x="2235" y="364" height="96" width="165" html.valueishtml="0"  name=ca_programada_t visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Fecha Inicio" border="6" color="0" x="2423" y="364" height="96" width="192" html.valueishtml="0"  name=t_18 visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="T. Std.x Und." border="6" color="0" x="2638" y="364" height="96" width="174" html.valueishtml="0"  name=t_7 visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Fecha Fin" border="6" color="0" x="3077" y="364" height="96" width="219" html.valueishtml="0"  name=t_19 visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Duraci$$HEX1$$f300$$ENDHEX$$nMinutos" border="6" color="0" x="2834" y="364" height="96" width="219" html.valueishtml="0"  name=t_9 visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=63 alignment="2" tabsequence=32766 border="0" color="0" x="119" y="4" height="56" width="78" format="[general]" html.valueishtml="0"  name=x_col visible="1" dddw.name=dddw_semana dddw.displaycolumn=semana dddw.datacolumn=fe_calendario dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=64 alignment="0" tabsequence=32766 border="0" color="0" x="210" y="4" height="56" width="270" format="[general]" html.valueishtml="0"  name=gpa visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=57 alignment="0" tabsequence=32766 border="0" color="0" x="494" y="4" height="56" width="338" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="841" y="4" height="56" width="293" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression=" co_color_pt +  tono + cs_liberacion "border="0" color="0" x="1147" y="4" height="56" width="192" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=66 alignment="0" tabsequence=32766 border="0" color="0" x="1349" y="4" height="56" width="133" format="[general]" html.valueishtml="0"  name=estilo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=56 alignment="1" tabsequence=32766 border="0" color="0" x="1490" y="4" height="56" width="174" format="[general]" html.valueishtml="0"  name=cs_asignacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=58 alignment="0" tabsequence=32766 border="0" color="0" x="1673" y="4" height="56" width="261" format="[general]" html.valueishtml="0"  name=de_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=59 alignment="0" tabsequence=32766 border="0" color="0" x="1947" y="4" height="56" width="279" format="[general]" html.valueishtml="0"  name=de_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="1" tabsequence=180 border="0" color="0" x="2240" y="4" height="56" width="160" format="[general]" html.valueishtml="0"  name=ca_programada visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=24 alignment="2" tabsequence=32766 border="0" color="0" x="2414" y="4" height="56" width="201" format="dd_mmm" html.valueishtml="0"  name=fe_fin_prog visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=71 alignment="1" tabsequence=32766 border="0" color="0" x="2633" y="4" height="56" width="183" format="[general]" html.valueishtml="0"  name=tiempo_std visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="relativedate(  fe_fin_prog ,   (minutos /60)/24 )"border="0" color="0" x="3077" y="4" height="56" width="224" format="dd/mmm" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression=" tiempo_std  *   ca_programada "border="0" color="0" x="2834" y="4" height="56" width="224" format="[GENERAL]" html.valueishtml="0"  name=minutos visible="1"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
