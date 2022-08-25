@@ -1,0 +1,159 @@
+HA$PBExportHeader$dff_kilos_sesgos_talla.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=4 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=156 color="536870912"  height.autosize=yes)
+table(column=(type=long updatewhereclause=yes name=dt_trazosxoc_cs_orden_corte dbname="dt_trazosxoc.cs_orden_corte" )
+ column=(type=long updatewhereclause=yes name=h_base_trazos_raya dbname="h_base_trazos.raya" )
+ column=(type=long updatewhereclause=yes name=dt_trazosxoc_cs_orden_espacio dbname="dt_trazosxoc.cs_orden_espacio" )
+ column=(type=long updatewhereclause=yes name=dt_trazosxoc_cs_trazo dbname="dt_trazosxoc.cs_trazo" )
+ column=(type=long updatewhereclause=yes name=cs_agrupacion dbname="dt_trazosxoc.cs_agrupacion" )
+ column=(type=long updatewhereclause=yes name=cs_base_trazos dbname="dt_trazosxoc.cs_base_trazos" )
+ column=(type=long updatewhereclause=yes name=dt_trazosxoc_co_trazo dbname="dt_trazosxoc.co_trazo" )
+ column=(type=char(40) updatewhereclause=yes name=h_trazos_de_trazo dbname="h_trazos.de_trazo" )
+ column=(type=long updatewhereclause=yes name=dt_trazosxoc_co_reftel dbname="dt_trazosxoc.co_reftel" )
+ column=(type=long updatewhereclause=yes name=dt_trazosxoc_co_caract dbname="dt_trazosxoc.co_caract" )
+ column=(type=char(42) updatewhereclause=yes name=h_telas_de_reftel dbname="h_telas.de_reftel" )
+ column=(type=char(30) updatewhereclause=yes name=de_linea dbname="m_lineas.de_linea" )
+ column=(type=decimal(2) updatewhereclause=yes name=ancho_cortable dbname="dt_telaxmodelo_lib.ancho_cortable" )
+ column=(type=decimal(2) updatewhereclause=yes name=h_trazos_largo dbname="h_trazos.largo" )
+ column=(type=long updatewhereclause=yes name=cs_tanda dbname="dt_telaxmodelo_lib.cs_tanda" )
+ column=(type=long updatewhereclause=yes name=carta_partida dbname="carta_partida" )
+ column=(type=decimal(2) updatewhereclause=yes name=dt_refptxtrazo_estab_largo dbname="dt_refptxtrazo.estab_largo" )
+ column=(type=decimal(2) updatewhereclause=yes name=dt_refptxtrazo_estab_ancho dbname="dt_refptxtrazo.estab_ancho" )
+ column=(type=decimal(2) updatewhereclause=yes name=h_trazos_ancho dbname="h_trazos.ancho" )
+ column=(type=char(60) updatewhereclause=yes name=dt_modelos_de_modelo dbname="de_modelo" )
+ column=(type=long updatewhereclause=yes name=h_trazos_optimizado dbname="h_trazos.optimizado" )
+ column=(type=decimal(2) updatewhereclause=yes name=porc_util dbname="h_trazos.porc_util" )
+ column=(type=decimal(5) updatewhereclause=yes name=dt_telaxmodelo_lib_ca_tela dbname="dt_telaxmodelo_lib.ca_tela" )
+ column=(type=decimal(2) updatewhereclause=yes name=h_trazos_porc_util dbname="porc_util" )
+ column=(type=long updatewhereclause=yes name=dt_pdnxmodulo_co_fabrica_pt dbname="dt_pdnxmodulo.co_fabrica_pt" )
+ column=(type=long updatewhereclause=yes name=dt_pdnxmodulo_co_linea dbname="dt_pdnxmodulo.co_linea" )
+ column=(type=long updatewhereclause=yes name=dt_pdnxmodulo_co_referencia dbname="dt_pdnxmodulo.co_referencia" )
+ column=(type=long updatewhereclause=yes name=dt_pdnxmodulo_co_color_pt dbname="dt_pdnxmodulo.co_color_pt" )
+ column=(type=long updatewhereclause=yes name=dt_trazosxoc_co_modelo dbname="dt_trazosxoc.co_modelo" )
+ column=(type=long updatewhereclause=yes name=dt_pdnxmodulo_ca_programada dbname="dt_pdnxmodulo.ca_programada" )
+ column=(type=long updatewhereclause=yes name=diametro dbname="dt_telaxmodelo_lib.diametro" )
+ column=(type=char(100) updatewhereclause=yes name=observaciones dbname="h_trazos.observaciones" )
+ column=(type=long updatewhereclause=yes name=dt_agrupaescalapdn_co_talla dbname="dt_agrupaescalapdn.co_talla" )
+ retrieve="  SELECT DISTINCT dt_trazosxoc.cs_orden_corte,   
+         h_base_trazos.raya,  
+ 			dt_trazosxoc.cs_orden_espacio,
+         dt_trazosxoc.cs_trazo,   
+         dt_trazosxoc.cs_agrupacion,   
+         dt_trazosxoc.cs_base_trazos,  
+			dt_trazosxoc.co_trazo,
+			h_trazos.de_trazo, 
+         dt_trazosxoc.co_reftel,
+         dt_trazosxoc.co_caract,
+         h_telas.de_reftel,   
+			m_lineas.de_linea,
+			dt_telaxmodelo_lib.ancho_cortable,
+			h_trazos.largo,
+			dt_telaxmodelo_lib.cs_tanda,
+			pr_carta_partida(dt_telaxmodelo_lib.cs_tanda) carta_partida,
+         dt_refptxtrazo.estab_largo,
+			dt_refptxtrazo.estab_ancho,
+			h_trazos.ancho,
+			pr_descripcion_raya(dt_trazosxoc.cs_orden_corte, h_base_trazos.raya) de_modelo,
+         h_trazos.optimizado,
+         h_trazos.porc_util,
+         dt_telaxmodelo_lib.ca_tela,
+         pr_porc_util_ficha(dt_trazosxoc.cs_orden_corte, h_base_trazos.raya) porc_util,
+         dt_pdnxmodulo.co_fabrica_pt,
+         dt_pdnxmodulo.co_linea,
+         dt_pdnxmodulo.co_referencia,
+         dt_pdnxmodulo.co_color_pt,
+         dt_trazosxoc.co_modelo,
+         dt_pdnxmodulo.ca_programada,
+         dt_telaxmodelo_lib.diametro,
+         h_trazos.observaciones,
+			dt_agrupaescalapdn.co_talla
+    FROM h_base_trazos,   
+         dt_trazosxoc,   
+         dt_agrupa_pdn,   
+         h_telas,   
+         dt_agrupaescalapdn,   
+			m_lineas,
+			h_trazos,
+			dt_telaxmodelo_lib,
+			dt_pdnxmodulo,
+         outer dt_refptxtrazo
+   WHERE ( dt_trazosxoc.cs_agrupacion 				= h_base_trazos.cs_agrupacion ) and  
+         ( dt_trazosxoc.cs_base_trazos 			= h_base_trazos.cs_base_trazos ) and  
+         ( dt_agrupaescalapdn.cs_agrupacion 		= dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_agrupaescalapdn.cs_pdn 				= dt_agrupa_pdn.cs_pdn ) and  
+         ( dt_trazosxoc.cs_agrupacion 				= dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_trazosxoc.cs_pdn 						= dt_agrupa_pdn.cs_pdn ) and  
+         ( dt_trazosxoc.co_reftel 					= h_telas.co_reftel ) and  
+         ( dt_trazosxoc.co_caract 					= h_telas.co_caract ) and  
+			( dt_agrupa_pdn.co_fabrica_pt 			= m_lineas.co_fabrica ) and
+			( dt_agrupa_pdn.co_linea 					= m_lineas.co_linea ) and
+         ( dt_trazosxoc.cs_orden_corte 			= :al_ordencorte ) AND  
+			( dt_agrupa_pdn.co_fabrica_exp			= dt_telaxmodelo_lib.co_fabrica_exp ) and
+			( dt_agrupa_pdn.cs_liberacion 			= dt_telaxmodelo_lib.cs_liberacion ) and
+			( dt_agrupa_pdn.po 							= dt_telaxmodelo_lib.nu_orden ) and
+			( dt_agrupa_pdn.nu_cut 						= dt_telaxmodelo_lib.nu_cut ) and
+			( dt_agrupa_pdn.co_fabrica_pt 			= dt_telaxmodelo_lib.co_fabrica_pt ) and
+			( dt_agrupa_pdn.co_linea 					= dt_telaxmodelo_lib.co_linea ) and
+			( dt_agrupa_pdn.co_referencia 			= dt_telaxmodelo_lib.co_referencia ) and
+			( dt_agrupa_pdn.co_color_pt 				= dt_telaxmodelo_lib.co_color_pt ) and
+			( dt_agrupa_pdn.tono 						= dt_telaxmodelo_lib.co_tono ) and
+			( dt_trazosxoc.co_modelo 					= dt_telaxmodelo_lib.co_modelo ) and
+			( dt_trazosxoc.co_fabrica_tela 			= dt_telaxmodelo_lib.co_fabrica_tela ) and
+			( dt_trazosxoc.co_reftel 					= dt_telaxmodelo_lib.co_reftel ) and
+			( dt_trazosxoc.co_caract 					= dt_telaxmodelo_lib.co_caract ) and
+			( dt_trazosxoc.diametro 					= dt_telaxmodelo_lib.diametro ) and
+			( dt_trazosxoc.co_color_te 				= dt_telaxmodelo_lib.co_color_tela ) and
+			( dt_trazosxoc.co_trazo						= h_trazos.co_trazo ) and
+         ( h_trazos.co_trazo                    = dt_refptxtrazo.co_trazo ) and
+         ( dt_refptxtrazo.co_fabrica 				= dt_pdnxmodulo.co_fabrica_pt ) and
+         ( dt_refptxtrazo.co_linea	 				= dt_pdnxmodulo.co_linea ) and
+         ( dt_refptxtrazo.co_referencia			= dt_pdnxmodulo.co_referencia ) and
+			( h_base_trazos.raya							= :ai_raya ) and
+			( dt_agrupa_pdn.co_fabrica_exp			= dt_pdnxmodulo.co_fabrica_exp ) and
+			( dt_agrupa_pdn.cs_liberacion 			= dt_pdnxmodulo.cs_liberacion ) and
+			( dt_agrupa_pdn.po 							= dt_pdnxmodulo.po ) and
+			( dt_agrupa_pdn.nu_cut 						= dt_pdnxmodulo.nu_cut ) and
+			( dt_agrupa_pdn.co_fabrica_pt 			= dt_pdnxmodulo.co_fabrica_pt ) and
+			( dt_agrupa_pdn.co_linea 					= dt_pdnxmodulo.co_linea ) and
+			( dt_agrupa_pdn.co_referencia 			= dt_pdnxmodulo.co_referencia ) and
+			( dt_agrupa_pdn.co_color_pt 				= dt_pdnxmodulo.co_color_pt ) and
+			( dt_agrupa_pdn.tono 						= dt_pdnxmodulo.tono )
+order by 2,3" arguments=(("al_ordencorte", number),("ai_raya", number))  sort="h_base_trazos_raya A dt_trazosxoc_cs_trazo A dt_trazosxoc_cs_orden_espacio A " )
+group(level=1 header.height=312 trailer.height=0 by=("dt_trazosxoc_cs_orden_corte" , "h_base_trazos_raya" , "dt_trazosxoc_cs_trazo" ) header.color="536870912" trailer.color="536870912" )
+text(band=header.1 alignment="0" text="Agrupaci$$HEX1$$f300$$ENDHEX$$n:" border="0" color="0" x="23" y="4" height="60" width="306" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=header.1 id=5 alignment="0" tabsequence=32766 border="0" color="0" x="329" y="4" height="60" width="247" format="[general]" html.valueishtml="0"  name=cs_agrupacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Base:" border="0" color="0" x="585" y="4" height="60" width="155" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=header.1 id=6 alignment="0" tabsequence=32766 border="0" color="0" x="750" y="4" height="60" width="59" format="[general]" html.valueishtml="0"  name=cs_base_trazos visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Espacio:" border="0" color="0" x="823" y="4" height="60" width="233" html.valueishtml="0"  name=dt_trazosxoc_cs_trazo_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=4 alignment="0" tabsequence=32766 border="0" color="0" x="1061" y="4" height="60" width="64" format="[general]" html.valueishtml="0"  name=dt_trazosxoc_cs_trazo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Largo:" border="0" color="0" x="1138" y="4" height="60" width="155" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=14 alignment="1" tabsequence=32766 border="0" color="0" x="1298" y="4" height="60" width="160" format="###,##0.00" html.valueishtml="0"  name=h_trazos_largo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="% Uti Fcha:" border="0" color="0" x="1495" y="8" height="56" width="251" html.valueishtml="0"  name=t_15 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=22 alignment="0" tabsequence=32766 border="0" color="0" x="1746" y="8" height="60" width="160" format="[general]" html.valueishtml="0"  name=porc_util visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=25 alignment="0" tabsequence=32766 border="0" color="0" x="2400" y="8" height="60" width="128" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_co_fabrica_pt visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=header.1 id=26 alignment="0" tabsequence=32766 border="0" color="0" x="1970" y="12" height="52" width="128" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_co_linea visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=header.1 id=27 alignment="0" tabsequence=32766 border="0" color="0" x="2112" y="8" height="68" width="128" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_co_referencia visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=header.1 id=28 alignment="0" tabsequence=32766 border="0" color="0" x="2254" y="8" height="60" width="128" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_co_color_pt visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=header.1 id=29 alignment="0" tabsequence=32766 border="0" color="0" x="2537" y="4" height="72" width="128" format="[general]" html.valueishtml="0"  name=dt_trazosxoc_co_modelo visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=header.1 id=30 alignment="0" tabsequence=32766 border="0" color="0" x="2674" y="16" height="60" width="128" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_ca_programada visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header.1 alignment="0" text="Tela:" border="0" color="0" x="18" y="144" height="64" width="123" html.valueishtml="0"  name=t_21 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="0" expression="String( dt_trazosxoc_co_reftel ) + '-' + String( dt_trazosxoc_co_caract )"border="0" color="0" x="160" y="144" height="64" width="224" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=11 alignment="0" tabsequence=32766 border="0" color="0" x="398" y="144" height="64" width="837" format="[general]" html.valueishtml="0"  name=h_telas_de_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Modelo:" border="0" color="0" x="18" y="72" height="64" width="201" html.valueishtml="0"  name=t_20 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=20 alignment="0" tabsequence=32766 border="0" color="0" x="224" y="72" height="68" width="1687" format="[general]" html.valueishtml="0"  name=dt_modelos_de_modelo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Prenda:" border="0" color="0" x="1243" y="144" height="64" width="197" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=12 alignment="0" tabsequence=32766 border="0" color="0" x="1454" y="144" height="64" width="453" format="[general]" html.valueishtml="0"  name=de_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=23 alignment="0" tabsequence=32766 border="0" color="0" x="270" y="216" height="60" width="229" format="0.00" html.valueishtml="0"  name=dt_telaxmodelo_lib_ca_tela visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="METROS:" border="0" color="0" x="18" y="220" height="48" width="251" html.valueishtml="0"  name=t_13 visible="1"  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+report(band=detail dataobject="dtb_temp_calcular_kilos_modelo_std_talla" x="539" y="12" height="88" width="1262" border="0"  height.autosize=yes criteria="" nest_arguments=((" dt_pdnxmodulo_co_fabrica_pt "),(" dt_pdnxmodulo_co_linea "),(" dt_pdnxmodulo_co_referencia "),(" dt_pdnxmodulo_co_color_pt "),(" dt_trazosxoc_co_modelo "),(" dt_pdnxmodulo_ca_programada "),(" porc_util "),(" cs_agrupacion "),(" dt_agrupaescalapdn_co_talla ")) trail_footer = yes  name=dw_5 visible="1"  slideup=directlyabove )
+line(band=summary x1="5" y1="4" x2="3397" y2="4"  name=l_8 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+column(band=detail id=33 alignment="0" tabsequence=0 border="0" color="0" x="1989" y="12" height="64" width="169" html.valueishtml="0"  name=dt_agrupaescalapdn_co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
