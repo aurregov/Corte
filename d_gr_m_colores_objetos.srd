@@ -1,0 +1,43 @@
+HA$PBExportHeader$d_gr_m_colores_objetos.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=64 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(20) update=yes updatewhereclause=yes key=yes name=grupo dbname="m_colores_objetos.grupo" )
+ column=(type=char(20) update=yes updatewhereclause=yes key=yes name=objeto dbname="m_colores_objetos.objeto" )
+ column=(type=long update=yes updatewhereclause=yes name=co_color dbname="m_colores_objetos.co_color" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=de_objeto dbname="m_colores_objetos.de_objeto" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=de_objeto_corta dbname="m_colores_objetos.de_objeto_corta" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="m_colores_objetos.fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="m_colores_objetos.fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="m_colores_objetos.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="m_colores_objetos.instancia" )
+ retrieve="  SELECT m_colores_objetos.grupo,   
+         m_colores_objetos.objeto,   
+         m_colores_objetos.co_color,   
+         m_colores_objetos.de_objeto,   
+         m_colores_objetos.de_objeto_corta,   
+         m_colores_objetos.fe_creacion,   
+         m_colores_objetos.fe_actualizacion,   
+         m_colores_objetos.usuario,   
+         m_colores_objetos.instancia  
+    FROM m_colores_objetos  
+   WHERE ( m_colores_objetos.grupo = :as_grupo or :as_grupo = '*' ) and
+			( m_colores_objetos.objeto = :as_objeto or :as_objeto = '*' )
+		 
+" update="m_colores_objetos" updatewhere=1 updatekeyinplace=yes arguments=(("as_grupo", string),("as_objeto", string))  sort="grupo A objeto A " )
+text(band=header alignment="2" text="Objeto" border="6" color="33554432" x="9" y="4" height="52" width="599" html.valueishtml="0"  name=objeto_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912"  height.autosize=yes)
+text(band=header alignment="2" text="Descripci$$HEX1$$f300$$ENDHEX$$n Corta" border="6" color="33554432" x="626" y="4" height="52" width="640" html.valueishtml="0"  name=de_objeto_corta_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912"  height.autosize=yes)
+text(band=header alignment="2" text="Color" border="6" color="33554432" x="2775" y="4" height="52" width="178" html.valueishtml="0"  name=co_color_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Descripci$$HEX1$$f300$$ENDHEX$$n" border="6" color="33554432" x="1285" y="4" height="52" width="1467" html.valueishtml="0"  name=t_1 visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="5" color="33554432" x="9" y="4" height="64" width="599" format="[general]" html.valueishtml="0"  name=objeto visible="1" editmask.mask="XXXXXXXXXXXXXXXXXXXX" editmask.imemode=0 editmask.focusrectangle=no  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217742" )
+text(band=detail alignment="0" text="         " border="6" color="33554432~t co_color " x="2775" y="4" height="64" width="178" html.valueishtml="0"  name=t_color visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="67108864~t co_color " )
+column(band=detail id=5 alignment="0" tabsequence=20 border="5" color="33554432" x="626" y="4" height="64" width="640" format="[general]" html.valueishtml="0"  name=de_objeto_corta visible="1" editmask.mask="XXXXXXXXXXXXXXXXXXXX" editmask.imemode=0 editmask.focusrectangle=no  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217742" )
+column(band=detail id=4 alignment="0" tabsequence=30 border="5" color="33554432" x="1285" y="4" height="64" width="1467" format="[general]" html.valueishtml="0"  name=de_objeto visible="1" editmask.mask="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" editmask.imemode=0 editmask.focusrectangle=no  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217742" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
