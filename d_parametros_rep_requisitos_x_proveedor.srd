@@ -1,0 +1,18 @@
+HA$PBExportHeader$d_parametros_rep_requisitos_x_proveedor.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=81324524 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=276 color="536870912" )
+table(column=(type=number updatewhereclause=no name=co_proveedor dbname="co_fabrica" )
+ column=(type=date updatewhereclause=no name=fecha dbname="fecha" initial="today" )
+ column=(type=number updatewhereclause=no name=estado dbname="estado" initial="1" values="PROGRAMADO	1/CUMPLIDO	2/" )
+ )
+text(band=detail alignment="0" text="Proveedor" border="0" color="0" x="37" y="12" height="56" width="229"  name=co_fabrica_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Fecha" border="0" color="0" x="37" y="100" height="64" width="137"  name=fecha_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Estado" border="0" color="0" x="37" y="196" height="56" width="192"  name=t_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="0" x="315" y="12" height="64" width="686" format="[general]"  name=co_proveedor dddw.name=dddw_proveedor_req dddw.displaycolumn=de_proveedor_req dddw.datacolumn=co_proveedor_req dddw.percentwidth=140 dddw.lines=4 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="2" tabsequence=40 border="5" color="0" x="315" y="100" height="64" width="379" format="[general]"  name=fecha editmask.spin=yes editmask.mask="dd/mm/yyyy" editmask.spinincr=0 editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=50 border="5" color="0" x="315" y="192" height="64" width="379" format="[general]"  name=estado ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
