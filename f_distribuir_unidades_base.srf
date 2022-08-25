@@ -1,0 +1,740 @@
+HA$PBExportHeader$f_distribuir_unidades_base.srf
+global type f_distribuir_unidades_base from function_object
+end type
+
+forward prototypes
+global function long f_distribuir_unidades_base (long an_simulacion, long an_fabrica_modulo, long an_planta_modulo, long an_modulo, long an_prioridad, long an_tipo_empate, long an_unidades_empate, long an_unidades, decimal ad_minutos_std, long an_personasxmodulo, long an_co_curva, long an_co_fabrica_exp, long an_pedido, long an_cs_liberacion, string as_po, long an_co_fabrica_ref, long an_co_linea_ref, long an_co_referencia, long an_color_pt, string as_tono, long an_cs_estilocolortono, long an_cs_particion, datetime adt_fe_inicio_prog, datetime adt_fe_fin_prog, decimal ad_minutos_jornada, long an_dias_programados, long an_unid_que_lleva, datetime adt_fe_fin_ant, long an_base_dia, datetime adt_fe_prog_desp, ref datetime adt_fe_entra_pdn, long an_li_cod_tur)
+end prototypes
+
+global function long f_distribuir_unidades_base (long an_simulacion, long an_fabrica_modulo, long an_planta_modulo, long an_modulo, long an_prioridad, long an_tipo_empate, long an_unidades_empate, long an_unidades, decimal ad_minutos_std, long an_personasxmodulo, long an_co_curva, long an_co_fabrica_exp, long an_pedido, long an_cs_liberacion, string as_po, long an_co_fabrica_ref, long an_co_linea_ref, long an_co_referencia, long an_color_pt, string as_tono, long an_cs_estilocolortono, long an_cs_particion, datetime adt_fe_inicio_prog, datetime adt_fe_fin_prog, decimal ad_minutos_jornada, long an_dias_programados, long an_unid_que_lleva, datetime adt_fe_fin_ant, long an_base_dia, datetime adt_fe_prog_desp, ref datetime adt_fe_entra_pdn, long an_li_cod_tur);// --------
+// -------- Creada con base en wf_distribuir_base de wf_parametros_asignacion
+// --------
+DateTime 			ldt_fechahora
+Long	 			li_co_fabrica_modulo,li_co_planta_modulo,li_co_modulo, li_simulacion
+s_base_parametros lstr_parametros
+Long				li_co_fabrica_exp,li_co_fabrica_ref,li_co_linea_ref,li_co_talla
+Long           li_ca_pendiente_ant, li_ca_unid_base_dia_ant
+LONG					ll_pedido,ll_co_referencia,ll_color_pt,ll_cs_liberacion,ll_ca_unidades,ll_pedido_po
+Long				li_cs_estilocolortono,li_co_tipo_asignacion,li_cs_particion
+STRING				ls_gpa,ls_nu_orden,ls_tono,ls_tipo_pedido
+LONG					ll_ca_programada,ll_ca_producida,ll_ca_personasxmod,ll_ca_unidad_base_dia
+LONG					li_unidades_empate
+Long				li_co_estado_asigna,li_co_curva,li_cod_tur,li_ind_cambio_estilo,li_orige_uni_base_dia
+Long				li_tipo_empate,li_metodo_programa,li_fuente_dato,li_cs_prioridad
+DATETIME				ldt_fe_inicio_prog,ldt_fe_fin_prog
+DECIMAL				ld_ca_minutos_std,ld_minutos_jornada,ld_ca_min_dispon_ini,ld_porc_eficiencia
+LONG					ll_ca_unid_dispon_ini,ll_ca_unid_dispon_fin,ll_ca_min_dispon_fin,ll_personasxmodulo,ll_ca_unid_posibles
+LONG 					ll_ca_programada_manual, ll_dias_programados_manual
+
+Long				li_co_fabrica_exp_ant,li_co_fabrica_ref_ant,li_co_linea_ref_ant,li_cs_estilocolortono_ant
+Long				li_cs_particion_ant,li_prioridad_ant,li_dia,li_cs_fechas,li_duracion,li_co_est_prog_dia
+LONG         		ll_pedido_ant,ll_cs_liberacion_ant,ll_co_referencia_ant,ll_color_pt_ant,ll_unidades_empate  
+LONG					ll_unidades_disponibles,ll_ca_pendiente
+STRING				ls_nu_orden_ant,ls_tono_ant,ls_nombre_dia, ls_mensaje
+DECIMAL				ld_minutos_empate,ld_ca_min_dispon_fin,ld_ca_min_dispon_ant,ld_minutos_disponibles
+DATETIME				ldt_fe_inicio,ldt_fe_fin,ldt_fe_creacion,ldt_fe_actualizacion,ldt_fe_fin_ant
+DATETIME				ldt_fe_inicio_prog_tot,ldt_fe_fin_prog_tot,ldt_fe_calculada_despacho
+DATE					ld_fecha_despacho, ld_fe_inicio
+Long				li_tipo_avance_calendario, li_numero_dias, li_dia_manual
+
+				
+	// ------------------------------- inicio de traer datos iniciales -------------------------------------------//
+
+	// traer unidades disponibles 
+	// an_unid_que_lleva = unidades pendientes - unidades programadas
+	ll_unidades_disponibles= an_unid_que_lleva		
+	
+	// traer minutos disponibles
+	// variables que afectan: 
+	li_cs_prioridad=an_prioridad
+	li_tipo_empate=an_tipo_empate
+	ld_ca_min_dispon_ant=ad_minutos_jornada 
+	
+	// 1. si es prioridad 1: las fechas iniciales son las de inicio de programacion
+	IF li_cs_prioridad = 1 THEN
+		ldt_fe_fin_ant			=adt_fe_inicio_prog
+		ldt_fe_inicio			=adt_fe_inicio_prog
+	ELSE
+	// 2. Si es prioridad > 1 : las fechas iniciales son las finales de la prioridad anterior
+		ldt_fe_fin_ant  		=adt_fe_fin_ant
+		ldt_fe_inicio			=adt_fe_fin_ant
+	END IF
+	
+	// traer minutos estandar
+	ld_ca_minutos_std=ad_minutos_std
+	
+	// traer personas por modulo
+	ll_personasxmodulo=an_personasxmodulo
+	
+	// ---------------------*** inicio de programaci$$HEX1$$f300$$ENDHEX$$n hacia A D E L A N T E ***------------ // 
+	IF ISNULL(adt_fe_prog_desp) THEN  
+		// Busca datos referencia anterior para tomar
+		// Unidades base, utima fecha programada, ultimas unidades programadas
+		// o verifica si es la primera produccion y tiene programacion manual
+		// para terminar la programacion
+	
+		IF (li_cs_prioridad >1) OR (li_cs_prioridad = 1 AND an_dias_programados > 0) THEN
+			// organiza prioridad
+			IF li_cs_prioridad > 1 THEN
+				li_prioridad_ant=li_cs_prioridad - 1
+			ELSE
+				li_prioridad_ant=li_cs_prioridad
+			END IF
+			// busca programacion
+			SELECT dt_pdnxmodulo.ca_unid_base_dia,   
+				dt_pdnxmodulo.co_fabrica_exp, 		
+				dt_pdnxmodulo.pedido, 					
+				dt_pdnxmodulo.cs_liberacion, 		
+				dt_pdnxmodulo.po, 						
+				dt_pdnxmodulo.co_fabrica_pt, 			
+				dt_pdnxmodulo.co_linea, 				
+				dt_pdnxmodulo.co_referencia, 			
+				dt_pdnxmodulo.co_color_pt,			
+				dt_pdnxmodulo.tono, 						
+				dt_pdnxmodulo.cs_estilocolortono, 	
+				dt_pdnxmodulo.cs_particion 			
+		 INTO :li_ca_unid_base_dia_ant,				
+				:li_co_fabrica_exp_ant,
+				:ll_pedido_ant,
+				:ll_cs_liberacion_ant,
+				:ls_nu_orden_ant,
+				:li_co_fabrica_ref_ant,
+				:li_co_linea_ref_ant,
+				:ll_co_referencia_ant,
+				:ll_color_pt_ant,
+				:ls_tono_ant,
+				:li_cs_estilocolortono_ant,
+				:li_cs_particion_ant
+		 FROM dt_pdnxmodulo  
+		WHERE ( dt_pdnxmodulo.simulacion 	= 	:an_simulacion ) AND  
+				( dt_pdnxmodulo.co_fabrica 	=	:an_fabrica_modulo ) AND  
+				( dt_pdnxmodulo.co_planta 		=  :an_planta_modulo) AND  
+				( dt_pdnxmodulo.co_modulo 		=  :an_modulo) AND  
+				( dt_pdnxmodulo.cs_prioridad 	=  :li_prioridad_ant)   ;
+		IF SQLCA.SQLCODE=-1 THEN
+			MessageBox("Error Base Datos","No pudo encontrar parametros de la prioridad anterior")
+		ELSE
+			// ---------------  Busca ultimo dia programado de la prioridad anterior -----------//
+			//                  toma informacion (minutos, unidades, fecha,...) 
+			SELECT dt_programa_diario.fe_inicio, dt_programa_diario.ca_pendiente
+			 INTO :ldt_fe_fin_ant, :li_ca_pendiente_ant
+			 FROM dt_programa_diario  
+			WHERE ( dt_programa_diario.simulacion 				= :an_simulacion ) AND  
+					( dt_programa_diario.co_fabrica 				= :an_fabrica_modulo ) AND  
+					( dt_programa_diario.co_planta 				= :an_planta_modulo ) AND  
+					( dt_programa_diario.co_modulo 				= :an_modulo ) AND  
+					( dt_programa_diario.co_fabrica_exp 		= :li_co_fabrica_exp_ant) AND  
+					( dt_programa_diario.pedido 					= :ll_pedido_ant ) AND  
+					( dt_programa_diario.cs_liberacion 			= :ll_cs_liberacion_ant ) AND  
+					( dt_programa_diario.po 						= :ls_nu_orden_ant ) AND  
+					( dt_programa_diario.co_fabrica_pt 			= :li_co_fabrica_ref_ant ) AND  
+					( dt_programa_diario.co_linea 				= :li_co_linea_ref_ant ) AND  
+					( dt_programa_diario.co_referencia 			= :ll_co_referencia_ant ) AND  
+					( dt_programa_diario.co_color_pt 			= :ll_color_pt_ant ) AND  
+					( dt_programa_diario.tono 						= :ls_tono_ant ) AND  
+					( dt_programa_diario.cs_estilocolortono 	= :li_cs_estilocolortono_ant ) AND  
+					( dt_programa_diario.cs_particion 			= :li_cs_particion_ant  ) AND  
+					( dt_programa_diario.cs_fechas 				= 	
+					(
+						SELECT MAX(dt_programa_diario.cs_fechas  )
+						 FROM dt_programa_diario  
+						WHERE ( dt_programa_diario.simulacion 				= :an_simulacion ) AND  
+								( dt_programa_diario.co_fabrica 				= :an_fabrica_modulo ) AND  
+								( dt_programa_diario.co_planta 				= :an_planta_modulo ) AND  
+								( dt_programa_diario.co_modulo 				= :an_modulo ) AND  
+								( dt_programa_diario.co_fabrica_exp 		= :li_co_fabrica_exp_ant) AND  
+								( dt_programa_diario.pedido 					= :ll_pedido_ant ) AND  
+								( dt_programa_diario.cs_liberacion 			= :ll_cs_liberacion_ant ) AND  
+								( dt_programa_diario.po 						= :ls_nu_orden_ant ) AND  
+								( dt_programa_diario.co_fabrica_pt 			= :li_co_fabrica_ref_ant ) AND  
+								( dt_programa_diario.co_linea 				= :li_co_linea_ref_ant ) AND  
+								( dt_programa_diario.co_referencia 			= :ll_co_referencia_ant ) AND  
+								( dt_programa_diario.co_color_pt 			= :ll_color_pt_ant ) AND  
+								( dt_programa_diario.tono 						= :ls_tono_ant ) AND  
+								( dt_programa_diario.cs_estilocolortono 	= :li_cs_estilocolortono_ant ) AND  
+								( dt_programa_diario.cs_particion 			= :li_cs_particion_ant  ) 
+					)
+			)   ;
+			IF SQLCA.SQLCODE=-1 THEN
+				MessageBox("Error Base datos","No pudo encontrar informacion ultimo dia programado prioridad anterior")
+			ELSE
+			END IF
+		END IF		
+	ELSE
+	END IF
+	// --------------------- fin de traer datos iniciales --------------------------------- //
+
+	// --------------------- ORGANIZA FECHAS PROGRAMACION MANUAL -------------------------- //
+	// ---------------- con base en fecha de terminacion prioridad anterior --------------- //
+	
+	IF (li_cs_prioridad >1 AND an_dias_programados > 0) THEN
+		// -------
+		// Recorre los dias programados
+		// -------
+		FOR li_dia_manual = 1 TO an_dias_programados
+		// fecha de inicio de programaci$$HEX1$$f300$$ENDHEX$$n
+		IF li_dia_manual=1 THEN		
+				// No hay fecha de entrada a produccion
+				IF ISNULL(adt_fe_entra_pdn)	THEN
+					// Usa fecha terminacion prioridad anterior
+					ldt_fe_inicio=ldt_fe_fin_ant		
+					// Verifica Tipo de Empate
+					IF li_tipo_empate=2 THEN
+						// Avanza un dia en el Calendario hacia adelante
+						li_tipo_avance_calendario=1 
+						li_numero_dias=1
+						ld_fe_inicio=f_traer_fechas(an_fabrica_modulo,an_planta_modulo,an_modulo,an_li_cod_tur,&
+															ldt_fe_inicio,li_numero_dias,li_tipo_avance_calendario)
+						IF ISNULL(ld_fe_inicio) THEN
+							ls_mensaje="Por favor verifique la fecha en el calendario general:" + STRING(ldt_fe_inicio)
+							MessageBox("Error de Datos",ls_mensaje)
+							RETURN 0
+						ELSE
+							ldt_fe_inicio=datetime(ld_fe_inicio, time(ldt_fe_inicio))
+						END IF
+					ELSE
+					END IF
+				// hay fecha de entrada a produccion
+				ELSE // IF ISNULL(adt_fe_entra_pdn)	
+					ldt_fe_inicio=adt_fe_entra_pdn
+ 					// debe verificar que la fecha de inicio no halla quedado mayor 
+					// que la fecha de fin anterior, o sino cambiarla
+					IF ldt_fe_inicio > ldt_fe_fin_ant THEN
+					ELSE
+						ldt_fe_inicio=ldt_fe_fin_ant
+						// No Empata
+						IF li_tipo_empate=2 THEN 
+							// Avanza un dia en el Calendario hacia adelante
+							li_tipo_avance_calendario=1 
+							li_numero_dias=1
+							ld_fe_inicio=f_traer_fechas(an_fabrica_modulo,an_planta_modulo,an_modulo,an_li_cod_tur,&
+																	ldt_fe_inicio,li_numero_dias,li_tipo_avance_calendario)
+							IF ISNULL(ld_fe_inicio) THEN
+								ls_mensaje="Por favor verifique la fecha en el calendario general:" + STRING(ldt_fe_inicio)
+								MessageBox("Error de Datos",ls_mensaje)
+								RETURN 0
+							ELSE
+								ldt_fe_inicio=datetime(ld_fe_inicio, time(ldt_fe_inicio))
+							END IF
+						ELSE
+						END IF		
+					END IF
+				END IF
+			// Guarda Fecha Dia 1
+			ldt_fe_inicio_prog_tot=ldt_fe_inicio
+			
+		// ----------- Dias Posteriores al Primero ------------------------- //
+		
+		ELSE // IF li_dia_manual=1 		
+			ldt_fe_inicio=ldt_fe_fin_ant
+			// Avanza un dia en el Calendario hacia adelante
+			li_tipo_avance_calendario=1 
+			li_numero_dias=1
+			ld_fe_inicio=f_traer_fechas(an_fabrica_modulo,an_planta_modulo,an_modulo,an_li_cod_tur,&
+												ldt_fe_inicio,li_numero_dias,li_tipo_avance_calendario)
+			IF ISNULL(ld_fe_inicio) THEN
+					ls_mensaje="Por favor verifique la fecha en el calendario general:" + STRING(ldt_fe_inicio)
+					MessageBox("Error de Datos",ls_mensaje)
+					RETURN 0
+			ELSE
+					ldt_fe_inicio=datetime(ld_fe_inicio, time(ldt_fe_inicio))
+			END IF
+		END IF // IF li_dia=1 		
+		// -----------
+		// Actualiza nueva fecha de programacion para el dia
+		// -----------
+		UPDATE dt_programa_diario
+		SET dt_programa_diario.fe_inicio = :ldt_fe_inicio,
+	  		 dt_programa_diario.fe_fin 	= :ldt_fe_inicio
+		WHERE ( dt_programa_diario.simulacion 				= :an_simulacion ) AND  
+				( dt_programa_diario.co_fabrica 				= :an_fabrica_modulo ) AND  
+				( dt_programa_diario.co_planta 				= :an_planta_modulo ) AND  
+				( dt_programa_diario.co_modulo 				= :an_modulo ) AND  
+				( dt_programa_diario.co_fabrica_exp 		= :an_co_fabrica_exp) AND  
+				( dt_programa_diario.pedido 					= :an_pedido ) AND  
+				( dt_programa_diario.cs_liberacion 			= :an_cs_liberacion ) AND  
+				( dt_programa_diario.po 						= :as_po ) AND  
+				( dt_programa_diario.co_fabrica_pt 			= :an_co_fabrica_ref ) AND  
+				( dt_programa_diario.co_linea 				= :an_co_linea_ref ) AND  
+				( dt_programa_diario.co_referencia 			= :an_co_referencia ) AND  
+				( dt_programa_diario.co_color_pt 			= :an_color_pt ) AND  
+				( dt_programa_diario.tono 						= :as_tono ) AND  
+				( dt_programa_diario.cs_estilocolortono 	= :an_cs_estilocolortono ) AND  
+				( dt_programa_diario.cs_particion 			= :an_cs_particion  ) AND
+				( dt_programa_diario.cs_fechas 				= :li_dia_manual);
+				
+		// Guarda Fecha programada como ultima fecha de programacion
+		ldt_fe_fin_ant = ldt_fe_inicio
+
+		NEXT	
+	END IF
+
+
+	//------------inicio de ciclo para calcular unidades a asignar a diario -----------------------//
+	
+	li_dia=an_dias_programados
+	DO WHILE ll_unidades_disponibles > 0
+		
+		li_dia=li_dia + 1
+		
+		// Establece % de eficiencia de 100  
+		ld_porc_eficiencia=100
+	
+		// Minutos disponibles
+		IF li_dia=1 THEN
+			ld_minutos_disponibles=ld_ca_min_dispon_ant
+		ELSE
+			ld_minutos_disponibles=ad_minutos_jornada
+		END IF
+		
+		// ------------------- UNIDADES POSIBLES ---------------------------------- //
+		// Obtiene unidades seg$$HEX1$$fa00$$ENDHEX$$n el tipo de empate para el primer dia
+		// estas son las del primer dia 0 autom, 1 manual, 2 no empate
+		
+		// Prioridades > 1
+		IF li_cs_prioridad > 1 THEN
+			IF li_dia=1 THEN
+				// Empate Automatico
+				IF li_tipo_empate=0 THEN
+					ll_ca_unid_posibles=li_ca_unid_base_dia_ant - li_ca_pendiente_ant 
+				ELSE
+					// Empate Manual
+					IF li_tipo_empate=1 THEN
+						ll_ca_unid_posibles=an_unidades_empate
+					// No empate
+					ELSE					
+						ll_ca_unid_posibles=an_base_dia
+					END IF
+				END IF
+			// Dias posteriores al primero
+			ELSE
+				ll_ca_unid_posibles=an_base_dia
+			END IF 
+		// Prioridad 1. Verificar si se incluyen otros controles de inicio
+		ELSE
+			ll_ca_unid_posibles=an_base_dia
+		END IF
+	
+		// -------------------- Determina fechas a utlizar -----------------------------------//
+		
+		// fecha de inicio de programaci$$HEX1$$f300$$ENDHEX$$n
+		IF li_dia=1 THEN		
+			IF li_cs_prioridad=1 THEN
+				// Controla Fecha Entrada Produccion Prioridad 1
+				IF ISNULL(adt_fe_entra_pdn) THEN								
+					IF ISNULL(adt_fe_inicio_prog) THEN
+						MessageBox("Error de Datos","Para la primera asignaci$$HEX1$$f300$$ENDHEX$$n debe tener fecha de inicio de programaci$$HEX1$$f300$$ENDHEX$$n")
+						RETURN 0
+					ELSE
+						ldt_fe_inicio=adt_fe_inicio_prog
+					END IF
+				ELSE
+					ldt_fe_inicio=adt_fe_entra_pdn
+				END IF
+			ELSE			
+				// Organiza fecha para prioridades > 1
+				// No hay fecha de entrada a produccion
+				IF ISNULL(adt_fe_entra_pdn)	THEN
+					// Usa fecha terminacion prioridad anterior
+					ldt_fe_inicio=ldt_fe_fin_ant		
+					// Verifica Tipo de Empate
+					IF li_tipo_empate=2 THEN
+						// Avanza un dia en el Calendario hacia adelante
+						li_tipo_avance_calendario=1 
+						li_numero_dias=1
+						ld_fe_inicio=f_traer_fechas(an_fabrica_modulo,an_planta_modulo,an_modulo,an_li_cod_tur,&
+															ldt_fe_inicio,li_numero_dias,li_tipo_avance_calendario)
+						IF ISNULL(ld_fe_inicio) THEN
+							ls_mensaje="Por favor verifique la fecha en el calendario general:" + STRING(ldt_fe_inicio)
+							MessageBox("Error de Datos",ls_mensaje)
+							RETURN 0
+						ELSE
+							ldt_fe_inicio=datetime(ld_fe_inicio, time(ldt_fe_inicio))
+						END IF
+					ELSE
+					END IF
+				// hay fecha de entrada a produccion
+				ELSE // IF ISNULL(adt_fe_entra_pdn)	
+					ldt_fe_inicio=adt_fe_entra_pdn
+ 					// debe verificar que la fecha de inicio no halla quedado mayor 
+					// que la fecha de fin anterior, o sino cambiarla
+					IF ldt_fe_inicio > ldt_fe_fin_ant THEN
+								// --------
+								// Organiza las unidades con base dia 
+								// si la fecha de entrada a produccion es mayor a la fecha anterior
+								// --------
+								ll_ca_unid_posibles=an_base_dia
+					ELSE
+						ldt_fe_inicio=ldt_fe_fin_ant
+						// No Empata
+						IF li_tipo_empate=2 THEN 
+							// Avanza un dia en el Calendario hacia adelante
+							li_tipo_avance_calendario=1 
+							li_numero_dias=1
+							ld_fe_inicio=f_traer_fechas(an_fabrica_modulo,an_planta_modulo,an_modulo,an_li_cod_tur,&
+																	ldt_fe_inicio,li_numero_dias,li_tipo_avance_calendario)
+							IF ISNULL(ld_fe_inicio) THEN
+								ls_mensaje="Por favor verifique la fecha en el calendario general:" + STRING(ldt_fe_inicio)
+								MessageBox("Error de Datos",ls_mensaje)
+								RETURN 0
+							ELSE
+								ldt_fe_inicio=datetime(ld_fe_inicio, time(ldt_fe_inicio))
+							END IF
+						ELSE
+						END IF		
+					END IF
+				END IF
+			END IF
+			// Guarda Fecha Dia 1
+			ldt_fe_inicio_prog_tot=ldt_fe_inicio
+			
+		// ----------- Dias Posteriores al Primero ------------------------- //
+		
+		ELSE // IF li_dia=1 		
+			ldt_fe_inicio=ldt_fe_fin_ant
+			// Avanza un dia en el Calendario hacia adelante
+			li_tipo_avance_calendario=1 
+			li_numero_dias=1
+			ld_fe_inicio=f_traer_fechas(an_fabrica_modulo,an_planta_modulo,an_modulo,an_li_cod_tur,&
+												ldt_fe_inicio,li_numero_dias,li_tipo_avance_calendario)
+			IF ISNULL(ld_fe_inicio) THEN
+					ls_mensaje="Por favor verifique la fecha en el calendario general:" + STRING(ldt_fe_inicio)
+					MessageBox("Error de Datos",ls_mensaje)
+					RETURN 0
+			ELSE
+					ldt_fe_inicio=datetime(ld_fe_inicio, time(ldt_fe_inicio))
+			END IF
+		END IF // IF li_dia=1 		
+		
+		// -------------------------- ORGANIZA SALDO A PROGRAAMR ----------------------- //
+		// UNIDADES A ASIGNAR, Verifica no sobrepasar unidades posibles de programacion	//
+		// ---------
+		IF ll_unidades_disponibles > ll_ca_unid_posibles THEN
+			ll_ca_pendiente		=ll_ca_unid_posibles
+			ld_ca_min_dispon_fin	=0
+		ELSE
+			ll_ca_pendiente		=ll_unidades_disponibles
+			ld_ca_min_dispon_fin=((ld_minutos_disponibles * an_personasxmodulo) - &
+			                     ((ad_minutos_std * ll_ca_pendiente) / (ld_porc_eficiencia/100))) / &
+										an_personasxmodulo
+		END IF
+		
+		// UNIDADES QUE QUEDAN
+		ll_ca_unid_dispon_fin=ll_unidades_disponibles - ll_ca_pendiente
+			
+		li_cs_fechas=li_dia
+		
+		// ------------- GUARDA FECHAS DE PROGRAMACION ------------------- //
+		// Guarda Fecha programada como ultima fecha de programacion
+		ldt_fe_fin = ldt_fe_inicio
+		ldt_fe_fin_ant = ldt_fe_inicio
+		
+		li_co_est_prog_dia=1
+		li_fuente_dato=1
+		
+		ldt_fechahora = f_fecha_servidor()
+		ldt_fe_creacion=ldt_fechahora   
+		ldt_fe_actualizacion=ldt_fe_creacion
+	
+		
+		// -------------------- inicio de datos de salida - Actualizaciones ------------------ //
+		
+		// -------------------- Actualiza Archivo de Programacion Diaria ----------------------//
+		INSERT INTO dt_programa_diario  
+				( simulacion,   
+				  co_fabrica,   
+				  co_planta,   
+				  co_modulo,   
+				  co_fabrica_exp,   
+				  pedido,   
+				  cs_liberacion,   
+				  po,   
+				  co_fabrica_pt,   
+				  co_linea,   
+				  co_referencia,   
+				  co_color_pt,   
+				  tono,   
+				  cs_estilocolortono,   
+				  cs_particion,   
+				  cs_fechas,   
+				  fe_inicio,   
+				  ca_unid_dispon_ini,   
+				  ca_min_dispon_ini,   
+				  ca_unid_dispon_fin,   
+				  ca_min_dispon_fin,   
+				  personasxmodulo,
+				  dia_curva,
+				  porc_eficiencia,   
+				  ca_unid_posibles,   
+				  duracion,   
+				  fe_fin,   
+				  ca_programada,   
+				  ca_producida,   
+				  ca_pendiente,   
+				  co_est_prog_dia,   
+				  fuente_dato,   
+				  fe_creacion,   
+				  fe_actualizacion,   
+				  usuario,   
+				  instancia )  
+	  VALUES ( :an_simulacion,   
+				  :an_fabrica_modulo,   
+				  :an_planta_modulo,   
+				  :an_modulo,   
+				  :an_co_fabrica_exp,   
+				  :an_pedido,   
+				  :an_cs_liberacion,   
+				  :as_po,   
+				  :an_co_fabrica_ref,   
+				  :an_co_linea_ref,   
+				  :an_co_referencia,   
+				  :an_color_pt,   
+				  :as_tono,   
+				  :an_cs_estilocolortono,   
+				  :an_cs_particion,   
+				  :li_cs_fechas,   
+				  :ldt_fe_inicio,   
+				  :ll_unidades_disponibles, 
+				  :ld_minutos_disponibles, 
+				  :ll_ca_unid_dispon_fin, 
+				  :ld_ca_min_dispon_fin, 
+				  :an_personasxmodulo,   
+				  0,//dia_curva
+				  :ld_porc_eficiencia, 
+				  :ll_ca_unid_posibles,   
+				  :li_duracion, 
+				  :ldt_fe_fin,   
+				  :ll_ca_pendiente,   
+				  0,   
+				  :ll_ca_pendiente,   
+				  :li_co_est_prog_dia,   
+				  :li_fuente_dato,   
+				  :ldt_fe_creacion,   
+				  :ldt_fe_actualizacion,   
+				  :gstr_info_usuario.codigo_usuario,   
+				  :gstr_info_usuario.instancia )  ;
+		IF SQLCA.SQLCODE=-1 THEN
+			MessageBox("Error Base Datos","No pudo insertar unidades en dias")
+			RETURN 0
+		ELSE
+		END IF
+		// ------------------------------- fin de datos de salida ------------------------- //
+		
+		ll_unidades_disponibles=ll_unidades_disponibles - ll_ca_pendiente
+	
+	LOOP  // DO WHILE ll_unidades_disponibles > 0
+	
+	//------------fin de ciclo para calcular unidades a asignar a diario -----------------------//
+			
+	//------------  inicio de calculo de fecha de despacho -----------------------//
+	ldt_fe_fin_prog_tot=ldt_fe_fin
+	
+	// Calcula fecha de despacho con base en ultimo dia programado 
+	// ---------------------------------------------------------------------------
+	// Nota : Queda pendiente definir de donde se tomaran los dias de despacho
+	// por fabrica, para que no sean estaticos.
+	// ---------------------------------------------------------------------------
+	
+	IF NOT isnull(ldt_fe_fin_prog_tot) THEN		
+		ls_nombre_dia = UPPER(string(ldt_fe_fin_prog_tot, "ddd"))
+		ld_fecha_despacho = date(ldt_fe_fin_prog_tot)
+		CHOOSE CASE ls_nombre_dia
+			CASE 'MON'
+				ld_fecha_despacho = Relativedate(ld_fecha_despacho, 5)				
+			CASE 'TUE'				
+				ld_fecha_despacho = Relativedate(ld_fecha_despacho, 4)
+			CASE 'WED'				
+				ld_fecha_despacho = Relativedate(ld_fecha_despacho, 7)	
+			CASE 'THU'
+				ld_fecha_despacho = Relativedate(ld_fecha_despacho, 6)
+			CASE 'FRI'
+				ld_fecha_despacho = Relativedate(ld_fecha_despacho, 5)
+			CASE 'SAT'
+				ld_fecha_despacho = Relativedate(ld_fecha_despacho, 7)
+			CASE 'SUN'
+				ld_fecha_despacho = Relativedate(ld_fecha_despacho, 6)
+		END CHOOSE				
+			
+	END IF
+	
+	ldt_fe_calculada_despacho=datetime(ld_fecha_despacho, time(ldt_fe_fin_prog_tot))
+	
+	//------------  fin de calculo de fecha de despacho -----------------------//
+		
+	// ------------------------- inicio de Actualizaci$$HEX1$$f300$$ENDHEX$$n Archivo de Parametros ------------------------ //
+  	UPDATE dt_pdnxmodulo  
+		  SET fe_inicio_prog 	= :ldt_fe_inicio_prog_tot,   
+				fe_fin_prog 		= :ldt_fe_fin_prog_tot,
+				fe_requerida_desp	= :ldt_fe_calculada_despacho
+		WHERE ( dt_pdnxmodulo.simulacion 			= :an_simulacion ) AND  
+				( dt_pdnxmodulo.co_fabrica 			= :an_fabrica_modulo ) AND  
+				( dt_pdnxmodulo.co_planta 				= :an_planta_modulo ) AND  
+				( dt_pdnxmodulo.co_modulo 				= :an_modulo ) AND  
+				( dt_pdnxmodulo.co_fabrica_exp 		= :an_co_fabrica_exp) AND  
+				( dt_pdnxmodulo.pedido 					= :an_pedido ) AND  
+				( dt_pdnxmodulo.cs_liberacion 		= :an_cs_liberacion ) AND  
+				( dt_pdnxmodulo.po 						= :as_po ) AND  
+				( dt_pdnxmodulo.co_fabrica_pt 		= :an_co_fabrica_ref ) AND  
+				( dt_pdnxmodulo.co_linea 				= :an_co_linea_ref ) AND  
+				( dt_pdnxmodulo.co_referencia 		= :an_co_referencia ) AND  
+				( dt_pdnxmodulo.co_color_pt 			= :an_color_pt ) AND  
+				( dt_pdnxmodulo.tono 					= :as_tono ) AND  
+				( dt_pdnxmodulo.cs_estilocolortono 	= :an_cs_estilocolortono ) AND  
+				( dt_pdnxmodulo.cs_particion 			= :an_cs_particion  )   ;
+				
+	IF SQLCA.SQLCODE = -1 THEN
+		MessageBox("Error Base Datos","No pudo Actualizar fechas de inicio y fin de asignaci$$HEX1$$f300$$ENDHEX$$n")
+		RETURN 0
+	ELSE
+	END IF
+	
+// ------------------------- fin de Actualizaci$$HEX1$$f300$$ENDHEX$$n Archivo de Parametros ------------------------ //
+
+// ------------------------------- fin de programacion hacia adelante -------------------------------------------//
+
+
+// -----------------------*** inicio de programaci$$HEX1$$f300$$ENDHEX$$n hacia A T R A S *** --------------------------------------- //
+ELSE
+		//------------  inicio de calculo de fecha de despacho -----------------------//
+	
+		// Calcula fecha de ultima produccion con base en fecha de despacho programada
+		// ---------------------------------------------------------------------------
+		// Nota : Queda pendiente definir de donde se tomaran los dias de despacho
+		// por fabrica, para que no sean estaticos.
+		// ---------------------------------------------------------------------------
+		ldt_fe_calculada_despacho=adt_fe_prog_desp
+		ldt_fe_fin_prog_tot=adt_fe_prog_desp
+		
+		IF NOT isnull(ldt_fe_fin_prog_tot) THEN		
+				ls_nombre_dia = UPPER(string(ldt_fe_fin_prog_tot, "ddd"))
+				ld_fecha_despacho = date(ldt_fe_fin_prog_tot)
+				CHOOSE CASE ls_nombre_dia
+					CASE 'MON'
+						ld_fecha_despacho = Relativedate(ld_fecha_despacho, -5)				
+					CASE 'TUE'				
+						ld_fecha_despacho = Relativedate(ld_fecha_despacho, -4)
+					CASE 'WED'				
+						ld_fecha_despacho = Relativedate(ld_fecha_despacho, -7)	
+					CASE 'THU'
+						ld_fecha_despacho = Relativedate(ld_fecha_despacho, -6)
+					CASE 'FRI'
+						ld_fecha_despacho = Relativedate(ld_fecha_despacho, -5)
+					CASE 'SAT'
+						ld_fecha_despacho = Relativedate(ld_fecha_despacho, -7)
+					CASE 'SUN'
+						ld_fecha_despacho = Relativedate(ld_fecha_despacho, -6)
+				END CHOOSE				
+				
+		END IF
+	
+		ldt_fe_fin_prog_tot=datetime(ld_fecha_despacho, time(ldt_fe_fin_prog_tot))
+		
+		// Lleva ultima fecha de programacion calculada como fecha terminacion anterior
+		ldt_fe_fin_ant=ldt_fe_fin_prog_tot
+		
+	//------------  fin de calculo de fecha de despacho -----------------------//
+	
+	
+	//------------ inicio de ciclo para definir fechas de inicio de prog -------------------//
+		li_dia=an_dias_programados
+		DO WHILE ll_unidades_disponibles > 0
+			
+			li_dia=li_dia + 1
+			
+			// Establece % de eficiencia de 100  
+			ld_porc_eficiencia=100
+		
+			// Minutos disponibles
+			ld_minutos_disponibles=ad_minutos_jornada
+		
+			// UNIDADES POSIBLES CORRESPONDEN A LA BASE DIARIA
+			ll_ca_unid_posibles=an_base_dia
+		
+			// UNIDADES A ASIGNAR, Verifica no sobrepasar unidades posibles de programacion
+			IF ll_unidades_disponibles >  ll_ca_unid_posibles THEN
+				ll_ca_pendiente=ll_ca_unid_posibles
+				ld_ca_min_dispon_fin=0
+			ELSE
+				ll_ca_pendiente=ll_unidades_disponibles
+				ld_ca_min_dispon_fin=ld_minutos_disponibles - ((ad_minutos_std * ll_ca_pendiente) / ( an_personasxmodulo)) * (ld_porc_eficiencia/100) 	
+			END IF
+			
+			// UNIDADES QUE QUEDAN
+			ll_ca_unid_dispon_fin=ll_unidades_disponibles - ll_ca_pendiente
+				
+			li_cs_fechas=li_dia
+			
+			// -------------------- Determina fechas a utlizar -----------------------------------//
+			
+			// fecha de inicio de programaci$$HEX1$$f300$$ENDHEX$$n
+			ldt_fe_inicio=ldt_fe_fin_ant
+			// Retrocede un dia en el Calendario hacia atras
+			li_tipo_avance_calendario=2 
+			li_numero_dias=1
+			ld_fe_inicio=f_traer_fechas(an_fabrica_modulo,an_planta_modulo,an_modulo,an_li_cod_tur,&
+												ldt_fe_inicio,li_numero_dias,li_tipo_avance_calendario)
+			IF ISNULL(ld_fe_inicio) THEN
+					ls_mensaje="Por favor verifique la fecha en el calendario general:" + STRING(ldt_fe_inicio)
+					MessageBox("Error de Datos",ls_mensaje)
+				RETURN 0
+			ELSE
+					ldt_fe_inicio=datetime(ld_fe_inicio, time(ldt_fe_inicio))
+			END IF
+			
+			// Guarda Fecha programada como ultima fecha de programacion
+			ldt_fe_fin_ant = ldt_fe_inicio
+			
+			li_co_est_prog_dia=1
+			li_fuente_dato=1
+			
+			ldt_fechahora = f_fecha_servidor()
+			ldt_fe_creacion=ldt_fechahora   
+			ldt_fe_actualizacion=ldt_fe_creacion
+		
+			ll_unidades_disponibles=ll_unidades_disponibles - ll_ca_pendiente
+		
+		LOOP  // DO WHILE ll_unidades_disponibles > 0
+		
+	// --------
+	// Organiza variables a ser usadas en el siguiente ciclo de programacion  
+	// hacia adelante
+	// --------
+		ldt_fe_fin_prog_tot	=	ldt_fe_fin_ant
+		adt_fe_entra_pdn		= 	ldt_fe_fin_ant 
+		adt_fe_inicio_prog 	= 	ldt_fe_fin_ant 
+				
+	//------------ inicio de ciclo para definir fechas de inicio de prog -------------------//
+	
+	// ------------------------- inicio de Actualizar Archivo de Parametros ------------------------ //
+		UPDATE dt_pdnxmodulo  
+		  SET fe_entra_pdn	= :ldt_fe_fin_prog_tot,
+				fe_inicio_prog = :ldt_fe_fin_prog_tot
+		WHERE ( dt_pdnxmodulo.simulacion 			= :an_simulacion ) AND  
+				( dt_pdnxmodulo.co_fabrica 			= :an_fabrica_modulo ) AND  
+				( dt_pdnxmodulo.co_planta 				= :an_planta_modulo ) AND  
+				( dt_pdnxmodulo.co_modulo 				= :an_modulo ) AND  
+				( dt_pdnxmodulo.co_fabrica_exp 		= :an_co_fabrica_exp) AND  
+				( dt_pdnxmodulo.pedido 					= :an_pedido ) AND  
+				( dt_pdnxmodulo.cs_liberacion 		= :an_cs_liberacion ) AND  
+				( dt_pdnxmodulo.po 						= :as_po ) AND  
+				( dt_pdnxmodulo.co_fabrica_pt 		= :an_co_fabrica_ref ) AND  
+				( dt_pdnxmodulo.co_linea 				= :an_co_linea_ref ) AND  
+				( dt_pdnxmodulo.co_referencia 		= :an_co_referencia ) AND  
+				( dt_pdnxmodulo.co_color_pt 			= :an_color_pt ) AND  
+				( dt_pdnxmodulo.tono 					= :as_tono ) AND  
+				( dt_pdnxmodulo.cs_estilocolortono 	= :an_cs_estilocolortono ) AND  
+				( dt_pdnxmodulo.cs_particion 			= :an_cs_particion  )   ;
+				
+		IF SQLCA.SQLCODE = -1 THEN
+			MessageBox("Error Base Datos","No pudo Actualizar fechas de inicio y fin de asignaci$$HEX1$$f300$$ENDHEX$$n")
+			RETURN 0
+		ELSE
+		END IF
+	// ------------------------- fin de Actualizar Archivo de Parametros ------------------------ //
+
+END IF
+// --------------------------fin de programaci$$HEX1$$f300$$ENDHEX$$n hacia A T R A S ------------------------------------------------ //
+RETURN 1 
+
+end function
+
