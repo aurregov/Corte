@@ -1,0 +1,14 @@
+HA$PBExportHeader$f_borrar_plano.srf
+global type f_borrar_plano from function_object
+end type
+
+forward prototypes
+global subroutine f_borrar_plano (string as_nombre_archivo)
+end prototypes
+
+global subroutine f_borrar_plano (string as_nombre_archivo);IF NOT FileDelete(as_nombre_archivo) THEN
+	MessageBox("Advertencia","No se pudo borrar el archivo a cargar --> "+as_nombre_archivo,StopSign!, OK!)	
+END IF
+
+end subroutine
+
