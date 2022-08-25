@@ -1,0 +1,53 @@
+HA$PBExportHeader$f_digito_de_control_ucc128.srf
+global type f_digito_de_control_ucc128 from function_object
+end type
+
+forward prototypes
+global function string f_digito_de_control_ucc128 (string as_ucc19)
+end prototypes
+
+global function string f_digito_de_control_ucc128 (string as_ucc19);//////////////////////////////////////////////////////
+// Descripcion: Calcula el digito de control para el UCC-128 de 20 d$$HEX1$$ed00$$ENDHEX$$gitos
+// Parametros: UCC-128 de 19 D$$HEX1$$ed00$$ENDHEX$$gitos
+// Nota: Para la Impresora SATO se debe enviar 17 digitos (Omitir los 00 iniciales y D$$HEX1$$ed00$$ENDHEX$$gito de Control)
+//////////////////////////////////////////////////////
+
+Long ll_pos1,ll_pos2,ll_pos3,ll_pos4,ll_pos5,ll_pos6
+LOng ll_pos7,ll_pos8,ll_pos9,ll_pos10,ll_pos11,ll_pos12,ll_pos13,ll_pos14,ll_pos15,ll_pos16,ll_pos17,ll_pos18,ll_pos19
+Long ll_suma_impares,ll_suma_pares,ll_sumaparcial1,ll_suma_parcial2,ll_digcontrol
+String ls_digcontrol
+
+ll_pos1  = Long(Mid(as_ucc19,1,1))
+ll_pos2  = Long(Mid(as_ucc19,2,1))
+ll_pos3  = Long(Mid(as_ucc19,3,1))
+ll_pos4  = Long(Mid(as_ucc19,4,1))
+ll_pos5   = Long(Mid(as_ucc19,5,1))
+ll_pos6   = Long(Mid(as_ucc19,6,1))
+ll_pos7   = Long(Mid(as_ucc19,7,1))
+ll_pos8	 = Long(Mid(as_ucc19,8,1))
+ll_pos9   = Long(Mid(as_ucc19,9,1))
+ll_pos10  = Long(Mid(as_ucc19,10,1))
+ll_pos11  = Long(Mid(as_ucc19,11,1))
+ll_pos12  = Long(Mid(as_ucc19,12,1))
+ll_pos13  = Long(Mid(as_ucc19,13,1))
+ll_pos14  = Long(Mid(as_ucc19,14,1))
+ll_pos15   = Long(Mid(as_ucc19,15,1))
+ll_pos16   = Long(Mid(as_ucc19,16,1))
+ll_pos17   = Long(Mid(as_ucc19,17,1))
+ll_pos18	 = Long(Mid(as_ucc19,18,1))
+ll_pos19   = Long(Mid(as_ucc19,19,1))
+
+ll_suma_impares = ll_pos19+ll_pos17+ll_pos15+ll_pos13+ll_pos11+ll_pos9+ll_pos7+ll_pos5+ll_pos3+ll_pos1
+ll_suma_pares = ll_pos18+ll_pos16+ll_pos14+ll_pos12+ll_pos10+ll_pos8+ll_pos6+ll_pos4+ll_pos2
+ll_sumaparcial1 = (ll_suma_impares*3) + ll_suma_pares
+ll_suma_parcial2 = Truncate(((ll_sumaparcial1 / 10)+1),0)*10
+ll_digcontrol  = ll_suma_parcial2 - ll_sumaparcial1
+IF ll_digcontrol = 10 THEN
+	ll_digcontrol = 0
+ELSE
+END IF
+ls_digcontrol = String(ll_digcontrol)
+ls_digcontrol = Trim (ls_digcontrol)
+Return(ls_digcontrol)
+end function
+
