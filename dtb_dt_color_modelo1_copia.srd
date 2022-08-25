@@ -1,0 +1,105 @@
+HA$PBExportHeader$dtb_dt_color_modelo1_copia.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=72 color="536870912" )
+summary(height=80 color="536870912" )
+footer(height=16 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes name=cs_partes dbname="cs_partes" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_parte dbname="co_parte" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_partes dbname="ca_partes" validation="integer(gettext()) >0" validationmsg="'El valor ingresado debe ser mayor que cero.'" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_linea dbname="co_linea" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_talla dbname="co_talla" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_calidad dbname="co_calidad" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_color_pt dbname="co_color_pt" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_modelo dbname="co_modelo" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_reftel dbname="co_reftel" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_caract dbname="co_caract" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=diametro dbname="diametro" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_color_te dbname="co_color_te" )
+ column=(type=long update=yes updatewhereclause=yes name=co_repite dbname="co_repite" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=ca_area dbname="ca_area" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="instancia" )
+ column=(type=char(42) updatewhereclause=yes name=h_telas_de_reftel dbname="de_reftel" )
+ column=(type=decimal(3) updatewhereclause=yes name=ancho_abierto_term dbname="ancho_abierto_term" )
+ column=(type=long updatewhereclause=yes name=co_terminado dbname="co_terminado" )
+ column=(type=decimal(3) update=yes updatewhereclause=yes name=ca_mts dbname="ca_mts" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=ca_grs dbname="ca_grs" )
+ retrieve="SELECT  dt_color_modelo.cs_partes ,
+					  dt_color_modelo.co_parte ,
+					  dt_color_modelo.ca_partes ,
+					  dt_color_modelo.co_fabrica ,
+					  dt_color_modelo.co_linea ,
+					  dt_color_modelo.co_referencia ,
+					  dt_color_modelo.co_talla ,
+					  dt_color_modelo.co_calidad ,
+					  dt_color_modelo.co_color_pt ,
+					  dt_color_modelo.co_modelo ,
+					  dt_color_modelo.co_reftel ,
+					  dt_color_modelo.co_caract ,
+					  dt_color_modelo.diametro ,
+					  dt_color_modelo.co_color_te ,
+					  dt_color_modelo.co_repite ,
+					  dt_color_modelo.ca_area ,
+					  dt_color_modelo.fe_creacion ,
+					  dt_color_modelo.fe_actualizacion ,
+					  dt_color_modelo.usuario ,
+					  dt_color_modelo.instancia ,
+					  h_telas.de_reftel ,
+					  (select MAX(a.ancho_term) from dt_telrecurso a, m_recursos_pdn b
+where a.co_recurso_pdn = b.co_recurso and a.co_estado = 1
+and a.co_reftel = dt_color_modelo.co_reftel
+and b.diametro = dt_color_modelo.diametro ) as ancho_abierto_term ,
+h_telas_pre.co_terminado,
+					  dt_color_modelo.ca_mts,
+					  dt_color_modelo.ca_grs
+FROM  dt_color_modelo ,
+ outer h_telas ,
+ outer h_telas_pre   
+WHERE ( dt_color_modelo.co_reftel = h_telas.co_reftel ) and         
+ ( dt_color_modelo.co_caract = h_telas.co_caract ) and
+ ( dt_color_modelo.co_reftel = h_telas_pre.co_reftel ) and         
+ ( dt_color_modelo.co_fabrica = :an_fabrica ) and         
+ ( dt_color_modelo.co_linea = :an_linea ) and         
+ ( dt_color_modelo.co_referencia = :an_referencia ) and         
+ ( dt_color_modelo.co_talla = :an_talla ) and         
+ ( dt_color_modelo.co_calidad = :an_calidad ) and         
+ ( dt_color_modelo.co_color_pt = :an_color ) and         
+ ( dt_color_modelo.co_modelo = :an_modelo )" update="dt_color_modelo" updatewhere=0 updatekeyinplace=yes arguments=(("an_fabrica", number),("an_linea", number),("an_referencia", number),("an_talla", number),("an_calidad", number),("an_color", number),("an_modelo", number),("ai_id_ficha", number),("ai_pr_utiliza", number))  sort="cs_partes A " )
+text(band=header alignment="2" text="Sc" border="6" color="8388608" x="5" y="12" height="52" width="69" html.valueishtml="0"  name=cs_partes_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Can" border="6" color="8388608" x="439" y="12" height="52" width="78" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77571519" )
+text(band=header alignment="2" text="Tela" border="6" color="8388608" x="535" y="12" height="52" width="777" html.valueishtml="0"  name=co_reftel_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dia" border="6" color="8388608" x="1330" y="12" height="52" width="78" html.valueishtml="0"  name=diametro_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ancho A.T." border="6" color="8388608" x="1426" y="12" height="52" width="274" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Parte" border="6" color="8388608" x="91" y="12" height="52" width="329" html.valueishtml="0"  name=co_parte_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Repite" border="6" color="8388608" x="2007" y="12" height="52" width="293" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Area" border="6" color="8388608" x="2318" y="12" height="52" width="242" html.valueishtml="0"  name=ca_area_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Gramos" border="6" color="8388608" x="2578" y="12" height="52" width="238" html.valueishtml="0"  name=ca_grs_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Metros" border="6" color="8388608" x="2834" y="12" height="52" width="238" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Color" border="6" color="8388608" x="1719" y="12" height="52" width="270" html.valueishtml="0"  name=co_color_te_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="0" x="5" y="8" height="64" width="69" format="[general]" html.valueishtml="0"  name=cs_partes visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="5" color="0" x="439" y="8" height="64" width="78" format="[general]" html.valueishtml="0" protect="0~tif(  ai_id_ficha =1, 1, 0 )"  name=ca_partes visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=11 alignment="1" tabsequence=40 border="5" color="0" x="535" y="8" height="64" width="178" format="[general]" html.valueishtml="0" protect="0~tif(  ai_id_ficha =1, 1, 0 )"  name=co_reftel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=12 alignment="1" tabsequence=50 border="5" color="0" x="731" y="8" height="64" width="82" format="##" html.valueishtml="0" protect="0~tif(  ai_id_ficha =1, 1, 0 )"  name=co_caract visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="5" color="0" x="823" y="8" height="64" width="485" format="[general]" html.valueishtml="0"  name=h_telas_de_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=13 alignment="1" tabsequence=60 border="5" color="0" x="1330" y="8" height="64" width="78" format="[general]" html.valueishtml="0" protect="0~tif(  ai_id_ficha =1, 1, 0 )"  name=diametro visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=22 alignment="0" tabsequence=110 border="5" color="0" x="1426" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=ancho_abierto_term visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="5" color="0" x="91" y="8" height="64" width="329" format="[general]" html.valueishtml="0" protect="0~tif(  ai_id_ficha =1, 1, 0 )"  name=co_parte visible="1" dddw.name=dddw_m_partes dddw.displaycolumn=de_parte dddw.datacolumn=co_parte dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.imemode=0 dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=15 alignment="0" tabsequence=80 border="5" color="0" x="2007" y="8" height="64" width="293" format="[general]" html.valueishtml="0" protect="0~tif(  ai_id_ficha =1, 1, 0 )"  name=co_repite visible="1" dddw.name=dddw_repites dddw.displaycolumn=de_repite dddw.datacolumn=co_repite dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.imemode=0 dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=16 alignment="1" tabsequence=90 border="5" color="0" x="2318" y="8" height="64" width="242" format="[general]" html.valueishtml="0" protect="0~tif(  ai_id_ficha =1, 1, 0 )"  name=ca_area visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=25 alignment="1" tabsequence=100 border="5" color="0" x="2578" y="8" height="64" width="238" format="[general]" html.valueishtml="0" protect="0~tif(  ai_id_ficha =1, 1, 0 )"  name=ca_grs visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=24 alignment="1" tabsequence=32766 border="5" color="0" x="2834" y="8" height="64" width="238" format="###,##0.000" html.valueishtml="0"  name=ca_mts visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=14 alignment="1" tabsequence=70 border="5" color="0" x="1719" y="8" height="64" width="270" format="[general]" html.valueishtml="0" protect="0~tif(  ai_id_ficha =1, 1, 0 )"  name=co_color_te visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=summary alignment="1" expression="sum(ca_mts for all)"border="5" color="0" x="2834" y="4" height="64" width="238" format="###,##0.000" html.valueishtml="0"  name=compute_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=summary alignment="1" expression="sum(ca_grs for all)"border="5" color="0" x="2578" y="4" height="64" width="238" format="###,##0.00" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=summary alignment="1" expression="sum(ca_area for all)"border="5" color="0" x="2318" y="4" height="64" width="242" format="###,##0.00" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
