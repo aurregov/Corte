@@ -1,0 +1,66 @@
+HA$PBExportHeader$dtb_ruta_orden_corte.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=8 color="536870912" )
+detail(height=1296 color="536870912"  height.autosize=yes)
+table(column=(type=long updatewhereclause=yes name=dt_kamban_corte_co_fabrica dbname="dt_kamban_corte.co_fabrica" )
+ column=(type=long updatewhereclause=yes name=dt_kamban_corte_co_linea dbname="dt_kamban_corte.co_linea" )
+ column=(type=char(30) updatewhereclause=yes name=m_lineas_de_linea dbname="m_lineas.de_linea" )
+ column=(type=long updatewhereclause=yes name=dt_kamban_corte_co_referencia dbname="dt_kamban_corte.co_referencia" )
+ column=(type=char(40) updatewhereclause=yes name=h_preref_pv_de_referencia dbname="h_preref_pv.de_referencia" )
+ column=(type=long updatewhereclause=yes name=dt_kamban_corte_co_tipoprod dbname="dt_kamban_corte.co_tipoprod" )
+ column=(type=long updatewhereclause=yes name=dt_kamban_corte_co_centro_pdn dbname="dt_kamban_corte.co_centro_pdn" )
+ retrieve="SELECT  distinct dt_kamban_corte.co_fabrica,
+		dt_kamban_corte.co_linea,
+		m_lineas.de_linea,
+		dt_kamban_corte.co_referencia,
+		h_preref_pv.de_referencia,
+		dt_kamban_corte.co_tipoprod,
+		dt_kamban_corte.co_centro_pdn 
+ FROM dt_kamban_corte,
+		h_preref_pv,
+		m_lineas     
+WHERE ( dt_kamban_corte.co_fabrica 			= h_preref_pv.co_fabrica ) and 
+		( dt_kamban_corte.co_linea 			= h_preref_pv.co_linea ) and 
+		( dt_kamban_corte.co_referencia 		= h_preref_pv.co_referencia ) and 
+      ( h_preref_pv.co_tipo_ref           = 'P') and
+		( dt_kamban_corte.co_fabrica 			= m_lineas.co_fabrica ) and 
+		( dt_kamban_corte.co_linea 			= m_lineas.co_linea ) and 
+		( ( dt_kamban_corte.cs_orden_corte 	= :al_ordencorte ) )
+
+
+" arguments=(("al_ordencorte", number),("an_centro", number),("an_SubCentro", number),("an_proceso", number))  sort="dt_kamban_corte_co_fabrica A dt_kamban_corte_co_linea A dt_kamban_corte_co_referencia A " )
+group(level=1 header.height=288 trailer.height=0 by=("dt_kamban_corte_co_fabrica" , "dt_kamban_corte_co_linea" , "dt_kamban_corte_co_referencia" ) header.color="536870912" trailer.color="536870912" )
+text(band=header.1 alignment="2" text="RUTA INVENTARIO EN PROCESO" border="0" color="33554432" x="997" y="12" height="100" width="1559" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-16" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="0" expression=" al_ordencorte "border="0" color="0" x="384" y="4" height="116" width="599" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-20" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header.1 alignment="0" text="Orden Corte:" border="0" color="0" x="9" y="32" height="64" width="366" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header.1 alignment="2" text="Centro" border="0" color="33554432" x="297" y="200" height="64" width="823" html.valueishtml="0"  name=dt_kamban_corte_co_centro_pdn_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Subcentro" border="0" color="33554432" x="1138" y="200" height="64" width="823" html.valueishtml="0"  name=dt_kamban_corte_co_subcentro_pdn_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Secuencia" border="0" color="33554432" x="5" y="200" height="64" width="279" html.valueishtml="0"  name=m_subcentros_pdn_cs_secuencia_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="2153" y="128" height="64" width="832" format="[general]" html.valueishtml="0"  name=h_preref_pv_de_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="247" y="128" height="64" width="224" format="[general]" html.valueishtml="0"  name=dt_kamban_corte_co_fabrica visible="1" dddw.name=none dddw.displaycolumn=none dddw.datacolumn=none dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="L$$HEX1$$ed00$$ENDHEX$$nea:" border="0" color="33554432" x="571" y="128" height="64" width="165" html.valueishtml="0"  name=dt_kamban_corte_co_linea_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="754" y="128" height="64" width="87" format="[general]" html.valueishtml="0"  name=dt_kamban_corte_co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="859" y="128" height="64" width="709" format="[general]" html.valueishtml="0"  name=m_lineas_de_linea visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Referencia:" border="0" color="33554432" x="1600" y="128" height="64" width="297" html.valueishtml="0"  name=dt_kamban_corte_co_referencia_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="1920" y="128" height="64" width="219" format="[general]" html.valueishtml="0"  name=dt_kamban_corte_co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="F$$HEX1$$e100$$ENDHEX$$brica:" border="0" color="33554432" x="9" y="128" height="64" width="215" html.valueishtml="0"  name=dt_kamban_corte_co_fabrica_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+report(band=detail dataobject="dgr_reporte_oc_operaciones" x="1947" y="96" height="88" width="983" border="1"  height.autosize=yes criteria="" nest_arguments=((" dt_kamban_corte_co_fabrica "),(" dt_kamban_corte_co_linea "),(" dt_kamban_corte_co_referencia ")) trail_footer = yes  name=dw_2 visible="1"  slideleft=yes  slideup=directlyabove )
+report(band=detail dataobject="dgr_tandas_x_liberacion" x="1947" y="216" height="84" width="379" border="1"  height.autosize=yes criteria="" nest_arguments=((" al_ordencorte ")) trail_footer = yes  name=dw_5 visible="1"  slideleft=yes  slideup=directlyabove )
+report(band=detail dataobject="r_partes_subcentros_oc" x="1755" y="4" height="64" width="1175" border="1"  height.autosize=yes criteria="" nest_arguments=((" al_ordencorte ")) trail_footer = yes  name=dw_1 visible="1"  slideleft=yes  slideup=directlyabove )
+report(band=detail dataobject="dgr_kilos_sobrantes_btt" x="14" y="200" height="212" width="1902" border="0"  height.autosize=yes criteria="" nest_arguments=((" al_ordencorte ")) trail_footer = yes  name=dw_4 visible="1"  slideleft=yes  slideup=directlyabove )
+report(band=detail dataobject="dgr_reporte_subcentros_oc" x="14" y="4" height="136" width="1618" border="0"  height.autosize=yes criteria="" nest_arguments=((" al_ordencorte ")) trail_footer = yes  name=dw_3 visible="1"  slideleft=yes  slideup=directlyabove )
+report(band=detail dataobject="dtb_observaciones_oc_reporte" x="9" y="732" height="136" width="1413" border="0"  height.autosize=yes criteria="" nest_arguments=((" al_ordencorte ")) trail_footer = yes  name=dw_8 visible="1"  slideleft=yes  slideup=directlyabove )
+report(band=detail dataobject="dgr_reporte_oc_modelos_partes" x="9" y="584" height="136" width="2894" border="0"  height.autosize=yes criteria="" nest_arguments=((" dt_kamban_corte_co_fabrica "),(" dt_kamban_corte_co_linea "),(" dt_kamban_corte_co_referencia ")) trail_footer = yes  name=dw_6 visible="1"  slideleft=yes  slideup=directlyabove )
+report(band=detail dataobject="d_sq_gr_ficha_procesos_estampados" x="1431" y="732" height="136" width="1545" border="0"  height.autosize=yes criteria="" nest_arguments=((" dt_kamban_corte_co_fabrica "),("  dt_kamban_corte_co_linea "),(" dt_kamban_corte_co_referencia "),("an_centro"),("an_SubCentro"),("an_proceso")) trail_footer = yes  name=dw_procesos_estampados visible="1"  slideleft=yes  slideup=directlyabove )
+report(band=detail dataobject="d_tb_espec_ficha_bordados" x="14" y="880" height="96" width="2894" border="0"  height.autosize=yes criteria="" nest_arguments=((" dt_kamban_corte_co_fabrica "),(" dt_kamban_corte_co_linea "),(" dt_kamban_corte_co_referencia ")) trail_footer = yes  name=dw_10 visible="1"  slideup=directlyabove )
+report(band=detail dataobject="d_sq_gr_lista_check_ext_oc" x="14" y="1152" height="136" width="3387" border="0"  height.autosize=yes criteria="" trail_footer = yes  name=dw_12 visible="1"  slideup=directlyabove )
+report(band=detail dataobject="dtb_info_insumos_bordar" x="14" y="1000" height="136" width="3387" border="0"  height.autosize=yes criteria="" nest_arguments=((" dt_kamban_corte_co_fabrica "),(" dt_kamban_corte_co_linea "),(" dt_kamban_corte_co_referencia ")) trail_footer = yes  name=dw_11 visible="1"  slideleft=yes  slideup=directlyabove )
+report(band=detail dataobject="dtb_obs_lote_en_reporte_oc" x="14" y="432" height="136" width="3387" border="0"  height.autosize=yes criteria="" nest_arguments=((" al_ordencorte ")) trail_footer = yes  name=dw_7 visible="1"  slideleft=yes  slideup=directlyabove )
+
+sparse(names="dw_1	dw_2	dw_3	dw_4")htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
