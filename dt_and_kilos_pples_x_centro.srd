@@ -1,0 +1,44 @@
+HA$PBExportHeader$dt_and_kilos_pples_x_centro.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=68 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_rollo dbname="cs_rollo" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_kg dbname="ca_kg" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_mt dbname="ca_mt" )
+ column=(type=long updatewhereclause=yes name=ca_unidades dbname="ca_unidades" )
+ retrieve="select unique cs_rollo, ca_kg, ca_mt, m.ca_unidades
+from dt_modelos a, dt_color_modelo b, m_rollo m, m_centros mc
+where a.co_fabrica = b.co_fabrica
+  and a.co_linea = b.co_linea
+  and a.co_referencia = b.co_referencia
+  and a.co_talla = b.co_talla
+  and a.co_color_pt = b.co_color_pt
+  and a.co_calidad = b.co_calidad
+  and a.co_modelo = b.co_modelo
+  and m.co_centro = mc.co_centro
+  and a.id_ficha = 1
+  and b.id_ficha = 1
+  and a.raya = 10
+  and b.co_reftel = m.co_reftel_act
+  and b.co_color_te = m.co_color_act
+  and mc.co_grupo_centro = :ai_grupo_ctro
+  and m.cs_orden_pr_act = :al_op_estilo
+  and a.co_fabrica = :ai_fab
+  and a.co_linea =  :ai_linea
+  and a.co_referencia =  :al_ref
+  and a.co_color_pt = :ai_color_pt
+  and m.ca_kg > 0;" arguments=(("al_op_estilo", number),("ai_fab", number),("ai_linea", number),("al_ref", number),("ai_color_pt", number),("ai_grupo_ctro", number)) )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="18" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_rollo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="320" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=ca_mt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="599" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=ca_kg visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="873" y="0" height="52" width="69" format="[general]" html.valueishtml="0"  name=ca_unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(ca_mt for all)"border="5" color="33554432" x="14" y="4" height="52" width="160" format="0" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(ca_kg for all)"border="5" color="33554432" x="192" y="4" height="52" width="187" format="0.0" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="0" expression="sum(  ca_unidades  for all )"border="5" color="0" x="398" y="4" height="52" width="187" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
