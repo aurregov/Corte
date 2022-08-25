@@ -1,0 +1,85 @@
+HA$PBExportHeader$dtb_unidades_liquidacion_trazos.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=81324524 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=72 color="536870912" )
+summary(height=76 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=cs_orden_corte dbname="dt_escalas_liq.cs_orden_corte" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_agrupacion dbname="dt_escalas_liq.cs_agrupacion" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_pdn dbname="dt_escalas_liq.cs_pdn" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_modelo dbname="dt_escalas_liq.co_modelo" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_fabrica_tela dbname="dt_escalas_liq.co_fabrica_tela" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_reftel dbname="dt_escalas_liq.co_reftel" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_caract dbname="dt_escalas_liq.co_caract" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=diametro dbname="dt_escalas_liq.diametro" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_color_te dbname="dt_escalas_liq.co_color_te" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_trazo dbname="dt_escalas_liq.cs_trazo" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_seccion dbname="dt_escalas_liq.cs_seccion" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_liquidacion dbname="dt_escalas_liq.cs_liquidacion" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_talla dbname="dt_escalas_liq.co_talla" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_talla dbname="dt_escalas_liq.cs_talla" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_liquidada dbname="dt_escalas_liq.ca_liquidada" )
+ column=(type=long update=yes updatewhereclause=yes name=capas dbname="dt_escalas_liq.capas" )
+ column=(type=long update=yes updatewhereclause=yes name=paquetes dbname="dt_escalas_liq.paquetes" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_liquidadas dbname="dt_escalas_liq.ca_liquidadas" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_loteadas dbname="dt_escalas_liq.ca_loteadas" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="dt_escalas_liq.fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="dt_escalas_liq.fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="dt_escalas_liq.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="dt_escalas_liq.instancia" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_base_trazos dbname="dt_escalas_liq.cs_base_trazos" )
+ retrieve="SELECT  dt_escalas_liq.cs_orden_corte ,
+           dt_escalas_liq.cs_agrupacion ,
+           dt_escalas_liq.cs_pdn ,
+           dt_escalas_liq.co_modelo ,
+           dt_escalas_liq.co_fabrica_tela ,
+           dt_escalas_liq.co_reftel ,
+           dt_escalas_liq.co_caract ,
+           dt_escalas_liq.diametro ,
+           dt_escalas_liq.co_color_te ,
+           dt_escalas_liq.cs_trazo ,
+           dt_escalas_liq.cs_seccion ,
+           dt_escalas_liq.cs_liquidacion ,
+           dt_escalas_liq.co_talla ,
+           dt_escalas_liq.cs_talla ,
+           dt_escalas_liq.ca_liquidada ,
+           dt_escalas_liq.capas ,
+           dt_escalas_liq.paquetes ,
+           dt_escalas_liq.ca_liquidadas ,
+           dt_escalas_liq.ca_loteadas ,
+           dt_escalas_liq.fe_creacion ,
+           dt_escalas_liq.fe_actualizacion ,
+           dt_escalas_liq.usuario ,
+           dt_escalas_liq.instancia ,
+           dt_escalas_liq.cs_base_trazos     
+        FROM        dt_escalas_liq      
+        WHERE ( dt_escalas_liq.cs_orden_corte = :al_ordencorte ) And          
+					( dt_escalas_liq.cs_agrupacion = :ai_agrupacion ) And          
+					( dt_escalas_liq.cs_pdn = :ai_produccion ) And          
+					( dt_escalas_liq.co_modelo = :al_modelo ) And          
+					( dt_escalas_liq.co_fabrica_tela = :ai_fabtela ) And          
+					( dt_escalas_liq.co_reftel = :al_tela ) And          
+					( dt_escalas_liq.co_caract = :ai_caract ) And          
+					( dt_escalas_liq.diametro = :ai_diametro ) And          
+					( dt_escalas_liq.co_color_te = :ai_colorte ) And          
+					( dt_escalas_liq.cs_trazo = :al_trazo ) And          
+					( dt_escalas_liq.cs_seccion = :ai_seccion ) And          
+					( dt_escalas_liq.cs_liquidacion = :ai_liquidacion ) and          
+					( dt_escalas_liq.cs_base_trazos = :ai_base )   " update="dt_escalas_liq" updatewhere=1 updatekeyinplace=no arguments=(("al_ordencorte", number),("ai_agrupacion", number),("ai_produccion", number),("al_modelo", number),("ai_fabtela", number),("al_tela", number),("ai_caract", number),("ai_diametro", number),("ai_colorte", number),("al_trazo", number),("ai_seccion", number),("ai_base", number),("ai_liquidacion", number)) )
+text(band=header alignment="2" text="Cons Talla" border="6" color="0" x="178" y="8" height="56" width="256"  name=cs_talla_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Talla" border="6" color="0" x="9" y="8" height="56" width="151"  name=co_talla_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Paquetes" border="6" color="0" x="800" y="8" height="56" width="329"  name=paquetes_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unid Liquidadas" border="6" color="0" x="1147" y="8" height="56" width="375"  name=ca_liquidadas_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unid Loteadas" border="6" color="0" x="1541" y="8" height="56" width="334"  name=ca_loteadas_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Capas" border="6" color="0" x="453" y="8" height="56" width="329"  name=cap_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="5" color="0" x="178" y="8" height="60" width="256" format="[general]"  name=cs_talla edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="5" color="0" x="9" y="8" height="60" width="151" format="[general]"  name=co_talla edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=16 alignment="1" tabsequence=10 border="5" color="0" x="453" y="8" height="60" width="329" format="[general]"  name=capas edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=17 alignment="1" tabsequence=20 border="5" color="0" x="800" y="8" height="60" width="329" format="[general]"  name=paquetes edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=19 alignment="1" tabsequence=32766 border="5" color="0" x="1541" y="8" height="60" width="334" format="###,###"  name=ca_loteadas edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=18 alignment="1" tabsequence=30 border="5" color="0" x="1147" y="8" height="60" width="375" format="###,###"  name=ca_liquidadas edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=summary alignment="1" expression="sum(ca_loteadas for all)"border="5" color="0" x="1541" y="4" height="60" width="334" format="###,###"  name=compute_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+compute(band=summary alignment="1" expression="sum(ca_liquidadas for all)"border="5" color="0" x="1147" y="4" height="60" width="375" format="###,###"  name=compute_2  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
