@@ -1,0 +1,9 @@
+HA$PBExportHeader$s_parametros_calendario.srs
+global type s_parametros_calendario from structure
+	string		cadena[]
+	long		entero[]
+	boolean		hay_parametros
+	date		fecha[]
+	boolean		boolean[]
+end type
+
