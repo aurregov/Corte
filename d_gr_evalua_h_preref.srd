@@ -1,0 +1,45 @@
+HA$PBExportHeader$d_gr_evalua_h_preref.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica dbname="h_preref_pv.co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="h_preref_pv.co_linea" )
+ column=(type=char(15) updatewhereclause=yes name=co_referencia dbname="h_preref_pv.co_referencia" )
+ column=(type=long updatewhereclause=yes name=co_grupo_tlla dbname="h_preref_pv.co_grupo_tlla" )
+ column=(type=char(40) updatewhereclause=yes name=de_referencia dbname="h_preref_pv.de_referencia" )
+ column=(type=char(20) updatewhereclause=yes name=de_referencia_crta dbname="h_preref_pv.de_referencia_crta" )
+ column=(type=char(1) updatewhereclause=yes name=sw_soursing dbname="h_preref_pv.sw_soursing" )
+ column=(type=long updatewhereclause=yes name=co_cliente dbname="h_preref_pv.co_cliente" )
+ retrieve="select 
+h_preref_pv.co_fabrica, h_preref_pv.co_linea, h_preref_pv.co_referencia,
+h_preref_pv.co_grupo_tlla, h_preref_pv.de_referencia, h_preref_pv.de_referencia_crta,
+h_preref_pv.sw_sourcing sw_soursing, co_cliente
+from h_preref_pv
+where ( h_preref_pv.co_fabrica = :an_fabrica_ref ) and  
+      ( h_preref_pv.co_linea = :an_linea ) and  
+      ( h_preref_pv.co_referencia = :an_referencia )
+" arguments=(("an_fabrica_ref", number),("an_linea", number),("an_referencia", string)) )
+column(band=detail id=1 alignment="0" tabsequence=0 border="0" color="33554432" x="9" y="0" height="52" width="233" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Fabrica" border="0" color="33554432" x="5" y="4" height="52" width="238" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=0 border="0" color="33554432" x="256" y="0" height="52" width="251" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Linea" border="0" color="33554432" x="251" y="4" height="52" width="256" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=0 border="0" color="33554432" x="521" y="0" height="52" width="334" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Referencia" border="0" color="33554432" x="517" y="4" height="52" width="338" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=0 border="0" color="33554432" x="869" y="0" height="52" width="315" html.valueishtml="0"  name=co_grupo_tlla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Grupo Tlla" border="0" color="33554432" x="864" y="4" height="52" width="320" html.valueishtml="0"  name=co_grupo_tlla_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=0 border="0" color="33554432" x="1198" y="0" height="52" width="910" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="De Referencia" border="0" color="33554432" x="1193" y="4" height="52" width="914" html.valueishtml="0"  name=de_referencia_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=0 border="0" color="33554432" x="2121" y="0" height="52" width="453" html.valueishtml="0"  name=de_referencia_crta visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="De Referencia Crta" border="0" color="33554432" x="2117" y="4" height="52" width="457" html.valueishtml="0"  name=de_referencia_crta_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=0 border="0" color="33554432" x="2587" y="0" height="52" width="283" html.valueishtml="0"  name=sw_soursing visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Sw Soursing" border="0" color="33554432" x="2583" y="4" height="52" width="288" html.valueishtml="0"  name=sw_soursing_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=0 border="0" color="33554432" x="2885" y="0" height="52" width="352" html.valueishtml="0"  name=co_cliente visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Co Cliente" border="0" color="33554432" x="2880" y="4" height="52" width="357" html.valueishtml="0"  name=co_cliente_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
