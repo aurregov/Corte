@@ -1,0 +1,44 @@
+HA$PBExportHeader$dtb_reporte_control_reimpresion.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=332 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_orden_corte dbname="mv_reimpresion.cs_orden_corte" )
+ column=(type=long updatewhereclause=yes name=co_concepto dbname="mv_reimpresion.co_concepto" )
+ column=(type=char(30) updatewhereclause=yes name=de_concepto dbname="m_concepto_impreso.de_concepto" )
+ column=(type=long updatewhereclause=yes name=tipo_impresion dbname="mv_reimpresion.tipo_impresion" values="BOLSA	1/PARTES	2/" )
+ column=(type=long updatewhereclause=yes name=contador_impresion dbname="mv_reimpresion.contador_impresion" )
+ column=(type=datetime updatewhereclause=yes name=fe_actualizacion dbname="mv_reimpresion.fe_actualizacion" )
+ column=(type=char(8) updatewhereclause=yes name=usuario dbname="mv_reimpresion.usuario" )
+ retrieve="  SELECT mv_reimpresion.cs_orden_corte,   
+         mv_reimpresion.co_concepto,   
+         m_concepto_impreso.de_concepto,   
+         mv_reimpresion.tipo_impresion,   
+         mv_reimpresion.contador_impresion,   
+         mv_reimpresion.fe_actualizacion,   
+         mv_reimpresion.usuario  
+    FROM m_concepto_impreso,   
+         mv_reimpresion  
+   WHERE ( mv_reimpresion.co_concepto = m_concepto_impreso.co_concepto ) and  
+         ( Date(mv_reimpresion.fe_actualizacion) >= :an_fecha_inicio ) AND  
+         ( Date(mv_reimpresion.fe_actualizacion) <= :an_fecha_final  )    
+" arguments=(("an_fecha_inicio", date),("an_fecha_final", date)) )
+text(band=header alignment="2" text="REPORTE DE REIMPRESION DE ADHESIVOS" border="0" color="0" x="9" y="116" height="92" width="2601" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="27" y="16" height="56" width="466" format="[SHORTDATE] [TIME]" html.valueishtml="0"  name=date_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="1" expression="'P$$HEX1$$e100$$ENDHEX$$gina ' + page() + ' de ' + pageCount()"border="0" color="33554432" x="2048" y="24" height="64" width="562" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="33554432" x="9" y="4" height="64" width="270" format="[general]" html.valueishtml="0"  name=cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression=" co_concepto + ' - ' +  de_concepto "border="5" color="33554432" x="306" y="4" height="64" width="832" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="5" color="33554432" x="1166" y="4" height="64" width="347" format="[general]" html.valueishtml="0"  name=tipo_impresion visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="5" color="33554432" x="1541" y="4" height="64" width="210" format="[general]" html.valueishtml="0"  name=contador_impresion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="5" color="33554432" x="1778" y="4" height="64" width="343" format="[general]" html.valueishtml="0"  name=usuario visible="1" edit.limit=8 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Orden Corte" border="6" color="33554432" x="9" y="272" height="56" width="270" html.valueishtml="0"  name=mv_reimpresion_cs_orden_corte_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Concepto" border="6" color="33554432" x="306" y="272" height="56" width="832" html.valueishtml="0"  name=mv_reimpresion_co_concepto_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Tipo" border="6" color="33554432" x="1166" y="272" height="56" width="347" html.valueishtml="0"  name=mv_reimpresion_tipo_impresion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Cantidad" border="6" color="33554432" x="1541" y="272" height="56" width="210" html.valueishtml="0"  name=mv_reimpresion_contador_impresion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Usuario" border="6" color="33554432" x="1778" y="272" height="56" width="343" html.valueishtml="0"  name=mv_reimpresion_usuario_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=6 alignment="2" tabsequence=0 border="5" color="0" x="2144" y="4" height="64" width="466" html.valueishtml="0"  name=fe_actualizacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Fecha" border="6" color="0" x="2144" y="272" height="56" width="466" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
