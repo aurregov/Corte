@@ -1,0 +1,50 @@
+HA$PBExportHeader$dtg_estilotalla_ajustar.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=64 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(insert.method.type=SP insert.method="admpro  .pr_actkar_proceso " insert.method.arguments=(("
+		",expression=("91")),("
+		",expression=("1")),("
+		",expression=("1")),("
+		",column=("co_subcentro",new,in)),("
+		",column=("co_concepto",new,in)),("
+		",expression=("91")),("
+		",expression=("1")),("
+		",expression=("1")),("
+		",column=("co_subcentro",new,in)),("
+		",expression=("if(  co_concepto = 52, 2, 1 )")),("
+		",column=("fabrica",new,in)),("
+		",column=("linea",new,in)),("
+		",column=("referencia",new,in)),("
+		",column=("talla",new,in)),("
+		",column=("color",new,in)),("
+		",column=("unidades",new,in)))column=(type=number updatewhereclause=no name=fabrica dbname="fabrica" )
+ column=(type=number updatewhereclause=no name=linea dbname="linea" )
+ column=(type=number updatewhereclause=no name=referencia dbname="referencia" )
+ column=(type=number updatewhereclause=no name=color dbname="color" )
+ column=(type=number updatewhereclause=no name=talla dbname="talla" )
+ column=(type=number updatewhereclause=no name=unidades dbname="unidades" )
+ column=(type=number updatewhereclause=no name=co_concepto dbname="co_concepto" )
+ column=(type=number updatewhereclause=no name=co_subcentro dbname="co_subcentro" )
+ )
+text(band=header alignment="2" text="Fabrica" border="6" color="8388608" x="9" y="8" height="52" width="183" html.valueishtml="0"  name=fabrica_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Linea" border="6" color="8388608" x="201" y="8" height="52" width="183" html.valueishtml="0"  name=linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Referencia" border="6" color="8388608" x="393" y="8" height="52" width="238" html.valueishtml="0"  name=referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Color" border="6" color="8388608" x="640" y="8" height="52" width="279" html.valueishtml="0"  name=color_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Talla" border="6" color="8388608" x="928" y="8" height="52" width="183" html.valueishtml="0"  name=talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Unidades" border="6" color="8388608" x="1120" y="8" height="52" width="219" html.valueishtml="0"  name=unidades_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="5" color="33554432" x="1120" y="4" height="64" width="219" format="[general]" html.valueishtml="0"  name=unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="5" color="33554432" x="928" y="4" height="64" width="183" format="[general]" html.valueishtml="0"  name=talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="33554432" x="9" y="4" height="64" width="183" format="[general]" html.valueishtml="0"  name=fabrica visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="33554432" x="201" y="4" height="64" width="183" format="[general]" html.valueishtml="0"  name=linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="33554432" x="393" y="4" height="64" width="238" format="[general]" html.valueishtml="0"  name=referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="5" color="33554432" x="640" y="4" height="64" width="279" format="[general]" html.valueishtml="0"  name=color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+compute(band=summary alignment="1" expression="sum(unidades for all)"border="5" color="255" x="1120" y="4" height="52" width="219" format="[general]" html.valueishtml="0"  name=total visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217752" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
