@@ -1,0 +1,26 @@
+HA$PBExportHeader$ds_trazos_v2.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=144 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_trazo dbname="h_trazos.co_trazo" )
+ column=(type=char(18) updatewhereclause=yes name=de_trazo dbname="h_trazos.de_trazo" )
+ retrieve=" SELECT h_trazos.co_trazo,   
+         h_trazos.de_trazo  
+    FROM dt_trazosxoc,   
+         h_trazos  
+   WHERE ( h_trazos.co_trazo = dt_trazosxoc.co_trazo ) and  
+         ( h_trazos.co_estado_trazo = 3 ) and
+			(  dt_trazosxoc.cs_orden_corte = :an_corte)
+ORDER BY h_trazos.co_trazo  ;  
+" arguments=(("an_corte", number)) )
+text(band=header alignment="2" text="H Trazos
+Co Trazo" border="0" color="0" x="9" y="8" height="128" width="329"  name=h_trazos_co_trazo_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="H Trazos
+De Trazo" border="0" color="0" x="347" y="8" height="128" width="521"  name=h_trazos_de_trazo_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="9" y="8" height="76" width="329" format="[general]"  name=co_trazo edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="347" y="8" height="76" width="521" format="[general]"  name=de_trazo edit.limit=18 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
