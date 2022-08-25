@@ -1,0 +1,96 @@
+HA$PBExportHeader$d_lista_guias_num_liquida.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=112 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_orden_corte dbname="dt_liq_unixespacio.cs_orden_corte" )
+ column=(type=long updatewhereclause=yes name=cs_base_trazos dbname="dt_liq_unixespacio.cs_base_trazos" )
+ column=(type=long updatewhereclause=yes name=cs_agrupacion dbname="dt_liq_unixespacio.cs_agrupacion" )
+ column=(type=long updatewhereclause=yes name=cs_trazo dbname="dt_liq_unixespacio.cs_trazo" )
+ column=(type=long updatewhereclause=yes name=cs_sec_ext dbname="dt_trazosxoc.cs_sec_ext" )
+ column=(type=long updatewhereclause=yes name=cs_talla dbname="dt_liq_unixespacio.cs_talla" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="dt_liq_unixespacio.co_talla" )
+ column=(type=long updatewhereclause=yes name=paquetes dbname="dt_liq_unixespacio.paquetes" )
+ column=(type=long updatewhereclause=yes name=cs_pdn dbname="dt_liq_unixespacio.cs_pdn" )
+ column=(type=long updatewhereclause=yes name=capas dbname="dt_liq_unixespacio.capas" )
+ column=(type=long updatewhereclause=yes name=cs_orden_espacio dbname="dt_liq_unixespacio.cs_orden_espacio" )
+ column=(type=long updatewhereclause=yes name=dt_trazosxoc_cs_ordenpdn dbname="dt_trazosxoc.cs_ordenpdn" )
+ column=(type=decimal(0) updatewhereclause=yes name=total_capas dbname="total_capas" )
+ retrieve="  SELECT DISTINCT dt_liq_unixespacio.cs_orden_corte,   
+         dt_liq_unixespacio.cs_base_trazos,   
+         dt_liq_unixespacio.cs_agrupacion,   
+         dt_liq_unixespacio.cs_trazo,   
+         dt_trazosxoc.cs_sec_ext,   
+         dt_liq_unixespacio.cs_talla,   
+         dt_liq_unixespacio.co_talla,   
+         dt_liq_unixespacio.paquetes,   
+         dt_liq_unixespacio.cs_pdn,   
+         dt_liq_unixespacio.capas,
+			dt_liq_unixespacio.cs_orden_espacio,
+			dt_trazosxoc.cs_ordenpdn,
+			( 	SELECT Sum(capas)
+				FROM dt_trazosxoc a
+				WHERE a.cs_orden_corte = dt_trazosxoc.cs_orden_corte AND
+						a.cs_agrupacion = dt_trazosxoc.cs_agrupacion AND
+						a.cs_base_trazos = dt_trazosxoc.cs_base_trazos AND
+						a.cs_trazo = dt_trazosxoc.cs_trazo AND
+						a.cs_seccion = dt_trazosxoc.cs_seccion ) total_capas  
+    FROM dt_liq_unixespacio,   
+         dt_trazosxoc,   
+         h_base_trazos  
+   WHERE ( dt_liq_unixespacio.cs_orden_corte = dt_trazosxoc.cs_orden_corte ) and  
+         ( dt_liq_unixespacio.cs_agrupacion = dt_trazosxoc.cs_agrupacion ) and  
+         ( dt_liq_unixespacio.cs_base_trazos = dt_trazosxoc.cs_base_trazos ) and  
+         ( dt_liq_unixespacio.cs_trazo = dt_trazosxoc.cs_trazo ) and  
+         ( dt_liq_unixespacio.cs_seccion = dt_trazosxoc.cs_seccion ) and  
+         ( dt_liq_unixespacio.cs_pdn = dt_trazosxoc.cs_pdn ) and  
+         ( dt_liq_unixespacio.cs_agrupacion = h_base_trazos.cs_agrupacion ) and  
+         ( dt_liq_unixespacio.cs_base_trazos = h_base_trazos.cs_base_trazos ) and  
+         ( ( dt_liq_unixespacio.cs_orden_corte = :an_cs_orden_corte ) AND  
+         ( h_base_trazos.raya = :an_raya ) )   
+ORDER BY dt_liq_unixespacio.cs_orden_espacio asc,
+			total_capas ASC,   
+         dt_trazosxoc.cs_sec_ext ASC,
+			dt_liq_unixespacio.co_talla ASC, 			
+			dt_trazosxoc.cs_ordenpdn asc,   
+         dt_liq_unixespacio.paquetes
+
+            
+" arguments=(("an_cs_orden_corte", number),("an_raya", number)) )
+text(band=header alignment="2" text="Dt Liq Unixespacio
+Cs Orden Corte" border="0" color="33554432" x="5" y="4" height="104" width="407" html.valueishtml="0"  name=dt_liq_unixespacio_cs_orden_corte_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Liq Unixespacio
+Cs Base Trazos" border="0" color="33554432" x="416" y="4" height="104" width="407" html.valueishtml="0"  name=dt_liq_unixespacio_cs_base_trazos_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Liq Unixespacio
+Cs Agrupacion" border="0" color="33554432" x="827" y="4" height="104" width="407" html.valueishtml="0"  name=dt_liq_unixespacio_cs_agrupacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Liq Unixespacio
+Cs Trazo" border="0" color="33554432" x="1239" y="4" height="104" width="411" html.valueishtml="0"  name=dt_liq_unixespacio_cs_trazo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Trazosxoc
+Cs Sec Ext" border="0" color="33554432" x="1655" y="4" height="104" width="288" html.valueishtml="0"  name=dt_trazosxoc_cs_sec_ext_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Liq Unixespacio
+Cs Talla" border="0" color="33554432" x="1947" y="4" height="104" width="407" html.valueishtml="0"  name=dt_liq_unixespacio_cs_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Liq Unixespacio
+Co Talla" border="0" color="33554432" x="2359" y="4" height="104" width="407" html.valueishtml="0"  name=dt_liq_unixespacio_co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Liq Unixespacio
+Paquetes" border="0" color="33554432" x="2770" y="4" height="104" width="407" html.valueishtml="0"  name=dt_liq_unixespacio_paquetes_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Liq Unixespacio
+Cs Pdn" border="0" color="33554432" x="3182" y="4" height="104" width="407" html.valueishtml="0"  name=dt_liq_unixespacio_cs_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Liq Unixespacio
+Capas" border="0" color="33554432" x="3593" y="4" height="104" width="407" html.valueishtml="0"  name=dt_liq_unixespacio_capas_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="416" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_base_trazos visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="827" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_agrupacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="1239" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_trazo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1655" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_sec_ext visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1947" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="2359" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="2770" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=paquetes visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="3182" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_pdn visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="33554432" x="3593" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=capas visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="3918" y="12" height="52" width="992" format="[general]" html.valueishtml="0"  name=cs_orden_espacio visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="4910" y="0" height="52" width="992" format="[general]" html.valueishtml="0"  name=dt_trazosxoc_cs_ordenpdn visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=0 border="0" color="33554432" x="5902" y="0" height="52" width="992" html.valueishtml="0"  name=total_capas visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
