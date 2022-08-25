@@ -1,0 +1,17 @@
+HA$PBExportHeader$d_lista_produccion_trazos_pdn_talla.srd
+$PBExportComments$Contiene la suma de la produccion por talla de un trazo especifico.
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_talla dbname="dt_trazosxbase.co_talla" )
+ column=(type=decimal(0) updatewhereclause=yes name=cantidad dbname="cantidad" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"dt_trazosxbase~" ) COLUMN(NAME=~"dt_trazosxbase.co_talla~") COMPUTE(NAME=~"sum(dt_trazosxbase.ca_programadas) cantidad~")WHERE(    EXP1 =~"dt_trazosxbase.cs_agrupacion~"   OP =~"=~"    EXP2 =~":an_agrupa~"    LOGIC =~"And~" ) WHERE(    EXP1 =~"dt_trazosxbase.cs_base_trazos~"   OP =~"=~"    EXP2 =~":an_base~"    LOGIC =~"And~" ) WHERE(    EXP1 =~"dt_trazosxbase.cs_trazo~"   OP =~"in~"    EXP2 =~":an_trazo~"    LOGIC =~"and~" ) WHERE(    EXP1 =~"dt_trazosxbase.cs_pdn~"   OP =~"=~"    EXP2 =~":an_pdn~" )  GROUP(NAME=~"dt_trazosxbase.cs_agrupacion~") GROUP(NAME=~"dt_trazosxbase.cs_base_trazos~") GROUP(NAME=~"dt_trazosxbase.cs_pdn~") GROUP(NAME=~"dt_trazosxbase.co_talla~")) ORDER(NAME=~"dt_trazosxbase.co_talla~" ASC=yes ) ARG(NAME = ~"an_agrupa~" TYPE = number)  ARG(NAME = ~"an_base~" TYPE = number)  ARG(NAME = ~"an_trazo~" TYPE = numberlist)  ARG(NAME = ~"an_pdn~" TYPE = number) " arguments=(("an_agrupa", number),("an_base", number),("an_trazo", numberlist),("an_pdn", number)) )
+text(band=header alignment="2" text="Co Talla" border="0" color="0" x="9" y="8" height="56" width="329"  name=co_talla_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cantidad" border="0" color="0" x="347" y="8" height="56" width="329"  name=cantidad_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="9" y="8" height="76" width="329" format="[general]"  name=co_talla edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="347" y="8" height="76" width="329" format="[general]"  name=cantidad edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
