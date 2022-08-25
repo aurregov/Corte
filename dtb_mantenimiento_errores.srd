@@ -1,0 +1,30 @@
+HA$PBExportHeader$dtb_mantenimiento_errores.srd
+$PBExportComments$OBJETO MANTENIMIENTO - Datawindow usada en w_mantenimiento_errores
+release 8;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(30) update=yes updatewhereclause=yes key=yes name=dbms dbname="dbms" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_error dbname="co_error" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=mensaje_1 dbname="mensaje_1" )
+ column=(type=long update=yes updatewhereclause=yes name=modo dbname="modo" values="Error Leve	0/Error Grave	1/" )
+ retrieve="  SELECT  cf_errores_bd.dbms , 
+          cf_errores_bd.co_error ,
+          cf_errores_bd.mensaje_1 ,
+          cf_errores_bd.modo     
+        FROM cf_errores_bd      
+        WHERE ( cf_errores_bd.dbms like :as_argumento_dbms )  
+        ORDER BY cf_errores_bd.dbms          ASC,
+           cf_errores_bd.co_error          DESC  " update="cf_errores_bd" updatewhere=1 updatekeyinplace=no arguments=(("as_argumento_dbms", string)) )
+text(band=header alignment="2" text="Dbms" border="6" color="8388608" x="110" y="12" height="52" width="709" html.valueishtml="0"  name=dbms_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Codigo" border="6" color="8388608" x="832" y="12" height="52" width="274" html.valueishtml="0"  name=co_error_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mensaje " border="6" color="8388608" x="1120" y="12" height="52" width="1426" html.valueishtml="0"  name=mensaje_1_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Modo" border="6" color="8388608" x="2565" y="12" height="52" width="585" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="0" x="110" y="4" height="64" width="709" format="[general]" html.valueishtml="0"  name=dbms visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="5" color="0" x="832" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_error visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="5" color="0" x="1120" y="4" height="64" width="1426" format="[general]" html.valueishtml="0"  name=mensaje_1 visible="1" edit.limit=100 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="5" color="0" x="2587" y="4" height="64" width="544" format="[general]" html.valueishtml="0"  name=modo visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.required=yes ddlb.useasborder=yes ddlb.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
