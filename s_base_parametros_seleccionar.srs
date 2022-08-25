@@ -1,0 +1,24 @@
+HA$PBExportHeader$s_base_parametros_seleccionar.srs
+global type s_base_parametros_seleccionar from structure
+	string		cadena1[]
+	string		cadena2[]
+	string		cadena3[]
+	string		cadena4[]
+	string		cadena5[]
+	long		entero1[]
+	long		entero2[]
+	long		entero3[]
+	long		entero4[]
+	long		entero5[]
+	long		entero6[]
+	long		entero7[]
+	long		entero8[]
+	long		entero9[]
+	decimal {3}	decimal1[]
+	decimal {3}	decimal2[]
+	decimal {3}	decimal3[]
+	decimal {3}	decimal4[]
+	decimal {3}	decimal5[]
+	boolean		hay_parametros
+end type
+
