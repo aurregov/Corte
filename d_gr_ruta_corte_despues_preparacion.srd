@@ -1,0 +1,93 @@
+HA$PBExportHeader$d_gr_ruta_corte_despues_preparacion.srd
+$PBExportComments$/***********************************************************~r~nSA54091 - Ceiba/jjmonsal - 04-03-2016~r~nComentario:Ruta en el adhesivo del recipiente~r~n***********************************************************/
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=yes )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=56 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_ruta dbname="cs_ruta" )
+ column=(type=char(30) updatewhereclause=yes name=de_ruta dbname="de_ruta" )
+ column=(type=long updatewhereclause=yes name=co_tipoprod dbname="co_tipoprod" )
+ column=(type=char(30) updatewhereclause=yes name=de_tipoprod dbname="de_tipoprod" )
+ column=(type=long updatewhereclause=yes name=status dbname="status" )
+ column=(type=long updatewhereclause=yes name=co_tipo_produccion dbname="co_tipo_produccion" )
+ column=(type=long updatewhereclause=yes name=co_centro_pdn dbname="co_centro_pdn" )
+ column=(type=char(30) updatewhereclause=yes name=de_centro_pdn dbname="de_centro_pdn" )
+ column=(type=long updatewhereclause=yes name=co_subcentro_pdn dbname="co_subcentro_pdn" )
+ column=(type=char(30) updatewhereclause=yes name=de_subcentro_pdn dbname="de_subcentro_pdn" )
+ column=(type=long updatewhereclause=yes name=cs_secuencia dbname="cs_secuencia" )
+ column=(type=long updatewhereclause=yes name=cs_sec_liquidacion dbname="cs_sec_liquidacion" )
+ column=(type=long updatewhereclause=yes name=cs_sec_costo dbname="cs_sec_costo" )
+ column=(type=long updatewhereclause=yes name=sw_especial dbname="sw_especial" )
+ column=(type=char(2) updatewhereclause=yes name=co_proceso dbname="co_proceso" )
+ column=(type=char(40) updatewhereclause=yes name=de_proceso dbname="de_proceso" )
+ retrieve="SELECT  Distinct dt_ruta_pdn.cs_ruta,
+		h_ruta_pdn.de_ruta,   
+		h_ruta_pdn.co_tipoprod,
+		m_tipo_producto.de_tipoprod,   
+		h_ruta_pdn.status,   
+		h_ruta_pdn.co_tipo_produccion,  
+		dt_ruta_pdn.co_centro_pdn,
+		m_centros_pdn.de_centro_pdn,   
+		dt_ruta_pdn.co_subcentro_pdn,
+		m_subcentros_pdn.de_subcentro_pdn,
+		dt_ruta_pdn.cs_secuencia,   
+		dt_ruta_pdn.cs_sec_liquidacion,   
+		dt_ruta_pdn.cs_sec_costo,   
+		dt_ruta_pdn.sw_especial,
+		dt_ruta_pdn.co_proceso,
+		m_liquida_proceso.de_proceso  
+	FROM	dt_canasta_corte,
+			h_canasta_corte,
+			dt_ref_x_col_pv,
+			dt_ruta_pdn,
+			h_ruta_pdn,
+			m_subcentros_pdn,
+			m_centros_pdn,
+			outer m_tipo_producto,
+			m_liquida_proceso
+		WHERE ( dt_canasta_corte.cs_canasta = h_canasta_corte.cs_canasta ) and
+			( dt_canasta_corte.co_fabrica_ref = dt_ref_x_col_pv.co_fabrica ) and
+			( dt_canasta_corte.co_linea = dt_ref_x_col_pv.co_linea ) and
+			( cast(dt_canasta_corte.co_referencia as char(15)) = dt_ref_x_col_pv.co_referencia ) and
+			( cast(dt_canasta_corte.co_talla as char(10)) = dt_ref_x_col_pv.co_talla ) and
+			( dt_canasta_corte.co_calidad = dt_ref_x_col_pv.co_calidad ) and
+			( cast(dt_canasta_corte.co_color as char(8)) = dt_ref_x_col_pv.co_color ) and
+			dt_ref_x_col_pv.co_tipo_ref = 'P' and
+			( dt_ref_x_col_pv.nu_ruta = h_ruta_pdn.cs_ruta ) and
+			( dt_ruta_pdn.cs_ruta = h_ruta_pdn.cs_ruta ) and  
+			  
+		( dt_ruta_pdn.co_centro_pdn = m_subcentros_pdn.co_centro_pdn ) and  
+		( dt_ruta_pdn.co_subcentro_pdn = m_subcentros_pdn.co_subcentro_pdn ) and  
+		( m_subcentros_pdn.co_tipoprod = m_centros_pdn.co_tipoprod ) and  
+		( m_subcentros_pdn.co_centro_pdn = m_centros_pdn.co_centro_pdn ) and  
+		( m_centros_pdn.co_centro_pdn IN (1,2) ) and 
+		( h_ruta_pdn.co_tipoprod = m_subcentros_pdn.co_tipoprod ) and  
+			
+		( h_ruta_pdn.co_tipoprod = m_tipo_producto.co_tipoprod ) and
+
+		( h_ruta_pdn.co_tipoprod = m_liquida_proceso.co_tipoprod ) and
+		( dt_ruta_pdn.co_proceso = m_liquida_proceso.co_proceso ) and
+		h_canasta_corte.pallet_id = :as_palletID  and 
+		dt_ruta_pdn.cs_secuencia > ( select min(d.cs_secuencia)
+									from dt_ruta_pdn d
+									where d.cs_ruta = h_ruta_pdn.cs_ruta and
+										d.co_centro_pdn = 1 and
+										d.co_subcentro_pdn = 3
+										)" arguments=(("as_palletID", string))  sort="cs_ruta A cs_secuencia A " )
+group(level=1 header.height=64 trailer.height=0 by=("cs_ruta" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="Ruta despu$$HEX1$$e900$$ENDHEX$$s del Subcentro de preparaci$$HEX1$$f300$$ENDHEX$$n y fusionado " border="0" color="33554432" x="14" y="8" height="52" width="1518" html.valueishtml="0"  name=t_5 visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Centro Pdn" border="2" color="33554432" x="14" y="8" height="48" width="274" html.valueishtml="0"  name=co_centro_pdn_t visible="1"  font.face="Microsoft Sans Serif" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header.1 alignment="2" text="Subcentro Pdn" border="2" color="33554432" x="297" y="8" height="48" width="928" html.valueishtml="0"  name=co_subcentro_pdn_t visible="1"  font.face="Microsoft Sans Serif" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header.1 alignment="2" text="Secuencia" border="2" color="33554432" x="1230" y="8" height="48" width="210" html.valueishtml="0"  name=cs_secuencia_t visible="1"  font.face="Microsoft Sans Serif" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="2" color="33554432" x="14" y="0" height="52" width="41" format="[general]" html.valueishtml="0"  name=co_centro_pdn visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="2" color="33554432" x="59" y="0" height="52" width="229" format="[general]" html.valueishtml="0"  name=de_centro_pdn visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="2" color="33554432" x="379" y="0" height="52" width="846" format="[general]" html.valueishtml="0"  name=de_subcentro_pdn visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="2" color="33554432" x="293" y="0" height="52" width="82" format="[general]" html.valueishtml="0"  name=co_subcentro_pdn visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="2" tabsequence=32766 border="2" color="33554432" x="1230" y="0" height="52" width="210" format="[general]" html.valueishtml="0"  name=cs_secuencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
