@@ -1,0 +1,75 @@
+HA$PBExportHeader$dtb_mercadas_pendientes.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912~tif( co_estado_mercada  =  ai_pormercar, rgb(128,255,255)  , if ( co_estado_mercada  = 6 , rgb(255,164,119), rgb(255,255,128)))" )
+table(column=(type=long updatewhereclause=yes name=cs_mercada dbname="cs_mercada" )
+ column=(type=long updatewhereclause=yes name=co_estado_mercada dbname="co_estado_mercada" )
+ column=(type=char(30) updatewhereclause=yes name=m_estados_mercada_de_estado_mercada dbname="de_estado_mercada" )
+ column=(type=long updatewhereclause=yes name=cs_orden_corte dbname="cs_orden_corte" )
+ column=(type=long updatewhereclause=yes name=cs_reposicion dbname="cs_reposicion" )
+ column=(type=long updatewhereclause=yes name=co_tipo_mercada dbname="co_tipo_mercada" values="Orden Corte	1/Reposicion	2/" )
+ column=(type=datetime updatewhereclause=yes name=corte dbname="corte" )
+ column=(type=char(71) updatewhereclause=yes name=mesa dbname="mesa" )
+ column=(type=datetime updatewhereclause=yes name=fe_creacion dbname="fe_creacion" )
+ column=(type=long updatewhereclause=yes name=cs_unir_oc dbname="cs_unir_oc" )
+ column=(type=long updatewhereclause=yes name=co_centro_corte dbname="co_centro_corte" )
+ retrieve="SELECT	h_mercada.cs_mercada,   
+			h_mercada.co_estado_mercada,   
+			m_estados_mercada.de_estado_mercada,   
+			h_mercada.cs_orden_corte,   
+			h_mercada.cs_reposicion,   
+			h_mercada.co_tipo_mercada,
+		    h_mercada.fe_creacion corte,
+(	SELECT MAX(m_modulos.co_modulo || '-' || m_modulos.de_modulo)
+FROM	dt_pdnxmodulo, m_modulos
+WHERE	h_mercada.cs_orden_corte = dt_pdnxmodulo.cs_asignacion AND
+		dt_pdnxmodulo.co_fabrica = m_modulos.co_fabrica AND
+		dt_pdnxmodulo.co_planta = m_modulos.co_planta AND
+		dt_pdnxmodulo.co_modulo = m_modulos.co_modulo ) mesa,
+		h_mercada.fe_creacion,
+		dt_pdnxmodulo.cs_unir_oc,
+      h_mercada.co_centro_corte
+FROM	h_mercada,   
+		m_estados_mercada,
+		dt_pdnxmodulo 
+WHERE	( m_estados_mercada.co_estado_mercada = h_mercada.co_estado_mercada ) and  
+		( ( h_mercada.co_estado_mercada = :ai_porcortar ) or 
+        ( h_mercada.co_estado_mercada = :ai_pormercar ) or 
+        ((h_mercada.co_estado_mercada = 6 or h_mercada.co_estado_mercada = 4 or h_mercada.co_estado_mercada = 10)  and 
+          h_mercada.cs_orden_corte = :al_orden_corte ) ) and
+		( dt_pdnxmodulo.cs_asignacion = h_mercada.cs_orden_corte ) and 
+      ( h_mercada.cs_mercada > 200000) and
+      ( h_mercada.co_centro_corte <> 94 OR h_mercada.co_centro_corte is null ) and
+		( dt_pdnxmodulo.co_estado_asigna <> 28)
+ORDER BY	h_mercada.co_tipo_mercada ASC,   
+			h_mercada.co_estado_mercada ASC,
+			7
+" arguments=(("ai_porcortar", number),("ai_pormercar", number),("an_fabrica_prop", number),("al_orden_corte", number))  sort="co_tipo_mercada A co_estado_mercada A dias D cs_orden_corte A " )
+group(level=1 header.height=136 trailer.height=0 by=("co_tipo_mercada" ) header.color="536870912" trailer.color="536870912" )
+column(band=header.1 id=6 alignment="0" tabsequence=32766 border="5" color="33554432" x="329" y="8" height="52" width="814" format="[general]" html.valueishtml="0"  name=co_tipo_mercada visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Tipo:" border="6" color="33554432" x="9" y="8" height="52" width="302" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Mercada" border="6" color="33554432" x="9" y="76" height="52" width="302" html.valueishtml="0"  name=h_mercada_cs_mercada_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Orden Corte" border="6" color="33554432" x="1161" y="76" height="52" width="288" html.valueishtml="0"  name=h_mercada_cs_orden_corte_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Estado" border="6" color="33554432" x="329" y="76" height="52" width="814" html.valueishtml="0"  name=h_mercada_co_estado_mercada_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Fecha Inico Corte" border="6" color="33554432" x="1467" y="76" height="52" width="384" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Reposici$$HEX1$$f300$$ENDHEX$$n" border="6" color="33554432" x="2062" y="76" height="52" width="311" html.valueishtml="0"  name=h_mercada_cs_reposicion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Mesa" border="6" color="33554432" x="2391" y="76" height="52" width="690" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="D$$HEX1$$ed00$$ENDHEX$$as" border="6" color="33554432" x="1870" y="76" height="52" width="174" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+button(band=header.1 text="Filtrar" filename="" enabled=yes action="9" border="0" color="0" x="2382" y="4" height="64" width="238" vtextalign="0" htextalign="0"  name=b_filtro visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header.1 text="Imprimir" filename="" enabled=yes action="15" border="0" color="0" x="2770" y="4" height="64" width="320" vtextalign="0" htextalign="0"  name=b_imprimir visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="5" color="33554432" x="1161" y="4" height="60" width="288" format="[general]" html.valueishtml="0"  name=cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="33554432" x="439" y="4" height="60" width="709" format="[general]" html.valueishtml="0"  name=m_estados_mercada_de_estado_mercada visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="33554432" x="329" y="4" height="60" width="91" format="[general]" html.valueishtml="0"  name=co_estado_mercada visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="33554432" x="9" y="4" height="60" width="302" format="[general]" html.valueishtml="0"  name=cs_mercada visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="5" color="33554432" x="2391" y="4" height="60" width="690" format="[general]" html.valueishtml="0"  name=mesa visible="1~tif ( co_estado_mercada =  ai_pormercar , 1, 0)" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="5" color="33554432" x="2062" y="4" height="60" width="311" format="[general]" html.valueishtml="0"  name=cs_reposicion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="5" color="33554432" x="1467" y="4" height="60" width="384" format="yyyy/mm/dd" html.valueishtml="0"  name=corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="DaysAfter( fe_creacion , Today())"border="5" color="33554432" x="1870" y="4" height="60" width="174" format="[GENERAL]" html.valueishtml="0"  name=dias visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=0 border="5" color="33554432" x="3090" y="4" height="52" width="73" html.valueishtml="0"  name=co_centro_corte visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
