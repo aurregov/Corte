@@ -1,0 +1,21 @@
+HA$PBExportHeader$dtb_consumo_std_x_talla.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_talla dbname="co_talla" )
+ column=(type=long updatewhereclause=yes name=ca_unidades dbname="ca_unidades" )
+ retrieve="select co_talla, ca_unidades
+from dt_agrupaescalapdn
+where cs_agrupacion = :al_agrupacion" arguments=(("al_agrupacion", number),("consumo_std", number),("unidades_tot", number))  sort="co_talla A " )
+text(band=header alignment="2" text="Talla" border="6" color="33554432" x="9" y="8" height="52" width="123" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Kg Talla" border="6" color="0" x="142" y="8" height="52" width="251" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="2" color="33554432" x="9" y="8" height="56" width="123" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="( ca_unidades * consumo_std ) /  unidades_tot "border="2" color="0" x="142" y="8" height="56" width="251" format="0.00" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
