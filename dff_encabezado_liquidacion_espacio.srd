@@ -1,0 +1,35 @@
+HA$PBExportHeader$dff_encabezado_liquidacion_espacio.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_orden_corte dbname="h_ordenes_corte.cs_orden_corte" )
+ column=(type=long updatewhereclause=yes name=co_estado dbname="h_ordenes_corte.co_estado" )
+ column=(type=long updatewhereclause=yes name=raya dbname="h_base_trazos.raya" )
+ column=(type=long updatewhereclause=yes name=cs_agrupacion dbname="h_base_trazos.cs_agrupacion" )
+ column=(type=long updatewhereclause=yes name=cs_base_trazos dbname="h_base_trazos.cs_base_trazos" )
+ retrieve="  SELECT h_ordenes_corte.cs_orden_corte,   
+         h_ordenes_corte.co_estado,   
+         h_base_trazos.raya,   
+         h_base_trazos.cs_agrupacion,   
+         h_base_trazos.cs_base_trazos  
+    FROM h_base_trazos,   
+         h_ordenes_corte  
+   WHERE ( h_base_trazos.cs_agrupacion = :al_agrupacion ) AND  
+         ( h_base_trazos.cs_base_trazos = :al_basetrazo ) AND  
+         ( h_ordenes_corte.cs_orden_corte = :al_ordencorte )    
+" arguments=(("al_ordencorte", number),("al_agrupacion", number),("al_basetrazo", number)) )
+text(band=detail alignment="0" text="Orden Corte:" border="0" color="0" x="37" y="24" height="52" width="288"  name=h_orden_corte_cs_orden_corte_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Estado:" border="0" color="0" x="768" y="24" height="52" width="178"  name=h_orden_corte_co_estado_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Agrup:" border="0" color="0" x="1582" y="24" height="52" width="142"  name=t_1  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="5" color="0" x="1746" y="24" height="52" width="155" format="[general]"  name=cs_agrupacion edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Base:" border="0" color="0" x="2002" y="24" height="52" width="142"  name=t_3  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="0" x="2167" y="24" height="52" width="155" format="[general]"  name=cs_base_trazos edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Raya:" border="0" color="0" x="2414" y="24" height="52" width="142"  name=h_base_trazos_raya_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="0" x="2574" y="24" height="52" width="165" format="[general]"  name=raya edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Raya:" border="0" color="0" x="2414" y="24" height="52" width="142"  name=t_2  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=0 border="5" color="0" x="343" y="24" height="52" width="297"  name=cs_orden_corte  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=2 alignment="0" tabsequence=0 border="5" color="0" x="965" y="24" height="52" width="448"  name=co_estado dddw.name=dddw_estados_ordencorte dddw.displaycolumn=de_estado dddw.datacolumn=co_estado dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
