@@ -1,0 +1,45 @@
+HA$PBExportHeader$dtb_temporal.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=160 color="536870912" )
+summary(height=72 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=h_kardex_documento dbname="h_kardex.documento" )
+ column=(type=long updatewhereclause=yes name=dt_kardex_co_reftel dbname="dt_kardex.co_reftel" )
+ column=(type=number updatewhereclause=yes name=dt_kardex_co_color dbname="dt_kardex.co_color" )
+ column=(type=decimal(2) updatewhereclause=yes name=compute_0004 dbname="compute_0004" )
+ column=(type=decimal(3) updatewhereclause=yes name=compute_0005 dbname="compute_0005" )
+ retrieve="Select h.documento, d.co_reftel, d.co_color, 
+       (select max(a.pr_entregado) from dt_entregas a 
+        where recepcion = h.documento and documento = h.documento and
+              co_reftel = d.co_reftel and co_color = d.co_color),
+sum(d.ca_kardex_kg)
+from h_kardex h, dt_kardex d
+where h.co_fabrica = d.co_fabrica
+and h.co_concepto = d.co_concepto
+and h.documento = d.documento
+and h.co_fabrica = 2
+and h.co_concepto = 11
+and h.ano_mes = '2008-07'
+group by 1,2,3,4
+order by 1,2,3;" )
+text(band=header alignment="2" text="IR" border="6" color="33554432" x="5" y="88" height="52" width="274" html.valueishtml="0"  name=h_kardex_documento_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tela" border="6" color="33554432" x="283" y="88" height="52" width="274" html.valueishtml="0"  name=dt_kardex_co_reftel_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Compras 2008-07" border="0" color="33554432" x="5" y="8" height="52" width="379" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="2" color="33554432" x="5" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=h_kardex_documento visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="2" color="33554432" x="283" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_kardex_co_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Kilos" border="6" color="33554432" x="873" y="88" height="52" width="274" html.valueishtml="0"  name=compute_0004_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Valor kilo" border="6" color="33554432" x="1147" y="88" height="52" width="288" html.valueishtml="0"  name=compute_0005_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Valor Total" border="6" color="33554432" x="1550" y="88" height="52" width="334" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="2" color="33554432" x="1170" y="4" height="64" width="274" format="#,##0.00" html.valueishtml="0"  name=compute_0004 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="2" color="33554432" x="901" y="4" height="64" width="242" format="[general]" html.valueishtml="0"  name=compute_0005 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="compute_0004 *  compute_0005 "border="2" color="33554432" x="1495" y="12" height="52" width="402" format="#,##0.00" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(compute_0004 *  compute_0005  for all)"border="2" color="33554432" x="1495" y="4" height="52" width="402" format="#,##0.00" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Color" border="6" color="33554432" x="576" y="88" height="52" width="274" html.valueishtml="0"  name=dt_kardex_co_color_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="2" color="33554432" x="576" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=dt_kardex_co_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
