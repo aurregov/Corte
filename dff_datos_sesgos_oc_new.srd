@@ -1,0 +1,83 @@
+HA$PBExportHeader$dff_datos_sesgos_oc_new.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 0 print.margin.right = 0 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=140 color="536870912"  height.autosize=yes)
+table(column=(type=long updatewhereclause=yes name=dt_trazosxoc_cs_orden_corte dbname="dt_trazosxoc.cs_orden_corte" )
+ column=(type=long updatewhereclause=yes name=h_base_trazos_raya dbname="h_base_trazos.raya" )
+ column=(type=long updatewhereclause=yes name=cs_agrupacion dbname="dt_trazosxoc.cs_agrupacion" )
+ column=(type=long updatewhereclause=yes name=cs_base_trazos dbname="dt_trazosxoc.cs_base_trazos" )
+ column=(type=decimal(2) updatewhereclause=yes name=porc_util dbname="porc_util" )
+ column=(type=long updatewhereclause=yes name=dt_pdnxmodulo_co_fabrica_pt dbname="dt_pdnxmodulo.co_fabrica_pt" )
+ column=(type=long updatewhereclause=yes name=dt_pdnxmodulo_co_linea dbname="dt_pdnxmodulo.co_linea" )
+ column=(type=long updatewhereclause=yes name=dt_pdnxmodulo_co_referencia dbname="dt_pdnxmodulo.co_referencia" )
+ column=(type=long updatewhereclause=yes name=dt_trazosxoc_co_modelo dbname="dt_trazosxoc.co_modelo" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_programada dbname="ca_programada" )
+ retrieve="   SELECT DISTINCT dt_trazosxoc.cs_orden_corte,   
+         h_base_trazos.raya,  
+         dt_trazosxoc.cs_agrupacion,   
+         dt_trazosxoc.cs_base_trazos,    
+         pr_porc_util_ficha(dt_trazosxoc.cs_orden_corte, h_base_trazos.raya) porc_util,
+         dt_pdnxmodulo.co_fabrica_pt,
+         dt_pdnxmodulo.co_linea,
+         dt_pdnxmodulo.co_referencia,
+         dt_trazosxoc.co_modelo,
+         sum(dt_pdnxmodulo.ca_programada) ca_programada
+    FROM h_base_trazos,   
+         dt_trazosxoc,   
+         dt_agrupa_pdn,   
+         h_telas,   
+         dt_agrupaescalapdn,   
+			h_trazos,
+			dt_telaxmodelo_lib,
+			dt_pdnxmodulo,
+         outer dt_refptxtrazo
+   WHERE ( dt_trazosxoc.cs_agrupacion 				= h_base_trazos.cs_agrupacion ) and  
+         ( dt_trazosxoc.cs_base_trazos 			= h_base_trazos.cs_base_trazos ) and  
+         ( dt_agrupaescalapdn.cs_agrupacion 		= dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_agrupaescalapdn.cs_pdn 				= dt_agrupa_pdn.cs_pdn ) and  
+         ( dt_trazosxoc.cs_agrupacion 				= dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_trazosxoc.cs_pdn 						= dt_agrupa_pdn.cs_pdn ) and  
+         ( dt_trazosxoc.co_reftel 					= h_telas.co_reftel ) and  
+         ( dt_trazosxoc.co_caract 					= h_telas.co_caract ) and  
+			( dt_trazosxoc.cs_orden_corte 			= :al_ordencorte ) AND  
+			( dt_agrupa_pdn.co_fabrica_exp			= dt_telaxmodelo_lib.co_fabrica_exp ) and
+			( dt_agrupa_pdn.cs_liberacion 			= dt_telaxmodelo_lib.cs_liberacion ) and
+			( dt_agrupa_pdn.po 							= dt_telaxmodelo_lib.nu_orden ) and
+			( dt_agrupa_pdn.nu_cut 						= dt_telaxmodelo_lib.nu_cut ) and
+			( dt_agrupa_pdn.co_fabrica_pt 			= dt_telaxmodelo_lib.co_fabrica_pt ) and
+			( dt_agrupa_pdn.co_linea 					= dt_telaxmodelo_lib.co_linea ) and
+			( dt_agrupa_pdn.co_referencia 			= dt_telaxmodelo_lib.co_referencia ) and
+			( dt_agrupa_pdn.co_color_pt 				= dt_telaxmodelo_lib.co_color_pt ) and
+			( dt_trazosxoc.co_modelo 					= dt_telaxmodelo_lib.co_modelo ) and
+			( dt_trazosxoc.co_fabrica_tela 			= dt_telaxmodelo_lib.co_fabrica_tela ) and
+			( dt_trazosxoc.co_reftel 					= dt_telaxmodelo_lib.co_reftel ) and
+			( dt_trazosxoc.co_caract 					= dt_telaxmodelo_lib.co_caract ) and
+			( dt_trazosxoc.diametro 					= dt_telaxmodelo_lib.diametro ) and
+			( dt_trazosxoc.co_color_te 				= dt_telaxmodelo_lib.co_color_tela ) and
+			( dt_trazosxoc.co_trazo						= h_trazos.co_trazo ) and
+         ( h_trazos.co_trazo                    = dt_refptxtrazo.co_trazo ) and
+         ( dt_refptxtrazo.co_fabrica 				= dt_pdnxmodulo.co_fabrica_pt ) and
+         ( dt_refptxtrazo.co_linea	 				= dt_pdnxmodulo.co_linea ) and
+         ( dt_refptxtrazo.co_referencia			= dt_pdnxmodulo.co_referencia ) and
+			( dt_agrupa_pdn.co_fabrica_exp			= dt_pdnxmodulo.co_fabrica_exp ) and
+			( dt_agrupa_pdn.cs_liberacion 			= dt_pdnxmodulo.cs_liberacion ) and
+			( dt_agrupa_pdn.po 							= dt_pdnxmodulo.po ) and
+			( dt_agrupa_pdn.nu_cut 						= dt_pdnxmodulo.nu_cut ) and
+			( dt_agrupa_pdn.co_fabrica_pt 			= dt_pdnxmodulo.co_fabrica_pt ) and
+			( dt_agrupa_pdn.co_linea 					= dt_pdnxmodulo.co_linea ) and
+			( dt_agrupa_pdn.co_referencia 			= dt_pdnxmodulo.co_referencia ) and
+			( dt_agrupa_pdn.co_color_pt 				= dt_pdnxmodulo.co_color_pt ) and
+			( dt_agrupa_pdn.tono 						= dt_pdnxmodulo.tono ) and
+         pr_descripcion_raya(dt_trazosxoc.cs_orden_corte, h_base_trazos.raya) LIKE ~"%SESGO%~"
+group by 1,2,3,4,5,6,7,8,9
+order by 2,3
+;" arguments=(("al_ordencorte", number))  sort="dt_trazosxoc_cs_orden_corte A h_base_trazos_raya A " )
+report(band=detail dataobject="dtb_temp_calcular_kilos_modelo_std_new" x="14" y="4" height="136~tif( dt_modelos_de_modelo LIKE ~"%SESGO%~",136,0)" width="1737" border="0"  height.autosize=yes criteria="" nest_arguments=((" dt_pdnxmodulo_co_fabrica_pt "),(" dt_pdnxmodulo_co_linea "),(" dt_pdnxmodulo_co_referencia "),(" dt_trazosxoc_co_modelo "),(" ca_programada "),(" porc_util "),(" cs_agrupacion ")) trail_footer = yes  name=dw_6 visible="1"  slideup=directlyabove )
+
+sparse(names="dw_6")htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
