@@ -1,0 +1,45 @@
+HA$PBExportHeader$dff_maestro_trazo_programado.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_orden_corte dbname="dt_trazosxoc.cs_orden_corte" )
+ column=(type=long updatewhereclause=yes name=co_estado dbname="h_ordenes_corte.co_estado" )
+ column=(type=long updatewhereclause=yes name=cs_agrupacion dbname="dt_trazosxoc.cs_agrupacion" )
+ column=(type=long updatewhereclause=yes name=cs_base_trazos dbname="dt_trazosxoc.cs_base_trazos" )
+ column=(type=long updatewhereclause=yes name=raya dbname="h_base_trazos.raya" )
+ column=(type=long updatewhereclause=yes name=cs_trazo dbname="dt_trazosxoc.cs_trazo" )
+ column=(type=long updatewhereclause=yes name=dt_trazosxoc_co_estado dbname="dt_trazosxoc.co_estado" )
+ retrieve="  SELECT unique dt_trazosxoc.cs_orden_corte,   
+         h_ordenes_corte.co_estado,   
+         dt_trazosxoc.cs_agrupacion,   
+         dt_trazosxoc.cs_base_trazos,   
+         h_base_trazos.raya,   
+         dt_trazosxoc.cs_trazo,   
+         dt_trazosxoc.co_estado  
+    FROM dt_trazosxoc,   
+         h_base_trazos,   
+         h_ordenes_corte  
+   WHERE ( dt_trazosxoc.cs_agrupacion = h_base_trazos.cs_agrupacion ) and  
+         ( dt_trazosxoc.cs_base_trazos = h_base_trazos.cs_base_trazos ) and  
+         ( dt_trazosxoc.cs_orden_corte = h_ordenes_corte.cs_orden_corte ) and  
+         ( ( dt_trazosxoc.cs_orden_corte = :cs_orden_corte ) AND  
+         ( dt_trazosxoc.cs_agrupacion = :cs_agrupacion ) AND  
+         ( dt_trazosxoc.cs_base_trazos = :cs_base_trazos ) AND  
+         ( dt_trazosxoc.cs_trazo = :cs_trazo ) )    
+" arguments=(("cs_orden_corte", number),("cs_agrupacion", number),("cs_base_trazos", number),("cs_trazo", number)) )
+text(band=detail alignment="1" text="Estado:" border="0" color="33554432" x="613" y="8" height="64" width="169" html.valueishtml="0"  name=h_ordenes_corte_co_estado_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text=" Agrupacion:" border="0" color="33554432" x="1179" y="8" height="64" width="270" html.valueishtml="0"  name=dt_trazosxoc_cs_agrupacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Base:" border="0" color="33554432" x="1669" y="8" height="64" width="133" html.valueishtml="0"  name=dt_trazosxoc_cs_base_trazos_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Raya:" border="0" color="33554432" x="1989" y="8" height="64" width="133" html.valueishtml="0"  name=h_base_trazos_raya_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Espacio:" border="0" color="33554432" x="2281" y="8" height="64" width="197" html.valueishtml="0"  name=dt_trazosxoc_cs_trazo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Orden Corte:" border="0" color="33554432" x="9" y="8" height="64" width="283" html.valueishtml="0"  name=dt_trazosxoc_cs_orden_corte_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="33554432" x="795" y="8" height="64" width="370" format="[general]" html.valueishtml="0"  name=co_estado visible="1" dddw.name=dddw_estados_ordencorte dddw.displaycolumn=de_estado dddw.datacolumn=co_estado dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="5" color="33554432" x="311" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="5" color="33554432" x="1463" y="8" height="64" width="192" format="[general]" html.valueishtml="0"  name=cs_agrupacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="5" color="33554432" x="1819" y="8" height="64" width="146" format="[general]" html.valueishtml="0"  name=cs_base_trazos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="5" color="33554432" x="2139" y="8" height="64" width="128" format="[general]" html.valueishtml="0"  name=raya visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="5" color="33554432" x="2491" y="8" height="64" width="87" format="[general]" html.valueishtml="0"  name=cs_trazo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
