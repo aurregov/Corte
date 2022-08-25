@@ -1,0 +1,127 @@
+HA$PBExportHeader$ds_datos_agrupacion.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=180 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_liberacion dbname="cs_liberacion" )
+ column=(type=long updatewhereclause=yes name=cs_orden_corte dbname="cs_asignacion" )
+ column=(type=long updatewhereclause=yes name=co_modelo dbname="co_modelo" )
+ column=(type=long updatewhereclause=yes name=co_trazo dbname="co_trazo" )
+ column=(type=decimal(2) updatewhereclause=yes name=porc_util dbname="porc_util" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="co_talla" )
+ column=(type=decimal(2) updatewhereclause=yes name=porc_utilizacion dbname="porc_utilizacion" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_disponibles dbname="ca_diponibles" )
+ column=(type=long updatewhereclause=yes name=cs_ordenpd_pt dbname="cs_ordenpd_pt" )
+ column=(type=char(20) updatewhereclause=yes name=po dbname="po" )
+ column=(type=long updatewhereclause=yes name=co_reftel dbname="co_reftel" )
+ column=(type=long updatewhereclause=yes name=diametro dbname="diametro" )
+ column=(type=long updatewhereclause=yes name=co_color_te dbname="co_color_tela" )
+ column=(type=long updatewhereclause=yes name=co_caract dbname="co_caract" )
+ column=(type=long updatewhereclause=yes name=co_color_pt dbname="co_color_pt" )
+ column=(type=long updatewhereclause=yes name=co_fabrica_pt dbname="co_fabrica_pt" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ retrieve=" SELECT 	dt_pdnxmodulo.cs_liberacion,   
+         dt_pdnxmodulo.cs_asignacion,   
+         dt_modelos.co_modelo,   
+         h_trazos.co_trazo,   
+         h_trazos.porc_util,   
+         dt_escalasxtela.co_talla,
+			dt_modelos.porc_utilizacion,
+			( dt_trazosrecalculo.ca_capas * dt_tallasxtrazo.ca_paquetes ) as ca_diponibles,
+			dt_pdnxmodulo.cs_ordenpd_pt,
+			dt_pdnxmodulo.po,
+			dt_escalasxtela.co_reftel,
+			dt_escalasxtela.diametro,
+			dt_escalasxtela.co_color_tela,
+			dt_escalasxtela.co_caract,
+			dt_pdnxmodulo.co_color_pt,
+			dt_pdnxmodulo.co_fabrica_pt,
+			dt_pdnxmodulo.co_linea,
+			dt_pdnxmodulo.co_referencia
+    FROM dt_trazosrecalculo,  
+         dt_escalasxtela,   
+         dt_pdnxmodulo,   
+   		dt_modelos,
+			dt_agrupa_pdn,
+			dt_tallasxtrazo,
+			h_trazos
+   WHERE ( dt_trazosrecalculo.cs_agrupacion 	= :an_agrupacion  ) and
+         ( dt_pdnxmodulo.cs_asignacion = :as_asignacion) and
+			( dt_trazosrecalculo.cs_agrupacion 	= dt_agrupa_pdn.cs_agrupacion ) and
+			( dt_trazosrecalculo.cs_pdn 			= dt_agrupa_pdn.cs_pdn ) and
+			( dt_trazosrecalculo.co_trazo 		= h_trazos.co_trazo ) and 
+			( dt_trazosrecalculo.co_trazo 		= dt_tallasxtrazo.co_trazo ) and
+      	( dt_agrupa_pdn.co_fabrica_exp 		= dt_escalasxtela.co_fabrica_exp) and 
+    		( dt_agrupa_pdn.cs_liberacion 		= dt_escalasxtela.cs_liberacion) and 
+			( dt_agrupa_pdn.co_fabrica_pt 		= dt_escalasxtela.co_fabrica_pt ) and  
+         ( dt_agrupa_pdn.co_linea 				= dt_escalasxtela.co_linea ) and  
+         ( dt_agrupa_pdn.co_referencia 		= dt_escalasxtela.co_referencia )  and
+			( dt_agrupa_pdn.po 						= dt_escalasxtela.nu_orden )  and
+			( dt_agrupa_pdn.co_color_pt 			= dt_escalasxtela.co_color_pt )  and
+         ( dt_agrupa_pdn.cs_liberacion 		= dt_pdnxmodulo.cs_liberacion) and 
+			( dt_agrupa_pdn.co_fabrica_pt 		= dt_pdnxmodulo.co_fabrica_pt ) and  
+         ( dt_agrupa_pdn.co_linea 				= dt_pdnxmodulo.co_linea ) and  
+         ( dt_agrupa_pdn.co_referencia 		= dt_pdnxmodulo.co_referencia )  and
+			( dt_agrupa_pdn.po 						= dt_pdnxmodulo.po )  and
+			( dt_agrupa_pdn.co_color_pt 			= dt_pdnxmodulo.co_color_pt )  and
+         ( dt_trazosrecalculo.raya				= dt_modelos.raya ) and
+			( dt_modelos.co_fabrica 				= dt_pdnxmodulo.co_fabrica_pt ) and  
+         ( dt_modelos.co_linea 					= dt_pdnxmodulo.co_linea ) and  
+         ( dt_modelos.co_referencia 			= dt_pdnxmodulo.co_referencia )  and
+			( dt_modelos.co_talla 					= dt_escalasxtela.co_talla ) and
+			( dt_modelos.co_color_pt 				= dt_pdnxmodulo.co_color_pt ) and
+			( dt_modelos.co_modelo 					= dt_escalasxtela.co_modelo ) and
+			( dt_modelos.co_calidad 				= 1 ) and
+			( dt_tallasxtrazo.co_fabrica 			= dt_escalasxtela.co_fabrica_pt ) and  
+         ( dt_tallasxtrazo.co_linea 			= dt_escalasxtela.co_linea ) and  
+         ( dt_tallasxtrazo.co_referencia 		= dt_escalasxtela.co_referencia )  and
+			( dt_escalasxtela.co_talla				= dt_tallasxtrazo.co_talla )
+
+" arguments=(("an_agrupacion", number),("as_asignacion", number)) )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Cs Liberacion" border="0" color="33554432" x="9" y="8" height="168" width="329" html.valueishtml="0"  name=dt_pdnxmodulo_cs_liberacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="H Trazos
+Co Trazo" border="0" color="33554432" x="347" y="8" height="168" width="274" html.valueishtml="0"  name=h_trazos_co_trazo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="H Trazos
+Porc Util" border="0" color="33554432" x="631" y="8" height="168" width="274" html.valueishtml="0"  name=h_trazos_porc_util_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Dt Modelos Porc Utilizacion" border="0" color="0" x="914" y="8" height="168" width="361" html.valueishtml="0"  name=dt_modelos_porc_utilizacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="OP" border="0" color="0" x="1285" y="8" height="52" width="311" html.valueishtml="0"  name=dt_pdnxmodulo_cs_ordenpd_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="po" border="0" color="0" x="1605" y="8" height="52" width="453" html.valueishtml="0"  name=dt_pdnxmodulo_po_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="color" border="0" color="33554432" x="2066" y="4" height="52" width="201" html.valueishtml="0"  name=dt_pdnxmodulo_co_color_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="fab" border="0" color="0" x="2277" y="4" height="52" width="142" html.valueishtml="0"  name=dt_pdnxmodulo_co_fabrica_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="linea" border="0" color="0" x="2427" y="4" height="52" width="256" html.valueishtml="0"  name=dt_pdnxmodulo_co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Pdnxmodulo Co Referencia" border="0" color="0" x="2693" y="4" height="52" width="59" html.valueishtml="0"  name=dt_pdnxmodulo_co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Pdnxmodulo Cs Asignacion" border="0" color="0" x="2761" y="4" height="76" width="59" html.valueishtml="0"  name=dt_pdnxmodulo_cs_asignacion_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Dt Modelos Co Modelo" border="0" color="0" x="2830" y="4" height="76" width="59" html.valueishtml="0"  name=dt_modelos_co_modelo_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Talla" border="0" color="0" x="2898" y="4" height="56" width="114" html.valueishtml="0"  name=dt_escalasxtela_co_talla_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Ca Diponibles" border="0" color="0" x="3022" y="4" height="56" width="494" html.valueishtml="0"  name=ca_diponibles_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="tela" border="0" color="0" x="3525" y="4" height="56" width="119" html.valueishtml="0"  name=dt_escalasxtela_co_reftel_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="dm" border="0" color="0" x="3653" y="4" height="56" width="110" html.valueishtml="0"  name=dt_escalasxtela_diametro_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="col te" border="0" color="0" x="3771" y="4" height="56" width="78" html.valueishtml="0"  name=dt_escalasxtela_co_color_tela_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="caract" border="0" color="0" x="3858" y="4" height="56" width="155" html.valueishtml="0"  name=dt_escalasxtela_co_caract_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="329" format="[general]" html.valueishtml="0"  name=cs_liberacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="347" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_trazo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="631" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=porc_util visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="914" y="8" height="64" width="361" format="[general]" html.valueishtml="0"  name=porc_utilizacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="1285" y="0" height="52" width="311" format="[general]" html.valueishtml="0"  name=cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="1605" y="0" height="52" width="453" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="33554432" x="2066" y="0" height="52" width="201" format="[general]" html.valueishtml="0"  name=co_color_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="33554432" x="2277" y="0" height="52" width="142" format="[general]" html.valueishtml="0"  name=co_fabrica_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="33554432" x="2427" y="0" height="52" width="256" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="33554432" x="2693" y="0" height="52" width="59" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="2761" y="0" height="52" width="59" format="[general]" html.valueishtml="0"  name=cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="2830" y="0" height="52" width="59" format="[general]" html.valueishtml="0"  name=co_modelo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="2898" y="0" height="52" width="114" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="3022" y="0" height="52" width="494" format="[general]" html.valueishtml="0"  name=ca_disponibles visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="3525" y="0" height="52" width="119" format="[general]" html.valueishtml="0"  name=co_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="3653" y="0" height="52" width="110" format="[general]" html.valueishtml="0"  name=diametro visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="3771" y="0" height="52" width="78" format="[general]" html.valueishtml="0"  name=co_color_te visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="33554432" x="3858" y="0" height="52" width="155" format="[general]" html.valueishtml="0"  name=co_caract visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
