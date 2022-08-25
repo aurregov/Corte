@@ -1,0 +1,68 @@
+HA$PBExportHeader$dtb_seleccionar_rollos.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes key=yes name=cs_rollo dbname="m_rollo.cs_rollo" )
+ column=(type=long updatewhereclause=yes name=cs_orden_pr_act dbname="m_rollo.cs_orden_pr_act" )
+ column=(type=decimal(3) updatewhereclause=yes name=ca_kg dbname="m_rollo.ca_kg" )
+ column=(type=decimal(3) updatewhereclause=yes name=ca_kg_tenido dbname="m_rollo.ca_kg_tenido" )
+ column=(type=decimal(3) updatewhereclause=yes name=ca_disponible dbname="ca_disponible" )
+ column=(type=long updatewhereclause=yes name=co_color_act dbname="m_rollo.co_color_act" )
+ column=(type=char(8) updatewhereclause=yes name=ubicacion dbname="m_rollo.ubicacion" )
+ column=(type=decimal(2) updatewhereclause=yes name=ancho_tub_term dbname="m_rollo.ancho_tub_term" )
+ column=(type=decimal(3) updatewhereclause=yes name=m_rollo_ca_mt dbname="m_rollo.ca_mt" )
+ retrieve="SELECT	m_rollo.cs_rollo ,
+			m_rollo.cs_orden_pr_act ,
+			m_rollo.ca_kg ,
+			m_rollo.ca_kg_tenido,
+			m_rollo.ca_kg -
+			m_rollo.ca_kg_tenido ca_disponible,
+			m_rollo.co_color_act ,
+			m_rollo.ubicacion ,
+			m_rollo.ancho_tub_term ,
+			m_rollo.ca_mt     
+FROM     m_rollo
+WHERE		( m_rollo.co_fabrica_act 	= :ai_fabrica ) and
+			( m_rollo.co_reftel_act 	= :al_reftel ) and          
+			( m_rollo.co_centro 			= 90 ) and          
+			( m_rollo.co_estado_rollo 	in (2, 7) ) and          
+			( m_rollo.cs_ordencr 		< 1 ) and          
+			( m_rollo.co_caract_act 	= :ai_caract ) and          
+			( m_rollo.co_color_act 		= :ai_color ) and
+			( m_rollo.diametro_act 		= :ai_diametro ) and
+			( 0 = (	SELECT Count(*)
+						FROM dt_rollos_liq
+						WHERE dt_rollos_liq.cs_orden_corte 	= :al_ordencorte AND
+								dt_rollos_liq.cs_agrupacion 	= :al_agrupacion AND
+								dt_rollos_liq.cs_pdn 			= :ai_produccion AND
+								dt_rollos_liq.co_modelo 		= :al_modelo AND
+								dt_rollos_liq.co_fabrica_tela = m_rollo.co_fabrica_act AND
+								dt_rollos_liq.co_reftel 		= m_rollo.co_reftel_act AND
+								dt_rollos_liq.co_caract 		= m_rollo.co_caract_act AND
+								dt_rollos_liq.diametro 			= m_rollo.diametro_act AND
+								dt_rollos_liq.co_color_te 		= m_rollo.co_color_act AND
+								dt_rollos_liq.cs_base_trazos 	= :ai_base AND
+								dt_rollos_liq.cs_liquidacion 	= :ai_liquidacion AND
+								dt_rollos_liq.cs_rollo 			= m_rollo.cs_rollo ) )" update="m_rollo" updatewhere=0 updatekeyinplace=no arguments=(("al_ordencorte", number),("al_agrupacion", number),("ai_produccion", number),("al_modelo", number),("ai_fabrica", number),("al_reftel", number),("ai_caract", number),("ai_diametro", number),("ai_color", number),("ai_base", number),("ai_liquidacion", number))  sort="cs_rollo A " )
+text(band=header alignment="2" text="Rollo" border="6" color="0" x="9" y="8" height="52" width="265" html.valueishtml="0"  name=cs_rollo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="4" height="64" width="265" format="0" html.valueishtml="0"  name=cs_rollo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ubicac" border="6" color="0" x="567" y="8" height="52" width="247" html.valueishtml="0"  name=t_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Ancho" border="6" color="0" x="832" y="8" height="52" width="178" html.valueishtml="0"  name=t_6 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Yardas Rollo" border="6" color="0" x="1029" y="8" height="52" width="274" html.valueishtml="0"  name=ca_incluida_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Yardas Consumidos" border="6" color="0" x="1321" y="8" height="52" width="425" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Yardas Disponibles" border="6" color="0" x="1765" y="8" height="52" width="411" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="567" y="4" height="64" width="247" format="[general]" html.valueishtml="0"  name=ubicacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="832" y="4" height="64" width="178" format="#,##0.00" html.valueishtml="0"  name=ancho_tub_term visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="0" x="1029" y="4" height="64" width="274" format="#,##0.00" html.valueishtml="0"  name=ca_kg visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="0" x="1321" y="4" height="64" width="425" format="[general]" html.valueishtml="0"  name=ca_kg_tenido visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="0" x="1765" y="4" height="64" width="411" format="#,##0.00" html.valueishtml="0"  name=ca_disponible visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Color" border="6" color="0" x="293" y="8" height="52" width="256" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="0" x="293" y="4" height="64" width="256" format="[general]" html.valueishtml="0"  name=co_color_act visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
