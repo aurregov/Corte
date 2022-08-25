@@ -1,0 +1,21 @@
+HA$PBExportHeader$d_fechas_xcol.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=date updatewhereclause=yes name=fe_entrega dbname="pedpend_exp.fe_entrega" )
+ retrieve="	select distinct fe_entrega  
+    from pedpend_exp  
+   where co_fabrica_exp = :an_fabexp and
+         pedido = :an_pedpo and  
+         nu_orden = :as_po and 
+         co_fabrica = :an_fab and 
+         co_linea = :an_lin and 
+         co_referencia = :an_ref and
+         co_color = :an_col   ;" arguments=(("an_fabexp", number),("an_pedpo", number),("as_po", string),("an_fab", number),("an_lin", number),("an_ref", number),("an_col", number))  sort="fe_entrega A " )
+text(band=header alignment="2" text="Fe Entrega" border="0" color="0" x="5" y="4" height="64" width="329"  name=fe_entrega_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="5" y="4" height="76" width="329" format="[general]"  name=fe_entrega edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
