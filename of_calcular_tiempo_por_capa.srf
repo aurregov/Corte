@@ -1,0 +1,94 @@
+HA$PBExportHeader$of_calcular_tiempo_por_capa.srf
+global type of_calcular_tiempo_por_capa from function_object
+end type
+
+forward prototypes
+global function decimal of_calcular_tiempo_por_capa (long an_oc, decimal adc_largo, long an_num_capas, decimal adc_tiempo_x_capa, decimal adc_tiempo_ext, long an_tipo_tela)
+end prototypes
+
+global function decimal of_calcular_tiempo_por_capa (long an_oc, decimal adc_largo, long an_num_capas, decimal adc_tiempo_x_capa, decimal adc_tiempo_ext, long an_tipo_tela);//funcion que haya el tiempo por capa y el tiempo de extendido
+//1.verifica si el extendido es cara o un solo sentido(cara arriba)
+//2.segun el tipo de extendido trae el estandar
+//3.multiplica el estandar por el largo(tiempo por capa)
+//4.multiplica el tiempo por capa por el numero de capas(tiempo extendido)
+
+Long      ll_instruccion_ext[], ll_filas_tipo_ext, ll_tipo_extendido, ll_tipo_estandar, ll_filas_estandar
+Decimal{1} ldc_largo
+Decimal{3} ldc_estandar
+
+uo_dsbase lds_tipo_extendido, lds_estandar_x_tipo
+
+//datastore que trae el tipo de extendido
+lds_tipo_extendido = Create uo_dsbase				
+lds_tipo_extendido.dataobject = "dtb_verificar_extendido_x_oc"
+lds_tipo_extendido.settransobject(gnv_recursos.of_get_transaccion_sucia())
+
+//datastore que trae el estandar segun el tipo de estendido y el largo
+lds_estandar_x_tipo = Create uo_dsbase				
+lds_estandar_x_tipo.dataobject = "dtb_consulta_estandar_x_capa"
+lds_estandar_x_tipo.settransobject(gnv_recursos.of_get_transaccion_sucia())
+
+
+ll_instruccion_ext[1] = 6  //instruccion cara a cara
+ll_instruccion_ext[2] = 7  //instruccion cara arriba(un solo sentido)
+//ll_instruccion_ext[3] = 12 //manual
+
+ll_filas_tipo_ext = lds_tipo_extendido.Retrieve(ll_instruccion_ext,an_oc)
+
+//valida que no haya error en caso de que haber error devuelve -1
+IF ll_filas_tipo_ext < 0 THEN
+	messagebox("Error","Al consultar tipo de extendido")
+	RETURN -1
+END IF
+
+//si no tiene datos informa que no tiene tipo de extendido matriculado
+IF ll_filas_tipo_ext = 0 THEN
+	messagebox("Aviso","No se encontro extendido para la O.C: "+string(an_oc))
+	RETURN -1
+END IF
+
+ll_tipo_extendido = lds_tipo_extendido.getitemnumber(1,'co_instruccion')
+
+//si el extendido es cara a cara
+IF ll_tipo_extendido = 6 THEN
+	ll_tipo_estandar = 1
+END IF
+
+//si el extendido es cara arriba(un solo sentido)
+IF ll_tipo_extendido = 7 THEN
+	ll_tipo_estandar = 2
+END IF
+
+//si el tipo de la tela es entretelas se va por otro estandar
+IF an_tipo_tela = 132 THEN
+	ll_tipo_estandar = 3
+	ldc_largo = 0
+ELSE
+	ldc_largo = adc_largo
+END IF
+
+ll_filas_estandar = lds_estandar_x_tipo.retrieve(ll_tipo_estandar,ldc_largo)
+
+//valida que no haya error en caso de que haber error devuelve -1
+IF ll_filas_estandar < 0 THEN
+	messagebox("Error","Al consultar tipo de extendido")
+	RETURN -1
+END IF
+
+//si no tiene datos informa que no tiene tipo de extendido matriculado
+IF ll_filas_estandar = 0 THEN
+	messagebox("Aviso","No se encontro estandar para la O.C: "+string(an_oc))
+	RETURN -1
+END IF
+
+ldc_estandar = lds_estandar_x_tipo.getitemdecimal(1,'estandar')
+
+//tiempo por capa
+adc_tiempo_x_capa = ldc_largo * ldc_estandar
+
+//tiempo extendido
+adc_tiempo_ext = adc_tiempo_x_capa * an_num_capas
+
+RETURN adc_tiempo_ext
+end function
+
