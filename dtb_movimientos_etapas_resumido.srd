@@ -1,0 +1,100 @@
+HA$PBExportHeader$dtb_movimientos_etapas_resumido.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=276 color="536870912" )
+summary(height=80 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=datetime updatewhereclause=yes name=mv_inventa_etapa_ano_mes dbname="mv_inventa_etapa.ano_mes" )
+ column=(type=datetime updatewhereclause=yes name=mv_inventa_etapa_fe_movimiento dbname="mv_inventa_etapa.fe_movimiento" )
+ column=(type=long updatewhereclause=yes name=mv_inventa_etapa_co_transaccion dbname="mv_inventa_etapa.co_transaccion" )
+ column=(type=char(30) updatewhereclause=yes name=m_transacciones_de_transaccion dbname="m_transacciones.de_transaccion" )
+ column=(type=long updatewhereclause=yes name=mv_inventa_etapa_co_ruta_etapa dbname="mv_inventa_etapa.co_ruta_etapa" )
+ column=(type=char(30) updatewhereclause=yes name=m_rutas_etapa_de_ruta_etapa dbname="m_rutas_etapa.de_ruta_etapa" )
+ column=(type=long updatewhereclause=yes name=m_rutas_etapa_co_etapa_origen dbname="m_rutas_etapa.co_etapa_origen" )
+ column=(type=long updatewhereclause=yes name=m_rutas_etapa_co_etapa_destino dbname="m_rutas_etapa.co_etapa_destino" )
+ column=(type=long updatewhereclause=yes name=m_rutas_etapa_co_cpto_etapa dbname="m_rutas_etapa.co_cpto_etapa" )
+ column=(type=long updatewhereclause=yes name=mv_inventa_etapa_cs_orden_corte dbname="mv_inventa_etapa.cs_orden_corte" )
+ column=(type=long updatewhereclause=yes name=mv_inventa_etapa_cs_agrupacion dbname="mv_inventa_etapa.cs_agrupacion" )
+ column=(type=long updatewhereclause=yes name=mv_inventa_etapa_cs_pdn dbname="mv_inventa_etapa.cs_pdn" )
+ column=(type=long updatewhereclause=yes name=mv_inventa_etapa_raya dbname="mv_inventa_etapa.raya" )
+ column=(type=long updatewhereclause=yes name=mv_inventa_etapa_cs_espacio dbname="mv_inventa_etapa.cs_espacio" )
+ column=(type=char(20) updatewhereclause=yes name=mv_inventa_etapa_bongo dbname="mv_inventa_etapa.bongo" )
+ column=(type=long updatewhereclause=yes name=mv_inventa_etapa_cs_remision dbname="mv_inventa_etapa.cs_remision" )
+ column=(type=long updatewhereclause=yes name=mv_inventa_etapa_ca_unidades dbname="mv_inventa_etapa.ca_unidades" )
+ column=(type=char(40) updatewhereclause=yes name=h_preref_de_referencia dbname="h_preref_pv.de_referencia" )
+ column=(type=long updatewhereclause=yes name=mv_inventa_etapa_co_subcentro dbname="mv_inventa_etapa.co_subcentro" )
+ retrieve="SELECT DISTINCT	mv_inventa_etapa.ano_mes ,
+		mv_inventa_etapa.fe_movimiento ,
+		mv_inventa_etapa.co_transaccion ,
+		m_transacciones.de_transaccion ,
+		mv_inventa_etapa.co_ruta_etapa ,
+		m_rutas_etapa.de_ruta_etapa ,
+		m_rutas_etapa.co_etapa_origen ,
+		m_rutas_etapa.co_etapa_destino ,
+		m_rutas_etapa.co_cpto_etapa ,
+		mv_inventa_etapa.cs_orden_corte ,
+		mv_inventa_etapa.cs_agrupacion ,
+		mv_inventa_etapa.cs_pdn ,
+		mv_inventa_etapa.raya ,
+		mv_inventa_etapa.cs_espacio ,
+		mv_inventa_etapa.bongo ,
+		mv_inventa_etapa.cs_remision ,
+		mv_inventa_etapa.ca_unidades ,
+		h_preref_pv.de_referencia ,
+		mv_inventa_etapa.co_subcentro     
+FROM	mv_inventa_etapa ,
+		m_transacciones ,
+		m_rutas_etapa ,
+		dt_agrupa_pdn ,
+		h_preref_pv ,
+		dt_pdnxmodulo     
+WHERE ( dt_pdnxmodulo.cs_asignacion = mv_inventa_etapa.cs_orden_corte ) and          
+		( dt_pdnxmodulo.co_fabrica_exp = dt_agrupa_pdn.co_fabrica_exp ) and          
+		( dt_pdnxmodulo.cs_liberacion = dt_agrupa_pdn.cs_liberacion ) and          
+		( dt_agrupa_pdn.po = dt_pdnxmodulo.po ) and   
+		( dt_agrupa_pdn.nu_cut = dt_pdnxmodulo.nu_cut ) and       
+		( dt_pdnxmodulo.co_fabrica_pt = dt_agrupa_pdn.co_fabrica_pt ) and          
+		( dt_agrupa_pdn.co_linea = dt_pdnxmodulo.co_linea ) and          
+		( dt_pdnxmodulo.co_referencia = dt_agrupa_pdn.co_referencia ) and          
+		( dt_agrupa_pdn.co_color_pt = dt_pdnxmodulo.co_color_pt ) and          
+		( dt_pdnxmodulo.tono = dt_agrupa_pdn.tono ) and          
+		( dt_pdnxmodulo.cs_particion = dt_agrupa_pdn.cs_particion ) and          
+		( mv_inventa_etapa.co_transaccion = m_transacciones.co_transaccion ) and          
+		( mv_inventa_etapa.co_transaccion = m_rutas_etapa.co_transaccion ) and          
+		( mv_inventa_etapa.co_ruta_etapa = m_rutas_etapa.co_ruta_etapa ) and 
+      ( h_preref_pv.co_tipo_ref = 'P') and         
+		( dt_agrupa_pdn.co_fabrica_pt = h_preref_pv.co_fabrica ) and          
+		( dt_agrupa_pdn.co_linea = h_preref_pv.co_linea ) and          
+		( cast(dt_agrupa_pdn.co_referencia as char(15)) = h_preref_pv.co_referencia ) and           
+		(mv_inventa_etapa.cs_orden_corte = :Orden_Corte or          
+		( :Orden_Corte = 0)  ) And          
+		( EXTEND(mv_inventa_etapa.fe_movimiento, YEAR TO DAY) between :fecha_inicio AND :fecha_fin )   " arguments=(("fecha_inicio", date),("fecha_fin", date),("Orden_Corte", number))  sort="mv_inventa_etapa_fe_movimiento A m_rutas_etapa_co_cpto_etapa A " )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="18" y="8" height="60" width="599" format="dd-mmm-yyyy hh:mm" html.valueishtml="0"  name=date_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="'Pag ' + page() + ' de ' + pageCount()"border="0" color="33554432" x="1737" y="8" height="60" width="562" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Movimientos por Etapas en Corte " border="6" color="33554432" x="489" y="104" height="80" width="1358" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="A$$HEX1$$f100$$ENDHEX$$o-mes" border="6" color="33554432" x="27" y="216" height="52" width="197" html.valueishtml="0"  name=mv_inventa_etapa_ano_mes_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Fecha" border="6" color="33554432" x="242" y="216" height="52" width="361" html.valueishtml="0"  name=mv_inventa_etapa_fe_movimiento_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Origen" border="6" color="33554432" x="626" y="216" height="52" width="389" html.valueishtml="0"  name=m_rutas_etapa_co_etapa_origen_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Destino" border="6" color="33554432" x="1033" y="216" height="52" width="384" html.valueishtml="0"  name=m_rutas_etapa_co_etapa_destino_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="O.Corte" border="6" color="33554432" x="2249" y="216" height="52" width="169" html.valueishtml="0"  name=mv_inventa_etapa_cs_orden_corte_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Cant" border="6" color="33554432" x="2437" y="216" height="52" width="155" html.valueishtml="0"  name=mv_inventa_etapa_ca_unidades_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Bongo" border="6" color="33554432" x="2615" y="216" height="52" width="224" html.valueishtml="0"  name=mv_inventa_etapa_bongo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Remision" border="6" color="33554432" x="2862" y="216" height="52" width="270" html.valueishtml="0"  name=mv_inventa_etapa_cs_remision_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Concepto" border="6" color="33554432" x="1440" y="216" height="52" width="791" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="33554432" x="27" y="4" height="64" width="183" format="yyyy-mm" html.valueishtml="0"  name=mv_inventa_etapa_ano_mes visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="33554432" x="233" y="4" height="64" width="370" format="dd-mmm hh:mm:ss" html.valueishtml="0"  name=mv_inventa_etapa_fe_movimiento visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="5" color="33554432" x="626" y="4" height="64" width="389" format="[general]" html.valueishtml="0"  name=m_rutas_etapa_co_etapa_origen visible="1" dddw.name=dddw_etapas dddw.displaycolumn=de_etapa dddw.datacolumn=co_etapa dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="5" color="33554432" x="1033" y="4" height="64" width="389" format="[general]" html.valueishtml="0"  name=m_rutas_etapa_co_etapa_destino visible="1" dddw.name=dddw_etapas dddw.displaycolumn=de_etapa dddw.datacolumn=co_etapa dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="5" color="33554432" x="2249" y="4" height="64" width="169" format="[general]" html.valueishtml="0"  name=mv_inventa_etapa_cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="5" color="33554432" x="2615" y="0" height="64" width="224" format="[general]" html.valueishtml="0"  name=mv_inventa_etapa_bongo visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="1" tabsequence=32766 border="5" color="33554432" x="2862" y="0" height="64" width="270" format="[general]" html.valueishtml="0"  name=mv_inventa_etapa_cs_remision visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="5" color="33554432" x="3141" y="0" height="64" width="215" format="[general]" html.valueishtml="0"  name=mv_inventa_etapa_co_subcentro visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="5" color="0" x="1435" y="4" height="64" width="795" format="[general]" html.valueishtml="0"  name=m_rutas_etapa_co_cpto_etapa visible="1" dddw.name=dddw_cptos_etapas dddw.displaycolumn=de_cpto_etapa dddw.datacolumn=co_cpto_etapa dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=17 alignment="1" tabsequence=32766 border="5" color="33554432" x="2437" y="0" height="64" width="155" format="[general]" html.valueishtml="0"  name=mv_inventa_etapa_ca_unidades visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(mv_inventa_etapa_ca_unidades for all)"border="5" color="33554432" x="2437" y="4" height="64" width="155" format="[general]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
