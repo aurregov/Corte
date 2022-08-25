@@ -1,0 +1,172 @@
+HA$PBExportHeader$dtb_actualizar_rollos_borrar.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=168 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=cs_rollo dbname="m_rollo.cs_rollo" )
+ column=(type=long updatewhereclause=yes name=cs_ordenpd_te_pg dbname="m_rollo.cs_ordenpd_te_pg" )
+ column=(type=long updatewhereclause=yes name=cs_ordenpd_te_real dbname="m_rollo.cs_ordenpd_te_real" )
+ column=(type=long updatewhereclause=yes name=cs_ordenpr dbname="m_rollo.cs_ordenpr" )
+ column=(type=long updatewhereclause=yes name=co_fabrica_pg dbname="m_rollo.co_fabrica_pg" )
+ column=(type=long updatewhereclause=yes name=co_reftel_pg dbname="m_rollo.co_reftel_pg" )
+ column=(type=long updatewhereclause=yes name=co_caract_pg dbname="m_rollo.co_caract_pg" )
+ column=(type=long updatewhereclause=yes name=diametro_pg dbname="m_rollo.diametro_pg" )
+ column=(type=long updatewhereclause=yes name=co_color_pg dbname="m_rollo.co_color_pg" )
+ column=(type=long updatewhereclause=yes name=co_planeador dbname="m_rollo.co_planeador" )
+ column=(type=long updatewhereclause=yes name=co_planta dbname="m_rollo.co_planta" )
+ column=(type=long updatewhereclause=yes name=cs_orden_pr_act dbname="m_rollo.cs_orden_pr_act" )
+ column=(type=long updatewhereclause=yes name=co_fabrica_act dbname="m_rollo.co_fabrica_act" )
+ column=(type=long updatewhereclause=yes name=co_reftel_act dbname="m_rollo.co_reftel_act" )
+ column=(type=long updatewhereclause=yes name=co_caract_act dbname="m_rollo.co_caract_act" )
+ column=(type=long updatewhereclause=yes name=diametro_act dbname="m_rollo.diametro_act" )
+ column=(type=long updatewhereclause=yes name=co_color_act dbname="m_rollo.co_color_act" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="m_rollo.co_talla" )
+ column=(type=long updatewhereclause=yes name=co_color_pt dbname="m_rollo.co_color_pt" )
+ column=(type=long updatewhereclause=yes name=ca_unidades dbname="m_rollo.ca_unidades" )
+ column=(type=long updatewhereclause=yes name=co_maquina_tej dbname="m_rollo.co_maquina_tej" )
+ column=(type=long updatewhereclause=yes name=lote dbname="m_rollo.lote" )
+ column=(type=long updatewhereclause=yes name=cs_tanda dbname="m_rollo.cs_tanda" )
+ column=(type=long updatewhereclause=yes name=cs_secundario dbname="m_rollo.cs_secundario" )
+ column=(type=long updatewhereclause=yes name=co_maquina_tint dbname="m_rollo.co_maquina_tint" )
+ column=(type=long updatewhereclause=yes name=bodega dbname="m_rollo.bodega" )
+ column=(type=char(8) updatewhereclause=yes name=ubicacion dbname="m_rollo.ubicacion" )
+ column=(type=char(18) updatewhereclause=yes name=cs_ordenbp dbname="m_rollo.cs_ordenbp" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_ordencr dbname="m_rollo.cs_ordencr" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_prog dbname="m_rollo.ca_prog" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_mt dbname="m_rollo.ca_mt" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_kg dbname="m_rollo.ca_kg" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_kg_tenido dbname="m_rollo.ca_kg_tenido" )
+ column=(type=char(4) updatewhereclause=yes name=pedexpor dbname="m_rollo.pedexpor" )
+ column=(type=long updatewhereclause=yes name=procfis dbname="m_rollo.procfis" )
+ column=(type=long updatewhereclause=yes name=co_centro dbname="m_rollo.co_centro" )
+ column=(type=long update=yes updatewhereclause=yes name=co_estado_rollo dbname="m_rollo.co_estado_rollo" )
+ column=(type=long updatewhereclause=yes name=prioridad dbname="m_rollo.prioridad" )
+ column=(type=number updatewhereclause=yes name=marca dbname="m_rollo.marca" )
+ column=(type=char(1) updatewhereclause=yes name=corte dbname="m_rollo.corte" )
+ column=(type=long updatewhereclause=yes name=paso dbname="m_rollo.paso" )
+ column=(type=long updatewhereclause=yes name=co_calidad dbname="m_rollo.co_calidad" )
+ column=(type=char(18) updatewhereclause=yes name=atributo1 dbname="m_rollo.atributo1" )
+ column=(type=char(18) updatewhereclause=yes name=atributo2 dbname="m_rollo.atributo2" )
+ column=(type=decimal(2) updatewhereclause=yes name=ancho_abierto_crud dbname="m_rollo.ancho_abierto_crud" )
+ column=(type=decimal(2) updatewhereclause=yes name=ancho_abierto_term dbname="m_rollo.ancho_abierto_term" )
+ column=(type=decimal(2) updatewhereclause=yes name=ancho_tub_crudo dbname="m_rollo.ancho_tub_crudo" )
+ column=(type=decimal(2) updatewhereclause=yes name=ancho_tub_term dbname="m_rollo.ancho_tub_term" )
+ column=(type=decimal(2) updatewhereclause=yes name=gr_mt2_terminado dbname="m_rollo.gr_mt2_terminado" )
+ column=(type=char(18) updatewhereclause=yes name=localizacion_ant dbname="m_rollo.localizacion_ant" )
+ column=(type=long updatewhereclause=yes name=cs_secuencia_prog dbname="m_rollo.cs_secuencia_prog" )
+ column=(type=long updatewhereclause=yes name=sw_impresion dbname="m_rollo.sw_impresion" )
+ column=(type=datetime updatewhereclause=yes name=fe_creacion dbname="m_rollo.fe_creacion" )
+ column=(type=datetime updatewhereclause=yes name=fe_actualizacion dbname="m_rollo.fe_actualizacion" )
+ column=(type=char(8) updatewhereclause=yes name=usuario dbname="m_rollo.usuario" )
+ column=(type=char(20) updatewhereclause=yes name=instancia dbname="m_rollo.instancia" )
+ column=(type=long updatewhereclause=yes name=co_proveedor dbname="m_rollo.co_proveedor" )
+ column=(type=char(10) updatewhereclause=yes name=lote_hilaza dbname="m_rollo.lote_hilaza" )
+ column=(type=long updatewhereclause=yes name=co_tip_hilaza dbname="m_rollo.co_tip_hilaza" )
+ column=(type=long updatewhereclause=yes name=lote_tejido dbname="m_rollo.lote_tejido" )
+ column=(type=long updatewhereclause=yes name=co_repite dbname="m_rollo.co_repite" )
+ column=(type=long updatewhereclause=yes name=semana dbname="m_rollo.semana" )
+ column=(type=long updatewhereclause=yes name=maquina_hila dbname="m_rollo.maquina_hila" )
+ column=(type=long updatewhereclause=yes name=co_caract_final dbname="m_rollo.co_caract_final" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_mts_liberados dbname="m_rollo.ca_mts_liberados" )
+ column=(type=long updatewhereclause=yes name=ca_unds_liberadas dbname="m_rollo.ca_unds_liberadas" )
+ column=(type=char(2) updatewhereclause=yes name=co_tono dbname="m_rollo.co_tono" )
+ column=(type=long updatewhereclause=yes name=co_fab_propietario dbname="m_rollo.co_fab_propietario" )
+ retrieve="  SELECT m_rollo.cs_rollo,   
+         m_rollo.cs_ordenpd_te_pg,   
+         m_rollo.cs_ordenpd_te_real,   
+         m_rollo.cs_ordenpr,   
+         m_rollo.co_fabrica_pg,   
+         m_rollo.co_reftel_pg,   
+         m_rollo.co_caract_pg,   
+         m_rollo.diametro_pg,   
+         m_rollo.co_color_pg,   
+         m_rollo.co_planeador,   
+         m_rollo.co_planta,   
+         m_rollo.cs_orden_pr_act,   
+         m_rollo.co_fabrica_act,   
+         m_rollo.co_reftel_act,   
+         m_rollo.co_caract_act,   
+         m_rollo.diametro_act,   
+         m_rollo.co_color_act,   
+         m_rollo.co_talla,   
+         m_rollo.co_color_pt,   
+         m_rollo.ca_unidades,   
+         m_rollo.co_maquina_tej,   
+         m_rollo.lote,   
+         m_rollo.cs_tanda,   
+         m_rollo.cs_secundario,   
+         m_rollo.co_maquina_tint,   
+         m_rollo.bodega,   
+         m_rollo.ubicacion,   
+         m_rollo.cs_ordenbp,   
+         m_rollo.cs_ordencr,   
+         m_rollo.ca_prog,   
+         m_rollo.ca_mt,   
+         m_rollo.ca_kg,   
+         m_rollo.ca_kg_tenido,   
+         m_rollo.pedexpor,   
+         m_rollo.procfis,   
+         m_rollo.co_centro,   
+         m_rollo.co_estado_rollo,   
+         m_rollo.prioridad,   
+         m_rollo.marca,   
+         m_rollo.corte,   
+         m_rollo.paso,   
+         m_rollo.co_calidad,   
+         m_rollo.atributo1,   
+         m_rollo.atributo2,   
+         m_rollo.ancho_abierto_crud,   
+         m_rollo.ancho_abierto_term,   
+         m_rollo.ancho_tub_crudo,   
+         m_rollo.ancho_tub_term,   
+         m_rollo.gr_mt2_terminado,   
+         m_rollo.localizacion_ant,   
+         m_rollo.cs_secuencia_prog,   
+         m_rollo.sw_impresion,   
+         m_rollo.fe_creacion,   
+         m_rollo.fe_actualizacion,   
+         m_rollo.usuario,   
+         m_rollo.instancia,   
+         m_rollo.co_proveedor,   
+         m_rollo.lote_hilaza,   
+         m_rollo.co_tip_hilaza,   
+         m_rollo.lote_tejido,   
+         m_rollo.co_repite,   
+         m_rollo.semana,   
+         m_rollo.maquina_hila,   
+         m_rollo.co_caract_final,   
+         m_rollo.ca_mts_liberados,   
+         m_rollo.ca_unds_liberadas,   
+         m_rollo.co_tono,   
+         m_rollo.co_fab_propietario  
+    FROM m_rollo  
+   WHERE ( m_rollo.co_centro = 15 ) AND  
+         ( m_rollo.co_reftel_act >= 9400 ) AND  
+         ( m_rollo.co_reftel_act <= 9500 )  AND
+         ( m_rollo.co_estado_rollo = 2 )  
+" update="m_rollo" updatewhere=1 updatekeyinplace=no  sort="cs_rollo A " )
+text(band=header alignment="2" text="Cs Rollo" border="6" color="33554432" x="5" y="104" height="52" width="274" html.valueishtml="0"  name=cs_rollo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="O.P" border="6" color="33554432" x="297" y="104" height="52" width="311" html.valueishtml="0"  name=cs_orden_pr_act_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+button(band=header text="Filtrar" enabled=yes action="9" border="0" color="0" x="142" y="12" height="84" width="320" vtextalign="0" htextalign="0"  name=b_1 visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Grabar" enabled=yes action="13" border="0" color="0" x="741" y="8" height="88" width="320" vtextalign="0" htextalign="0"  name=b_2 visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Tela" border="6" color="33554432" x="626" y="104" height="52" width="288" html.valueishtml="0"  name=co_reftel_act_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Estado" border="6" color="33554432" x="2094" y="104" height="52" width="306" html.valueishtml="0"  name=co_estado_rollo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="O.Cte" border="6" color="33554432" x="1230" y="104" height="52" width="274" html.valueishtml="0"  name=cs_ordencr_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Prog" border="6" color="33554432" x="1509" y="104" height="52" width="274" html.valueishtml="0"  name=ca_prog_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Kg" border="6" color="33554432" x="1806" y="104" height="52" width="274" html.valueishtml="0"  name=ca_kg_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="33554432" x="5" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_rollo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="5" color="33554432" x="297" y="4" height="64" width="297" format="[general]" html.valueishtml="0"  name=cs_orden_pr_act visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="5" color="33554432" x="626" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_reftel_act visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+column(band=detail id=29 alignment="1" tabsequence=10 border="5" color="33554432" x="1230" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_ordencr visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+column(band=detail id=30 alignment="1" tabsequence=32766 border="5" color="33554432" x="1509" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=ca_prog visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+column(band=detail id=37 alignment="1" tabsequence=20 border="5" color="33554432" x="2094" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_estado_rollo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+column(band=detail id=32 alignment="1" tabsequence=32766 border="5" color="33554432" x="1806" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=ca_kg visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+text(band=header alignment="2" text="Color" border="6" color="33554432" x="914" y="104" height="52" width="293" html.valueishtml="0"  name=co_color_act_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="1" tabsequence=32766 border="5" color="33554432" x="914" y="4" height="64" width="293" format="[general]" html.valueishtml="0"  name=co_color_act visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
