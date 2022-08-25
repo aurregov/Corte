@@ -1,0 +1,92 @@
+HA$PBExportHeader$dtb_seleccionar_unidades_espacio.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=81324524 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=76 color="536870912" )
+summary(height=76 color="536870912" )
+footer(height=24 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_trazo dbname="dt_unidadesxtrazo.cs_trazo" )
+ column=(type=long updatewhereclause=yes name=cs_seccion dbname="dt_unidadesxtrazo.cs_seccion" )
+ column=(type=long updatewhereclause=yes name=cs_pdn dbname="dt_unidadesxtrazo.cs_pdn" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="dt_unidadesxtrazo.co_talla" )
+ column=(type=long updatewhereclause=yes name=cs_talla dbname="dt_unidadesxtrazo.cs_talla" )
+ column=(type=long updatewhereclause=yes name=cs_orden_espacio dbname="dt_trazosxoc.cs_orden_espacio" )
+ column=(type=number updatewhereclause=yes name=paquetes dbname="paquetes" )
+ column=(type=number updatewhereclause=yes name=ca_programada dbname="ca_programada" )
+ column=(type=number updatewhereclause=yes name=ca_prog_liquida dbname="ca_prog_liquida" )
+ column=(type=number updatewhereclause=yes name=ca_liquidada dbname="ca_liquidada" )
+ column=(type=number updatewhereclause=yes name=pendiente dbname="pendiente" )
+ retrieve="  SELECT dt_unidadesxtrazo.cs_trazo,
+			dt_unidadesxtrazo.cs_seccion,
+			dt_unidadesxtrazo.cs_pdn,
+			dt_unidadesxtrazo.co_talla,   
+         dt_unidadesxtrazo.cs_talla,
+			dt_trazosxoc.cs_orden_espacio,   
+         Sum(dt_unidadesxtrazo.paquetes) 			/ Count(*) paquetes,   
+         Sum(dt_unidadesxtrazo.ca_programada) 	/ Count(*) ca_programada,   
+         Sum(dt_unidadesxtrazo.ca_prog_liquida) / Count(*) ca_prog_liquida,   
+         Sum(dt_unidadesxtrazo.ca_liquidada) 	/ Count(*) ca_liquidada,   
+         Sum(dt_unidadesxtrazo.ca_programada - dt_unidadesxtrazo.ca_prog_liquida) 	/ Count(*) pendiente  
+    FROM dt_unidadesxtrazo,dt_trazosxoc  
+   WHERE ( dt_unidadesxtrazo.cs_orden_corte 						= :al_ordencorte ) AND  
+         ( dt_unidadesxtrazo.cs_agrupacion 						= :al_agrupacion ) AND  
+         ( dt_unidadesxtrazo.cs_base_trazos 						= :ai_base ) AND
+			( dt_unidadesxtrazo.cs_trazo 								= :al_trazo ) AND
+			( 0 = (	SELECT Count(*)
+						FROM	dt_liq_unixespacio
+						WHERE dt_unidadesxtrazo.cs_orden_corte 	= dt_liq_unixespacio.cs_orden_corte AND
+								dt_unidadesxtrazo.cs_agrupacion 		= dt_liq_unixespacio.cs_agrupacion AND
+								dt_unidadesxtrazo.cs_base_trazos 	= dt_liq_unixespacio.cs_base_trazos AND
+								dt_unidadesxtrazo.cs_trazo 			= dt_liq_unixespacio.cs_trazo AND
+								dt_unidadesxtrazo.cs_seccion 			= dt_liq_unixespacio.cs_seccion AND
+								dt_unidadesxtrazo.cs_pdn 				= dt_liq_unixespacio.cs_pdn AND
+								dt_unidadesxtrazo.co_talla 			= dt_liq_unixespacio.co_talla AND
+								dt_liq_unixespacio.cs_liquidacion 		= :ai_liquidacion ) ) and
+			dt_unidadesxtrazo.cs_orden_corte=dt_trazosxoc.cs_orden_corte and
+			dt_unidadesxtrazo.cs_agrupacion=dt_trazosxoc.cs_agrupacion and
+			dt_unidadesxtrazo.cs_base_trazos=dt_trazosxoc.cs_base_trazos and
+			dt_unidadesxtrazo.cs_pdn=dt_trazosxoc.cs_pdn and
+			dt_unidadesxtrazo.cs_trazo=dt_trazosxoc.cs_trazo and
+			dt_unidadesxtrazo.cs_seccion=dt_trazosxoc.cs_seccion and
+			dt_unidadesxtrazo.co_modelo=dt_trazosxoc.co_modelo and
+			dt_unidadesxtrazo.co_fabrica_tela=dt_trazosxoc.co_fabrica_tela and
+			dt_unidadesxtrazo.co_reftel=dt_trazosxoc.co_reftel and
+			dt_unidadesxtrazo.co_caract=dt_trazosxoc.co_caract and
+			dt_unidadesxtrazo.diametro=dt_trazosxoc.diametro and
+			dt_unidadesxtrazo.co_color_te=dt_trazosxoc.co_color_te
+
+GROUP BY dt_unidadesxtrazo.cs_trazo,
+			dt_unidadesxtrazo.cs_seccion,
+			dt_unidadesxtrazo.cs_pdn,
+			dt_unidadesxtrazo.co_talla,   
+         dt_unidadesxtrazo.cs_talla,
+			dt_trazosxoc.cs_orden_espacio
+ORDER BY dt_unidadesxtrazo.cs_trazo,
+			dt_unidadesxtrazo.cs_seccion,
+			dt_unidadesxtrazo.cs_pdn,
+			dt_unidadesxtrazo.co_talla,   
+         dt_unidadesxtrazo.cs_talla" arguments=(("al_ordencorte", number),("al_agrupacion", number),("ai_base", number),("al_trazo", number),("ai_liquidacion", number))  sort="cs_trazo A cs_seccion A cs_pdn A co_talla A " )
+text(band=header alignment="2" text="Trazo" border="6" color="0" x="14" y="12" height="56" width="146" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Secc" border="6" color="0" x="178" y="12" height="56" width="146" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pdn" border="6" color="0" x="347" y="12" height="56" width="146" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Talla" border="6" color="0" x="512" y="12" height="56" width="146" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Paquetes" border="6" color="0" x="677" y="12" height="56" width="242" html.valueishtml="0"  name=paquetes_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Programada" border="6" color="0" x="937" y="12" height="56" width="297" html.valueishtml="0"  name=ca_programada_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Prog Liquida" border="6" color="0" x="1253" y="12" height="56" width="297" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Liquidada" border="6" color="0" x="1573" y="12" height="56" width="293" html.valueishtml="0"  name=ca_liquidada_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pendiente" border="6" color="0" x="1888" y="12" height="56" width="297" html.valueishtml="0"  name=pendiente_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="0" x="343" y="4" height="60" width="146" format="[general]" html.valueishtml="0"  name=cs_pdn visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="0" x="178" y="4" height="60" width="146" format="[general]" html.valueishtml="0"  name=cs_seccion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="18" y="4" height="60" width="146" format="[general]" html.valueishtml="0"  name=cs_trazo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="5" color="0" x="512" y="4" height="60" width="146" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="5" color="0" x="677" y="4" height="60" width="242" format="[general]" html.valueishtml="0"  name=paquetes visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="5" color="0" x="937" y="4" height="60" width="297" format="###,###,##0" html.valueishtml="0"  name=ca_programada visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="5" color="0" x="1253" y="4" height="60" width="297" format="###,###,##0" html.valueishtml="0"  name=ca_prog_liquida visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="5" color="0" x="1573" y="4" height="60" width="293" format="###,###,##0" html.valueishtml="0"  name=ca_liquidada visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="5" color="0" x="1888" y="4" height="60" width="297" format="###,###,##0" html.valueishtml="0"  name=pendiente visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(pendiente for all)"border="5" color="0" x="1888" y="4" height="60" width="297" format="###,###,##0" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_programada for all)"border="5" color="0" x="937" y="4" height="60" width="297" format="###,###,##0" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_prog_liquida for all)"border="5" color="0" x="1253" y="4" height="60" width="297" format="###,###,##0" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_liquidada for all)"border="5" color="0" x="1573" y="4" height="60" width="293" format="###,###,##0" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
