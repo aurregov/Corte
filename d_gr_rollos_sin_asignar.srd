@@ -1,0 +1,46 @@
+HA$PBExportHeader$d_gr_rollos_sin_asignar.srd
+$PBExportComments$//trae los rollos de la op estilo sin asignar a una op tejido
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=long updatewhereclause=yes key=yes name=cs_rollo dbname="cs_rollo" )
+ column=(type=long updatewhereclause=yes name=cs_orden_pr_act dbname="cs_orden_pr_act" )
+ column=(type=long update=yes updatewhereclause=yes name=co_planeador dbname="co_planeador" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_kg dbname="ca_kg" )
+ column=(type=long updatewhereclause=yes name=co_reftel_act dbname="co_reftel_act" )
+ column=(type=long updatewhereclause=yes name=co_centro dbname="co_centro" )
+ column=(type=long updatewhereclause=yes name=ca_unidades dbname="ca_unidades" )
+ retrieve="SELECT  m_rollo.cs_rollo ,
+           m_rollo.cs_orden_pr_act ,
+           m_rollo.co_planeador ,
+           m_rollo.ca_kg,
+          m_rollo.co_reftel_act,
+          m_rollo.co_centro    ,
+          m_rollo.cA_unidades 
+        FROM m_rollo      
+        WHERE ( m_rollo.cs_orden_pr_act in ( :an_opestilo ) ) And   
+              ( m_rollo.co_estado_rollo not in (6,7,71,72) ) And   
+              ( m_rollo.co_planeador <> 2 ) AND
+              ( m_rollo.co_centro <> 99 )   " update="m_rollo" updatewhere=1 updatekeyinplace=yes arguments=(("an_opestilo", numberlist)) )
+text(band=header alignment="2" text="Cs Rollo" border="0" color="33554432" x="9" y="8" height="56" width="274" html.valueishtml="0"  name=cs_rollo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Orden Pr Act" border="0" color="33554432" x="293" y="8" height="56" width="361" html.valueishtml="0"  name=cs_orden_pr_act_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Planeador" border="0" color="33554432" x="663" y="8" height="56" width="293" html.valueishtml="0"  name=co_planeador_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Ca Kg" border="0" color="33554432" x="965" y="4" height="76" width="978" html.valueishtml="0"  name=ca_kg_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Reftel Act" border="0" color="33554432" x="1952" y="4" height="76" width="283" html.valueishtml="0"  name=co_reftel_act_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Centro" border="0" color="33554432" x="2245" y="4" height="76" width="302" html.valueishtml="0"  name=co_centro_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Ca Unidades" border="0" color="33554432" x="2555" y="4" height="76" width="59" html.valueishtml="0"  name=ca_unidades_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="0" color="33554432" x="9" y="8" height="68" width="274" format="[general]" html.valueishtml="0"  name=cs_rollo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="0" color="33554432" x="293" y="8" height="68" width="361" format="[general]" html.valueishtml="0"  name=cs_orden_pr_act visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=30 border="0" color="33554432" x="663" y="8" height="68" width="293" format="[general]" html.valueishtml="0"  name=co_planeador visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="0" color="33554432" x="965" y="0" height="56" width="978" format="[general]" html.valueishtml="0"  name=ca_kg visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="0" color="33554432" x="1952" y="0" height="56" width="283" format="[general]" html.valueishtml="0"  name=co_reftel_act visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=60 border="0" color="33554432" x="2245" y="0" height="56" width="302" format="[general]" html.valueishtml="0"  name=co_centro visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=70 border="0" color="33554432" x="2555" y="0" height="56" width="59" format="[general]" html.valueishtml="0"  name=ca_unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
