@@ -1,0 +1,47 @@
+HA$PBExportHeader$ds_cantidades_nacionales.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=ca_programada dbname="ca_programada" )
+ column=(type=long updatewhereclause=yes name=ca_prog_trazos dbname="dt_orden_tllaclor.ca_prog_trazos" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="dt_orden_tllaclor.co_talla" )
+ column=(type=long updatewhereclause=yes name=co_color dbname="dt_orden_tllaclor.co_color" )
+ column=(type=long updatewhereclause=yes name=ca_liberada dbname="dt_orden_tllaclor.ca_liberada" )
+ retrieve=" SELECT {+ORDERED}dt_orden_tllaclor.ca_programada,
+			dt_orden_tllaclor.ca_prog_trazos,
+			dt_orden_tllaclor.co_talla,
+			dt_orden_tllaclor.co_color,
+			dt_orden_tllaclor.ca_liberada 
+    FROM dt_agrupa_pdn,   
+         dt_pdnxmodulo,   
+         dt_orden_tllaclor  
+   WHERE ( dt_pdnxmodulo.co_fabrica_exp 	= dt_agrupa_pdn.co_fabrica_exp ) and  
+         ( dt_agrupa_pdn.cs_liberacion 	= dt_pdnxmodulo.cs_liberacion ) and  
+         ( dt_pdnxmodulo.po 					= dt_agrupa_pdn.po ) and  
+         ( dt_agrupa_pdn.nu_cut 				= dt_pdnxmodulo.nu_cut ) and  
+         ( dt_pdnxmodulo.co_fabrica_pt 	= dt_agrupa_pdn.co_fabrica_pt ) and  
+         ( dt_agrupa_pdn.co_linea 			= dt_pdnxmodulo.co_linea ) and  
+         ( dt_pdnxmodulo.co_referencia 	= dt_agrupa_pdn.co_referencia ) and  
+         ( dt_agrupa_pdn.co_color_pt 		= dt_pdnxmodulo.co_color_pt ) and  
+         ( dt_pdnxmodulo.tono 				= dt_agrupa_pdn.tono ) and  
+         ( dt_pdnxmodulo.cs_ordenpd_pt 	= dt_orden_tllaclor.cs_ordenpd_pt ) and
+			( dt_agrupa_pdn.co_color_pt 		= dt_orden_tllaclor.co_color) and  
+			( dt_agrupa_pdn.co_color_pt 		= :an_color) and
+			( dt_agrupa_pdn.cs_pdn				= :an_pdn) and
+         ( ( dt_agrupa_pdn.cs_agrupacion 	= :an_agrupa ) AND  
+         ( dt_agrupa_pdn.po 					= :as_po ) )   ;" arguments=(("an_agrupa", number),("as_po", string),("an_color", number),("an_pdn", number)) )
+text(band=header alignment="2" text="Programada" border="0" color="33554432" x="9" y="8" height="56" width="366" html.valueishtml="0"  name=ca_programada_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text=" Prog Trazos" border="0" color="33554432" x="384" y="8" height="56" width="366" html.valueishtml="0"  name=ca_prog_trazos_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Talla" border="0" color="0" x="759" y="8" height="56" width="229" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Color" border="0" color="0" x="997" y="8" height="56" width="251" html.valueishtml="0"  name=co_color_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Liberada" border="0" color="0" x="1257" y="8" height="56" width="293" html.valueishtml="0"  name=dt_orden_tllaclor_ca_liberada_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="56" width="366" format="[general]" html.valueishtml="0"  name=ca_programada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="384" y="8" height="56" width="366" format="[general]" html.valueishtml="0"  name=ca_prog_trazos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="759" y="8" height="56" width="229" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="997" y="8" height="56" width="251" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=0 border="0" color="33554432" x="1262" y="8" height="56" width="288" html.valueishtml="0"  name=ca_liberada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
