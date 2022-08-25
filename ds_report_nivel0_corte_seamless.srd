@@ -1,0 +1,48 @@
+HA$PBExportHeader$ds_report_nivel0_corte_seamless.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_centro dbname="co_centro" )
+ column=(type=char(16) updatewhereclause=yes name=de_centro dbname="de_centro" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_kg dbname="ca_kg" )
+ column=(type=decimal(0) updatewhereclause=yes name=unidades dbname="unidades" )
+ column=(type=long updatewhereclause=yes name=orden dbname="orden" )
+ retrieve="  SELECT 94 as co_centro,
+         '94 CORTE PRINTEX' as de_centro,
+         SUM(ca_kg) as ca_kg,
+         SUM(ca_unidades) as unidades,
+         2 as orden
+    FROM m_centros,   
+         h_telas,   
+         h_ordenpd_pt,   
+         m_rollo 
+   WHERE ( m_rollo.cs_orden_pr_act = h_ordenpd_pt.cs_ordenpd_pt ) and  
+         ( m_centros.co_centro = m_rollo.co_centro ) and  
+         ( m_rollo.co_reftel_act = h_telas.co_reftel ) and  
+         ( h_telas.co_caract = m_rollo.co_caract_act ) and  
+         ( ( h_ordenpd_pt.cs_ordenpd_pt > 0 ) AND  
+         ( h_telas.co_reftel > 0 ) AND  
+         ( m_rollo.cs_rollo > 0 ) ) AND  
+         ( m_rollo.co_centro <> 99 ) AND
+		   ( m_rollo.co_centro <> 0 ) AND
+         ( m_rollo.co_estado_rollo <> 6 ) AND  
+         (m_rollo.co_centro in(94)) AND    
+         (h_telas.co_procedencia = 6)" )
+text(band=header alignment="2" text="Co Centro" border="0" color="33554432" x="9" y="8" height="52" width="338" html.valueishtml="0"  name=co_centro_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="De Centro" border="0" color="33554432" x="357" y="8" height="52" width="398" html.valueishtml="0"  name=de_centro_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Kg" border="0" color="33554432" x="763" y="8" height="52" width="274" html.valueishtml="0"  name=ca_kg_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unidades" border="0" color="33554432" x="1047" y="8" height="52" width="274" html.valueishtml="0"  name=unidades_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Orden" border="0" color="33554432" x="1330" y="8" height="52" width="274" html.valueishtml="0"  name=orden_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="338" format="[general]" html.valueishtml="0"  name=co_centro visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="0" color="33554432" x="357" y="8" height="64" width="398" format="[general]" html.valueishtml="0"  name=de_centro visible="1" edit.limit=8 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="763" y="8" height="64" width="274" format="#,##0" html.valueishtml="0"  name=ca_kg visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="0" color="33554432" x="1047" y="8" height="64" width="274" format="#,##0" html.valueishtml="0"  name=unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="33554432" x="1330" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=orden visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
