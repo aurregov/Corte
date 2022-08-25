@@ -1,0 +1,188 @@
+HA$PBExportHeader$d_gr_canastas_x_marcas_com.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes key=yes name=co_fabrica_ref dbname="co_fabrica_ref" )
+ column=(type=long updatewhereclause=yes key=yes name=co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes key=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long updatewhereclause=yes key=yes name=co_talla dbname="co_talla" )
+ column=(type=long updatewhereclause=yes key=yes name=co_calidad dbname="co_calidad" )
+ column=(type=long updatewhereclause=yes key=yes name=co_color dbname="co_color" )
+ column=(type=long updatewhereclause=yes name=co_fabrica_exp dbname="co_fabrica_exp" )
+ column=(type=long updatewhereclause=yes name=co_linea_exp dbname="co_linea_exp" )
+ column=(type=char(30) updatewhereclause=yes name=co_ref_exp dbname="co_ref_exp" )
+ column=(type=char(15) updatewhereclause=yes name=co_talla_exp dbname="co_talla_exp" )
+ column=(type=char(8) updatewhereclause=yes name=co_color_exp dbname="co_color_exp" )
+ column=(type=long updatewhereclause=yes key=yes name=cs_secuencia dbname="cs_secuencia" )
+ column=(type=char(20) updatewhereclause=yes name=po dbname="po" )
+ column=(type=char(10) updatewhereclause=yes name=nu_cut dbname="nu_cut" )
+ column=(type=long updatewhereclause=yes name=pedido dbname="pedido" )
+ column=(type=char(3) updatewhereclause=yes name=co_marca dbname="co_marca" )
+ column=(type=long updatewhereclause=yes name=co_centro_dist dbname="co_centro_dist" )
+ column=(type=char(50) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=char(20) updatewhereclause=yes name=de_referencia_crta dbname="de_referencia_crta" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_actual dbname="ca_actual" )
+ column=(type=long updatewhereclause=yes key=yes name=lote dbname="lote" )
+ column=(type=char(20) updatewhereclause=yes key=yes name=cs_canasta dbname="cs_canasta" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_segundas dbname="ca_segundas" )
+ column=(type=long updatewhereclause=yes name=co_modulo dbname="co_modulo" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_reproceso dbname="ca_reproceso" )
+ column=(type=long updatewhereclause=yes name=co_bodega dbname="co_bodega" )
+ column=(type=char(20) updatewhereclause=yes name=pallet_id dbname="pallet_id" )
+ column=(type=char(20) updatewhereclause=yes name=co_prepack dbname="co_prepack" )
+ column=(type=long updatewhereclause=yes name=nu_ruta dbname="nu_ruta" )
+ column=(type=long updatewhereclause=yes name=sw_punto_blanco dbname="sw_punto_blanco" )
+ column=(type=long updatewhereclause=yes name=sw_valida_ref_nal dbname="sw_valida_ref_nal" )
+ retrieve="SELECT dt_canasta_corte.co_fabrica_ref,   
+         dt_canasta_corte.co_linea,   
+         dt_canasta_corte.co_referencia,   
+         dt_canasta_corte.co_talla,   
+         dt_canasta_corte.co_calidad,   
+         dt_canasta_corte.co_color,   
+			dt_canasta_corte.co_fabrica_exp,   
+         dt_canasta_corte.co_linea_exp,   
+         dt_canasta_corte.co_ref_exp,   
+         dt_canasta_corte.co_talla_exp,   
+         dt_canasta_corte.co_color_exp, 
+			dt_canasta_corte.cs_secuencia,  
+         dt_canasta_corte.po,   
+         dt_canasta_corte.nu_cut,   
+         dt_canasta_corte.pedido,   
+         h_preref_pv.co_marca,   
+         m_marcas_prnda.co_centro_dist,   
+         h_preref_pv.de_referencia,   
+			h_preref_pv.de_referencia_crta,   
+         SUM(ca_actual) ca_actual,   
+			dt_canasta_corte.lote,
+         dt_canasta_corte.cs_canasta,
+			dt_canasta_corte.ca_segundas,
+			dt_canasta_corte.co_modulo,
+			dt_canasta_corte.ca_reproceso,
+			dt_canasta_corte.co_bodega,
+			h_canasta_corte.pallet_id,
+			dt_canasta_corte.co_prepack,
+			NVL( (Select MAX(dt_ref_x_col_pv.nu_ruta)
+				 From dt_ref_x_col_pv
+				 Where dt_canasta_corte.co_fabrica_ref = dt_ref_x_col_pv.co_fabrica
+				 and   dt_canasta_corte.co_linea = dt_ref_x_col_pv.co_linea
+				 and   h_preref_pv.co_referencia = dt_ref_x_col_pv.co_referencia
+				 and   h_preref_pv.co_cliente = dt_ref_x_col_pv.co_cliente
+				 and   h_preref_pv.co_sucursal = dt_ref_x_col_pv.co_sucursal
+				 and   h_preref_pv.co_tipo_ref = dt_ref_x_col_pv.co_tipo_ref
+				 and   dt_ref_x_col_pv.co_calidad >= 1
+				 )
+				 , 0 ) as nu_ruta,
+			admventa.m_marcas_prnda.sw_punto_blanco,
+			admventa.m_marcas_prnda.sw_valida_ref_nal 
+    FROM dt_canasta_corte,   
+         h_preref_pv,   
+         m_marcas_prnda,
+			h_canasta_corte
+   WHERE ( dt_canasta_corte.co_fabrica_ref = h_preref_pv.co_fabrica ) and  
+         ( dt_canasta_corte.co_linea = h_preref_pv.co_linea ) and  
+         ( cast(dt_canasta_corte.co_referencia as char(15)) = h_preref_pv.co_referencia ) and  
+				h_preref_pv.co_tipo_ref = 'P' and 
+         ( h_preref_pv.co_marca = m_marcas_prnda.co_marca ) and  
+         ( ( dt_canasta_corte.cs_canasta in ( :as_canastas ) ) AND  
+         ( dt_canasta_corte.cs_secuencia = 1 ) AND
+         ( dt_canasta_corte.ca_actual > 0 ) ) AND
+			( dt_canasta_corte.cs_canasta = h_canasta_corte.cs_canasta)  
+GROUP BY dt_canasta_corte.co_fabrica_ref,   
+         dt_canasta_corte.co_linea,   
+         dt_canasta_corte.co_referencia,   
+         dt_canasta_corte.co_talla,   
+         dt_canasta_corte.co_calidad,   
+         dt_canasta_corte.co_color,   
+			dt_canasta_corte.co_fabrica_exp,   
+         dt_canasta_corte.co_linea_exp,   
+         dt_canasta_corte.co_ref_exp,   
+         dt_canasta_corte.co_talla_exp,   
+         dt_canasta_corte.co_color_exp, 
+			dt_canasta_corte.cs_secuencia,  
+         dt_canasta_corte.cs_canasta,   
+         dt_canasta_corte.po,   
+         dt_canasta_corte.nu_cut,   
+         dt_canasta_corte.pedido,   
+         h_preref_pv.de_referencia,   
+			h_preref_pv.de_referencia_crta,   
+         h_preref_pv.co_marca,   
+         m_marcas_prnda.co_centro_dist,
+			dt_canasta_corte.lote,
+			dt_canasta_corte.ca_segundas,
+			dt_canasta_corte.co_modulo,
+			dt_canasta_corte.ca_reproceso,
+			dt_canasta_corte.co_bodega,
+			h_canasta_corte.pallet_id,
+			dt_canasta_corte.co_prepack, 29,
+			admventa.m_marcas_prnda.sw_punto_blanco,
+			admventa.m_marcas_prnda.sw_valida_ref_nal " update="dt_canasta_corte" updatewhere=0 updatekeyinplace=yes arguments=(("as_canastas", stringlist)) )
+text(band=header alignment="2" text="Co Fabrica Ref" border="0" color="33554432" x="9" y="8" height="104" width="370" html.valueishtml="0"  name=co_fabrica_ref_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Linea" border="0" color="33554432" x="389" y="8" height="104" width="370" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Referencia" border="0" color="33554432" x="768" y="8" height="104" width="370" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Talla" border="0" color="33554432" x="1147" y="8" height="104" width="370" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Calidad" border="0" color="33554432" x="1527" y="8" height="104" width="370" html.valueishtml="0"  name=co_calidad_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Color" border="0" color="33554432" x="1906" y="8" height="104" width="370" html.valueishtml="0"  name=co_color_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Po" border="0" color="33554432" x="2286" y="8" height="104" width="480" html.valueishtml="0"  name=po_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Nu Cut" border="0" color="33554432" x="2775" y="8" height="104" width="370" html.valueishtml="0"  name=nu_cut_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pedido" border="0" color="33554432" x="3154" y="8" height="104" width="370" html.valueishtml="0"  name=pedido_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Marca" border="0" color="33554432" x="3534" y="8" height="104" width="274" html.valueishtml="0"  name=h_preref_co_marca_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Centro Dist" border="0" color="33554432" x="3817" y="8" height="104" width="357" html.valueishtml="0"  name=m_marcas_prnda_co_centro_dist_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Nu Ruta" border="0" color="33554432" x="5385" y="8" height="104" width="247" html.valueishtml="0"  name=nu_ruta_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Ca Actual" border="0" color="33554432" x="6103" y="8" height="104" width="457" html.valueishtml="0"  name=ca_actual_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Dt Canasta Corte Lote" border="0" color="33554432" x="6569" y="8" height="104" width="201" html.valueishtml="0"  name=lote_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Dt Canasta Corte Ca Segundas" border="0" color="33554432" x="6779" y="8" height="104" width="978" html.valueishtml="0"  name=ca_segundas_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Dt Canasta Corte Co Modulo" border="0" color="33554432" x="7767" y="8" height="104" width="270" html.valueishtml="0"  name=co_modulo_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Ca Reproceso" border="0" color="33554432" x="8046" y="8" height="52" width="558" html.valueishtml="0"  name=ca_reproceso_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Bodega" border="0" color="33554432" x="8613" y="8" height="104" width="233" html.valueishtml="0"  name=co_bodega_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="H Canasta Corte Pallet Id" border="0" color="33554432" x="8855" y="8" height="104" width="453" html.valueishtml="0"  name=h_canasta_corte_pallet_id_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Dt Canasta Corte Co Prepack" border="0" color="33554432" x="9317" y="8" height="104" width="453" html.valueishtml="0"  name=co_prepack_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Dt Canasta Corte Co Fabrica Exp" border="0" color="33554432" x="9778" y="8" height="104" width="128" html.valueishtml="0"  name=co_fabrica_exp_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Dt Canasta Corte Co Linea Exp" border="0" color="33554432" x="9915" y="8" height="104" width="105" html.valueishtml="0"  name=co_linea_exp_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Dt Canasta Corte Co Ref Exp" border="0" color="33554432" x="10030" y="8" height="104" width="681" html.valueishtml="0"  name=co_ref_exp_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Dt Canasta Corte Co Talla Exp" border="0" color="33554432" x="10720" y="8" height="104" width="334" html.valueishtml="0"  name=co_talla_exp_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Dt Canasta Corte Co Color Exp" border="0" color="33554432" x="11063" y="8" height="104" width="82" html.valueishtml="0"  name=co_color_exp_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="De Referencia" border="0" color="33554432" x="4183" y="8" height="104" width="800" html.valueishtml="0"  name=h_preref_de_referencia_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Cs Canasta" border="0" color="33554432" x="4992" y="8" height="104" width="384" html.valueishtml="0"  name=cs_canasta_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="De Referencia Crta" border="0" color="33554432" x="5641" y="8" height="104" width="453" html.valueishtml="0"  name=h_preref_de_referencia_crta_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Dt Canasta Corte Cs Secuencia" border="0" color="33554432" x="11154" y="4" height="76" width="96" html.valueishtml="0"  name=dt_canasta_corte_cs_secuencia_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Sw Punto Blanco" border="0" color="33554432" x="11259" y="4" height="76" width="133" html.valueishtml="0"  name=sw_punto_blanco_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="370" format="[general]" html.valueishtml="0"  name=co_fabrica_ref visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="389" y="8" height="64" width="370" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="768" y="8" height="64" width="370" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="1147" y="8" height="64" width="370" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1527" y="8" height="64" width="370" format="[general]" html.valueishtml="0"  name=co_calidad visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1906" y="8" height="64" width="370" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="2286" y="8" height="64" width="480" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="33554432" x="2775" y="8" height="64" width="370" format="[general]" html.valueishtml="0"  name=nu_cut visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="1" tabsequence=32766 border="0" color="33554432" x="3154" y="8" height="64" width="370" format="[general]" html.valueishtml="0"  name=pedido visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="1" tabsequence=32766 border="0" color="33554432" x="3534" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_marca visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="1" tabsequence=32766 border="0" color="33554432" x="3817" y="8" height="64" width="357" format="[general]" html.valueishtml="0"  name=co_centro_dist visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="33554432" x="4183" y="8" height="64" width="800" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="0" tabsequence=32766 border="0" color="33554432" x="4992" y="8" height="52" width="384" format="[general]" html.valueishtml="0"  name=cs_canasta visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=29 alignment="0" tabsequence=32766 border="0" color="33554432" x="5385" y="8" height="52" width="247" format="[general]" html.valueishtml="0"  name=nu_ruta visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="33554432" x="5641" y="8" height="52" width="453" format="[general]" html.valueishtml="0"  name=de_referencia_crta visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="33554432" x="6103" y="8" height="52" width="457" format="[general]" html.valueishtml="0"  name=ca_actual visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="0" color="33554432" x="6569" y="8" height="52" width="201" format="[general]" html.valueishtml="0"  name=lote visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="0" tabsequence=32766 border="0" color="33554432" x="6779" y="8" height="52" width="978" format="[general]" html.valueishtml="0"  name=ca_segundas visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=24 alignment="0" tabsequence=32766 border="0" color="33554432" x="7767" y="8" height="52" width="270" format="[general]" html.valueishtml="0"  name=co_modulo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=25 alignment="0" tabsequence=32766 border="0" color="33554432" x="8046" y="8" height="52" width="558" format="[general]" html.valueishtml="0"  name=ca_reproceso visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=26 alignment="0" tabsequence=32766 border="0" color="33554432" x="8613" y="8" height="52" width="233" format="[general]" html.valueishtml="0"  name=co_bodega visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=27 alignment="0" tabsequence=32766 border="0" color="33554432" x="8855" y="8" height="52" width="453" format="[general]" html.valueishtml="0"  name=pallet_id visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=28 alignment="0" tabsequence=32766 border="0" color="33554432" x="9317" y="8" height="52" width="453" format="[general]" html.valueishtml="0"  name=co_prepack visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="9778" y="8" height="52" width="128" format="[general]" html.valueishtml="0"  name=co_fabrica_exp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="9915" y="8" height="52" width="105" format="[general]" html.valueishtml="0"  name=co_linea_exp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="10030" y="8" height="52" width="681" format="[general]" html.valueishtml="0"  name=co_ref_exp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="10720" y="8" height="52" width="334" format="[general]" html.valueishtml="0"  name=co_talla_exp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="11063" y="8" height="52" width="82" format="[general]" html.valueishtml="0"  name=co_color_exp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="11154" y="0" height="52" width="96" format="[general]" html.valueishtml="0"  name=cs_secuencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=30 alignment="0" tabsequence=32766 border="0" color="33554432" x="11259" y="0" height="52" width="133" format="[general]" html.valueishtml="0"  name=sw_punto_blanco visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=31 alignment="0" tabsequence=0 border="0" color="33554432" x="11406" y="0" height="52" width="14" html.valueishtml="0"  name=sw_valida_ref_nal visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Sw Valida Ref Nal" border="0" color="33554432" x="11401" y="4" height="76" width="18" html.valueishtml="0"  name=sw_valida_ref_nal_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
