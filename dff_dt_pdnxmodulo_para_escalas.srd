@@ -1,0 +1,124 @@
+HA$PBExportHeader$dff_dt_pdnxmodulo_para_escalas.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=516 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes name=simulacion dbname="dt_pdnxmodulo.simulacion" )
+ column=(type=long update=yes updatewhereclause=yes name=co_fabrica dbname="dt_pdnxmodulo.co_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes name=co_planta dbname="dt_pdnxmodulo.co_planta" )
+ column=(type=long update=yes updatewhereclause=yes name=co_modulo dbname="dt_pdnxmodulo.co_modulo" )
+ column=(type=long update=yes updatewhereclause=yes name=co_fabrica_exp dbname="dt_pdnxmodulo.co_fabrica_exp" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_liberacion dbname="dt_pdnxmodulo.cs_liberacion" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=po dbname="dt_pdnxmodulo.po" )
+ column=(type=char(10) updatewhereclause=yes name=nu_cut dbname="dt_pdnxmodulo.nu_cut" )
+ column=(type=long update=yes updatewhereclause=yes name=co_fabrica_pt dbname="dt_pdnxmodulo.co_fabrica_pt" )
+ column=(type=long update=yes updatewhereclause=yes name=co_linea dbname="dt_pdnxmodulo.co_linea" )
+ column=(type=long update=yes updatewhereclause=yes name=co_referencia dbname="dt_pdnxmodulo.co_referencia" )
+ column=(type=long update=yes updatewhereclause=yes name=co_color_pt dbname="dt_pdnxmodulo.co_color_pt" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=tono dbname="dt_pdnxmodulo.tono" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_particion dbname="dt_pdnxmodulo.cs_particion" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_prioridad dbname="dt_pdnxmodulo.cs_prioridad" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_pendiente dbname="dt_pdnxmodulo.ca_pendiente" )
+ column=(type=long update=yes updatewhereclause=yes name=co_estado_asigna dbname="dt_pdnxmodulo.co_estado_asigna" )
+ column=(type=char(30) updatewhereclause=yes name=de_planta dbname="m_plantas.de_planta" )
+ column=(type=char(30) updatewhereclause=yes name=de_modulo dbname="m_modulos.de_modulo" )
+ column=(type=char(30) updatewhereclause=yes name=de_linea dbname="m_lineas.de_linea" )
+ column=(type=char(40) updatewhereclause=yes name=de_referencia dbname="h_preref_pv.de_referencia" )
+ column=(type=char(30) updatewhereclause=yes name=de_color dbname="m_colores.de_color" )
+ retrieve="  SELECT dt_pdnxmodulo.simulacion,   
+         dt_pdnxmodulo.co_fabrica,   
+         dt_pdnxmodulo.co_planta,   
+         dt_pdnxmodulo.co_modulo,   
+         dt_pdnxmodulo.co_fabrica_exp,   
+         dt_pdnxmodulo.cs_liberacion,   
+         dt_pdnxmodulo.po,
+			dt_pdnxmodulo.nu_cut,
+         dt_pdnxmodulo.co_fabrica_pt,   
+         dt_pdnxmodulo.co_linea,   
+         dt_pdnxmodulo.co_referencia,   
+         dt_pdnxmodulo.co_color_pt,   
+         dt_pdnxmodulo.tono,   
+         dt_pdnxmodulo.cs_particion,   
+         dt_pdnxmodulo.cs_prioridad,   
+         dt_pdnxmodulo.ca_pendiente,   
+         dt_pdnxmodulo.co_estado_asigna,   
+         m_plantas.de_planta,   
+         m_modulos.de_modulo,   
+         m_lineas.de_linea,   
+         h_preref_pv.de_referencia,   
+         m_colores.de_color
+    FROM dt_pdnxmodulo,   
+         m_plantas,   
+         m_modulos,   
+         m_lineas,   
+         h_preref_pv,   
+         m_colores
+   WHERE ( dt_pdnxmodulo.co_fabrica 			= m_plantas.co_fabrica ) and  
+         ( dt_pdnxmodulo.co_planta 				= m_plantas.co_planta ) and  
+         ( dt_pdnxmodulo.co_fabrica 			= m_modulos.co_fabrica ) and  
+         ( dt_pdnxmodulo.co_planta 				= m_modulos.co_planta ) and  
+         ( dt_pdnxmodulo.co_modulo 				= m_modulos.co_modulo ) and  
+         ( dt_pdnxmodulo.co_fabrica_pt 		= m_lineas.co_fabrica ) and  
+         ( dt_pdnxmodulo.co_linea 				= m_lineas.co_linea ) and  
+         ( dt_pdnxmodulo.co_fabrica_pt 		= h_preref_pv.co_fabrica ) and  
+         ( dt_pdnxmodulo.co_linea 				= h_preref_pv.co_linea ) and  
+         ( cast(dt_pdnxmodulo.co_referencia as char(15))	= h_preref_pv.co_referencia ) and 
+         ( h_preref_pv.co_tipo_ref = 'P')  and
+         ( dt_pdnxmodulo.co_fabrica_pt 		= m_colores.co_fabrica ) and  
+         ( dt_pdnxmodulo.co_linea 				= m_colores.co_linea ) and  
+         ( dt_pdnxmodulo.co_color_pt 			= m_colores.co_color ) and  
+         ( ( dt_pdnxmodulo.simulacion 			= :an_simulacion ) AND  
+         ( dt_pdnxmodulo.co_fabrica 			= :an_co_fabrica_modulo ) AND  
+         ( dt_pdnxmodulo.co_planta 				= :an_co_planta ) AND  
+         ( dt_pdnxmodulo.co_modulo 				= :an_co_modulo ) AND  
+         ( dt_pdnxmodulo.co_fabrica_exp 		= :an_co_fabrica_exp ) AND  
+         ( dt_pdnxmodulo.cs_liberacion 		= :an_cs_liberacion ) AND  
+         ( dt_pdnxmodulo.po 						= :as_po ) AND  
+			( dt_pdnxmodulo.nu_cut					= :as_cut ) AND
+         ( dt_pdnxmodulo.co_fabrica_pt 		= :an_co_fabrica_pt ) AND  
+         ( dt_pdnxmodulo.co_linea 				= :an_co_linea ) AND  
+         ( dt_pdnxmodulo.co_referencia 		= :an_co_referencia ) AND  
+         ( dt_pdnxmodulo.co_color_pt 			= :an_co_color_pt ) AND  
+         ( dt_pdnxmodulo.tono 					= :as_tono ) AND  
+         ( dt_pdnxmodulo.cs_particion 			= :an_cs_particion ) )" arguments=(("an_simulacion", number),("an_co_fabrica_modulo", number),("an_co_planta", number),("an_co_modulo", number),("an_co_fabrica_exp", number),("an_cs_liberacion", number),("as_po", string),("as_cut", string),("an_co_fabrica_pt", number),("an_co_linea", number),("an_co_referencia", number),("an_co_color_pt", number),("as_tono", string),("an_cs_particion", number)) )
+column(band=detail id=1 alignment="2" tabsequence=10 border="5" color="0" x="288" y="20" height="52" width="379" format="[general]" html.valueishtml="0"  name=simulacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=20 border="5" color="0" x="288" y="104" height="52" width="379" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" dddw.name=dddw_m_fabricas dddw.displaycolumn=de_fabrica dddw.datacolumn=co_fabrica dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="5" color="0" x="1001" y="104" height="52" width="407" format="[general]" html.valueishtml="0"  name=de_planta visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Simulacion:" border="0" color="0" x="14" y="20" height="52" width="251" html.valueishtml="0"  name=simulacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Fabrica:" border="0" color="0" x="14" y="104" height="52" width="183" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="2" tabsequence=32766 border="5" color="0" x="1760" y="104" height="52" width="494" format="[general]" html.valueishtml="0"  name=de_modulo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="2" tabsequence=32766 border="5" color="0" x="1760" y="188" height="52" width="494" format="[general]" html.valueishtml="0"  name=de_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=40 border="5" color="0" x="1646" y="104" height="52" width="82" format="[general]" html.valueishtml="0"  name=co_modulo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="2" tabsequence=70 border="5" color="0" x="1646" y="272" height="52" width="608" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=50 border="5" color="0" x="288" y="188" height="52" width="379" format="[general]" html.valueishtml="0"  name=co_fabrica_exp visible="1" dddw.name=dddw_m_fabricas dddw.displaycolumn=de_fabrica dddw.datacolumn=co_fabrica dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="2" tabsequence=100 border="5" color="0" x="288" y="272" height="52" width="379" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=30 border="5" color="0" x="905" y="104" height="52" width="73" format="[general]" html.valueishtml="0"  name=co_planta visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="2" tabsequence=80 border="5" color="0" x="1001" y="188" height="52" width="407" format="[general]" html.valueishtml="0"  name=co_fabrica_pt visible="1" dddw.name=dddw_m_fabricas dddw.displaycolumn=de_fabrica dddw.datacolumn=co_fabrica dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="2" tabsequence=90 border="5" color="0" x="1646" y="188" height="52" width="87" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="2" tabsequence=32766 border="5" color="0" x="1129" y="356" height="52" width="361" format="[general]" html.valueishtml="0"  name=de_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=60 border="5" color="0" x="1646" y="356" height="52" width="192" format="[general]" html.valueishtml="0"  name=cs_liberacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Tono:" border="0" color="0" x="1879" y="356" height="52" width="133" html.valueishtml="0"  name=tono_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="2" tabsequence=120 border="5" color="0" x="2030" y="356" height="52" width="224" format="[general]" html.valueishtml="0"  name=tono visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Cia Pedido:" border="0" color="0" x="14" y="188" height="52" width="256" html.valueishtml="0"  name=co_fabrica_exp_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Estilo:" border="0" color="0" x="14" y="272" height="52" width="187" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Cut" border="0" color="0" x="14" y="356" height="52" width="119" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="5" color="0" x="288" y="356" height="52" width="379" format="[general]" html.valueishtml="0"  name=nu_cut visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Parte:" border="0" color="0" x="9" y="440" height="52" width="137" html.valueishtml="0"  name=cs_particion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="2" tabsequence=130 border="5" color="0" x="288" y="440" height="52" width="379" format="[general]" html.valueishtml="0"  name=cs_particion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Planta:" border="0" color="0" x="695" y="104" height="52" width="155" html.valueishtml="0"  name=co_planta_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Cia Estilo" border="0" color="0" x="695" y="188" height="52" width="215" html.valueishtml="0"  name=co_fabrica_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Color:" border="0" color="0" x="695" y="356" height="52" width="133" html.valueishtml="0"  name=co_color_pt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Cant:" border="0" color="0" x="695" y="440" height="52" width="133" html.valueishtml="0"  name=ca_pendiente_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=150 border="0" color="0" x="695" y="268" height="60" width="695" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="2" tabsequence=110 border="5" color="0" x="850" y="356" height="52" width="256" format="[general]" html.valueishtml="0"  name=co_color_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="2" tabsequence=140 border="5" color="0" x="850" y="440" height="52" width="553" format="[general]" html.valueishtml="0"  name=ca_pendiente visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Lib:" border="0" color="0" x="1513" y="356" height="52" width="78" html.valueishtml="0"  name=cs_liberacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="P.O.:" border="0" color="0" x="1513" y="272" height="52" width="119" html.valueishtml="0"  name=po_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="M$$HEX1$$f300$$ENDHEX$$dulo:" border="0" color="0" x="1449" y="104" height="52" width="178" html.valueishtml="0"  name=co_modulo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Linea:" border="0" color="0" x="1449" y="188" height="52" width="128" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
