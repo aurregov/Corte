@@ -1,0 +1,69 @@
+HA$PBExportHeader$d_lista_para_crear_t_cruadro_trazo.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=136 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_trazo dbname="dt_liquida_trazo.cs_trazo" )
+ column=(type=char(20) updatewhereclause=yes name=po dbname="dt_agrupa_pdn.po" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="dt_escalas_liq.co_talla" )
+ column=(type=long updatewhereclause=yes name=capas dbname="dt_escalas_liq.capas" )
+ column=(type=long updatewhereclause=yes name=paquetes dbname="dt_escalas_liq.paquetes" )
+ retrieve="SELECT dt_liquida_trazo.cs_trazo,   
+         dt_agrupa_pdn.po,   
+         dt_escalas_liq.co_talla,   
+         dt_escalas_liq.capas,   
+         dt_escalas_liq.paquetes  
+    FROM dt_liquida_trazo,   
+         dt_rayas_telaxoc,   
+         dt_agrupa_pdn,   
+         dt_escalas_liq  
+   WHERE ( dt_liquida_trazo.co_caract  = dt_rayas_telaxoc.co_caract) and  
+         ( dt_liquida_trazo.cs_orden_corte = dt_rayas_telaxoc.cs_orden_corte ) and  
+         ( dt_liquida_trazo.cs_agrupacion = dt_rayas_telaxoc.cs_agrupacion ) and  
+         ( dt_liquida_trazo.cs_base_trazos = dt_rayas_telaxoc.cs_base_trazos ) and  
+         ( dt_liquida_trazo.cs_pdn = dt_rayas_telaxoc.cs_pdn ) and  
+         ( dt_liquida_trazo.co_modelo = dt_rayas_telaxoc.co_modelo ) and  
+         ( dt_liquida_trazo.co_fabrica_tela = dt_rayas_telaxoc.co_fabrica_tela ) and  
+         ( dt_liquida_trazo.co_reftel = dt_rayas_telaxoc.co_reftel ) and  
+         ( dt_liquida_trazo.diametro = dt_rayas_telaxoc.diametro ) and  
+         ( dt_liquida_trazo.co_color_te = dt_rayas_telaxoc.co_color_te ) and  
+         ( dt_liquida_trazo.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_liquida_trazo.cs_pdn = dt_agrupa_pdn.cs_pdn ) and  
+         ( dt_escalas_liq.cs_orden_corte = dt_liquida_trazo.cs_orden_corte ) and  
+         ( dt_escalas_liq.cs_agrupacion = dt_liquida_trazo.cs_agrupacion ) and  
+         ( dt_escalas_liq.cs_base_trazos = dt_liquida_trazo.cs_base_trazos ) and  
+         ( dt_escalas_liq.cs_trazo = dt_liquida_trazo.cs_trazo ) and  
+         ( dt_escalas_liq.cs_seccion = dt_liquida_trazo.cs_seccion ) and  
+         ( dt_escalas_liq.cs_pdn = dt_liquida_trazo.cs_pdn ) and  
+         ( dt_escalas_liq.co_modelo = dt_liquida_trazo.co_modelo ) and  
+         ( dt_escalas_liq.co_fabrica_tela = dt_liquida_trazo.co_fabrica_tela ) and  
+         ( dt_escalas_liq.co_reftel = dt_liquida_trazo.co_reftel ) and  
+         ( dt_escalas_liq.co_caract = dt_liquida_trazo.co_caract ) and  
+         ( dt_escalas_liq.diametro = dt_liquida_trazo.diametro ) and  
+         ( dt_escalas_liq.co_color_te = dt_liquida_trazo.co_color_te ) and  
+         ( dt_escalas_liq.cs_liquidacion = dt_liquida_trazo.cs_liquidacion ) and  
+         ( ( dt_liquida_trazo.cs_orden_corte = :an_orden ) AND  
+         ( dt_rayas_telaxoc.raya = 10 ) )   
+ORDER BY dt_liquida_trazo.cs_trazo ASC,   
+         dt_agrupa_pdn.po ASC,   
+         dt_escalas_liq.co_talla ASC   
+" arguments=(("an_orden", number)) )
+text(band=header alignment="2" text="Dt Liquida Trazo
+Cs Trazo" border="0" color="0" x="5" y="4" height="128" width="430"  name=dt_liquida_trazo_cs_trazo_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Agrupa Pdn
+Po" border="0" color="0" x="439" y="4" height="128" width="576"  name=dt_agrupa_pdn_po_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Escalas Liq
+Co Talla" border="0" color="0" x="1019" y="4" height="128" width="389"  name=dt_escalas_liq_co_talla_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Escalas Liq
+Capas" border="0" color="0" x="1417" y="4" height="128" width="389"  name=dt_escalas_liq_capas_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Escalas Liq
+Paquetes" border="0" color="0" x="1810" y="4" height="128" width="389"  name=dt_escalas_liq_paquetes_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="5" y="4" height="76" width="329" format="[general]"  name=cs_trazo edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="439" y="4" height="76" width="576" format="[general]"  name=po edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="0" x="1019" y="4" height="76" width="329" format="[general]"  name=co_talla edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="0" x="1417" y="4" height="76" width="329" format="[general]"  name=capas edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="0" x="1810" y="4" height="76" width="645" format="[general]"  name=paquetes edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
