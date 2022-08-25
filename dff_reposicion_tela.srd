@@ -1,0 +1,44 @@
+HA$PBExportHeader$dff_reposicion_tela.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=76 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=cs_reposicion dbname="h_reposicion_tela.cs_reposicion" )
+ column=(type=long update=yes updatewhereclause=yes name=co_estadoreposicio dbname="h_reposicion_tela.co_estadoreposicio" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_orden_corte dbname="h_reposicion_tela.cs_orden_corte" )
+ column=(type=long update=yes updatewhereclause=yes name=raya dbname="h_reposicion_tela.raya" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=co_usuario dbname="h_reposicion_tela.co_usuario" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="h_reposicion_tela.fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="h_reposicion_tela.fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="h_reposicion_tela.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="h_reposicion_tela.instancia" )
+ retrieve="SELECT  h_reposicion_tela.cs_reposicion ,
+           h_reposicion_tela.co_estadoreposicio ,
+           h_reposicion_tela.cs_orden_corte ,
+           h_reposicion_tela.raya ,
+           h_reposicion_tela.co_usuario ,
+           h_reposicion_tela.fe_creacion ,
+           h_reposicion_tela.fe_actualizacion ,
+           h_reposicion_tela.usuario ,
+           h_reposicion_tela.instancia     
+        FROM        h_reposicion_tela      
+        WHERE ( h_reposicion_tela.cs_orden_corte = :al_ordencorte )   " update="h_reposicion_tela" updatewhere=1 updatekeyinplace=no arguments=(("al_ordencorte", number))  sort="cs_orden_corte A cs_reposicion A co_estadoreposicio A " )
+text(band=header alignment="2" text="Reposici$$HEX1$$f300$$ENDHEX$$n" border="6" color="33554432" x="18" y="12" height="56" width="265" html.valueishtml="0"  name=cs_reposicion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Estado" border="6" color="33554432" x="302" y="12" height="56" width="517" html.valueishtml="0"  name=co_estadoreposicio_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Orden Corte" border="6" color="33554432" x="837" y="12" height="56" width="297" html.valueishtml="0"  name=cs_orden_corte_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Raya" border="6" color="33554432" x="1152" y="12" height="56" width="123" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Atiende" border="6" color="33554432" x="1294" y="12" height="56" width="183" html.valueishtml="0"  name=co_usuario_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fecha Creaci$$HEX1$$f300$$ENDHEX$$n" border="6" color="33554432" x="1495" y="12" height="56" width="347" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="33554432" x="18" y="8" height="56" width="265" format="[general]" html.valueishtml="0"  name=cs_reposicion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="33554432" x="302" y="8" height="56" width="517" format="[general]" html.valueishtml="0"  name=co_estadoreposicio visible="1" dddw.name=dddw_estados_reposicion dddw.displaycolumn=de_estadoreposicio dddw.datacolumn=co_estadoreposicio dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="33554432" x="837" y="8" height="56" width="297" format="[general]" html.valueishtml="0"  name=cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="5" color="33554432" x="1152" y="8" height="56" width="123" format="[general]" html.valueishtml="0"  name=raya visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="33554432" x="1294" y="8" height="56" width="183" format="[general]" html.valueishtml="0"  name=co_usuario visible="1" edit.limit=8 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="5" color="33554432" x="1495" y="8" height="56" width="347" format="[shortdate] [time]" html.valueishtml="0"  name=fe_creacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
