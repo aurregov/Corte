@@ -1,0 +1,42 @@
+HA$PBExportHeader$d_lista_trazos_produccion.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=select dbname="dt_agrupa_pdn.select" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=cs_pdn dbname="dt_agrupa_pdn.cs_pdn" )
+ column=(type=long updatewhereclause=yes name=cs_base_trazos dbname="dt_rayas_telaxbase.cs_base_trazos" )
+ retrieve="SELECT DISTINCT  0 select,
+		dt_agrupa_pdn.cs_pdn ,
+		dt_rayas_telaxbase.cs_base_trazos     
+FROM	dt_agrupa_pdn ,
+		dt_agrupaescalapdn ,
+		dt_color_modelo ,
+		dt_agrupa_pdn_raya ,
+		dt_rayas_telaxbase     
+WHERE ( dt_agrupaescalapdn.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion ) and          
+		( dt_agrupaescalapdn.cs_pdn = dt_agrupa_pdn.cs_pdn ) and          
+		( dt_agrupa_pdn.co_fabrica_pt = dt_color_modelo.co_fabrica ) and          
+		( dt_agrupa_pdn.co_linea = dt_color_modelo.co_linea ) and          
+		( dt_agrupa_pdn.co_referencia = dt_color_modelo.co_referencia ) and          
+		( dt_agrupa_pdn.co_color_pt = dt_color_modelo.co_color_pt ) and          
+		( dt_agrupaescalapdn.co_talla = dt_color_modelo.co_talla ) and          
+		( dt_agrupa_pdn.cs_agrupacion = dt_agrupa_pdn_raya.cs_agrupacion ) and          
+		( dt_agrupa_pdn.cs_pdn = dt_agrupa_pdn_raya.cs_pdn ) and          
+		( dt_agrupa_pdn_raya.co_modelo = dt_color_modelo.co_modelo ) and          
+		( dt_agrupa_pdn.cs_agrupacion = dt_rayas_telaxbase.cs_agrupacion ) and          
+		( dt_color_modelo.co_modelo = dt_rayas_telaxbase.co_modelo ) and          
+		( dt_color_modelo.co_reftel = dt_rayas_telaxbase.co_reftel ) and          
+		( dt_color_modelo.co_caract = dt_rayas_telaxbase.co_caract ) and          
+		( dt_color_modelo.diametro = dt_rayas_telaxbase.diametro ) and          
+		( dt_color_modelo.co_color_te = dt_rayas_telaxbase.co_color_te ) and          
+		( ( dt_agrupa_pdn.cs_agrupacion = :an_agrupa ) ) 
+ORDER BY dt_agrupa_pdn.cs_pdn          ASC  " arguments=(("an_agrupa", number)) )
+text(band=header alignment="0" text="Dt Rayas Telaxbase Cs Base Trazos" border="0" color="0" x="9" y="4" height="56" width="123" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Cs Pdn" border="0" color="0" x="142" y="4" height="56" width="123" html.valueishtml="0"  name=t_8 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="4" height="60" width="123" format="[general]" html.valueishtml="0"  name=cs_base_trazos visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="142" y="4" height="60" width="123" format="[general]" html.valueishtml="0"  name=cs_pdn visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
