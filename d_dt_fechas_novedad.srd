@@ -1,0 +1,77 @@
+HA$PBExportHeader$d_dt_fechas_novedad.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=date update=yes updatewhereclause=yes key=yes name=fe_calendario dbname="fe_calendario" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_maquina dbname="dt_fechas_novedad.co_maquina" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=tipo_novedad dbname="dt_fechas_novedad.tipo_novedad" )
+ column=(type=long update=yes updatewhereclause=yes name=turnos dbname="dt_fechas_novedad.turnos" )
+ column=(type=long update=yes updatewhereclause=yes name=min_turnos dbname="dt_fechas_novedad.min_turnos" )
+ column=(type=char(40) update=yes updatewhereclause=yes name=descripcion dbname="dt_fechas_novedad.descripcion" )
+ column=(type=date update=yes updatewhereclause=yes name=fe_compensatoria dbname="dt_fechas_novedad.fe_compensatoria" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_fabrica dbname="dt_fechas_novedad.co_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_planta dbname="dt_fechas_novedad.co_planta" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_tipo_negocio dbname="dt_fechas_novedad.co_tipo_negocio" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_centro_pdn dbname="dt_fechas_novedad.co_centro_pdn" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_subcentro_pdn dbname="dt_fechas_novedad.co_subcentro_pdn" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_simulacion dbname="dt_fechas_novedad.co_simulacion" )
+ column=(type=long update=yes updatewhereclause=yes name=no_personas dbname="dt_fechas_novedad.no_personas" )
+ retrieve="SELECT  {+AVOID_FULL(dt_fechas_novedad)}
+				dt_fechas_novedad.fe_calendario ,
+           dt_fechas_novedad.co_maquina, 
+           dt_fechas_novedad.tipo_novedad ,
+           dt_fechas_novedad.turnos ,
+           dt_fechas_novedad.min_turnos ,
+           dt_fechas_novedad.descripcion ,
+           dt_fechas_novedad.fe_compensatoria ,
+           dt_fechas_novedad.co_fabrica ,
+           dt_fechas_novedad.co_planta ,
+           dt_fechas_novedad.co_tipo_negocio,
+           dt_fechas_novedad.co_centro_pdn ,
+           dt_fechas_novedad.co_subcentro_pdn ,
+           dt_fechas_novedad.co_simulacion ,
+           dt_fechas_novedad.no_personas     
+        FROM dt_fechas_novedad      
+        WHERE ( dt_fechas_novedad.co_maquina = :co_maquina ) and
+          ( dt_fechas_novedad.co_fabrica = :co_fabrica ) And
+          ( dt_fechas_novedad.co_planta = :co_planta ) and          
+          ( dt_fechas_novedad.co_tipo_negocio = :co_tipo_negocio ) And
+          ( dt_fechas_novedad.co_centro_pdn = :co_centro_pdn ) And
+          ( dt_fechas_novedad.co_subcentro_pdn = :co_subcentro_pdn ) and
+          ( dt_fechas_novedad.co_simulacion = :co_simulacion )   " update="dt_fechas_novedad" updatewhere=1 updatekeyinplace=yes arguments=(("co_fabrica", number),("co_planta", number),("co_tipo_negocio", number),("co_centro_pdn", number),("co_subcentro_pdn", number),("co_maquina", number),("co_simulacion", number)) )
+text(band=header alignment="2" text="Fe Calendario" border="0" color="33554432" x="334" y="8" height="52" width="297" html.valueishtml="0"  name=fe_calendario_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tipo Novedad" border="0" color="33554432" x="640" y="8" height="52" width="283" html.valueishtml="0"  name=tipo_novedad_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Turnos" border="0" color="33554432" x="933" y="8" height="52" width="183" html.valueishtml="0"  name=turnos_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Min Turnos" border="0" color="33554432" x="1125" y="8" height="52" width="197" html.valueishtml="0"  name=min_turnos_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Descripcion" border="0" color="33554432" x="1330" y="8" height="52" width="910" html.valueishtml="0"  name=descripcion_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Fe Compensatoria" border="0" color="33554432" x="2249" y="8" height="52" width="430" html.valueishtml="0"  name=fe_compensatoria_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Fabrica" border="0" color="33554432" x="2688" y="8" height="52" width="206" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Planta" border="0" color="33554432" x="2903" y="8" height="52" width="206" html.valueishtml="0"  name=co_planta_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Centro Pdn" border="0" color="33554432" x="3369" y="8" height="52" width="206" html.valueishtml="0"  name=co_centro_pdn_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Subcentro Pdn" border="0" color="33554432" x="3584" y="8" height="52" width="206" html.valueishtml="0"  name=co_subcentro_pdn_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Simulacion" border="0" color="33554432" x="3799" y="8" height="52" width="206" html.valueishtml="0"  name=co_simulacion_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="No Personas" border="0" color="33554432" x="4014" y="8" height="52" width="663" html.valueishtml="0"  name=no_personas_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Maquina" border="0" color="33554432" x="9" y="8" height="52" width="315" html.valueishtml="0"  name=co_maquina_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Tipo Negocio" border="0" color="33554432" x="3118" y="4" height="76" width="242" html.valueishtml="0"  name=co_tipo_negocio_t visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="0" color="33554432" x="9" y="0" height="52" width="315" format="[general]" html.valueishtml="0"  name=co_maquina visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=20 border="0" color="33554432" x="334" y="0" height="52" width="297" format="[general]" html.valueishtml="0"  name=fe_calendario visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="33554432" x="640" y="0" height="52" width="283" format="[general]" html.valueishtml="0"  name=tipo_novedad visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="0" color="33554432" x="933" y="0" height="52" width="183" format="[general]" html.valueishtml="0"  name=turnos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="0" color="33554432" x="1125" y="0" height="52" width="197" format="[general]" html.valueishtml="0"  name=min_turnos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=60 border="0" color="33554432" x="1330" y="0" height="52" width="910" format="[general]" html.valueishtml="0"  name=descripcion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=70 border="0" color="33554432" x="2249" y="0" height="52" width="430" format="[general]" html.valueishtml="0"  name=fe_compensatoria visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=80 border="0" color="33554432" x="2688" y="0" height="52" width="206" format="[General]" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=90 border="0" color="33554432" x="2903" y="0" height="52" width="206" format="[General]" html.valueishtml="0"  name=co_planta visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=110 border="0" color="33554432" x="3369" y="0" height="52" width="206" format="[General]" html.valueishtml="0"  name=co_centro_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=120 border="0" color="33554432" x="3584" y="0" height="52" width="206" format="[General]" html.valueishtml="0"  name=co_subcentro_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=130 border="0" color="33554432" x="3799" y="0" height="52" width="206" format="[General]" html.valueishtml="0"  name=co_simulacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=140 border="0" color="33554432" x="4014" y="0" height="52" width="663" format="[General]" html.valueishtml="0"  name=no_personas visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=100 border="0" color="33554432" x="3118" y="0" height="52" width="242" format="[General]" html.valueishtml="0"  name=co_tipo_negocio visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
