@@ -1,0 +1,48 @@
+HA$PBExportHeader$dtb_diagrama_repite_tela.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=yes print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no print.columns=2 print.columns.width=1893 )
+header(height=176 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=28 color="536870912"  height.autosize=yes)
+table(column=(type=long updatewhereclause=yes name=co_pinta dbname="co_pinta" )
+ column=(type=long updatewhereclause=yes name=cs_raya dbname="cs_raya" )
+ column=(type=decimal(1) updatewhereclause=yes name=longitud dbname="longitud" )
+ column=(type=long updatewhereclause=yes name=co_color dbname="co_color" )
+ column=(type=char(30) updatewhereclause=yes name=de_color dbname="de_color" )
+ column=(type=long updatewhereclause=yes name=rgb dbname="rgb" )
+ retrieve=" SELECT  telas_pintas.co_pinta, 
+			telas_pinta_color.cs_raya ,
+			telas_material_ra.longitud ,
+			telas_pinta_color.co_color ,
+			m_color.de_color ,
+			m_color.rgb
+	 FROM telas_pinta_color ,
+			telas_pintas ,
+			telas_material_ra ,
+			m_color     
+	WHERE ( telas_pintas.co_reftel 			= telas_pinta_color.co_reftel ) and 
+			( telas_pintas.cs_pinta 			= telas_pinta_color.cs_pinta ) and  
+			( telas_material_ra.co_reftel 	= telas_pinta_color.co_reftel ) and
+			( telas_pinta_color.cs_raya 		= telas_material_ra.cs_raya ) and 
+			( telas_pinta_color.co_color 		= m_color.co_color ) and 
+			(  telas_pinta_color.co_reftel 	= :an_reftel ) ;  " arguments=(("an_reftel", number),("a_escala", number))  sort="co_pinta A cs_raya A " )
+group(level=1 header.height=108 trailer.height=0 by=("co_pinta" ) newpage=yes header.color="536870912" trailer.color="536870912" )
+button(band=header text="Filtrar" enabled=yes action="9" border="0" color="33554432" x="14" y="8" height="72" width="238" vtextalign="0" htextalign="0"  name=b_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Imprimir" enabled=yes action="15" border="0" color="33554432" x="283" y="8" height="72" width="320" vtextalign="0" htextalign="0"  name=b_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Raya" border="2" color="33554432" x="302" y="112" height="56" width="119" html.valueishtml="0"  name=cs_raya_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Pinta" border="2" color="33554432" x="5" y="40" height="56" width="142" html.valueishtml="0"  name=co_pinta_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=1 alignment="1" tabsequence=32766 border="2" color="33554432" x="155" y="40" height="56" width="274" format="[general]" html.valueishtml="0"  name=co_pinta visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="2" color="33554432~t rgb " x="50" y="4" height="76~t longitud *100*a_escala/100" width="238" format="[general]" html.valueishtml="0"  name=rgb visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-1" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~t rgb " )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="2" color="33554432" x="302" y="4" height="76~t longitud *100*a_escala/100" width="119" format="[general]" html.valueishtml="0"  name=cs_raya visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8~tif(longitud < 3,longitud *100*a_escala/100,50)" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Color" border="2" color="33554432" x="1074" y="112" height="56" width="475" html.valueishtml="0"  name=de_color_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="2" color="33554432" x="1074" y="4" height="76~t longitud *100*a_escala/100" width="475" format="[general]" html.valueishtml="0"  name=de_color visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8~tif(longitud < 3,longitud *100*a_escala/100,50)" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Longitud Acab." border="2" color="33554432" x="722" y="112" height="56" width="347" html.valueishtml="0"  name=longitud_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="2" color="33554432" x="722" y="4" height="76~t longitud *100*a_escala/100" width="347" format="[general]" html.valueishtml="0"  name=longitud visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8~tif(longitud < 3,longitud *100*a_escala/100,50)" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Color" border="2" color="33554432" x="434" y="112" height="56" width="283" html.valueishtml="0"  name=co_color_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="2" color="33554432" x="434" y="4" height="76~t longitud *100*a_escala/100" width="283" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8~tif(longitud < 3,longitud *100*a_escala/100,50)" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
