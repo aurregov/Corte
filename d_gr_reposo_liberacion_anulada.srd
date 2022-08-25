@@ -1,0 +1,45 @@
+HA$PBExportHeader$d_gr_reposo_liberacion_anulada.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=al_liberacion_anulada dbname="al_liberacion_anulada" )
+ retrieve="Select max (a.cs_liberacion) as AL_LIBERACION_ANULADA
+from dt_pdnxmodulo a, dt_simulacion b, dt_rollos_libera c1, dt_rollos_libera c2
+where a.cs_liberacion = b.pedido
+and b.co_tipo_negocio = (select cast(numerico as integer)
+      							from m_constantes
+      							where var_nombre = 'REPOSO_TIPONEGOCIO')
+and b.co_estado = 'I'
+and a.co_estado_asigna = 28
+and c1.cs_liberacion = :an_liberacion_new
+and a.cs_liberacion < :an_liberacion_new
+and c1.co_fabrica_exp = c2.co_fabrica_exp
+and c1.nu_orden = c2.nu_orden
+and c1.nu_cut = c2.nu_cut
+and c1.co_fabrica_pt = c2.co_fabrica_pt
+and c1.co_linea = c2.co_linea
+and c1.co_color_pt = c2.co_color_pt
+and c1.co_tono = c2.co_tono
+and c1.co_modelo = c2.co_modelo
+and c1.co_reftel = c2.co_reftel
+and c1.co_caract = c2.co_caract
+and c1.co_color_tela = c2.co_color_tela
+and c1.cs_rollo = c2.cs_rollo
+and c2.cs_liberacion = a.cs_liberacion
+and a.cs_ordenpd_pt = :an_cs_ordenpd_pt
+and a.co_color_pt = :an_co_color_pt
+and b.fecha_inicio_bck is not null
+and b.fecha_fin_bck is not null
+and b.fecha_fin_bck < current
+and tiempo_estandar > 0
+" arguments=(("an_cs_ordenpd_pt", number),("an_co_color_pt", number),("an_liberacion_new", number)) )
+text(band=header alignment="2" text="Al Liberacion Anulada" border="0" color="33554432" x="9" y="8" height="52" width="471" html.valueishtml="0"  name=al_liberacion_anulada_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="471" format="[general]" html.valueishtml="0"  name=al_liberacion_anulada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
