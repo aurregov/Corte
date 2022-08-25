@@ -1,0 +1,100 @@
+HA$PBExportHeader$ds_report_nivel0_terceros_piezas.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_centro_pdn dbname="co_centro_pdn" )
+ column=(type=long updatewhereclause=yes name=co_subcentro_pdn dbname="co_subcentro_pdn" )
+ column=(type=long updatewhereclause=yes name=co_tipoprod dbname="co_tipoprod" )
+ column=(type=char(8) updatewhereclause=yes name=de_subcentro_pdn dbname="de_subcentro_pdn" )
+ column=(type=decimal(2) updatewhereclause=yes name=unidades dbname="unidades" )
+ column=(type=long updatewhereclause=yes name=orden dbname="orden" )
+ retrieve="Select 1 as co_centro_pdn,
+       999 as co_subcentro_pdn,
+		 m_subcentros_pdn.co_tipoprod,
+       'TERCEROS' as de_subcentro_pdn, 
+       SUM(dt_canasta_corte.ca_actual) as unidades ,
+       4 as orden
+  from h_canasta_corte, 
+       dt_canasta_corte,
+		 pedpend_exp, peddig,
+       h_preref_pv,
+		 m_tallas_x_grupo_pv,
+       m_lineas,
+       m_fabricas,
+		 m_plantas,
+       m_centros_pdn,
+       m_subcentros_pdn,
+		 m_fabricas m_fabricas_d,
+		 m_plantas m_plantas_d,
+       m_centros_pdn m_centros_pdn_d,
+       m_subcentros_pdn m_subcentros_pdn_d,
+		 m_tipo_atributo,
+		 m_recursos_pdn
+ Where ( dt_canasta_corte.cs_canasta = h_canasta_corte.cs_canasta  ) 
+   and peddig.orden_compra = dt_canasta_corte.po
+   and peddig.pedido = dt_canasta_corte.pedido
+   and peddig.pedido = pedpend_exp.pedido
+   and pedpend_exp.co_fabrica = dt_canasta_corte.co_fabrica_ref       
+   and pedpend_exp.co_linea = dt_canasta_corte.co_linea           
+   and pedpend_exp.co_referencia = dt_canasta_corte.co_referencia 
+   and pedpend_exp.co_talla = dt_canasta_corte.co_talla       
+   and pedpend_exp.co_calidad = dt_canasta_corte.co_calidad           
+   and pedpend_exp.co_color = dt_canasta_corte.co_color 
+   and pedpend_exp.nu_orden = dt_canasta_corte.po                 
+   and pedpend_exp.nu_cut = dt_canasta_corte.nu_cut
+   and ( h_preref_pv.co_tipo_ref = ~"P~" ) 
+   and ( dt_canasta_corte.co_fabrica_ref = h_preref_pv.co_fabrica ) 
+   and ( dt_canasta_corte.co_linea = h_preref_pv.co_linea ) 
+   and ( cast(dt_canasta_corte.co_referencia as char(15) ) = h_preref_pv.co_referencia )
+   and ( dt_canasta_corte.co_fabrica_ref = m_lineas.co_fabrica)
+   and ( dt_canasta_corte.co_linea = m_lineas.co_linea)
+   and ( h_preref_pv.co_grupo_tlla = m_tallas_x_grupo_pv.co_grupo_tlla )
+   and ( cast(dt_canasta_corte.co_talla as char(10)) = m_tallas_x_grupo_pv.co_talla )	
+   and ( h_canasta_corte.co_fabrica_act = admtelas.m_fabricas.co_fabrica )  
+   and ( h_canasta_corte.co_fabrica_act = m_plantas.co_fabrica )  
+   and ( h_canasta_corte.co_planta_act = m_plantas.co_planta )  
+   and ( h_canasta_corte.co_centro_act = m_centros_pdn.co_centro_pdn )
+   and ( h_canasta_corte.co_tipoprod = m_centros_pdn.co_tipoprod )  
+   and ( h_canasta_corte.co_subcentro_act = m_subcentros_pdn.co_subcentro_pdn )   
+   and ( h_canasta_corte.co_centro_act = m_subcentros_pdn.co_centro_pdn )
+   and ( h_canasta_corte.co_tipoprod = m_subcentros_pdn.co_tipoprod ) 
+   and ( h_canasta_corte.co_fabrica = m_fabricas_d.co_fabrica )  
+   and ( h_canasta_corte.co_fabrica = m_plantas_d.co_fabrica )  
+   and ( h_canasta_corte.co_planta = m_plantas_d.co_planta )  
+   and ( h_canasta_corte.co_centro_pdn = m_centros_pdn_d.co_centro_pdn )
+   and ( h_canasta_corte.co_tipoprod = m_centros_pdn_d.co_tipoprod )   
+   and ( h_canasta_corte.co_subcentro_pdn = m_subcentros_pdn_d.co_subcentro_pdn )   
+   and ( h_canasta_corte.co_centro_pdn = m_subcentros_pdn_d.co_centro_pdn )
+   and ( h_canasta_corte.co_tipoprod = m_subcentros_pdn_d.co_tipoprod )  
+   and ( h_canasta_corte.co_tipo_atributo = m_tipo_atributo.co_tipo )
+   and ( h_preref_pv.co_familia = m_recursos_pdn.co_recurso)
+   and ( h_canasta_corte.co_fabrica_act = 2 ) 
+   and ( h_canasta_corte.co_planta_act in(2 ) ) 
+   and ( h_canasta_corte.co_centro_act in(1,2))  
+   and ( h_canasta_corte.co_subcentro_act = 29)
+   and ( h_canasta_corte.co_tipoprod = 1 ) 
+   and ( dt_canasta_corte.cs_secuencia = 1 )
+   and ( dt_canasta_corte.ca_actual > 0 )
+   and ( h_canasta_corte.co_estado <> 51 or h_canasta_corte.co_estado = 51 )  
+group by 1,2,3;" )
+text(band=header alignment="2" text="Co Centro Pdn" border="0" color="33554432" x="9" y="8" height="52" width="315" html.valueishtml="0"  name=co_centro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Subcentro Pdn" border="0" color="33554432" x="334" y="8" height="52" width="398" html.valueishtml="0"  name=co_subcentro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="M Subcentros Pdn
+Co Tipoprod" border="0" color="33554432" x="741" y="8" height="104" width="402" html.valueishtml="0"  name=m_subcentros_pdn_co_tipoprod_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="De Subcentro Pdn" border="0" color="33554432" x="1152" y="8" height="52" width="402" html.valueishtml="0"  name=de_subcentro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unidades" border="0" color="33554432" x="1563" y="8" height="52" width="274" html.valueishtml="0"  name=unidades_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Orden" border="0" color="33554432" x="1847" y="8" height="52" width="274" html.valueishtml="0"  name=orden_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="315" format="[general]" html.valueishtml="0"  name=co_centro_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="334" y="8" height="64" width="398" format="[general]" html.valueishtml="0"  name=co_subcentro_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="741" y="8" height="64" width="402" format="[general]" html.valueishtml="0"  name=co_tipoprod visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1152" y="8" height="64" width="402" format="[general]" html.valueishtml="0"  name=de_subcentro_pdn visible="1" edit.limit=8 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1563" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1847" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=orden visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
