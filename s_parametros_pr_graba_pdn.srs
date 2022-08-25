@@ -1,0 +1,54 @@
+HA$PBExportHeader$s_parametros_pr_graba_pdn.srs
+global type s_parametros_pr_graba_pdn from structure
+	string		tipo_lectura
+	string		tipo_atributo
+	string		tipo_produccion
+	long		turno
+	long		lote
+	long		modulo
+	string		po
+	string		nu_cut
+	long		tipoprod
+	long		fabrica_origen
+	long		planta_origen
+	long		centro_origen
+	long		subcentro_origen
+	long		bodega_origen
+	long		fabrica_destino
+	long		planta_destino
+	long		centro_destino
+	long		subcentro_destino
+	long		bodega_destino
+	string		canasta
+	string		canasta_destino
+	long		cpto_salida
+	long		cpto_entrada
+	long		fabrica
+	long		linea
+	long		referencia
+	long		talla
+	long		calidad
+	long		color
+	long		ano
+	long		mes
+	long		cantidad
+	long		cantidad_seg
+	long		signo
+	long		afecta_incen
+	string		tipo_act
+	long		modulo_fis
+	long		propietario
+	long		fabrica_pro_des
+	long		pedido
+	string		programa
+	long		pedido_destino
+	string		po_destino
+	string		nu_cut_destino
+	integer		co_fabrica_exp
+	integer		co_linea_exp
+	string		co_ref_exp
+	string		co_talla_exp
+	integer		co_calidad_exp
+	string		co_color_exp
+end type
+
