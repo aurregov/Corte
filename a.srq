@@ -1,0 +1,2 @@
+HA$PBExportHeader$a.srq
+PBSELECT( VERSION(400) DISTINCT ()TABLE(NAME="dt_canasta_corte" ) COLUMN(NAME="dt_canasta_corte.cs_orden_corte")WHERE(    EXP1 ="dt_canasta_corte.cs_canasta"   OP =">"    EXP2 ="'0'"    LOGIC ="and" ) WHERE(    EXP1 ="dt_canasta_corte.cs_secuencia"   OP ="="    EXP2 ="1" ) )
