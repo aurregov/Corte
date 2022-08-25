@@ -1,0 +1,12 @@
+HA$PBExportHeader$dddw_cptos_etapas.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=co_cpto_etapa dbname="m_cptos_etapas.co_cpto_etapa" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=de_cpto_etapa dbname="m_cptos_etapas.de_cpto_etapa" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"m_cptos_etapas~" ) COLUMN(NAME=~"m_cptos_etapas.co_cpto_etapa~") COLUMN(NAME=~"m_cptos_etapas.de_cpto_etapa~")) " update="m_cptos_etapas" updatewhere=1 updatekeyinplace=no )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="33554432" x="9" y="4" height="64" width="709" format="[general]" html.valueishtml="0"  name=de_cpto_etapa visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
