@@ -1,0 +1,78 @@
+HA$PBExportHeader$ds_report_nivel2_kpo.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=132 color="536870912" )
+summary(height=108 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_centro_pdn dbname="co_centro_pdn" )
+ column=(type=long updatewhereclause=yes name=co_fabrica_act dbname="h_canasta_corte.co_fabrica_act" )
+ column=(type=long updatewhereclause=yes name=co_subcentro_pdn dbname="h_canasta_corte.co_subcentro_pdn" )
+ column=(type=char(30) updatewhereclause=yes name=de_subcentro_pdn dbname="m_subcentros_pdn_conf.de_subcentro_pdn" )
+ column=(type=long updatewhereclause=yes name=co_tipoprod dbname="m_subcentros_pdn_conf.co_tipoprod" )
+ column=(type=long updatewhereclause=yes name=co_planta_act dbname="h_canasta_corte.co_planta_act" )
+ column=(type=decimal(2) updatewhereclause=yes name=unidades dbname="unidades" )
+ column=(type=long updatewhereclause=yes name=orden dbname="orden" )
+ column=(type=long updatewhereclause=yes name=co_procedencia dbname="co_procedencia" )
+ retrieve="SELECT 2 as co_centro_pdn,
+       h.co_fabrica_act,
+       h.co_subcentro_act as co_subcentro_pdn,
+       m.de_subcentro_pdn as de_subcentro_pdn,
+		 m.co_tipoprod,
+       h.co_planta_act,
+		 SUM(d.ca_actual) as unidades ,
+		 4 as orden,
+		 (select co_procedencia
+	       from h_preref_pv
+	      where d.co_fabrica_ref = h_preref_pv.co_fabrica
+	        and d.co_linea = h_preref_pv.co_linea
+	        and d.co_referencia = h_preref_pv.co_referencia
+	        and co_tipo_ref = 'P') co_procedencia
+  FROM h_canasta_corte h, dt_canasta_corte d, m_subcentros_pdn_conf m
+ WHERE h.cs_canasta = d.cs_canasta
+   AND m.co_tipoprod = h.co_tipoprod
+   AND m.co_tipoprod = 1
+   AND m.co_centro_pdn = h.co_centro_act
+   AND m.co_subcentro_pdn = h.co_subcentro_act
+   AND h.co_fabrica_pro = 2
+   AND h.co_fabrica_act in (2,91)
+   AND h.co_centro_act = 2
+   AND d.co_fabrica_exp = 2
+   AND h.co_fabrica_act = :ai_fabrica_act
+   AND h.co_planta_act = :ai_planta
+   AND d.ca_actual > 0
+   AND h.co_estado <> 51
+   AND  not (h.co_fabrica_act = 2 and h.co_planta_act = 1 and h.co_subcentro_act = 50)
+GROUP BY 1,2,3,4,5,6,9;
+
+ 
+   
+  
+  
+ 
+" arguments=(("ai_planta", number),("as_planta", string),("ai_fabrica_act", number))  sort="co_fabrica_act A co_planta_act A unidades D " )
+group(level=1 header.height=176 trailer.height=100 by=("co_fabrica_act" , "co_planta_act" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="UNIDADES EN KPO" border="6" color="33554432" x="832" y="28" height="72" width="777" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="1893" y="16" height="60" width="581" format="dd/mmm/yy hh:mm" html.valueishtml="0"  name=date_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Unidades" border="6" color="33554432" x="1513" y="88" height="56" width="416" html.valueishtml="0"  name=unidades_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Subcentro" border="6" color="33554432" x="306" y="88" height="56" width="1147" html.valueishtml="0"  name=co_subcentro_pdn_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="FARRICA:" border="6" color="33554432" x="0" y="4" height="52" width="297" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header.1 alignment="2" text="PLANTA:" border="6" color="33554432" x="1385" y="4" height="52" width="256" html.valueishtml="0"  name=co_planta_act_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+column(band=header.1 id=6 alignment="2" tabsequence=32766 border="6" color="33554432" x="1664" y="4" height="52" width="155" format="[general]" html.valueishtml="0"  name=co_planta_act visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=header.1 alignment="0" expression=" as_planta "border="6" color="33554432" x="1833" y="4" height="52" width="937" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+column(band=header.1 id=2 alignment="2" tabsequence=32766 border="6" color="33554432" x="320" y="4" height="52" width="174" format="[general]" html.valueishtml="0"  name=co_fabrica_act visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+column(band=header.1 id=2 alignment="0" tabsequence=32766 border="6" color="33554432" x="512" y="4" height="52" width="805" format="[general]" html.valueishtml="0"  name=co_fabrica_act_1 visible="1" dddw.name=dddw_fabricas dddw.displaycolumn=razon_social dddw.datacolumn=co_fabrica dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="2528" y="16" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_tipoprod visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="2304" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=orden visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="2898" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_centro_pdn visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="2" color="33554432" x="530" y="4" height="64" width="896" format="[general]" html.valueishtml="0"  name=de_subcentro_pdn visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="2" color="33554432" x="1513" y="0" height="64" width="416" format="#,##0" html.valueishtml="0"  name=unidades visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="2" color="33554432" x="306" y="4" height="64" width="183" format="[general]" html.valueishtml="0"  name=co_subcentro_pdn visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="3173" y="0" height="52" width="27" format="[general]" html.valueishtml="0"  name=co_procedencia visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=trailer.1 alignment="1" expression="sum(unidades for group 1)"border="2" color="33554432" x="1513" y="4" height="64" width="416" format="#,##0" html.valueishtml="0"  name=compute_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+compute(band=summary alignment="1" expression="sum(  unidades  for all )"border="2" color="33554432" x="1513" y="28" height="52" width="416" format="#,##0" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
