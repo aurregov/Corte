@@ -1,0 +1,100 @@
+HA$PBExportHeader$ds_cargar_telasxoc1.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=128 color="536870912" )
+summary(height=20 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=dt_telaxmodelo_lib_co_reftel dbname="dt_telaxmodelo_lib.co_reftel" )
+ column=(type=long updatewhereclause=yes name=dt_telaxmodelo_lib_co_caract dbname="dt_telaxmodelo_lib.co_caract" )
+ column=(type=long updatewhereclause=yes name=dt_telaxmodelo_lib_diametro dbname="dt_telaxmodelo_lib.diametro" )
+ column=(type=long updatewhereclause=yes name=dt_telaxmodelo_lib_co_color_tela dbname="dt_telaxmodelo_lib.co_color_tela" )
+ column=(type=long updatewhereclause=yes name=dt_agrupa_pdn_cs_agrupacion dbname="dt_agrupa_pdn.cs_agrupacion" )
+ column=(type=decimal(5) updatewhereclause=yes name=dt_telaxmodelo_lib_yield dbname="dt_telaxmodelo_lib.yield" )
+ column=(type=char(2) updatewhereclause=yes name=dt_pdnxmodulo_tono dbname="dt_pdnxmodulo.tono" )
+ column=(type=long updatewhereclause=yes name=dt_pdnxmodulo_cs_asignacion dbname="dt_pdnxmodulo.cs_asignacion" )
+ column=(type=long updatewhereclause=yes name=dt_talla_pdnmodulo_ca_pendiente dbname="dt_talla_pdnmodulo.ca_pendiente" )
+ column=(type=long updatewhereclause=yes name=dt_talla_pdnmodulo_co_talla dbname="dt_talla_pdnmodulo.co_talla" )
+ column=(type=long updatewhereclause=yes name=dt_telaxmodelo_lib_raya dbname="dt_telaxmodelo_lib.raya" )
+ retrieve="SELECT	dt_telaxmodelo_lib.co_reftel ,
+			dt_telaxmodelo_lib.co_caract ,
+			dt_telaxmodelo_lib.diametro ,
+			dt_telaxmodelo_lib.co_color_tela ,
+			dt_agrupa_pdn.cs_agrupacion ,
+			dt_telaxmodelo_lib.yield ,
+			dt_pdnxmodulo.tono ,
+			dt_pdnxmodulo.cs_asignacion ,
+			dt_talla_pdnmodulo.ca_pendiente ,
+			dt_talla_pdnmodulo.co_talla ,
+			dt_telaxmodelo_lib.raya     
+FROM	dt_telaxmodelo_lib ,
+		dt_pdnxmodulo ,
+		dt_agrupa_pdn ,
+		dt_talla_pdnmodulo     
+WHERE ( dt_telaxmodelo_lib.co_fabrica_exp = dt_pdnxmodulo.co_fabrica_exp ) and          
+		( dt_telaxmodelo_lib.cs_liberacion = dt_pdnxmodulo.cs_liberacion ) and          
+		( dt_telaxmodelo_lib.nu_orden = dt_pdnxmodulo.po ) and          
+		( dt_telaxmodelo_lib.nu_cut = dt_pdnxmodulo.nu_cut ) and
+		( dt_telaxmodelo_lib.co_fabrica_pt = dt_pdnxmodulo.co_fabrica_pt ) and          
+		( dt_telaxmodelo_lib.co_linea = dt_pdnxmodulo.co_linea ) and          
+		( dt_telaxmodelo_lib.co_referencia = dt_pdnxmodulo.co_referencia ) and          
+		( dt_telaxmodelo_lib.co_color_pt = dt_pdnxmodulo.co_color_pt ) and          
+		( dt_telaxmodelo_lib.co_tono = dt_pdnxmodulo.tono ) and          
+		( dt_agrupa_pdn.co_fabrica_exp = dt_pdnxmodulo.co_fabrica_exp ) and          
+		( dt_agrupa_pdn.cs_liberacion = dt_pdnxmodulo.cs_liberacion ) and          
+		( dt_agrupa_pdn.po = dt_pdnxmodulo.po ) and          
+		( dt_agrupa_pdn.nu_cut = dt_pdnxmodulo.nu_cut ) and
+		( dt_agrupa_pdn.co_fabrica_pt = dt_pdnxmodulo.co_fabrica_pt ) and          
+		( dt_agrupa_pdn.co_linea = dt_pdnxmodulo.co_linea ) and          
+		( dt_agrupa_pdn.co_referencia = dt_pdnxmodulo.co_referencia ) and          
+		( dt_agrupa_pdn.co_color_pt = dt_pdnxmodulo.co_color_pt ) and          
+		( dt_agrupa_pdn.tono = dt_pdnxmodulo.tono ) and          
+		( dt_agrupa_pdn.cs_particion = dt_pdnxmodulo.cs_particion ) and          
+		( dt_talla_pdnmodulo.simulacion = dt_pdnxmodulo.simulacion ) and          
+		( dt_talla_pdnmodulo.co_fabrica = dt_pdnxmodulo.co_fabrica ) and          
+		( dt_talla_pdnmodulo.co_planta = dt_pdnxmodulo.co_planta ) and          
+		( dt_talla_pdnmodulo.co_modulo = dt_pdnxmodulo.co_modulo ) and          
+		( dt_talla_pdnmodulo.co_fabrica_exp = dt_pdnxmodulo.co_fabrica_exp ) and          
+		( dt_talla_pdnmodulo.cs_liberacion = dt_pdnxmodulo.cs_liberacion ) and          
+		( dt_talla_pdnmodulo.po = dt_pdnxmodulo.po ) and          
+		( dt_talla_pdnmodulo.nu_cut = dt_pdnxmodulo.nu_cut ) and
+		( dt_talla_pdnmodulo.co_fabrica_pt = dt_pdnxmodulo.co_fabrica_pt ) and          
+		( dt_talla_pdnmodulo.co_linea = dt_pdnxmodulo.co_linea ) and          
+		( dt_talla_pdnmodulo.co_referencia = dt_pdnxmodulo.co_referencia ) and          
+		( dt_talla_pdnmodulo.co_color_pt = dt_pdnxmodulo.co_color_pt ) and          
+		( dt_talla_pdnmodulo.tono = dt_pdnxmodulo.tono ) and          
+		( dt_talla_pdnmodulo.cs_particion = dt_pdnxmodulo.cs_particion ) and          
+		( dt_pdnxmodulo.cs_asignacion = :an_ordencorte )" arguments=(("an_ordencorte", number))  sort="dt_telaxmodelo_lib_co_reftel A dt_pdnxmodulo_tono A dt_talla_pdnmodulo_co_talla A " )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Co Reftel" border="0" color="33554432" x="5" y="4" height="120" width="658" html.valueishtml="0"  name=dt_telaxmodelo_lib_co_reftel_t visible="1"  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Co Caract" border="0" color="33554432" x="667" y="4" height="120" width="658" html.valueishtml="0"  name=dt_telaxmodelo_lib_co_caract_t visible="1"  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Diametro" border="0" color="33554432" x="1330" y="4" height="120" width="658" html.valueishtml="0"  name=dt_telaxmodelo_lib_diametro_t visible="1"  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Co Color Tela" border="0" color="33554432" x="1993" y="4" height="120" width="658" html.valueishtml="0"  name=dt_telaxmodelo_lib_co_color_tela_t visible="1"  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Co Fabrica Tela" border="0" color="33554432" x="2656" y="4" height="120" width="658" html.valueishtml="0"  name=dt_telaxmodelo_lib_co_fabrica_tela_t visible="1"  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Agrupa Pdn
+Cs Agrupacion" border="0" color="33554432" x="3319" y="4" height="120" width="475" html.valueishtml="0"  name=dt_agrupa_pdn_cs_agrupacion_t visible="1"  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Tono" border="0" color="33554432" x="4942" y="4" height="120" width="475" html.valueishtml="0"  name=dt_pdnxmodulo_tono_t visible="1"  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Cs Asignacion" border="0" color="33554432" x="5422" y="4" height="120" width="475" html.valueishtml="0"  name=dt_pdnxmodulo_cs_asignacion_t visible="1"  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Pdnxmodulo
+Ca Pendiente" border="0" color="33554432" x="3799" y="4" height="120" width="475" html.valueishtml="0"  name=dt_pdnxmodulo_ca_pendiente_t visible="1"  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Telaxmodelo Lib
+Yield" border="0" color="33554432" x="4279" y="4" height="120" width="658" html.valueishtml="0"  name=dt_telaxmodelo_lib_yield_t visible="1"  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="72" width="439" format="[general]" html.valueishtml="0"  name=dt_telaxmodelo_lib_co_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="667" y="4" height="72" width="439" format="[general]" html.valueishtml="0"  name=dt_telaxmodelo_lib_co_caract visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="1330" y="4" height="72" width="439" format="[general]" html.valueishtml="0"  name=dt_telaxmodelo_lib_diametro visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="1993" y="4" height="72" width="439" format="[general]" html.valueishtml="0"  name=dt_telaxmodelo_lib_co_color_tela visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="3319" y="4" height="72" width="439" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_cs_agrupacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="4942" y="4" height="72" width="110" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_tono visible="1" edit.limit=2 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="5422" y="4" height="72" width="439" format="[general]" html.valueishtml="0"  name=dt_pdnxmodulo_cs_asignacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="3799" y="8" height="60" width="475" format="[general]" html.valueishtml="0"  name=dt_talla_pdnmodulo_ca_pendiente visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="4279" y="4" height="72" width="658" format="[general]" html.valueishtml="0"  name=dt_telaxmodelo_lib_yield visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="5879" y="12" height="60" width="251" format="[general]" html.valueishtml="0"  name=dt_talla_pdnmodulo_co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="6130" y="0" height="60" width="23" format="[general]" html.valueishtml="0"  name=dt_telaxmodelo_lib_raya visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
