@@ -1,0 +1,56 @@
+HA$PBExportHeader$dtb_dt_modelos1.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=co_fabrica dbname="dt_modelos.co_fabrica" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_linea dbname="dt_modelos.co_linea" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_referencia dbname="dt_modelos.co_referencia" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_talla dbname="dt_modelos.co_talla" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_calidad dbname="dt_modelos.co_calidad" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_color_pt dbname="dt_modelos.co_color_pt" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_modelo dbname="dt_modelos.co_modelo" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=de_modelo dbname="dt_modelos.de_modelo" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="dt_modelos.fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="dt_modelos.fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="dt_modelos.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="dt_modelos.instancia" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=porc_utilizacion dbname="dt_modelos.porc_utilizacion" )
+ column=(type=long update=yes updatewhereclause=yes name=raya dbname="dt_modelos.raya" )
+ retrieve="SELECT dt_modelos.co_fabrica ,
+       dt_modelos.co_linea ,
+       dt_modelos.co_referencia ,
+       dt_modelos.co_talla ,
+       dt_modelos.co_calidad ,
+       dt_modelos.co_color_pt ,
+       dt_modelos.co_modelo ,
+       dt_modelos.de_modelo ,
+       dt_modelos.fe_creacion ,
+       dt_modelos.fe_actualizacion ,
+       dt_modelos.usuario ,
+       dt_modelos.instancia ,
+       dt_modelos.porc_utilizacion ,
+       dt_modelos.raya     
+  FROM dt_modelos      
+ WHERE ( dt_modelos.co_fabrica = :an_fabrica ) and   
+ 	    ( dt_modelos.co_linea = :an_linea ) and    
+       ( dt_modelos.co_referencia = :an_referencia ) and   
+       ( dt_modelos.co_talla = :an_talla ) and  
+       ( dt_modelos.co_calidad = :an_calidad ) and  
+       ( dt_modelos.co_color_pt = :an_color )  
+ ORDER BY dt_modelos.co_modelo          ASC  " update="dt_modelos" updatewhere=0 updatekeyinplace=no arguments=(("an_fabrica", number),("an_linea", number),("an_referencia", number),("an_talla", number),("an_calidad", number),("an_color", number),("ai_id_ficha", number))  sort="co_modelo A " )
+text(band=header alignment="2" text="Codigo" border="6" color="8388608" x="14" y="8" height="52" width="261" html.valueishtml="0"  name=co_modelo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=10 border="5" color="0" x="14" y="4" height="64" width="261" format="[general]" html.valueishtml="0" protect="0~tif(  ai_id_ficha =1, 1, 0 )"  name=co_modelo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="% Utilizaci$$HEX1$$f300$$ENDHEX$$n" border="6" color="8388608" x="1577" y="8" height="52" width="357" html.valueishtml="0"  name=porc_utilizacion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Raya" border="6" color="8388608" x="1952" y="8" height="52" width="197" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=30 border="5" color="0" x="1577" y="4" height="64" width="357" format="[general]" html.valueishtml="0" protect="0~tif(  ai_id_ficha =1, 1, 0 )"  name=porc_utilizacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=14 alignment="1" tabsequence=40 border="5" color="0" x="1952" y="4" height="64" width="197" format="[general]" html.valueishtml="0" protect="0~tif(  ai_id_ficha =1, 1, 0 )"  name=raya visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Descripci$$HEX1$$f300$$ENDHEX$$n" border="6" color="8388608" x="293" y="8" height="52" width="1271" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=20 border="5" color="0" x="293" y="4" height="64" width="1271" format="[general]" html.valueishtml="0" protect="0~tif(  ai_id_ficha =1, 1, 0 )"  name=de_modelo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
