@@ -1,0 +1,18 @@
+HA$PBExportHeader$dff_criterio_rep_mesa_cortado_bordado.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=datetime updatewhereclause=yes name=fe_inicial dbname="fe_inicial" )
+ column=(type=datetime updatewhereclause=yes name=fe_final dbname="fe_final" )
+ )
+text(band=detail alignment="1" text="F. Inicial:" border="0" color="33554432" x="37" y="4" height="52" width="215" html.valueishtml="0"  name=fe_inicial_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="F. Final:" border="0" color="33554432" x="837" y="4" height="52" width="215" html.valueishtml="0"  name=fe_final_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="33554432" x="288" y="4" height="52" width="498" format="mmm/d/yy h:mm" html.valueishtml="0"  name=fe_inicial visible="1" editmask.spin=yes editmask.mask="dd/mmm/yy hh:mm" editmask.imemode=0 editmask.spinincr=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="5" color="33554432" x="1088" y="4" height="52" width="498" format="mmm/d/yy h:mm" html.valueishtml="0"  name=fe_final visible="1" editmask.spin=yes editmask.mask="dd/mmm/yy hh:mm" editmask.imemode=0 editmask.spinincr=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
