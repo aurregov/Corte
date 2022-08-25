@@ -1,0 +1,33 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "partir liberaciones.pbl" "";
+@end;
+@begin Objects
+ "dtb_detalle_tallasxtrazo.srd" "partir liberaciones.pbl";
+ "w_partir_liberaciones.srw" "partir liberaciones.pbl";
+ "dgr_rayas_telasxbase.srd" "partir liberaciones.pbl";
+ "dtb_estado_oc.srd" "partir liberaciones.pbl";
+ "w_partir_escala_de_liberaciones.srw" "partir liberaciones.pbl";
+ "dtb_rollos_x_mercada_x_raya.srd" "partir liberaciones.pbl";
+ "w_buscar_h_liberar_escalas_partir.srw" "partir liberaciones.pbl";
+ "w_buscar_h_liberar_escalas.srw" "partir liberaciones.pbl";
+ "dgr_mantenimiento_base_trazos.srd" "partir liberaciones.pbl";
+ "dtb_seleccionar_h_liberar_escalas.srd" "partir liberaciones.pbl";
+ "dtb_consulta_preliquidacion.srd" "partir liberaciones.pbl";
+ "w_buscar_rollos_x_espacio_x_raya.srw" "partir liberaciones.pbl";
+ "w_definir_rayas_agrupacion.srw" "partir liberaciones.pbl";
+ "dgr_pdn_por_agrupacion_referencia.srd" "partir liberaciones.pbl";
+ "dgr_rayas_referencias_agrupacion.srd" "partir liberaciones.pbl";
+ "dct_dt_escalasxtela_partir_liberaciones.srd" "partir liberaciones.pbl";
+ "dtb_libera_estilos_para_partir_liberacio.srd" "partir liberaciones.pbl";
+ "dct_seleccionar_espacio_partir.srd" "partir liberaciones.pbl";
+ "dgr_tallas_por_agrupacion_pdn.srd" "partir liberaciones.pbl";
+ "dtb_partir_escalasxtalla.srd" "partir liberaciones.pbl";
+ "q_ver_estilos.srq" "partir liberaciones.pbl";
+ "w_seleccionar_espacio_partir_corte.srw" "partir liberaciones.pbl";
+ "w_muestra_obs_texografo_op.srw" "partir liberaciones.pbl";
+ "w_seleccionar_trazosmodeloordencorte.srw" "partir liberaciones.pbl";
+ "dgr_trazos_agrupada_siguientes_pdn.srd" "partir liberaciones.pbl";
+ "dtb_muestra_obs_texografo_op.srd" "partir liberaciones.pbl";
+ "dtb_seleccionar_trazosmodeloordencorte.srd" "partir liberaciones.pbl";
+@end;
