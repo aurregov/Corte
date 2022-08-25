@@ -1,0 +1,56 @@
+HA$PBExportHeader$ds_cantidades_exportacion.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=decimal(0) updatewhereclause=yes name=ca_programada dbname="ca_programada" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_prog_trazos dbname="ca_prog_trazos" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="dt_caxpedidos.co_talla" )
+ column=(type=long updatewhereclause=yes name=co_color dbname="dt_caxpedidos.co_color" )
+ retrieve="  SELECT {+ORDERED}
+			sum(dt_caxpedidos.ca_programada) ca_programada,   
+         sum(dt_caxpedidos.ca_prog_trazos) ca_prog_trazos,   
+         dt_caxpedidos.co_talla,   
+         dt_caxpedidos.co_color  
+    FROM dt_agrupa_pdn,   
+         dt_pdnxmodulo,   
+         dt_caxpedidos  
+   WHERE ( dt_agrupa_pdn.co_fabrica_exp 	= dt_pdnxmodulo.co_fabrica_exp ) and  
+         ( dt_agrupa_pdn.cs_liberacion 	= dt_pdnxmodulo.cs_liberacion ) and  
+         ( dt_agrupa_pdn.po 					= dt_pdnxmodulo.po ) and  
+         ( dt_agrupa_pdn.nu_cut 				= dt_pdnxmodulo.nu_cut ) and  
+         ( dt_agrupa_pdn.co_fabrica_pt 	= dt_pdnxmodulo.co_fabrica_pt ) and  
+         ( dt_agrupa_pdn.co_linea 			= dt_pdnxmodulo.co_linea ) and  
+         ( dt_agrupa_pdn.co_referencia 	= dt_pdnxmodulo.co_referencia ) and  
+         ( dt_agrupa_pdn.co_color_pt 		= dt_pdnxmodulo.co_color_pt ) and  
+         ( dt_agrupa_pdn.tono 				= dt_pdnxmodulo.tono ) and  
+         ( dt_agrupa_pdn.cs_particion 		= dt_pdnxmodulo.cs_particion ) and  
+         ( dt_pdnxmodulo.cs_ordenpd_pt 	= dt_caxpedidos.cs_ordenpd_pt ) and  
+         ( dt_pdnxmodulo.po 					= dt_caxpedidos.nu_orden ) and  
+         ( dt_pdnxmodulo.nu_cut 				= dt_caxpedidos.nu_cut ) and
+			( dt_agrupa_pdn.co_color_pt 		= dt_caxpedidos.co_color) and   
+			( dt_agrupa_pdn.co_color_pt 		= :an_color) and 
+			( dt_agrupa_pdn.cs_pdn				= :an_pdn) and
+         ( ( dt_agrupa_pdn.cs_agrupacion 	= :an_agrupa ) AND  
+         ( dt_agrupa_pdn.po 					= :as_po )   
+         )   
+GROUP BY 3,4;" arguments=(("an_agrupa", number),("as_po", string),("an_color", number),("an_pdn", number)) )
+text(band=header alignment="2" text="Dt Caxpedidos
+Ca Programada" border="0" color="33554432" x="9" y="8" height="104" width="334" html.valueishtml="0"  name=dt_caxpedidos_ca_programada_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Caxpedidos
+Ca Prog Trazos" border="0" color="33554432" x="352" y="8" height="104" width="334" html.valueishtml="0"  name=dt_caxpedidos_ca_prog_trazos_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Caxpedidos
+Co Talla" border="0" color="33554432" x="695" y="8" height="104" width="315" html.valueishtml="0"  name=dt_caxpedidos_co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dt Caxpedidos
+Co Color" border="0" color="33554432" x="1019" y="8" height="104" width="315" html.valueishtml="0"  name=dt_caxpedidos_co_color_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="334" format="[general]" html.valueishtml="0"  name=ca_programada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="352" y="8" height="64" width="334" format="[general]" html.valueishtml="0"  name=ca_prog_trazos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="695" y="8" height="64" width="315" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="1019" y="8" height="64" width="315" format="[general]" html.valueishtml="0"  name=co_color visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
