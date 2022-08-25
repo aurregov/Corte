@@ -1,0 +1,70 @@
+HA$PBExportHeader$d_gr_datos_formato_preimpreso_corte.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=76 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=tanda dbname="tanda" )
+ column=(type=long updatewhereclause=yes name=pinta dbname="pinta" )
+ column=(type=char(30) updatewhereclause=yes name=de_pinta dbname="de_pinta" )
+ column=(type=long updatewhereclause=yes name=diametro dbname="diametro" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=char(50) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=long updatewhereclause=yes name=cantidad dbname="cantidad" )
+ column=(type=char(20) updatewhereclause=yes name=auditor dbname="auditor" )
+ column=(type=char(20) updatewhereclause=yes name=cortador dbname="cortador" )
+ column=(type=char(20) updatewhereclause=yes name=observacion dbname="observacion" )
+ column=(type=long updatewhereclause=yes name=adhesivos dbname="adhesivos" )
+ retrieve="
+select UNIQUE n.lote tanda, e.co_color_pt pinta, f.de_color de_pinta, d.diametro, e.co_referencia, hp.de_referencia,
+        0 cantidad,
+		cast( ''  as char(20)) auditor,
+		cast( ''  as char(20)) cortador,
+		cast( ''  as char(20)) observacion,
+		1 adhesivos
+from dt_rollosmercada a, h_mercada b, m_rollo n, dt_rayas_telaxoc d, dt_agrupa_pdn e,
+     m_color f, h_preref_pv hp
+where a.cs_mercada = b.cs_mercada
+and b.co_estado_mercada <> 7
+and a.co_estado_mercada <> 5
+and a.cs_rollo = n.cs_rollo
+and b.cs_orden_corte = d.cs_orden_corte
+and a.raya = d.raya
+and d.cs_agrupacion = e.cs_agrupacion
+and d.cs_pdn = e.cs_pdn
+and e.co_color_pt = f.co_color
+and e.co_fabrica_pt = hp.co_fabrica
+and e.co_linea = hp.co_linea
+and (Cast(e.co_referencia as char(15) ) = hp.co_referencia ) 
+and (hp.co_tipo_ref = 'P' ) 
+and b.cs_orden_corte = :an_ordencorte
+and a.raya = :an_raya
+" arguments=(("an_ordencorte", number),("an_raya", number)) )
+text(band=header alignment="2" text="Tanda" border="6" color="0" x="9" y="4" height="64" width="183" html.valueishtml="0"  name=tanda_t visible="1"  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Pinta" border="6" color="0" x="201" y="4" height="64" width="238" html.valueishtml="0"  name=pinta_t visible="1"  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Diametro" border="6" color="0" x="910" y="4" height="64" width="256" html.valueishtml="0"  name=diametro_t visible="1"  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Co Referen" border="6" color="0" x="1175" y="4" height="64" width="343" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Descripci$$HEX1$$f300$$ENDHEX$$n" border="6" color="0" x="1527" y="4" height="64" width="480" html.valueishtml="0"  name=de_referencia_t visible="1"  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Cantidad" border="6" color="0" x="2016" y="4" height="64" width="279" html.valueishtml="0"  name=cantidad_t visible="1"  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Auditor" border="6" color="0" x="2304" y="4" height="64" width="425" html.valueishtml="0"  name=auditor_t visible="1"  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Cortador" border="6" color="0" x="2738" y="4" height="64" width="430" html.valueishtml="0"  name=cortador_t visible="1"  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Observaci$$HEX1$$f300$$ENDHEX$$n" border="6" color="0" x="3177" y="4" height="64" width="507" html.valueishtml="0"  name=observacion_t visible="1"  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Nro. Adhesivos" border="6" color="0" x="3694" y="4" height="64" width="411" html.valueishtml="0"  name=adhesivos_t visible="1"  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Descripci$$HEX1$$f300$$ENDHEX$$n" border="6" color="0" x="448" y="4" height="64" width="453" html.valueishtml="0"  name=de_pinta_t visible="1"  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="9" y="0" height="76" width="183" format="[general]" html.valueishtml="0"  name=tanda visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="0" x="201" y="0" height="76" width="238" format="[general]" html.valueishtml="0"  name=pinta visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=10 border="5" color="0" x="910" y="0" height="76" width="256" format="[general]" html.valueishtml="0"  name=diametro visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="0" x="1175" y="0" height="76" width="343" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="5" color="0" x="1527" y="0" height="76" width="480" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=7 alignment="1" tabsequence=20 border="5" color="0" x="2016" y="0" height="76" width="279" format="[general]" html.valueishtml="0"  name=cantidad visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.nilisnull=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=8 alignment="0" tabsequence=30 border="5" color="0" x="2304" y="0" height="76" width="425" format="[general]" html.valueishtml="0"  name=auditor visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=9 alignment="0" tabsequence=40 border="5" color="0" x="2738" y="0" height="76" width="430" format="[general]" html.valueishtml="0"  name=cortador visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=10 alignment="0" tabsequence=50 border="5" color="0" x="3177" y="0" height="76" width="507" format="[general]" html.valueishtml="0"  name=observacion visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=11 alignment="1" tabsequence=60 border="5" color="0" x="3694" y="0" height="76" width="411" format="[general]" html.valueishtml="0"  name=adhesivos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="0" x="448" y="0" height="76" width="453" format="[general]" html.valueishtml="0"  name=de_pinta visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
