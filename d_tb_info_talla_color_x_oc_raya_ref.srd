@@ -1,0 +1,129 @@
+HA$PBExportHeader$d_tb_info_talla_color_x_oc_raya_ref.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=144 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912"  height.autosize=yes)
+table(column=(type=long updatewhereclause=yes name=co_color_pt dbname="co_color_pt" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="co_talla" )
+ column=(type=long updatewhereclause=yes name=co_color_te dbname="co_color_te" )
+ column=(type=number updatewhereclause=yes name=consumo dbname="consumo" )
+ column=(type=decimal(2) updatewhereclause=yes name=porc_utilizacion dbname="porc_utilizacion" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_unidades dbname="ca_unidades" )
+ column=(type=number updatewhereclause=yes name=metros dbname="metros" )
+ column=(type=decimal(0) updatewhereclause=yes name=ca_unidades_preliq dbname="ca_unidades_preliq" )
+ retrieve="select dt_color_modelo.co_color_pt,
+       dt_color_modelo.co_talla,
+       dt_color_modelo.co_color_te,
+       (((sum(ca_grs))/1000)/ (select count(a.co_talla)
+										from dt_agrupaescalapdn a, dt_agrupa_pdn b
+										where a.cs_agrupacion = :al_agrupacion and
+                                    a.cs_agrupacion = b.cs_agrupacion and  
+                                    b.co_color_pt = dt_color_modelo.co_color_pt and
+                                    b.co_referencia  = :al_referencia and 
+                                    a.cs_pdn = b.cs_pdn and  
+												a.co_talla = dt_color_modelo.co_talla	) )as consumo,
+       dt_modelos.porc_utilizacion,
+       (select sum(d.ca_unidades)
+				from dt_agrupaescalapdn d, dt_agrupa_pdn p
+				where d.cs_agrupacion = p.cs_agrupacion and
+                  d.cs_pdn = p.cs_pdn and
+                  p.co_fabrica_pt =  dt_color_modelo.co_fabrica and
+                  p.co_linea  = dt_color_modelo.co_linea and
+                  p.co_referencia = dt_color_modelo.co_referencia and
+                  p.co_color_pt  = dt_color_modelo.co_color_pt and
+                  d.cs_agrupacion = :al_agrupacion and
+						d.co_talla = dt_color_modelo.co_talla)	 ca_unidades,
+   (((sum(ca_mts)))/ (select count(a.co_talla)
+										from dt_agrupaescalapdn a, dt_agrupa_pdn b
+										where a.cs_agrupacion = :al_agrupacion and
+                                    a.cs_agrupacion = b.cs_agrupacion and  
+                                    b.co_color_pt = dt_color_modelo.co_color_pt and
+                                    b.co_referencia  = :al_referencia and 
+                                    a.cs_pdn = b.cs_pdn and  
+												a.co_talla = dt_color_modelo.co_talla	) )as metros,
+
+ (select sum(d.ca_prog_liq)
+				from dt_liq_unixespacio d
+				where d.cs_orden_corte = :al_ordencorte and
+						d.co_talla = dt_color_modelo.co_talla and
+						d.cs_pdn = dt_agrupaescalapdn.cs_pdn
+						 and	Exists (select h_base_trazos.raya
+								from h_base_trazos
+									where ( d.cs_agrupacion = h_base_trazos.cs_agrupacion ) and  
+										( d.cs_base_trazos = h_base_trazos.cs_base_trazos ) and  
+										( h_base_trazos.raya							= 10 )))	 ca_unidades_preliq
+
+from dt_color_modelo, dt_agrupaescalapdn, dt_modelos, dt_agrupa_pdn 
+where dt_color_modelo.co_fabrica = :ai_fabrica
+  and dt_color_modelo.co_linea = :ai_linea
+  and dt_color_modelo.co_referencia = :al_referencia
+
+  and dt_color_modelo.co_talla = dt_agrupaescalapdn.co_talla
+  and dt_agrupaescalapdn.cs_agrupacion = :al_agrupacion
+  and dt_modelos.co_fabrica = dt_color_modelo.co_fabrica
+  and dt_modelos.co_linea = dt_color_modelo.co_linea
+  and dt_modelos.co_referencia = dt_color_modelo.co_referencia
+  and dt_modelos.co_color_pt = dt_color_modelo.co_color_pt
+  and dt_modelos.co_modelo = dt_color_modelo.co_modelo
+  and dt_modelos.co_calidad = dt_color_modelo.co_calidad
+  and dt_modelos.co_talla = dt_color_modelo.co_talla
+  and dt_agrupaescalapdn.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion
+  and dt_agrupaescalapdn.cs_pdn = dt_agrupa_pdn.cs_pdn
+  and dt_agrupa_pdn.co_fabrica_pt = dt_modelos.co_fabrica
+  and dt_agrupa_pdn.co_linea = dt_modelos.co_linea
+  and dt_agrupa_pdn.co_referencia = dt_modelos.co_referencia
+  and dt_agrupa_pdn.co_color_pt = dt_modelos.co_color_pt
+
+  and dt_modelos.id_ficha = 1
+  and dt_color_modelo.id_ficha = 1
+  and dt_color_modelo.co_calidad = 1
+  and	Exists (select dt_trazosxoc.co_modelo
+				from dt_trazosxoc, h_base_trazos
+				where ( dt_trazosxoc.cs_agrupacion 				= h_base_trazos.cs_agrupacion ) and  
+					( dt_trazosxoc.cs_base_trazos 			= h_base_trazos.cs_base_trazos ) and  
+					( dt_trazosxoc.cs_agrupacion 				= dt_agrupa_pdn.cs_agrupacion ) and  
+					( dt_trazosxoc.cs_pdn 						= dt_agrupa_pdn.cs_pdn ) and  
+					( dt_trazosxoc.cs_orden_corte 			= :al_ordencorte ) AND  
+			
+					( dt_trazosxoc.co_modelo 					= dt_color_modelo.co_modelo ) and
+					( dt_trazosxoc.co_reftel 					= dt_color_modelo.co_reftel ) and
+					( dt_trazosxoc.co_caract 					= dt_color_modelo.co_caract ) and
+					( dt_trazosxoc.diametro 					= dt_color_modelo.diametro ) and
+					( dt_trazosxoc.co_color_te 				= dt_color_modelo.co_color_te ) and
+					( h_base_trazos.raya							= :ai_raya ))
+        
+group by 1,2,3,5,6,8
+
+; " arguments=(("ai_fabrica", number),("ai_linea", number),("al_referencia", number),("al_agrupacion", number),("al_ordencorte", number),("ai_raya", number))  sort="co_color_pt A co_talla A " )
+group(level=1 header.height=0 trailer.height=76 by=("co_color_pt" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text=" ColorPT" border="6" color="0" x="5" y="20" height="112" width="197" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text=" ColorTE" border="6" color="0" x="206" y="20" height="112" width="197" html.valueishtml="0"  name=t_8 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Unids" border="6" color="0" x="507" y="20" height="112" width="151" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Kg TllaCorte" border="6" color="0" x="663" y="20" height="112" width="155" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Mt TllaCorte" border="6" color="0" x="823" y="20" height="112" width="160" html.valueishtml="0"  name=t_7 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Tlla" border="6" color="0" x="407" y="20" height="112" width="87" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="UnidPreLiq" border="6" color="0" x="1001" y="20" height="112" width="174" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="KgPreLiq" border="6" color="0" x="1198" y="20" height="112" width="174" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="MtsPreLiq" border="6" color="0" x="1390" y="20" height="112" width="174" html.valueishtml="0"  name=t_9 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="2" color="33554432" x="5" y="4" height="52" width="197" format="[general]" html.valueishtml="0"  name=co_color_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="2" color="33554432" x="206" y="4" height="52" width="197" format="[general]" html.valueishtml="0"  name=co_color_te visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="2" color="33554432" x="507" y="4" height="52" width="151" format="[general]" html.valueishtml="0"  name=ca_unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="(consumo * ca_unidades  *  porc_utilizacion )/100"border="2" color="33554432" x="663" y="4" height="52" width="155" format="0.00" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="2" color="33554432" x="407" y="4" height="52" width="87" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression=" ca_unidades * metros "border="2" color="33554432" x="823" y="4" height="52" width="160" format="#,##0.00" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="2" tabsequence=32766 border="2" color="33554432" x="987" y="4" height="52" width="192" format="[General]" html.valueishtml="0"  name=ca_unidades_preliq visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="( ca_unidades_preliq  * compute_1 )/  ca_unidades"border="2" color="33554432" x="1184" y="4" height="52" width="192" format="#,##0.00" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="( ca_unidades_preliq  * compute_8 )/ ca_unidades"border="2" color="33554432" x="1381" y="4" height="52" width="192" format="#,##0.00" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum((consumo * ca_unidades  *  porc_utilizacion )/100 for group 1)"border="2" color="33554432" x="640" y="4" height="52" width="178" format="0.00" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(ca_unidades for group 1)"border="2" color="33554432" x="462" y="4" height="52" width="169" format="[general]" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( ca_unidades * metros  for group 1)"border="2" color="33554432" x="823" y="4" height="52" width="183" format="#,##0.00" html.valueishtml="0"  name=compute_9 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( ca_unidades_preliq  for group 1)"border="2" color="33554432" x="1010" y="4" height="52" width="169" format="#,##0" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( compute_2  for group 1)"border="2" color="33554432" x="1184" y="4" height="52" width="183" format="#,##0.00" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum( compute_3  for group 1)"border="2" color="33554432" x="1371" y="4" height="52" width="201" format="#,##0.00" html.valueishtml="0"  name=compute_10 visible="1"  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
