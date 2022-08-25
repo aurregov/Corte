@@ -1,0 +1,12 @@
+HA$PBExportHeader$dtc_adhesivos_bongos.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=5 HTMLDW=no print.documentname="dtc_adhesivos_bongos" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=280 color="536870912"  height.autosize=yes)
+table(column=(type=char(10) updatewhereclause=yes name=a dbname="a" )
+ unbound = "yes"arguments=(("bongo", string)) )
+report(band=detail dataobject="dtc_tallas_de_bongos" x="9" y="136" height="136" width="1710" border="0"  height.autosize=yes criteria="" nest_arguments=((" bongo ")) trail_footer = yes  name=dw_2 visible="1"  slideleft=yes  slideup=directlyabove )
+report(band=detail dataobject="dtb_cabecera_adhesivos_bongo" x="9" y="12" height="120" width="1710" border="0"  height.autosize=yes criteria="" nest_arguments=((" bongo ")) trail_footer = yes  name=dw_1 visible="1"  slideup=directlyabove )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
