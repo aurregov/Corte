@@ -1,0 +1,66 @@
+HA$PBExportHeader$m_reporte_unidades.srm
+forward
+global type m_reporte_unidades from m_vista_previa
+end type
+type m_buscar from menu within m_vistaprevia
+end type
+end forward
+
+global type m_reporte_unidades from m_vista_previa
+end type
+global m_reporte_unidades m_reporte_unidades
+
+on m_reporte_unidades.create
+m_reporte_unidades=this
+call super::create
+end on
+
+on m_reporte_unidades.destroy
+call super::destroy
+end on
+
+type m_vistaprevia from m_vista_previa`m_vistaprevia within m_reporte_unidades
+m_buscar m_buscar
+end type
+
+on m_vistaprevia.create
+call super::create
+this.m_buscar=create m_buscar
+this.Item[UpperBound(this.item)+1]=this.m_buscar
+end on
+
+on m_vistaprevia.destroy
+call super::destroy
+destroy(this.m_buscar)
+end on
+
+on m_mostrarvistaprevia.create
+call super::create
+this.ToolBarItemOrder=13
+end on
+
+on m_mostrarregleta.create
+call super::create
+this.ToolBarItemOrder=14
+end on
+
+on m_zoom.create
+call super::create
+this.ToolBarItemOrder=15
+end on
+
+type m_buscar from menu within m_vistaprevia
+end type
+
+on m_buscar.create
+this.Text="&Buscar"
+this.Microhelp="BuscarBus"
+this.ToolBarItemName="Search!"
+this.ToolBarItemText="Buscar"
+this.ToolBarItemOrder=12
+this.ToolBarItemSpace=1
+end on
+
+event clicked;ParentWindow.TriggerEvent("ue_buscar")
+end event
+
