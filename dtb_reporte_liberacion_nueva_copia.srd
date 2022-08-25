@@ -1,0 +1,45 @@
+HA$PBExportHeader$dtb_reporte_liberacion_nueva_copia.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=128 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_est_liberacion dbname="h_liberar_escalas.co_est_liberacion" )
+ column=(type=date updatewhereclause=yes name=fecha dbname="fecha" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="dt_libera_estilos.co_linea" )
+ column=(type=char(30) updatewhereclause=yes name=de_linea dbname="m_lineas.de_linea" )
+ column=(type=decimal(0) updatewhereclause=yes name=unidades dbname="unidades" )
+ retrieve=" select h.co_est_liberacion, 
+			date(h.fe_creacion) as fecha ,
+			d.co_linea,
+			m.de_linea,
+			Sum(d.ca_unidades) as unidades
+	 from h_liberar_escalas h, 
+			dt_pdnxmodulo dt, 
+			dt_libera_estilos d,
+			m_lineas m
+	where ( dt.cs_liberacion 		= h.cs_liberacion ) and
+			( d.cs_liberacion 		= h.cs_liberacion ) and
+			( dt.co_estado_asigna 	<> 28 ) and
+			( Date(h.fe_creacion) 	Between :ad_fe_inicial and :ad_fe_final) and
+			( m.co_fabrica				= d.co_fabrica ) and
+			( m.co_linea				= d.co_linea )
+group by 1,2,3,4;" arguments=(("ad_fe_inicial", date),("ad_fe_final", date))  sort="co_est_liberacion A fecha A unidades A " )
+group(level=1 header.height=188 trailer.height=216 by=("co_est_liberacion" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="0" text="REPORTE DE UNIDADES LIBERADAS" border="0" color="33554432" x="46" y="20" height="92" width="1577" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="4" height="64" width="69" format="[general]" html.valueishtml="0"  name=co_est_liberacion visible="0" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="0" expression="if( co_est_liberacion = 1,'Liberaci$$HEX1$$f300$$ENDHEX$$n Manual o Autom$$HEX1$$e100$$ENDHEX$$tica','Liberaci$$HEX1$$f300$$ENDHEX$$n Nueva')"border="0" color="33554432" x="169" y="8" height="52" width="983" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.1 alignment="2" text="Total Liberaci$$HEX1$$f300$$ENDHEX$$n:" border="6" color="33554432" x="64" y="8" height="56" width="425" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+compute(band=trailer.1 alignment="1" expression="sum(unidades for group 1)"border="6" color="33554432" x="521" y="4" height="64" width="274" format="#,##0" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header.1 alignment="2" text="Fecha" border="6" color="33554432" x="242" y="108" height="56" width="274" html.valueishtml="0"  name=fecha_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="2" color="33554432" x="242" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=fecha visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="L$$HEX1$$ed00$$ENDHEX$$nea" border="6" color="0" x="530" y="108" height="56" width="631" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=detail alignment="0" expression="String( co_linea )+' - '+Trim( de_linea )"border="2" color="33554432" x="530" y="4" height="64" width="631" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Unidades" border="6" color="33554432" x="1175" y="108" height="56" width="274" html.valueishtml="0"  name=unidades_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="2" color="33554432" x="1175" y="4" height="64" width="274" format="#,##0" html.valueishtml="0"  name=unidades visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
