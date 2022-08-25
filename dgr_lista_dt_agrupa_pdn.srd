@@ -1,0 +1,96 @@
+HA$PBExportHeader$dgr_lista_dt_agrupa_pdn.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=cs_agrupacion dbname="cs_agrupacion" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_pdn dbname="cs_pdn" )
+ column=(type=long update=yes updatewhereclause=yes name=co_fabrica_exp dbname="co_fabrica_exp" )
+ column=(type=long update=yes updatewhereclause=yes name=pedido dbname="pedido" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_liberacion dbname="cs_liberacion" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=po dbname="po" )
+ column=(type=long update=yes updatewhereclause=yes name=co_fabrica_pt dbname="co_fabrica_pt" )
+ column=(type=long update=yes updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long update=yes updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long update=yes updatewhereclause=yes name=co_color_pt dbname="co_color_pt" )
+ column=(type=char(3) update=yes updatewhereclause=yes name=tono dbname="tono" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_estilocolortono dbname="cs_estilocolortono" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_particion dbname="cs_particion" )
+ column=(type=long update=yes updatewhereclause=yes name=co_estado dbname="co_estado" )
+ column=(type=long update=yes updatewhereclause=yes name=co_tipo_tallas dbname="co_tipo_tallas" )
+ column=(type=long update=yes updatewhereclause=yes name=co_tipo_rayas dbname="co_tipo_rayas" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_unidades dbname="ca_unidades" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="instancia" )
+ retrieve="  SELECT dt_agrupa_pdn.cs_agrupacion,   
+         dt_agrupa_pdn.cs_pdn,   
+         dt_agrupa_pdn.co_fabrica_exp,   
+         dt_agrupa_pdn.pedido,   
+         dt_agrupa_pdn.cs_liberacion,   
+         dt_agrupa_pdn.po,   
+         dt_agrupa_pdn.co_fabrica_pt,   
+         dt_agrupa_pdn.co_linea,   
+         dt_agrupa_pdn.co_referencia,   
+         dt_agrupa_pdn.co_color_pt,   
+         dt_agrupa_pdn.tono,   
+         dt_agrupa_pdn.cs_estilocolortono,   
+         dt_agrupa_pdn.cs_particion,   
+         dt_agrupa_pdn.co_estado,   
+         dt_agrupa_pdn.co_tipo_tallas,   
+         dt_agrupa_pdn.co_tipo_rayas,   
+         dt_agrupa_pdn.ca_unidades,   
+         dt_agrupa_pdn.fe_creacion,   
+         dt_agrupa_pdn.fe_actualizacion,   
+         dt_agrupa_pdn.usuario,   
+         dt_agrupa_pdn.instancia  
+    FROM dt_agrupa_pdn  
+	WHERE dt_agrupa_pdn.cs_agrupacion = :an_agrupacion 
+" update="dt_agrupa_pdn" updatewhere=1 updatekeyinplace=no arguments=(("an_agrupacion", number)) )
+text(band=header alignment="2" text="Cs Agrupacion" border="0" color="0" x="9" y="8" height="64" width="389"  name=cs_agrupacion_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Pdn" border="0" color="0" x="407" y="8" height="64" width="329"  name=cs_pdn_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Fabrica Exp" border="0" color="0" x="745" y="8" height="64" width="411"  name=co_fabrica_exp_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pedido" border="0" color="0" x="1166" y="8" height="64" width="329"  name=pedido_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Liberacion" border="0" color="0" x="1504" y="8" height="64" width="361"  name=cs_liberacion_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Po" border="0" color="0" x="1874" y="8" height="64" width="576"  name=po_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Fabrica Pt" border="0" color="0" x="2459" y="8" height="64" width="366"  name=co_fabrica_pt_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Linea" border="0" color="0" x="2834" y="8" height="64" width="329"  name=co_linea_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Referencia" border="0" color="0" x="3173" y="8" height="64" width="370"  name=co_referencia_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Color Pt" border="0" color="0" x="3552" y="8" height="64" width="329"  name=co_color_pt_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tono" border="0" color="0" x="3890" y="8" height="64" width="128"  name=tono_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Estilocolortono" border="0" color="0" x="4027" y="8" height="64" width="485"  name=cs_estilocolortono_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Particion" border="0" color="0" x="4521" y="8" height="64" width="329"  name=cs_particion_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Estado" border="0" color="0" x="4859" y="8" height="64" width="329"  name=co_estado_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Tipo Tallas" border="0" color="0" x="5198" y="8" height="64" width="375"  name=co_tipo_tallas_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Tipo Rayas" border="0" color="0" x="5582" y="8" height="64" width="389"  name=co_tipo_rayas_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Unidades" border="0" color="0" x="5979" y="8" height="64" width="338"  name=ca_unidades_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fe Creacion" border="0" color="0" x="6327" y="8" height="64" width="603"  name=fe_creacion_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fe Actualizacion" border="0" color="0" x="6939" y="8" height="64" width="603"  name=fe_actualizacion_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Usuario" border="0" color="0" x="7552" y="8" height="64" width="247"  name=usuario_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Instancia" border="0" color="0" x="7808" y="8" height="64" width="576"  name=instancia_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="0" color="0" x="9" y="8" height="76" width="389" format="[general]"  name=cs_agrupacion edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="0" color="0" x="407" y="8" height="76" width="329" format="[general]"  name=cs_pdn edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=30 border="0" color="0" x="745" y="8" height="76" width="411" format="[general]"  name=co_fabrica_exp edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=40 border="0" color="0" x="1166" y="8" height="76" width="329" format="[general]"  name=pedido edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=50 border="0" color="0" x="1504" y="8" height="76" width="361" format="[general]"  name=cs_liberacion edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=60 border="0" color="0" x="1874" y="8" height="76" width="576" format="[general]"  name=po edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=70 border="0" color="0" x="2459" y="8" height="76" width="366" format="[general]"  name=co_fabrica_pt edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=80 border="0" color="0" x="2834" y="8" height="76" width="329" format="[general]"  name=co_linea edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=90 border="0" color="0" x="3173" y="8" height="76" width="370" format="[general]"  name=co_referencia edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=100 border="0" color="0" x="3552" y="8" height="76" width="329" format="[general]"  name=co_color_pt edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=110 border="0" color="0" x="3890" y="8" height="76" width="128" format="[general]"  name=tono edit.limit=3 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=120 border="0" color="0" x="4027" y="8" height="76" width="485" format="[general]"  name=cs_estilocolortono edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=130 border="0" color="0" x="4521" y="8" height="76" width="329" format="[general]"  name=cs_particion edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=140 border="0" color="0" x="4859" y="8" height="76" width="329" format="[general]"  name=co_estado edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="1" tabsequence=150 border="0" color="0" x="5198" y="8" height="76" width="375" format="[general]"  name=co_tipo_tallas edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="1" tabsequence=160 border="0" color="0" x="5582" y="8" height="76" width="389" format="[general]"  name=co_tipo_rayas edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="1" tabsequence=170 border="0" color="0" x="5979" y="8" height="76" width="338" format="[general]"  name=ca_unidades edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=180 border="0" color="0" x="6327" y="8" height="76" width="603" format="[shortdate] [time]"  name=fe_creacion edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=190 border="0" color="0" x="6939" y="8" height="76" width="603" format="[shortdate] [time]"  name=fe_actualizacion edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=200 border="0" color="0" x="7552" y="8" height="76" width="247" format="[general]"  name=usuario edit.limit=8 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=210 border="0" color="0" x="7808" y="8" height="76" width="576" format="[general]"  name=instancia edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
