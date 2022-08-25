@@ -1,0 +1,72 @@
+HA$PBExportHeader$dtc_tallas_liquidadas_nueva.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1090519039 processing=4 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no  crosstab.dynamic = yes grid.lines=0 grid.columnmove=no selected.mouse=no )
+header[1](height=0 color="536870912" )
+header[2](height=0 color="536870912" )
+header[3](height=64 color="536870912" )
+header[4](height=120 color="536870912" )
+summary(height=76 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="536870912" )
+table(column=(type=number updatewhereclause=yes name=capas dbname="capas" )
+ column=(type=number updatewhereclause=yes name=paquetes dbname="paquetes" )
+ column=(type=number updatewhereclause=yes name=ca_programada dbname="ca_programada" )
+ column=(type=number updatewhereclause=yes name=ca_liquidadas dbname="ca_liquidadas" )
+ retrieve="  SELECT dt_liq_unixespacio.ca_liquidadas,   
+         dt_liq_unixespacio.capas,   
+         dt_liq_unixespacio.paquetes,   
+         m_tallas_x_grupo.de_talla,   
+         m_tallas_x_grupo.orden_talla,   
+         dt_unidadesxtrazo.ca_programada  
+    FROM dt_liq_unixespacio,   
+         dt_agrupa_pdn,   
+         h_preref_pv,   
+         m_tallas_x_grupo,   
+         dt_unidadesxtrazo  
+   WHERE ( dt_liq_unixespacio.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion ) and  
+         ( dt_agrupa_pdn.co_fabrica_pt = h_preref_pv.co_fabrica ) and  
+         ( dt_agrupa_pdn.co_linea = h_preref_pv.co_linea ) and  
+         ( Cast(dt_agrupa_pdn.co_referencia as Char(15)) = h_preref_pv.co_referencia ) and  
+         ( h_preref_pv.co_grupo_tlla = m_tallas_x_grupo.co_grupo_tlla ) and  
+         ( m_tallas_x_grupo.co_talla = dt_liq_unixespacio.co_talla ) and  
+         ( dt_liq_unixespacio.cs_pdn = dt_agrupa_pdn.cs_pdn ) and  
+         ( dt_liq_unixespacio.cs_orden_corte = dt_unidadesxtrazo.cs_orden_corte ) and  
+         ( dt_liq_unixespacio.cs_agrupacion = dt_unidadesxtrazo.cs_agrupacion ) and  
+         ( dt_liq_unixespacio.cs_base_trazos = dt_unidadesxtrazo.cs_base_trazos ) and  
+         ( dt_liq_unixespacio.cs_trazo = dt_unidadesxtrazo.cs_trazo ) and  
+         ( dt_liq_unixespacio.cs_seccion = dt_unidadesxtrazo.cs_seccion ) and  
+         ( dt_liq_unixespacio.cs_pdn = dt_unidadesxtrazo.cs_pdn ) and  
+         ( dt_unidadesxtrazo.co_talla = dt_liq_unixespacio.co_talla ) and  
+			( h_preref_pv.co_tipo_ref = 'P' ) and
+         ( ( dt_liq_unixespacio.cs_orden_corte = :an_ordencorte ) AND  
+         ( dt_liq_unixespacio.cs_agrupacion = :an_agrupacion ) AND  
+         ( dt_liq_unixespacio.cs_base_trazos = :an_base_trazos ) AND  
+         ( dt_liq_unixespacio.cs_liquidacion = :an_liquidacion ) )   
+ORDER BY m_tallas_x_grupo.de_talla ASC   
+" arguments=(("an_ordencorte", number),("an_agrupacion", number),("an_base_trazos", number),("an_liquidacion", number))  sort="capas A paquetes A " )
+group(level=1 header.height=0 trailer.height=0 by=("capas" ) header.color="536870912" trailer.color="536870912" )
+text(band=header[1] alignment="0" text="Orden Talla" border="0" color="0" x="178" y="4" height="56" width="105" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[1] alignment="0" text="De Talla" border="0" color="0" x="293" y="4" height="56" width="133" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="@orden_talla" border="0" color="0" x="293" y="4" height="56" width="302" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="Total Sum Of Ca Liquidadas" border="0" color="0" x="599" y="4" height="56" width="187" html.valueishtml="0"  name=t_7 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[3] alignment="0" text="Talla @de_talla" border="0" color="0" x="293" y="4" height="56" width="302" html.valueishtml="0"  name=t_8 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[4] alignment="2" text="Capas" border="0" color="0" x="9" y="4" height="112" width="160" html.valueishtml="0"  name=capas_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[4] alignment="0" text="Unds.
+Liq." border="0" color="255" x="434" y="4" height="112" width="155" html.valueishtml="0"  name=ca_liquidadas_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[4] alignment="2" text="Total" border="0" color="0" x="599" y="4" height="112" width="187" html.valueishtml="0"  name=t_9 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[4] alignment="0" text="Unds.
+Prog." border="0" color="8388608" x="293" y="4" height="112" width="133" html.valueishtml="0"  name=ca_programada_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[4] alignment="0" text="Pqts." border="0" color="0" x="178" y="4" height="112" width="105" html.valueishtml="0"  name=paquetes_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="9" y="4" height="56" width="160" format="[general]" html.valueishtml="0"  name=capas visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="178" y="4" height="56" width="105" format="[general]" html.valueishtml="0"  name=paquetes visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="crosstabsum(2)"border="0" color="0" x="599" y="4" height="56" width="187" format="[general]" html.valueishtml="0"  name=grand_sum_ca_liquidadas visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="8388608" x="293" y="4" height="56" width="133" format="[general]" html.valueishtml="0"  name=ca_programada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0 crosstab.repeat=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="255" x="434" y="4" height="56" width="155" format="[general]" html.valueishtml="0"  name=ca_liquidadas visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.imemode=0 crosstab.repeat=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="~"Total~""border="0" color="0" x="9" y="4" height="56" width="160" format="[general]" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(grand_sum_ca_liquidadas for all )"border="0" color="0" x="599" y="4" height="56" width="187" format="[general]" html.valueishtml="0"  name=compute_14 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_programada for all )"border="0" color="8388608" x="293" y="4" height="56" width="133" format="[general]" html.valueishtml="0"  name=compute_9 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(ca_liquidadas for all )"border="0" color="255" x="434" y="4" height="56" width="155" format="[general]" html.valueishtml="0"  name=compute_10 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+ crosstab(band = foreground  crosstabonly = yes 
+ columns = "orden_talla, de_talla" rows = "capas, paquetes" values = "sum(ca_programada for crosstab), sum(ca_liquidadas for crosstab)" sourcenames = "ca_liquidadas, capas, paquetes, de_talla, orden_talla, ca_programada")
+sparse(names="capas")htmltable(border="0" cellpadding="1" cellspacing="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
