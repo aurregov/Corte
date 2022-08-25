@@ -1,0 +1,134 @@
+HA$PBExportHeader$m_base_graficas.srm
+forward
+global type m_base_graficas from m_base_principal
+end type
+end forward
+
+global type m_base_graficas from m_base_principal
+end type
+global m_base_graficas m_base_graficas
+
+on m_base_graficas.create
+m_base_graficas=this
+call super::create
+end on
+
+on m_base_graficas.destroy
+call super::destroy
+end on
+
+on m_cerrar.create
+call super::create
+this.Visible=true
+this.Enabled=true
+end on
+
+on m_configurarimpresora.create
+call super::create
+this.ToolBarItemVisible=false
+end on
+
+on m_salir.create
+call super::create
+this.ToolBarItemVisible=false
+end on
+
+on m_administracin.create
+call super::create
+this.Visible=false
+this.Enabled=false
+end on
+
+on m_mantenimientodeerroresbd.create
+call super::create
+this.ToolBarItemVisible=false
+end on
+
+on m_mantenimientodereportes.create
+call super::create
+this.ToolBarItemVisible=false
+end on
+
+on m_opcin2.create
+call super::create
+this.Visible=false
+this.Enabled=false
+end on
+
+on m_opcin3.create
+call super::create
+this.Visible=false
+this.Enabled=false
+end on
+
+on m_opcin4.create
+call super::create
+this.Visible=false
+this.Enabled=false
+end on
+
+on m_opcin5.create
+call super::create
+this.Visible=false
+this.Enabled=false
+end on
+
+on m_graficas.create
+call super::create
+this.Visible=true
+this.Enabled=true
+end on
+
+on m_tipodegrafica.create
+call super::create
+this.Visible=true
+this.Enabled=true
+this.ToolBarItemVisible=true
+end on
+
+on m_titulo.create
+call super::create
+this.Visible=true
+this.Enabled=true
+this.ToolBarItemVisible=true
+end on
+
+on m_color.create
+call super::create
+this.Visible=true
+this.Enabled=true
+this.ToolBarItemVisible=true
+end on
+
+on m_espaciamiento.create
+call super::create
+this.Visible=true
+this.Enabled=true
+this.ToolBarItemVisible=true
+end on
+
+on m_horizontal.create
+call super::create
+this.ToolBarItemVisible=false
+end on
+
+on m_vertical.create
+call super::create
+this.ToolBarItemVisible=false
+end on
+
+on m_completa.create
+call super::create
+this.ToolBarItemVisible=false
+end on
+
+on m_cascada.create
+call super::create
+this.ToolBarItemVisible=false
+end on
+
+on m_contenido.create
+call super::create
+this.ToolBarItemVisible=false
+end on
+
