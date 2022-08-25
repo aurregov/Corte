@@ -1,0 +1,635 @@
+HA$PBExportHeader$d_gr_sq_pool_datos_etiquetas_bk.srd
+$PBExportComments$SA49463 E00432~r~nDatawindow con los datos de las etiquetas a imprimir en el formato seleccionado
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=140 color="536870912" )
+summary(height=64 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=po dbname="po" )
+ column=(type=char(40) updatewhereclause=yes name=co_fabrica_ref dbname="co_fabrica_ref" )
+ column=(type=char(40) updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=char(30) updatewhereclause=yes name=de_linea dbname="de_linea" )
+ column=(type=char(40) updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=char(50) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=char(40) updatewhereclause=yes name=co_talla dbname="co_talla" )
+ column=(type=char(20) updatewhereclause=yes name=de_talla dbname="de_talla" )
+ column=(type=char(40) updatewhereclause=yes name=co_calidad dbname="co_calidad" )
+ column=(type=char(40) updatewhereclause=yes name=co_color dbname="co_color" )
+ column=(type=char(30) updatewhereclause=yes name=de_color dbname="de_color" )
+ column=(type=char(40) updatewhereclause=yes name=lote dbname="lote" )
+ column=(type=char(250) updatewhereclause=yes name=composicion dbname="composicion" )
+ column=(type=decimal(0) updatewhereclause=yes name=cantidad dbname="cantidad" )
+ column=(type=char(40) updatewhereclause=yes name=co_fabrica_exp dbname="co_fabrica_exp" )
+ column=(type=char(30) updatewhereclause=yes name=de_fabrica_exp dbname="de_fabrica_exp" )
+ column=(type=char(40) updatewhereclause=yes name=co_linea_exp dbname="co_linea_exp" )
+ column=(type=char(30) updatewhereclause=yes name=de_linea_exp dbname="de_linea_exp" )
+ column=(type=char(30) updatewhereclause=yes name=co_ref_exp dbname="co_ref_exp" )
+ column=(type=char(50) updatewhereclause=yes name=de_referencia_exp dbname="de_referencia_exp" )
+ column=(type=char(15) updatewhereclause=yes name=co_talla_exp dbname="co_talla_exp" )
+ column=(type=char(20) updatewhereclause=yes name=de_talla_exp dbname="de_talla_exp" )
+ column=(type=char(8) updatewhereclause=yes name=co_color_exp dbname="co_color_exp" )
+ column=(type=char(30) updatewhereclause=yes name=de_color_exp dbname="de_color_exp" )
+ column=(type=char(20) updatewhereclause=yes name=ean dbname="ean" )
+ column=(type=char(40) updatewhereclause=yes name=co_cliente dbname="co_cliente" )
+ column=(type=char(40) updatewhereclause=yes name=co_sucursal dbname="co_sucursal" )
+ column=(type=char(40) updatewhereclause=yes name=pedido dbname="pedido" )
+ column=(type=char(2) updatewhereclause=yes name=tipo_pedido dbname="tipo_pedido" )
+ column=(type=char(40) updatewhereclause=yes name=pr_etiqueta dbname="pr_etiqueta" )
+ column=(type=char(40) updatewhereclause=yes name=ca_x_uempq_pd dbname="ca_x_uempq_pd" )
+ column=(type=char(40) updatewhereclause=yes name=ca_x_uempq_futura dbname="ca_x_uempq_futura" )
+ column=(type=char(30) updatewhereclause=yes name=fabrica_propietaria dbname="fabrica_propietaria" )
+ column=(type=char(40) updatewhereclause=yes name=nit_fabrica_propietaria dbname="nit_fabrica_propietaria" )
+ column=(type=char(40) updatewhereclause=yes name=instruccion_cuidado1 dbname="instruccion_cuidado1" )
+ column=(type=char(40) updatewhereclause=yes name=instruccion_cuidado2 dbname="instruccion_cuidado2" )
+ column=(type=char(40) updatewhereclause=yes name=instruccion_cuidado3 dbname="instruccion_cuidado3" )
+ column=(type=char(40) updatewhereclause=yes name=instruccion_cuidado4 dbname="instruccion_cuidado4" )
+ column=(type=char(40) updatewhereclause=yes name=instruccion_cuidado5 dbname="instruccion_cuidado5" )
+ column=(type=char(40) updatewhereclause=yes name=instruccion_cuidado6 dbname="instruccion_cuidado6" )
+ column=(type=char(40) updatewhereclause=yes name=instruccion_cuidado7 dbname="instruccion_cuidado7" )
+ column=(type=char(40) updatewhereclause=yes name=instruccion_cuidado8 dbname="instruccion_cuidado8" )
+ column=(type=char(40) updatewhereclause=yes name=instruccion_cuidado9 dbname="instruccion_cuidado9" )
+ column=(type=char(40) updatewhereclause=yes name=instruccion_cuidado10 dbname="instruccion_cuidado10" )
+ column=(type=char(40) updatewhereclause=yes name=instruccion_cuidado11 dbname="instruccion_cuidado11" )
+ column=(type=char(40) updatewhereclause=yes name=instruccion_cuidado12 dbname="instruccion_cuidado12" )
+ column=(type=char(40) updatewhereclause=yes name=instruccion_cuidado13 dbname="instruccion_cuidado13" )
+ column=(type=char(50) updatewhereclause=yes name=logos_cuidado dbname="logos_cuidado" )
+ column=(type=char(50) updatewhereclause=yes name=logos_cuidado_adicional dbname="logos_cuidado_adicional" )
+ column=(type=char(50) updatewhereclause=yes name=composicion_2 dbname="composicion_2" )
+ column=(type=char(50) updatewhereclause=yes name=composicion_3 dbname="composicion_3" )
+ column=(type=char(50) updatewhereclause=yes name=composicion_4 dbname="composicion_4" )
+ column=(type=char(20) updatewhereclause=yes name=de_talla_etiqueta dbname="de_talla_etiqueta" )
+ column=(type=char(3) updatewhereclause=yes name=co_marca dbname="co_marca" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_1 dbname="importadores_marca_1" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_2 dbname="importadores_marca_2" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_3 dbname="importadores_marca_3" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_4 dbname="importadores_marca_4" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_5 dbname="importadores_marca_5" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_6 dbname="importadores_marca_6" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_7 dbname="importadores_marca_7" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_8 dbname="importadores_marca_8" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_9 dbname="importadores_marca_9" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_10 dbname="importadores_marca_10" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_11 dbname="importadores_marca_11" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_12 dbname="importadores_marca_12" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_13 dbname="importadores_marca_13" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_14 dbname="importadores_marca_14" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_15 dbname="importadores_marca_15" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_16 dbname="importadores_marca_16" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_17 dbname="importadores_marca_17" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_18 dbname="importadores_marca_18" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_19 dbname="importadores_marca_19" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_20 dbname="importadores_marca_20" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_21 dbname="importadores_marca_21" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_22 dbname="importadores_marca_22" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_23 dbname="importadores_marca_23" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_24 dbname="importadores_marca_24" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_25 dbname="importadores_marca_25" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_26 dbname="importadores_marca_26" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_27 dbname="importadores_marca_27" )
+ column=(type=char(100) updatewhereclause=yes name=importadores_marca_28 dbname="importadores_marca_28" )
+ column=(type=long updatewhereclause=yes name=codigo_empleado dbname="codigo_empleado" )
+ column=(type=char(20) updatewhereclause=yes name=observacion1 dbname="observacion1" )
+ column=(type=char(20) updatewhereclause=yes name=observacion2 dbname="observacion2" )
+ column=(type=char(20) updatewhereclause=yes name=observacion3 dbname="observacion3" )
+ column=(type=char(20) updatewhereclause=yes name=observacion4 dbname="observacion4" )
+ column=(type=char(40) updatewhereclause=yes name=ca_unidades_suger dbname="ca_unidades_suger" )
+ retrieve="select distinct dt_canasta_corte.po,
+dt_canasta_corte.co_fabrica_ref ||'' as co_fabrica_ref, 
+dt_canasta_corte.co_linea || '' as co_linea,
+(select m_lineas.de_linea 
+	from m_lineas 
+	where m_lineas.co_fabrica = dt_canasta_corte.co_fabrica_ref 
+	and m_lineas.co_linea = dt_canasta_corte.co_linea) as de_linea,
+dt_canasta_corte.co_referencia || '' as co_referencia,
+ref_p.de_referencia  as de_referencia,
+dt_canasta_corte.co_talla || '' as co_talla,
+(SELECT DISTINCT m_tallas_x_grupo_pv.de_talla  
+    FROM m_tallas_x_grupo_pv  
+   WHERE ( ref_p.co_grupo_tlla = m_tallas_x_grupo_pv.co_grupo_tlla ) and  
+         ( cast(dt_canasta_corte.co_talla as char(10)) = m_tallas_x_grupo_pv.co_talla )   
+          )  as de_talla,
+dt_canasta_corte.co_calidad || '' as co_calidad,
+dt_canasta_corte.co_color || '' as co_color,
+(select distinct m_colores_pv.de_color  
+	from m_colores_pv
+	where m_colores_pv.co_grupo_color = ref_p.co_grupo_color
+	and  m_colores_pv.co_color   = cast(dt_canasta_corte.co_color as char(8))) as de_color,
+dt_canasta_corte.lote || '' as lote,
+pr_hallar_composicion_conseparador(dt_canasta_corte.co_fabrica_ref, dt_canasta_corte.co_linea, dt_canasta_corte.co_referencia, dt_canasta_corte.co_color,3,:as_separador) as composicion,
+(select round(sum(ca_actual),0)
+   from dt_canasta_corte dt, h_canasta_corte h
+  where h.cs_canasta = dt.cs_canasta
+    and dt.co_fabrica_ref = dt_canasta_corte.co_fabrica_ref
+    and dt.co_linea = dt_canasta_corte.co_linea
+    and dt.co_referencia = dt_canasta_corte.co_referencia
+    and dt.co_talla = dt_canasta_corte.co_talla  
+    and dt.co_calidad = dt_canasta_corte.co_calidad
+    and dt.co_color = dt_canasta_corte.co_color
+    and dt.lote  = dt_canasta_corte.lote
+    and h.cs_canasta = dt_canasta_corte.cs_canasta)  as cantidad,
+dt_canasta_corte.co_fabrica_exp || '' as co_fabrica_exp, 
+(select m_fabricas.de_fabrica 
+	from m_fabricas 
+	where m_fabricas.co_fabrica = m_referencias_eq_nuevo.co_fabrica_exp) as de_fabrica_exp,
+dt_canasta_corte.co_linea_exp || '' as co_linea_exp,
+(select m_lineas.de_linea 
+	from m_lineas
+	where m_lineas.co_fabrica = m_referencias_eq_nuevo.co_fabrica_exp 
+	and m_lineas.co_linea = m_referencias_eq_nuevo.co_linea_exp) as de_linea_exp,
+dt_canasta_corte.co_ref_exp || '' as co_ref_exp,
+ref_v.de_referencia as de_referencia_exp,
+dt_canasta_corte.co_talla_exp || '' as co_talla_exp,
+(SELECT DISTINCT m_tallas_x_grupo_pv.de_talla  
+    FROM m_tallas_x_grupo_pv  
+   WHERE ( ref_v.co_grupo_tlla = m_tallas_x_grupo_pv.co_grupo_tlla ) and  
+         ( dt_canasta_corte.co_talla_exp = m_tallas_x_grupo_pv.co_talla ) )  as de_talla_exp,
+dt_canasta_corte.co_color_exp || '' as co_color_exp,
+(select distinct m_colores_pv.de_color  
+	from m_colores_pv
+	where m_colores_pv.co_grupo_color = ref_v.co_grupo_color
+	and  m_colores_pv.co_color  = dt_canasta_corte.co_color_exp) as de_color_exp,
+dt_canasta_corte.upccode as EAN,
+peddig.co_cliente || '' as co_cliente,
+peddig.co_sucursal || '' as co_sucursal,
+dt_canasta_corte.pedido || '' as pedido,
+peddig.tipo_pedido,
+Round(dt_ref_x_col_pv.pr_etiqueta,2) || '' as pr_etiqueta,
+dt_ref_x_col_pv.ca_x_uempq_pd || '' as ca_x_uempq_pd,
+dt_ref_x_col_pv.ca_x_uempq_futura || '' as ca_x_uempq_futura,
+(select m_fabricas.de_fabrica
+	from m_fabricas
+	where m_fabricas.co_fabrica = h_canasta_corte.co_fabrica_pro) as fabrica_propietaria,
+(select m_fabricas.nit || ''
+	from m_fabricas
+	where m_fabricas.co_fabrica = h_canasta_corte.co_fabrica_pro) as nit_fabrica_propietaria,
+(Select distinct instruccion_lavado.de_lavado 
+	From dt_ficha_composicion, instruccion_lavado
+	where  dt_ficha_composicion.porc_participa_cmcial > 0 and
+	dt_ficha_composicion.co_instruccion = instruccion_lavado.co_lavado and
+	instruccion_lavado.posicion = 1 and 
+	dt_ficha_composicion.co_fabrica = m_referencias_eq_nuevo.co_fabrica  and
+	dt_ficha_composicion.co_linea = m_referencias_eq_nuevo.co_linea  and
+	dt_ficha_composicion.co_referencia = m_referencias_eq_nuevo.co_referencia  and
+	dt_ficha_composicion.co_color = m_referencias_eq_nuevo.co_color  ) as instruccion_cuidado1,
+(Select distinct instruccion_lavado.de_lavado 
+	From dt_ficha_composicion, instruccion_lavado
+	where  dt_ficha_composicion.porc_participa_cmcial > 0 and
+	dt_ficha_composicion.co_instruccion = instruccion_lavado.co_lavado and
+	instruccion_lavado.posicion = 2 and 
+	dt_ficha_composicion.co_fabrica = m_referencias_eq_nuevo.co_fabrica  and
+	dt_ficha_composicion.co_linea = m_referencias_eq_nuevo.co_linea  and
+	dt_ficha_composicion.co_referencia = m_referencias_eq_nuevo.co_referencia  and
+	dt_ficha_composicion.co_color = m_referencias_eq_nuevo.co_color  ) as instruccion_cuidado2,
+(Select  distinct instruccion_lavado.de_lavado 
+	From dt_ficha_composicion, instruccion_lavado
+	where  dt_ficha_composicion.porc_participa_cmcial > 0 and
+	dt_ficha_composicion.co_instruccion = instruccion_lavado.co_lavado and
+	instruccion_lavado.posicion = 3 and 
+	dt_ficha_composicion.co_fabrica = m_referencias_eq_nuevo.co_fabrica  and
+	dt_ficha_composicion.co_linea = m_referencias_eq_nuevo.co_linea  and
+	dt_ficha_composicion.co_referencia = m_referencias_eq_nuevo.co_referencia  and
+	dt_ficha_composicion.co_color = m_referencias_eq_nuevo.co_color  ) as instruccion_cuidado3,
+(Select distinct instruccion_lavado.de_lavado 
+	From dt_ficha_composicion, instruccion_lavado
+	where  dt_ficha_composicion.porc_participa_cmcial > 0 and
+	dt_ficha_composicion.co_instruccion = instruccion_lavado.co_lavado and
+	instruccion_lavado.posicion = 4 and 
+	dt_ficha_composicion.co_fabrica = m_referencias_eq_nuevo.co_fabrica  and
+	dt_ficha_composicion.co_linea = m_referencias_eq_nuevo.co_linea  and
+	dt_ficha_composicion.co_referencia = m_referencias_eq_nuevo.co_referencia  and
+	dt_ficha_composicion.co_color = m_referencias_eq_nuevo.co_color  ) as instruccion_cuidado4,
+(Select distinct instruccion_lavado.de_lavado 
+	From dt_ficha_composicion, instruccion_lavado
+	where  dt_ficha_composicion.porc_participa_cmcial > 0 and
+	dt_ficha_composicion.co_instruccion = instruccion_lavado.co_lavado and
+	instruccion_lavado.posicion = 5 and 
+	dt_ficha_composicion.co_fabrica = m_referencias_eq_nuevo.co_fabrica  and
+	dt_ficha_composicion.co_linea = m_referencias_eq_nuevo.co_linea  and
+	dt_ficha_composicion.co_referencia = m_referencias_eq_nuevo.co_referencia  and
+	dt_ficha_composicion.co_color = m_referencias_eq_nuevo.co_color  ) as instruccion_cuidado5,
+(Select distinct instruccion_lavado.de_lavado 
+	From dt_ficha_composicion, instruccion_lavado
+	where  dt_ficha_composicion.porc_participa_cmcial > 0 and
+	dt_ficha_composicion.co_instruccion = instruccion_lavado.co_lavado and
+	instruccion_lavado.posicion = 6 and 
+	dt_ficha_composicion.co_fabrica = m_referencias_eq_nuevo.co_fabrica  and
+	dt_ficha_composicion.co_linea = m_referencias_eq_nuevo.co_linea  and
+	dt_ficha_composicion.co_referencia = m_referencias_eq_nuevo.co_referencia  and
+	dt_ficha_composicion.co_color = m_referencias_eq_nuevo.co_color  ) as instruccion_cuidado6,
+(Select distinct instruccion_lavado.de_lavado 
+	From dt_ficha_composicion, instruccion_lavado
+	where  dt_ficha_composicion.porc_participa_cmcial > 0 and
+	dt_ficha_composicion.co_instruccion = instruccion_lavado.co_lavado and
+	instruccion_lavado.posicion = 7 and 
+	dt_ficha_composicion.co_fabrica = m_referencias_eq_nuevo.co_fabrica  and
+	dt_ficha_composicion.co_linea = m_referencias_eq_nuevo.co_linea  and
+	dt_ficha_composicion.co_referencia = m_referencias_eq_nuevo.co_referencia  and
+	dt_ficha_composicion.co_color = m_referencias_eq_nuevo.co_color  ) as instruccion_cuidado7,
+(Select distinct instruccion_lavado.de_lavado 
+	From dt_ficha_composicion, instruccion_lavado
+	where  dt_ficha_composicion.porc_participa_cmcial > 0 and
+	dt_ficha_composicion.co_instruccion = instruccion_lavado.co_lavado and
+	instruccion_lavado.posicion = 8 and 
+	dt_ficha_composicion.co_fabrica = m_referencias_eq_nuevo.co_fabrica  and
+	dt_ficha_composicion.co_linea = m_referencias_eq_nuevo.co_linea  and
+	dt_ficha_composicion.co_referencia = m_referencias_eq_nuevo.co_referencia  and
+	dt_ficha_composicion.co_color = m_referencias_eq_nuevo.co_color  ) as instruccion_cuidado8,
+(Select distinct instruccion_lavado.de_lavado 
+	From dt_ficha_composicion, instruccion_lavado
+	where  dt_ficha_composicion.porc_participa_cmcial > 0 and
+	dt_ficha_composicion.co_instruccion = instruccion_lavado.co_lavado and
+	instruccion_lavado.posicion = 9 and 
+	dt_ficha_composicion.co_fabrica = m_referencias_eq_nuevo.co_fabrica  and
+	dt_ficha_composicion.co_linea = m_referencias_eq_nuevo.co_linea  and
+	dt_ficha_composicion.co_referencia = m_referencias_eq_nuevo.co_referencia  and
+	dt_ficha_composicion.co_color = m_referencias_eq_nuevo.co_color  ) as instruccion_cuidado9,
+(Select distinct instruccion_lavado.de_lavado 
+	From dt_ficha_composicion, instruccion_lavado
+	where  dt_ficha_composicion.porc_participa_cmcial > 0 and
+	dt_ficha_composicion.co_instruccion = instruccion_lavado.co_lavado and
+	instruccion_lavado.posicion = 10 and 
+	dt_ficha_composicion.co_fabrica = m_referencias_eq_nuevo.co_fabrica  and
+	dt_ficha_composicion.co_linea = m_referencias_eq_nuevo.co_linea  and
+	dt_ficha_composicion.co_referencia = m_referencias_eq_nuevo.co_referencia  and
+	dt_ficha_composicion.co_color = m_referencias_eq_nuevo.co_color  ) as instruccion_cuidado10,
+(Select distinct instruccion_lavado.de_lavado 
+	From dt_ficha_composicion, instruccion_lavado
+	where  dt_ficha_composicion.porc_participa_cmcial > 0 and
+	dt_ficha_composicion.co_instruccion = instruccion_lavado.co_lavado and
+	instruccion_lavado.posicion = 11 and 
+	dt_ficha_composicion.co_fabrica = m_referencias_eq_nuevo.co_fabrica  and
+	dt_ficha_composicion.co_linea = m_referencias_eq_nuevo.co_linea  and
+	dt_ficha_composicion.co_referencia = m_referencias_eq_nuevo.co_referencia  and
+	dt_ficha_composicion.co_color = m_referencias_eq_nuevo.co_color  ) as instruccion_cuidado11,
+(Select distinct instruccion_lavado.de_lavado 
+	From dt_ficha_composicion, instruccion_lavado
+	where  dt_ficha_composicion.porc_participa_cmcial > 0 and
+	dt_ficha_composicion.co_instruccion = instruccion_lavado.co_lavado and
+	instruccion_lavado.posicion = 12 and 
+	dt_ficha_composicion.co_fabrica = m_referencias_eq_nuevo.co_fabrica  and
+	dt_ficha_composicion.co_linea = m_referencias_eq_nuevo.co_linea  and
+	dt_ficha_composicion.co_referencia = m_referencias_eq_nuevo.co_referencia  and
+	dt_ficha_composicion.co_color = m_referencias_eq_nuevo.co_color  ) as instruccion_cuidado12,
+(Select distinct instruccion_lavado.de_lavado 
+	From dt_ficha_composicion, instruccion_lavado
+	where  dt_ficha_composicion.porc_participa_cmcial > 0 and
+	dt_ficha_composicion.co_instruccion = instruccion_lavado.co_lavado and
+	instruccion_lavado.posicion = 13 and 
+	dt_ficha_composicion.co_fabrica = m_referencias_eq_nuevo.co_fabrica  and
+	dt_ficha_composicion.co_linea = m_referencias_eq_nuevo.co_linea  and
+	dt_ficha_composicion.co_referencia = m_referencias_eq_nuevo.co_referencia  and
+	dt_ficha_composicion.co_color = m_referencias_eq_nuevo.co_color  ) as instruccion_cuidado13,
+/*
+pr_hallar_logos_cuidado(dt_canasta_corte.co_fabrica_ref, dt_canasta_corte.co_linea, dt_canasta_corte.co_referencia, dt_canasta_corte.co_color) as logos_cuidado,
+pr_hallar_logos_reimpex_cuidado(dt_canasta_corte.co_fabrica_ref, dt_canasta_corte.co_linea, dt_canasta_corte.co_referencia, dt_canasta_corte.co_color) as logos_cuidado_adicional,
+*/
+pr_hallar_logos_reimpex_cuidado_sel(dt_canasta_corte.co_fabrica_ref, dt_canasta_corte.co_linea, dt_canasta_corte.co_referencia, dt_canasta_corte.co_color,1) as logos_cuidado,
+pr_hallar_logos_reimpex_cuidado_sel(dt_canasta_corte.co_fabrica_ref, dt_canasta_corte.co_linea, dt_canasta_corte.co_referencia, dt_canasta_corte.co_color,2) as logos_cuidado_adicional,
+cast('' as char(50)) composicion_2,
+cast('' as char(50)) composicion_3,
+cast('' as char(50)) composicion_4,
+(SELECT DISTINCT m_tallas_x_grupo_pv.de_talla_etiqueta  
+    FROM m_tallas_x_grupo_pv  
+   WHERE ( ref_v.co_grupo_tlla = m_tallas_x_grupo_pv.co_grupo_tlla ) and  
+         ( dt_canasta_corte.co_talla_exp = m_tallas_x_grupo_pv.co_talla ) )  as de_talla_etiqueta,
+ref_v.co_marca,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 1),'') importadores_marca_1,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 2),'') importadores_marca_2,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 3),'') importadores_marca_3,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 4),'') importadores_marca_4,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 5),'') importadores_marca_5,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 6),'') importadores_marca_6,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 7),'') importadores_marca_7,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 8),'') importadores_marca_8,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 9),'') importadores_marca_9,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 10),'') importadores_marca_10,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 11),'') importadores_marca_11,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 12),'') importadores_marca_12,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 13),'') importadores_marca_13,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 14),'') importadores_marca_14,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 15),'') importadores_marca_15,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 16),'') importadores_marca_16,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 17),'') importadores_marca_17,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 18),'') importadores_marca_18,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 19),'') importadores_marca_19,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 20),'') importadores_marca_20,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 21),'') importadores_marca_21,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 22),'') importadores_marca_22,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 23),'') importadores_marca_23,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 24),'') importadores_marca_24,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 25),'') importadores_marca_25,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 26),'') importadores_marca_26,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 27),'') importadores_marca_27,
+Nvl((select importador
+		from m_importadores_marca
+		where m_importadores_marca.co_marca = ref_v.co_marca and
+				orden = 28),'') importadores_marca_28,
+0 codigo_empleado,
+dt_ref_x_col_pv.observacion1,
+dt_ref_x_col_pv.observacion2,
+dt_ref_x_col_pv.observacion3,
+dt_ref_x_col_pv.observacion4,
+ref_v.ca_unidades_suger || '' ca_unidades_suger
+
+
+
+from h_canasta_corte, dt_canasta_corte, peddig, dt_ref_x_col_pv, h_preref_pv ref_p, h_preref_pv ref_v, m_referencias_eq_nuevo
+where h_canasta_corte.cs_canasta = dt_canasta_corte.cs_canasta
+and peddig.pedido = dt_canasta_corte.pedido
+and peddig.orden_compra = dt_canasta_corte.po
+and dt_ref_x_col_pv.co_fabrica = m_referencias_eq_nuevo.co_fabrica_exp 
+and dt_ref_x_col_pv.co_linea = m_referencias_eq_nuevo.co_linea_exp 
+and dt_ref_x_col_pv.co_referencia = m_referencias_eq_nuevo.co_ref_exp
+and dt_ref_x_col_pv.co_talla = m_referencias_eq_nuevo.co_talla_exp 
+and dt_ref_x_col_pv.co_color = m_referencias_eq_nuevo.co_color_exp
+and dt_ref_x_col_pv.co_calidad = m_referencias_eq_nuevo.co_calidad
+and dt_ref_x_col_pv.co_tipo_ref = 'V'
+and dt_canasta_corte.co_fabrica_ref = m_referencias_eq_nuevo.co_fabrica
+and dt_canasta_corte.co_linea = m_referencias_eq_nuevo.co_linea
+and dt_canasta_corte.co_referencia = m_referencias_eq_nuevo.co_referencia
+and dt_canasta_corte.co_talla = m_referencias_eq_nuevo.co_talla 
+and dt_canasta_corte.co_color = m_referencias_eq_nuevo.co_color
+and dt_canasta_corte.co_calidad = m_referencias_eq_nuevo.co_calidad
+
+and ref_p.co_fabrica = dt_canasta_corte.co_fabrica_ref 
+and ref_p.co_linea = dt_canasta_corte.co_linea 
+and ref_p.co_referencia = cast( dt_canasta_corte.co_referencia as char(15))
+and ref_p.co_tipo_ref = 'P'
+
+and ref_v.co_cliente = dt_ref_x_col_pv.co_cliente 
+and ref_v.co_sucursal = dt_ref_x_col_pv.co_sucursal 
+and ref_v.co_fabrica = dt_canasta_corte.co_fabrica_exp 
+and ref_v.co_linea = dt_canasta_corte.co_linea_exp 
+and ref_v.co_referencia = dt_canasta_corte.co_ref_exp
+and ref_v.co_tipo_ref = 'V'
+and ref_v.co_estado_producto <> -1
+
+and dt_canasta_corte.co_fabrica_exp = m_referencias_eq_nuevo.co_fabrica_exp
+and dt_canasta_corte.co_linea_exp = m_referencias_eq_nuevo.co_linea_exp
+and dt_canasta_corte.co_ref_exp = m_referencias_eq_nuevo.co_ref_exp
+and dt_canasta_corte.co_talla_exp = m_referencias_eq_nuevo.co_talla_exp 
+and dt_canasta_corte.co_color_exp = m_referencias_eq_nuevo.co_color_exp
+
+and ((peddig.tipo_pedido = 'NA' and sw_tipo = 1) or (peddig.tipo_pedido <> 'NA' and sw_tipo = 2 
+		and peddig.co_cliente = m_referencias_eq_nuevo.co_cliente
+		and peddig.co_sucursal = m_referencias_eq_nuevo.co_sucursal
+		and peddig.co_cliente = ref_v.co_cliente
+		and peddig.co_sucursal = ref_v.co_sucursal
+		))
+
+and h_canasta_corte.cs_canasta = :as_canasta 
+and dt_canasta_corte.cs_orden_corte = :an_orden_corte" arguments=(("as_canasta", string),("an_orden_corte", number),("as_separador", string))  sort="lote A " )
+text(band=header alignment="2" text="INFORMACI$$HEX1$$d300$$ENDHEX$$N DE REFERENCIA PRODUCCI$$HEX1$$d300$$ENDHEX$$N (RECIPIENTE)" border="2" color="134217741" x="0" y="12" height="56" width="3319" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="PO" border="2" color="134217741" x="5" y="76" height="56" width="480" html.valueishtml="0"  name=po_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="FABRICA" border="2" color="134217741" x="494" y="76" height="56" width="119" html.valueishtml="0"  name=de_fabrica_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="L$$HEX1$$cd00$$ENDHEX$$NEA" border="2" color="134217741" x="622" y="76" height="56" width="494" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="REFERENCIA" border="2" color="134217741" x="1125" y="76" height="56" width="777" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="TALLA" border="2" color="134217741" x="1911" y="76" height="56" width="421" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="CALIDAD" border="2" color="134217741" x="2341" y="76" height="56" width="105" html.valueishtml="0"  name=co_calidad_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="COLOR" border="2" color="134217741" x="2455" y="76" height="56" width="571" html.valueishtml="0"  name=co_color_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="LOTE" border="2" color="134217741" x="3035" y="76" height="56" width="283" html.valueishtml="0"  name=lote_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="CANTIDAD" border="2" color="134217741" x="3328" y="76" height="56" width="251" html.valueishtml="0"  name=cantidad_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="COMPOSICI$$HEX1$$d300$$ENDHEX$$N" border="2" color="134217741" x="3584" y="76" height="56" width="2098" html.valueishtml="0"  name=composicion_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="INFORMACI$$HEX1$$d300$$ENDHEX$$N DE REFERENCIA DE VENTA" border="2" color="134217741" x="3323" y="12" height="56" width="6464" html.valueishtml="0"  name=t_2 visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="F$$HEX1$$c100$$ENDHEX$$BRICA" border="2" color="134217741" x="5687" y="76" height="56" width="626" html.valueishtml="0"  name=co_fabrica_exp_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="L$$HEX1$$cd00$$ENDHEX$$NEA" border="2" color="134217741" x="6322" y="76" height="56" width="727" html.valueishtml="0"  name=co_linea_exp_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="REFERENCIA" border="2" color="134217741" x="7058" y="76" height="56" width="997" html.valueishtml="0"  name=co_ref_exp_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="TALLA" border="2" color="134217741" x="8064" y="76" height="56" width="457" html.valueishtml="0"  name=co_talla_exp_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="COLOR" border="2" color="134217741" x="8530" y="76" height="56" width="768" html.valueishtml="0"  name=co_color_exp_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="EAN" border="2" color="134217741" x="9307" y="76" height="56" width="480" html.valueishtml="0"  name=ean_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="C$$HEX1$$d300$$ENDHEX$$DIGO CLIENTE" border="2" color="134217741" x="9797" y="12" height="120" width="297" html.valueishtml="0"  name=co_cliente_t visible="1"  hidesnaked=1  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="SUCURSAL" border="2" color="134217741" x="10103" y="12" height="120" width="357" html.valueishtml="0"  name=co_sucursal_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="PEDIDO" border="2" color="134217741" x="10469" y="12" height="120" width="357" html.valueishtml="0"  name=pedido_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="TIPO PEDIDO" border="2" color="134217741" x="10834" y="12" height="120" width="265" html.valueishtml="0"  name=tipo_pedido_t visible="1"  hidesnaked=1  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="PRECIO ETIQUETA" border="2" color="134217741" x="11109" y="12" height="120" width="297" html.valueishtml="0"  name=pr_etiqueta_t visible="1"  hidesnaked=1  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="UNIDAD EMPAQUE" border="2" color="134217741" x="11415" y="12" height="120" width="306" html.valueishtml="0"  name=ca_x_uempq_pd_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="UNIDAD EMPAQUE FUTURA" border="2" color="134217741" x="11730" y="12" height="120" width="448" html.valueishtml="0"  name=ca_x_uempq_futura_t visible="1"  hidesnaked=1  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="F$$HEX1$$c100$$ENDHEX$$BRICA PROPIETARIA" border="2" color="134217741" x="12187" y="12" height="120" width="389" html.valueishtml="0"  name=fabrica_propietaria_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="NIT F$$HEX1$$c100$$ENDHEX$$BRICA PROPIETRIA" border="2" color="134217741" x="12585" y="12" height="120" width="389" html.valueishtml="0"  name=nit_fabrica_propietaria_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="INSTRUCCI$$HEX1$$d300$$ENDHEX$$N CUIDADO1" border="2" color="134217741" x="12983" y="12" height="120" width="937" html.valueishtml="0"  name=instruccion_cuidado1_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Instruccion Cuidado2" border="2" color="134217741" x="13925" y="12" height="120" width="937" html.valueishtml="0"  name=instruccion_cuidado2_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Instruccion Cuidado3" border="2" color="134217741" x="14866" y="12" height="120" width="937" html.valueishtml="0"  name=instruccion_cuidado3_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Instruccion Cuidado4" border="2" color="134217741" x="15808" y="12" height="120" width="937" html.valueishtml="0"  name=instruccion_cuidado4_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Instruccion Cuidado5" border="2" color="134217741" x="16750" y="12" height="120" width="937" html.valueishtml="0"  name=instruccion_cuidado5_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Instruccion Cuidado6" border="2" color="134217741" x="17691" y="12" height="120" width="937" html.valueishtml="0"  name=instruccion_cuidado6_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Instruccion Cuidado7" border="2" color="134217741" x="18633" y="12" height="120" width="937" html.valueishtml="0"  name=instruccion_cuidado7_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Instruccion Cuidado8" border="2" color="134217741" x="19575" y="12" height="120" width="937" html.valueishtml="0"  name=instruccion_cuidado8_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Instruccion Cuidado9" border="2" color="134217741" x="20521" y="12" height="120" width="937" html.valueishtml="0"  name=instruccion_cuidado9_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Instruccion Cuidado10" border="2" color="134217741" x="21463" y="12" height="120" width="937" html.valueishtml="0"  name=instruccion_cuidado10_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Instruccion Cuidado11" border="2" color="134217741" x="22405" y="12" height="120" width="937" html.valueishtml="0"  name=instruccion_cuidado11_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Instruccion Cuidado12" border="2" color="134217741" x="23346" y="12" height="120" width="937" html.valueishtml="0"  name=instruccion_cuidado12_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Instruccion Cuidado13" border="2" color="134217741" x="24288" y="12" height="120" width="937" html.valueishtml="0"  name=instruccion_cuidado13_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Logos Cuidado" border="2" color="134217741" x="25230" y="12" height="120" width="1166" html.valueishtml="0"  name=logos_cuidado_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Logos Cuidado Adicional" border="2" color="134217741" x="26395" y="12" height="120" width="1152" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="De talla etiqueta" border="2" color="134217741" x="27547" y="12" height="120" width="462" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Marca" border="2" color="134217741" x="28014" y="12" height="120" width="219" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca1" border="2" color="134217741" x="28238" y="12" height="120" width="672" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca2" border="2" color="134217741" x="28914" y="12" height="120" width="672" html.valueishtml="0"  name=t_7 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca3" border="2" color="134217741" x="29591" y="12" height="120" width="672" html.valueishtml="0"  name=t_8 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca4" border="2" color="134217741" x="30267" y="12" height="120" width="672" html.valueishtml="0"  name=t_9 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca5" border="2" color="134217741" x="30944" y="12" height="120" width="672" html.valueishtml="0"  name=t_10 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca6" border="2" color="134217741" x="31621" y="12" height="120" width="672" html.valueishtml="0"  name=t_11 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca7" border="2" color="134217741" x="32302" y="12" height="120" width="672" html.valueishtml="0"  name=t_12 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca8" border="2" color="134217741" x="32978" y="12" height="120" width="672" html.valueishtml="0"  name=t_13 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca9" border="2" color="134217741" x="33655" y="12" height="120" width="672" html.valueishtml="0"  name=t_14 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca11" border="2" color="134217741" x="34331" y="12" height="120" width="672" html.valueishtml="0"  name=t_15 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca10" border="2" color="134217741" x="35008" y="12" height="120" width="672" html.valueishtml="0"  name=t_16 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca12" border="2" color="134217741" x="35685" y="12" height="120" width="672" html.valueishtml="0"  name=t_17 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca13" border="2" color="134217741" x="36361" y="12" height="120" width="672" html.valueishtml="0"  name=t_18 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca14" border="2" color="134217741" x="37038" y="12" height="120" width="672" html.valueishtml="0"  name=t_19 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca15" border="2" color="134217741" x="37714" y="12" height="120" width="672" html.valueishtml="0"  name=t_20 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca16" border="2" color="134217741" x="38391" y="12" height="120" width="672" html.valueishtml="0"  name=t_21 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca17" border="2" color="134217741" x="39067" y="12" height="120" width="672" html.valueishtml="0"  name=t_22 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca18" border="2" color="134217741" x="39749" y="12" height="120" width="672" html.valueishtml="0"  name=t_23 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca19" border="2" color="134217741" x="40425" y="12" height="120" width="672" html.valueishtml="0"  name=t_24 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca20" border="2" color="134217741" x="41102" y="12" height="120" width="672" html.valueishtml="0"  name=t_25 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca21" border="2" color="134217741" x="41778" y="12" height="120" width="672" html.valueishtml="0"  name=t_26 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca22" border="2" color="134217741" x="42455" y="12" height="120" width="672" html.valueishtml="0"  name=t_27 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca23" border="2" color="134217741" x="43131" y="12" height="120" width="672" html.valueishtml="0"  name=t_28 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca24" border="2" color="134217741" x="43808" y="12" height="120" width="672" html.valueishtml="0"  name=t_29 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca25" border="2" color="134217741" x="44485" y="12" height="120" width="672" html.valueishtml="0"  name=t_30 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca26" border="2" color="134217741" x="45161" y="12" height="120" width="672" html.valueishtml="0"  name=t_31 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca27" border="2" color="134217741" x="45838" y="12" height="120" width="672" html.valueishtml="0"  name=t_32 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Importadores de Marca28" border="2" color="134217741" x="46519" y="12" height="120" width="672" html.valueishtml="0"  name=t_33 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Observacion1" border="2" color="134217741" x="47493" y="12" height="120" width="672" html.valueishtml="0"  name=t_34 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Observacion2" border="2" color="134217741" x="48169" y="12" height="120" width="672" html.valueishtml="0"  name=t_35 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Observacion3" border="2" color="134217741" x="48846" y="12" height="120" width="672" html.valueishtml="0"  name=t_36 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Codigo Empledo" border="2" color="134217741" x="47195" y="12" height="120" width="293" html.valueishtml="0"  name=t_38 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Observacion4" border="2" color="134217741" x="49522" y="12" height="120" width="672" html.valueishtml="0"  name=t_37 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unidad Sugerida" border="2" color="134217741" x="50199" y="12" height="120" width="320" html.valueishtml="0"  name=t_39 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="33554432" x="5" y="4" height="64" width="480" format="[general]" html.valueishtml="0" protect="0~t1"  name=po  tag="1" visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="494" y="4" height="64" width="119" format="[general]" html.valueishtml="0" protect="0~t1"  name=co_fabrica_ref  tag="2" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="2" color="33554432" x="622" y="4" height="64" width="91" format="[general]" html.valueishtml="0" protect="0~t1"  name=co_linea  tag="3" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="2" color="33554432" x="722" y="4" height="64" width="393" format="[general]" html.valueishtml="0" protect="0~t1"  name=de_linea  tag="4" visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="2" color="33554432" x="1125" y="4" height="64" width="242" format="[general]" html.valueishtml="0" protect="0~t1"  name=co_referencia  tag="5" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="2" color="33554432" x="1376" y="4" height="64" width="526" format="[general]" html.valueishtml="0" protect="0~t1"  name=de_referencia  tag="6" visible="1" edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="2" color="33554432" x="1911" y="4" height="64" width="128" format="[general]" html.valueishtml="0" protect="0~t1"  name=co_talla  tag="7" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="2" color="33554432" x="2048" y="4" height="64" width="283" format="[general]" html.valueishtml="0" protect="0~t1"  name=de_talla  tag="8" visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="2" color="33554432" x="2341" y="4" height="64" width="105" format="[general]" html.valueishtml="0" protect="0~t1"  name=co_calidad  tag="9" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="2" color="33554432" x="2455" y="4" height="64" width="192" format="[general]" html.valueishtml="0" protect="0~t1"  name=co_color  tag="10" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="2" color="33554432" x="2656" y="4" height="64" width="370" format="[general]" html.valueishtml="0" protect="0~t1"  name=de_color  tag="11" visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="2" color="33554432" x="3035" y="4" height="64" width="283" format="[general]" html.valueishtml="0" protect="0~t1"  name=lote  tag="12" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=10 border="2" color="33554432" x="3328" y="4" height="64" width="251" format="#,##0" html.valueishtml="0"  name=cantidad  tag="14" visible="1" edit.limit=0 edit.case=any edit.format="" edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="2" color="33554432" x="3584" y="4" height="64" width="521" format="[general]" html.valueishtml="0" protect="0~t1"  name=composicion  tag="13" visible="1" edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=50 alignment="0" tabsequence=32766 border="2" color="33554432" x="4110" y="4" height="64" width="521" format="[general]" html.valueishtml="0"  name=composicion_2  tag="50" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=51 alignment="0" tabsequence=32766 border="2" color="33554432" x="4635" y="4" height="64" width="521" format="[general]" html.valueishtml="0"  name=composicion_3  tag="51" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=52 alignment="0" tabsequence=32766 border="2" color="33554432" x="5161" y="4" height="64" width="521" format="[general]" html.valueishtml="0"  name=composicion_4  tag="52" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="2" color="33554432" x="5687" y="4" height="64" width="128" format="[general]" html.valueishtml="0" protect="0~t1"  name=co_fabrica_exp  tag="15" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="2" color="33554432" x="5824" y="4" height="64" width="489" format="[general]" html.valueishtml="0" protect="0~t1"  name=de_fabrica_exp  tag="16" visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="2" color="33554432" x="6322" y="4" height="64" width="206" format="[general]" html.valueishtml="0" protect="0~t1"  name=co_linea_exp  tag="17" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="2" color="33554432" x="6537" y="4" height="64" width="512" format="[general]" html.valueishtml="0" protect="0~t1"  name=de_linea_exp  tag="18" visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="2" color="33554432" x="7058" y="4" height="64" width="352" format="[general]" html.valueishtml="0" protect="0~t1"  name=co_ref_exp  tag="19" visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="2" color="33554432" x="7419" y="4" height="64" width="631" format="[general]" html.valueishtml="0" protect="0~t1"  name=de_referencia_exp  tag="20" visible="1" edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="2" color="33554432" x="8059" y="4" height="64" width="151" format="[general]" html.valueishtml="0" protect="0~t1"  name=co_talla_exp  tag="21" visible="1" edit.limit=15 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+column(band=detail id=22 alignment="0" tabsequence=32766 border="2" color="33554432" x="8219" y="4" height="64" width="302" format="[general]" html.valueishtml="0" protect="0~t1"  name=de_talla_exp  tag="22" visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+column(band=detail id=23 alignment="0" tabsequence=32766 border="2" color="33554432" x="8530" y="4" height="64" width="174" format="[general]" html.valueishtml="0" protect="0~t1"  name=co_color_exp  tag="23" visible="1" edit.limit=8 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+column(band=detail id=24 alignment="0" tabsequence=32766 border="2" color="33554432" x="8713" y="4" height="64" width="585" format="[general]" html.valueishtml="0" protect="0~t1"  name=de_color_exp  tag="24" visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+column(band=detail id=25 alignment="0" tabsequence=32766 border="2" color="33554432" x="9307" y="4" height="64" width="480" format="[general]" html.valueishtml="0" protect="0~t1"  name=ean  tag="25" visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+column(band=detail id=26 alignment="0" tabsequence=32766 border="2" color="33554432" x="9797" y="4" height="64" width="297" format="[general]" html.valueishtml="0" protect="0~t1"  name=co_cliente  tag="26" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=27 alignment="0" tabsequence=32766 border="2" color="33554432" x="10103" y="4" height="64" width="357" format="[general]" html.valueishtml="0" protect="0~t1"  name=co_sucursal  tag="27" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=28 alignment="0" tabsequence=32766 border="2" color="33554432" x="10469" y="4" height="64" width="357" format="[general]" html.valueishtml="0" protect="0~t1"  name=pedido  tag="28" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=29 alignment="0" tabsequence=32766 border="2" color="33554432" x="10834" y="4" height="64" width="265" format="[general]" html.valueishtml="0" protect="0~t1"  name=tipo_pedido  tag="29" visible="1" edit.limit=2 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=30 alignment="1" tabsequence=32766 border="2" color="33554432" x="11109" y="4" height="64" width="297" format="[general]" html.valueishtml="0" protect="0~t1"  name=pr_etiqueta  tag="30" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=31 alignment="0" tabsequence=32766 border="2" color="33554432" x="11415" y="4" height="64" width="306" format="[general]" html.valueishtml="0" protect="0~t1"  name=ca_x_uempq_pd  tag="31" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=32 alignment="0" tabsequence=32766 border="2" color="33554432" x="11730" y="4" height="64" width="448" format="[general]" html.valueishtml="0" protect="0~t1"  name=ca_x_uempq_futura  tag="32" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=33 alignment="0" tabsequence=32766 border="2" color="33554432" x="12187" y="4" height="64" width="389" format="[general]" html.valueishtml="0" protect="0~t1"  name=fabrica_propietaria  tag="33" visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=34 alignment="0" tabsequence=32766 border="2" color="33554432" x="12585" y="4" height="64" width="389" format="[general]" html.valueishtml="0" protect="0~t1"  name=nit_fabrica_propietaria  tag="34" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=35 alignment="0" tabsequence=32766 border="2" color="33554432" x="12983" y="4" height="64" width="937" format="[general]" html.valueishtml="0" protect="0~t1"  name=instruccion_cuidado1  tag="35" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=36 alignment="0" tabsequence=32766 border="2" color="33554432" x="13925" y="4" height="64" width="937" format="[general]" html.valueishtml="0" protect="0~t1"  name=instruccion_cuidado2  tag="36" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=37 alignment="0" tabsequence=32766 border="2" color="33554432" x="14866" y="4" height="64" width="937" format="[general]" html.valueishtml="0" protect="0~t1"  name=instruccion_cuidado3  tag="37" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=38 alignment="0" tabsequence=32766 border="2" color="33554432" x="15808" y="4" height="64" width="937" format="[general]" html.valueishtml="0" protect="0~t1"  name=instruccion_cuidado4  tag="38" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=39 alignment="0" tabsequence=32766 border="2" color="33554432" x="16750" y="4" height="64" width="937" format="[general]" html.valueishtml="0" protect="0~t1"  name=instruccion_cuidado5  tag="39" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=40 alignment="0" tabsequence=32766 border="2" color="33554432" x="17691" y="4" height="64" width="937" format="[general]" html.valueishtml="0" protect="0~t1"  name=instruccion_cuidado6  tag="40" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=41 alignment="0" tabsequence=32766 border="2" color="33554432" x="18633" y="4" height="64" width="937" format="[general]" html.valueishtml="0" protect="0~t1"  name=instruccion_cuidado7  tag="41" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=42 alignment="0" tabsequence=32766 border="2" color="33554432" x="19575" y="4" height="64" width="937" format="[general]" html.valueishtml="0" protect="0~t1"  name=instruccion_cuidado8  tag="42" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=43 alignment="0" tabsequence=32766 border="2" color="33554432" x="20521" y="4" height="64" width="937" format="[general]" html.valueishtml="0" protect="0~t1"  name=instruccion_cuidado9  tag="43" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=44 alignment="0" tabsequence=32766 border="2" color="33554432" x="21463" y="4" height="64" width="937" format="[general]" html.valueishtml="0" protect="0~t1"  name=instruccion_cuidado10  tag="44" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=45 alignment="0" tabsequence=32766 border="2" color="33554432" x="22405" y="4" height="64" width="937" format="[general]" html.valueishtml="0" protect="0~t1"  name=instruccion_cuidado11  tag="45" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=46 alignment="0" tabsequence=32766 border="2" color="33554432" x="23346" y="4" height="64" width="937" format="[general]" html.valueishtml="0" protect="0~t1"  name=instruccion_cuidado12  tag="46" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=47 alignment="0" tabsequence=32766 border="2" color="33554432" x="24288" y="4" height="64" width="937" format="[general]" html.valueishtml="0" protect="0~t1"  name=instruccion_cuidado13  tag="47" visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=48 alignment="0" tabsequence=32766 border="2" color="33554432" x="25230" y="4" height="64" width="1166" format="[general]" html.valueishtml="0" protect="0~t1"  name=logos_cuidado  tag="48" visible="1" edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=49 alignment="0" tabsequence=32766 border="2" color="33554432" x="26395" y="4" height="64" width="1152" format="[general]" html.valueishtml="0"  name=logos_cuidado_adicional  tag="49" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=53 alignment="0" tabsequence=32766 border="2" color="33554432" x="27547" y="4" height="64" width="462" format="[general]" html.valueishtml="0"  name=de_talla_etiqueta  tag="53" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=54 alignment="0" tabsequence=32766 border="2" color="33554432" x="28014" y="4" height="64" width="219" format="[general]" html.valueishtml="0"  name=co_marca  tag="54" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=55 alignment="0" tabsequence=32766 border="2" color="33554432" x="28238" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_1  tag="55" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=57 alignment="0" tabsequence=32766 border="2" color="33554432" x="29591" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_3  tag="57" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=58 alignment="0" tabsequence=32766 border="2" color="33554432" x="30267" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_4  tag="58" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=59 alignment="0" tabsequence=32766 border="2" color="33554432" x="30944" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_5  tag="59" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=60 alignment="0" tabsequence=32766 border="2" color="33554432" x="31621" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_6  tag="60" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=61 alignment="0" tabsequence=32766 border="2" color="33554432" x="32302" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_7  tag="61" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=62 alignment="0" tabsequence=32766 border="2" color="33554432" x="32978" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_8  tag="62" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=63 alignment="0" tabsequence=32766 border="2" color="33554432" x="33655" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_9  tag="63" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=64 alignment="0" tabsequence=32766 border="2" color="33554432" x="34331" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_10  tag="64" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=65 alignment="0" tabsequence=32766 border="2" color="33554432" x="35008" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_11  tag="65" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=66 alignment="0" tabsequence=32766 border="2" color="33554432" x="35685" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_12  tag="66" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=67 alignment="0" tabsequence=32766 border="2" color="33554432" x="36361" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_13  tag="67" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=68 alignment="0" tabsequence=32766 border="2" color="33554432" x="37038" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_14  tag="68" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=69 alignment="0" tabsequence=32766 border="2" color="33554432" x="37714" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_15  tag="69" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=70 alignment="0" tabsequence=32766 border="2" color="33554432" x="38391" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_16  tag="70" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=71 alignment="0" tabsequence=32766 border="2" color="33554432" x="39067" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_17  tag="71" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=72 alignment="0" tabsequence=32766 border="2" color="33554432" x="39749" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_18  tag="72" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=73 alignment="0" tabsequence=32766 border="2" color="33554432" x="40425" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_19  tag="73" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=74 alignment="0" tabsequence=32766 border="2" color="33554432" x="41102" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_20  tag="74" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=75 alignment="0" tabsequence=32766 border="2" color="33554432" x="41778" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_21  tag="75" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=76 alignment="0" tabsequence=32766 border="2" color="33554432" x="42455" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_22  tag="76" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=77 alignment="0" tabsequence=32766 border="2" color="33554432" x="43131" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_23  tag="77" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=78 alignment="0" tabsequence=32766 border="2" color="33554432" x="43808" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_24  tag="78" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=79 alignment="0" tabsequence=32766 border="2" color="33554432" x="44485" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_25  tag="79" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=80 alignment="0" tabsequence=32766 border="2" color="33554432" x="45161" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_26  tag="80" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=81 alignment="0" tabsequence=32766 border="2" color="33554432" x="45838" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_27  tag="81" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=82 alignment="0" tabsequence=32766 border="2" color="33554432" x="46519" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_28  tag="82" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=56 alignment="0" tabsequence=32766 border="2" color="33554432" x="28914" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=importadores_marca_2  tag="56" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=84 alignment="0" tabsequence=32766 border="2" color="33554432" x="47493" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=observacion1  tag="84" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=85 alignment="0" tabsequence=32766 border="2" color="33554432" x="48169" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=observacion2  tag="85" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=86 alignment="0" tabsequence=32766 border="2" color="33554432" x="48846" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=observacion3  tag="86" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=83 alignment="0" tabsequence=32766 border="2" color="33554432" x="47195" y="4" height="64" width="293" format="[general]" html.valueishtml="0"  name=codigo_empleado  tag="83" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=87 alignment="0" tabsequence=32766 border="2" color="33554432" x="49522" y="4" height="64" width="672" format="[general]" html.valueishtml="0"  name=observacion4  tag="87" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=88 alignment="2" tabsequence=32766 border="2" color="33554432" x="50199" y="4" height="64" width="320" format="[general]" html.valueishtml="0"  name=ca_unidades_suger  tag="88" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="SUM( cantidad )"border="2" color="33554432" x="3328" y="4" height="52" width="251" format="#,##0" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
