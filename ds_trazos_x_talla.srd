@@ -1,0 +1,50 @@
+HA$PBExportHeader$ds_trazos_x_talla.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_trazo dbname="co_trazo" )
+ column=(type=long updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="dt_tallasxtrazo.co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="dt_tallasxtrazo.co_referencia" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="dt_tallasxtrazo.co_talla" )
+ column=(type=long updatewhereclause=yes name=ca_paquetes dbname="dt_tallasxtrazo.ca_paquetes" )
+ retrieve="  SELECT {+ORDERED, INDEX(dt_tallasxtrazo idx_tatrazo_reftalla)}
+		DISTINCT dt_tallasxtrazo.co_trazo,   
+         dt_tallasxtrazo.co_fabrica,   
+         dt_tallasxtrazo.co_linea,   
+         dt_tallasxtrazo.co_referencia,   
+         dt_tallasxtrazo.co_talla,   
+         dt_tallasxtrazo.ca_paquetes
+         
+    FROM dt_agrupa_pdn,   
+         dt_tallasxtrazo
+   WHERE ( dt_agrupa_pdn.co_fabrica_pt = dt_tallasxtrazo.co_fabrica ) and  
+         ( dt_agrupa_pdn.co_linea = dt_tallasxtrazo.co_linea ) and  
+         ( dt_agrupa_pdn.co_referencia = dt_tallasxtrazo.co_referencia ) and  
+			( dt_tallasxtrazo.co_trazo = :an_trazo) AND
+			( dt_agrupa_pdn.cs_agrupacion = :an_agrupacion ) AND
+			( dt_agrupa_pdn.cs_pdn = :an_pdn )
+ORDER BY 
+			dt_tallasxtrazo.co_trazo ASC,   
+         dt_tallasxtrazo.co_fabrica ASC,   
+         dt_tallasxtrazo.co_linea ASC,   
+         dt_tallasxtrazo.co_referencia ASC,   
+         dt_tallasxtrazo.co_talla ASC   
+" arguments=(("an_trazo", number),("an_agrupacion", number),("an_pdn", number)) )
+text(band=header alignment="2" text="Co Trazo" border="0" color="33554432" x="9" y="8" height="52" width="274" html.valueishtml="0"  name=co_trazo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Fabrica" border="0" color="33554432" x="293" y="8" height="52" width="274" html.valueishtml="0"  name=co_fabrica_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Linea" border="0" color="33554432" x="576" y="8" height="52" width="274" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Referencia" border="0" color="33554432" x="859" y="8" height="52" width="311" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Talla" border="0" color="33554432" x="1179" y="8" height="52" width="274" html.valueishtml="0"  name=co_talla_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Paquetes" border="0" color="33554432" x="1463" y="8" height="52" width="279" html.valueishtml="0"  name=ca_paquetes_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_trazo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="293" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="576" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="859" y="8" height="64" width="311" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1179" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1463" y="8" height="64" width="279" format="[general]" html.valueishtml="0"  name=ca_paquetes visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
