@@ -1,0 +1,74 @@
+HA$PBExportHeader$dtb_poxagrupacion.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=64 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=po dbname="dt_agrupa_pdn.po" )
+ column=(type=char(10) updatewhereclause=yes name=nu_cut dbname="dt_agrupa_pdn.nu_cut" )
+ column=(type=char(40) updatewhereclause=yes name=de_referencia dbname="h_preref_pv.de_referencia" )
+ column=(type=long updatewhereclause=yes name=cs_pdn dbname="dt_agrupa_pdn.cs_pdn" )
+ column=(type=long updatewhereclause=yes name=raya dbname="dt_trazosrecalculo.raya" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=co_color_pt dbname="dt_agrupa_pdn.co_color_pt" )
+ column=(type=long updatewhereclause=yes name=ca_unidades dbname="dt_agrupa_pdn.ca_unidades" )
+ column=(type=long updatewhereclause=yes name=cs_ordenpd_pt dbname="dt_pdnxmodulo.cs_ordenpd_pt" )
+ column=(type=long updatewhereclause=yes name=co_modelo dbname="dt_rayas_telaxbase.co_modelo" )
+ retrieve="  SELECT DISTINCT dt_agrupa_pdn.po,						
+						dt_agrupa_pdn.nu_cut ,
+						h_preref_pv.de_referencia,
+						dt_agrupa_pdn.cs_pdn,
+						dt_trazosrecalculo.raya,	
+						dt_agrupa_pdn.co_color_pt,
+						dt_agrupa_pdn.ca_unidades,
+						dt_pdnxmodulo.cs_ordenpd_pt,
+						dt_rayas_telaxbase.co_modelo 
+    FROM dt_agrupa_pdn, outer
+			dt_trazosrecalculo,
+			h_preref_pv,
+			dt_pdnxmodulo,
+			dt_rayas_telaxbase,
+			h_base_trazos
+   WHERE dt_agrupa_pdn.cs_agrupacion 		= :an_agrupacion and
+			dt_trazosrecalculo.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion and  
+         dt_trazosrecalculo.cs_pdn 			= dt_agrupa_pdn.cs_pdn and
+			h_preref_pv.co_fabrica 				= dt_agrupa_pdn.co_fabrica_pt and
+			h_preref_pv.co_linea 				= dt_agrupa_pdn.co_linea and
+			h_preref_pv.co_referencia 			= dt_agrupa_pdn.co_referencia and
+         h_preref_pv.co_tipo_ref          = 'P' and
+			dt_trazosrecalculo.raya          = :an_raya and
+			dt_agrupa_pdn.co_fabrica_exp 		= dt_pdnxmodulo.co_fabrica_exp and
+			dt_agrupa_pdn.cs_liberacion 		= dt_pdnxmodulo.cs_liberacion and
+			dt_agrupa_pdn.po 						= dt_pdnxmodulo.po  and
+			dt_agrupa_pdn.nu_cut 				= dt_pdnxmodulo.nu_cut and
+			dt_agrupa_pdn.co_fabrica_pt 		= dt_pdnxmodulo.co_fabrica_pt and
+			dt_agrupa_pdn.co_linea 				= dt_pdnxmodulo.co_linea and 
+			dt_agrupa_pdn.co_referencia 		= dt_pdnxmodulo.co_referencia and
+			dt_agrupa_pdn.co_color_pt 			= dt_pdnxmodulo.co_color_pt and
+			dt_agrupa_pdn.tono 					= dt_pdnxmodulo.tono and
+			h_base_trazos.cs_agrupacion		= dt_agrupa_pdn.cs_agrupacion and
+			h_base_trazos.raya					= :an_raya and
+			dt_rayas_telaxbase.cs_agrupacion = h_base_trazos.cs_agrupacion and
+			dt_rayas_telaxbase.cs_base_trazos = h_base_trazos.cs_base_trazos and
+			dt_rayas_telaxbase.co_fabrica		= dt_agrupa_pdn.co_fabrica_pt and
+			dt_rayas_telaxbase.co_linea		= dt_agrupa_pdn.co_linea and
+			dt_rayas_telaxbase.co_referencia	= dt_agrupa_pdn.co_referencia and
+			dt_pdnxmodulo.cs_ordenpd_pt 		> 0
+			
+
+			  
+" arguments=(("an_agrupacion", number),("an_raya", number))  sort="po A " )
+text(band=header alignment="0" text="" border="6" color="0" x="9" y="4" height="56" width="73" html.valueishtml="0"  name=raya_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="P.O." border="6" color="33554432" x="754" y="4" height="56" width="375" html.valueishtml="0"  name=po_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Unidades" border="6" color="0" x="1138" y="4" height="56" width="215" html.valueishtml="0"  name=ca_unidades_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Estilo" border="6" color="0" x="91" y="4" height="76" width="654" html.valueishtml="0"  name=h_preref_pv_de_referencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="33554432" x="9" y="4" height="56" width="73" format="[general]" html.valueishtml="0"  name=raya visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1362" y="4" height="56" width="5" format="[general]" html.valueishtml="0"  name=raya_1 visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="5" color="33554432" x="1138" y="4" height="56" width="215" format="[general]" html.valueishtml="0"  name=ca_unidades visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="33554432" x="754" y="4" height="56" width="375" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="33554432" x="91" y="4" height="56" width="654" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
