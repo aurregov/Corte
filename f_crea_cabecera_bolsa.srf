@@ -1,0 +1,142 @@
+HA$PBExportHeader$f_crea_cabecera_bolsa.srf
+global type f_crea_cabecera_bolsa from function_object
+end type
+
+forward prototypes
+global function long f_crea_cabecera_bolsa (long ll_cs_canasta, string ls_grupo, string ls_lote, long li_co_fab_propietario)
+end prototypes
+
+global function long f_crea_cabecera_bolsa (long ll_cs_canasta, string ls_grupo, string ls_lote, long li_co_fab_propietario);String ls_sqlerr
+Long li_A$$HEX1$$f100$$ENDHEX$$o, li_mes, li_tipoprod, li_centro, li_subcentro, li_existe
+Date ld_fecha
+Long li_fabrica, li_planta
+Long ll_count
+n_cts_constantes luo_constantes
+
+luo_constantes = Create n_cts_constantes
+
+li_fabrica = luo_constantes.of_consultar_numerico("FABRICA PLANTA")
+
+IF li_fabrica = -1 THEN
+	Return -1
+END IF
+
+li_planta = luo_constantes.of_consultar_numerico("PLANTA LIBERACIONES")
+
+IF li_planta = -1 THEN
+	Return -1
+END IF
+
+li_tipoprod = luo_constantes.of_consultar_numerico("PRENDAS")
+
+IF li_tipoprod = -1 THEN
+	Return -1
+END IF
+
+li_centro = luo_constantes.of_consultar_numerico("CENTRO CORTE")
+
+IF li_centro = -1 THEN
+	Return -1
+END IF
+
+li_subcentro = luo_constantes.of_consultar_numerico("SUBCENTRO PREPARACIO")
+
+IF li_subcentro = -1 THEN
+	Return -1
+END IF
+
+ld_fecha = date(f_fecha_servidor())
+li_a$$HEX1$$f100$$ENDHEX$$o = year(ld_fecha)
+li_mes = Month(ld_fecha)
+IF ll_cs_canasta = 0 THEN
+   rollback ;
+	MessageBox("Advertencia!","No se pudo crear cabecera de bolsa.~n~n~n" + "cs_canasta =0")
+	Return -1
+END IF
+
+//cuando se crean las bolsas de nicole se debe saber si el usuario esta matriculado en dicha fabrica planta
+IF gstr_info_usuario.co_planta_pro = 99 THEN
+	li_fabrica = 91;
+	li_planta = 1;
+	li_centro = 1;
+	li_subcentro = 3;
+	li_co_fab_propietario = 2;
+	
+	//se validad que el usuario este autorizado a ingresar a dicha fabrica
+	SELECT count(*)
+	  INTO :ll_count
+	  FROM cf_user
+	 WHERE usuario = :gstr_info_usuario.codigo_usuario AND
+			 co_fabrica = 2;
+			 
+	IF ll_count > 0 THEN
+		DISCONNECT;
+		MessageBox ("Error","Usuario no autorizado para lotear en la planta Pereira .",Stopsign!,Ok!)
+		Close(Parent)
+	END IF
+	
+ELSE
+//	//se validad que el usuario este autorizado a ingresar a dicha fabrica
+//	SELECT count(*)
+//	  INTO :ll_count
+//	  FROM cf_user
+//	 WHERE usuario = :gstr_info_usuario.codigo_usuario AND
+//			 co_fabrica = 91;
+//			 
+//	IF ll_count > 0 THEN
+//		DISCONNECT;
+//		MessageBox ("Error","Usuario no autorizado para lotear en la planta Marinilla .",Stopsign!,Ok!)
+//		Close(Parent)
+//	END IF
+END IF
+
+
+//ser realiza una revalidacion para evitar unas canastas que quedan con dos ordenes de corte
+//jorodrig  nov 19 - 09
+SELECT COUNT(*)
+  INTO :li_existe
+  FROM h_canasta_corte
+ WHERE cs_canasta = :ll_cs_canasta;
+IF li_existe > 0 THEN
+	rollback ;
+	MessageBox("Advertencia!","Se cancela el proceso porque va a quedar la canasta repetida, cierre la aplicacion e intente nuevamente el proceso")
+	Return -1
+END IF
+
+
+IF li_fabrica = 0 AND li_planta = 0 THEN
+	Rollback ;
+	MessageBox("Advertencia!","Se cancela el proceso porque va a quedar la fabrica y la planta en cero")
+	Return -1
+END IF
+//Luis tonuzco, pidio el cambio de co_centro_act y co_subcentro_act de 1 a las variables que se tomaban
+//en centro_pdn y subcentro_pdn
+//actualizado el 6 de abril de 2005, por jcrm
+
+//Luis Tonuzco, pidio que el campo cs_solicitud fuera cargado con cero (0)
+//actualizado el 25 de agosto de 2006, por jcrm
+INSERT INTO h_canasta_corte(cs_canasta, co_fabrica, co_planta, co_estado, packer_id, fe_estado_date, carton_type,
+	carton_size, peso_bruto, peso_neto, pallet_id, pallet_type, bill_of_lading, remision, camion, co_tipoprod,
+	co_centro_pdn, co_subcentro_pdn, ubicacion_actual, ubicacion_anterior, reason_code, atributo1, atributo2, 
+	atributo3, instrucciones_esp1, instrucciones_esp2, instrucciones_esp3, fe_envio, fe_creacion, fe_expiracion,
+	fe_actualizacion, usuario, instancia, ano, mes, co_fabrica_act, co_planta_act, co_centro_act,
+	co_subcentro_act, co_modulo, co_modulo_fis, co_tipo_lectura, co_tipo_produccion, estiba_id, estiba_type, 
+	co_tipo_atributo, co_centro_res,co_fabrica_pro,co_fabric_pro_des, cs_solicitud)
+VALUES(:ll_cs_canasta, :li_fabrica, :li_planta, 10, "", current, "", "", 0, 0, "", "C", "", 0, "", :li_tipoprod, 
+	:li_centro, :li_subcentro, 
+	"0000", "0000", "", "P", "", "",	"", "", "",	current, current, current, current, :gstr_info_usuario.codigo_usuario,	
+	:gstr_info_usuario.instancia, :li_a$$HEX1$$f100$$ENDHEX$$o, :li_mes, :li_fabrica, :li_planta, :li_centro, :li_subcentro, 0, 0, "N", "N",
+	"", "", "N", "0",:li_co_fab_propietario,:li_fabrica,0);
+		  
+If Sqlca.SqlCode = -1 Then
+	ls_sqlerr = Sqlca.SqlErrText
+	rollback ;
+	MessageBox("Advertencia!","No se pudo crear cabecera de bolsa.~n~n~n" + ls_sqlerr)
+	Return -1
+Else
+	commit ;
+End If	
+
+return 0
+end function
+
