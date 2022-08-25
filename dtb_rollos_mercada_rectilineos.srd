@@ -1,0 +1,143 @@
+HA$PBExportHeader$dtb_rollos_mercada_rectilineos.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=612 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=100 color="536870912"  height.autosize=yes)
+table(column=(type=long update=yes updatewhereclause=yes name=cs_mercada dbname="dt_rollosmercada.cs_mercada" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_rollo dbname="dt_rollosmercada.cs_rollo" )
+ column=(type=long updatewhereclause=yes name=raya dbname="dt_rollosmercada.raya" )
+ column=(type=long update=yes updatewhereclause=yes name=co_estado_mercada dbname="dt_rollosmercada.co_estado_mercada" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=ca_metros_mercar dbname="dt_rollosmercada.ca_metros_mercar" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_unidades_mercar dbname="dt_rollosmercada.ca_unidades_mercar" )
+ column=(type=long updatewhereclause=yes name=h_mercada_cs_orden_corte dbname="h_mercada.cs_orden_corte" )
+ column=(type=long updatewhereclause=yes name=h_mercada_cs_reposicion dbname="h_mercada.cs_reposicion" )
+ column=(type=char(20) updatewhereclause=yes name=m_rollo_ubicacion dbname="m_rollo.ubicacion" )
+ column=(type=char(42) updatewhereclause=yes name=h_telas_de_reftel dbname="h_telas.de_reftel" )
+ column=(type=char(30) updatewhereclause=yes name=m_color_de_color dbname="m_color.de_color" )
+ column=(type=long updatewhereclause=yes name=m_rollo_co_reftel_act dbname="m_rollo.co_reftel_act" )
+ column=(type=long updatewhereclause=yes name=m_rollo_co_caract_act dbname="m_rollo.co_caract_act" )
+ column=(type=long updatewhereclause=yes name=m_rollo_diametro_act dbname="m_rollo.diametro_act" )
+ column=(type=long updatewhereclause=yes name=m_rollo_co_color_act dbname="m_rollo.co_color_act" )
+ column=(type=char(32) updatewhereclause=yes name=usuario dbname="dt_rollosmercada.usuario" )
+ column=(type=long updatewhereclause=yes name=m_rollo_ca_unidades dbname="m_rollo.ca_unidades" )
+ column=(type=decimal(2) updatewhereclause=yes name=m_rollo_ca_mt dbname="m_rollo.ca_mt" )
+ column=(type=decimal(2) updatewhereclause=yes name=m_rollo_ca_kg dbname="m_rollo.ca_kg" )
+ column=(type=long updatewhereclause=yes name=co_talla dbname="m_rollo.co_talla" )
+ column=(type=long updatewhereclause=yes name=lote dbname="m_rollo.lote" )
+ column=(type=char(60) updatewhereclause=yes name=descripcion dbname="descripcion" )
+ column=(type=char(11) updatewhereclause=yes name=tipo_tela dbname="tipo_tela" )
+ retrieve="SELECT	dt_rollosmercada.cs_mercada,   
+			dt_rollosmercada.cs_rollo,   
+			dt_rollosmercada.raya,
+			dt_rollosmercada.co_estado_mercada,   
+			dt_rollosmercada.ca_metros_mercar,   
+			dt_rollosmercada.ca_unidades_mercar,   
+			h_mercada.cs_orden_corte,   
+			h_mercada.cs_reposicion,   
+			m_rollo.ubicacion,   
+			h_telas.de_reftel,   
+			m_color.de_color,   
+			m_rollo.co_reftel_act,   
+			m_rollo.co_caract_act,   
+			m_rollo.diametro_act,   
+			m_rollo.co_color_act,   
+			user as usuario,
+			m_rollo.ca_unidades,
+			m_rollo.ca_mt,
+			m_rollo.ca_kg,
+			m_rollo.co_talla,
+			m_rollo.lote,
+			pr_descripcion_raya(h_mercada.cs_orden_corte,dt_rollosmercada.raya) as descripcion,
+         (case
+           when h_telas.co_tiptel = 4 then 'RECTILINEOS'
+           when h_telas.co_tiptel = 8 then 'RECTILINEOS'
+           else 'TELA'
+          end) as tipo_tela
+FROM	dt_rollosmercada,   
+		h_mercada,   
+		h_telas,   
+		m_color,   
+		m_rollo  
+WHERE	( h_mercada.cs_mercada = dt_rollosmercada.cs_mercada ) and  
+		( dt_rollosmercada.cs_rollo = m_rollo.cs_rollo ) and  
+		( m_rollo.co_reftel_act = h_telas.co_reftel ) and  
+		( m_rollo.co_caract_act = h_telas.co_caract ) and  
+		( m_rollo.co_color_act = m_color.co_color ) and  
+		( ( dt_rollosmercada.cs_mercada = :al_mercada )  )  and
+		( h_telas.id_tipo_rect is not null) 
+ORDER BY	m_rollo.ubicacion,
+			dt_rollosmercada.cs_rollo,
+			dt_rollosmercada.raya
+" arguments=(("al_mercada", number),("ai_estado", number),("adt_fecha", datetime),("as_mesa", string))  sort="tipo_tela D raya A co_estado_mercada A cs_rollo A " )
+group(level=1 header.height=244 trailer.height=220 by=("tipo_tela" ) newpage=yes header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=104 trailer.height=0 by=("tipo_tela" , "raya" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="MERCADA ORDEN CORTE" border="0" color="0" x="1166" y="12" height="76" width="969" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+bitmap(band=header filename="X:\Montaje OC Nicole\Graficos\logo.bmp" x="2427" y="232" height="204" width="923" border="0"  name=p_1 visible="1" )
+column(band=header id=16 alignment="0" tabsequence=32766 border="0" color="33554432" x="2569" y="156" height="64" width="786" format="[general]" html.valueishtml="0"  name=usuario visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="2569" y="88" height="64" width="786" format="yyyy/mm/dd hh:mm:ss" html.valueishtml="0"  name=date_1 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="'P$$HEX1$$e100$$ENDHEX$$gina ' + page() + ' de ' + pageCount()"border="0" color="33554432" x="2569" y="20" height="64" width="786" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="2" expression="'*' + String( cs_mercada ) + '*'"border="0" color="33554432" x="1152" y="100" height="160" width="983" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="SKANDATArC39W" font.height="-28" font.weight="400"  font.family="0" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+report(band=header dataobject="dup_linea_referencia_mercada" x="14" y="4" height="268" width="1134" border="0"  height.autosize=yes criteria="" nest_arguments=((" h_mercada_cs_orden_corte ")) trail_footer = yes  name=dw_1 visible="1"  slideup=directlyabove )
+column(band=header id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="379" y="396" height="64" width="315" format="[general]" html.valueishtml="0"  name=h_mercada_cs_reposicion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Fecha Corte:" border="0" color="33554432" x="987" y="400" height="64" width="343" html.valueishtml="0"  name=t_8 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression=" adt_fecha "border="0" color="33554432" x="1349" y="400" height="64" width="503" format="yyyy/mm/dd" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header x1="9" y1="572" x2="3415" y2="572"  name=l_1 visible="1" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Mesa:" border="0" color="33554432" x="987" y="304" height="64" width="261" html.valueishtml="0"  name=t_9 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression=" as_mesa "border="0" color="33554432" x="1349" y="304" height="64" width="617" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Orden Corte:" border="0" color="33554432" x="23" y="304" height="64" width="338" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="407" y="284" height="100" width="471" format="[general]" html.valueishtml="0"  name=h_mercada_cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-18" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Reposici$$HEX1$$f300$$ENDHEX$$n:" border="0" color="33554432" x="23" y="396" height="64" width="338" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Color Pt:" border="0" color="0" x="23" y="484" height="64" width="338" html.valueishtml="0"  name=t_19 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+report(band=header dataobject="drp_color_pt" x="389" y="480" height="76" width="2857" border="0"  height.autosize=yes criteria="" nest_arguments=((" h_mercada_cs_orden_corte ")) trail_footer = yes  name=dw_2 visible="1"  slideup=directlyabove )
+text(band=header.1 alignment="2" text="Tela" border="6" color="33554432" x="270" y="104" height="128" width="837" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Color" border="6" color="33554432" x="1125" y="104" height="128" width="151" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Ubicaci$$HEX1$$f300$$ENDHEX$$n" border="6" color="33554432" x="1294" y="104" height="128" width="265" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Metros" border="6" color="33554432" x="1573" y="104" height="128" width="183" html.valueishtml="0"  name=ca_metros_mercar_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Kilos Aprox" border="6" color="33554432" x="1769" y="104" height="128" width="197" html.valueishtml="0"  name=t_16 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Metros Rollo" border="6" color="33554432" x="1979" y="104" height="128" width="192" html.valueishtml="0"  name=t_11 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Kilos Rollo" border="6" color="33554432" x="2185" y="104" height="128" width="187" html.valueishtml="0"  name=t_13 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Unids" border="6" color="33554432" x="2386" y="104" height="128" width="165" html.valueishtml="0"  name=ca_unidades_mercar_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Unids Rollo" border="6" color="33554432" x="2565" y="104" height="128" width="155" html.valueishtml="0"  name=t_12 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Talla" border="6" color="33554432" x="2738" y="104" height="128" width="123" html.valueishtml="0"  name=t_14 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Lote" border="6" color="33554432" x="2880" y="104" height="128" width="206" html.valueishtml="0"  name=t_15 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Estado" border="6" color="33554432" x="3104" y="104" height="128" width="274" html.valueishtml="0"  name=t_10 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Rollo" border="6" color="33554432" x="9" y="104" height="128" width="242" html.valueishtml="0"  name=cs_rollo_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=header.1 id=23 alignment="2" tabsequence=32766 border="6" color="33554432" x="23" y="8" height="64" width="818" format="[general]" html.valueishtml="0"  name=tipo_tela visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.2 alignment="2" text="Raya" border="6" color="33554432" x="0" y="28" height="60" width="142" html.valueishtml="0"  name=t_7 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=header.2 id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="165" y="28" height="60" width="133" format="[general]" html.valueishtml="0"  name=raya visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=22 alignment="0" tabsequence=32766 border="0" color="33554432" x="315" y="28" height="60" width="3049" format="[general]" html.valueishtml="0"  name=descripcion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="18" y="4" height="64" width="242" format="[general]" html.valueishtml="0"  name=cs_rollo visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="471" y="4" height="64" width="69" format="[general]" html.valueishtml="0"  name=m_rollo_co_caract_act visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="279" y="4" height="64" width="174" format="[general]" html.valueishtml="0"  name=m_rollo_co_reftel_act visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="549" y="4" height="64" width="576" format="[general]" html.valueishtml="0"  name=h_telas_de_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="2" tabsequence=32766 border="0" color="33554432" x="1129" y="4" height="64" width="155" format="[general]" html.valueishtml="0"  name=m_rollo_co_color_act visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="1289" y="4" height="64" width="288" format="[general]" html.valueishtml="0"  name=m_rollo_ubicacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="1" tabsequence=32766 border="0" color="33554432" x="2743" y="4" height="64" width="110" format="[general]" html.valueishtml="0"  name=co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="1" tabsequence=32766 border="0" color="33554432" x="2857" y="4" height="64" width="219" format="[general]" html.valueishtml="0"  name=lote visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1582" y="4" height="64" width="192" format="#####0.00" html.valueishtml="0"  name=ca_metros_mercar visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="( m_rollo_ca_kg *  ca_metros_mercar ) /  m_rollo_ca_mt "border="0" color="33554432" x="1778" y="4" height="64" width="197" format="#####0.00" html.valueishtml="0"  name=compute_10 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="1" tabsequence=32766 border="0" color="33554432" x="1979" y="4" height="64" width="201" format="#####0.00" html.valueishtml="0"  name=m_rollo_ca_mt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="1" tabsequence=32766 border="0" color="33554432" x="2185" y="4" height="64" width="197" format="###,##0.00" html.valueishtml="0"  name=m_rollo_ca_kg visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="2386" y="4" height="64" width="174" format="[general]" html.valueishtml="0"  name=ca_unidades_mercar visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="1" tabsequence=32766 border="0" color="33554432" x="2565" y="4" height="64" width="165" format="[general]" html.valueishtml="0"  name=m_rollo_ca_unidades visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="3086" y="4" height="64" width="251" format="[general]" html.valueishtml="0"  name=co_estado_mercada visible="1" dddw.name=dddw_estados_mercada dddw.displaycolumn=de_estado_mercada dddw.datacolumn=co_estado_mercada dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="Book Antiqua" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=detail x1="37" y1="76" x2="3342" y2="76"  name=l_2 visible="1" pen.style="0" pen.width="5" pen.color="0~tIF ( co_estado_mercada =2,RGB(0,0,0),RGB(255,255,255))"  background.mode="2" background.color="16777215" )
+report(band=detail dataobject="dff_kilos_sesgos" x="23" y="84" height="40~tif( descripcion like ~"%SESGO%~",0,280)" width="3241" border="1"  height.autosize=yes criteria="" nest_arguments=((" h_mercada_cs_orden_corte "),(" raya ")) trail_footer = yes  name=dw_3 visible="1~tif( getrow() = last( getrow() for group 2 ) and ( descripcion like ~"%SESGO%~"),1, 0)"  slideup=directlyabove )
+compute(band=trailer.1 alignment="2" expression="count(  cs_rollo  for group 1 )"border="0" color="0" x="251" y="80" height="52" width="151" format="[GENERAL]" html.valueishtml="0"  name=compute_12 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=trailer.1 alignment="2" text="Tot Rollos:" border="0" color="0" x="9" y="80" height="56" width="229" html.valueishtml="0"  name=t_17 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=trailer.1 alignment="1" expression="sum(m_rollo_ca_unidades for group 1)"border="0" color="33554432" x="2592" y="80" height="64" width="165" format="###,##0.00" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(ca_unidades_mercar for group 1)"border="0" color="33554432" x="2409" y="80" height="64" width="174" format="###,##0.00" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(m_rollo_ca_kg for group 1)"border="0" color="33554432" x="2208" y="80" height="64" width="197" format="###,##0.00" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(m_rollo_ca_mt for group 1)"border="0" color="33554432" x="1989" y="80" height="64" width="210" format="###,##0.00" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(( m_rollo_ca_kg *  ca_metros_mercar ) /  m_rollo_ca_mt  for group 1)"border="0" color="33554432" x="1760" y="80" height="64" width="215" format="###,##0.00" html.valueishtml="0"  name=compute_11 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(ca_metros_mercar for group 1)"border="0" color="33554432" x="1545" y="80" height="64" width="210" format="#####0.00" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="'Total Raya:' + String(raya)"border="0" color="33554432" x="992" y="80" height="68" width="517" format="[General]" html.valueishtml="0"  name=compute_9 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="count(  cs_rollo  for all )"border="0" color="0" x="265" y="4" height="56" width="151" format="[GENERAL]" html.valueishtml="0"  name=compute_13 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=summary alignment="2" text="Tot Rollos:" border="0" color="0" x="18" y="4" height="56" width="229" html.valueishtml="0"  name=t_18 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
