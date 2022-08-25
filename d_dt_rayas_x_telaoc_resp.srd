@@ -1,0 +1,74 @@
+HA$PBExportHeader$d_dt_rayas_x_telaoc_resp.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=81324524 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_agrupacion dbname="dt_rayas_telaxoc.cs_agrupacion" )
+ column=(type=long updatewhereclause=yes name=cs_pdn dbname="dt_rayas_telaxoc.cs_pdn" )
+ column=(type=long updatewhereclause=yes name=co_modelo dbname="dt_rayas_telaxoc.co_modelo" )
+ column=(type=long updatewhereclause=yes name=co_fabrica_tela dbname="dt_rayas_telaxoc.co_fabrica_tela" )
+ column=(type=long updatewhereclause=yes name=co_reftel dbname="dt_rayas_telaxoc.co_reftel" )
+ column=(type=long updatewhereclause=yes name=co_caract dbname="dt_rayas_telaxoc.co_caract" )
+ column=(type=char(42) updatewhereclause=yes name=h_telas_de_reftel dbname="h_telas.de_reftel" )
+ column=(type=long updatewhereclause=yes name=diametro dbname="dt_rayas_telaxoc.diametro" )
+ column=(type=long updatewhereclause=yes name=co_color_te dbname="dt_rayas_telaxoc.co_color_te" )
+ column=(type=long updatewhereclause=yes name=raya dbname="dt_rayas_telaxoc.raya" )
+ column=(type=decimal(4) updatewhereclause=yes name=ancho dbname="dt_rayas_telaxoc.ancho" )
+ column=(type=long updatewhereclause=yes name=co_estado dbname="dt_rayas_telaxoc.co_estado" )
+ column=(type=long updatewhereclause=yes name=co_tipo dbname="dt_rayas_telaxoc.co_tipo" )
+ column=(type=long updatewhereclause=yes name=sw_automatico dbname="dt_rayas_telaxoc.sw_automatico" )
+ column=(type=decimal(4) updatewhereclause=yes name=consxunid_std dbname="dt_rayas_telaxoc.consxunid_std" )
+ column=(type=decimal(4) updatewhereclause=yes name=consumoxescala dbname="dt_rayas_telaxoc.consumoxescala" )
+ retrieve="  SELECT dt_rayas_telaxoc.cs_agrupacion,   
+         dt_rayas_telaxoc.cs_pdn,   
+         dt_rayas_telaxoc.co_modelo,   
+         dt_rayas_telaxoc.co_fabrica_tela,   
+         dt_rayas_telaxoc.co_reftel,   
+         dt_rayas_telaxoc.co_caract,   
+         h_telas.de_reftel,   
+         dt_rayas_telaxoc.diametro,   
+         dt_rayas_telaxoc.co_color_te,   
+         dt_rayas_telaxoc.raya,   
+         dt_rayas_telaxoc.ancho,   
+         dt_rayas_telaxoc.co_estado,   
+         dt_rayas_telaxoc.co_tipo,   
+         dt_rayas_telaxoc.sw_automatico,   
+         dt_rayas_telaxoc.consxunid_std,   
+         dt_rayas_telaxoc.consumoxescala  
+    FROM dt_rayas_telaxoc,   
+         h_telas  
+   WHERE ( dt_rayas_telaxoc.co_reftel = h_telas.co_reftel ) and  
+         ( dt_rayas_telaxoc.co_caract = h_telas.co_caract ) and  
+         ( ( dt_rayas_telaxoc.cs_orden_corte = :an_orden ) )    
+" arguments=(("an_orden", number)) )
+text(band=header alignment="2" text="Pdn" border="6" color="0" x="160" y="8" height="56" width="151" html.valueishtml="0"  name=cs_pdn_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Color" border="6" color="0" x="1179" y="8" height="56" width="293" html.valueishtml="0"  name=co_color_te_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Raya" border="6" color="0" x="1481" y="8" height="56" width="128" html.valueishtml="0"  name=raya_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Ancho" border="6" color="0" x="1618" y="8" height="56" width="174" html.valueishtml="0"  name=ancho_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Estado" border="6" color="0" x="1801" y="8" height="56" width="306" html.valueishtml="0"  name=co_estado_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Tipo" border="6" color="0" x="2117" y="8" height="56" width="379" html.valueishtml="0"  name=co_tipo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text=" Autom$$HEX1$$e100$$ENDHEX$$tico" border="6" color="0" x="2505" y="8" height="56" width="366" html.valueishtml="0"  name=sw_automatico_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="0" text="Agrup" border="6" color="0" x="9" y="8" height="56" width="142" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Modelo" border="6" color="0" x="320" y="8" height="56" width="215" html.valueishtml="0"  name=co_modelo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Tela" border="6" color="0" x="544" y="8" height="56" width="626" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Cons Std" border="6" color="0" x="2880" y="8" height="56" width="233" html.valueishtml="0"  name=consxunid_std_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Consumo" border="6" color="0" x="3122" y="8" height="56" width="219" html.valueishtml="0"  name=consumoxescala_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="5" color="0" x="1618" y="4" height="52" width="174" format="[general]" html.valueishtml="0"  name=ancho visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="5" color="0" x="1801" y="4" height="52" width="306" format="[general]" html.valueishtml="0"  name=co_estado visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="5" color="0" x="2117" y="4" height="52" width="379" format="[general]" html.valueishtml="0"  name=co_tipo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="5" color="0" x="2505" y="4" height="52" width="366" format="[general]" html.valueishtml="0"  name=sw_automatico visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="5" color="0" x="1179" y="4" height="52" width="293" format="[general]" html.valueishtml="0"  name=co_color_te visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="5" color="0" x="1481" y="4" height="52" width="128" format="[general]" html.valueishtml="0"  name=raya visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="9" y="4" height="52" width="142" format="[general]" html.valueishtml="0"  name=cs_agrupacion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="0" x="320" y="4" height="52" width="215" format="[general]" html.valueishtml="0"  name=co_modelo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="5" color="0" x="160" y="4" height="52" width="151" format="[general]" html.valueishtml="0"  name=cs_pdn visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="5" color="0" x="544" y="4" height="52" width="626" format="[general]" html.valueishtml="0"  name=h_telas_de_reftel visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=15 alignment="1" tabsequence=32766 border="5" color="0" x="2880" y="4" height="52" width="233" format="[general]" html.valueishtml="0"  name=consxunid_std visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=16 alignment="1" tabsequence=32766 border="5" color="0" x="3122" y="4" height="52" width="219" format="[general]" html.valueishtml="0"  name=consumoxescala visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
