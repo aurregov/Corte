@@ -1,0 +1,51 @@
+HA$PBExportHeader$dtb_log_errores_liberacion.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=232 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="usuario" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_ordenpd_pt dbname="cs_ordenpd_pt" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=po dbname="po" )
+ column=(type=char(500) update=yes updatewhereclause=yes name=descripcion dbname="descripcion" )
+ column=(type=long updatewhereclause=yes name=cs_error dbname="cs_error" )
+ column=(type=long updatewhereclause=yes name=h_ordenpd_pt_co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes name=h_ordenpd_pt_co_referencia dbname="co_referencia" )
+ column=(type=char(40) updatewhereclause=yes name=h_preref_de_referencia dbname="de_referencia" )
+ retrieve="SELECT DISTINCT  temp_log_errores.usuario ,
+           temp_log_errores.cs_ordenpd_pt ,
+           temp_log_errores.po ,
+           temp_log_errores.descripcion ,
+           temp_log_errores.cs_error ,
+           h_ordenpd_pt.co_linea ,
+           h_ordenpd_pt.co_referencia ,
+           h_preref_pv.de_referencia     
+        FROM temp_log_errores ,
+           h_ordenpd_pt ,
+           h_preref_pv     
+        WHERE ( temp_log_errores.cs_ordenpd_pt = h_ordenpd_pt.cs_ordenpd_pt ) and
+          ( h_ordenpd_pt.co_fabrica = h_preref_pv.co_fabrica ) and
+          ( h_ordenpd_pt.co_linea = h_preref_pv.co_linea ) and
+          ( Cast(h_ordenpd_pt.co_referencia as char(15) ) = h_preref_pv.co_referencia ) and
+          ( h_preref_pv.co_tipo_ref = 'P' ) and
+          ( ( temp_log_errores.usuario = :as_usuario ) )  " arguments=(("as_usuario", string))  sort="usuario A cs_ordenpd_pt A cs_error A " )
+group(level=1 header.height=68 trailer.height=0 by=("cs_ordenpd_pt" , "po" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="LOG ERRORES LIBERACION" border="0" color="0" x="242" y="28" height="92" width="3141" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="P.O." border="6" color="33554432" x="265" y="168" height="56" width="265" html.valueishtml="0"  name=po_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Orden Pdn" border="6" color="33554432" x="14" y="168" height="56" width="238" html.valueishtml="0"  name=cs_ordenpd_pt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Filtrar" filename="" enabled=yes action="9" border="0" color="0" x="14" y="40" height="92" width="238" vtextalign="0" htextalign="0"  name=b_1 visible="1"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Prenda" border="6" color="33554432" x="672" y="168" height="56" width="421" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Lin" border="6" color="33554432" x="549" y="168" height="56" width="110" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Descripci$$HEX1$$f300$$ENDHEX$$n" border="6" color="33554432" x="1115" y="168" height="56" width="2341" html.valueishtml="0"  name=descripcion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=header.1 id=2 alignment="2" tabsequence=20 border="5" color="33554432" x="14" y="4" height="56" width="238" format="[general]" html.valueishtml="0"  name=cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+column(band=header.1 id=3 alignment="0" tabsequence=30 border="5" color="33554432" x="265" y="4" height="56" width="283" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+column(band=header.1 id=6 alignment="0" tabsequence=32766 border="5" color="33554432" x="562" y="4" height="56" width="46" format="[general]" html.valueishtml="0"  name=h_ordenpd_pt_co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+column(band=header.1 id=7 alignment="0" tabsequence=32766 border="5" color="33554432" x="622" y="4" height="56" width="229" format="[general]" html.valueishtml="0"  name=h_ordenpd_pt_co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+column(band=header.1 id=8 alignment="0" tabsequence=32766 border="5" color="33554432" x="855" y="4" height="56" width="1042" format="[general]" html.valueishtml="0"  name=h_preref_de_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="5" color="33554432" x="137" y="0" height="56" width="3319" format="[general]" html.valueishtml="0"  name=descripcion visible="1" height.autosize=yes edit.limit=500 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
