@@ -1,0 +1,15 @@
+HA$PBExportHeader$dct_reporte_orden_corte_new_tot.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=5 HTMLDW=no print.printername="" print.documentname="" print.orientation = 1 print.margin.left = 0 print.margin.right = 0 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=536 color="536870912"  height.autosize=yes)
+table(column=(type=char(10) updatewhereclause=yes name=a dbname="a" )
+ unbound = "yes"arguments=(("an_orden_corte", number)) )
+report(band=detail dataobject="dct_reporte_orden_de_corte_new" x="0" y="0" height="264" width="4594" border="0"  height.autosize=yes criteria="" nest_arguments=((" an_orden_corte ")) trail_footer = yes  name=dw_1  tag="datos de la oc pero sin sesgo" visible="1"  slideup=directlyabove )
+report(band=detail dataobject="dct_reporte_orden_de_corte_new_sesgo" x="0" y="272" height="264" width="4594" border="0"  height.autosize=yes criteria="" nest_arguments=((" an_orden_corte ")) newpage = yes trail_footer = yes  name=dw_2  tag="datos de la oc pero con sesgo" visible="1"  slideup=directlyabove )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
