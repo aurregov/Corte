@@ -1,0 +1,95 @@
+HA$PBExportHeader$dtb_resumen_consumo.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=81324524 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=cs_orden_corte dbname="dt_resumen_consumo.cs_orden_corte" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_agrupacion dbname="dt_resumen_consumo.cs_agrupacion" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_pdn dbname="dt_resumen_consumo.cs_pdn" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_modelo dbname="dt_resumen_consumo.co_modelo" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_fabrica_tela dbname="dt_resumen_consumo.co_fabrica_tela" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_reftel dbname="dt_resumen_consumo.co_reftel" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_caract dbname="dt_resumen_consumo.co_caract" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=diametro dbname="dt_resumen_consumo.diametro" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_color_te dbname="dt_resumen_consumo.co_color_te" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_trazo dbname="dt_resumen_consumo.cs_trazo" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_seccion dbname="dt_resumen_consumo.cs_seccion" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_liquidacion dbname="dt_resumen_consumo.cs_liquidacion" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_consumos dbname="dt_resumen_consumo.cs_consumos" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=ca_cortados dbname="dt_resumen_consumo.ca_cortados" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=ca_devueltos dbname="dt_resumen_consumo.ca_devueltos" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=ca_remanentes dbname="dt_resumen_consumo.ca_remanentes" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=ca_imperfectos dbname="dt_resumen_consumo.ca_imperfectos" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=ca_faltantes dbname="dt_resumen_consumo.ca_faltantes" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=ca_excedentes dbname="dt_resumen_consumo.ca_excedentes" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=ca_empates dbname="dt_resumen_consumo.ca_empates" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=ca_consumido dbname="dt_resumen_consumo.ca_consumido" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="dt_resumen_consumo.fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="dt_resumen_consumo.fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="dt_resumen_consumo.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="dt_resumen_consumo.instancia" )
+ column=(type=decimal(4) update=yes updatewhereclause=yes name=ca_otros dbname="dt_resumen_consumo.ca_otros" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_base_trazos dbname="dt_resumen_consumo.cs_base_trazos" )
+ retrieve="SELECT  dt_resumen_consumo.cs_orden_corte ,
+           dt_resumen_consumo.cs_agrupacion ,
+           dt_resumen_consumo.cs_pdn ,
+           dt_resumen_consumo.co_modelo ,
+           dt_resumen_consumo.co_fabrica_tela ,
+           dt_resumen_consumo.co_reftel ,
+           dt_resumen_consumo.co_caract ,
+           dt_resumen_consumo.diametro ,
+           dt_resumen_consumo.co_color_te ,
+           dt_resumen_consumo.cs_trazo ,
+           dt_resumen_consumo.cs_seccion ,
+           dt_resumen_consumo.cs_liquidacion ,
+           dt_resumen_consumo.cs_consumos ,
+           dt_resumen_consumo.ca_cortados ,
+           dt_resumen_consumo.ca_devueltos ,
+           dt_resumen_consumo.ca_remanentes ,
+           dt_resumen_consumo.ca_imperfectos ,
+           dt_resumen_consumo.ca_faltantes ,
+           dt_resumen_consumo.ca_excedentes ,
+           dt_resumen_consumo.ca_empates ,
+           dt_resumen_consumo.ca_consumido ,
+           dt_resumen_consumo.fe_creacion ,
+           dt_resumen_consumo.fe_actualizacion ,
+           dt_resumen_consumo.usuario ,
+           dt_resumen_consumo.instancia ,
+           dt_resumen_consumo.ca_otros ,
+           dt_resumen_consumo.cs_base_trazos     
+        FROM        dt_resumen_consumo      
+        WHERE ( dt_resumen_consumo.cs_orden_corte = :al_ordencorte ) And          
+					( dt_resumen_consumo.cs_agrupacion = :ai_agrupacion ) And          
+					( dt_resumen_consumo.cs_pdn = :ai_produccion ) And          
+					( dt_resumen_consumo.co_modelo = :al_modelo ) And          
+					( dt_resumen_consumo.co_fabrica_tela = :ai_fabtela ) And          
+					( dt_resumen_consumo.co_reftel = :al_tela ) And          
+					( dt_resumen_consumo.co_caract = :ai_caract ) And          
+					( dt_resumen_consumo.diametro = :ai_diametro ) And          
+					( dt_resumen_consumo.co_color_te = :ai_colorte ) And          
+					( dt_resumen_consumo.cs_liquidacion = :ai_liquidacion ) and          
+					( dt_resumen_consumo.cs_base_trazos = :ai_base )   " update="dt_resumen_consumo" updatewhere=1 updatekeyinplace=no arguments=(("al_ordencorte", number),("ai_agrupacion", number),("ai_produccion", number),("al_modelo", number),("ai_fabtela", number),("al_tela", number),("ai_caract", number),("ai_diametro", number),("ai_colorte", number),("ai_base", number),("ai_liquidacion", number)) )
+text(band=header alignment="2" text="Cons" border="6" color="0" x="9" y="8" height="56" width="155"  name=cs_consumos_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cortados" border="6" color="0" x="183" y="8" height="56" width="229"  name=ca_cortados_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Devueltos" border="6" color="0" x="430" y="8" height="56" width="229"  name=ca_devueltos_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Imperfectos" border="6" color="0" x="978" y="8" height="56" width="283"  name=ca_imperfectos_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Remanentes" border="6" color="0" x="677" y="8" height="56" width="283"  name=ca_remanentes_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Faltantes" border="6" color="0" x="1280" y="8" height="56" width="256"  name=ca_faltantes_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Excedentes" border="6" color="0" x="1554" y="8" height="56" width="283"  name=ca_excedentes_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Empates" border="6" color="0" x="1856" y="8" height="56" width="256"  name=ca_empates_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Consumido" border="6" color="0" x="2130" y="8" height="56" width="256"  name=ca_consumido_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Otros" border="6" color="0" x="2405" y="8" height="56" width="251"  name=ca_otros_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="5" color="0" x="9" y="8" height="60" width="155" format="[general]"  name=cs_consumos edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=10 border="5" color="0" x="183" y="8" height="60" width="229" format="[general]"  name=ca_cortados edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=15 alignment="1" tabsequence=20 border="5" color="0" x="430" y="8" height="60" width="229" format="[general]"  name=ca_devueltos edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=17 alignment="1" tabsequence=40 border="5" color="0" x="978" y="8" height="60" width="283" format="[general]"  name=ca_imperfectos edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=16 alignment="1" tabsequence=30 border="5" color="0" x="677" y="8" height="60" width="283" format="[general]"  name=ca_remanentes edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=18 alignment="1" tabsequence=50 border="5" color="0" x="1280" y="8" height="60" width="256" format="[general]"  name=ca_faltantes edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=20 alignment="1" tabsequence=70 border="5" color="0" x="1856" y="8" height="60" width="256" format="[general]"  name=ca_empates edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=19 alignment="1" tabsequence=60 border="5" color="0" x="1554" y="8" height="60" width="283" format="[general]"  name=ca_excedentes edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=21 alignment="1" tabsequence=80 border="5" color="0" x="2130" y="8" height="60" width="256" format="[general]"  name=ca_consumido edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=26 alignment="1" tabsequence=90 border="5" color="0" x="2405" y="8" height="60" width="251" format="[general]"  name=ca_otros edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
