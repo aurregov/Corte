@@ -1,0 +1,64 @@
+HA$PBExportHeader$d_gr_log_cierre_op.srd
+$PBExportComments$/datawindow para registrar en la tabla de logs de las op estilo cerradas.
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=cs_ordenpd_pt dbname="cs_ordenpd_pt" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_rollo dbname="cs_rollo" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="usuario" )
+ column=(type=long update=yes updatewhereclause=yes name=cs_caja dbname="cs_caja" )
+ column=(type=decimal(3) update=yes updatewhereclause=yes name=ca_kilos dbname="ca_kilos" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_conos dbname="ca_conos" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_creacion dbname="fe_creacion" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="fe_actualizacion" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=consecutivo dbname="consecutivo" )
+ column=(type=long update=yes updatewhereclause=yes name=co_reftel dbname="co_reftel" )
+ column=(type=long update=yes updatewhereclause=yes name=co_centro dbname="co_centro" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_unidades dbname="ca_unidades" )
+ retrieve="SELECT  mv_log_cierra_op.cs_ordenpd_pt ,
+           mv_log_cierra_op.cs_rollo ,
+           mv_log_cierra_op.usuario ,
+           mv_log_cierra_op.cs_caja ,
+           mv_log_cierra_op.ca_kilos ,
+           mv_log_cierra_op.ca_conos ,
+           mv_log_cierra_op.fe_creacion ,
+           mv_log_cierra_op.fe_actualizacion ,
+           mv_log_cierra_op.consecutivo,
+           mv_log_cierra_op.co_reftel,
+           mv_log_cierra_op.co_centro,
+           mv_log_cierra_op.ca_unidades
+      
+        FROM mv_log_cierra_op    
+   WHERE   ( cs_ordenpd_pt in ( :an_opestilo ) ) " update="mv_log_cierra_op" updatewhere=1 updatekeyinplace=yes arguments=(("an_opestilo", numberlist)) )
+text(band=header alignment="2" text="Cs Ordenpd Pt" border="0" color="33554432" x="9" y="8" height="56" width="320" html.valueishtml="0"  name=cs_ordenpd_pt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Rollo" border="0" color="33554432" x="338" y="8" height="56" width="274" html.valueishtml="0"  name=cs_rollo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Usuario" border="0" color="33554432" x="622" y="8" height="56" width="206" html.valueishtml="0"  name=usuario_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cs Caja" border="0" color="33554432" x="837" y="8" height="56" width="274" html.valueishtml="0"  name=cs_caja_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Kilos" border="0" color="33554432" x="1120" y="8" height="56" width="274" html.valueishtml="0"  name=ca_kilos_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Conos" border="0" color="33554432" x="1403" y="8" height="56" width="274" html.valueishtml="0"  name=ca_conos_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fe Creacion" border="0" color="33554432" x="1687" y="8" height="56" width="503" html.valueishtml="0"  name=fe_creacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fe Actulizacion" border="0" color="33554432" x="2199" y="8" height="56" width="503" html.valueishtml="0"  name=fe_actualizacion_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Consecutivo" border="0" color="33554432" x="2711" y="4" height="56" width="155" html.valueishtml="0"  name=consecutivo_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Reftel" border="0" color="33554432" x="2875" y="4" height="56" width="187" html.valueishtml="0"  name=co_reftel_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Co Centro" border="0" color="33554432" x="3072" y="4" height="56" width="233" html.valueishtml="0"  name=co_centro_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Ca Unidades" border="0" color="33554432" x="3314" y="4" height="76" width="155" html.valueishtml="0"  name=ca_unidades_t visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="0" color="33554432" x="9" y="8" height="68" width="320" format="[general]" html.valueishtml="0"  name=cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="0" color="33554432" x="338" y="8" height="68" width="274" format="[general]" html.valueishtml="0"  name=cs_rollo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="33554432" x="622" y="8" height="68" width="206" format="[general]" html.valueishtml="0"  name=usuario visible="1" edit.limit=8 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=40 border="0" color="33554432" x="837" y="8" height="68" width="274" format="[general]" html.valueishtml="0"  name=cs_caja visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=50 border="0" color="33554432" x="1120" y="8" height="68" width="274" format="[general]" html.valueishtml="0"  name=ca_kilos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=60 border="0" color="33554432" x="1403" y="8" height="68" width="274" format="[general]" html.valueishtml="0"  name=ca_conos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=70 border="0" color="33554432" x="1687" y="8" height="68" width="503" format="[shortdate] [time]" html.valueishtml="0"  name=fe_creacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=80 border="0" color="33554432" x="2199" y="8" height="68" width="503" format="[shortdate] [time]" html.valueishtml="0"  name=fe_actualizacion visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=90 border="0" color="33554432" x="2711" y="0" height="56" width="155" format="[general]" html.valueishtml="0"  name=consecutivo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=100 border="0" color="33554432" x="2875" y="0" height="56" width="187" format="[general]" html.valueishtml="0"  name=co_reftel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=110 border="0" color="33554432" x="3072" y="0" height="56" width="233" format="[general]" html.valueishtml="0"  name=co_centro visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=120 border="0" color="33554432" x="3314" y="0" height="56" width="155" format="[general]" html.valueishtml="0"  name=ca_unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
