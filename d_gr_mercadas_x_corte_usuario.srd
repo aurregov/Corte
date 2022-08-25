@@ -1,0 +1,77 @@
+HA$PBExportHeader$d_gr_mercadas_x_corte_usuario.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=296 color="536870912" )
+summary(height=116 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(8) updatewhereclause=yes name=usuario_mercada dbname="h_mercada.usuario_mercada" )
+ column=(type=datetime updatewhereclause=yes name=fecha_mercada dbname="h_mercada.fecha_mercada" )
+ column=(type=long updatewhereclause=yes name=cs_orden_corte dbname="h_mercada.cs_orden_corte" )
+ column=(type=long updatewhereclause=yes name=cs_mercada dbname="h_mercada.cs_mercada" )
+ column=(type=decimal(0) updatewhereclause=yes name=unidades dbname="unidades" )
+ column=(type=decimal(3) updatewhereclause=yes name=kilos dbname="kilos" )
+ column=(type=char(30) updatewhereclause=yes name=de_usuario dbname="m_usuario.de_usuario" )
+ column=(type=decimal(0) updatewhereclause=yes name=unidades_oc dbname="unidades_oc" )
+ retrieve="  SELECT admtelas.h_mercada.usuario_mercada,   
+         admtelas.h_mercada.fecha_mercada,   
+         admtelas.h_mercada.cs_orden_corte,   
+         admtelas.h_mercada.cs_mercada,   
+         sum(admtelas.dt_rollosmercada.ca_unidades_mercar) unidades, 
+			(select sum(d1.ca_kg_mercar) from dt_rollosmercada d1 
+         where d1.cs_mercada = dt_rollosmercada.cs_mercada and d1.co_estado_mercada in (4,6)) kilos,   
+         admtelas.m_usuario.de_usuario,
+			(select sum(dt_pdnxmodulo.ca_programada) 
+			from dt_pdnxmodulo 
+			where dt_pdnxmodulo.cs_asignacion = h_mercada.cs_orden_corte
+			) unidades_oc
+
+    FROM admtelas.h_mercada,   
+         admtelas.dt_rollosmercada,   
+         admtelas.m_usuario  
+   WHERE ( admtelas.h_mercada.cs_mercada = admtelas.dt_rollosmercada.cs_mercada ) and  
+         ( admtelas.h_mercada.usuario_mercada = admtelas.m_usuario.co_usuario ) and 
+			dt_rollosmercada.co_estado_mercada <> 7 and 
+         ( ( admtelas.h_mercada.fecha_mercada >= :adt_fe_inicial ) AND  
+         ( admtelas.h_mercada.fecha_mercada <= :adt_fe_final ) )   
+GROUP BY admtelas.h_mercada.usuario_mercada,   
+         admtelas.h_mercada.fecha_mercada,   
+         admtelas.h_mercada.cs_orden_corte,   
+         admtelas.h_mercada.cs_mercada,   
+         admtelas.m_usuario.de_usuario ,6  
+" arguments=(("adt_fe_inicial", datetime),("adt_fe_final", datetime))  sort="usuario_mercada A fecha_mercada A " )
+group(level=1 header.height=236 trailer.height=116 by=("usuario_mercada" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="Mercadas a Corte por Usuario" border="0" color="33554432" x="581" y="16" height="116" width="1467" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-18" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Fecha Inicial:" border="0" color="33554432" x="41" y="176" height="64" width="357" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header alignment="0" expression=" adt_fe_inicial "border="0" color="33554432" x="453" y="176" height="64" width="640" format="dd/mmm/yyyy hh:mm:ss" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fecha Final:" border="0" color="33554432" x="1129" y="176" height="64" width="338" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header alignment="0" expression=" adt_fe_final "border="0" color="33554432" x="1504" y="176" height="64" width="640" format="dd/mmm/yyyy hh:mm:ss" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+button(band=header text="Ordenar" enabled=yes action="8" border="0" color="0" x="2542" y="32" height="92" width="288" vtextalign="0" htextalign="0"  name=b_2 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Guardar" enabled=yes action="14" border="0" color="0" x="2866" y="32" height="92" width="288" vtextalign="0" htextalign="0"  name=b_3 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Filtrar" enabled=yes action="9" border="0" color="0" x="2213" y="32" height="92" width="288" vtextalign="0" htextalign="0"  name=b_1 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Usuario:" border="6" color="33554432" x="32" y="40" height="52" width="247" html.valueishtml="0"  name=h_mercada_usuario_mercada_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=header.1 id=1 alignment="0" tabsequence=32766 border="2" color="33554432" x="320" y="36" height="64" width="302" format="[general]" html.valueishtml="0"  name=usuario_mercada visible="1" edit.limit=8 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=7 alignment="0" tabsequence=32766 border="2" color="33554432" x="626" y="36" height="64" width="1211" format="[general]" html.valueishtml="0"  name=de_usuario visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Fecha Mercada" border="6" color="33554432" x="329" y="176" height="52" width="503" html.valueishtml="0"  name=h_mercada_fecha_mercada_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Orden Corte" border="6" color="33554432" x="841" y="176" height="52" width="329" html.valueishtml="0"  name=h_mercada_cs_orden_corte_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Mercada" border="6" color="33554432" x="1179" y="176" height="52" width="274" html.valueishtml="0"  name=h_mercada_cs_mercada_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Unidades Mercadas" border="6" color="33554432" x="1472" y="176" height="52" width="434" html.valueishtml="0"  name=unidades_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Kilos" border="6" color="33554432" x="1929" y="176" height="52" width="274" html.valueishtml="0"  name=kilos_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Unidades OC" border="6" color="33554432" x="2217" y="176" height="52" width="297" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="329" y="8" height="64" width="503" format="dd/mmm/yyyy hh:mm:ss" html.valueishtml="0"  name=fecha_mercada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="2" color="33554432" x="841" y="8" height="64" width="329" format="[general]" html.valueishtml="0"  name=cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="2" color="33554432" x="1179" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=cs_mercada visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="2" color="33554432" x="1929" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=kilos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="2" color="33554432" x="2208" y="8" height="64" width="306" format="[general]" html.valueishtml="0"  name=unidades_oc visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="2" color="33554432" x="1458" y="8" height="64" width="466" format="[general]" html.valueishtml="0"  name=unidades visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(  kilos  for group 1 )"border="2" color="33554432" x="1929" y="32" height="64" width="274" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(   unidades_oc   for group 1 )"border="2" color="33554432" x="2208" y="32" height="64" width="306" format="[GENERAL]" html.valueishtml="0"  name=compute_7 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(  unidades for group 1 )"border="2" color="33554432" x="1458" y="32" height="64" width="466" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(  kilos  for all )"border="2" color="33554432" x="1929" y="28" height="64" width="274" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(   unidades_oc   for all )"border="2" color="33554432" x="2208" y="28" height="64" width="306" format="[GENERAL]" html.valueishtml="0"  name=compute_8 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(  unidades for all )"border="2" color="33554432" x="1458" y="28" height="64" width="466" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
