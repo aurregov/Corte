@@ -1,0 +1,92 @@
+HA$PBExportHeader$d_gr_consulta_contanda.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=156 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=56 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_ordenpd_te_pg dbname="m_rollo.cs_ordenpd_te_pg" )
+ column=(type=long updatewhereclause=yes name=cs_ordenpd_pt dbname="h_ordenpd_pt.cs_ordenpd_pt" )
+ column=(type=char(40) updatewhereclause=yes name=de_referencia dbname="h_preref_pv.de_referencia" )
+ column=(type=datetime updatewhereclause=yes name=fe_termin_pg dbname="h_ordenpd_pt.fe_termin_pg" )
+ column=(type=decimal(2) updatewhereclause=yes name=kg_btc dbname="kg_btc" )
+ column=(type=decimal(0) updatewhereclause=yes name=rollos dbname="rollos" )
+ column=(type=decimal(2) updatewhereclause=yes name=kg_tanda dbname="kg_tanda" )
+ column=(type=decimal(2) updatewhereclause=yes name=kg_sobrantes dbname="kg_sobrantes" )
+ column=(type=long updatewhereclause=yes name=co_reftel_act dbname="m_rollo.co_reftel_act" )
+ column=(type=long updatewhereclause=yes name=co_cliente dbname="h_ordenpd_pt.co_cliente" )
+ retrieve="  SELECT m_rollo.cs_ordenpd_te_pg,   
+         h_ordenpd_pt.cs_ordenpd_pt,   
+         h_preref_pv.de_referencia,   
+         h_ordenpd_pt.fe_termin_pg,   
+         sum(m_rollo.ca_kg) as kg_btc,   
+         count(m_rollo.ca_kg) as rollos, 
+			sum(m_rollo.ca_kg)  as kg_tanda,    
+         cast (0 as decimal(7,2))  as kg_sobrantes,   
+         m_rollo.co_reftel_act,   
+         h_ordenpd_pt.co_cliente  
+          FROM m_rollo,   
+         h_preref_pv,   
+         h_ordenpd_pt  
+   WHERE ( m_rollo.cs_orden_pr_act = h_ordenpd_pt.cs_ordenpd_pt ) and 
+         ( h_preref_pv.co_tipo_ref = 'P') and 
+         ( h_ordenpd_pt.co_fabrica = h_preref_pv.co_fabrica ) and  
+         ( h_ordenpd_pt.co_linea = h_preref_pv.co_linea ) and  
+         ( cast(h_ordenpd_pt.co_referencia as char(15)) = h_preref_pv.co_referencia ) and  
+         ( ( co_centro = 6 ) AND  
+         ( m_rollo.co_estado_rollo = 2 ) AND  
+         ( m_rollo.cs_tanda > 2 ) AND  
+         ( h_ordenpd_pt.fe_termin_pg >= :a_fecha_ini ) AND  
+         ( h_ordenpd_pt.fe_termin_pg <= :a_fecha_fin ) AND  
+         (m_rollo.co_reftel_act = :a_tela OR  
+         :a_tela = 0) AND  
+         (m_rollo.co_proveedor = :a_proveedor OR  
+         :a_proveedor = 0) AND  
+         (h_ordenpd_pt.co_cliente = :a_Cliente OR  
+         :a_Cliente = 0) AND  
+         (h_preref_pv.co_marca = cast(:a_marca as char(3)) OR  
+         :a_marca = 0) AND  
+         (h_preref_pv.co_linea_plan = :a_linea OR  
+         :a_linea = 0) AND  
+         (h_preref_pv.de_referencia = :a_estilo OR  
+         :a_estilo = 0) AND  
+         (m_rollo.cs_ordenpd_te_pg = :a_optejido OR  
+         :a_optejido = 0) AND  
+         (m_rollo.cs_orden_pr_act = :a_opestilo OR  
+         :a_opestilo = 0) AND  
+         (h_ordenpd_pt.usuario = :a_programador OR  
+         :a_programador = ~"~") )   
+GROUP BY m_rollo.cs_ordenpd_te_pg,   
+         h_ordenpd_pt.cs_ordenpd_pt,   
+         h_preref_pv.de_referencia,   
+         h_ordenpd_pt.fe_termin_pg,   
+         h_ordenpd_pt.co_cliente,   
+         m_rollo.co_reftel_act,   
+         m_rollo.co_estado_rollo,
+			m_rollo.cs_tanda   
+" arguments=(("a_fecha_ini", datetime),("a_fecha_fin", datetime),("a_tela", number),("a_proveedor", number),("a_Cliente", number),("a_marca", number),("a_linea", number),("a_estilo", number),("a_optejido", number),("a_opestilo", number),("a_programador", string)) )
+text(band=header alignment="2" text="OP Tejido" border="6" color="33554432" x="9" y="4" height="160" width="384" html.valueishtml="0"  name=m_rollo_cs_ordenpd_te_pg_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="33554432" x="9" y="0" height="76" width="384" format="[general]" html.valueishtml="0"  name=cs_ordenpd_te_pg visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Fecha
+
+ Despacho" border="6" color="33554432" x="1600" y="4" height="160" width="507" html.valueishtml="0"  name=h_ordenpd_pt_fe_termin_pg_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header alignment="2" text="Kg 
+
+ Sobrantes" border="6" color="33554432" x="2117" y="4" height="160" width="471" html.valueishtml="0"  name=kg_sobrantes_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header alignment="2" text="Kg Btc" border="6" color="33554432" x="2597" y="4" height="160" width="462" html.valueishtml="0"  name=kg_btc_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header alignment="2" text="Kg Tanda" border="6" color="33554432" x="3067" y="4" height="160" width="485" html.valueishtml="0"  name=kg_tanda_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header alignment="2" text="Rollos" border="6" color="33554432" x="3561" y="4" height="160" width="293" html.valueishtml="0"  name=rollos_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="5" color="33554432" x="2117" y="0" height="76" width="471" format="[general]" html.valueishtml="0"  name=kg_sobrantes visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="5" color="33554432" x="2597" y="0" height="76" width="462" format="[general]" html.valueishtml="0"  name=kg_btc visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="5" color="33554432" x="3067" y="0" height="76" width="485" format="[general]" html.valueishtml="0"  name=kg_tanda visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="5" color="33554432" x="3561" y="0" height="76" width="293" format="[general]" html.valueishtml="0"  name=rollos visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="33554432~tif( co_estado_rollo =1,rgb( 255, 255, 255),rgb( 0, 0, 0))" x="402" y="0" height="76" width="384" format="[general]" html.valueishtml="0"  name=cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="5" color="33554432~tif( co_estado_rollo =1,rgb( 255, 255, 255),rgb( 0, 0, 0))" x="1600" y="0" height="76" width="507" format="[shortdate] " html.valueishtml="0"  name=fe_termin_pg visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="33554432" x="791" y="0" height="76" width="786" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="OP Estilo" border="6" color="33554432" x="402" y="4" height="160" width="384" html.valueishtml="0"  name=h_ordenpd_pt_cs_ordenpd_pt_t visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+text(band=header alignment="2" text="Estilo" border="6" color="33554432" x="800" y="4" height="160" width="786" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12639424" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
