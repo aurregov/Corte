@@ -1,0 +1,57 @@
+HA$PBExportHeader$dtb_estilo_para_ajsute.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=76 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=dt_agrupa_pdn_co_fabrica_pt dbname="co_fabrica_pt" )
+ column=(type=long updatewhereclause=yes name=dt_agrupa_pdn_co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes name=dt_agrupa_pdn_co_referencia dbname="co_referencia" )
+ column=(type=char(20) updatewhereclause=yes name=h_preref_de_referencia_crta dbname="de_referencia_crta" )
+ column=(type=long updatewhereclause=yes name=dt_agrupa_pdn_co_color_pt dbname="co_color_pt" )
+ column=(type=long updatewhereclause=yes name=dt_agrupaescalapdn_co_talla dbname="co_talla" )
+ column=(type=char(15) updatewhereclause=yes name=m_tallas_x_grupo_de_talla dbname="de_talla" )
+ column=(type=long updatewhereclause=yes name=unidades dbname="compute_0008" )
+ retrieve="SELECT DISTINCT  dt_agrupa_pdn.co_fabrica_pt ,
+           dt_agrupa_pdn.co_linea ,
+           dt_agrupa_pdn.co_referencia ,
+           h_preref_pv.de_referencia_crta ,
+           dt_agrupa_pdn.co_color_pt ,
+           dt_agrupaescalapdn.co_talla ,
+           m_tallas_x_grupo.de_talla ,
+           0    
+        FROM dt_agrupa_pdn ,
+           dt_agrupaescalapdn ,
+           h_preref_pv ,
+           m_tallas_x_grupo     
+        WHERE ( dt_agrupaescalapdn.cs_agrupacion = dt_agrupa_pdn.cs_agrupacion ) and   
+				  ( dt_agrupaescalapdn.cs_pdn = dt_agrupa_pdn.cs_pdn ) and 
+              ( h_preref_pv.co_tipo_ref = 'P') and       
+		        ( dt_agrupa_pdn.co_fabrica_pt = h_preref_pv.co_fabrica ) and   
+				  ( dt_agrupa_pdn.co_linea = h_preref_pv.co_linea ) and    
+				  ( cast(dt_agrupa_pdn.co_referencia as char(15)) = h_preref_pv.co_referencia ) and 
+				  ( h_preref_pv.co_grupo_tlla = m_tallas_x_grupo.co_grupo_tlla ) and      
+			     ( dt_agrupaescalapdn.co_talla = m_tallas_x_grupo.co_talla ) and         
+		        ( ( dt_agrupa_pdn.cs_agrupacion = :agrupacion ) and  
+				  ( dt_agrupa_pdn.cs_pdn = :pdn ) )  " arguments=(("agrupacion", number),("pdn", number)) )
+text(band=header alignment="2" text="Fabrica" border="6" color="8388608" x="14" y="12" height="56" width="165" html.valueishtml="0"  name=dt_agrupa_pdn_co_fabrica_pt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Linea" border="6" color="8388608" x="192" y="12" height="56" width="133" html.valueishtml="0"  name=dt_agrupa_pdn_co_linea_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Referencia" border="6" color="8388608" x="338" y="12" height="56" width="251" html.valueishtml="0"  name=dt_agrupa_pdn_co_referencia_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Estilo" border="6" color="8388608" x="603" y="12" height="56" width="480" html.valueishtml="0"  name=h_preref_de_referencia_crta_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="33554432" x="14" y="4" height="52" width="160" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_co_fabrica_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="33554432" x="187" y="4" height="52" width="133" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="33554432" x="334" y="4" height="52" width="251" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="5" color="33554432" x="599" y="4" height="52" width="480" format="[general]" html.valueishtml="0"  name=h_preref_de_referencia_crta visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Talla" border="6" color="8388608" x="1394" y="12" height="56" width="320" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Unidades" border="6" color="8388608" x="1728" y="12" height="56" width="224" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="5" color="33554432" x="1394" y="4" height="52" width="73" format="[general]" html.valueishtml="0"  name=dt_agrupaescalapdn_co_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="5" color="33554432" x="1490" y="4" height="52" width="224" format="[general]" html.valueishtml="0"  name=m_tallas_x_grupo_de_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=8 alignment="0" tabsequence=10 border="5" color="33554432" x="1728" y="4" height="52" width="224" format="[general]" html.valueishtml="0"  name=unidades  tag="Digite las unidades y haga doble click sobre el registro" visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+text(band=header alignment="2" text="Color" border="6" color="8388608" x="1097" y="12" height="56" width="283" html.valueishtml="0"  name=dt_agrupa_pdn_co_color_pt_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="33554432" x="1093" y="4" height="52" width="283" format="[general]" html.valueishtml="0"  name=dt_agrupa_pdn_co_color_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
