@@ -1,0 +1,31 @@
+HA$PBExportHeader$d_gr_sesgo_instrucciones.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=52 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=220 color="536870912"  height.autosize=yes)
+table(column=(type=char(1000) updatewhereclause=yes name=de_instruccion dbname="de_instruccion" )
+ retrieve="select distinct dt_instruc_ruta.de_instruccion
+  from dt_instruc_ruta,  
+	    dt_pedidosxrecep
+ where dt_pedidosxrecep.cs_reg_recep_gral = dt_instruc_ruta.cs_reg_recep_gral and
+		 dt_pedidosxrecep.cs_reg_pedido 		= dt_instruc_ruta.cs_reg_pedido and
+		 dt_instruc_ruta.co_centro 			= 99 and 
+		 dt_instruc_ruta.co_subcentro			= 99 and 
+		 dt_instruc_ruta.co_fabrica			= :an_fabrica and 
+		 dt_instruc_ruta.co_linea				= :an_linea and 
+		 dt_instruc_ruta.co_referencia 		= :an_ref and 
+		 dt_instruc_ruta.de_instruccion 		like ~"%SESGO%~" and
+		 dt_pedidosxrecep.co_tipo_trabajo 	= 1;		
+
+
+" arguments=(("an_fabrica", number),("an_linea", number),("an_ref", number),("an_de_ref", string)) )
+text(band=header alignment="2" text="INSTRUCCIONES DE SESGO" border="0" color="33554432" x="9" y="8" height="52" width="1550" html.valueishtml="0"  name=de_instruccion_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="0" height="156" width="1550" format="[general]" html.valueishtml="0"  name=de_instruccion visible="1" height.autosize=yes edit.limit=1000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="0" expression="'Estilo:' + an_ref  +  an_de_ref "border="2" color="0" x="9" y="0" height="48" width="1550" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215"  height.autosize=yes)
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
