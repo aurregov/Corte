@@ -1,0 +1,26 @@
+HA$PBExportHeader$dtb_and_telas_referencia_raya10.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=44 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_reftel dbname="dt_color_modelo.co_reftel" )
+ column=(type=char(42) updatewhereclause=yes name=h_telas_de_reftel dbname="h_telas.de_reftel" )
+ retrieve="select unique dt_color_modelo.co_reftel, de_reftel
+from dt_color_modelo, dt_modelos, h_telas
+where dt_color_modelo.co_fabrica = dt_modelos.co_fabrica
+  and dt_color_modelo.co_linea = dt_modelos.co_linea
+  and dt_color_modelo.co_referencia = dt_modelos.co_referencia
+  and dt_color_modelo.co_talla = dt_modelos.co_talla
+  and dt_color_modelo.co_calidad = dt_modelos.co_calidad
+  and dt_color_modelo.co_color_pt = dt_modelos.co_color_pt
+  and dt_color_modelo.co_modelo = dt_modelos.co_modelo
+  and dt_color_modelo.co_reftel = h_telas.co_reftel
+  and dt_color_modelo.co_Caract = h_telas.co_Caract
+  and dt_color_modelo.co_fabrica = :CO_FABRICA
+  and dt_color_modelo.co_linea = :CO_LINEA
+  and dt_color_modelo.co_referencia = :CO_REFERENCIA
+  and dt_modelos.raya = 10;" arguments=(("CO_FABRICA", number),("CO_LINEA", number),("CO_REFERENCIA", number)) )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="0" height="44" width="690" format="[general]" html.valueishtml="0"  name=h_telas_de_reftel visible="1" edit.limit=42 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Narrow" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
