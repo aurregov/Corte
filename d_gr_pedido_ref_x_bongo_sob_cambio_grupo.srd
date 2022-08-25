@@ -1,0 +1,57 @@
+HA$PBExportHeader$d_gr_pedido_ref_x_bongo_sob_cambio_grupo.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica_ref dbname="co_fabrica_ref" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long update=yes updatewhereclause=yes name=pedido dbname="pedido" )
+ column=(type=decimal(2) updatewhereclause=yes name=ca_actual dbname="ca_actual" )
+ retrieve="SELECT distinct 
+	dt_canasta_corte.co_fabrica_ref,
+	dt_canasta_corte.co_linea,
+	dt_canasta_corte.co_referencia,
+	dt_canasta_corte.pedido,
+	sum(dt_canasta_corte.ca_actual ) ca_actual
+ 
+  FROM dt_canasta_corte , h_canasta_corte , peddig , pedpend_exp,
+		 cliente_grupo_sobrantes c, cc_cliente
+ WHERE  dt_canasta_corte.cs_canasta = h_canasta_corte.cs_canasta 
+	AND pallet_id in ( :as_bongos )
+	AND dt_canasta_corte.pedido = peddig.pedido
+	and sw_origen = 'S'
+	and peddig.co_cliente = c.co_cliente
+	and c.estado = 'A'
+	and cc_cliente.co_cliente = c.co_cliente
+	and dt_canasta_corte.co_fabrica_ref = pedpend_exp.co_fabrica
+	and dt_canasta_corte.co_linea = pedpend_exp.co_linea
+	and dt_canasta_corte.co_referencia = pedpend_exp.co_referencia
+	and dt_canasta_corte.co_talla = pedpend_exp.co_talla
+	and dt_canasta_corte.co_color = pedpend_exp.co_color
+	and dt_canasta_corte.co_calidad = pedpend_exp.co_calidad
+	and dt_canasta_corte.pedido = pedpend_exp.pedido
+	and dt_canasta_corte.po = pedpend_exp.nu_orden
+	and dt_canasta_corte.nu_cut = pedpend_exp.nu_cut
+
+group by dt_canasta_corte.co_fabrica_ref,
+	dt_canasta_corte.co_linea,
+	dt_canasta_corte.co_referencia,
+	dt_canasta_corte.pedido" arguments=(("as_bongos", stringlist)) )
+text(band=header alignment="2" text="Co Fabrica Ref" border="0" color="33554432" x="9" y="8" height="52" width="325" html.valueishtml="0"  name=co_fabrica_ref_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Linea" border="0" color="33554432" x="343" y="8" height="52" width="274" html.valueishtml="0"  name=co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Co Referencia" border="0" color="33554432" x="626" y="8" height="52" width="311" html.valueishtml="0"  name=co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pedido" border="0" color="33554432" x="951" y="8" height="52" width="274" html.valueishtml="0"  name=pedido_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ca Actual" border="0" color="33554432" x="1239" y="8" height="52" width="274" html.valueishtml="0"  name=ca_actual_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="325" format="[general]" html.valueishtml="0"  name=co_fabrica_ref visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="343" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="626" y="8" height="64" width="311" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="951" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=pedido visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1239" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=ca_actual visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
