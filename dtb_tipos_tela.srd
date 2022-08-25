@@ -1,0 +1,18 @@
+HA$PBExportHeader$dtb_tipos_tela.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes key=yes name=co_ttejido dbname="m_ttejidos.co_ttejido" )
+ column=(type=char(30) updatewhereclause=yes name=de_ttejido dbname="m_ttejidos.de_ttejido" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"m_ttejidos~" ) COLUMN(NAME=~"m_ttejidos.co_ttejido~") COLUMN(NAME=~"m_ttejidos.de_ttejido~")WHERE(    EXP1 =~"m_ttejidos.de_ttejido~"   OP =~"like~"    EXP2 =~":as_tipotela~" ) ) ARG(NAME = ~"as_tipotela~" TYPE = string) " update="m_ttejidos" updatewhere=1 updatekeyinplace=no arguments=(("as_tipotela", string))  sort="de_ttejido A " )
+text(band=header alignment="2" text="Tipo de Tela" border="6" color="33554432" x="9" y="8" height="52" width="978" html.valueishtml="0"  name=de_tiptel_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="9" y="4" height="64" width="91" format="[general]" html.valueishtml="0"  name=co_ttejido visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="0" x="119" y="4" height="64" width="878" format="[general]" html.valueishtml="0"  name=de_ttejido visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
