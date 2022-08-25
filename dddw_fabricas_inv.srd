@@ -1,0 +1,13 @@
+HA$PBExportHeader$dddw_fabricas_inv.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica dbname="m_fabricas.co_fabrica" )
+ column=(type=char(50) updatewhereclause=yes name=razon_social dbname="m_fabricas.razon_social" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"admtelas.m_fabricas~" ) COLUMN(NAME=~"admtelas.m_fabricas.co_fabrica~") COLUMN(NAME=~"admtelas.m_fabricas.razon_social~")) " )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="146" y="4" height="64" width="686" format="[general]" html.valueishtml="0"  name=razon_social visible="1" edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="33554432" x="14" y="4" height="64" width="128" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
