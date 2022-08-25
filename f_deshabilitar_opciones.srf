@@ -1,0 +1,72 @@
+HA$PBExportHeader$f_deshabilitar_opciones.srf
+$PBExportComments$OBJETO BASE - Funcion para deshabilitar las opciones no permitidas en un menu de una ventana para un perfil especifico. Debe invocarse en el Open de las ventanas que tengan un menu asociado del cual halla que deshabilitar opciones segun el perfil
+global type f_deshabilitar_opciones from function_object
+end type
+
+forward prototypes
+global function long f_deshabilitar_opciones (string as_ventana, menu am_menu)
+end prototypes
+
+global function long f_deshabilitar_opciones (string as_ventana, menu am_menu);//////////////////////////////////////////////////////////////////////
+// FUNCION: f_deshabilitar_opciones
+// DESCRIPCION: Deshabilitar las opciones no permitidas para una ventana
+// PARAMETROS: Nombre de la ventana y el menu
+// RETORNA:   0
+/////////////////////////////////////////////////////////////////////
+
+Long li_numeroopcion = 1,li_cs_nivel1,li_cs_nivel2,li_cs_nivel3,li_cs_nivel4,li_resultado=-1
+
+DO WHILE li_numeroopcion <= gstr_info_usuario.numero_opciones
+	IF as_ventana = trim(gstr_opciones.nombre_ventana[li_numeroopcion]) OR &
+		trim(gstr_opciones.nombre_ventana[li_numeroopcion]) = 'w_principal' THEN
+	   
+		///////////////////////////////////////////////////////////////////////
+		// Si el nombre de la ventana, corresponde con el nombre de ventana
+		// que hay en la estrutura s_base_opciones, se van asignando a las
+		// siguientes variables locales, el valor que hay en dicha estructura, 
+		// para cada una de estas variables.
+		//////////////////////////////////////////////////////////////////////
+		
+		li_cs_nivel1=gstr_opciones.nivel_1[li_numeroopcion]
+		li_cs_nivel2=gstr_opciones.nivel_2[li_numeroopcion]
+		li_cs_nivel3=gstr_opciones.nivel_3[li_numeroopcion]
+		li_cs_nivel4=gstr_opciones.nivel_4[li_numeroopcion]
+		
+		CHOOSE CASE gstr_opciones.nivel [li_numeroopcion]
+			CASE 1
+				///////////////////////////////////////////////////////////////////
+				// Deshabilita y pone invisible la opcion de nivel1
+				/////////////////////////////////////////////////////////////////
+
+					am_menu.item[li_cs_nivel1].enabled=false
+				  	am_menu.item[li_cs_nivel1].visible=false					
+			CASE 2
+				//////////////////////////////////////////////////////////////////
+				// Deshabilita y pone invisible la opcion de nivel2
+				/////////////////////////////////////////////////////////////////
+					
+					am_menu.item[li_cs_nivel1].item[li_cs_nivel2].enabled=false
+					am_menu.item[li_cs_nivel1].item[li_cs_nivel2].visible=false					
+			CASE 3
+				//////////////////////////////////////////////////////////////////
+				// Deshabilita y pone invisible la opcion de nivel3
+				/////////////////////////////////////////////////////////////////
+					 
+					am_menu.item[li_cs_nivel1].item[li_cs_nivel2].item[li_cs_nivel3].enabled=false
+					am_menu.item[li_cs_nivel1].item[li_cs_nivel2].item[li_cs_nivel3].visible=false					
+			CASE 4
+				//////////////////////////////////////////////////////////////////
+				// Deshabilita y pone invisible la opcion de nivel4
+				/////////////////////////////////////////////////////////////////
+				  
+					am_menu.item[li_cs_nivel1].item[li_cs_nivel2].item[li_cs_nivel3].item[li_cs_nivel4].enabled=false
+					am_menu.item[li_cs_nivel1].item[li_cs_nivel2].item[li_cs_nivel3].item[li_cs_nivel4].visible=false					
+		END CHOOSE
+	END IF
+	li_numeroopcion++
+LOOP
+
+li_resultado=0
+Return(li_resultado)
+end function
+
