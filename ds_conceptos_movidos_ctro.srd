@@ -1,0 +1,40 @@
+HA$PBExportHeader$ds_conceptos_movidos_ctro.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_cpto_ant dbname="mv_indicadores.co_cpto_ant" )
+ column=(type=long updatewhereclause=yes name=tipo dbname="m_cpto_bodega.tipo" )
+ column=(type=char(50) updatewhereclause=yes name=de_cpto_bodega dbname="m_cpto_bodega.de_cpto_bodega" )
+ column=(type=decimal(2) updatewhereclause=yes name=tiempo dbname="m_cpto_bodega.tiempo" )
+ column=(type=char(8) updatewhereclause=yes name=responsable dbname="m_cpto_bodega.responsable" )
+ retrieve="  SELECT DISTINCT mv_indicadores.co_cpto_ant,   
+         m_cpto_bodega.tipo,   
+         m_cpto_bodega.de_cpto_bodega,   
+         m_cpto_bodega.tiempo ,
+         m_cpto_bodega.responsable  
+    FROM mv_indicadores,   
+         m_cpto_bodega  
+   WHERE ( mv_indicadores.co_cpto_ant = m_cpto_bodega.co_cpto_bodega ) 
+			and  (m_cpto_bodega.tipo in (1,2,4))
+         and (date(fe_movimiento) >= :ad_finicio)
+  			and (date(fe_movimiento) <= :ad_ffin)
+         and ( mv_indicadores.co_centro_ant = :ai_centro )     
+" arguments=(("ai_centro", number),("ad_finicio", date),("ad_ffin", date))  sort="tipo A " )
+text(band=header alignment="0" text="Meta Tiempo" border="0" color="33554432" x="928" y="4" height="52" width="270" html.valueishtml="0"  name=m_cpto_bodega_tiempo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="M Cpto Bodega Responsable" border="0" color="0" x="1207" y="4" height="56" width="389" html.valueishtml="0"  name=m_cpto_bodega_responsable_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Co Cpto Ant" border="0" color="33554432" x="9" y="8" height="52" width="274" html.valueishtml="0"  name=co_cpto_ant_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="M Cpto Bodega Tipo" border="0" color="33554432" x="293" y="4" height="52" width="101" html.valueishtml="0"  name=m_cpto_bodega_tipo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="M Cpto Bodega De Cpto Bodega" border="0" color="0" x="402" y="4" height="56" width="517" html.valueishtml="0"  name=m_cpto_bodega_de_cpto_bodega_t visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=co_cpto_ant visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="293" y="8" height="64" width="101" format="[general]" html.valueishtml="0"  name=tipo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="402" y="8" height="64" width="517" format="[general]" html.valueishtml="0"  name=de_cpto_bodega visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="928" y="8" height="64" width="270" format="[general]" html.valueishtml="0"  name=tiempo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1207" y="8" height="64" width="389" format="[general]" html.valueishtml="0"  name=responsable visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
