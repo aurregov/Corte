@@ -1,0 +1,35 @@
+HA$PBExportHeader$f_formatear_campo_para_plano.srf
+global type f_formatear_campo_para_plano from function_object
+end type
+
+forward prototypes
+global function string f_formatear_campo_para_plano (string as_campo_original, long ai_longitud_deseada, string as_tipo_campo)
+end prototypes
+
+global function string f_formatear_campo_para_plano (string as_campo_original, long ai_longitud_deseada, string as_tipo_campo);String ls_campo_arreglado
+Long ll_len_campo_original, ll_posicion_insercion
+
+as_campo_original = Trim(as_campo_original)
+ll_len_campo_original = Len(as_campo_original)
+
+IF as_tipo_campo = 'NUMERICO' THEN
+	ls_campo_arreglado = Fill("0", ai_longitud_deseada)
+	IF ai_longitud_deseada >= ll_len_campo_original THEN
+		ll_posicion_insercion = ai_longitud_deseada - ll_len_campo_original + 1
+	ELSE
+		MessageBox("Error","Se encontro un valor de tama$$HEX1$$f100$$ENDHEX$$o superior al especificado, por favor revise los fuentes",StopSign!)
+		as_campo_original =	'&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&'
+	END IF
+ELSE
+	ls_campo_arreglado = Fill(" ", ai_longitud_deseada)
+	ll_posicion_insercion = 1
+END IF
+
+ls_campo_arreglado = Replace(ls_campo_arreglado,ll_posicion_insercion,ll_len_campo_original,as_campo_original)
+
+ls_campo_arreglado = Left(ls_campo_arreglado, ai_longitud_deseada)
+
+Return(ls_campo_arreglado)
+
+end function
+
