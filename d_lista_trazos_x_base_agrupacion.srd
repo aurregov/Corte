@@ -1,0 +1,23 @@
+HA$PBExportHeader$d_lista_trazos_x_base_agrupacion.srd
+$PBExportComments$Trae los trazos de una base de trazos.
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=cs_agrupacion dbname="dt_trazosxbase.cs_agrupacion" )
+ column=(type=long updatewhereclause=yes name=cs_base_trazos dbname="dt_trazosxbase.cs_base_trazos" )
+ column=(type=long updatewhereclause=yes name=cs_trazo dbname="dt_trazosxbase.cs_trazo" )
+ column=(type=decimal(0) updatewhereclause=yes name=cantidad dbname="cantidad" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"dt_trazosxbase~" ) COLUMN(NAME=~"dt_trazosxbase.cs_agrupacion~") COLUMN(NAME=~"dt_trazosxbase.cs_base_trazos~") COLUMN(NAME=~"dt_trazosxbase.cs_trazo~") COMPUTE(NAME=~"sum(dt_trazosxbase.ca_programadas) cantidad~")WHERE(    EXP1 =~"dt_trazosxbase.cs_agrupacion~"   OP =~"=~"    EXP2 =~":an_agrupa~"    LOGIC =~"And~" ) WHERE(    EXP1 =~"dt_trazosxbase.cs_base_trazos~"   OP =~"=~"    EXP2 =~":an_base~" )  GROUP(NAME=~"dt_trazosxbase.cs_agrupacion~") GROUP(NAME=~"dt_trazosxbase.cs_base_trazos~") GROUP(NAME=~"dt_trazosxbase.cs_trazo~")) ORDER(NAME=~"dt_trazosxbase.cs_trazo~" ASC=yes ) ARG(NAME = ~"an_agrupa~" TYPE = number)  ARG(NAME = ~"an_base~" TYPE = number) " arguments=(("an_agrupa", number),("an_base", number)) )
+text(band=header alignment="2" text="Agrupaci$$HEX1$$f300$$ENDHEX$$n" border="6" color="0" x="9" y="8" height="56" width="265"  name=cs_agrupacion_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Base" border="6" color="0" x="283" y="8" height="56" width="165"  name=cs_base_trazos_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Trazo" border="6" color="0" x="457" y="8" height="56" width="155"  name=cs_trazo_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Unid Prog" border="6" color="0" x="622" y="8" height="56" width="265"  name=t_1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="9" y="4" height="64" width="265" format="[general]"  name=cs_agrupacion edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="283" y="4" height="64" width="165" format="[general]"  name=cs_base_trazos edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="0" x="457" y="4" height="64" width="155" format="[general]"  name=cs_trazo edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=0 border="0" color="0" x="626" y="4" height="64" width="261"  name=cantidad  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )
