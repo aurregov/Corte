@@ -1,0 +1,13 @@
+HA$PBExportHeader$drp_reporte_numeracion_liq_para_confec.srd
+release 8;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=5 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=396 color="536870912"  height.autosize=yes)
+table(column=(type=char(10) updatewhereclause=yes name=a dbname="a" )
+ unbound = "yes"arguments=(("orden", number),("raya", number),("cs_espacio", number),("tipo", number)) )
+report(band=detail dataobject="dtb_guias_numeracion" x="18" y="260" height="136" width="3406" border="0"  height.autosize=yes criteria="" nest_arguments=((" orden "),(" raya / 10")) trail_footer = yes  name=dw_2 visible="1~t if( tipo = 1,1,0)"  slideleft=yes  slideup=directlyabove )
+report(band=detail dataobject="dtb_guias_numeracion_liquida" x="18" y="236" height="136" width="3406" border="0"  height.autosize=yes criteria="" nest_arguments=((" orden "),(" raya  / 10")) trail_footer = yes  name=dw_3 visible="1~t if( tipo = 2,1,0)"  slideleft=yes  slideup=directlyabove )
+report(band=detail dataobject="d_reporte_numeracion_confeccion" x="18" y="8" height="120" width="3406" border="0"  height.autosize=yes criteria="" nest_arguments=((" orden "),(" raya "),(" cs_espacio ")) trail_footer = yes  name=dw_1 visible="1"  slideup=directlyabove )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" netscapelayers="0" )
