@@ -1,0 +1,20 @@
+HA$PBExportHeader$d_tb_sq_listado_m_etiquetas.srd
+$PBExportComments$SA49463 E00432~r~nDatawindow de listado de las plantillas de etiquetas disponibles
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(8) update=yes updatewhereclause=yes key=yes name=co_etiqueta dbname="m_etiquetas.co_etiqueta" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=de_etiqueta dbname="m_etiquetas.de_etiqueta" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=ruta dbname="m_etiquetas.ruta" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=impresora dbname="m_etiquetas.impresora" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"m_etiquetas~" ) COLUMN(NAME=~"m_etiquetas.co_etiqueta~") COLUMN(NAME=~"m_etiquetas.de_etiqueta~") COLUMN(NAME=~"m_etiquetas.ruta~") COLUMN(NAME=~"m_etiquetas.impresora~")) " update="m_etiquetas" updatewhere=1 updatekeyinplace=no )
+group(level=1 header.height=80 trailer.height=0 by=("impresora" ) header.color="536870912" trailer.color="536870912" )
+column(band=header.1 id=4 alignment="2" tabsequence=30 border="1" color="33554432" x="0" y="16" height="52" width="864" html.valueishtml="0"  name=impresora visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0 edit.displayonly=yes  font.face="Microsoft Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="2" color="33554432" x="0" y="4" height="64" width="864" format="[general]" html.valueishtml="0"  name=de_etiqueta visible="1" edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0 edit.displayonly=yes  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
