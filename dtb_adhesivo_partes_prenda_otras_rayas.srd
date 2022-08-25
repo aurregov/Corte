@@ -1,0 +1,150 @@
+HA$PBExportHeader$dtb_adhesivo_partes_prenda_otras_rayas.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=644 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=cs_orden_corte dbname="cs_orden_corte" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_agrupacion dbname="cs_agrupacion" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_base_trazos dbname="cs_base_trazos" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_espacio dbname="cs_espacio" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_sec_ext dbname="cs_sec_ext" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=co_talla dbname="co_talla" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=cs_pdn dbname="cs_pdn" )
+ column=(type=char(2) update=yes updatewhereclause=yes key=yes name=letra dbname="letra" )
+ column=(type=long update=yes updatewhereclause=yes name=ca_paquetes dbname="ca_paquetes" )
+ column=(type=long update=yes updatewhereclause=yes name=capas dbname="capas" )
+ column=(type=long update=yes updatewhereclause=yes name=valor_inicial dbname="valor_inicial" )
+ column=(type=long update=yes updatewhereclause=yes name=valor_final dbname="valor_final" )
+ column=(type=long updatewhereclause=yes name=dt_agrupa_pdn_co_color_pt dbname="co_color_pt" )
+ column=(type=char(3) updatewhereclause=yes name=dt_agrupa_pdn_tono dbname="tono" )
+ column=(type=long updatewhereclause=yes name=dt_agrupa_pdn_cs_liberacion dbname="cs_liberacion" )
+ column=(type=char(50) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=char(20) updatewhereclause=yes name=de_talla dbname="de_talla" )
+ column=(type=long updatewhereclause=yes name=co_fabrica_pt dbname="co_fabrica_pt" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=long updatewhereclause=yes name=cs_particion dbname="cs_particion" )
+ column=(type=long updatewhereclause=yes name=cs_orden dbname="cs_orden" )
+ column=(type=long updatewhereclause=yes key=yes name=tipo dbname="tipo" values="SI CORTAR	1/BALANCEO	2/" )
+ column=(type=long updatewhereclause=yes name=sec_lote dbname="sec_lote" )
+ column=(type=long updatewhereclause=yes name=orden_espacio dbname="orden_espacio" )
+ column=(type=char(30) updatewhereclause=yes name=de_linea dbname="de_linea" )
+ column=(type=char(30) updatewhereclause=yes name=de_parte dbname="de_parte" )
+ retrieve="   SELECT unique t_guias_num_prog.cs_orden_corte,   
+         t_guias_num_prog.cs_agrupacion,   
+         t_guias_num_prog.cs_base_trazos,   
+         t_guias_num_prog.cs_espacio,   
+         t_guias_num_prog.cs_sec_ext,   
+         t_guias_num_prog.co_talla,   
+         t_guias_num_prog.cs_pdn,   
+         t_guias_num_prog.letra,   
+         t_guias_num_prog.ca_paquetes,   
+         t_guias_num_prog.capas,   
+         t_guias_num_prog.valor_inicial,   
+         t_guias_num_prog.valor_final,
+			dt_agrupa_pdn.co_color_pt,
+			dt_agrupa_pdn.tono,
+			dt_agrupa_pdn.cs_liberacion,
+			h_preref_pv.de_referencia,
+			m_tallas_x_grupo_pv.de_talla,
+			dt_agrupa_pdn.co_fabrica_pt,
+			dt_agrupa_pdn.co_linea, 
+			dt_agrupa_pdn.co_referencia,
+			dt_agrupa_pdn.cs_particion, 
+			t_guias_num_prog.cs_orden,
+			t_guias_num_prog.tipo,
+			( 	SELECT unique cs_ordenpdn
+				FROM dt_trazosxoc b
+				WHERE b.cs_orden_corte 	= t_guias_num_prog.cs_orden_corte 			AND
+						b.cs_agrupacion 	= t_guias_num_prog.cs_agrupacion 			AND
+						b.cs_base_trazos 	= (t_guias_num_prog.cs_base_trazos / 10) 			AND
+						b.cs_trazo 			= t_guias_num_prog.cs_espacio 				AND
+						b.cs_sec_ext 		= t_guias_num_prog.cs_sec_ext and
+						b.cs_pdn				= t_guias_num_prog.cs_pdn ) sec_lote  ,
+			(  SELECT unique dt_trazosxoc.cs_orden_espacio
+				 FROM dt_trazosxoc  
+				WHERE ( dt_trazosxoc.cs_orden_corte 	= t_guias_num_prog.cs_orden_corte ) AND  
+						( dt_trazosxoc.cs_agrupacion 		= t_guias_num_prog.cs_agrupacion ) AND  
+						( dt_trazosxoc.cs_base_trazos 	= (t_guias_num_prog.cs_base_trazos / 10 ) ) AND  
+						( dt_trazosxoc.cs_trazo 			= t_guias_num_prog.cs_espacio ) AND  
+						( dt_trazosxoc.cs_sec_ext 			= t_guias_num_prog.cs_sec_ext ) AND
+						( dt_trazosxoc.cs_pdn 				= t_guias_num_prog.cs_pdn ) 
+						 
+			) as orden_espacio,
+         
+         m_lineas.de_linea,
+			m_partes.de_parte
+    FROM t_guias_num_prog,
+			dt_agrupa_pdn,
+			h_preref_pv,
+			m_tallas_x_grupo_pv, 
+			m_lineas, 
+			dt_telaxmodelo_lib,
+			dt_color_modelo,
+			m_partes
+	WHERE t_guias_num_prog.cs_orden_corte 	= :an_ordencorte AND
+			t_guias_num_prog.cs_agrupacion	= dt_agrupa_pdn.cs_agrupacion  AND
+			t_guias_num_prog.cs_base_trazos 	= :an_raya AND
+			( t_guias_num_prog.cs_espacio    = :an_cs_espacio  ) AND
+         dt_agrupa_pdn.cs_pdn  				= t_guias_num_prog.cs_pdn AND
+			h_preref_pv.co_fabrica 				= dt_agrupa_pdn.co_fabrica_pt AND
+			h_preref_pv.co_linea 				= dt_agrupa_pdn.co_linea AND
+         (Cast(dt_agrupa_pdn.co_referencia as char(15) ) = h_preref_pv.co_referencia ) and
+         h_preref_pv.co_tipo_ref				 = 'P' and
+         h_preref_pv.co_grupo_tlla 				= m_tallas_x_grupo_pv.co_grupo_tlla  AND 
+         m_tallas_x_grupo_pv.co_talla 			= cast(t_guias_num_prog.co_talla as char(10)) and
+			h_preref_pv.co_fabrica 					= m_lineas.co_fabrica AND
+			h_preref_pv.co_linea 					= m_lineas.co_linea AND
+			dt_agrupa_pdn.co_fabrica_exp 		= dt_telaxmodelo_lib.co_fabrica_exp and
+			dt_agrupa_pdn.cs_liberacion		= dt_telaxmodelo_lib.cs_liberacion and
+			dt_agrupa_pdn.po						= dt_telaxmodelo_lib.nu_orden and
+			dt_agrupa_pdn.nu_cut					= dt_telaxmodelo_lib.nu_cut and
+			dt_agrupa_pdn.co_fabrica_pt		= dt_telaxmodelo_lib.co_fabrica_pt and
+			dt_agrupa_pdn.co_linea				= dt_telaxmodelo_lib.co_linea and
+			dt_agrupa_pdn.co_referencia		= dt_telaxmodelo_lib.co_referencia and
+			dt_agrupa_pdn.co_color_pt			= dt_telaxmodelo_lib.co_color_pt and
+			dt_agrupa_pdn.tono					= dt_telaxmodelo_lib.co_tono and
+			dt_telaxmodelo_lib.co_fabrica_pt	= dt_color_modelo.co_fabrica and
+			dt_telaxmodelo_lib.co_linea		= dt_color_modelo.co_linea and
+			dt_telaxmodelo_lib.co_referencia	= dt_color_modelo.co_referencia and
+			t_guias_num_prog.co_talla			= dt_color_modelo.co_talla and
+			dt_color_modelo.co_calidad 		= 1 and
+			dt_telaxmodelo_lib.co_color_pt	= dt_color_modelo.co_color_pt and
+			dt_telaxmodelo_lib.co_modelo 		= dt_color_modelo.co_modelo and
+			dt_telaxmodelo_lib.co_reftel		= dt_color_modelo.co_reftel and
+			dt_telaxmodelo_lib.co_caract		= dt_color_modelo.co_caract and
+			dt_telaxmodelo_lib.diametro		= dt_color_modelo.diametro and
+			dt_telaxmodelo_lib.co_color_tela	= dt_color_modelo.co_color_te and
+			dt_color_modelo.co_parte			= m_partes.co_parte and
+			dt_telaxmodelo_lib.raya				= (:an_raya * 10)" update="t_guias_num_prog" updatewhere=0 updatekeyinplace=no arguments=(("an_ordencorte", number),("an_raya", number),("an_cs_espacio", number))  sort="cs_orden A cs_sec_ext A co_talla A letra A sec_lote A capas A " )
+group(level=1 header.height=0 trailer.height=0 by=("cs_espacio" ) header.color="536870912" trailer.color="536870912" )
+text(band=detail alignment="0" text="Num" border="0" color="0" x="187" y="552" height="40" width="91" html.valueishtml="0"  name=t_11 visible="1"  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="O.C" border="0" color="0" x="146" y="368" height="40" width="96" html.valueishtml="0"  name=t_14 visible="1"  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="114" y="288" height="56" width="169" format="[general]" html.valueishtml="0"  name=cs_orden_corte visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="0" x="142" y="452" height="56" width="114" format="[general]" html.valueishtml="0"  name=de_talla visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Talla:" border="0" color="0" x="146" y="552" height="40" width="96" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="2" tabsequence=32766 border="0" color="0" x="174" y="252" height="56" width="119" format="[general]" html.valueishtml="0"  name=valor_final visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="al" border="0" color="0" x="210" y="356" height="40" width="41" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="2" tabsequence=32766 border="0" color="0" x="174" y="448" height="56" width="119" format="[general]" html.valueishtml="0"  name=valor_inicial visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="356" height="56" width="539" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="1" background.color="536870912" )
+column(band=detail id=27 alignment="2" tabsequence=32766 border="0" color="0" x="169" y="372" height="56" width="622" format="[general]" html.valueishtml="0"  name=de_parte visible="1"  resizeable=1 edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="1" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Espacio:" border="0" color="0" x="69" y="392" height="40" width="160" html.valueishtml="0"  name=cs_espacio_t visible="1"  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="0" x="105" y="292" height="56" width="91" format="[general]" html.valueishtml="0"  name=cs_espacio visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Lote" border="0" color="0" x="265" y="344" height="40" width="96" html.valueishtml="0"  name=t_9 visible="1"  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression=" dt_agrupa_pdn_co_color_pt  +  dt_agrupa_pdn_tono  +  dt_agrupa_pdn_cs_liberacion "border="0" color="0" x="183" y="208" height="56" width="261" format="[GENERAL]" html.valueishtml="0"  name=lote visible="1"  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Ref" border="0" color="0" x="311" y="560" height="40" width="73" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="Particion:" border="0" color="0" x="261" y="304" height="40" width="178" html.valueishtml="0"  name=t_7 visible="1"  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="2" background.color="16777215" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="0" x="279" y="464" height="56" width="137" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="0" color="0" x="306" y="176" height="60" width="82" format="[general]" html.valueishtml="0"  name=cs_particion visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="Linea" border="0" color="0" x="375" y="548" height="40" width="101" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="2" background.color="16777215" )
+column(band=detail id=26 alignment="0" tabsequence=32766 border="0" color="0" x="192" y="260" height="56" width="466" format="[general]" html.valueishtml="0"  name=de_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="0" x="384" y="468" height="56" width="87" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="2" tabsequence=32766 border="0" color="0" x="114" y="120" height="56" width="78" format="[general]" html.valueishtml="0"  name=letra visible="1" edit.limit=2 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Paq:" border="0" color="0" x="110" y="196" height="40" width="87" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.escapement="0~t900"  background.mode="1" background.color="536870912" )
+
+sparse(names="de_talla")htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
