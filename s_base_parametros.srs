@@ -1,0 +1,17 @@
+HA$PBExportHeader$s_base_parametros.srs
+$PBExportComments$OBJETO BASE - Estructura utilizada para el paso de parametros entre objetos. Se puede utilizar cada que se necesite definiendo una variable de este tipo.
+global type s_base_parametros from structure
+	string		cadena[]
+	long		entero[]
+	boolean		boolean[]
+	date		fecha[]
+	time		hora[]
+	decimal { 4 }		decimal[]
+	boolean		hay_parametros
+	datetime		fechahora[]
+	icon		icono[]
+	button		boton[]
+	uo_dsbase		ds_datos[]
+	any		any[]
+end type
+
