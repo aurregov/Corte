@@ -1,0 +1,62 @@
+HA$PBExportHeader$dff_actualizacion_rollos_ant.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=212 color="536870912" )
+table(column=(type=long updatewhereclause=yes key=yes name=m_rollo_cs_rollo dbname="m_rollo.cs_rollo" )
+ column=(type=long updatewhereclause=yes name=m_rollo_cs_orden_pr_act dbname="m_rollo.cs_orden_pr_act" )
+ column=(type=long updatewhereclause=yes name=m_rollo_co_reftel_act dbname="m_rollo.co_reftel_act" )
+ column=(type=long updatewhereclause=yes name=m_rollo_co_caract_act dbname="m_rollo.co_caract_act" )
+ column=(type=char(42) updatewhereclause=yes name=h_telas_de_reftel dbname="h_telas.de_reftel" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=m_rollo_ca_mt dbname="m_rollo.ca_mt" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=m_rollo_ancho_tub_term dbname="m_rollo.ancho_tub_term" )
+ column=(type=decimal(2) updatewhereclause=yes name=h_telas_gr_mt2_terminado dbname="h_telas.gr_mt2_terminado" )
+ column=(type=decimal(2) updatewhereclause=yes name=m_rollo_mt_antes dbname="m_rollo.mt_antes" )
+ column=(type=decimal(2) updatewhereclause=yes name=m_rollo_ancho_antes dbname="m_rollo.ancho_antes" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fe_actualizacion dbname="m_rollo.fe_actualizacion" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=usuario dbname="m_rollo.usuario" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=instancia dbname="m_rollo.instancia" )
+ column=(type=long update=yes updatewhereclause=yes name=m_rollo_co_caract_final dbname="m_rollo.co_caract_final" values="Abierta	8/Tubular	4/" )
+ retrieve="  SELECT m_rollo.cs_rollo,   
+         m_rollo.cs_orden_pr_act,   
+         m_rollo.co_reftel_act,   
+         m_rollo.co_caract_act,   
+         h_telas.de_reftel,   
+         m_rollo.ca_mt,   
+         m_rollo.ancho_tub_term,   
+         h_telas.gr_mt2_terminado,   
+         m_rollo.ca_mt mt_antes,   
+         m_rollo.ancho_tub_term ancho_antes,
+			m_rollo.fe_actualizacion,
+			m_rollo.usuario,
+			m_rollo.instancia,
+			m_rollo.co_caract_final
+    FROM h_telas,   
+         m_rollo  
+   WHERE ( m_rollo.co_reftel_act = h_telas.co_reftel ) and  
+         ( m_rollo.co_caract_act = h_telas.co_caract ) and  
+         ( ( m_rollo.cs_rollo = :al_rollo ) )    
+" update="m_rollo" updatewhere=0 updatekeyinplace=no arguments=(("al_rollo", number)) )
+text(band=detail alignment="0" text="Rollo:" border="0" color="33554432" x="18" y="28" height="52" width="165" html.valueishtml="0"  name=m_rollo_cs_rollo_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Orden Producci$$HEX1$$f300$$ENDHEX$$n:" border="0" color="33554432" x="544" y="28" height="52" width="407" html.valueishtml="0"  name=m_rollo_cs_orden_pr_act_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Tela:" border="0" color="33554432" x="1303" y="28" height="52" width="160" html.valueishtml="0"  name=m_rollo_co_reftel_act_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression=" m_rollo_co_reftel_act + '-' + m_rollo_co_caract_act "border="5" color="33554432" x="1486" y="28" height="52" width="238" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="33554432" x="1742" y="28" height="52" width="878" format="[general]" html.valueishtml="0"  name=h_telas_de_reftel visible="1" edit.limit=42 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="33554432" x="206" y="28" height="52" width="274" format="[general]" html.valueishtml="0"  name=m_rollo_cs_rollo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Gr Mt2:" border="0" color="33554432" x="18" y="124" height="52" width="165" html.valueishtml="0"  name=h_telas_gr_mt2_terminado_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Metros:" border="0" color="33554432" x="544" y="124" height="52" width="165" html.valueishtml="0"  name=m_rollo_ca_mt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="5" color="33554432" x="206" y="124" height="52" width="274" format="[general]" html.valueishtml="0"  name=h_telas_gr_mt2_terminado visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="33554432" x="969" y="28" height="52" width="274" format="[general]" html.valueishtml="0"  name=m_rollo_cs_orden_pr_act visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="5" color="33554432" x="1486" y="124" height="52" width="224" format="###,##0.00" html.valueishtml="0"  name=m_rollo_ancho_antes visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=7 alignment="1" tabsequence=20 border="5" color="33554432" x="1742" y="124" height="52" width="224" format="[general]" html.valueishtml="0"  name=m_rollo_ancho_tub_term visible="1" editmask.mask="###,##0.00" editmask.imemode=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=6 alignment="1" tabsequence=10 border="5" color="33554432" x="969" y="124" height="52" width="274" format="###,##0.00" html.valueishtml="0"  name=m_rollo_ca_mt visible="1" editmask.mask="###,##0.00" editmask.imemode=0 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="5" color="33554432" x="722" y="124" height="52" width="224" format="###,##0.00" html.valueishtml="0"  name=m_rollo_mt_antes visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=detail alignment="0" text="Ancho:" border="0" color="33554432" x="1303" y="124" height="52" width="160" html.valueishtml="0"  name=m_rollo_ancho_tub_term_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Caract. Final:" border="0" color="0" x="1998" y="124" height="52" width="283" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=14 alignment="0" tabsequence=30 border="5" color="33554432" x="2318" y="124" height="52" width="302" format="[general]" html.valueishtml="0"  name=m_rollo_co_caract_final visible="1" ddlb.limit=0 ddlb.allowedit=yes ddlb.case=any ddlb.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
