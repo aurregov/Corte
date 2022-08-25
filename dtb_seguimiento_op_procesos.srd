@@ -1,0 +1,158 @@
+HA$PBExportHeader$dtb_seguimiento_op_procesos.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=33554431 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=252 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=co_fabrica dbname="co_fabrica" )
+ column=(type=long updatewhereclause=yes name=co_linea dbname="co_linea" )
+ column=(type=char(30) updatewhereclause=yes name=m_lineas_de_linea dbname="de_linea" )
+ column=(type=long updatewhereclause=yes name=co_referencia dbname="co_referencia" )
+ column=(type=char(40) updatewhereclause=yes name=de_referencia dbname="de_referencia" )
+ column=(type=long updatewhereclause=yes name=m_rollo_co_centro dbname="co_centro" )
+ column=(type=char(30) updatewhereclause=yes name=m_centros_de_centro dbname="de_centro" )
+ column=(type=long updatewhereclause=yes name=m_rollo_co_reftel_act dbname="co_reftel_act" )
+ column=(type=long updatewhereclause=yes name=m_rollo_co_caract_act dbname="co_caract_act" )
+ column=(type=long updatewhereclause=yes name=m_rollo_co_color_act dbname="co_color_act" )
+ column=(type=char(42) updatewhereclause=yes name=h_telas_de_reftel dbname="de_reftel" )
+ column=(type=long updatewhereclause=yes name=h_tandas_cs_ficho dbname="cs_ficho" )
+ column=(type=long updatewhereclause=yes name=m_rollo_lote dbname="lote" )
+ column=(type=long updatewhereclause=yes name=h_tandas_cs_tanda dbname="cs_tanda" )
+ column=(type=long updatewhereclause=yes name=dt_lotesxtandas_cs_secundario dbname="cs_secundario" )
+ column=(type=long updatewhereclause=yes name=dt_lotesxtandas_cs_ordenpd_pt dbname="cs_ordenpd_pt" )
+ column=(type=long updatewhereclause=yes name=dt_lotesxtandas_cs_lote dbname="cs_lote" )
+ column=(type=long updatewhereclause=yes name=dt_lotesxtandas_cs_parte dbname="cs_parte" )
+ column=(type=long update=yes updatewhereclause=yes name=dt_lotesxtandas_cs_espera dbname="cs_espera" values="''	0/CRITICA A	1/CRITICA B	2/URGENTE	4/FABRIC	5/LOT PILOTO	3/TRIM CARD	6/" )
+ column=(type=long updatewhereclause=yes name=h_lote_tela_co_color_pt dbname="co_color_pt" )
+ column=(type=date update=yes updatewhereclause=yes name=dt_lotesxtandas_fe_critica dbname="fe_critica" )
+ column=(type=date update=yes updatewhereclause=yes name=dt_lotesxtandas_fe_marca dbname="fe_marca" )
+ column=(type=char(1) updatewhereclause=yes name=proceso dbname="proceso" )
+ column=(type=datetime updatewhereclause=yes name=fecha dbname="fecha" )
+ column=(type=decimal(0) updatewhereclause=yes name=rollos dbname="rollos" )
+ column=(type=decimal(2) updatewhereclause=yes name=kilos dbname="kilos" )
+ column=(type=decimal(2) updatewhereclause=yes name=metros dbname="metros" )
+ retrieve="  SELECT DISTINCT h_preref_pv.co_fabrica,
+			h_preref_pv.co_linea,
+			m_lineas.de_linea,
+			h_ordenpd_pt.co_referencia,
+			h_preref_pv.de_referencia,
+			m_rollo.co_centro,   
+         m_centros.de_centro,
+         m_rollo.co_reftel_act,   
+			m_rollo.co_caract_act,
+         m_rollo.co_color_act,   
+			h_telas.de_reftel,
+			h_tandas.cs_ficho,
+         m_rollo.lote,   
+         h_tandas.cs_tanda,
+			dt_lotesxtandas.cs_secundario,
+			dt_lotesxtandas.cs_ordenpd_pt,
+			dt_lotesxtandas.cs_lote,
+			dt_lotesxtandas.cs_parte,
+         dt_lotesxtandas.cs_espera,
+         h_lote_tela.co_color_pt,
+         dt_lotesxtandas.fe_critica,
+         dt_lotesxtandas.fe_marca,
+         '' proceso,
+         Max(m_rollo.fe_actualizacion) fecha,
+         Count(*) rollos,
+	      Sum(m_rollo.ca_kg) kilos,
+         Sum(m_rollo.ca_mt) Metros
+    FROM m_rollo,   
+         h_ordenpd_pt,   
+			h_telas,
+         m_centros,
+			h_tandas,
+			h_preref_pv,
+			m_lineas,
+         outer dt_lotesxtandas,
+         h_lote_tela
+   WHERE ( m_rollo.cs_orden_pr_act = h_ordenpd_pt.cs_ordenpd_pt ) and  
+         ( m_rollo.co_centro = m_centros.co_centro ) and  
+         ( m_rollo.co_centro not in (90, 91, 92, 99) ) AND
+         ( m_rollo.co_estado_rollo not in (3,6) ) AND  
+         ( h_ordenpd_pt.cs_ordenpd_pt = :al_ordenpd OR :al_ordenpd = 0 ) and 
+        	( m_rollo.cs_tanda=h_tandas.cs_tanda ) and 
+			( m_rollo.cs_secundario=h_tandas.cs_secundario ) and
+			( m_rollo.co_reftel_act = h_telas.co_reftel ) and
+			( m_rollo.co_caract_act = h_telas.co_caract ) and
+			( h_ordenpd_pt.co_fabrica = h_preref_pv.co_fabrica ) and
+         ( h_ordenpd_pt.cs_ordenpd_pt > 0 ) and
+         ( h_ordenpd_pt.co_estado_orden <> 6 ) and
+			( h_ordenpd_pt.co_linea = h_preref_pv.co_linea ) and
+			( Cast(h_ordenpd_pt.co_referencia as char(15) ) = h_preref_pv.co_referencia ) and
+         ( h_preref_pv.co_tipo_ref = 'P' ) and
+			( h_ordenpd_pt.co_fabrica = m_lineas.co_fabrica ) and
+			( h_ordenpd_pt.co_linea = m_lineas.co_linea ) and
+         ( dt_lotesxtandas.cs_tanda = h_tandas.cs_tanda ) and
+         ( dt_lotesxtandas.cs_secundario = h_tandas.cs_secundario ) and
+         ( dt_lotesxtandas.cs_ordenpd_pt = h_ordenpd_pt.cs_ordenpd_pt ) and
+         ( dt_lotesxtandas.cs_lote  = m_rollo.lote ) and
+         ( h_lote_tela.cs_lote =  m_rollo.lote ) and 
+         ( dt_lotesxtandas.co_reftel = m_rollo.co_reftel_act ) and
+	      ( dt_lotesxtandas.cs_tanda = m_rollo.cs_tanda ) and
+	      ( dt_lotesxtandas.cs_secundario = m_rollo.cs_secundario ) 
+GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23" arguments=(("al_ordenpd", number))  sort="co_fabrica A co_linea A co_referencia A dt_lotesxtandas_cs_ordenpd_pt A m_rollo_co_centro A m_rollo_co_color_act A m_rollo_lote A h_tandas_cs_ficho A h_telas_de_reftel A m_rollo_co_caract_act A " )
+group(level=1 header.height=76 trailer.height=84 by=("co_fabrica" , "co_linea" , "co_referencia" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=84 trailer.height=4 by=("co_fabrica" , "co_linea" , "co_referencia" , "dt_lotesxtandas_cs_ordenpd_pt" ) header.color="536870912" trailer.color="536870912" )
+group(level=3 header.height=168 trailer.height=68 by=("co_fabrica" , "co_linea" , "co_referencia" , "al_ordenpd" , "m_rollo_co_centro" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="0" text="EXISTENCIAS POR CENTRO Y LINEA" border="0" color="0" x="873" y="20" height="64" width="1234" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+compute(band=header alignment="0" expression="today()"border="0" color="0" x="18" y="16" height="64" width="325" format="dd/mmm/yyyy" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+compute(band=header alignment="0" expression="'Pag ' + page() + ' de ' + pageCount()"border="0" color="0" x="2418" y="16" height="64" width="571" format="[general]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+button(band=header text="Filtrar" filename="" enabled=yes action="9" border="0" color="0" x="27" y="104" height="80" width="270" vtextalign="0" htextalign="0"  name=b_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=header text="Ordenar" filename="" enabled=yes action="8" border="0" color="0" x="370" y="104" height="80" width="320" vtextalign="0" htextalign="0"  name=b_2 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="2" text="Fabrica:" border="6" color="0" x="14" y="4" height="64" width="288" html.valueishtml="0"  name=h_preref_co_fabrica_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16776960" )
+column(band=header.1 id=1 alignment="0" tabsequence=32766 border="0" color="0" x="315" y="4" height="64" width="526" format="[general]" html.valueishtml="0"  name=co_fabrica visible="1" dddw.name=dddw_fabricas dddw.displaycolumn=de_fabrica dddw.datacolumn=co_fabrica dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16776960" )
+text(band=header.1 alignment="2" text="Linea:" border="6" color="0" x="896" y="4" height="64" width="219" html.valueishtml="0"  name=h_preref_co_linea_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16776960" )
+column(band=header.1 id=3 alignment="0" tabsequence=32766 border="0" color="0" x="1234" y="4" height="64" width="681" format="[general]" html.valueishtml="0"  name=m_lineas_de_linea visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16776960" )
+column(band=header.1 id=2 alignment="1" tabsequence=32766 border="0" color="0" x="1138" y="4" height="64" width="82" format="[general]" html.valueishtml="0"  name=co_linea visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16776960" )
+text(band=header.1 alignment="2" text="Referen:" border="6" color="0" x="1966" y="4" height="64" width="293" html.valueishtml="0"  name=h_preref_co_referencia_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16776960" )
+column(band=header.1 id=5 alignment="0" tabsequence=32766 border="0" color="0" x="2491" y="4" height="64" width="809" format="[general]" html.valueishtml="0"  name=de_referencia visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16776960" )
+column(band=header.1 id=4 alignment="1" tabsequence=32766 border="0" color="0" x="2267" y="4" height="64" width="210" format="[general]" html.valueishtml="0"  name=co_referencia visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16776960" )
+text(band=header.2 alignment="2" text="Orden Prod:" border="6" color="0" x="14" y="8" height="64" width="411" html.valueishtml="0"  name=dt_lotesxtandas_cs_ordenpd_pt_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15793151" )
+column(band=header.2 id=16 alignment="0" tabsequence=32766 border="0" color="0" x="453" y="8" height="68" width="411" format="[general]" html.valueishtml="0"  name=dt_lotesxtandas_cs_ordenpd_pt visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header.3 alignment="2" text="Centro:" border="6" color="0" x="14" y="4" height="64" width="251" html.valueishtml="0"  name=m_rollo_co_centro_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=header.3 id=6 alignment="2" tabsequence=32766 border="2" color="0" x="311" y="4" height="64" width="160" format="[general]" html.valueishtml="0"  name=m_rollo_co_centro visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.3 id=7 alignment="0" tabsequence=32766 border="2" color="0" x="489" y="4" height="64" width="709" format="[general]" html.valueishtml="0"  name=m_centros_de_centro visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.3 alignment="2" text="Proceso" border="6" color="0" x="3154" y="92" height="64" width="311" html.valueishtml="0"  name=t_8 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=23 alignment="0" tabsequence=32766 border="2" color="0" x="3145" y="4" height="60" width="325" format="[general]" html.valueishtml="0"  name=proceso visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+text(band=trailer.2 alignment="1" text="TOTAL ORDEN" border="2" color="0" x="1481" y="8" height="52" width="466" html.valueishtml="0"  name=t_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.2 alignment="1" text="TOTAL ORDEN" border="2" color="0" x="1481" y="8" height="52" width="466" html.valueishtml="0"  name=t_6 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum(  kilos  for group 2 )"border="2" color="0" x="2002" y="8" height="52" width="297" format="#,##0.00" html.valueishtml="0"  name=compute_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=trailer.3 alignment="1" text="12/12/2014" border="0" color="0" x="2784" y="4" height="64" width="247" html.valueishtml="0"  name=t_9 visible="1"  font.face="Arial Narrow" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header.3 alignment="2" text="Critica" border="6" color="0" x="2565" y="92" height="64" width="256" html.valueishtml="0"  name=dt_lotesxtandas_cs_espera_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=19 alignment="2" tabsequence=32766 border="2" color="0" x="2565" y="4" height="60" width="256" format="[general]" html.valueishtml="0"  name=dt_lotesxtandas_cs_espera visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.3 alignment="2" text="Fe Critica" border="6" color="0" x="2834" y="92" height="64" width="306" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=21 alignment="2" tabsequence=32766 border="2" color="0" x="2834" y="4" height="60" width="306" format="dd-mm-yyyy" html.valueishtml="0"  name=dt_lotesxtandas_fe_critica visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial Narrow" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.3 alignment="2" text="Lote" border="6" color="0" x="297" y="92" height="64" width="169" html.valueishtml="0"  name=m_rollo_lote_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header.3 alignment="0" text="Ficho" border="6" color="0" x="480" y="92" height="64" width="174" html.valueishtml="0"  name=h_tandas_cs_ficho_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header.3 alignment="2" text="Tanda" border="6" color="0" x="667" y="92" height="64" width="197" html.valueishtml="0"  name=h_tandas_cs_tanda_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="2" color="0" x="297" y="4" height="60" width="183" format="[general]" html.valueishtml="0"  name=m_rollo_lote visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="2" color="0" x="480" y="4" height="60" width="174" format="[general]" html.valueishtml="0"  name=h_tandas_cs_ficho visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="2" color="0" x="667" y="4" height="60" width="197" format="[general]" html.valueishtml="0"  name=h_tandas_cs_tanda visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.3 alignment="2" text="Tela" border="6" color="0" x="891" y="92" height="64" width="759" html.valueishtml="0"  name=m_rollo_co_reftel_act_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header.3 alignment="2" text="Kilos" border="6" color="0" x="1673" y="92" height="64" width="187" html.valueishtml="0"  name=kilos_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header.3 alignment="2" text="Mts" border="6" color="0" x="1874" y="92" height="64" width="187" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header.3 alignment="0" text="Rollos" border="6" color="0" x="2085" y="92" height="64" width="169" html.valueishtml="0"  name=rollos_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="2" color="0" x="878" y="4" height="60" width="151" format="[general]" html.valueishtml="0"  name=m_rollo_co_reftel_act visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="2" color="0" x="1033" y="4" height="60" width="59" format="[general]" html.valueishtml="0"  name=m_rollo_co_caract_act visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="2" color="0" x="1102" y="4" height="60" width="553" format="[general]" html.valueishtml="0"  name=h_telas_de_reftel visible="1" edit.limit=42 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=25 alignment="2" tabsequence=32766 border="2" color="0" x="2085" y="4" height="60" width="174" format="[general]" html.valueishtml="0"  name=rollos visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=26 alignment="2" tabsequence=32766 border="2" color="0" x="1673" y="4" height="60" width="187" format="#,##0.00" html.valueishtml="0"  name=kilos visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=27 alignment="2" tabsequence=32766 border="2" color="0" x="1879" y="4" height="60" width="192" format="0.0" html.valueishtml="0"  name=metros visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+text(band=trailer.3 alignment="1" text="TOTAL CENTRO" border="2" color="0" x="1088" y="12" height="52" width="466" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="1" expression="sum(  kilos  for group 3 )"border="2" color="0" x="1568" y="8" height="56" width="293" format="#,##0.00" html.valueishtml="0"  name=compute_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.3 alignment="0" expression="sum(metros for group 3)"border="2" color="0" x="1883" y="8" height="52" width="192" format="0.0" html.valueishtml="0"  name=compute_6 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="33554431" )
+compute(band=trailer.1 alignment="1" expression="sum(  kilos  for group 1 )"border="6" color="0" x="1568" y="12" height="52" width="293" format="#,##0.00" html.valueishtml="0"  name=compute_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=trailer.1 alignment="1" text="TOTAL REFER" border="6" color="0" x="1088" y="12" height="52" width="466" html.valueishtml="0"  name=t_7 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+compute(band=trailer.1 alignment="0" expression="sum(metros for group 3)"border="6" color="0" x="1883" y="8" height="56" width="192" format="0.0" html.valueishtml="0"  name=compute_7 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header.3 alignment="2" text="Fecha" border="6" color="0" x="2272" y="92" height="64" width="288" html.valueishtml="0"  name=fecha_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=24 alignment="2" tabsequence=32766 border="2" color="0" x="2272" y="4" height="60" width="288" format="m/d/yy h:mm" html.valueishtml="0"  name=fecha visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.3 alignment="2" text="Color" border="6" color="0" x="0" y="92" height="64" width="293" html.valueishtml="0"  name=m_rollo_co_color_act_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="2" color="0" x="0" y="4" height="60" width="293" format="[general]" html.valueishtml="0"  name=m_rollo_co_color_act visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial Narrow" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
